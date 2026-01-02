@@ -162,7 +162,7 @@ export default function Home() {
             <div className="relative">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img 
-                  src="/images/conference-poster.png" 
+                  src="/images/conference-poster-new.jpeg" 
                   alt="SCI 2026 Conference" 
                   className="w-full h-auto"
                 />
