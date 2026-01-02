@@ -355,6 +355,55 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Location & Map Section */}
+      <section className="py-20 bg-white">
+        <div className="container">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center space-y-4 mb-12">
+              <h2 className="text-4xl md:text-5xl font-bold text-primary">Location</h2>
+              <p className="text-2xl font-semibold text-secondary" dir="rtl">الموقع</p>
+              <div className="space-y-2">
+                <p className="text-lg text-muted-foreground">
+                  Conference Hall, Cairo University, University Hostel
+                </p>
+                <p className="text-lg text-muted-foreground" dir="rtl">
+                  قاعة المؤتمرات، جامعة القاهرة، المدينة الجامعية
+                </p>
+              </div>
+            </div>
+
+            <Card className="overflow-hidden border-2">
+              <CardContent className="p-0">
+                <div className="aspect-video w-full">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3456.0!2d31.2!3d30.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583fa60b21beeb%3A0x79dfb296e8423bba!2sCairo%20University!5e0!3m2!1sen!2seg!4v1234567890"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Conference Location"
+                  />
+                </div>
+              </CardContent>
+            </Card>
+
+            <div className="text-center mt-8">
+              <Button
+                size="lg"
+                variant="outline"
+                onClick={() => window.open('https://maps.app.goo.gl/gyvCQd6K6zEWL5tL6', '_blank')}
+                className="gap-2"
+              >
+                <MapPin className="w-5 h-5" />
+                Open in Google Maps | افتح في خرائط جوجل
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Contact Section */}
       <section className="py-20 bg-gradient-to-b from-accent/5 to-primary/5">
         <div className="container">
