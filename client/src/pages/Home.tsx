@@ -54,25 +54,25 @@ export default function Home() {
       title: "Graduate & Postgraduate Students",
       titleAr: "طلاب التخرج والدراسات العليا",
       description: "Faculty of Science - Cairo University",
-      link: "https://forms.gle/RPmxzLSS67Qvuvxo9"
+      link: "https://forms.gle/zXTMLVuGvFctfn46A"
     },
     {
       title: "Faculty Members (Internal)",
       titleAr: "أعضاء هيئة التدريس (داخلي)",
       description: "Faculty of Science - Cairo University",
-      link: "https://forms.gle/kMLu69y5yTxVw1LK7"
+      link: "https://forms.gle/7XDrJb7EKY8tSYZS6"
     },
     {
       title: "External Researchers",
       titleAr: "الباحثون الخارجيون",
       description: "All Universities & Research Centers",
-      link: "https://forms.gle/7XDrJb7EKY8tSYZS6"
+      link: "https://forms.gle/kMLu69y5yTxVw1LK7"
     },
     {
       title: "Industry Partners",
       titleAr: "شركاء الصناعة",
       description: "Companies & Industrial Sector",
-      link: "https://forms.gle/zXTMLVuGvFctfn46A"
+      link: "https://forms.gle/RPmxzLSS67Qvuvxo9"
     }
   ];
 
