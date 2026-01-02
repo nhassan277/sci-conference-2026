@@ -146,7 +146,7 @@ export default function Home() {
                   <MapPin className="w-5 h-5 text-primary" />
                   <div>
                     <p className="font-semibold">Cairo University</p>
-                    <p className="text-sm text-muted-foreground">University City</p>
+                    <p className="text-sm text-muted-foreground">University Hostel</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
@@ -375,7 +375,7 @@ export default function Home() {
 
             <div className="pt-8 space-y-2">
               <p className="text-sm text-muted-foreground">
-                Conference Hall, Cairo University, University City
+                Conference Hall, Cairo University, University Hostel
               </p>
               <p className="text-sm text-muted-foreground" dir="rtl">
                 قاعة المؤتمرات، جامعة القاهرة، المدينة الجامعية
