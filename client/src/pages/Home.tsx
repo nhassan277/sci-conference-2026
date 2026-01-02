@@ -54,25 +54,25 @@ export default function Home() {
       title: "Graduate & Postgraduate Students",
       titleAr: "طلاب التخرج والدراسات العليا",
       description: "Faculty of Science - Cairo University",
-      link: "#form1"
+      link: "https://forms.gle/RPmxzLSS67Qvuvxo9"
     },
     {
       title: "Faculty Members (Internal)",
       titleAr: "أعضاء هيئة التدريس (داخلي)",
       description: "Faculty of Science - Cairo University",
-      link: "#form2"
+      link: "https://forms.gle/kMLu69y5yTxVw1LK7"
     },
     {
       title: "External Researchers",
       titleAr: "الباحثون الخارجيون",
       description: "All Universities & Research Centers",
-      link: "#form3"
+      link: "https://forms.gle/7XDrJb7EKY8tSYZS6"
     },
     {
       title: "Industry Partners",
       titleAr: "شركاء الصناعة",
       description: "Companies & Industrial Sector",
-      link: "#form4"
+      link: "https://forms.gle/zXTMLVuGvFctfn46A"
     }
   ];
 
@@ -122,7 +122,11 @@ export default function Home() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <Button size="lg" className="text-lg px-8 py-6 bg-primary hover:bg-primary/90">
+                <Button 
+                  size="lg" 
+                  className="text-lg px-8 py-6 bg-primary hover:bg-primary/90"
+                  onClick={() => document.getElementById('registration')?.scrollIntoView({ behavior: 'smooth' })}
+                >
                   Register Now | سجل الآن
                 </Button>
                 <Button size="lg" variant="outline" className="text-lg px-8 py-6">
@@ -280,7 +284,7 @@ export default function Home() {
       </section>
 
       {/* Registration Section */}
-      <section className="py-20 bg-gradient-to-b from-primary/5 to-white">
+      <section id="registration" className="py-20 bg-gradient-to-b from-primary/5 to-white">
         <div className="container">
           <div className="text-center space-y-4 mb-12">
             <h2 className="text-4xl md:text-5xl font-bold text-primary">Registration</h2>
@@ -303,7 +307,11 @@ export default function Home() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Button className="w-full" variant="outline">
+                  <Button 
+                    className="w-full" 
+                    variant="outline"
+                    onClick={() => window.open(category.link, '_blank')}
+                  >
                     Register | سجل الآن
                   </Button>
                 </CardContent>
@@ -311,11 +319,7 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="text-center mt-12">
-            <p className="text-sm text-muted-foreground">
-              Registration forms will be available soon
-            </p>
-          </div>
+
         </div>
       </section>
 
