@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, MapPin, Users, Award, Microscope, FlaskConical, Globe, Calculator, Heart, Sparkles } from "lucide-react";
+import { Calendar, MapPin, Users, Lightbulb, Award, BookOpen, GraduationCap, Mail, Microscope, FlaskConical, Globe, Calculator, Heart, Sparkles } from "lucide-react";
 
 export default function Home() {
   const tracks = [
@@ -355,6 +355,73 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Sponsors & Partners Section */}
+      <section className="py-20 bg-gradient-to-b from-white to-accent/5">
+        <div className="container">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center space-y-4 mb-12">
+              <h2 className="text-4xl md:text-5xl font-bold text-primary">Sponsors & Partners</h2>
+              <p className="text-2xl font-semibold text-secondary" dir="rtl">الرعاة والشركاء</p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* NAWAH Scientific */}
+              <Card className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="flex items-center justify-center h-32 bg-white rounded-lg mb-4 p-4">
+                    <img 
+                      src="/images/nawah-logo.webp" 
+                      alt="NAWAH Scientific" 
+                      className="h-full w-auto object-contain"
+                    />
+                  </div>
+                  <CardTitle className="text-xl text-center">NAWAH Scientific</CardTitle>
+                  <CardDescription className="text-center">
+                    Workshop Partner | شريك ورش العمل
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground text-center">
+                    Leading provider of advanced scientific services and research solutions
+                  </p>
+                  <p className="text-sm text-muted-foreground text-center mt-2" dir="rtl">
+                    مزود رائد للخدمات العلمية المتقدمة وحلول البحث
+                  </p>
+                </CardContent>
+              </Card>
+
+              {/* Placeholder for future sponsors */}
+              <Card className="hover:shadow-lg transition-shadow border-dashed">
+                <CardHeader>
+                  <div className="flex items-center justify-center h-32 bg-gradient-to-br from-muted/30 to-muted/10 rounded-lg mb-4">
+                    <div className="text-center">
+                      <h3 className="text-xl font-semibold text-muted-foreground">Your Organization</h3>
+                      <p className="text-sm text-muted-foreground mt-1">Become a Sponsor</p>
+                    </div>
+                  </div>
+                  <CardTitle className="text-xl text-center">Sponsorship Opportunities</CardTitle>
+                  <CardDescription className="text-center" dir="rtl">
+                    فرص الرعاية
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground text-center mb-4">
+                    Join us as a sponsor and support scientific innovation
+                  </p>
+                  <Button 
+                    variant="outline" 
+                    className="w-full"
+                    onClick={() => window.location.href = 'mailto:sci.conference2026@sci.cu.edu.eg?subject=Sponsorship Inquiry'}
+                  >
+                    Contact Us | اتصل بنا
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Location & Map Section */}
       <section className="py-20 bg-white">
         <div className="container">
@@ -407,29 +474,111 @@ export default function Home() {
       {/* Contact Section */}
       <section className="py-20 bg-gradient-to-b from-accent/5 to-primary/5">
         <div className="container">
-          <div className="max-w-2xl mx-auto text-center space-y-6">
-            <h2 className="text-4xl md:text-5xl font-bold text-primary">Contact Us</h2>
-            <p className="text-2xl font-semibold text-secondary" dir="rtl">للاستفسار</p>
-            
+          <div className="max-w-3xl mx-auto">
+            <div className="text-center space-y-4 mb-12">
+              <h2 className="text-4xl md:text-5xl font-bold text-primary">Contact Us</h2>
+              <p className="text-2xl font-semibold text-secondary" dir="rtl">للاستفسار</p>
+              <p className="text-muted-foreground">Have questions? Send us a message and we'll get back to you soon.</p>
+              <p className="text-muted-foreground" dir="rtl">لديك أسئلة؟ أرسل لنا رسالة وسنرد عليك قريباً</p>
+            </div>
+
             <Card className="border-2">
-              <CardHeader>
-                <CardTitle className="text-xl">For any inquiries</CardTitle>
-                <CardDescription className="text-lg pt-4">
-                  <a href="mailto:sci.conference2026@sci.cu.edu.eg" className="text-primary hover:underline font-medium">
+              <CardContent className="pt-6">
+                <form 
+                  className="space-y-6"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    const formData = new FormData(e.currentTarget);
+                    const name = formData.get('name');
+                    const email = formData.get('email');
+                    const subject = formData.get('subject');
+                    const message = formData.get('message');
+                    window.location.href = `mailto:sci.conference2026@sci.cu.edu.eg?subject=${encodeURIComponent(subject as string)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+                  }}
+                >
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <label htmlFor="name" className="text-sm font-medium">
+                        Name | الاسم
+                      </label>
+                      <input
+                        id="name"
+                        name="name"
+                        type="text"
+                        required
+                        className="w-full px-4 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-ring"
+                        placeholder="Your name"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label htmlFor="email" className="text-sm font-medium">
+                        Email | البريد الإلكتروني
+                      </label>
+                      <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        required
+                        className="w-full px-4 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-ring"
+                        placeholder="your.email@example.com"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <label htmlFor="subject" className="text-sm font-medium">
+                      Subject | الموضوع
+                    </label>
+                    <input
+                      id="subject"
+                      name="subject"
+                      type="text"
+                      required
+                      className="w-full px-4 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-ring"
+                      placeholder="What is your inquiry about?"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <label htmlFor="message" className="text-sm font-medium">
+                      Message | الرسالة
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      required
+                      rows={5}
+                      className="w-full px-4 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-ring resize-none"
+                      placeholder="Type your message here..."
+                    />
+                  </div>
+
+                  <Button type="submit" size="lg" className="w-full">
+                    <Mail className="w-5 h-5 mr-2" />
+                    Send Message | إرسال الرسالة
+                  </Button>
+                </form>
+
+                <div className="mt-8 pt-8 border-t text-center space-y-4">
+                  <p className="text-sm font-medium">Or email us directly at:</p>
+                  <a 
+                    href="mailto:sci.conference2026@sci.cu.edu.eg" 
+                    className="text-primary hover:underline font-medium inline-flex items-center gap-2"
+                  >
+                    <Mail className="w-4 h-4" />
                     sci.conference2026@sci.cu.edu.eg
                   </a>
-                </CardDescription>
-              </CardHeader>
+                  <div className="pt-4 space-y-2">
+                    <p className="text-sm text-muted-foreground">
+                      Conference Hall, Cairo University, University Hostel
+                    </p>
+                    <p className="text-sm text-muted-foreground" dir="rtl">
+                      قاعة المؤتمرات، جامعة القاهرة، المدينة الجامعية
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
             </Card>
-
-            <div className="pt-8 space-y-2">
-              <p className="text-sm text-muted-foreground">
-                Conference Hall, Cairo University, University Hostel
-              </p>
-              <p className="text-sm text-muted-foreground" dir="rtl">
-                قاعة المؤتمرات، جامعة القاهرة، المدينة الجامعية
-              </p>
-            </div>
           </div>
         </div>
       </section>
