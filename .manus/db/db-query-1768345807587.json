@@ -1,0 +1,62 @@
+{
+  "query": "SELECT * FROM registrations ORDER BY id DESC LIMIT 5;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT * FROM registrations ORDER BY id DESC LIMIT 5;",
+  "rows": [
+    {
+      "id": "4",
+      "full_name_english": "Get By ID Test",
+      "full_name_arabic": "اختبار الحصول بالمعرف",
+      "email": "getbyid@example.com",
+      "phone": "+20 999 888 7777",
+      "affiliation": "Test Org",
+      "attendee_category": "faculty",
+      "participation_type": "workshop",
+      "research_title": "NULL",
+      "research_abstract": "NULL",
+      "created_at": "2026-01-13 23:09:55"
+    },
+    {
+      "id": "3",
+      "full_name_english": "Research Presenter",
+      "full_name_arabic": "عارض بحث",
+      "email": "presenter@example.com",
+      "phone": "+20 111 222 3333",
+      "affiliation": "Research Institute",
+      "attendee_category": "researcher",
+      "participation_type": "presenter",
+      "research_title": "AI in Science",
+      "research_abstract": "This research explores AI applications in scientific research.",
+      "created_at": "2026-01-13 23:09:55"
+    },
+    {
+      "id": "2",
+      "full_name_english": "Test User",
+      "full_name_arabic": "مستخدم تجريبي",
+      "email": "test@example.com",
+      "phone": "+20 123 456 7890",
+      "affiliation": "Test University",
+      "attendee_category": "student",
+      "participation_type": "attendee",
+      "research_title": "NULL",
+      "research_abstract": "NULL",
+      "created_at": "2026-01-13 23:09:55"
+    },
+    {
+      "id": "1",
+      "full_name_english": "Sara Mohamed",
+      "full_name_arabic": "سارة محمد",
+      "email": "sara.mohamed@sci.cu.edu.eg",
+      "phone": "+20 111 222 3333",
+      "affiliation": "Cairo University",
+      "attendee_category": "student",
+      "participation_type": "presenter",
+      "research_title": "",
+      "research_abstract": "This research explores the integration of artificial intelligence techniques in modern biotechnology research, focusing on protein structure prediction and drug discovery.",
+      "created_at": "2026-01-13 23:08:36"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tfull_name_english\tfull_name_arabic\temail\tphone\taffiliation\tattendee_category\tparticipation_type\tresearch_title\tresearch_abstract\tcreated_at\n4\tGet By ID Test\tاختبار الحصول بالمعرف\tgetbyid@example.com\t+20 999 888 7777\tTest Org\tfaculty\tworkshop\tNULL\tNULL\t2026-01-13 23:09:55\n3\tResearch Presenter\tعارض بحث\tpresenter@example.com\t+20 111 222 3333\tResearch Institute\tresearcher\tpresenter\tAI in Science\tThis research explores AI applications in scientific research.\t2026-01-13 23:09:55\n2\tTest User\tمستخدم تجريبي\ttest@example.com\t+20 123 456 7890\tTest University\tstudent\tattendee\tNULL\tNULL\t2026-01-13 23:09:55\n1\tSara Mohamed\tسارة محمد\tsara.mohamed@sci.cu.edu.eg\t+20 111 222 3333\tCairo University\tstudent\tpresenter\t\tThis research explores the integration of artificial intelligence techniques in modern biotechnology research, focusing on protein structure prediction and drug discovery.\t2026-01-13 23:08:36\n",
+  "stderr": "",
+  "execution_time_ms": 731
+}

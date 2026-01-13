@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, MapPin, Users, Lightbulb, Award, BookOpen, GraduationCap, Mail, Microscope, FlaskConical, Globe, Calculator, Heart, Sparkles } from "lucide-react";
@@ -122,13 +123,14 @@ export default function Home() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <Button 
-                  size="lg" 
-                  className="text-lg px-8 py-6 bg-primary hover:bg-primary/90"
-                  onClick={() => document.getElementById('registration')?.scrollIntoView({ behavior: 'smooth' })}
-                >
-                  Register Now | سجل الآن
-                </Button>
+                <Link href="/register">
+                  <Button 
+                    size="lg" 
+                    className="text-lg px-8 py-6 bg-primary hover:bg-primary/90"
+                  >
+                    Register Now | سجل الآن
+                  </Button>
+                </Link>
                 <Button size="lg" variant="outline" className="text-lg px-8 py-6">
                   View Program | البرنامج
                 </Button>
