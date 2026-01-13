@@ -26,3 +26,7 @@
 - [x] Added Google Maps location
 - [x] Updated venue to University Hostel
 - [x] Set sponsor email to sci.conference2026@sci.cu.edu.eg
+
+
+## Current Changes
+- [x] Update sponsor email from sci.conference2026@sci.cu.edu.eg to science.faculty.conference2026@gmail.com

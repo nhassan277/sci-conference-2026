@@ -413,7 +413,7 @@ export default function Home() {
                   <Button 
                     variant="outline" 
                     className="w-full"
-                    onClick={() => window.location.href = 'mailto:sci.conference2026@sci.cu.edu.eg?subject=Sponsorship Inquiry'}
+                    onClick={() => window.location.href = 'mailto:science.faculty.conference2026@gmail.com?subject=Sponsorship Inquiry'}
                   >
                     Contact Us | اتصل بنا
                   </Button>
@@ -495,7 +495,7 @@ export default function Home() {
                     const email = formData.get('email');
                     const subject = formData.get('subject');
                     const message = formData.get('message');
-                    window.location.href = `mailto:sci.conference2026@sci.cu.edu.eg?subject=${encodeURIComponent(subject as string)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+                    window.location.href = `mailto:science.faculty.conference2026@gmail.com?subject=${encodeURIComponent(subject as string)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
                   }}
                 >
                   <div className="grid md:grid-cols-2 gap-4">
@@ -564,11 +564,11 @@ export default function Home() {
                 <div className="mt-8 pt-8 border-t text-center space-y-4">
                   <p className="text-sm font-medium">Or email us directly at:</p>
                   <a 
-                    href="mailto:sci.conference2026@sci.cu.edu.eg" 
+                    href="mailto:science.faculty.conference2026@gmail.com" 
                     className="text-primary hover:underline font-medium inline-flex items-center gap-2"
                   >
                     <Mail className="w-4 h-4" />
-                    sci.conference2026@sci.cu.edu.eg
+                    science.faculty.conference2026@gmail.com
                   </a>
                   <div className="pt-4 space-y-2">
                     <p className="text-sm text-muted-foreground">
