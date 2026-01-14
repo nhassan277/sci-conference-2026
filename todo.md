@@ -56,3 +56,16 @@
 - [x] Test data viewing and filtering
 - [x] Test export functionality
 - [x] Write and pass authentication unit tests (6/6 tests passing)
+
+## Conference Schedule Page
+- [x] Create /schedule route and page component
+- [x] Design two-day schedule with tabs (April 7 & 8)
+- [x] Add session types (keynote, research, workshops, panels, networking)
+- [x] Create speaker placeholder cards with photo/bio sections
+- [x] Implement track filtering (Life Sciences, Physical Sciences, etc.)
+- [x] Add search functionality for sessions
+- [x] Implement "Add to Calendar" functionality for individual sessions (.ics download)
+- [x] Create responsive card-based timeline view
+- [x] Add navigation link from homepage
+- [x] Test all filtering and export features
+- [ ] Implement server-side PDF export for full schedule (placeholder alert added, can be implemented later)

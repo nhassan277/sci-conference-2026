@@ -90,6 +90,20 @@ export default function Home() {
                 <p className="text-sm text-muted-foreground">Faculty of Science</p>
               </div>
             </div>
+            <nav className="hidden md:flex items-center gap-6">
+              <a href="#about" className="text-sm font-medium hover:text-primary transition-colors">
+                About
+              </a>
+              <a href="#registration" className="text-sm font-medium hover:text-primary transition-colors">
+                Registration
+              </a>
+              <a href="/schedule" className="text-sm font-medium hover:text-primary transition-colors">
+                Schedule
+              </a>
+              <a href="#sponsors" className="text-sm font-medium hover:text-primary transition-colors">
+                Sponsors
+              </a>
+            </nav>
             <img src="/images/logo_pioneers.png" alt="Pioneers in Science" className="h-16 object-contain" />
           </div>
         </div>
