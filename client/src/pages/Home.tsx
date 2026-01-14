@@ -140,13 +140,15 @@ export default function Home() {
                 <Button 
                   size="lg" 
                   className="text-lg px-8 py-6 bg-primary hover:bg-primary/90"
-                  onClick={() => document.getElementById('registration-section')?.scrollIntoView({ behavior: 'smooth' })}
+                  onClick={() => document.getElementById('registration')?.scrollIntoView({ behavior: 'smooth' })}
                 >
                   Register Now | سجل الآن
                 </Button>
-                <Button size="lg" variant="outline" className="text-lg px-8 py-6">
-                  View Program | البرنامج
-                </Button>
+                <Link href="/schedule">
+                  <Button size="lg" variant="outline" className="text-lg px-8 py-6">
+                    View Program | البرنامج
+                  </Button>
+                </Link>
               </div>
 
               <div className="grid sm:grid-cols-3 gap-6 pt-8">

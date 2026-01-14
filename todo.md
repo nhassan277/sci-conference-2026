@@ -76,3 +76,7 @@
 - [x] Verify Sponsors section has id="sponsors"
 - [x] Update navigation links to scroll to correct sections
 - [x] Test all navigation links
+
+## View Program Button Update
+- [x] Link "View Program | البرنامج" button to /schedule page
+- [x] Fix Register Now button to scroll to correct #registration section
