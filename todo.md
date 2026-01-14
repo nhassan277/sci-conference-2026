@@ -69,3 +69,10 @@
 - [x] Add navigation link from homepage
 - [x] Test all filtering and export features
 - [ ] Implement server-side PDF export for full schedule (placeholder alert added, can be implemented later)
+
+## Navigation Menu Updates
+- [x] Verify About section has id="about"
+- [x] Verify Registration section has id="registration"
+- [x] Verify Sponsors section has id="sponsors"
+- [x] Update navigation links to scroll to correct sections
+- [x] Test all navigation links

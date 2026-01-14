@@ -225,7 +225,7 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section className="py-20 bg-gradient-to-b from-accent/5 to-white">
+      <section id="about" className="py-20 bg-gradient-to-b from-accent/5 to-white">
         <div className="container">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h2 className="text-4xl md:text-5xl font-bold text-primary">About the Conference</h2>
@@ -299,7 +299,7 @@ export default function Home() {
       </section>
 
       {/* Registration Section */}
-      <section id="registration-section" className="py-20 bg-gradient-to-b from-primary/5 to-white">
+      <section id="registration" className="py-20 bg-gradient-to-b from-primary/5 to-white">
         <div className="container">
           <div className="text-center space-y-4 mb-12">
             <h2 className="text-4xl md:text-5xl font-bold text-primary">Registration</h2>
@@ -388,7 +388,7 @@ export default function Home() {
       </section>
 
       {/* Sponsors & Partners Section */}
-      <section className="py-20 bg-gradient-to-b from-white to-accent/5">
+      <section id="sponsors" className="py-20 bg-gradient-to-b from-white to-accent/5">
         <div className="container">
           <div className="max-w-4xl mx-auto">
             <div className="text-center space-y-4 mb-12">
