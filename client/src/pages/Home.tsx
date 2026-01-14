@@ -1,10 +1,12 @@
-import { Button } from "@/components/ui/button";
+import { useState } from "react";
 import { Link } from "wouter";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, MapPin, Users, Lightbulb, Award, BookOpen, GraduationCap, Mail, Microscope, FlaskConical, Globe, Calculator, Heart, Sparkles } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Calendar, MapPin, Users, Lightbulb, Award, BookOpen, GraduationCap, Mail, Microscope, FlaskConical, Globe, Calculator, Heart, Sparkles, Menu, X } from "lucide-react";
 
 export default function Home() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const tracks = [
     {
       icon: Microscope,
@@ -104,10 +106,77 @@ export default function Home() {
                 Sponsors
               </a>
             </nav>
-            <img src="/images/logo_pioneers.png" alt="Pioneers in Science" className="h-16 object-contain" />
+            <div className="flex items-center gap-4">
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="md:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                aria-label="Toggle menu"
+              >
+                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
+              <img src="/images/logo_pioneers.png" alt="Pioneers in Science" className="h-16 object-contain" />
+            </div>
           </div>
         </div>
       </header>
+
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <>
+          {/* Backdrop */}
+          <div 
+            className="fixed inset-0 bg-black/50 z-40 md:hidden"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          
+          {/* Slide-out Menu */}
+          <div className="fixed top-0 right-0 h-full w-64 bg-white shadow-2xl z-50 md:hidden animate-in slide-in-from-right duration-300">
+            <div className="p-6">
+              <div className="flex items-center justify-between mb-8">
+                <h2 className="text-xl font-bold text-primary">Menu</h2>
+                <button
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                  aria-label="Close menu"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+              
+              <nav className="flex flex-col gap-4">
+                <a 
+                  href="#about" 
+                  className="text-lg font-medium hover:text-primary transition-colors py-2 border-b"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  About
+                </a>
+                <a 
+                  href="#registration" 
+                  className="text-lg font-medium hover:text-primary transition-colors py-2 border-b"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Registration
+                </a>
+                <a 
+                  href="/schedule" 
+                  className="text-lg font-medium hover:text-primary transition-colors py-2 border-b"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Schedule
+                </a>
+                <a 
+                  href="#sponsors" 
+                  className="text-lg font-medium hover:text-primary transition-colors py-2 border-b"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Sponsors
+                </a>
+              </nav>
+            </div>
+          </div>
+        </>
+      )}
 
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/10">
