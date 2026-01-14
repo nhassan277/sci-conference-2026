@@ -123,14 +123,13 @@ export default function Home() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <Link href="/register">
-                  <Button 
-                    size="lg" 
-                    className="text-lg px-8 py-6 bg-primary hover:bg-primary/90"
-                  >
-                    Register Now | سجل الآن
-                  </Button>
-                </Link>
+                <Button 
+                  size="lg" 
+                  className="text-lg px-8 py-6 bg-primary hover:bg-primary/90"
+                  onClick={() => document.getElementById('registration-section')?.scrollIntoView({ behavior: 'smooth' })}
+                >
+                  Register Now | سجل الآن
+                </Button>
                 <Button size="lg" variant="outline" className="text-lg px-8 py-6">
                   View Program | البرنامج
                 </Button>
@@ -286,7 +285,7 @@ export default function Home() {
       </section>
 
       {/* Registration Section */}
-      <section id="registration" className="py-20 bg-gradient-to-b from-primary/5 to-white">
+      <section id="registration-section" className="py-20 bg-gradient-to-b from-primary/5 to-white">
         <div className="container">
           <div className="text-center space-y-4 mb-12">
             <h2 className="text-4xl md:text-5xl font-bold text-primary">Registration</h2>
@@ -321,6 +320,23 @@ export default function Home() {
             ))}
           </div>
 
+          {/* Attendance Only Registration */}
+          <div className="mt-12 text-center">
+            <div className="max-w-2xl mx-auto space-y-4">
+              <div className="border-t pt-8">
+                <h3 className="text-2xl font-bold text-primary mb-2">Attendance Only</h3>
+                <p className="text-lg font-semibold text-secondary mb-3" dir="rtl">الحضور فقط</p>
+                <p className="text-muted-foreground mb-6">
+                  If you only plan to attend the conference without presenting research or participating in workshops, register here.
+                </p>
+                <Link href="/attendance">
+                  <Button size="lg" className="px-8">
+                    Register for Attendance | تسجيل الحضور
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
 
         </div>
       </section>
@@ -410,13 +426,14 @@ export default function Home() {
                   <p className="text-sm text-muted-foreground text-center mb-4">
                     Join us as a sponsor and support scientific innovation
                   </p>
-                  <Button 
-                    variant="outline" 
-                    className="w-full"
-                    onClick={() => window.location.href = 'mailto:science.faculty.conference2026@gmail.com?subject=Sponsorship Inquiry'}
-                  >
-                    Contact Us | اتصل بنا
-                  </Button>
+                  <Link href="/sponsor">
+                    <Button 
+                      variant="outline" 
+                      className="w-full"
+                    >
+                      View Packages | عرض الباقات
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
             </div>

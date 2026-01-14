@@ -16,3 +16,18 @@ export const registrations = mysqlTable("registrations", {
 
 export type Registration = typeof registrations.$inferSelect;
 export type NewRegistration = typeof registrations.$inferInsert;
+
+export const sponsorships = mysqlTable("sponsorships", {
+  id: int("id").primaryKey().autoincrement(),
+  companyName: varchar("company_name", { length: 255 }).notNull(),
+  contactPerson: varchar("contact_person", { length: 255 }).notNull(),
+  email: varchar("email", { length: 255 }).notNull(),
+  phone: varchar("phone", { length: 50 }).notNull(),
+  packageType: varchar("package_type", { length: 50 }).notNull(), // platinum, gold, silver, bronze
+  companyWebsite: varchar("company_website", { length: 255 }),
+  message: text("message"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export type Sponsorship = typeof sponsorships.$inferSelect;
+export type NewSponsorship = typeof sponsorships.$inferInsert;

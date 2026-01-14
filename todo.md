@@ -30,3 +30,13 @@
 
 ## Current Changes
 - [x] Update sponsor email from sci.conference2026@sci.cu.edu.eg to science.faculty.conference2026@gmail.com
+
+- [x] Extract sponsorship package details from PDF
+- [x] Add sponsorship packages section (Platinum 200K, Gold 150K, Silver 100K, Bronze 50K)
+- [x] Create sponsorship registration form with database integration
+- [x] Reorganize registration: Google Forms (participation), /attendance for attendance-only
+- [x] Update database schema for sponsorship registrations
+- [x] Add /sponsor route with sponsorship packages and form
+- [x] Update homepage to link to /sponsor and /attendance
+- [x] Test all registration flows
+- [x] Write and pass unit tests for sponsorship API (5/5 tests passing)
