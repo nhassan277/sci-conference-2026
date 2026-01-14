@@ -5,6 +5,8 @@ import { fileURLToPath } from "url";
 import { createExpressMiddleware } from "@trpc/server/adapters/express";
 import { appRouter } from "./routers.js";
 import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
+import { generateToken, verifyToken, authMiddleware, AuthRequest } from "./auth.js";
 
 dotenv.config();
 
@@ -16,13 +18,106 @@ async function startServer() {
   const server = createServer(app);
 
   app.use(express.json());
+  app.use(cookieParser());
 
-  // tRPC middleware
+  // OAuth callback endpoint
+  app.get("/api/oauth/callback", async (req, res) => {
+    try {
+      const { code, state } = req.query;
+
+      if (!code) {
+        return res.status(400).send("Missing authorization code");
+      }
+
+      // Exchange code for user info
+      const oauthServerUrl = process.env.OAUTH_SERVER_URL;
+      const appId = process.env.VITE_APP_ID;
+
+      const tokenResponse = await fetch(`${oauthServerUrl}/token`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          appId,
+          code,
+          grantType: "authorization_code",
+        }),
+      });
+
+      if (!tokenResponse.ok) {
+        throw new Error("Failed to exchange code for token");
+      }
+
+      const tokenData = await tokenResponse.json();
+      const { accessToken } = tokenData;
+
+      // Get user info
+      const userResponse = await fetch(`${oauthServerUrl}/userinfo`, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
+
+      if (!userResponse.ok) {
+        throw new Error("Failed to get user info");
+      }
+
+      const userData = await userResponse.json();
+
+      // Generate JWT
+      const token = generateToken({
+        openId: userData.openId,
+        name: userData.name,
+        email: userData.email,
+      });
+
+      // Set cookie
+      res.cookie("auth_token", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+        sameSite: "lax",
+      });
+
+      // Redirect to admin dashboard
+      res.redirect("/admin");
+    } catch (error) {
+      console.error("OAuth callback error:", error);
+      res.status(500).send("Authentication failed");
+    }
+  });
+
+  // Logout endpoint
+  app.post("/api/auth/logout", (req, res) => {
+    res.clearCookie("auth_token");
+    res.json({ success: true });
+  });
+
+  // Get current user endpoint
+  app.get("/api/auth/me", (req, res) => {
+    const token = req.cookies?.auth_token;
+    if (!token) {
+      return res.status(401).json({ error: "Not authenticated" });
+    }
+
+    const user = verifyToken(token);
+    if (!user) {
+      return res.status(401).json({ error: "Invalid token" });
+    }
+
+    res.json(user);
+  });
+
+  // tRPC middleware with auth context
   app.use(
     "/api/trpc",
     createExpressMiddleware({
       router: appRouter,
-      createContext: () => ({}),
+      createContext: ({ req }: { req: AuthRequest }) => {
+        const token = req.cookies?.auth_token;
+        if (!token) {
+          return { user: null };
+        }
+        const user = verifyToken(token);
+        return { user };
+      },
     })
   );
 

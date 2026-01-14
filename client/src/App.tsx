@@ -4,9 +4,11 @@ import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import { UserProvider } from "./contexts/UserContext";
 import Home from "./pages/Home";
 import Attendance from "./pages/Attendance";
 import Sponsor from "./pages/Sponsor";
+import Admin from "./pages/Admin";
 
 
 function Router() {
@@ -15,6 +17,7 @@ function Router() {
       <Route path={"/"} component={Home} />
       <Route path={"/attendance"} component={Attendance} />
       <Route path={"/sponsor"} component={Sponsor} />
+      <Route path={"/admin"} component={Admin} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
@@ -34,10 +37,12 @@ function App() {
         defaultTheme="light"
         // switchable
       >
-        <TooltipProvider>
-          <Toaster />
-          <Router />
-        </TooltipProvider>
+        <UserProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Router />
+          </TooltipProvider>
+        </UserProvider>
       </ThemeProvider>
     </ErrorBoundary>
   );

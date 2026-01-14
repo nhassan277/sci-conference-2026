@@ -40,3 +40,19 @@
 - [x] Update homepage to link to /sponsor and /attendance
 - [x] Test all registration flows
 - [x] Write and pass unit tests for sponsorship API (5/5 tests passing)
+
+## Admin Dashboard
+- [x] Set up OAuth authentication middleware
+- [x] Create protected /admin route
+- [x] Build admin dashboard layout with navigation
+- [x] Create registrations data table with sorting
+- [x] Create sponsorships data table with sorting
+- [x] Add filter functionality (date, category, package type)
+- [x] Add search functionality (name, email, company)
+- [x] Implement CSV export for registrations
+- [x] Implement CSV export for sponsorships
+- [x] Add statistics dashboard (total counts, charts)
+- [x] Test OAuth login flow
+- [x] Test data viewing and filtering
+- [x] Test export functionality
+- [x] Write and pass authentication unit tests (6/6 tests passing)
