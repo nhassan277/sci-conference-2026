@@ -97,3 +97,10 @@
 - [x] Update schedule page track filtering to include new tracks
 - [x] Test track filtering on schedule page
 - [x] Verify all track displays are bilingual (English/Arabic)
+
+## Split Physical Sciences Track
+- [x] Split "Physical Sciences" into two separate tracks: Physical Sciences (Physics) and Chemical Sciences (Chemistry)
+- [x] Remove Materials Science from descriptions
+- [x] Update homepage Research Tracks section with 8 tracks total
+- [x] Update schedule page filtering with new Chemical Sciences track
+- [x] Verify bilingual labels for both tracks

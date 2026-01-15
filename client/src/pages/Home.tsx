@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, MapPin, Users, Lightbulb, Award, BookOpen, GraduationCap, Mail, Microscope, FlaskConical, Globe, Calculator, Heart, Sparkles } from "lucide-react";
+import { Calendar, MapPin, Users, Lightbulb, Award, BookOpen, GraduationCap, Mail, Microscope, FlaskConical, Globe, Calculator, Heart, Sparkles, Atom, Zap } from "lucide-react";
 
 export default function Home() {
   const tracks = [
@@ -14,11 +14,18 @@ export default function Home() {
       color: "bg-blue-100 text-blue-700"
     },
     {
-      icon: FlaskConical,
+      icon: Zap,
       title: "Physical Sciences",
       titleAr: "العلوم الفيزيائية",
-      description: "Physics, Chemistry, Materials Science",
+      description: "Physics, Applied Physics, Theoretical Physics",
       color: "bg-purple-100 text-purple-700"
+    },
+    {
+      icon: Atom,
+      title: "Chemical Sciences",
+      titleAr: "العلوم الكيميائية",
+      description: "Chemistry, Analytical Chemistry, Organic Chemistry, Inorganic Chemistry",
+      color: "bg-pink-100 text-pink-700"
     },
     {
       icon: Globe,

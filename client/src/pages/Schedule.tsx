@@ -363,6 +363,7 @@ const tracks = [
   { value: "general", label: "General", labelAr: "عام" },
   { value: "life-sciences", label: "Life Sciences", labelAr: "علوم الحياة" },
   { value: "physical-sciences", label: "Physical Sciences", labelAr: "العلوم الفيزيائية" },
+  { value: "chemical-sciences", label: "Chemical Sciences", labelAr: "العلوم الكيميائية" },
   { value: "geoscience", label: "Geoscience and Earth Systems", labelAr: "علوم الأرض وأنظمة الأرض" },
   { value: "computational", label: "Computational Sciences", labelAr: "العلوم الحاسوبية" },
   { value: "medical", label: "Medical Sciences", labelAr: "العلوم الطبية" },
