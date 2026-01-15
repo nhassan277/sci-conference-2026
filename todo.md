@@ -80,3 +80,7 @@
 ## View Program Button Update
 - [x] Link "View Program | البرنامج" button to /schedule page
 - [x] Fix Register Now button to scroll to correct #registration section
+
+## Logo Update
+- [x] Copy new Cairo University logo to public/images directory
+- [x] Update logo reference in Home.tsx header
