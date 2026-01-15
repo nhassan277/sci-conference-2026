@@ -22,9 +22,9 @@ export default function Home() {
     },
     {
       icon: Globe,
-      title: "Earth & Environmental Sciences",
-      titleAr: "علوم الأرض والبيئة",
-      description: "Geology, Meteorology, Environmental Science",
+      title: "Geoscience and Earth Systems",
+      titleAr: "علوم الأرض وأنظمة الأرض",
+      description: "Sustainable resource exploration, environmental monitoring, geohazard assessment, carbon capture and storage (CCS), water resources protection",
       color: "bg-green-100 text-green-700"
     },
     {
@@ -47,6 +47,13 @@ export default function Home() {
       titleAr: "المجالات البينية والحديثة",
       description: "Space Science, Forensics, Sustainability",
       color: "bg-indigo-100 text-indigo-700"
+    },
+    {
+      icon: FlaskConical,
+      title: "Advanced Materials Science",
+      titleAr: "علوم المواد المتقدمة",
+      description: "Innovations in nanomaterials, polymers, and composites for industrial applications",
+      color: "bg-teal-100 text-teal-700"
     }
   ];
 

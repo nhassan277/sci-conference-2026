@@ -363,10 +363,11 @@ const tracks = [
   { value: "general", label: "General", labelAr: "عام" },
   { value: "life-sciences", label: "Life Sciences", labelAr: "علوم الحياة" },
   { value: "physical-sciences", label: "Physical Sciences", labelAr: "العلوم الفيزيائية" },
-  { value: "environmental", label: "Environmental Sciences", labelAr: "العلوم البيئية" },
+  { value: "geoscience", label: "Geoscience and Earth Systems", labelAr: "علوم الأرض وأنظمة الأرض" },
   { value: "computational", label: "Computational Sciences", labelAr: "العلوم الحاسوبية" },
   { value: "medical", label: "Medical Sciences", labelAr: "العلوم الطبية" },
   { value: "interdisciplinary", label: "Interdisciplinary", labelAr: "متعدد التخصصات" },
+  { value: "advanced-materials", label: "Advanced Materials Science", labelAr: "علوم المواد المتقدمة" },
 ];
 
 const sessionTypeIcons = {

@@ -90,3 +90,10 @@
 - [x] Keep current pricing (Platinum 200K, Gold 150K, Silver 100K, Bronze 50K)
 - [x] Add benefits comparison table with checkmarks
 - [x] Simplify layout for better readability
+
+## New Research Tracks Integration
+- [x] Add "Geoscience and Earth Systems" track to homepage Research Tracks section
+- [x] Add "Advanced Materials Science" track to homepage Research Tracks section
+- [x] Update schedule page track filtering to include new tracks
+- [x] Test track filtering on schedule page
+- [x] Verify all track displays are bilingual (English/Arabic)
