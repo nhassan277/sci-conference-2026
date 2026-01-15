@@ -10,7 +10,8 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
-import { CheckCircle2, Loader2, Award, Star, Medal, Trophy } from "lucide-react";
+import { CheckCircle2, Loader2, Check } from "lucide-react";
+import { Link } from "wouter";
 
 const sponsorshipSchema = z.object({
   companyName: z.string().min(1, "Company name is required"),
@@ -24,144 +25,100 @@ const sponsorshipSchema = z.object({
 
 type SponsorshipForm = z.infer<typeof sponsorshipSchema>;
 
-const packages = [
+const benefits = [
   {
-    name: "Platinum",
-    value: "platinum",
-    price: "200,000 EGP",
-    icon: Trophy,
-    color: "text-slate-400",
-    bgColor: "bg-slate-50",
-    borderColor: "border-slate-300",
-    benefits: [
-      "Logo displayed behind speakers in press conference",
-      "3' x 3' display booth in Platinum area",
-      "Extra large logo in Registration area",
-      "5 attendee passes with sponsorship ribbons",
-      "Acknowledgment during opening session",
-      "Logo with direct link on website main page",
-      "Logo placement in conference materials",
-      "Logo displayed on LCDs during conference",
-      "Full page print ad in conference book",
-      "Promotional item in conference bag",
-      "Access to VIP area",
-      "5 Gala dinner tickets",
-    ],
+    name: "Speaking Opportunity (Panel or Sponsor Session)",
+    platinum: true,
+    gold: false,
+    silver: false,
+    bronze: false,
   },
   {
-    name: "Gold",
-    value: "gold",
-    price: "150,000 EGP",
-    icon: Award,
-    color: "text-yellow-600",
-    bgColor: "bg-yellow-50",
-    borderColor: "border-yellow-300",
-    benefits: [
-      "Logo displayed behind speakers in press conference",
-      "3' x 3' display booth in Gold area",
-      "Large logo in Registration area",
-      "4 attendee passes with sponsorship ribbons",
-      "Acknowledgment during opening session",
-      "Logo with direct link on website",
-      "Brochure/insert in conference bag",
-      "Logo on LCDs during conference",
-      "Half page print ad in conference book",
-      "Access to VIP area",
-      "4 Gala dinner tickets",
-    ],
+    name: "Sponsoring a Talk",
+    platinum: true,
+    gold: true,
+    silver: false,
+    bronze: false,
   },
   {
-    name: "Silver",
-    value: "silver",
-    price: "100,000 EGP",
-    icon: Medal,
-    color: "text-gray-400",
-    bgColor: "bg-gray-50",
-    borderColor: "border-gray-300",
-    benefits: [
-      "Logo displayed behind speakers in press conference",
-      "3' x 3' display booth in Silver area",
-      "Medium logo in Registration area",
-      "3 attendee passes with sponsorship ribbons",
-      "Acknowledgment during opening session",
-      "Logo in conference book",
-      "Quarter page print ad in conference book",
-      "Logo with direct link on website",
-      "3 Gala dinner tickets",
-    ],
+    name: "Company Stand at the Conference Fair (Foyer)",
+    platinum: true,
+    gold: true,
+    silver: true,
+    bronze: false,
   },
   {
-    name: "Bronze",
-    value: "bronze",
-    price: "50,000 EGP",
-    icon: Star,
-    color: "text-amber-700",
-    bgColor: "bg-amber-50",
-    borderColor: "border-amber-300",
-    benefits: [
-      "Logo displayed behind speakers in press conference",
-      "3' x 3' display booth in Bronze area",
-      "2 attendee passes with sponsorship ribbons",
-      "Logo in conference book",
-      "Promotional item in conference bag",
-      "Logo with direct link on website",
-      "2 Gala dinner tickets",
-    ],
+    name: "Merch (Tote bag, Leaflet, Notebook, Lanyard, Pen)",
+    platinum: true,
+    gold: true,
+    silver: true,
+    bronze: true,
+  },
+  {
+    name: "Website",
+    platinum: true,
+    gold: true,
+    silver: true,
+    bronze: true,
+  },
+  {
+    name: "Conference Tickets",
+    platinum: true,
+    gold: true,
+    silver: true,
+    bronze: true,
   },
 ];
 
 export default function Sponsor() {
-  const [showSuccess, setShowSuccess] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const createSponsorship = trpc.sponsorship.create.useMutation();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     setValue,
-    reset,
+    watch,
   } = useForm<SponsorshipForm>({
     resolver: zodResolver(sponsorshipSchema),
   });
 
-  const createSponsorship = trpc.sponsorship.create.useMutation({
-    onSuccess: () => {
-      setShowSuccess(true);
-      reset();
-      toast.success("Sponsorship inquiry submitted successfully!");
-      setTimeout(() => setShowSuccess(false), 5000);
-    },
-    onError: (error) => {
-      toast.error(`Submission failed: ${error.message}`);
-    },
-  });
+  const packageType = watch("packageType");
 
-  const onSubmit = (data: SponsorshipForm) => {
-    createSponsorship.mutate(data);
+  const onSubmit = async (data: SponsorshipForm) => {
+    try {
+      await createSponsorship.mutateAsync(data);
+      setSubmitted(true);
+      toast.success("Sponsorship inquiry submitted successfully!");
+    } catch (error) {
+      toast.error("Failed to submit sponsorship inquiry. Please try again.");
+    }
   };
 
-  if (showSuccess) {
+  if (submitted) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-primary/5 to-accent/5 py-12 px-4">
-        <Card className="max-w-2xl w-full border-2 border-green-200">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-primary/5 to-white p-4">
+        <Card className="max-w-md w-full">
           <CardHeader className="text-center">
-            <div className="mx-auto mb-4 w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
-              <CheckCircle2 className="w-10 h-10 text-green-600" />
+            <div className="flex justify-center mb-4">
+              <CheckCircle2 className="w-16 h-16 text-green-500" />
             </div>
-            <CardTitle className="text-3xl text-green-700">Thank You for Your Interest!</CardTitle>
-            <CardDescription className="text-lg" dir="rtl">
-              شكراً لاهتمامك!
+            <CardTitle className="text-2xl">Thank You!</CardTitle>
+            <CardDescription className="text-base" dir="rtl">
+              شكراً لك!
             </CardDescription>
           </CardHeader>
-          <CardContent className="text-center space-y-4">
+          <CardContent className="space-y-4 text-center">
             <p className="text-muted-foreground">
-              We have received your sponsorship inquiry and will contact you shortly to discuss the details and finalize the partnership.
+              Your sponsorship inquiry has been submitted successfully. Our team will contact you shortly to discuss the details.
             </p>
             <p className="text-muted-foreground" dir="rtl">
-              لقد استلمنا استفسارك عن الرعاية وسنتواصل معك قريباً لمناقشة التفاصيل وإتمام الشراكة.
+              تم إرسال استفسار الرعاية بنجاح. سيتواصل معك فريقنا قريباً لمناقشة التفاصيل.
             </p>
-            <Button onClick={() => setShowSuccess(false)} className="mt-6">
-              Submit Another Inquiry | إرسال استفسار آخر
-            </Button>
+            <Link href="/">
+              <Button className="w-full">Return to Home | العودة للصفحة الرئيسية</Button>
+            </Link>
           </CardContent>
         </Card>
       </div>
@@ -169,198 +126,244 @@ export default function Sponsor() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-primary/5 to-accent/5 py-12 px-4">
-      <div className="container max-w-7xl">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-primary mb-2">Sponsorship Packages</h1>
-          <p className="text-2xl font-semibold text-secondary" dir="rtl">
-            باقات الرعاية
+    <div className="min-h-screen bg-gradient-to-b from-white via-primary/5 to-white">
+      {/* Header */}
+      <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50">
+        <div className="container py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-6">
+              <img src="/images/logo_cu_new.png" alt="Cairo University" className="h-16 object-contain" />
+              <div className="hidden md:block">
+                <h1 className="text-xl font-bold text-primary">SCI 2026</h1>
+                <p className="text-sm text-muted-foreground">Faculty of Science</p>
+              </div>
+            </div>
+            <img src="/images/logo_pioneers.png" alt="Pioneers in Science" className="h-16 object-contain" />
+          </div>
+        </div>
+      </header>
+
+      <div className="container py-12 space-y-12">
+        {/* Title Section */}
+        <div className="text-center space-y-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-primary">Sponsorship Packages</h1>
+          <p className="text-2xl font-semibold text-secondary" dir="rtl">باقات الرعاية</p>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Partner with us to support scientific innovation and gain valuable exposure
           </p>
-          <p className="text-muted-foreground mt-4 max-w-3xl mx-auto">
-            Partner with us to gain market exposure, network with key government officials and industry peers, 
-            and participate directly in scientific development in Egypt.
+          <p className="text-lg text-muted-foreground" dir="rtl">
+            شارك معنا لدعم الابتكار العلمي واكتساب تعرض قيم
           </p>
         </div>
 
-        {/* Sponsorship Packages */}
-        <div className="grid md:grid-cols-2 gap-6 mb-12">
-          {packages.map((pkg) => {
-            const Icon = pkg.icon;
-            return (
-              <Card key={pkg.value} className={`border-2 ${pkg.borderColor} ${pkg.bgColor}`}>
-                <CardHeader>
-                  <div className="flex items-center gap-3 mb-2">
-                    <Icon className={`w-8 h-8 ${pkg.color}`} />
-                    <CardTitle className="text-2xl">{pkg.name} Package</CardTitle>
-                  </div>
-                  <CardDescription className="text-2xl font-bold text-primary">
-                    {pkg.price}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2">
-                    {pkg.benefits.map((benefit, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-sm">
-                        <CheckCircle2 className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                        <span>{benefit}</span>
-                      </li>
+        {/* Comparison Table */}
+        <div className="max-w-6xl mx-auto">
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-3xl text-center">Sponsorship Packages Overview</CardTitle>
+              <CardDescription className="text-center text-lg" dir="rtl">
+                نظرة عامة على باقات الرعاية
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse">
+                  <thead>
+                    <tr className="border-b-2 border-primary">
+                      <th className="p-4 text-left font-bold text-lg"></th>
+                      <th className="p-4 text-center font-bold text-lg">
+                        <div className="space-y-1">
+                          <div className="text-slate-600">Platinum</div>
+                          <div className="text-2xl text-primary">200,000 EGP</div>
+                        </div>
+                      </th>
+                      <th className="p-4 text-center font-bold text-lg">
+                        <div className="space-y-1">
+                          <div className="text-yellow-600">Gold</div>
+                          <div className="text-2xl text-primary">150,000 EGP</div>
+                        </div>
+                      </th>
+                      <th className="p-4 text-center font-bold text-lg">
+                        <div className="space-y-1">
+                          <div className="text-gray-500">Silver</div>
+                          <div className="text-2xl text-primary">100,000 EGP</div>
+                        </div>
+                      </th>
+                      <th className="p-4 text-center font-bold text-lg">
+                        <div className="space-y-1">
+                          <div className="text-orange-700">Bronze</div>
+                          <div className="text-2xl text-primary">50,000 EGP</div>
+                        </div>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {benefits.map((benefit, index) => (
+                      <tr key={index} className="border-b hover:bg-muted/50">
+                        <td className="p-4 font-medium">{benefit.name}</td>
+                        <td className="p-4 text-center">
+                          {benefit.platinum && <Check className="w-6 h-6 text-green-500 mx-auto" />}
+                        </td>
+                        <td className="p-4 text-center">
+                          {benefit.gold && <Check className="w-6 h-6 text-green-500 mx-auto" />}
+                        </td>
+                        <td className="p-4 text-center">
+                          {benefit.silver && <Check className="w-6 h-6 text-green-500 mx-auto" />}
+                        </td>
+                        <td className="p-4 text-center">
+                          {benefit.bronze && <Check className="w-6 h-6 text-green-500 mx-auto" />}
+                        </td>
+                      </tr>
                     ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            );
-          })}
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
         </div>
 
-        {/* Sponsorship Registration Form */}
-        <Card className="border-2 max-w-3xl mx-auto">
-          <CardHeader>
-            <CardTitle>Sponsorship Inquiry Form | نموذج استفسار الرعاية</CardTitle>
-            <CardDescription>
-              Fill in your details and select your preferred sponsorship package. We'll contact you to discuss the partnership.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-              {/* Company Name */}
-              <div className="space-y-2">
-                <Label htmlFor="companyName">
-                  Company / Organization Name <span className="text-red-500">*</span>
-                </Label>
-                <Input
-                  id="companyName"
-                  {...register("companyName")}
-                  placeholder="Your Company Name"
-                />
-                {errors.companyName && (
-                  <p className="text-sm text-red-500">{errors.companyName.message}</p>
-                )}
-              </div>
+        {/* Registration Form */}
+        <div className="max-w-3xl mx-auto">
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-2xl">Sponsorship Inquiry Form</CardTitle>
+              <CardDescription className="text-base" dir="rtl">
+                نموذج استفسار الرعاية
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="companyName">Company Name | اسم الشركة *</Label>
+                    <Input
+                      id="companyName"
+                      {...register("companyName")}
+                      placeholder="Your company name"
+                    />
+                    {errors.companyName && (
+                      <p className="text-sm text-red-500">{errors.companyName.message}</p>
+                    )}
+                  </div>
 
-              {/* Contact Person */}
-              <div className="space-y-2">
-                <Label htmlFor="contactPerson">
-                  Contact Person <span className="text-red-500">*</span>
-                </Label>
-                <Input
-                  id="contactPerson"
-                  {...register("contactPerson")}
-                  placeholder="Full Name"
-                />
-                {errors.contactPerson && (
-                  <p className="text-sm text-red-500">{errors.contactPerson.message}</p>
-                )}
-              </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="contactPerson">Contact Person | الشخص المسؤول *</Label>
+                    <Input
+                      id="contactPerson"
+                      {...register("contactPerson")}
+                      placeholder="Full name"
+                    />
+                    {errors.contactPerson && (
+                      <p className="text-sm text-red-500">{errors.contactPerson.message}</p>
+                    )}
+                  </div>
+                </div>
 
-              {/* Email & Phone */}
-              <div className="grid md:grid-cols-2 gap-4">
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="email">Email | البريد الإلكتروني *</Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      {...register("email")}
+                      placeholder="company@example.com"
+                    />
+                    {errors.email && (
+                      <p className="text-sm text-red-500">{errors.email.message}</p>
+                    )}
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="phone">Phone | رقم الهاتف *</Label>
+                    <Input
+                      id="phone"
+                      {...register("phone")}
+                      placeholder="+20 123 456 7890"
+                    />
+                    {errors.phone && (
+                      <p className="text-sm text-red-500">{errors.phone.message}</p>
+                    )}
+                  </div>
+                </div>
+
                 <div className="space-y-2">
-                  <Label htmlFor="email">
-                    Email Address <span className="text-red-500">*</span>
-                  </Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    {...register("email")}
-                    placeholder="contact@company.com"
-                  />
-                  {errors.email && (
-                    <p className="text-sm text-red-500">{errors.email.message}</p>
+                  <Label htmlFor="packageType">Sponsorship Package | باقة الرعاية *</Label>
+                  <Select
+                    value={packageType}
+                    onValueChange={(value) => setValue("packageType", value as any)}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select package" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="platinum">Platinum - 200,000 EGP</SelectItem>
+                      <SelectItem value="gold">Gold - 150,000 EGP</SelectItem>
+                      <SelectItem value="silver">Silver - 100,000 EGP</SelectItem>
+                      <SelectItem value="bronze">Bronze - 50,000 EGP</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  {errors.packageType && (
+                    <p className="text-sm text-red-500">{errors.packageType.message}</p>
                   )}
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="phone">
-                    Phone Number <span className="text-red-500">*</span>
-                  </Label>
+                  <Label htmlFor="companyWebsite">Company Website | موقع الشركة (Optional)</Label>
                   <Input
-                    id="phone"
-                    {...register("phone")}
-                    placeholder="+20 123 456 7890"
+                    id="companyWebsite"
+                    {...register("companyWebsite")}
+                    placeholder="https://www.example.com"
                   />
-                  {errors.phone && (
-                    <p className="text-sm text-red-500">{errors.phone.message}</p>
+                  {errors.companyWebsite && (
+                    <p className="text-sm text-red-500">{errors.companyWebsite.message}</p>
                   )}
                 </div>
-              </div>
 
-              {/* Company Website */}
-              <div className="space-y-2">
-                <Label htmlFor="companyWebsite">Company Website</Label>
-                <Input
-                  id="companyWebsite"
-                  {...register("companyWebsite")}
-                  placeholder="https://www.company.com"
-                />
-                {errors.companyWebsite && (
-                  <p className="text-sm text-red-500">{errors.companyWebsite.message}</p>
-                )}
-              </div>
+                <div className="space-y-2">
+                  <Label htmlFor="message">Additional Message | رسالة إضافية (Optional)</Label>
+                  <Textarea
+                    id="message"
+                    {...register("message")}
+                    placeholder="Any additional information or questions..."
+                    rows={4}
+                  />
+                </div>
 
-              {/* Package Type */}
-              <div className="space-y-2">
-                <Label htmlFor="packageType">
-                  Sponsorship Package <span className="text-red-500">*</span>
-                </Label>
-                <Select
-                  onValueChange={(value) =>
-                    setValue("packageType", value as any, { shouldValidate: true })
-                  }
+                <Button
+                  type="submit"
+                  size="lg"
+                  className="w-full"
+                  disabled={createSponsorship.isPending}
                 >
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select package" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="platinum">Platinum - 200,000 EGP</SelectItem>
-                    <SelectItem value="gold">Gold - 150,000 EGP</SelectItem>
-                    <SelectItem value="silver">Silver - 100,000 EGP</SelectItem>
-                    <SelectItem value="bronze">Bronze - 50,000 EGP</SelectItem>
-                  </SelectContent>
-                </Select>
-                {errors.packageType && (
-                  <p className="text-sm text-red-500">{errors.packageType.message}</p>
-                )}
-              </div>
+                  {createSponsorship.isPending ? (
+                    <>
+                      <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                      Submitting...
+                    </>
+                  ) : (
+                    "Submit Inquiry | إرسال الاستفسار"
+                  )}
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
 
-              {/* Message */}
-              <div className="space-y-2">
-                <Label htmlFor="message">Additional Message (Optional)</Label>
-                <Textarea
-                  id="message"
-                  {...register("message")}
-                  placeholder="Any specific requirements or questions..."
-                  rows={4}
-                />
-              </div>
-
-              {/* Submit Button */}
-              <Button
-                type="submit"
-                size="lg"
-                className="w-full"
-                disabled={createSponsorship.isPending}
-              >
-                {createSponsorship.isPending ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Submitting...
-                  </>
-                ) : (
-                  "Submit Sponsorship Inquiry | إرسال استفسار الرعاية"
-                )}
-              </Button>
-            </form>
-          </CardContent>
-        </Card>
-
-        {/* Additional Info */}
-        <div className="mt-12 text-center text-muted-foreground">
-          <p>
-            For more information, contact us at{" "}
-            <a href="mailto:science.faculty.conference2026@gmail.com" className="text-primary hover:underline">
-              science.faculty.conference2026@gmail.com
-            </a>
+        {/* Contact Section */}
+        <div className="max-w-2xl mx-auto text-center space-y-4">
+          <h2 className="text-2xl font-bold text-primary">Questions?</h2>
+          <p className="text-muted-foreground">
+            For more information about sponsorship opportunities, please contact us:
           </p>
+          <p className="text-muted-foreground" dir="rtl">
+            لمزيد من المعلومات حول فرص الرعاية، يرجى الاتصال بنا:
+          </p>
+          <a
+            href="mailto:science.faculty.conference2026@gmail.com"
+            className="text-primary hover:underline font-medium text-lg"
+          >
+            science.faculty.conference2026@gmail.com
+          </a>
         </div>
       </div>
     </div>
