@@ -1,6 +1,6 @@
 import { initTRPC, TRPCError } from "@trpc/server";
 import { z } from "zod";
-import { eq } from "drizzle-orm";
+import { eq, desc } from "drizzle-orm";
 import superjson from "superjson";
 import { db } from "./db.js";
 import { registrations, sponsorships, sessions, supportTickets } from "../drizzle/schema.js";
@@ -536,6 +536,52 @@ export const appRouter = router({
         filename: `checkins-${new Date().toISOString().split("T")[0]}.csv`,
         count: allRegistrations.length,
       };
+    }),
+
+    // Get recent check-ins for dashboard feed
+    recentCheckins: publicProcedure
+      .input(z.object({ limit: z.number().optional().default(20) }))
+      .query(async ({ input }) => {
+        const recentCheckins = await db
+          .select()
+          .from(registrations)
+          .where(eq(registrations.checkedIn, true))
+          .orderBy(desc(registrations.checkedInAt))
+          .limit(input.limit);
+
+        return recentCheckins;
+      }),
+
+    // Get category-wise breakdown
+    categoryBreakdown: publicProcedure.query(async () => {
+      const allRegistrations = await db.select().from(registrations);
+      
+      const categories = [
+        "student",
+        "faculty",
+        "researcher",
+        "industry",
+      ] as const;
+
+      const breakdown = categories.map((category) => {
+        const total = allRegistrations.filter(
+          (r) => r.attendeeCategory === category
+        ).length;
+        const checkedIn = allRegistrations.filter(
+          (r) => r.attendeeCategory === category && r.checkedIn
+        ).length;
+        const percentage = total > 0 ? Math.round((checkedIn / total) * 100) : 0;
+
+        return {
+          category,
+          total,
+          checkedIn,
+          remaining: total - checkedIn,
+          percentage,
+        };
+      });
+
+      return breakdown;
     }),
   }),
 });

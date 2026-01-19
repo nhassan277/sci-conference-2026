@@ -172,3 +172,13 @@
 - [x] Add "Export Check-Ins" button to admin dashboard
 - [x] Format CSV with proper headers and data formatting
 - [x] Test CSV export with sample data (verified via integration tests)
+
+### Real-Time Check-In Dashboard
+- [x] Create backend API endpoint for recent check-ins feed
+- [x] Add category-wise breakdown statistics endpoint
+- [x] Build /checkin-dashboard page with live statistics
+- [x] Display real-time check-in feed with timestamps
+- [x] Add category breakdown visualization
+- [x] Implement auto-refresh functionality (every 10 seconds)
+- [x] Add visual progress indicators and charts
+- [x] Test dashboard with live data (verified via integration tests)
