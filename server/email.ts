@@ -232,3 +232,61 @@ View all sponsorship inquiries in the admin dashboard.
     return false;
   }
 }
+
+/**
+ * Send VIP check-in alert to organizers
+ */
+export async function sendVIPCheckinAlert(data: {
+  fullNameEnglish: string;
+  fullNameArabic: string;
+  email: string;
+  affiliation: string;
+  attendeeCategory: string;
+  checkedInBy: string;
+  checkedInAt: Date;
+}): Promise<boolean> {
+  const formattedTime = data.checkedInAt.toLocaleString('en-US', {
+    dateStyle: 'medium',
+    timeStyle: 'short',
+  });
+  
+  const content = `
+**🌟 VIP Attendee Check-In Alert**
+
+**VIP Information:**
+- **Name (English):** ${data.fullNameEnglish}
+- **Name (Arabic):** ${data.fullNameArabic}
+- **Email:** ${data.email}
+- **Affiliation:** ${data.affiliation}
+- **Category:** ${data.attendeeCategory}
+
+**Check-In Details:**
+- **Time:** ${formattedTime}
+- **Checked In By:** ${data.checkedInBy}
+
+**Action Required:**
+- Greet the VIP attendee personally
+- Ensure they have all necessary materials
+- Provide any special assistance as needed
+
+This is an automated alert for VIP attendee check-ins.
+  `.trim();
+
+  try {
+    const success = await notifyOwner({
+      title: `🌟 VIP Check-In: ${data.fullNameEnglish}`,
+      content,
+    });
+    
+    if (success) {
+      console.log(`[Email] VIP check-in alert sent for ${data.fullNameEnglish}`);
+    } else {
+      console.warn(`[Email] Failed to send VIP check-in alert for ${data.fullNameEnglish}`);
+    }
+    
+    return success;
+  } catch (error: any) {
+    console.error(`[Email] Error sending VIP check-in alert: ${error.message}`);
+    return false;
+  }
+}

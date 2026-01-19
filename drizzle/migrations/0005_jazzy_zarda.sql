@@ -1,0 +1,1 @@
+ALTER TABLE `registrations` ADD `is_vip` boolean DEFAULT false NOT NULL;

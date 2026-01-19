@@ -186,3 +186,11 @@
 ### Navigation Menu Enhancement
 - [x] Add "Dashboard" link to main navigation menu
 - [x] Link to /checkin-dashboard for easy access
+
+### VIP Check-In Alerts
+- [x] Add isVIP boolean field to registrations database schema
+- [ ] Update registration forms to include VIP checkbox (admin only)
+- [x] Modify check-in process to detect VIP status
+- [x] Send email alert to organizers when VIP checks in
+- [x] Include VIP attendee details in alert email
+- [x] Test VIP alert system with sample data (test file created: server/vip-alert.test.ts)

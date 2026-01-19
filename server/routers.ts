@@ -460,6 +460,20 @@ export const appRouter = router({
           })
           .where(eq(registrations.id, input.registrationId));
 
+        // Send VIP alert if this is a VIP attendee
+        if (registration.isVIP) {
+          const { sendVIPCheckinAlert } = await import("./email.js");
+          await sendVIPCheckinAlert({
+            fullNameEnglish: registration.fullNameEnglish,
+            fullNameArabic: registration.fullNameArabic,
+            email: registration.email,
+            affiliation: registration.affiliation,
+            attendeeCategory: registration.attendeeCategory,
+            checkedInBy: input.staffName,
+            checkedInAt: new Date(),
+          });
+        }
+
         return { success: true };
       }),
 

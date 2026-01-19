@@ -19,6 +19,7 @@ export const registrations = mysqlTable("registrations", {
   checkedIn: boolean("checked_in").default(false).notNull(),
   checkedInAt: timestamp("checked_in_at"),
   checkedInBy: varchar("checked_in_by", { length: 255 }), // staff member who checked them in
+  isVIP: boolean("is_vip").default(false).notNull(), // VIP status for priority alerts
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
