@@ -8,6 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner";
 import { CheckCircle2, Loader2 } from "lucide-react";
 
@@ -18,13 +19,15 @@ const registrationSchema = z.object({
   phone: z.string().min(1, "Phone number is required"),
   affiliation: z.string().min(1, "Affiliation is required"),
   attendeeCategory: z.enum(["student", "faculty", "researcher", "industry"]),
-  participationType: z.literal("attendee"), // Fixed to attendee only
+  participationType: z.literal("attendee"),
+  wantsCertificate: z.boolean(),
 });
 
-type RegistrationForm = z.infer<typeof registrationSchema>;
+type RegistrationFormData = z.infer<typeof registrationSchema>;
 
 export default function Attendance() {
   const [showSuccess, setShowSuccess] = useState(false);
+  const [wantsCertificate, setWantsCertificate] = useState(false);
 
   const {
     register,
@@ -32,28 +35,63 @@ export default function Attendance() {
     formState: { errors },
     setValue,
     reset,
-  } = useForm<RegistrationForm>({
+    getValues,
+  } = useForm<RegistrationFormData>({
     resolver: zodResolver(registrationSchema),
     defaultValues: {
       participationType: "attendee",
+      wantsCertificate: false,
     },
   });
 
   const createRegistration = trpc.registration.create.useMutation({
-    onSuccess: () => {
+    onSuccess: (data) => {
       setShowSuccess(true);
-      reset();
       toast.success("Registration submitted successfully!");
-      setTimeout(() => setShowSuccess(false), 5000);
+      
+      // If certificate is requested, redirect to payment
+      if (wantsCertificate) {
+        handlePayment(data.id);
+      } else {
+        reset();
+        setTimeout(() => {
+          setShowSuccess(false);
+          setWantsCertificate(false);
+        }, 5000);
+      }
     },
     onError: (error) => {
       toast.error(`Registration failed: ${error.message}`);
     },
   });
 
-  const onSubmit = (data: RegistrationForm) => {
-    createRegistration.mutate(data);
+  const createCheckoutSession = trpc.payment.createCheckoutSession.useMutation({
+    onSuccess: (data) => {
+      if (data.checkoutUrl) {
+        toast.info("Redirecting to payment...");
+        window.open(data.checkoutUrl, "_blank");
+      }
+    },
+    onError: (error) => {
+      toast.error(`Payment setup failed: ${error.message}`);
+    },
+  });
+
+  const handlePayment = (regId: number) => {
+    const formData = getValues();
+    createCheckoutSession.mutate({
+      registrationId: regId,
+      email: formData.email,
+      fullName: formData.fullNameEnglish,
+    });
   };
+
+  const onSubmit = handleSubmit((data) => {
+    createRegistration.mutate({
+      ...data,
+      wantsCertificate,
+    });
+  });
 
   if (showSuccess) {
     return (
@@ -75,7 +113,21 @@ export default function Attendance() {
             <p className="text-muted-foreground" dir="rtl">
               شكراً لتسجيلك في مؤتمر SCI 2026. لقد استلمنا تسجيلك وسنتواصل معك عبر البريد الإلكتروني بمزيد من التفاصيل.
             </p>
-            <Button onClick={() => setShowSuccess(false)} className="mt-6">
+            {wantsCertificate && (
+              <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                <p className="text-sm font-medium text-blue-900">
+                  Payment window opened in a new tab. Please complete your certificate payment.
+                </p>
+                <p className="text-xs text-blue-700 mt-1" dir="rtl">
+                  تم فتح نافذة الدفع في علامة تبويب جديدة. يرجى إكمال دفع الشهادة.
+                </p>
+              </div>
+            )}
+            <Button onClick={() => {
+              setShowSuccess(false);
+              setWantsCertificate(false);
+              reset();
+            }} className="mt-6">
               Register Another Attendee | تسجيل مشارك آخر
             </Button>
           </CardContent>
@@ -109,7 +161,7 @@ export default function Attendance() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+            <form onSubmit={onSubmit} className="space-y-6">
               {/* Full Name English */}
               <div className="space-y-2">
                 <Label htmlFor="fullNameEnglish">
@@ -211,6 +263,32 @@ export default function Attendance() {
                 {errors.attendeeCategory && (
                   <p className="text-sm text-red-500">{errors.attendeeCategory.message}</p>
                 )}
+              </div>
+
+              {/* Certificate Option */}
+              <div className="space-y-4 p-4 border rounded-lg bg-accent/5">
+                <div className="flex items-start space-x-3">
+                  <Checkbox
+                    id="wantsCertificate"
+                    checked={wantsCertificate}
+                    onCheckedChange={(checked) => {
+                      const value = checked === true;
+                      setWantsCertificate(value);
+                      setValue("wantsCertificate", value);
+                    }}
+                  />
+                  <div className="space-y-1">
+                    <Label htmlFor="wantsCertificate" className="font-medium cursor-pointer">
+                      I want to purchase a certificate (100 EGP)
+                    </Label>
+                    <p className="text-sm text-muted-foreground">
+                      أرغب في شراء شهادة (100 جنيه مصري)
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      You will be redirected to payment after registration
+                    </p>
+                  </div>
+                </div>
               </div>
 
               {/* Submit Button */}

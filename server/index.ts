@@ -17,6 +17,12 @@ async function startServer() {
   const app = express();
   const server = createServer(app);
 
+  // Stripe webhook endpoint MUST be before express.json() to preserve raw body
+  app.post("/api/stripe/webhook", express.raw({ type: "application/json" }), async (req, res) => {
+    const { handleStripeWebhook } = await import("./webhook.js");
+    await handleStripeWebhook(req, res);
+  });
+
   app.use(express.json());
   app.use(cookieParser());
 

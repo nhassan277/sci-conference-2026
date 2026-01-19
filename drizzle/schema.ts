@@ -11,6 +11,11 @@ export const registrations = mysqlTable("registrations", {
   participationType: varchar("participation_type", { length: 50 }).notNull(), // attendee, presenter, workshop
   researchTitle: text("research_title"), // optional, for presenters
   researchAbstract: text("research_abstract"), // optional, for presenters
+  wantsCertificate: boolean("wants_certificate").default(false).notNull(),
+  paymentStatus: varchar("payment_status", { length: 20 }).default("unpaid").notNull(), // unpaid, pending, paid
+  stripePaymentIntentId: varchar("stripe_payment_intent_id", { length: 255 }),
+  stripeCheckoutSessionId: varchar("stripe_checkout_session_id", { length: 255 }),
+  paidAt: timestamp("paid_at"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 

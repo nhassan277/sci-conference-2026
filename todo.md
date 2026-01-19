@@ -108,10 +108,12 @@
 ## Conference Management Features Implementation
 
 ### Payment Gateway Integration
-- [ ] Add certificate option to registration form (100 EGP)
-- [ ] Integrate Stripe payment for certificate purchases
-- [ ] Update database schema to track payment status
-- [ ] Add payment confirmation page
+- [x] Add certificate option to registration form (100 EGP)
+- [x] Integrate Stripe payment for certificate purchases
+- [x] Update database schema to track payment status
+- [x] Add payment confirmation page
+- [x] Create Stripe webhook handler for payment confirmation
+- [x] Display payment status in admin dashboard
 - [ ] Test Stripe integration with test mode
 
 ### Session & Workshop Management

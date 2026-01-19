@@ -458,6 +458,8 @@ export default function Admin() {
                           <TableHead>Affiliation</TableHead>
                           <TableHead>Category</TableHead>
                           <TableHead>Type</TableHead>
+                          <TableHead>Certificate</TableHead>
+                          <TableHead>Payment</TableHead>
                           <TableHead>Date</TableHead>
                         </TableRow>
                       </TableHeader>
@@ -491,8 +493,27 @@ export default function Admin() {
                               <TableCell>
                                 <Badge>{reg.participationType}</Badge>
                               </TableCell>
-                              <TableCell className="text-sm">
-                                {new Date(reg.createdAt).toLocaleDateString()}
+                              <TableCell>
+                                {reg.wantsCertificate ? (
+                                  <Badge variant="secondary">Yes</Badge>
+                                ) : (
+                                  <Badge variant="outline">No</Badge>
+                                )}
+                              </TableCell>
+                              <TableCell>
+                                <Badge
+                                  variant={
+                                    reg.paymentStatus === "paid"
+                                      ? "default"
+                                      : reg.paymentStatus === "pending"
+                                      ? "secondary"
+                                      : "outline"
+                                  }
+                                >
+                                  {reg.paymentStatus || "unpaid"}
+                                </Badge>
+                              </TableCell>
+                              <TableCell className="text-sm text-muted-foreground">                   {new Date(reg.createdAt).toLocaleDateString()}
                               </TableCell>
                             </TableRow>
                           ))

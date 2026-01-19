@@ -26,6 +26,7 @@ export const appRouter = router({
           participationType: z.enum(["attendee", "presenter", "workshop"]),
           researchTitle: z.string().optional(),
           researchAbstract: z.string().optional(),
+          wantsCertificate: z.boolean().default(false),
         })
       )
       .mutation(async ({ input }) => {
@@ -228,6 +229,75 @@ export const appRouter = router({
           success: true,
           message: "Ticket updated successfully",
         };
+      }),
+  }),
+
+  payment: router({
+    createCheckoutSession: publicProcedure
+      .input(
+        z.object({
+          registrationId: z.number(),
+          email: z.string().email(),
+          fullName: z.string(),
+        })
+      )
+      .mutation(async ({ input, ctx }) => {
+        const Stripe = (await import("stripe")).default;
+        const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+          apiVersion: "2025-12-15.clover",
+        });
+
+        const { PRODUCTS } = await import("./products.js");
+        const origin = "https://sci-conference-2026.manus.space"; // Use production URL
+
+        try {
+          // Create Stripe checkout session
+          const session = await stripe.checkout.sessions.create({
+            payment_method_types: ["card"],
+            line_items: [
+              {
+                price_data: {
+                  currency: "egp",
+                  product_data: {
+                    name: PRODUCTS.CERTIFICATE.name,
+                    description: PRODUCTS.CERTIFICATE.description,
+                  },
+                  unit_amount: PRODUCTS.CERTIFICATE.price * 100, // Stripe expects amount in cents
+                },
+                quantity: 1,
+              },
+            ],
+            mode: "payment",
+            success_url: `${origin}/attendance?payment=success&registration_id=${input.registrationId}`,
+            cancel_url: `${origin}/attendance?payment=cancelled`,
+            customer_email: input.email,
+            client_reference_id: input.registrationId.toString(),
+            metadata: {
+              registrationId: input.registrationId.toString(),
+              fullName: input.fullName,
+              productType: "certificate",
+            },
+            allow_promotion_codes: true,
+          });
+
+          // Update registration with checkout session ID
+          await db
+            .update(registrations)
+            .set({
+              stripeCheckoutSessionId: session.id,
+              paymentStatus: "pending",
+            })
+            .where(eq(registrations.id, input.registrationId));
+
+          return {
+            success: true,
+            checkoutUrl: session.url,
+            sessionId: session.id,
+          };
+        } catch (error: any) {
+          console.error("[Stripe] Checkout session creation failed:", error);
+          throw new Error(error.message || "Failed to create checkout session");
+        }
       }),
   }),
 });
