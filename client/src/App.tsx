@@ -10,6 +10,7 @@ import Attendance from "./pages/Attendance";
 import Sponsor from "./pages/Sponsor";
 import Admin from "./pages/Admin";
 import Schedule from "./pages/Schedule";
+import Support from "./pages/Support";
 
 
 function Router() {
@@ -19,6 +20,7 @@ function Router() {
       <Route path={"/attendance"} component={Attendance} />
       <Route path={"/sponsor"} component={Sponsor} />
       <Route path={"/schedule"} component={Schedule} />
+      <Route path={"/support"} component={Support} />
       <Route path={"/admin"} component={Admin} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}

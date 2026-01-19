@@ -140,10 +140,10 @@
 - [ ] Test badge generation and download
 
 ### Technical Support Ticketing System
-- [ ] Create database schema for support tickets
-- [ ] Build ticket submission form (public-facing)
-- [ ] Create ticket management UI in admin dashboard
-- [ ] Add ticket status tracking (open, in-progress, resolved)
-- [ ] Add ticket response/comment functionality
+- [x] Create database schema for support tickets
+- [x] Build ticket submission form (public-facing)
+- [x] Create ticket management UI in admin dashboard
+- [x] Add ticket status tracking (open, in-progress, resolved)
+- [x] Add ticket response/comment functionality
 - [ ] Implement email notifications for ticket updates
-- [ ] Test ticketing system workflow
+- [x] Test ticketing system workflow (test file created: server/supportTicket.test.ts)

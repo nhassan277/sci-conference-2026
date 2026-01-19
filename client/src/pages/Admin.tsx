@@ -4,6 +4,8 @@ import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -20,6 +22,30 @@ export default function Admin() {
   const { data: registrations, isLoading: loadingRegistrations } = trpc.registration.list.useQuery();
   const { data: sponsorships, isLoading: loadingSponsorships } = trpc.sponsorship.list.useQuery();
   const { data: sessions, isLoading: loadingSessions, refetch: refetchSessions } = trpc.session.list.useQuery();
+  const { data: supportTickets, isLoading: loadingTickets, refetch: refetchTickets } = trpc.supportTicket.list.useQuery();
+
+  const [selectedTicket, setSelectedTicket] = useState<any>(null);
+  const [ticketResponse, setTicketResponse] = useState("");
+
+  const updateTicketMutation = trpc.supportTicket.updateStatus.useMutation({
+    onSuccess: () => {
+      toast.success("Ticket updated successfully");
+      refetchTickets();
+      setSelectedTicket(null);
+      setTicketResponse("");
+    },
+    onError: (error) => {
+      toast.error(error.message || "Failed to update ticket");
+    },
+  });
+
+  const handleUpdateTicket = (ticketId: number, status: "open" | "in-progress" | "resolved") => {
+    updateTicketMutation.mutate({
+      id: ticketId,
+      status,
+      response: ticketResponse || undefined,
+    });
+  };
 
   const [showSessionDialog, setShowSessionDialog] = useState(false);
   const [editingSession, setEditingSession] = useState<any>(null);
@@ -370,7 +396,7 @@ export default function Admin() {
           </CardHeader>
           <CardContent>
             <Tabs defaultValue="registrations">
-              <TabsList className="grid w-full grid-cols-3 mb-6">
+              <TabsList className="grid w-full grid-cols-4 mb-6">
                 <TabsTrigger value="registrations">
                   Registrations ({filteredRegistrations.length})
                 </TabsTrigger>
@@ -379,6 +405,9 @@ export default function Admin() {
                 </TabsTrigger>
                 <TabsTrigger value="sessions">
                   Sessions ({sessions?.length || 0})
+                </TabsTrigger>
+                <TabsTrigger value="support">
+                  Support ({supportTickets?.length || 0})
                 </TabsTrigger>
               </TabsList>
 
@@ -658,9 +687,238 @@ export default function Admin() {
                   </div>
                 </div>
               </TabsContent>
+
+              {/* Support Tickets Tab */}
+              <TabsContent value="support" className="space-y-4">
+                <div className="flex justify-between items-center">
+                  <h3 className="text-lg font-semibold">Support Tickets Management</h3>
+                  <Badge variant="outline">
+                    {supportTickets?.filter((t) => t.status === "open").length || 0} Open Tickets
+                  </Badge>
+                </div>
+
+                {/* Tickets Table */}
+                <div className="border rounded-lg overflow-hidden">
+                  <div className="max-h-[600px] overflow-auto">
+                    <Table>
+                      <TableHeader className="sticky top-0 bg-muted">
+                        <TableRow>
+                          <TableHead>ID</TableHead>
+                          <TableHead>Name</TableHead>
+                          <TableHead>Email</TableHead>
+                          <TableHead>Subject</TableHead>
+                          <TableHead>Priority</TableHead>
+                          <TableHead>Status</TableHead>
+                          <TableHead>Date</TableHead>
+                          <TableHead className="text-right">Actions</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {loadingTickets ? (
+                          <TableRow>
+                            <TableCell colSpan={8} className="text-center py-8">
+                              Loading...
+                            </TableCell>
+                          </TableRow>
+                        ) : !supportTickets || supportTickets.length === 0 ? (
+                          <TableRow>
+                            <TableCell colSpan={8} className="text-center py-8 text-muted-foreground">
+                              No support tickets found.
+                            </TableCell>
+                          </TableRow>
+                        ) : (
+                          supportTickets
+                            .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+                            .map((ticket) => (
+                              <TableRow key={ticket.id}>
+                                <TableCell className="font-medium">#{ticket.id}</TableCell>
+                                <TableCell>{ticket.name}</TableCell>
+                                <TableCell className="text-sm">{ticket.email}</TableCell>
+                                <TableCell className="max-w-[200px] truncate">{ticket.subject}</TableCell>
+                                <TableCell>
+                                  <Badge
+                                    variant={
+                                      ticket.priority === "high"
+                                        ? "destructive"
+                                        : ticket.priority === "normal"
+                                        ? "secondary"
+                                        : "outline"
+                                    }
+                                  >
+                                    {ticket.priority}
+                                  </Badge>
+                                </TableCell>
+                                <TableCell>
+                                  <Badge
+                                    variant={
+                                      ticket.status === "resolved"
+                                        ? "default"
+                                        : ticket.status === "in-progress"
+                                        ? "secondary"
+                                        : "outline"
+                                    }
+                                  >
+                                    {ticket.status}
+                                  </Badge>
+                                </TableCell>
+                                <TableCell className="text-sm">
+                                  {new Date(ticket.createdAt).toLocaleDateString()}
+                                </TableCell>
+                                <TableCell className="text-right">
+                                  <Button
+                                    size="sm"
+                                    variant="ghost"
+                                    onClick={() => setSelectedTicket(ticket)}
+                                  >
+                                    View
+                                  </Button>
+                                </TableCell>
+                              </TableRow>
+                            ))
+                        )}
+                      </TableBody>
+                    </Table>
+                  </div>
+                </div>
+              </TabsContent>
             </Tabs>
           </CardContent>
         </Card>
+
+        {/* Ticket Detail Dialog */}
+        {selectedTicket && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+              <div className="p-6 space-y-4">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h2 className="text-2xl font-bold">Ticket #{selectedTicket.id}</h2>
+                    <p className="text-sm text-muted-foreground">
+                      Submitted on {new Date(selectedTicket.createdAt).toLocaleString()}
+                    </p>
+                  </div>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => {
+                      setSelectedTicket(null);
+                      setTicketResponse("");
+                    }}
+                  >
+                    ✕
+                  </Button>
+                </div>
+
+                <div className="space-y-4 border-t pt-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-sm font-medium text-muted-foreground">Name</p>
+                      <p>{selectedTicket.name}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-muted-foreground">Email</p>
+                      <p className="text-sm">{selectedTicket.email}</p>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-sm font-medium text-muted-foreground">Priority</p>
+                      <Badge
+                        variant={
+                          selectedTicket.priority === "high"
+                            ? "destructive"
+                            : selectedTicket.priority === "normal"
+                            ? "secondary"
+                            : "outline"
+                        }
+                      >
+                        {selectedTicket.priority}
+                      </Badge>
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-muted-foreground">Status</p>
+                      <Badge
+                        variant={
+                          selectedTicket.status === "resolved"
+                            ? "default"
+                            : selectedTicket.status === "in-progress"
+                            ? "secondary"
+                            : "outline"
+                        }
+                      >
+                        {selectedTicket.status}
+                      </Badge>
+                    </div>
+                  </div>
+
+                  <div>
+                    <p className="text-sm font-medium text-muted-foreground mb-2">Subject</p>
+                    <p className="font-medium">{selectedTicket.subject}</p>
+                  </div>
+
+                  <div>
+                    <p className="text-sm font-medium text-muted-foreground mb-2">Message</p>
+                    <div className="bg-muted p-4 rounded-md">
+                      <p className="whitespace-pre-wrap">{selectedTicket.message}</p>
+                    </div>
+                  </div>
+
+                  {selectedTicket.response && (
+                    <div>
+                      <p className="text-sm font-medium text-muted-foreground mb-2">Previous Response</p>
+                      <div className="bg-green-50 border border-green-200 p-4 rounded-md">
+                        <p className="whitespace-pre-wrap">{selectedTicket.response}</p>
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="border-t pt-4">
+                    <p className="text-sm font-medium mb-2">Update Ticket</p>
+                    <div className="space-y-3">
+                      <div>
+                        <Label htmlFor="ticketResponse">Response (Optional)</Label>
+                        <Textarea
+                          id="ticketResponse"
+                          value={ticketResponse}
+                          onChange={(e) => setTicketResponse(e.target.value)}
+                          placeholder="Add a response or note..."
+                          className="min-h-[100px]"
+                        />
+                      </div>
+
+                      <div className="flex gap-2">
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={() => handleUpdateTicket(selectedTicket.id, "open")}
+                          disabled={updateTicketMutation.isPending}
+                        >
+                          Mark as Open
+                        </Button>
+                        <Button
+                          size="sm"
+                          variant="secondary"
+                          onClick={() => handleUpdateTicket(selectedTicket.id, "in-progress")}
+                          disabled={updateTicketMutation.isPending}
+                        >
+                          Mark as In Progress
+                        </Button>
+                        <Button
+                          size="sm"
+                          onClick={() => handleUpdateTicket(selectedTicket.id, "resolved")}
+                          disabled={updateTicketMutation.isPending}
+                        >
+                          Mark as Resolved
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Session Dialog */}
         {showSessionDialog && (
