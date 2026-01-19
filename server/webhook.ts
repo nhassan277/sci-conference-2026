@@ -92,8 +92,23 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
 
   console.log(`[Webhook] Updated registration ${registrationId} to paid status`);
 
-  // TODO: Send confirmation email to participant
-  // This will be implemented in Phase 4
+  // Get registration details for email notification
+  const [registration] = await db
+    .select()
+    .from(registrations)
+    .where(eq(registrations.id, parseInt(registrationId)));
+
+  if (registration) {
+    // Send payment confirmation email to organizers
+    const { sendPaymentConfirmationNotification } = await import("./email.js");
+    await sendPaymentConfirmationNotification({
+      fullNameEnglish: registration.fullNameEnglish,
+      email: registration.email,
+      registrationId: registration.id,
+      amount: 100,
+      currency: "EGP",
+    });
+  }
 }
 
 async function handlePaymentSucceeded(paymentIntent: Stripe.PaymentIntent) {

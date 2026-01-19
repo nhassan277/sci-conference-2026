@@ -31,13 +31,18 @@ export const appRouter = router({
       )
       .mutation(async ({ input }) => {
         const [result] = await db.insert(registrations).values(input);
+        const registrationId = result.insertId;
         
-        // TODO: Send email notification to organizers
-        // This will be implemented in the next step
+        // Send email notification to organizers
+        const { sendRegistrationNotification } = await import("./email.js");
+        await sendRegistrationNotification({
+          ...input,
+          registrationId,
+        });
         
         return {
           success: true,
-          id: result.insertId,
+          id: registrationId,
           message: "Registration submitted successfully",
         };
       }),
@@ -73,10 +78,18 @@ export const appRouter = router({
       )
       .mutation(async ({ input }) => {
         const [result] = await db.insert(sponsorships).values(input);
+        const sponsorshipId = result.insertId;
+        
+        // Send email notification to organizers
+        const { sendSponsorshipNotification } = await import("./email.js");
+        await sendSponsorshipNotification({
+          ...input,
+          sponsorshipId,
+        });
         
         return {
           success: true,
-          id: result.insertId,
+          id: sponsorshipId,
           message: "Sponsorship inquiry submitted successfully",
         };
       }),
@@ -192,9 +205,18 @@ export const appRouter = router({
       )
       .mutation(async ({ input }) => {
         const [result] = await db.insert(supportTickets).values(input);
+        const ticketId = result.insertId;
+        
+        // Send email notification to organizers
+        const { sendSupportTicketNotification } = await import("./email.js");
+        await sendSupportTicketNotification({
+          ...input,
+          ticketId,
+        });
+        
         return {
           success: true,
-          id: result.insertId,
+          id: ticketId,
           message: "Support ticket submitted successfully",
         };
       }),
