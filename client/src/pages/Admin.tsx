@@ -47,6 +47,59 @@ export default function Admin() {
     });
   };
 
+  const generateBadgeMutation = trpc.badge.generate.useMutation({
+    onSuccess: (data) => {
+      // Convert base64 to blob and download
+      const byteCharacters = atob(data.pdf);
+      const byteNumbers = new Array(byteCharacters.length);
+      for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+      }
+      const byteArray = new Uint8Array(byteNumbers);
+      const blob = new Blob([byteArray], { type: "application/pdf" });
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = data.filename;
+      link.click();
+      window.URL.revokeObjectURL(url);
+      toast.success("Badge downloaded successfully");
+    },
+    onError: (error) => {
+      toast.error(error.message || "Failed to generate badge");
+    },
+  });
+
+  const generateBulkBadgesMutation = trpc.badge.generateBulk.useMutation({
+    onSuccess: (data) => {
+      const byteCharacters = atob(data.pdf);
+      const byteNumbers = new Array(byteCharacters.length);
+      for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+      }
+      const byteArray = new Uint8Array(byteNumbers);
+      const blob = new Blob([byteArray], { type: "application/pdf" });
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = data.filename;
+      link.click();
+      window.URL.revokeObjectURL(url);
+      toast.success(`Downloaded ${data.count} badges successfully`);
+    },
+    onError: (error) => {
+      toast.error(error.message || "Failed to generate badges");
+    },
+  });
+
+  const handleDownloadBadge = (registrationId: number) => {
+    generateBadgeMutation.mutate({ registrationId });
+  };
+
+  const handleDownloadAllBadges = () => {
+    generateBulkBadgesMutation.mutate();
+  };
+
   const [showSessionDialog, setShowSessionDialog] = useState(false);
   const [editingSession, setEditingSession] = useState<any>(null);
   const [sessionForm, setSessionForm] = useState({
@@ -442,6 +495,10 @@ export default function Admin() {
                     <Download className="w-4 h-4 mr-2" />
                     Export CSV
                   </Button>
+                  <Button onClick={handleDownloadAllBadges} variant="default">
+                    <Download className="w-4 h-4 mr-2" />
+                    Download All Badges
+                  </Button>
                 </div>
 
                 {/* Table */}
@@ -461,6 +518,7 @@ export default function Admin() {
                           <TableHead>Certificate</TableHead>
                           <TableHead>Payment</TableHead>
                           <TableHead>Date</TableHead>
+                          <TableHead className="text-right">Actions</TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
@@ -514,6 +572,15 @@ export default function Admin() {
                                 </Badge>
                               </TableCell>
                               <TableCell className="text-sm text-muted-foreground">                   {new Date(reg.createdAt).toLocaleDateString()}
+                              </TableCell>
+                              <TableCell className="text-right">
+                                <Button
+                                  size="sm"
+                                  variant="outline"
+                                  onClick={() => handleDownloadBadge(reg.id)}
+                                >
+                                  Download Badge
+                                </Button>
                               </TableCell>
                             </TableRow>
                           ))

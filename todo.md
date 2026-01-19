@@ -136,10 +136,10 @@
 - [ ] Test email delivery
 
 ### Badge/QR Code Generation
-- [ ] Create badge design template with participant info
-- [ ] Implement QR code generation with registration ID
-- [ ] Build PDF generation for badges
-- [ ] Add download badge button in admin dashboard
+- [x] Create badge design template with participant info
+- [x] Implement QR code generation with registration ID
+- [x] Build PDF generation for badges
+- [x] Add download badge button in admin dashboard (individual + bulk)
 - [ ] Add download badge link in confirmation email
 - [ ] Test badge generation and download
 

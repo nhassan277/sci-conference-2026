@@ -322,6 +322,86 @@ export const appRouter = router({
         }
       }),
   }),
+
+  badge: router({
+    generate: publicProcedure
+      .input(
+        z.object({
+          registrationId: z.number().min(1, "Registration ID is required"),
+        })
+      )
+      .mutation(async ({ input }) => {
+        // Get registration data
+        const [registration] = await db
+          .select()
+          .from(registrations)
+          .where(eq(registrations.id, input.registrationId));
+
+        if (!registration) {
+          throw new Error("Registration not found");
+        }
+
+        // Generate badge PDF
+        const { generateBadgePDF } = await import("./badge.js");
+        const pdfStream = await generateBadgePDF({
+          registrationId: registration.id,
+          fullNameEnglish: registration.fullNameEnglish,
+          fullNameArabic: registration.fullNameArabic,
+          affiliation: registration.affiliation,
+          attendeeCategory: registration.attendeeCategory,
+          participationType: registration.participationType,
+        });
+
+        // Convert stream to buffer
+        const chunks: Buffer[] = [];
+        for await (const chunk of pdfStream) {
+          chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
+        }
+        const pdfBuffer = Buffer.concat(chunks);
+
+        return {
+          success: true,
+          pdf: pdfBuffer.toString("base64"),
+          filename: `badge-${registration.id}.pdf`,
+        };
+      }),
+
+    generateBulk: publicProcedure.mutation(async () => {
+      // Get all registrations
+      const allRegistrations = await db.select().from(registrations);
+
+      if (allRegistrations.length === 0) {
+        throw new Error("No registrations found");
+      }
+
+      // Generate bulk badges PDF
+      const { generateBulkBadgesPDF } = await import("./badge.js");
+      const pdfStream = await generateBulkBadgesPDF(
+        allRegistrations.map((reg) => ({
+          registrationId: reg.id,
+          fullNameEnglish: reg.fullNameEnglish,
+          fullNameArabic: reg.fullNameArabic,
+          affiliation: reg.affiliation,
+          attendeeCategory: reg.attendeeCategory,
+          participationType: reg.participationType,
+        }))
+      );
+
+      // Convert stream to buffer
+      const chunks: Buffer[] = [];
+      for await (const chunk of pdfStream) {
+        chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
+      }
+      const pdfBuffer = Buffer.concat(chunks);
+
+      return {
+        success: true,
+        pdf: pdfBuffer.toString("base64"),
+        filename: `badges-all-${Date.now()}.pdf`,
+        count: allRegistrations.length,
+      };
+    }),
+  }),
 });
 
 export type AppRouter = typeof appRouter;
