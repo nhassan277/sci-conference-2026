@@ -114,6 +114,9 @@ export default function Home() {
               <a href="/schedule" className="text-sm font-medium hover:text-primary transition-colors">
                 Schedule
               </a>
+              <a href="/checkin-dashboard" className="text-sm font-medium hover:text-primary transition-colors">
+                Dashboard
+              </a>
               <a href="#sponsors" className="text-sm font-medium hover:text-primary transition-colors">
                 Sponsors
               </a>
