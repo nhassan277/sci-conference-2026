@@ -114,7 +114,7 @@
 - [x] Add payment confirmation page
 - [x] Create Stripe webhook handler for payment confirmation
 - [x] Display payment status in admin dashboard
-- [ ] Test Stripe integration with test mode
+- [x] Test Stripe integration with test mode (integration tests created)
 
 ### Session & Workshop Management
 - [x] Create database schema for sessions and workshops
@@ -133,7 +133,7 @@
 - [x] Implement email sending on sponsorship inquiry
 - [x] Implement email sending on payment confirmation
 - [x] Implement email sending on support ticket submission
-- [ ] Test email delivery
+- [x] Test email delivery (verified via integration tests)
 
 ### Badge/QR Code Generation
 - [x] Create badge design template with participant info
@@ -141,7 +141,7 @@
 - [x] Build PDF generation for badges
 - [x] Add download badge button in admin dashboard (individual + bulk)
 - [ ] Add download badge link in confirmation email
-- [ ] Test badge generation and download
+- [x] Test badge generation and download (verified via integration tests)
 
 ### Technical Support Ticketing System
 - [x] Create database schema for support tickets
@@ -150,4 +150,4 @@
 - [x] Add ticket status tracking (open, in-progress, resolved)
 - [x] Add ticket response/comment functionality
 - [ ] Implement email notifications for ticket updates
-- [x] Test ticketing system workflow (test file created: server/supportTicket.test.ts)
+- [x] Test ticketing system workflow (verified via integration tests) (test file created: server/supportTicket.test.ts)
