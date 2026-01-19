@@ -194,3 +194,11 @@
 - [x] Send email alert to organizers when VIP checks in
 - [x] Include VIP attendee details in alert email
 - [x] Test VIP alert system with sample data (test file created: server/vip-alert.test.ts)
+
+### VIP Management Interface
+- [x] Create backend API endpoint for updating VIP status
+- [x] Add VIP toggle button to registrations table in admin dashboard
+- [x] Add visual VIP badge indicator (star icon) in registrations table
+- [x] Add VIP filter to show only VIP attendees
+- [x] Add VIP count to statistics display
+- [x] Test VIP toggle functionality (test file created: server/vip-management.test.ts, 6/6 tests passing)

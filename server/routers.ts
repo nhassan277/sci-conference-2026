@@ -61,6 +61,22 @@ export const appRouter = router({
           .where(eq(registrations.id, input.id));
         return registration;
       }),
+
+    updateVIPStatus: publicProcedure
+      .input(
+        z.object({
+          id: z.number(),
+          isVIP: z.boolean(),
+        })
+      )
+      .mutation(async ({ input }) => {
+        await db
+          .update(registrations)
+          .set({ isVIP: input.isVIP })
+          .where(eq(registrations.id, input.id));
+
+        return { success: true };
+      }),
   }),
 
   sponsorship: router({

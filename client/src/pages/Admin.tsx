@@ -17,6 +17,7 @@ export default function Admin() {
   const { user, loading: authLoading, logout, login, isAuthenticated } = useUser();
   const [searchTerm, setSearchTerm] = useState("");
   const [categoryFilter, setCategoryFilter] = useState<string>("all");
+  const [vipFilter, setVipFilter] = useState<string>("all");
   const [packageFilter, setPackageFilter] = useState<string>("all");
 
   const { data: registrations, isLoading: loadingRegistrations } = trpc.registration.list.useQuery();
@@ -98,6 +99,21 @@ export default function Admin() {
 
   const handleDownloadAllBadges = () => {
     generateBulkBadgesMutation.mutate();
+  };
+
+  const toggleVIPMutation = trpc.registration.updateVIPStatus.useMutation({
+    onSuccess: () => {
+      toast.success("VIP status updated successfully");
+      // Refetch registrations to show updated VIP status
+      window.location.reload();
+    },
+    onError: (error) => {
+      toast.error(error.message || "Failed to update VIP status");
+    },
+  });
+
+  const handleToggleVIP = (id: number, isVIP: boolean) => {
+    toggleVIPMutation.mutate({ id, isVIP });
   };
 
   const [showSessionDialog, setShowSessionDialog] = useState(false);
@@ -225,9 +241,14 @@ export default function Admin() {
       const matchesCategory =
         categoryFilter === "all" || reg.attendeeCategory === categoryFilter;
 
-      return matchesSearch && matchesCategory;
+      const matchesVIP =
+        vipFilter === "all" ||
+        (vipFilter === "vip" && reg.isVIP) ||
+        (vipFilter === "non-vip" && !reg.isVIP);
+
+      return matchesSearch && matchesCategory && matchesVIP;
     });
-  }, [registrations, searchTerm, categoryFilter]);
+  }, [registrations, searchTerm, categoryFilter, vipFilter]);
 
   // Filter sponsorships
   const filteredSponsorships = useMemo(() => {
@@ -380,6 +401,7 @@ export default function Admin() {
   const stats = {
     totalRegistrations: registrations?.length || 0,
     totalSponsorships: sponsorships?.length || 0,
+    vipCount: registrations?.filter((r) => r.isVIP).length || 0,
     byCategory: {
       student: registrations?.filter((r) => r.attendeeCategory === "student").length || 0,
       faculty: registrations?.filter((r) => r.attendeeCategory === "faculty").length || 0,
@@ -430,6 +452,9 @@ export default function Admin() {
               <div className="text-3xl font-bold">{stats.totalRegistrations}</div>
               <p className="text-xs text-muted-foreground mt-2">
                 Students: {stats.byCategory.student} | Faculty: {stats.byCategory.faculty}
+              </p>
+              <p className="text-xs text-muted-foreground mt-1">
+                ⭐ VIP Attendees: {stats.vipCount}
               </p>
             </CardContent>
           </Card>
@@ -517,6 +542,16 @@ export default function Admin() {
                       <SelectItem value="industry">Industry</SelectItem>
                     </SelectContent>
                   </Select>
+                  <Select value={vipFilter} onValueChange={setVipFilter}>
+                    <SelectTrigger className="w-[150px]">
+                      <SelectValue placeholder="Filter by VIP" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Attendees</SelectItem>
+                      <SelectItem value="vip">⭐ VIP Only</SelectItem>
+                      <SelectItem value="non-vip">Non-VIP</SelectItem>
+                    </SelectContent>
+                  </Select>
                   <Button onClick={handleExportRegistrations} variant="outline">
                     <Download className="w-4 h-4 mr-2" />
                     Export Registrations
@@ -545,6 +580,7 @@ export default function Admin() {
                           <TableHead>Affiliation</TableHead>
                           <TableHead>Category</TableHead>
                           <TableHead>Type</TableHead>
+                          <TableHead>VIP</TableHead>
                           <TableHead>Certificate</TableHead>
                           <TableHead>Payment</TableHead>
                           <TableHead>Date</TableHead>
@@ -580,6 +616,16 @@ export default function Admin() {
                               </TableCell>
                               <TableCell>
                                 <Badge>{reg.participationType}</Badge>
+                              </TableCell>
+                              <TableCell>
+                                <Button
+                                  size="sm"
+                                  variant={reg.isVIP ? "default" : "outline"}
+                                  onClick={() => handleToggleVIP(reg.id, !reg.isVIP)}
+                                  className="h-7"
+                                >
+                                  {reg.isVIP ? "⭐ VIP" : "Mark VIP"}
+                                </Button>
                               </TableCell>
                               <TableCell>
                                 {reg.wantsCertificate ? (
