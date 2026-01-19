@@ -478,6 +478,65 @@ export const appRouter = router({
         percentage,
       };
     }),
+
+    // Export check-in data as CSV
+    exportCheckins: publicProcedure.query(async () => {
+      const allRegistrations = await db
+        .select()
+        .from(registrations)
+        .where(eq(registrations.checkedIn, true));
+
+      // CSV headers
+      const headers = [
+        "ID",
+        "Full Name (English)",
+        "Full Name (Arabic)",
+        "Email",
+        "Phone",
+        "Affiliation",
+        "Category",
+        "Participation Type",
+        "Checked In At",
+        "Checked In By",
+      ];
+
+      // CSV rows
+      const rows = allRegistrations.map((reg) => [
+        reg.id.toString(),
+        reg.fullNameEnglish,
+        reg.fullNameArabic,
+        reg.email,
+        reg.phone,
+        reg.affiliation,
+        reg.attendeeCategory,
+        reg.participationType,
+        reg.checkedInAt
+          ? new Date(reg.checkedInAt).toLocaleString("en-US", {
+              year: "numeric",
+              month: "2-digit",
+              day: "2-digit",
+              hour: "2-digit",
+              minute: "2-digit",
+              second: "2-digit",
+            })
+          : "",
+        reg.checkedInBy || "",
+      ]);
+
+      // Build CSV content
+      const csvContent = [
+        headers.join(","),
+        ...rows.map((row) =>
+          row.map((cell) => `"${cell.replace(/"/g, '""')}"`).join(",")
+        ),
+      ].join("\n");
+
+      return {
+        csv: csvContent,
+        filename: `checkins-${new Date().toISOString().split("T")[0]}.csv`,
+        count: allRegistrations.length,
+      };
+    }),
   }),
 });
 

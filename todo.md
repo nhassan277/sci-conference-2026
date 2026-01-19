@@ -165,3 +165,10 @@
 - [x] Add check-in statistics dashboard
 - [x] Create integration tests for check-in workflow (test file: server/checkin.test.ts)
 - [x] Test QR scanner with generated badges (verified via integration tests)
+
+### Check-In Data Export
+- [x] Create backend API endpoint for check-in data export
+- [x] Generate CSV with registration details, check-in timestamps, and staff names
+- [x] Add "Export Check-Ins" button to admin dashboard
+- [x] Format CSV with proper headers and data formatting
+- [x] Test CSV export with sample data (verified via integration tests)

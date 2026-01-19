@@ -292,7 +292,6 @@ export default function Admin() {
       ]
     );
   };
-
   const handleExportSponsorships = () => {
     if (!filteredSponsorships.length) {
       toast.error("No data to export");
@@ -309,11 +308,38 @@ export default function Admin() {
         "email",
         "phone",
         "packageType",
-        "companyWebsite",
         "message",
         "createdAt",
       ]
     );
+  };
+
+  const exportCheckinsMutation = trpc.checkin.exportCheckins.useQuery(undefined, {
+    enabled: false,
+  });
+
+  const handleExportCheckins = async () => {
+    try {
+      const result = await exportCheckinsMutation.refetch();
+      
+      if (!result.data) {
+        toast.error("No check-in data to export");
+        return;
+      }
+
+      const { csv, filename, count } = result.data;
+
+      // Create blob and download
+      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = filename;
+      link.click();
+
+      toast.success(`Exported ${count} check-ins to CSV`);
+    } catch (error: any) {
+      toast.error(error.message || "Failed to export check-ins");
+    }
   };
 
   // Loading state
@@ -493,7 +519,11 @@ export default function Admin() {
                   </Select>
                   <Button onClick={handleExportRegistrations} variant="outline">
                     <Download className="w-4 h-4 mr-2" />
-                    Export CSV
+                    Export Registrations
+                  </Button>
+                  <Button onClick={handleExportCheckins} variant="outline">
+                    <Download className="w-4 h-4 mr-2" />
+                    Export Check-Ins
                   </Button>
                   <Button onClick={handleDownloadAllBadges} variant="default">
                     <Download className="w-4 h-4 mr-2" />
