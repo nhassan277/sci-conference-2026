@@ -11,6 +11,7 @@ import Sponsor from "./pages/Sponsor";
 import Admin from "./pages/Admin";
 import Schedule from "./pages/Schedule";
 import Support from "./pages/Support";
+import CheckIn from "./pages/CheckIn";
 
 
 function Router() {
@@ -21,6 +22,7 @@ function Router() {
       <Route path={"/sponsor"} component={Sponsor} />
       <Route path={"/schedule"} component={Schedule} />
       <Route path={"/support"} component={Support} />
+      <Route path={"/checkin"} component={CheckIn} />
       <Route path={"/admin"} component={Admin} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}

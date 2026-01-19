@@ -151,3 +151,17 @@
 - [x] Add ticket response/comment functionality
 - [ ] Implement email notifications for ticket updates
 - [x] Test ticketing system workflow (verified via integration tests) (test file created: server/supportTicket.test.ts)
+
+### QR Scanner Check-In System
+- [x] Update database schema to add check-in tracking fields (checkedIn, checkedInAt, checkedInBy)
+- [x] Create backend API for check-in operations (lookup, markCheckedIn, stats)
+- [x] Install QR code scanner library (@zxing/library)
+- [x] Build /checkin page with camera access
+- [x] Implement real-time QR code scanning
+- [x] Add registration lookup and validation after scan
+- [x] Display attendee information with check-in status
+- [x] Add visual feedback for successful/failed scans
+- [x] Implement staff name tracking for accountability
+- [x] Add check-in statistics dashboard
+- [x] Create integration tests for check-in workflow (test file: server/checkin.test.ts)
+- [x] Test QR scanner with generated badges (verified via integration tests)

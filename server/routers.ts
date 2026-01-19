@@ -1,4 +1,4 @@
-import { initTRPC } from "@trpc/server";
+import { initTRPC, TRPCError } from "@trpc/server";
 import { z } from "zod";
 import { eq } from "drizzle-orm";
 import superjson from "superjson";
@@ -399,6 +399,83 @@ export const appRouter = router({
         pdf: pdfBuffer.toString("base64"),
         filename: `badges-all-${Date.now()}.pdf`,
         count: allRegistrations.length,
+      };
+    }),
+  }),
+
+  checkin: router({
+    // Lookup registration by ID (from QR code scan)
+    lookup: publicProcedure
+      .input(z.object({ registrationId: z.number() }))
+      .query(async ({ input }) => {
+        const [registration] = await db
+          .select()
+          .from(registrations)
+          .where(eq(registrations.id, input.registrationId));
+
+        if (!registration) {
+          throw new TRPCError({
+            code: "NOT_FOUND",
+            message: "Registration not found",
+          });
+        }
+
+        return registration;
+      }),
+
+    // Mark registration as checked in
+    markCheckedIn: publicProcedure
+      .input(
+        z.object({
+          registrationId: z.number(),
+          staffName: z.string().min(1),
+        })
+      )
+      .mutation(async ({ input }) => {
+        const [registration] = await db
+          .select()
+          .from(registrations)
+          .where(eq(registrations.id, input.registrationId));
+
+        if (!registration) {
+          throw new TRPCError({
+            code: "NOT_FOUND",
+            message: "Registration not found",
+          });
+        }
+
+        if (registration.checkedIn) {
+          throw new TRPCError({
+            code: "BAD_REQUEST",
+            message: "Already checked in",
+          });
+        }
+
+        await db
+          .update(registrations)
+          .set({
+            checkedIn: true,
+            checkedInAt: new Date(),
+            checkedInBy: input.staffName,
+          })
+          .where(eq(registrations.id, input.registrationId));
+
+        return { success: true };
+      }),
+
+    // Get check-in statistics
+    stats: publicProcedure.query(async () => {
+      const allRegistrations = await db.select().from(registrations);
+      const checkedInCount = allRegistrations.filter((r) => r.checkedIn).length;
+      const totalCount = allRegistrations.length;
+      const percentage =
+        totalCount > 0 ? Math.round((checkedInCount / totalCount) * 100) : 0;
+
+      return {
+        total: totalCount,
+        checkedIn: checkedInCount,
+        remaining: totalCount - checkedInCount,
+        percentage,
       };
     }),
   }),

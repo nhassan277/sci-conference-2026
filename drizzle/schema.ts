@@ -16,6 +16,9 @@ export const registrations = mysqlTable("registrations", {
   stripePaymentIntentId: varchar("stripe_payment_intent_id", { length: 255 }),
   stripeCheckoutSessionId: varchar("stripe_checkout_session_id", { length: 255 }),
   paidAt: timestamp("paid_at"),
+  checkedIn: boolean("checked_in").default(false).notNull(),
+  checkedInAt: timestamp("checked_in_at"),
+  checkedInBy: varchar("checked_in_by", { length: 255 }), // staff member who checked them in
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
