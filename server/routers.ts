@@ -3,7 +3,7 @@ import { z } from "zod";
 import { eq } from "drizzle-orm";
 import superjson from "superjson";
 import { db } from "./db.js";
-import { registrations, sponsorships } from "../drizzle/schema.js";
+import { registrations, sponsorships, sessions, supportTickets } from "../drizzle/schema.js";
 
 const t = initTRPC.create({
   transformer: superjson,
@@ -93,6 +93,141 @@ export const appRouter = router({
           .from(sponsorships)
           .where(eq(sponsorships.id, input.id));
         return sponsorship;
+      }),
+  }),
+
+  session: router({
+    create: publicProcedure
+      .input(
+        z.object({
+          title: z.string().min(1, "Title is required"),
+          titleAr: z.string().min(1, "Arabic title is required"),
+          description: z.string().optional(),
+          sessionType: z.enum(["keynote", "research", "workshop", "panel", "break", "opening", "closing"]),
+          track: z.string().optional(),
+          day: z.number().min(1).max(2),
+          startTime: z.string().regex(/^\d{2}:\d{2}$/, "Time must be in HH:MM format"),
+          endTime: z.string().regex(/^\d{2}:\d{2}$/, "Time must be in HH:MM format"),
+          location: z.string().optional(),
+          speakerName: z.string().optional(),
+          speakerTitle: z.string().optional(),
+          speakerAffiliation: z.string().optional(),
+          speakerBio: z.string().optional(),
+        })
+      )
+      .mutation(async ({ input }) => {
+        const [result] = await db.insert(sessions).values(input);
+        return {
+          success: true,
+          id: result.insertId,
+          message: "Session created successfully",
+        };
+      }),
+
+    list: publicProcedure.query(async () => {
+      const allSessions = await db.select().from(sessions);
+      return allSessions;
+    }),
+
+    getById: publicProcedure
+      .input(z.object({ id: z.number() }))
+      .query(async ({ input }) => {
+        const [session] = await db
+          .select()
+          .from(sessions)
+          .where(eq(sessions.id, input.id));
+        return session;
+      }),
+
+    update: publicProcedure
+      .input(
+        z.object({
+          id: z.number(),
+          title: z.string().min(1).optional(),
+          titleAr: z.string().min(1).optional(),
+          description: z.string().optional(),
+          sessionType: z.enum(["keynote", "research", "workshop", "panel", "break", "opening", "closing"]).optional(),
+          track: z.string().optional(),
+          day: z.number().min(1).max(2).optional(),
+          startTime: z.string().regex(/^\d{2}:\d{2}$/).optional(),
+          endTime: z.string().regex(/^\d{2}:\d{2}$/).optional(),
+          location: z.string().optional(),
+          speakerName: z.string().optional(),
+          speakerTitle: z.string().optional(),
+          speakerAffiliation: z.string().optional(),
+          speakerBio: z.string().optional(),
+        })
+      )
+      .mutation(async ({ input }) => {
+        const { id, ...updateData } = input;
+        await db.update(sessions).set(updateData).where(eq(sessions.id, id));
+        return {
+          success: true,
+          message: "Session updated successfully",
+        };
+      }),
+
+    delete: publicProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input }) => {
+        await db.delete(sessions).where(eq(sessions.id, input.id));
+        return {
+          success: true,
+          message: "Session deleted successfully",
+        };
+      }),
+  }),
+
+  supportTicket: router({
+    create: publicProcedure
+      .input(
+        z.object({
+          name: z.string().min(1, "Name is required"),
+          email: z.string().email("Invalid email address"),
+          subject: z.string().min(1, "Subject is required"),
+          message: z.string().min(1, "Message is required"),
+          priority: z.enum(["low", "normal", "high"]).optional().default("normal"),
+        })
+      )
+      .mutation(async ({ input }) => {
+        const [result] = await db.insert(supportTickets).values(input);
+        return {
+          success: true,
+          id: result.insertId,
+          message: "Support ticket submitted successfully",
+        };
+      }),
+
+    list: publicProcedure.query(async () => {
+      const allTickets = await db.select().from(supportTickets);
+      return allTickets;
+    }),
+
+    getById: publicProcedure
+      .input(z.object({ id: z.number() }))
+      .query(async ({ input }) => {
+        const [ticket] = await db
+          .select()
+          .from(supportTickets)
+          .where(eq(supportTickets.id, input.id));
+        return ticket;
+      }),
+
+    updateStatus: publicProcedure
+      .input(
+        z.object({
+          id: z.number(),
+          status: z.enum(["open", "in-progress", "resolved"]),
+          response: z.string().optional(),
+        })
+      )
+      .mutation(async ({ input }) => {
+        const { id, ...updateData } = input;
+        await db.update(supportTickets).set(updateData).where(eq(supportTickets.id, id));
+        return {
+          success: true,
+          message: "Ticket updated successfully",
+        };
       }),
   }),
 });

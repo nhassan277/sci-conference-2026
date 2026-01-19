@@ -104,3 +104,46 @@
 - [x] Update homepage Research Tracks section with 8 tracks total
 - [x] Update schedule page filtering with new Chemical Sciences track
 - [x] Verify bilingual labels for both tracks
+
+## Conference Management Features Implementation
+
+### Payment Gateway Integration
+- [ ] Add certificate option to registration form (100 EGP)
+- [ ] Integrate Stripe payment for certificate purchases
+- [ ] Update database schema to track payment status
+- [ ] Add payment confirmation page
+- [ ] Test Stripe integration with test mode
+
+### Session & Workshop Management
+- [x] Create database schema for sessions and workshops
+- [x] Build session management UI in admin dashboard
+- [x] Add create/edit/delete session functionality
+- [x] Add speaker assignment to sessions
+- [x] Add session scheduling (date, time, location)
+- [x] Link sessions to research tracks
+- [x] Test session CRUD operations (test file created: server/session.test.ts)
+
+### Automated Email Notifications
+- [ ] Set up email service configuration
+- [ ] Create email templates for participant confirmations
+- [ ] Create email templates for organizer notifications
+- [ ] Implement email sending on registration submission
+- [ ] Implement email sending on sponsorship inquiry
+- [ ] Test email delivery
+
+### Badge/QR Code Generation
+- [ ] Create badge design template with participant info
+- [ ] Implement QR code generation with registration ID
+- [ ] Build PDF generation for badges
+- [ ] Add download badge button in admin dashboard
+- [ ] Add download badge link in confirmation email
+- [ ] Test badge generation and download
+
+### Technical Support Ticketing System
+- [ ] Create database schema for support tickets
+- [ ] Build ticket submission form (public-facing)
+- [ ] Create ticket management UI in admin dashboard
+- [ ] Add ticket status tracking (open, in-progress, resolved)
+- [ ] Add ticket response/comment functionality
+- [ ] Implement email notifications for ticket updates
+- [ ] Test ticketing system workflow

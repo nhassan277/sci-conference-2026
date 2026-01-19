@@ -15,6 +15,13 @@
       "when": 1768348279630,
       "tag": "0001_simple_titanium_man",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1768848685613,
+      "tag": "0002_condemned_dagger",
+      "breakpoints": true
     }
   ]
 }

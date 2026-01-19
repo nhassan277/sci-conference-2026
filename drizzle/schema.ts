@@ -1,4 +1,4 @@
-import { mysqlTable, varchar, text, timestamp, int } from "drizzle-orm/mysql-core";
+import { mysqlTable, varchar, text, timestamp, int, boolean, decimal } from "drizzle-orm/mysql-core";
 
 export const registrations = mysqlTable("registrations", {
   id: int("id").primaryKey().autoincrement(),
@@ -31,3 +31,58 @@ export const sponsorships = mysqlTable("sponsorships", {
 
 export type Sponsorship = typeof sponsorships.$inferSelect;
 export type NewSponsorship = typeof sponsorships.$inferInsert;
+
+// Sessions and Workshops
+export const sessions = mysqlTable("sessions", {
+  id: int("id").primaryKey().autoincrement(),
+  title: varchar("title", { length: 255 }).notNull(),
+  titleAr: varchar("title_ar", { length: 255 }).notNull(),
+  description: text("description"),
+  sessionType: varchar("session_type", { length: 50 }).notNull(), // keynote, research, workshop, panel, break, opening, closing
+  track: varchar("track", { length: 100 }), // life-sciences, physical-sciences, etc.
+  day: int("day").notNull(), // 1 or 2
+  startTime: varchar("start_time", { length: 10 }).notNull(), // HH:MM format
+  endTime: varchar("end_time", { length: 10 }).notNull(),
+  location: varchar("location", { length: 255 }),
+  speakerName: varchar("speaker_name", { length: 255 }),
+  speakerTitle: varchar("speaker_title", { length: 255 }),
+  speakerAffiliation: varchar("speaker_affiliation", { length: 255 }),
+  speakerBio: text("speaker_bio"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export type Session = typeof sessions.$inferSelect;
+export type NewSession = typeof sessions.$inferInsert;
+
+// Support Tickets
+export const supportTickets = mysqlTable("support_tickets", {
+  id: int("id").primaryKey().autoincrement(),
+  name: varchar("name", { length: 255 }).notNull(),
+  email: varchar("email", { length: 255 }).notNull(),
+  subject: varchar("subject", { length: 255 }).notNull(),
+  message: text("message").notNull(),
+  status: varchar("status", { length: 50 }).notNull().default("open"), // open, in-progress, resolved
+  priority: varchar("priority", { length: 50 }).notNull().default("normal"), // low, normal, high
+  response: text("response"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export type SupportTicket = typeof supportTickets.$inferSelect;
+export type NewSupportTicket = typeof supportTickets.$inferInsert;
+
+// Payment tracking for certificate purchases
+export const payments = mysqlTable("payments", {
+  id: int("id").primaryKey().autoincrement(),
+  registrationId: int("registration_id").notNull(),
+  amount: decimal("amount", { precision: 10, scale: 2 }).notNull(),
+  currency: varchar("currency", { length: 10 }).notNull().default("EGP"),
+  stripePaymentIntentId: varchar("stripe_payment_intent_id", { length: 255 }),
+  status: varchar("status", { length: 50 }).notNull(), // pending, completed, failed
+  certificateRequested: boolean("certificate_requested").notNull().default(false),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export type Payment = typeof payments.$inferSelect;
+export type NewPayment = typeof payments.$inferInsert;

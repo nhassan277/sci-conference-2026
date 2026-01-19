@@ -8,7 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { LogOut, Download, Users, Building2, TrendingUp, Search } from "lucide-react";
+import { LogOut, Download, Users, Building2, TrendingUp, Search, Plus, Edit, Trash2, Calendar } from "lucide-react";
 import { toast } from "sonner";
 
 export default function Admin() {
@@ -19,6 +19,118 @@ export default function Admin() {
 
   const { data: registrations, isLoading: loadingRegistrations } = trpc.registration.list.useQuery();
   const { data: sponsorships, isLoading: loadingSponsorships } = trpc.sponsorship.list.useQuery();
+  const { data: sessions, isLoading: loadingSessions, refetch: refetchSessions } = trpc.session.list.useQuery();
+
+  const [showSessionDialog, setShowSessionDialog] = useState(false);
+  const [editingSession, setEditingSession] = useState<any>(null);
+  const [sessionForm, setSessionForm] = useState({
+    title: "",
+    titleAr: "",
+    description: "",
+    sessionType: "research" as "keynote" | "research" | "workshop" | "panel" | "break" | "opening" | "closing",
+    track: "",
+    day: 1,
+    startTime: "",
+    endTime: "",
+    location: "",
+    speakerName: "",
+    speakerTitle: "",
+    speakerAffiliation: "",
+    speakerBio: "",
+  });
+
+  const createSessionMutation = trpc.session.create.useMutation({
+    onSuccess: () => {
+      toast.success("Session created successfully");
+      refetchSessions();
+      setShowSessionDialog(false);
+      resetSessionForm();
+    },
+    onError: (error) => {
+      toast.error(error.message || "Failed to create session");
+    },
+  });
+
+  const updateSessionMutation = trpc.session.update.useMutation({
+    onSuccess: () => {
+      toast.success("Session updated successfully");
+      refetchSessions();
+      setShowSessionDialog(false);
+      setEditingSession(null);
+      resetSessionForm();
+    },
+    onError: (error) => {
+      toast.error(error.message || "Failed to update session");
+    },
+  });
+
+  const deleteSessionMutation = trpc.session.delete.useMutation({
+    onSuccess: () => {
+      toast.success("Session deleted successfully");
+      refetchSessions();
+    },
+    onError: (error) => {
+      toast.error(error.message || "Failed to delete session");
+    },
+  });
+
+  const resetSessionForm = () => {
+    setSessionForm({
+      title: "",
+      titleAr: "",
+      description: "",
+      sessionType: "research",
+      track: "",
+      day: 1,
+      startTime: "",
+      endTime: "",
+      location: "",
+      speakerName: "",
+      speakerTitle: "",
+      speakerAffiliation: "",
+      speakerBio: "",
+    });
+  };
+
+  const handleCreateSession = () => {
+    setEditingSession(null);
+    resetSessionForm();
+    setShowSessionDialog(true);
+  };
+
+  const handleEditSession = (session: any) => {
+    setEditingSession(session);
+    setSessionForm({
+      title: session.title,
+      titleAr: session.titleAr,
+      description: session.description || "",
+      sessionType: session.sessionType,
+      track: session.track || "",
+      day: session.day,
+      startTime: session.startTime,
+      endTime: session.endTime,
+      location: session.location || "",
+      speakerName: session.speakerName || "",
+      speakerTitle: session.speakerTitle || "",
+      speakerAffiliation: session.speakerAffiliation || "",
+      speakerBio: session.speakerBio || "",
+    });
+    setShowSessionDialog(true);
+  };
+
+  const handleDeleteSession = (id: number) => {
+    if (confirm("Are you sure you want to delete this session?")) {
+      deleteSessionMutation.mutate({ id });
+    }
+  };
+
+  const handleSubmitSession = () => {
+    if (editingSession) {
+      updateSessionMutation.mutate({ id: editingSession.id, ...sessionForm });
+    } else {
+      createSessionMutation.mutate(sessionForm);
+    }
+  };
 
   // Filter registrations
   const filteredRegistrations = useMemo(() => {
@@ -258,12 +370,15 @@ export default function Admin() {
           </CardHeader>
           <CardContent>
             <Tabs defaultValue="registrations">
-              <TabsList className="grid w-full grid-cols-2 mb-6">
+              <TabsList className="grid w-full grid-cols-3 mb-6">
                 <TabsTrigger value="registrations">
                   Registrations ({filteredRegistrations.length})
                 </TabsTrigger>
                 <TabsTrigger value="sponsorships">
                   Sponsorships ({filteredSponsorships.length})
+                </TabsTrigger>
+                <TabsTrigger value="sessions">
+                  Sessions ({sessions?.length || 0})
                 </TabsTrigger>
               </TabsList>
 
@@ -456,9 +571,299 @@ export default function Admin() {
                   </div>
                 </div>
               </TabsContent>
+
+              {/* Sessions Tab */}
+              <TabsContent value="sessions" className="space-y-4">
+                <div className="flex justify-between items-center">
+                  <h3 className="text-lg font-semibold">Manage Conference Sessions</h3>
+                  <Button onClick={handleCreateSession}>
+                    <Plus className="w-4 h-4 mr-2" />
+                    Add Session
+                  </Button>
+                </div>
+
+                {/* Sessions Table */}
+                <div className="border rounded-lg overflow-hidden">
+                  <div className="max-h-[600px] overflow-auto">
+                    <Table>
+                      <TableHeader className="sticky top-0 bg-muted">
+                        <TableRow>
+                          <TableHead>Day</TableHead>
+                          <TableHead>Time</TableHead>
+                          <TableHead>Title</TableHead>
+                          <TableHead>Type</TableHead>
+                          <TableHead>Track</TableHead>
+                          <TableHead>Location</TableHead>
+                          <TableHead>Speaker</TableHead>
+                          <TableHead className="text-right">Actions</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {loadingSessions ? (
+                          <TableRow>
+                            <TableCell colSpan={8} className="text-center py-8">
+                              Loading...
+                            </TableCell>
+                          </TableRow>
+                        ) : !sessions || sessions.length === 0 ? (
+                          <TableRow>
+                            <TableCell colSpan={8} className="text-center py-8 text-muted-foreground">
+                              No sessions found. Click "Add Session" to create one.
+                            </TableCell>
+                          </TableRow>
+                        ) : (
+                          sessions
+                            .sort((a, b) => a.day - b.day || a.startTime.localeCompare(b.startTime))
+                            .map((session) => (
+                              <TableRow key={session.id}>
+                                <TableCell className="font-medium">Day {session.day}</TableCell>
+                                <TableCell className="text-sm">
+                                  {session.startTime} - {session.endTime}
+                                </TableCell>
+                                <TableCell className="font-medium max-w-[250px]">
+                                  <div className="truncate">{session.title}</div>
+                                  <div className="text-xs text-muted-foreground truncate" dir="rtl">
+                                    {session.titleAr}
+                                  </div>
+                                </TableCell>
+                                <TableCell>
+                                  <Badge variant="outline">{session.sessionType}</Badge>
+                                </TableCell>
+                                <TableCell className="text-sm">{session.track || "-"}</TableCell>
+                                <TableCell className="text-sm">{session.location || "-"}</TableCell>
+                                <TableCell className="text-sm">{session.speakerName || "-"}</TableCell>
+                                <TableCell className="text-right">
+                                  <div className="flex justify-end gap-2">
+                                    <Button
+                                      size="sm"
+                                      variant="ghost"
+                                      onClick={() => handleEditSession(session)}
+                                    >
+                                      <Edit className="w-4 h-4" />
+                                    </Button>
+                                    <Button
+                                      size="sm"
+                                      variant="ghost"
+                                      onClick={() => handleDeleteSession(session.id)}
+                                    >
+                                      <Trash2 className="w-4 h-4 text-destructive" />
+                                    </Button>
+                                  </div>
+                                </TableCell>
+                              </TableRow>
+                            ))
+                        )}
+                      </TableBody>
+                    </Table>
+                  </div>
+                </div>
+              </TabsContent>
             </Tabs>
           </CardContent>
         </Card>
+
+        {/* Session Dialog */}
+        {showSessionDialog && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+              <div className="p-6 space-y-4">
+                <div className="flex justify-between items-center">
+                  <h2 className="text-2xl font-bold">
+                    {editingSession ? "Edit Session" : "Create New Session"}
+                  </h2>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => {
+                      setShowSessionDialog(false);
+                      setEditingSession(null);
+                      resetSessionForm();
+                    }}
+                  >
+                    ✕
+                  </Button>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="text-sm font-medium">Title (English)</label>
+                      <Input
+                        value={sessionForm.title}
+                        onChange={(e) => setSessionForm({ ...sessionForm, title: e.target.value })}
+                        placeholder="Session title"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium">Title (Arabic)</label>
+                      <Input
+                        value={sessionForm.titleAr}
+                        onChange={(e) => setSessionForm({ ...sessionForm, titleAr: e.target.value })}
+                        placeholder="عنوان الجلسة"
+                        dir="rtl"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="text-sm font-medium">Description</label>
+                    <textarea
+                      className="w-full min-h-[80px] px-3 py-2 border rounded-md"
+                      value={sessionForm.description}
+                      onChange={(e) => setSessionForm({ ...sessionForm, description: e.target.value })}
+                      placeholder="Session description"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-3 gap-4">
+                    <div>
+                      <label className="text-sm font-medium">Session Type</label>
+                      <Select
+                        value={sessionForm.sessionType}
+                        onValueChange={(value: any) =>
+                          setSessionForm({ ...sessionForm, sessionType: value })
+                        }
+                      >
+                        <SelectTrigger>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="keynote">Keynote</SelectItem>
+                          <SelectItem value="research">Research</SelectItem>
+                          <SelectItem value="workshop">Workshop</SelectItem>
+                          <SelectItem value="panel">Panel</SelectItem>
+                          <SelectItem value="break">Break</SelectItem>
+                          <SelectItem value="opening">Opening</SelectItem>
+                          <SelectItem value="closing">Closing</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium">Day</label>
+                      <Select
+                        value={String(sessionForm.day)}
+                        onValueChange={(value) =>
+                          setSessionForm({ ...sessionForm, day: parseInt(value) })
+                        }
+                      >
+                        <SelectTrigger>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="1">Day 1</SelectItem>
+                          <SelectItem value="2">Day 2</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium">Track</label>
+                      <Input
+                        value={sessionForm.track}
+                        onChange={(e) => setSessionForm({ ...sessionForm, track: e.target.value })}
+                        placeholder="e.g., life-sciences"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-3 gap-4">
+                    <div>
+                      <label className="text-sm font-medium">Start Time</label>
+                      <Input
+                        value={sessionForm.startTime}
+                        onChange={(e) => setSessionForm({ ...sessionForm, startTime: e.target.value })}
+                        placeholder="09:00"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium">End Time</label>
+                      <Input
+                        value={sessionForm.endTime}
+                        onChange={(e) => setSessionForm({ ...sessionForm, endTime: e.target.value })}
+                        placeholder="10:00"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium">Location</label>
+                      <Input
+                        value={sessionForm.location}
+                        onChange={(e) => setSessionForm({ ...sessionForm, location: e.target.value })}
+                        placeholder="Main Hall"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="border-t pt-4">
+                    <h3 className="font-semibold mb-3">Speaker Information (Optional)</h3>
+                    <div className="space-y-3">
+                      <div>
+                        <label className="text-sm font-medium">Speaker Name</label>
+                        <Input
+                          value={sessionForm.speakerName}
+                          onChange={(e) =>
+                            setSessionForm({ ...sessionForm, speakerName: e.target.value })
+                          }
+                          placeholder="Dr. John Doe"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <label className="text-sm font-medium">Title</label>
+                          <Input
+                            value={sessionForm.speakerTitle}
+                            onChange={(e) =>
+                              setSessionForm({ ...sessionForm, speakerTitle: e.target.value })
+                            }
+                            placeholder="Professor"
+                          />
+                        </div>
+                        <div>
+                          <label className="text-sm font-medium">Affiliation</label>
+                          <Input
+                            value={sessionForm.speakerAffiliation}
+                            onChange={(e) =>
+                              setSessionForm({ ...sessionForm, speakerAffiliation: e.target.value })
+                            }
+                            placeholder="Cairo University"
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <label className="text-sm font-medium">Bio</label>
+                        <textarea
+                          className="w-full min-h-[60px] px-3 py-2 border rounded-md"
+                          value={sessionForm.speakerBio}
+                          onChange={(e) =>
+                            setSessionForm({ ...sessionForm, speakerBio: e.target.value })
+                          }
+                          placeholder="Speaker biography"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex justify-end gap-3 pt-4 border-t">
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      setShowSessionDialog(false);
+                      setEditingSession(null);
+                      resetSessionForm();
+                    }}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    onClick={handleSubmitSession}
+                    disabled={createSessionMutation.isPending || updateSessionMutation.isPending}
+                  >
+                    {editingSession ? "Update" : "Create"} Session
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
