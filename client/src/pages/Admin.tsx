@@ -12,6 +12,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge";
 import { LogOut, Download, Users, Building2, TrendingUp, Search, Plus, Edit, Trash2, Calendar, Shield, FileText } from "lucide-react";
 import { toast } from "sonner";
+import { useNotifications } from "@/hooks/useNotifications";
 
 export default function Admin() {
   const { user, loading: authLoading, logout, login, isAuthenticated, isAdmin } = useUser();
@@ -19,6 +20,9 @@ export default function Admin() {
   const [categoryFilter, setCategoryFilter] = useState<string>("all");
   const [vipFilter, setVipFilter] = useState<string>("all");
   const [packageFilter, setPackageFilter] = useState<string>("all");
+  
+  // Real-time notifications
+  const { notifications, isConnected } = useNotifications();
 
   // Redirect if not admin
   if (!authLoading && (!isAuthenticated || !isAdmin)) {

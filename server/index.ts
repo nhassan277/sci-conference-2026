@@ -7,7 +7,8 @@ import { appRouter } from "./routers.js";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import { generateToken, verifyToken, authMiddleware, AuthRequest } from "./auth.js";
-import { ensureOwnerIsSuperAdmin } from "./admin-management.js";
+import { ensureOwnerIsSuperAdmin, getAdminByOpenId } from "./admin-management.js";
+import { notificationEmitter, NotificationEvent } from "./notification-emitter.js";
 
 dotenv.config();
 
@@ -113,6 +114,55 @@ async function startServer() {
     }
 
     res.json(user);
+  });
+
+  // SSE endpoint for real-time notifications (admin only)
+  app.get("/api/notifications/stream", async (req, res) => {
+    const token = req.cookies?.auth_token;
+    if (!token) {
+      return res.status(401).json({ error: "Not authenticated" });
+    }
+
+    const user = verifyToken(token);
+    if (!user) {
+      return res.status(401).json({ error: "Invalid token" });
+    }
+
+    // Check if user is admin
+    const admin = await getAdminByOpenId(user.openId);
+    if (!admin) {
+      return res.status(403).json({ error: "Admin access required" });
+    }
+
+    // Set SSE headers
+    res.setHeader("Content-Type", "text/event-stream");
+    res.setHeader("Cache-Control", "no-cache");
+    res.setHeader("Connection", "keep-alive");
+    res.setHeader("X-Accel-Buffering", "no"); // Disable nginx buffering
+
+    // Send initial connection message
+    res.write(`data: ${JSON.stringify({ type: "connected", message: "Connected to notification stream" })}\n\n`);
+
+    // Create listener for notifications
+    const notificationListener = (notification: NotificationEvent) => {
+      res.write(`data: ${JSON.stringify(notification)}\n\n`);
+    };
+
+    notificationEmitter.on("notification", notificationListener);
+
+    // Send keepalive every 30 seconds
+    const keepaliveInterval = setInterval(() => {
+      res.write(`: keepalive\n\n`);
+    }, 30000);
+
+    // Cleanup on connection close
+    req.on("close", () => {
+      clearInterval(keepaliveInterval);
+      notificationEmitter.off("notification", notificationListener);
+      console.log(`[SSE] Admin ${admin.email} disconnected from notification stream`);
+    });
+
+    console.log(`[SSE] Admin ${admin.email} connected to notification stream`);
   });
 
   // tRPC middleware with auth context

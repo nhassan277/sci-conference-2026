@@ -7,6 +7,7 @@ import { registrations, sponsorships, sessions, supportTickets, admins, auditLog
 import { verifyToken, isOwner } from "./auth.js";
 import { logAuditAction, getIpAddress, getUserAgent } from "./audit.js";
 import { getAdminByOpenId, hasPermission, getRolePermissions, ensureOwnerIsSuperAdmin } from "./admin-management.js";
+import { notificationEmitter } from "./notification-emitter.js";
 
 interface Context {
   user?: {
@@ -99,6 +100,13 @@ export const appRouter = router({
         const [result] = await db.insert(registrations).values(input);
         const registrationId = result.insertId;
         
+        // Emit real-time notification
+        notificationEmitter.emitNewRegistration({
+          name: input.fullNameEnglish,
+          email: input.email,
+          category: input.attendeeCategory,
+        });
+        
         // Send email notification to organizers
         const { sendRegistrationNotification } = await import("./email.js");
         await sendRegistrationNotification({
@@ -136,10 +144,31 @@ export const appRouter = router({
         })
       )
       .mutation(async ({ input, ctx }) => {
+        // Get registration details for notification
+        const [registration] = await db
+          .select()
+          .from(registrations)
+          .where(eq(registrations.id, input.id));
+
+        if (!registration) {
+          throw new TRPCError({
+            code: "NOT_FOUND",
+            message: "Registration not found",
+          });
+        }
+
         await db
           .update(registrations)
           .set({ isVIP: input.isVIP })
           .where(eq(registrations.id, input.id));
+
+        // Emit real-time notification for VIP status change
+        notificationEmitter.emitVIPChange({
+          name: registration.fullNameEnglish,
+          email: registration.email,
+          isVIP: input.isVIP,
+          changedBy: (ctx as any).admin?.name || "Admin",
+        });
 
         // Log audit action
         await logAuditAction({
@@ -554,6 +583,13 @@ export const appRouter = router({
             checkedInBy: input.staffName,
           })
           .where(eq(registrations.id, input.registrationId));
+
+        // Emit real-time notification for check-in
+        notificationEmitter.emitCheckIn({
+          name: registration.fullNameEnglish,
+          email: registration.email,
+          isVIP: registration.isVIP,
+        });
 
         // Send VIP alert if this is a VIP attendee
         if (registration.isVIP) {

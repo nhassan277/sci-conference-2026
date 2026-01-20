@@ -233,3 +233,16 @@
 - [x] Ensure owner (OWNER_OPEN_ID) is always super_admin
 - [x] Test multi-admin access with different role levels
 - [x] Create integration tests for audit log and multi-admin system (test file: server/audit-multi-admin.test.ts, 14/14 tests passing)
+
+### Real-Time Dashboard Notifications
+- [x] Create SSE (Server-Sent Events) endpoint for real-time notifications
+- [x] Implement event emitter system for broadcasting notifications
+- [x] Add notification triggers for new registrations
+- [x] Add notification triggers for check-ins
+- [x] Add notification triggers for VIP status changes
+- [x] Add notification triggers for critical events (errors, system alerts)
+- [x] Create frontend SSE client to receive notifications
+- [x] Implement toast notification UI for displaying real-time updates
+- [x] Add notification preferences (enable/disable specific event types)
+- [x] Add notification history/log viewer (notifications stored in state, accessible via useNotifications hook)
+- [x] Create integration tests for real-time notification system (test file: server/realtime-notifications.test.ts, 12/12 tests passing)
