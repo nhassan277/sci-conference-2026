@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Bell, CheckCircle, XCircle } from "lucide-react";
+import { trpc } from "@/lib/trpc";
 
 interface TimeLeft {
   days: number;
@@ -51,8 +55,31 @@ export default function CountdownTimer() {
     </Card>
   );
 
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
+  
+  const subscribeMutation = trpc.reminder.subscribe.useMutation({
+    onSuccess: (data) => {
+      setMessage({ type: "success", text: data.message });
+      setEmail("");
+      // Clear message after 5 seconds
+      setTimeout(() => setMessage(null), 5000);
+    },
+    onError: (error) => {
+      setMessage({ type: "error", text: error.message });
+      setTimeout(() => setMessage(null), 5000);
+    },
+  });
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email) {
+      subscribeMutation.mutate({ email });
+    }
+  };
+
   return (
-    <div className="w-full">
+    <div className="w-full space-y-8">
       <div className="text-center mb-6">
         <h3 className="text-2xl md:text-3xl font-bold text-primary mb-2">
           Conference Starts In
@@ -68,6 +95,53 @@ export default function CountdownTimer() {
         <TimeUnit value={timeLeft.minutes} label="Minutes" labelAr="دقيقة" />
         <TimeUnit value={timeLeft.seconds} label="Seconds" labelAr="ثانية" />
       </div>
+
+      {/* Reminder Subscription Form */}
+      <Card className="max-w-2xl mx-auto p-6 bg-white/90 backdrop-blur-sm border-2 border-primary/20">
+        <div className="text-center mb-4">
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <Bell className="w-5 h-5 text-primary" />
+            <h4 className="text-lg font-semibold text-primary">Get Reminded</h4>
+          </div>
+          <p className="text-sm text-muted-foreground">Receive an email reminder one week before the conference</p>
+          <p className="text-sm text-muted-foreground" dir="rtl">احصل على تذكير قبل أسبوع من المؤتمر</p>
+        </div>
+        
+        <form onSubmit={handleSubscribe} className="space-y-3">
+          <div className="flex flex-col sm:flex-row gap-3">
+            <Input
+              type="email"
+              placeholder="Enter your email | أدخل بريدك الإلكتروني"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="flex-1"
+            />
+            <Button 
+              type="submit" 
+              disabled={subscribeMutation.isPending}
+              className="bg-primary hover:bg-primary/90"
+            >
+              {subscribeMutation.isPending ? "Subscribing..." : "Remind Me | ذكرني"}
+            </Button>
+          </div>
+          
+          {message && (
+            <div className={`flex items-center gap-2 p-3 rounded-md text-sm ${
+              message.type === "success" 
+                ? "bg-green-50 text-green-800 border border-green-200" 
+                : "bg-red-50 text-red-800 border border-red-200"
+            }`}>
+              {message.type === "success" ? (
+                <CheckCircle className="w-4 h-4" />
+              ) : (
+                <XCircle className="w-4 h-4" />
+              )}
+              <span>{message.text}</span>
+            </div>
+          )}
+        </form>
+      </Card>
     </div>
   );
 }

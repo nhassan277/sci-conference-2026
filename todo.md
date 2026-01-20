@@ -278,3 +278,13 @@
 - [x] Display days, hours, minutes, and seconds remaining
 - [x] Add countdown timer to homepage hero section
 - [x] Style countdown timer to match conference theme
+
+### Conference Reminder Subscription
+- [x] Create reminder_subscriptions database table (id, email, subscribedAt, reminderSent, reminderSentAt)
+- [x] Create backend API for reminder subscriptions (subscribe, unsubscribe, list)
+- [x] Build reminder subscription UI component with email input
+- [x] Add reminder subscription form next to countdown timer
+- [x] Implement automated reminder scheduler (1 week before conference)
+- [x] Create email template for conference reminders
+- [x] Add unsubscribe link in reminder emails
+- [x] Write integration tests for reminder system (6/6 tests passing)

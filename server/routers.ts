@@ -3,7 +3,7 @@ import { z } from "zod";
 import { eq, desc } from "drizzle-orm";
 import superjson from "superjson";
 import { db } from "./db.js";
-import { registrations, sponsorships, sessions, supportTickets, admins, auditLogs } from "../drizzle/schema.js";
+import { registrations, sponsorships, sessions, supportTickets, admins, auditLogs, reminderSubscriptions } from "../drizzle/schema.js";
 import { verifyToken, isOwner } from "./auth.js";
 import { logAuditAction, getIpAddress, getUserAgent } from "./audit.js";
 import { getAdminByOpenId, hasPermission, getRolePermissions, ensureOwnerIsSuperAdmin } from "./admin-management.js";
@@ -1291,8 +1291,95 @@ export const appRouter = router({
           sentimentCounts,
           avgSentimentScore: Math.round(avgSentimentScore),
         };
+       }),
+  }),
+
+  // Conference Reminder Subscriptions
+  reminder: router({
+    subscribe: publicProcedure
+      .input(
+        z.object({
+          email: z.string().email("Invalid email address"),
+        })
+      )
+      .mutation(async ({ input }) => {
+        try {
+          // Check if already subscribed
+          const existing = await db
+            .select()
+            .from(reminderSubscriptions)
+            .where(eq(reminderSubscriptions.email, input.email))
+            .limit(1);
+
+          if (existing.length > 0) {
+            if (existing[0].unsubscribed) {
+              // Resubscribe if previously unsubscribed
+              await db
+                .update(reminderSubscriptions)
+                .set({
+                  unsubscribed: false,
+                  unsubscribedAt: null,
+                  subscribedAt: new Date(),
+                })
+                .where(eq(reminderSubscriptions.email, input.email));
+              return {
+                success: true,
+                message: "You have been resubscribed to conference reminders",
+              };
+            }
+            return {
+              success: true,
+              message: "You are already subscribed to conference reminders",
+            };
+          }
+
+          // Create new subscription
+          await db.insert(reminderSubscriptions).values({
+            email: input.email,
+          });
+
+          return {
+            success: true,
+            message: "Successfully subscribed to conference reminders",
+          };
+        } catch (error) {
+          console.error("Reminder subscription error:", error);
+          throw new TRPCError({
+            code: "INTERNAL_SERVER_ERROR",
+            message: "Failed to subscribe to reminders",
+          });
+        }
       }),
+
+    unsubscribe: publicProcedure
+      .input(
+        z.object({
+          email: z.string().email("Invalid email address"),
+        })
+      )
+      .mutation(async ({ input }) => {
+        await db
+          .update(reminderSubscriptions)
+          .set({
+            unsubscribed: true,
+            unsubscribedAt: new Date(),
+          })
+          .where(eq(reminderSubscriptions.email, input.email));
+
+        return {
+          success: true,
+          message: "Successfully unsubscribed from conference reminders",
+        };
+      }),
+
+    // Admin: List all subscriptions
+    list: adminProcedure.query(async () => {
+      const allSubscriptions = await db
+        .select()
+        .from(reminderSubscriptions)
+        .orderBy(desc(reminderSubscriptions.subscribedAt));
+      return allSubscriptions;
+    }),
   }),
 });
-
 export type AppRouter = typeof appRouter;

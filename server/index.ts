@@ -11,6 +11,7 @@ import { ensureOwnerIsSuperAdmin, getAdminByOpenId } from "./admin-management.js
 import { notificationEmitter, NotificationEvent } from "./notification-emitter.js";
 import { initializeDigestScheduler } from "./digest-scheduler.js";
 import { initializeSurveyScheduler } from "./survey-scheduler.js";
+import { initReminderScheduler } from "./reminder-scheduler.js";
 
 dotenv.config();
 
@@ -26,6 +27,9 @@ async function startServer() {
   
   // Initialize survey scheduler
   initializeSurveyScheduler();
+  
+  // Initialize reminder scheduler
+  initReminderScheduler();
 
   const app = express();
   const server = createServer(app);

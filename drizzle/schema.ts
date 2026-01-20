@@ -1,4 +1,4 @@
-import { mysqlTable, varchar, text, timestamp, int, boolean, decimal } from "drizzle-orm/mysql-core";
+import { mysqlTable, varchar, text, timestamp, int, boolean, decimal, json } from "drizzle-orm/mysql-core";
 
 export const registrations = mysqlTable("registrations", {
   id: int("id").primaryKey().autoincrement(),
@@ -173,3 +173,17 @@ export const surveyResponses = mysqlTable("survey_responses", {
 
 export type SurveyResponse = typeof surveyResponses.$inferSelect;
 export type NewSurveyResponse = typeof surveyResponses.$inferInsert;
+
+// Conference Reminder Subscriptions
+export const reminderSubscriptions = mysqlTable("reminder_subscriptions", {
+  id: int("id").primaryKey().autoincrement(),
+  email: varchar("email", { length: 255 }).notNull().unique(),
+  subscribedAt: timestamp("subscribed_at").defaultNow().notNull(),
+  reminderSent: boolean("reminder_sent").default(false).notNull(),
+  reminderSentAt: timestamp("reminder_sent_at"),
+  unsubscribed: boolean("unsubscribed").default(false).notNull(),
+  unsubscribedAt: timestamp("unsubscribed_at"),
+});
+
+export type ReminderSubscription = typeof reminderSubscriptions.$inferSelect;
+export type NewReminderSubscription = typeof reminderSubscriptions.$inferInsert;
