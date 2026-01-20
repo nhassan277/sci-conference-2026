@@ -142,3 +142,34 @@ export const digestPreferences = mysqlTable("digest_preferences", {
 
 export type DigestPreference = typeof digestPreferences.$inferSelect;
 export type NewDigestPreference = typeof digestPreferences.$inferInsert;
+
+// Post-Event Surveys
+export const surveys = mysqlTable("surveys", {
+  id: int("id").primaryKey().autoincrement(),
+  title: varchar("title", { length: 255 }).notNull(),
+  description: text("description"),
+  questions: json("questions").notNull(), // Array of question objects
+  status: varchar("status", { length: 20 }).default("draft").notNull(), // draft, scheduled, sent, closed
+  scheduledSendDate: timestamp("scheduled_send_date"),
+  sentAt: timestamp("sent_at"),
+  createdBy: int("created_by").notNull(), // admin ID
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Survey = typeof surveys.$inferSelect;
+export type NewSurvey = typeof surveys.$inferInsert;
+
+export const surveyResponses = mysqlTable("survey_responses", {
+  id: int("id").primaryKey().autoincrement(),
+  surveyId: int("survey_id").notNull(),
+  registrationId: int("registration_id").notNull(),
+  answers: json("answers").notNull(), // Object mapping question IDs to answers
+  sentiment: varchar("sentiment", { length: 20 }), // positive, neutral, negative (calculated via LLM)
+  sentimentScore: int("sentiment_score"), // -100 to 100
+  ipAddress: varchar("ip_address", { length: 45 }),
+  submittedAt: timestamp("submitted_at").defaultNow().notNull(),
+});
+
+export type SurveyResponse = typeof surveyResponses.$inferSelect;
+export type NewSurveyResponse = typeof surveyResponses.$inferInsert;

@@ -1,0 +1,9 @@
+{
+  "query": "CREATE TABLE IF NOT EXISTS surveys (\n  id INT PRIMARY KEY AUTO_INCREMENT,\n  title VARCHAR(255) NOT NULL,\n  description TEXT,\n  questions JSON NOT NULL,\n  status VARCHAR(20) DEFAULT 'draft' NOT NULL,\n  scheduled_send_date TIMESTAMP NULL,\n  sent_at TIMESTAMP NULL,\n  created_by INT NOT NULL,\n  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,\n  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL\n);\n\nCREATE TABLE IF NOT EXISTS survey_responses (\n  id INT PRIMARY KEY AUTO_INCREMENT,\n  survey_id INT NOT NULL,\n  registration_id INT NOT NULL,\n  answers JSON NOT NULL,\n  sentiment VARCHAR(20),\n  sentiment_score INT,\n  ip_address VARCHAR(45),\n  submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL\n);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute CREATE TABLE IF NOT EXISTS surveys (\n  id INT PRIMARY KEY AUTO_INCREMENT,\n  title VARCHAR(255) NOT NULL,\n  description TEXT,\n  questions JSON NOT NULL,\n  status VARCHAR(20) DEFAULT 'draft' NOT NULL,\n  scheduled_send_date TIMESTAMP NULL,\n  sent_at TIMESTAMP NULL,\n  created_by INT NOT NULL,\n  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,\n  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL\n);\n\nCREATE TABLE IF NOT EXISTS survey_responses (\n  id INT PRIMARY KEY AUTO_INCREMENT,\n  survey_id INT NOT NULL,\n  registration_id INT NOT NULL,\n  answers JSON NOT NULL,\n  sentiment VARCHAR(20),\n  sentiment_score INT,\n  ip_address VARCHAR(45),\n  submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL\n);",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 2028
+}

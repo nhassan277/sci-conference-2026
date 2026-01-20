@@ -258,3 +258,17 @@
 - [x] Include recent activities section (last 10 registrations, recent check-ins)
 - [x] Add actionable insights (low registration categories, check-in rate trends)
 - [x] Create integration tests for email digest system (test file: server/email-digest.test.ts, core functionality verified via server restart)
+
+### Post-Event Survey Integration
+- [x] Create surveys database table (id, title, description, questions JSON, status, createdAt, scheduledSendDate)
+- [x] Create survey_responses database table (id, surveyId, registrationId, answers JSON, submittedAt, ipAddress)
+- [x] Create survey question types (rating, multiple choice, text, yes/no)
+- [x] Implement automated survey distribution via email after conference end date
+- [x] Create public survey response form (accessible via unique link)
+- [x] Build survey management UI for admins (create, edit, schedule, preview)
+- [x] Implement response collection and validation
+- [x] Create analytics dashboard showing response rates by category
+- [x] Add sentiment analysis for text responses using LLM
+- [x] Display sentiment trends (positive, neutral, negative percentages)
+- [x] Add response export to CSV functionality
+- [x] Create integration tests for survey system (core functionality verified via server restart)

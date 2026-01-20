@@ -10,6 +10,7 @@ import { generateToken, verifyToken, authMiddleware, AuthRequest } from "./auth.
 import { ensureOwnerIsSuperAdmin, getAdminByOpenId } from "./admin-management.js";
 import { notificationEmitter, NotificationEvent } from "./notification-emitter.js";
 import { initializeDigestScheduler } from "./digest-scheduler.js";
+import { initializeSurveyScheduler } from "./survey-scheduler.js";
 
 dotenv.config();
 
@@ -22,6 +23,9 @@ async function startServer() {
   
   // Initialize email digest scheduler
   initializeDigestScheduler();
+  
+  // Initialize survey scheduler
+  initializeSurveyScheduler();
 
   const app = express();
   const server = createServer(app);

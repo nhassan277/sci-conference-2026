@@ -1056,8 +1056,243 @@ export const appRouter = router({
         }
       }),
   }),
-});
 
-export type AppRouter = typeof appRouter;
+  // Survey router
+  survey: router({
+    // Admin: List all surveys
+    list: adminProcedure.query(async () => {
+      return await db.select().from(surveys).orderBy(desc(surveys.createdAt));
+    }),
+
+    // Admin: Get single survey
+    getById: adminProcedure
+      .input(z.object({ id: z.number() }))
+      .query(async ({ input }) => {
+        const [survey] = await db
+          .select()
+          .from(surveys)
+          .where(eq(surveys.id, input.id))
+          .limit(1);
+        return survey || null;
+      }),
+
+    // Admin: Create survey
+    create: adminProcedure
+      .input(
+        z.object({
+          title: z.string().min(1),
+          description: z.string().optional(),
+          questions: z.array(z.any()),
+          scheduledSendDate: z.string().optional(),
+        })
+      )
+      .mutation(async ({ input, ctx }) => {
+        const [survey] = await db
+          .insert(surveys)
+          .values({
+            title: input.title,
+            description: input.description,
+            questions: input.questions,
+            status: input.scheduledSendDate ? "scheduled" : "draft",
+            scheduledSendDate: input.scheduledSendDate ? new Date(input.scheduledSendDate) : null,
+            createdBy: ctx.admin.id,
+          });
+
+        await logAuditAction({
+          adminId: ctx.admin.id,
+          adminEmail: ctx.admin.email,
+          action: "created",
+          resourceType: "survey",
+          resourceId: survey.insertId.toString(),
+          details: `Created survey: ${input.title}`,
+          ipAddress: ctx.req.ip || "unknown",
+          userAgent: ctx.req.get("user-agent") || "unknown",
+        });
+
+        return { id: survey.insertId };
+      }),
+
+    // Admin: Distribute survey manually
+    distribute: adminProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input, ctx }) => {
+        const { distributeSurvey } = await import("./survey-distribution.js");
+        const result = await distributeSurvey(input.id);
+
+        await logAuditAction({
+          adminId: ctx.admin.id,
+          adminEmail: ctx.admin.email,
+          action: "distributed",
+          resourceType: "survey",
+          resourceId: input.id.toString(),
+          details: `Distributed survey: ${result.sent} sent, ${result.failed} failed, ${result.alreadyResponded} already responded`,
+          ipAddress: ctx.req.ip || "unknown",
+          userAgent: ctx.req.get("user-agent") || "unknown",
+        });
+
+        return result;
+      }),
+
+    // Public: Get survey by token
+    getByToken: publicProcedure
+      .input(z.object({ token: z.string() }))
+      .query(async ({ input }) => {
+        const { decodeSurveyToken } = await import("./survey-distribution.js");
+        const decoded = decodeSurveyToken(input.token);
+
+        if (!decoded) {
+          throw new Error("Invalid survey token");
+        }
+
+        const [survey] = await db
+          .select()
+          .from(surveys)
+          .where(eq(surveys.id, decoded.surveyId))
+          .limit(1);
+
+        if (!survey) {
+          throw new Error("Survey not found");
+        }
+
+        if (survey.status === "closed") {
+          throw new Error("Survey is closed");
+        }
+
+        // Check if already responded
+        const [existingResponse] = await db
+          .select()
+          .from(surveyResponses)
+          .where(
+            and(
+              eq(surveyResponses.surveyId, decoded.surveyId),
+              eq(surveyResponses.registrationId, decoded.registrationId)
+            )
+          )
+          .limit(1);
+
+        return {
+          survey,
+          alreadyResponded: !!existingResponse,
+          registrationId: decoded.registrationId,
+        };
+      }),
+
+    // Public: Submit survey response
+    submit: publicProcedure
+      .input(
+        z.object({
+          token: z.string(),
+          answers: z.record(z.any()),
+        })
+      )
+      .mutation(async ({ input, ctx }) => {
+        const { decodeSurveyToken } = await import("./survey-distribution.js");
+        const decoded = decodeSurveyToken(input.token);
+
+        if (!decoded) {
+          throw new Error("Invalid survey token");
+        }
+
+        // Check if already responded
+        const [existingResponse] = await db
+          .select()
+          .from(surveyResponses)
+          .where(
+            and(
+              eq(surveyResponses.surveyId, decoded.surveyId),
+              eq(surveyResponses.registrationId, decoded.registrationId)
+            )
+          )
+          .limit(1);
+
+        if (existingResponse) {
+          throw new Error("You have already responded to this survey");
+        }
+
+        // Analyze sentiment of text responses
+        const textResponses = Object.values(input.answers)
+          .filter((a: any) => typeof a === "string" && a.length > 10)
+          .join(" ");
+
+        let sentiment = "neutral";
+        let sentimentScore = 0;
+
+        if (textResponses.length > 0) {
+          // TODO: Call LLM for sentiment analysis
+          // For now, use simple keyword matching
+          const positive = ["good", "great", "excellent", "amazing", "love", "wonderful"];
+          const negative = ["bad", "poor", "terrible", "awful", "hate", "disappointing"];
+
+          const lowerText = textResponses.toLowerCase();
+          const positiveCount = positive.filter((w) => lowerText.includes(w)).length;
+          const negativeCount = negative.filter((w) => lowerText.includes(w)).length;
+
+          if (positiveCount > negativeCount) {
+            sentiment = "positive";
+            sentimentScore = Math.min(100, positiveCount * 20);
+          } else if (negativeCount > positiveCount) {
+            sentiment = "negative";
+            sentimentScore = Math.max(-100, -negativeCount * 20);
+          }
+        }
+
+        await db.insert(surveyResponses).values({
+          surveyId: decoded.surveyId,
+          registrationId: decoded.registrationId,
+          answers: input.answers,
+          sentiment,
+          sentimentScore,
+          ipAddress: ctx.req?.ip || "unknown",
+        });
+
+        return { success: true };
+      }),
+
+    // Admin: Get survey analytics
+    analytics: adminProcedure
+      .input(z.object({ id: z.number() }))
+      .query(async ({ input }) => {
+        const [survey] = await db
+          .select()
+          .from(surveys)
+          .where(eq(surveys.id, input.id))
+          .limit(1);
+
+        if (!survey) {
+          throw new Error("Survey not found");
+        }
+
+        const responses = await db
+          .select()
+          .from(surveyResponses)
+          .where(eq(surveyResponses.surveyId, input.id));
+
+        const totalRegistrations = await db.select({ count: sql<number>`count(*)` }).from(registrations);
+        const totalCount = totalRegistrations[0]?.count || 0;
+
+        const responseRate = totalCount > 0 ? (responses.length / totalCount) * 100 : 0;
+
+        const sentimentCounts = {
+          positive: responses.filter((r) => r.sentiment === "positive").length,
+          neutral: responses.filter((r) => r.sentiment === "neutral").length,
+          negative: responses.filter((r) => r.sentiment === "negative").length,
+        };
+
+        const avgSentimentScore =
+          responses.length > 0
+            ? responses.reduce((sum, r) => sum + (r.sentimentScore || 0), 0) / responses.length
+            : 0;
+
+        return {
+          survey,
+          totalResponses: responses.length,
+          totalRegistrations: totalCount,
+          responseRate: Math.round(responseRate * 10) / 10,
+          sentimentCounts,
+          avgSentimentScore: Math.round(avgSentimentScore),
+        };
+      }),
+  }),
+});
 
 export type AppRouter = typeof appRouter;

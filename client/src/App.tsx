@@ -16,6 +16,7 @@ import CheckInDashboard from "./pages/CheckInDashboard";
 import AdminManagement from "./pages/AdminManagement";
 import AuditLog from "./pages/AuditLog";
 import DigestSettings from "./pages/DigestSettings";
+import SurveyResponse from "./pages/SurveyResponse";
 
 
 function Router() {
@@ -32,6 +33,7 @@ function Router() {
       <Route path={"/admin-management"} component={AdminManagement} />
       <Route path={"/audit-log"} component={AuditLog} />
       <Route path={"/digest-settings"} component={DigestSettings} />
+      <Route path={"/survey/:token"} component={SurveyResponse} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
