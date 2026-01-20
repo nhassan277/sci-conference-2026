@@ -309,3 +309,7 @@
 
 ### Update Dean Name in Patronage Section
 - [x] Update dean's name to "سهير رمضان فهمي" (Prof. Suhair Ramadan Fahmy) in homepage patronage section
+
+### Verify and Fix Conference Poster
+- [x] Verify current poster file and replace with correct version
+- [x] Clear cache and confirm poster is displaying correctly
