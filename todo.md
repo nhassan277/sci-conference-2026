@@ -288,3 +288,6 @@
 - [x] Create email template for conference reminders
 - [x] Add unsubscribe link in reminder emails
 - [x] Write integration tests for reminder system (6/6 tests passing)
+
+### Update President Name
+- [x] Update university president's name to "محمد سامي عبد الصادق" in all website locations
