@@ -300,3 +300,6 @@
 
 ### Replace Conference Flyer
 - [x] Replace old conference flyer with updated version containing correct president name
+
+### Update Conference Flyer (Complete Version)
+- [x] Replace flyer with complete version showing 100 years celebration banner
