@@ -306,3 +306,6 @@
 
 ### Update Conference Poster (Dean Full Name)
 - [x] Replace poster with version showing dean's full name "سهير رمضان فهمي"
+
+### Update Dean Name in Patronage Section
+- [x] Update dean's name to "سهير رمضان فهمي" (Prof. Suhair Ramadan Fahmy) in homepage patronage section

@@ -234,9 +234,9 @@ export default function Home() {
               </Card>
               <Card className="border-2 hover:border-primary/50 transition-colors">
                 <CardHeader>
-                  <CardTitle className="text-xl">Prof. Soheir Ramadan</CardTitle>
+                  <CardTitle className="text-xl">Prof. Suhair Ramadan Fahmy</CardTitle>
                   <CardDescription className="text-base" dir="rtl">
-                    الأستاذة الدكتورة/ سهير رمضان<br/>
+                    الأستاذة الدكتورة/ سهير رمضان فهمي<br/>
                     عميد كلية العلوم جامعة القاهرة
                   </CardDescription>
                   <CardDescription className="text-sm">
