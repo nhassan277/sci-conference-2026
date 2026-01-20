@@ -216,9 +216,9 @@ export default function Home() {
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               <Card className="border-2 hover:border-primary/50 transition-colors">
                 <CardHeader>
-                  <CardTitle className="text-xl">Prof. Mohamed Samy</CardTitle>
+                  <CardTitle className="text-xl">Prof. Mohamed Samy Abdel Sadek</CardTitle>
                   <CardDescription className="text-base" dir="rtl">
-                    الأستاذ الدكتور/ محمد سامي<br/>
+                    الأستاذ الدكتور/ محمد سامي عبد الصادق<br/>
                     رئيس جامعة القاهرة
                   </CardDescription>
                   <CardDescription className="text-sm">
