@@ -1,5 +1,7 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { trpc } from "@/lib/trpc";
+import { useUser } from "@/contexts/UserContext";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
@@ -7,6 +9,45 @@ import { Users, CheckCircle, Clock, TrendingUp } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 
 export default function CheckInDashboard() {
+  const { user, loading: authLoading, logout, login, isAuthenticated, isAdmin } = useUser();
+
+  // Redirect if not admin
+  if (!authLoading && (!isAuthenticated || !isAdmin)) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-primary/5 to-white">
+        <Card className="w-full max-w-md">
+          <CardHeader>
+            <CardTitle>Staff Access Required</CardTitle>
+            <CardDescription>
+              This dashboard is for authorized staff only.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {!isAuthenticated ? (
+              <>
+                <p className="text-sm text-muted-foreground">
+                  Please log in with a staff account to continue.
+                </p>
+                <Button onClick={login} className="w-full">
+                  Log In
+                </Button>
+              </>
+            ) : (
+              <>
+                <p className="text-sm text-muted-foreground">
+                  Your account does not have staff privileges. Please contact the system administrator.
+                </p>
+                <Button onClick={logout} variant="outline" className="w-full">
+                  Log Out
+                </Button>
+              </>
+            )}
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
   const { data: stats, refetch: refetchStats } = trpc.checkin.stats.useQuery();
   const { data: recentCheckins, refetch: refetchRecent } = trpc.checkin.recentCheckins.useQuery({ limit: 20 });
   const { data: categoryBreakdown, refetch: refetchBreakdown } = trpc.checkin.categoryBreakdown.useQuery();

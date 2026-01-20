@@ -12,6 +12,7 @@ interface UserContextType {
   login: () => void;
   logout: () => Promise<void>;
   isAuthenticated: boolean;
+  isAdmin: boolean;
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
@@ -72,6 +73,20 @@ export function UserProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  // Admin status is determined by the backend based on OWNER_OPEN_ID
+  // We'll check this by trying to access an admin-only endpoint
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    if (user) {
+      // Check if user has admin access by checking owner open ID from server
+      const ownerOpenId = import.meta.env.VITE_OWNER_OPEN_ID || "Btow8urowKxdc3eQC9KNxc";
+      setIsAdmin(user.openId === ownerOpenId);
+    } else {
+      setIsAdmin(false);
+    }
+  }, [user]);
+
   return (
     <UserContext.Provider
       value={{
@@ -80,6 +95,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
         login,
         logout,
         isAuthenticated: !!user,
+        isAdmin,
       }}
     >
       {children}

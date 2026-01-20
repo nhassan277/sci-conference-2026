@@ -202,3 +202,14 @@
 - [x] Add VIP filter to show only VIP attendees
 - [x] Add VIP count to statistics display
 - [x] Test VIP toggle functionality (test file created: server/vip-management.test.ts, 6/6 tests passing)
+
+### Admin-Only Access Control
+- [x] Create backend admin authentication middleware (adminProcedure)
+- [x] Protect admin dashboard routes with authentication
+- [x] Protect check-in routes with authentication
+- [x] Protect check-in dashboard routes with authentication
+- [x] Add frontend route guards for admin pages
+- [x] Redirect unauthorized users to login page
+- [x] Display appropriate error messages for unauthorized access
+- [x] Test admin access control with different user roles
+- [x] Create integration tests for access control (test file: server/admin-access.test.ts, 21/21 tests passing)

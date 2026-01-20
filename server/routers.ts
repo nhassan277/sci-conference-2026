@@ -4,13 +4,63 @@ import { eq, desc } from "drizzle-orm";
 import superjson from "superjson";
 import { db } from "./db.js";
 import { registrations, sponsorships, sessions, supportTickets } from "../drizzle/schema.js";
+import { verifyToken, isOwner } from "./auth.js";
 
-const t = initTRPC.create({
+interface Context {
+  user?: {
+    openId: string;
+    name?: string;
+    email?: string;
+  };
+  req?: any;
+}
+
+const t = initTRPC.context<Context>().create({
   transformer: superjson,
 });
 
 export const router = t.router;
 export const publicProcedure = t.procedure;
+
+// Protected procedure - requires authentication
+export const protectedProcedure = t.procedure.use(async ({ ctx, next }) => {
+  // Extract token from cookies
+  const token = ctx.req?.cookies?.auth_token;
+  
+  if (!token) {
+    throw new TRPCError({
+      code: "UNAUTHORIZED",
+      message: "Authentication required",
+    });
+  }
+
+  const user = verifyToken(token);
+  if (!user) {
+    throw new TRPCError({
+      code: "UNAUTHORIZED",
+      message: "Invalid authentication token",
+    });
+  }
+
+  return next({
+    ctx: {
+      ...ctx,
+      user,
+    },
+  });
+});
+
+// Admin procedure - requires authentication and owner status
+export const adminProcedure = protectedProcedure.use(async ({ ctx, next }) => {
+  if (!ctx.user || !isOwner(ctx.user.openId)) {
+    throw new TRPCError({
+      code: "FORBIDDEN",
+      message: "Admin access required",
+    });
+  }
+
+  return next({ ctx });
+});
 
 export const appRouter = router({
   registration: router({
@@ -47,12 +97,12 @@ export const appRouter = router({
         };
       }),
 
-    list: publicProcedure.query(async () => {
+    list: adminProcedure.query(async () => {
       const allRegistrations = await db.select().from(registrations);
       return allRegistrations;
     }),
 
-    getById: publicProcedure
+    getById: adminProcedure
       .input(z.object({ id: z.number() }))
       .query(async ({ input }) => {
         const [registration] = await db
@@ -62,7 +112,7 @@ export const appRouter = router({
         return registration;
       }),
 
-    updateVIPStatus: publicProcedure
+    updateVIPStatus: adminProcedure
       .input(
         z.object({
           id: z.number(),
@@ -110,12 +160,12 @@ export const appRouter = router({
         };
       }),
 
-    list: publicProcedure.query(async () => {
+    list: adminProcedure.query(async () => {
       const allSponsorships = await db.select().from(sponsorships);
       return allSponsorships;
     }),
 
-    getById: publicProcedure
+    getById: adminProcedure
       .input(z.object({ id: z.number() }))
       .query(async ({ input }) => {
         const [sponsorship] = await db
@@ -127,7 +177,7 @@ export const appRouter = router({
   }),
 
   session: router({
-    create: publicProcedure
+    create: adminProcedure
       .input(
         z.object({
           title: z.string().min(1, "Title is required"),
@@ -169,7 +219,7 @@ export const appRouter = router({
         return session;
       }),
 
-    update: publicProcedure
+    update: adminProcedure
       .input(
         z.object({
           id: z.number(),
@@ -197,7 +247,7 @@ export const appRouter = router({
         };
       }),
 
-    delete: publicProcedure
+    delete: adminProcedure
       .input(z.object({ id: z.number() }))
       .mutation(async ({ input }) => {
         await db.delete(sessions).where(eq(sessions.id, input.id));
@@ -237,12 +287,12 @@ export const appRouter = router({
         };
       }),
 
-    list: publicProcedure.query(async () => {
+    list: adminProcedure.query(async () => {
       const allTickets = await db.select().from(supportTickets);
       return allTickets;
     }),
 
-    getById: publicProcedure
+    getById: adminProcedure
       .input(z.object({ id: z.number() }))
       .query(async ({ input }) => {
         const [ticket] = await db
@@ -252,7 +302,7 @@ export const appRouter = router({
         return ticket;
       }),
 
-    updateStatus: publicProcedure
+    updateStatus: adminProcedure
       .input(
         z.object({
           id: z.number(),
@@ -340,7 +390,7 @@ export const appRouter = router({
   }),
 
   badge: router({
-    generate: publicProcedure
+    generate: adminProcedure
       .input(
         z.object({
           registrationId: z.number().min(1, "Registration ID is required"),
@@ -382,7 +432,7 @@ export const appRouter = router({
         };
       }),
 
-    generateBulk: publicProcedure.mutation(async () => {
+    generateBulk: adminProcedure.mutation(async () => {
       // Get all registrations
       const allRegistrations = await db.select().from(registrations);
 
@@ -421,7 +471,7 @@ export const appRouter = router({
 
   checkin: router({
     // Lookup registration by ID (from QR code scan)
-    lookup: publicProcedure
+    lookup: adminProcedure
       .input(z.object({ registrationId: z.number() }))
       .query(async ({ input }) => {
         const [registration] = await db
@@ -440,7 +490,7 @@ export const appRouter = router({
       }),
 
     // Mark registration as checked in
-    markCheckedIn: publicProcedure
+    markCheckedIn: adminProcedure
       .input(
         z.object({
           registrationId: z.number(),
@@ -494,7 +544,7 @@ export const appRouter = router({
       }),
 
     // Get check-in statistics
-    stats: publicProcedure.query(async () => {
+    stats: adminProcedure.query(async () => {
       const allRegistrations = await db.select().from(registrations);
       const checkedInCount = allRegistrations.filter((r) => r.checkedIn).length;
       const totalCount = allRegistrations.length;
@@ -510,7 +560,7 @@ export const appRouter = router({
     }),
 
     // Export check-in data as CSV
-    exportCheckins: publicProcedure.query(async () => {
+    exportCheckins: adminProcedure.query(async () => {
       const allRegistrations = await db
         .select()
         .from(registrations)
@@ -569,7 +619,7 @@ export const appRouter = router({
     }),
 
     // Get recent check-ins for dashboard feed
-    recentCheckins: publicProcedure
+    recentCheckins: adminProcedure
       .input(z.object({ limit: z.number().optional().default(20) }))
       .query(async ({ input }) => {
         const recentCheckins = await db
@@ -583,7 +633,7 @@ export const appRouter = router({
       }),
 
     // Get category-wise breakdown
-    categoryBreakdown: publicProcedure.query(async () => {
+    categoryBreakdown: adminProcedure.query(async () => {
       const allRegistrations = await db.select().from(registrations);
       
       const categories = [

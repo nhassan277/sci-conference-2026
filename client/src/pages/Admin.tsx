@@ -14,11 +14,48 @@ import { LogOut, Download, Users, Building2, TrendingUp, Search, Plus, Edit, Tra
 import { toast } from "sonner";
 
 export default function Admin() {
-  const { user, loading: authLoading, logout, login, isAuthenticated } = useUser();
+  const { user, loading: authLoading, logout, login, isAuthenticated, isAdmin } = useUser();
   const [searchTerm, setSearchTerm] = useState("");
   const [categoryFilter, setCategoryFilter] = useState<string>("all");
   const [vipFilter, setVipFilter] = useState<string>("all");
   const [packageFilter, setPackageFilter] = useState<string>("all");
+
+  // Redirect if not admin
+  if (!authLoading && (!isAuthenticated || !isAdmin)) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-primary/5 to-white">
+        <Card className="w-full max-w-md">
+          <CardHeader>
+            <CardTitle>Admin Access Required</CardTitle>
+            <CardDescription>
+              You need admin privileges to access this page.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {!isAuthenticated ? (
+              <>
+                <p className="text-sm text-muted-foreground">
+                  Please log in with an admin account to continue.
+                </p>
+                <Button onClick={login} className="w-full">
+                  Log In
+                </Button>
+              </>
+            ) : (
+              <>
+                <p className="text-sm text-muted-foreground">
+                  Your account does not have admin privileges. Please contact the system administrator.
+                </p>
+                <Button onClick={logout} variant="outline" className="w-full">
+                  Log Out
+                </Button>
+              </>
+            )}
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   const { data: registrations, isLoading: loadingRegistrations } = trpc.registration.list.useQuery();
   const { data: sponsorships, isLoading: loadingSponsorships } = trpc.sponsorship.list.useQuery();

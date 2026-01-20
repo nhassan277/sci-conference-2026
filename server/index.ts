@@ -118,11 +118,8 @@ async function startServer() {
       router: appRouter,
       createContext: ({ req }: { req: AuthRequest }) => {
         const token = req.cookies?.auth_token;
-        if (!token) {
-          return { user: null };
-        }
-        const user = verifyToken(token);
-        return { user };
+        const user = token ? verifyToken(token) : null;
+        return { user, req };
       },
     })
   );
