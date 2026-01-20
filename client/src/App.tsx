@@ -15,6 +15,7 @@ import CheckIn from "./pages/CheckIn";
 import CheckInDashboard from "./pages/CheckInDashboard";
 import AdminManagement from "./pages/AdminManagement";
 import AuditLog from "./pages/AuditLog";
+import DigestSettings from "./pages/DigestSettings";
 
 
 function Router() {
@@ -30,6 +31,7 @@ function Router() {
       <Route path={"/admin"} component={Admin} />
       <Route path={"/admin-management"} component={AdminManagement} />
       <Route path={"/audit-log"} component={AuditLog} />
+      <Route path={"/digest-settings"} component={DigestSettings} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

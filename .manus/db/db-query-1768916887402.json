@@ -1,0 +1,9 @@
+{
+  "query": "CREATE TABLE IF NOT EXISTS `digest_preferences` (\n  `id` int AUTO_INCREMENT PRIMARY KEY,\n  `admin_id` int NOT NULL,\n  `email` varchar(255) NOT NULL,\n  `frequency` varchar(20) NOT NULL,\n  `enabled` boolean DEFAULT true NOT NULL,\n  `last_sent_at` timestamp NULL,\n  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL,\n  `updated_at` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL\n);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute CREATE TABLE IF NOT EXISTS `digest_preferences` (\n  `id` int AUTO_INCREMENT PRIMARY KEY,\n  `admin_id` int NOT NULL,\n  `email` varchar(255) NOT NULL,\n  `frequency` varchar(20) NOT NULL,\n  `enabled` boolean DEFAULT true NOT NULL,\n  `last_sent_at` timestamp NULL,\n  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL,\n  `updated_at` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL\n);",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 1832
+}

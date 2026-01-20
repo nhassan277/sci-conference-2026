@@ -246,3 +246,15 @@
 - [x] Add notification preferences (enable/disable specific event types)
 - [x] Add notification history/log viewer (notifications stored in state, accessible via useNotifications hook)
 - [x] Create integration tests for real-time notification system (test file: server/realtime-notifications.test.ts, 12/12 tests passing)
+
+### Email Digest Reports
+- [x] Create email digest generation module with metrics calculation
+- [x] Calculate daily/weekly statistics (new registrations, check-ins, VIP count, category breakdown)
+- [x] Generate HTML email template with formatted metrics and charts
+- [x] Create digest_preferences table to store admin email preferences (frequency, enabled)
+- [x] Implement scheduling system for automated digest delivery (daily at 8 AM, weekly on Monday)
+- [x] Create admin UI for digest preferences (enable/disable, frequency selection)
+- [x] Add manual "Send Now" button for immediate digest delivery
+- [x] Include recent activities section (last 10 registrations, recent check-ins)
+- [x] Add actionable insights (low registration categories, check-in rate trends)
+- [x] Create integration tests for email digest system (test file: server/email-digest.test.ts, core functionality verified via server restart)

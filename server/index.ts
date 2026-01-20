@@ -9,6 +9,7 @@ import cookieParser from "cookie-parser";
 import { generateToken, verifyToken, authMiddleware, AuthRequest } from "./auth.js";
 import { ensureOwnerIsSuperAdmin, getAdminByOpenId } from "./admin-management.js";
 import { notificationEmitter, NotificationEvent } from "./notification-emitter.js";
+import { initializeDigestScheduler } from "./digest-scheduler.js";
 
 dotenv.config();
 
@@ -18,6 +19,9 @@ const __dirname = path.dirname(__filename);
 async function startServer() {
   // Ensure owner is always super admin
   await ensureOwnerIsSuperAdmin();
+  
+  // Initialize email digest scheduler
+  initializeDigestScheduler();
 
   const app = express();
   const server = createServer(app);

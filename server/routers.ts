@@ -953,6 +953,111 @@ export const appRouter = router({
       };
     }),
   }),
+
+  // Email Digest Management
+  digest: router({
+    // Get current user's digest preferences
+    getPreferences: adminProcedure.query(async ({ ctx }) => {
+      const { digestPreferences } = await import("../drizzle/schema.js");
+      const { eq } = await import("drizzle-orm");
+      
+      const [pref] = await db
+        .select()
+        .from(digestPreferences)
+        .where(eq(digestPreferences.adminId, ctx.admin.id))
+        .limit(1);
+      
+      return pref || null;
+    }),
+
+    // Update digest preferences
+    updatePreferences: adminProcedure
+      .input(
+        z.object({
+          frequency: z.enum(["daily", "weekly", "disabled"]),
+          enabled: z.boolean(),
+        })
+      )
+      .mutation(async ({ ctx, input }) => {
+        const { digestPreferences } = await import("../drizzle/schema.js");
+        const { eq } = await import("drizzle-orm");
+        
+        // Check if preference exists
+        const [existing] = await db
+          .select()
+          .from(digestPreferences)
+          .where(eq(digestPreferences.adminId, ctx.admin.id))
+          .limit(1);
+
+        if (existing) {
+          // Update existing
+          await db
+            .update(digestPreferences)
+            .set({
+              frequency: input.frequency,
+              enabled: input.enabled,
+              updatedAt: new Date(),
+            })
+            .where(eq(digestPreferences.id, existing.id));
+        } else {
+          // Create new
+          await db.insert(digestPreferences).values({
+            adminId: ctx.admin.id,
+            email: ctx.admin.email,
+            frequency: input.frequency,
+            enabled: input.enabled,
+          });
+        }
+
+        // Log the action
+        await logAuditAction({
+          adminId: ctx.admin.id,
+          adminEmail: ctx.admin.email,
+          action: "updated",
+          resourceType: "digest_preferences",
+          resourceId: ctx.admin.id.toString(),
+          details: `Updated digest preferences: ${input.frequency}, enabled: ${input.enabled}`,
+          ipAddress: ctx.req.ip || "unknown",
+          userAgent: ctx.req.get("user-agent") || "unknown",
+        });
+
+        return { success: true };
+      }),
+
+    // Manually trigger digest send
+    sendNow: adminProcedure
+      .input(
+        z.object({
+          frequency: z.enum(["daily", "weekly"]),
+        })
+      )
+      .mutation(async ({ ctx, input }) => {
+        const { triggerManualDigest } = await import("./digest-scheduler.js");
+        
+        try {
+          await triggerManualDigest(input.frequency);
+
+          // Log the action
+          await logAuditAction({
+            adminId: ctx.admin.id,
+            adminEmail: ctx.admin.email,
+            action: "triggered",
+            resourceType: "email_digest",
+            resourceId: input.frequency,
+            details: `Manually triggered ${input.frequency} digest`,
+            ipAddress: ctx.req.ip || "unknown",
+            userAgent: ctx.req.get("user-agent") || "unknown",
+          });
+
+          return { success: true, message: `${input.frequency} digest sent successfully` };
+        } catch (error) {
+          console.error("[Digest] Error sending manual digest:", error);
+          throw new Error(`Failed to send ${input.frequency} digest`);
+        }
+      }),
+  }),
 });
+
+export type AppRouter = typeof appRouter;
 
 export type AppRouter = typeof appRouter;

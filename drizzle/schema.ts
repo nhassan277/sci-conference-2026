@@ -127,3 +127,18 @@ export const auditLogs = mysqlTable("audit_logs", {
 
 export type AuditLog = typeof auditLogs.$inferSelect;
 export type NewAuditLog = typeof auditLogs.$inferInsert;
+
+// Email Digest Preferences
+export const digestPreferences = mysqlTable("digest_preferences", {
+  id: int("id").primaryKey().autoincrement(),
+  adminId: int("admin_id").notNull(),
+  email: varchar("email", { length: 255 }).notNull(),
+  frequency: varchar("frequency", { length: 20 }).notNull(), // daily, weekly, disabled
+  enabled: boolean("enabled").default(true).notNull(),
+  lastSentAt: timestamp("last_sent_at"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().onUpdateNow().notNull(),
+});
+
+export type DigestPreference = typeof digestPreferences.$inferSelect;
+export type NewDigestPreference = typeof digestPreferences.$inferInsert;

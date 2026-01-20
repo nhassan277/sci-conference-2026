@@ -10,7 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { LogOut, Download, Users, Building2, TrendingUp, Search, Plus, Edit, Trash2, Calendar, Shield, FileText } from "lucide-react";
+import { LogOut, Download, Users, Building2, TrendingUp, Search, Plus, Edit, Trash2, Calendar, Shield, FileText, Mail } from "lucide-react";
 import { toast } from "sonner";
 import { useNotifications } from "@/hooks/useNotifications";
 
@@ -503,6 +503,18 @@ export default function Admin() {
               <div>
                 <h3 className="font-semibold">Audit Log</h3>
                 <p className="text-sm text-muted-foreground">Track all administrative actions</p>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => window.location.href = "/digest-settings"}>
+            <CardContent className="flex items-center gap-4 p-6">
+              <div className="p-3 bg-primary/10 rounded-lg">
+                <Mail className="w-6 h-6 text-primary" />
+              </div>
+              <div>
+                <h3 className="font-semibold">Email Digest Settings</h3>
+                <p className="text-sm text-muted-foreground">Configure automated email reports</p>
               </div>
             </CardContent>
           </Card>
