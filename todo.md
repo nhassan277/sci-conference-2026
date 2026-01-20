@@ -313,3 +313,12 @@
 ### Verify and Fix Conference Poster
 - [x] Verify current poster file and replace with correct version
 - [x] Clear cache and confirm poster is displaying correctly
+
+### Live Photo Gallery
+- [x] Create database schema for gallery photos (id, title, description, imageUrl, uploadedBy, uploadedAt, category)
+- [x] Create backend API for photo upload (admin only) and retrieval (public)
+- [x] Build admin photo upload interface with drag-and-drop support
+- [x] Create public gallery page with grid layout and lightbox viewer
+- [x] Add photo categories (Opening Ceremony, Workshops, Presentations, Networking, etc.)
+- [x] Implement image optimization and thumbnail generation
+- [x] Write integration tests for gallery system (7 tests)

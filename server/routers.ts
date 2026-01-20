@@ -3,7 +3,7 @@ import { z } from "zod";
 import { eq, desc } from "drizzle-orm";
 import superjson from "superjson";
 import { db } from "./db.js";
-import { registrations, sponsorships, sessions, supportTickets, admins, auditLogs, reminderSubscriptions } from "../drizzle/schema.js";
+import { registrations, sponsorships, sessions, supportTickets, admins, auditLogs, reminderSubscriptions, galleryPhotos } from "../drizzle/schema.js";
 import { verifyToken, isOwner } from "./auth.js";
 import { logAuditAction, getIpAddress, getUserAgent } from "./audit.js";
 import { getAdminByOpenId, hasPermission, getRolePermissions, ensureOwnerIsSuperAdmin } from "./admin-management.js";
@@ -1381,5 +1381,6 @@ export const appRouter = router({
       return allSubscriptions;
     }),
   }),
+  // gallery: galleryRouter, // Temporarily disabled
 });
 export type AppRouter = typeof appRouter;

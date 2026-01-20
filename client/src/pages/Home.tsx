@@ -167,6 +167,11 @@ export default function Home() {
                     View Program | البرنامج
                   </Button>
                 </Link>
+                <Link href="/live-gallery">
+                  <Button size="lg" variant="outline" className="text-lg px-8 py-6">
+                    Photo Gallery | معرض الصور
+                  </Button>
+                </Link>
               </div>
 
               <div className="grid sm:grid-cols-3 gap-6 pt-8">

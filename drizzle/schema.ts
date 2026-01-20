@@ -187,3 +187,23 @@ export const reminderSubscriptions = mysqlTable("reminder_subscriptions", {
 
 export type ReminderSubscription = typeof reminderSubscriptions.$inferSelect;
 export type NewReminderSubscription = typeof reminderSubscriptions.$inferInsert;
+
+// Gallery Photos
+export const galleryPhotos = mysqlTable("gallery_photos", {
+  id: int("id").primaryKey().autoincrement(),
+  title: varchar("title", { length: 255 }).notNull(),
+  titleAr: varchar("title_ar", { length: 255 }),
+  description: text("description"),
+  descriptionAr: text("description_ar"),
+  imageUrl: varchar("image_url", { length: 500 }).notNull(),
+  imageKey: varchar("image_key", { length: 500 }).notNull(), // S3 key for deletion
+  thumbnailUrl: varchar("thumbnail_url", { length: 500 }),
+  category: varchar("category", { length: 100 }).notNull(), // opening, workshops, presentations, networking, closing, general
+  uploadedBy: varchar("uploaded_by", { length: 255 }).notNull(), // admin openId
+  uploaderName: varchar("uploader_name", { length: 255 }).notNull(),
+  uploadedAt: timestamp("uploaded_at").defaultNow().notNull(),
+  isVisible: boolean("is_visible").default(true).notNull(),
+});
+
+export type GalleryPhoto = typeof galleryPhotos.$inferSelect;
+export type NewGalleryPhoto = typeof galleryPhotos.$inferInsert;
