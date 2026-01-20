@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
+import CountdownTimer from "@/components/CountdownTimer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, MapPin, Users, Lightbulb, Award, BookOpen, GraduationCap, Mail, Microscope, FlaskConical, Globe, Calculator, Heart, Sparkles, Atom, Zap } from "lucide-react";
@@ -204,6 +205,11 @@ export default function Home() {
               <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-secondary/20 rounded-full blur-3xl"></div>
               <div className="absolute -top-6 -left-6 w-32 h-32 bg-primary/20 rounded-full blur-3xl"></div>
             </div>
+          </div>
+          
+          {/* Countdown Timer Section */}
+          <div className="container relative py-12">
+            <CountdownTimer />
           </div>
         </div>
       </section>
