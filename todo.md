@@ -303,3 +303,6 @@
 
 ### Update Conference Flyer (Complete Version)
 - [x] Replace flyer with complete version showing 100 years celebration banner
+
+### Update Conference Poster (Dean Full Name)
+- [x] Replace poster with version showing dean's full name "سهير رمضان فهمي"
