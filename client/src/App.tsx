@@ -13,6 +13,8 @@ import Schedule from "./pages/Schedule";
 import Support from "./pages/Support";
 import CheckIn from "./pages/CheckIn";
 import CheckInDashboard from "./pages/CheckInDashboard";
+import AdminManagement from "./pages/AdminManagement";
+import AuditLog from "./pages/AuditLog";
 
 
 function Router() {
@@ -26,6 +28,8 @@ function Router() {
       <Route path={"/checkin"} component={CheckIn} />
       <Route path={"/checkin-dashboard"} component={CheckInDashboard} />
       <Route path={"/admin"} component={Admin} />
+      <Route path={"/admin-management"} component={AdminManagement} />
+      <Route path={"/audit-log"} component={AuditLog} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

@@ -1,0 +1,9 @@
+{
+  "query": "INSERT INTO `admins` (`open_id`, `email`, `name`, `role`, `created_by`) \nVALUES ('Btow8urowKxdc3eQC9KNxc', 'nourhan@example.com', 'Nourhan Hassan', 'super_admin', NULL)\nON DUPLICATE KEY UPDATE `role` = 'super_admin';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute INSERT INTO `admins` (`open_id`, `email`, `name`, `role`, `created_by`) \nVALUES ('Btow8urowKxdc3eQC9KNxc', 'nourhan@example.com', 'Nourhan Hassan', 'super_admin', NULL)\nON DUPLICATE KEY UPDATE `role` = 'super_admin';",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 1535
+}

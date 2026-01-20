@@ -43,6 +43,13 @@
       "when": 1768866412823,
       "tag": "0005_jazzy_zarda",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1768868095387,
+      "tag": "0006_friendly_mordo",
+      "breakpoints": true
     }
   ]
 }

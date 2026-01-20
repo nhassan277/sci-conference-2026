@@ -213,3 +213,23 @@
 - [x] Display appropriate error messages for unauthorized access
 - [x] Test admin access control with different user roles
 - [x] Create integration tests for access control (test file: server/admin-access.test.ts, 21/21 tests passing)
+
+### Activity Audit Log
+- [x] Create audit_logs database table with fields: id, adminId, adminEmail, action, resourceType, resourceId, details, ipAddress, userAgent, timestamp
+- [x] Create audit logging helper function to record actions
+- [x] Add audit logging to all admin operations (create, update, delete, export)
+- [x] Create audit log viewer page in admin dashboard
+- [x] Add filtering by date range, admin, action type, and resource type
+- [x] Add export audit log to CSV functionality
+- [x] Test audit logging with various admin actions
+
+### Multi-Admin Support
+- [x] Create admins database table with fields: id, openId, email, name, role (super_admin, moderator, viewer), createdAt, createdBy
+- [x] Update authentication to check admins table instead of OWNER_OPEN_ID
+- [x] Create role-based permission system (super_admin: full access, moderator: limited write, viewer: read-only)
+- [x] Create admin management UI for super admins to add/edit/remove admins
+- [x] Add role badges and indicators in UI
+- [x] Update all adminProcedure middleware to support role levels
+- [x] Ensure owner (OWNER_OPEN_ID) is always super_admin
+- [x] Test multi-admin access with different role levels
+- [x] Create integration tests for audit log and multi-admin system (test file: server/audit-multi-admin.test.ts, 14/14 tests passing)

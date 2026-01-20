@@ -7,6 +7,7 @@ import { appRouter } from "./routers.js";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import { generateToken, verifyToken, authMiddleware, AuthRequest } from "./auth.js";
+import { ensureOwnerIsSuperAdmin } from "./admin-management.js";
 
 dotenv.config();
 
@@ -14,6 +15,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 async function startServer() {
+  // Ensure owner is always super admin
+  await ensureOwnerIsSuperAdmin();
+
   const app = express();
   const server = createServer(app);
 

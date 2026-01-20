@@ -3,8 +3,10 @@ import { z } from "zod";
 import { eq, desc } from "drizzle-orm";
 import superjson from "superjson";
 import { db } from "./db.js";
-import { registrations, sponsorships, sessions, supportTickets } from "../drizzle/schema.js";
+import { registrations, sponsorships, sessions, supportTickets, admins, auditLogs } from "../drizzle/schema.js";
 import { verifyToken, isOwner } from "./auth.js";
+import { logAuditAction, getIpAddress, getUserAgent } from "./audit.js";
+import { getAdminByOpenId, hasPermission, getRolePermissions, ensureOwnerIsSuperAdmin } from "./admin-management.js";
 
 interface Context {
   user?: {
@@ -50,16 +52,30 @@ export const protectedProcedure = t.procedure.use(async ({ ctx, next }) => {
   });
 });
 
-// Admin procedure - requires authentication and owner status
+// Admin procedure - requires authentication and admin status
 export const adminProcedure = protectedProcedure.use(async ({ ctx, next }) => {
-  if (!ctx.user || !isOwner(ctx.user.openId)) {
+  if (!ctx.user) {
+    throw new TRPCError({
+      code: "UNAUTHORIZED",
+      message: "Authentication required",
+    });
+  }
+
+  // Check if user is in admins table
+  const admin = await getAdminByOpenId(ctx.user.openId);
+  if (!admin) {
     throw new TRPCError({
       code: "FORBIDDEN",
       message: "Admin access required",
     });
   }
 
-  return next({ ctx });
+  return next({
+    ctx: {
+      ...ctx,
+      admin, // Add admin info to context
+    },
+  });
 });
 
 export const appRouter = router({
@@ -119,11 +135,24 @@ export const appRouter = router({
           isVIP: z.boolean(),
         })
       )
-      .mutation(async ({ input }) => {
+      .mutation(async ({ input, ctx }) => {
         await db
           .update(registrations)
           .set({ isVIP: input.isVIP })
           .where(eq(registrations.id, input.id));
+
+        // Log audit action
+        await logAuditAction({
+          adminId: (ctx as any).admin?.id,
+          adminEmail: (ctx as any).admin?.email,
+          adminName: (ctx as any).admin?.name,
+          action: "update",
+          resourceType: "registration",
+          resourceId: input.id,
+          details: { field: "isVIP", newValue: input.isVIP },
+          ipAddress: getIpAddress(ctx.req),
+          userAgent: getUserAgent(ctx.req),
+        });
 
         return { success: true };
       }),
@@ -662,6 +691,230 @@ export const appRouter = router({
       });
 
       return breakdown;
+    }),
+  }),
+
+  // Admin Management
+  adminManagement: router({
+    // List all admins (super_admin only)
+    list: adminProcedure.query(async ({ ctx }) => {
+      const admin = (ctx as any).admin;
+      if (admin.role !== "super_admin") {
+        throw new TRPCError({
+          code: "FORBIDDEN",
+          message: "Only super admins can manage admins",
+        });
+      }
+
+      const allAdmins = await db.select().from(admins).orderBy(desc(admins.createdAt));
+      return allAdmins;
+    }),
+
+    // Add new admin (super_admin only)
+    create: adminProcedure
+      .input(
+        z.object({
+          openId: z.string(),
+          email: z.string().email(),
+          name: z.string(),
+          role: z.enum(["super_admin", "moderator", "viewer"]),
+        })
+      )
+      .mutation(async ({ input, ctx }) => {
+        const admin = (ctx as any).admin;
+        if (admin.role !== "super_admin") {
+          throw new TRPCError({
+            code: "FORBIDDEN",
+            message: "Only super admins can add admins",
+          });
+        }
+
+        const [result] = await db.insert(admins).values({
+          openId: input.openId,
+          email: input.email,
+          name: input.name,
+          role: input.role,
+          createdBy: ctx.user!.openId,
+        });
+
+        // Log audit action
+        await logAuditAction({
+          adminId: admin.id,
+          adminEmail: admin.email,
+          adminName: admin.name,
+          action: "create",
+          resourceType: "admin",
+          resourceId: result.insertId,
+          details: { newAdmin: input },
+          ipAddress: getIpAddress(ctx.req),
+          userAgent: getUserAgent(ctx.req),
+        });
+
+        return { success: true, id: result.insertId };
+      }),
+
+    // Update admin role (super_admin only)
+    updateRole: adminProcedure
+      .input(
+        z.object({
+          id: z.number(),
+          role: z.enum(["super_admin", "moderator", "viewer"]),
+        })
+      )
+      .mutation(async ({ input, ctx }) => {
+        const admin = (ctx as any).admin;
+        if (admin.role !== "super_admin") {
+          throw new TRPCError({
+            code: "FORBIDDEN",
+            message: "Only super admins can update admin roles",
+          });
+        }
+
+        // Prevent changing owner's role
+        const [targetAdmin] = await db.select().from(admins).where(eq(admins.id, input.id));
+        if (targetAdmin && targetAdmin.openId === process.env.OWNER_OPEN_ID) {
+          throw new TRPCError({
+            code: "FORBIDDEN",
+            message: "Cannot change owner's role",
+          });
+        }
+
+        await db.update(admins).set({ role: input.role }).where(eq(admins.id, input.id));
+
+        // Log audit action
+        await logAuditAction({
+          adminId: admin.id,
+          adminEmail: admin.email,
+          adminName: admin.name,
+          action: "update",
+          resourceType: "admin",
+          resourceId: input.id,
+          details: { field: "role", newValue: input.role },
+          ipAddress: getIpAddress(ctx.req),
+          userAgent: getUserAgent(ctx.req),
+        });
+
+        return { success: true };
+      }),
+
+    // Remove admin (super_admin only)
+    remove: adminProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input, ctx }) => {
+        const admin = (ctx as any).admin;
+        if (admin.role !== "super_admin") {
+          throw new TRPCError({
+            code: "FORBIDDEN",
+            message: "Only super admins can remove admins",
+          });
+        }
+
+        // Prevent removing owner
+        const [targetAdmin] = await db.select().from(admins).where(eq(admins.id, input.id));
+        if (targetAdmin && targetAdmin.openId === process.env.OWNER_OPEN_ID) {
+          throw new TRPCError({
+            code: "FORBIDDEN",
+            message: "Cannot remove owner",
+          });
+        }
+
+        // Prevent removing self
+        if (input.id === admin.id) {
+          throw new TRPCError({
+            code: "FORBIDDEN",
+            message: "Cannot remove yourself",
+          });
+        }
+
+        await db.delete(admins).where(eq(admins.id, input.id));
+
+        // Log audit action
+        await logAuditAction({
+          adminId: admin.id,
+          adminEmail: admin.email,
+          adminName: admin.name,
+          action: "delete",
+          resourceType: "admin",
+          resourceId: input.id,
+          details: { removedAdmin: targetAdmin },
+          ipAddress: getIpAddress(ctx.req),
+          userAgent: getUserAgent(ctx.req),
+        });
+
+        return { success: true };
+      }),
+
+    // Get current admin info and permissions
+    me: adminProcedure.query(async ({ ctx }) => {
+      const admin = (ctx as any).admin;
+      const permissions = getRolePermissions(admin.role);
+      return { ...admin, permissions };
+    }),
+  }),
+
+  // Audit Log
+  auditLog: router({
+    // List audit logs with filtering
+    list: adminProcedure
+      .input(
+        z.object({
+          limit: z.number().optional().default(50),
+          offset: z.number().optional().default(0),
+          action: z.string().optional(),
+          resourceType: z.string().optional(),
+          adminEmail: z.string().optional(),
+          startDate: z.string().optional(),
+          endDate: z.string().optional(),
+        })
+      )
+      .query(async ({ input }) => {
+        let query = db.select().from(auditLogs);
+
+        // Apply filters (simplified - in production use drizzle filters)
+        const logs = await query.orderBy(desc(auditLogs.timestamp)).limit(input.limit).offset(input.offset);
+
+        // Filter in memory (for simplicity)
+        let filtered = logs;
+        if (input.action) {
+          filtered = filtered.filter((log) => log.action === input.action);
+        }
+        if (input.resourceType) {
+          filtered = filtered.filter((log) => log.resourceType === input.resourceType);
+        }
+        if (input.adminEmail) {
+          filtered = filtered.filter((log) => log.adminEmail === input.adminEmail);
+        }
+        if (input.startDate) {
+          const start = new Date(input.startDate);
+          filtered = filtered.filter((log) => log.timestamp >= start);
+        }
+        if (input.endDate) {
+          const end = new Date(input.endDate);
+          filtered = filtered.filter((log) => log.timestamp <= end);
+        }
+
+        return filtered;
+      }),
+
+    // Get audit log stats
+    stats: adminProcedure.query(async () => {
+      const allLogs = await db.select().from(auditLogs);
+      
+      const actionCounts = allLogs.reduce((acc, log) => {
+        acc[log.action] = (acc[log.action] || 0) + 1;
+        return acc;
+      }, {} as Record<string, number>);
+
+      const resourceCounts = allLogs.reduce((acc, log) => {
+        acc[log.resourceType] = (acc[log.resourceType] || 0) + 1;
+        return acc;
+      }, {} as Record<string, number>);
+
+      return {
+        totalActions: allLogs.length,
+        actionCounts,
+        resourceCounts,
+      };
     }),
   }),
 });

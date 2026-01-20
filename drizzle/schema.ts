@@ -95,3 +95,35 @@ export const payments = mysqlTable("payments", {
 
 export type Payment = typeof payments.$inferSelect;
 export type NewPayment = typeof payments.$inferInsert;
+
+// Admin users with role-based access
+export const admins = mysqlTable("admins", {
+  id: int("id").primaryKey().autoincrement(),
+  openId: varchar("open_id", { length: 255 }).notNull().unique(),
+  email: varchar("email", { length: 255 }).notNull(),
+  name: varchar("name", { length: 255 }).notNull(),
+  role: varchar("role", { length: 50 }).notNull().default("viewer"), // super_admin, moderator, viewer
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  createdBy: varchar("created_by", { length: 255 }), // openId of the admin who created this admin
+});
+
+export type Admin = typeof admins.$inferSelect;
+export type NewAdmin = typeof admins.$inferInsert;
+
+// Audit log for tracking all admin actions
+export const auditLogs = mysqlTable("audit_logs", {
+  id: int("id").primaryKey().autoincrement(),
+  adminId: int("admin_id"), // null if action by system
+  adminEmail: varchar("admin_email", { length: 255 }),
+  adminName: varchar("admin_name", { length: 255 }),
+  action: varchar("action", { length: 100 }).notNull(), // create, update, delete, export, login, logout
+  resourceType: varchar("resource_type", { length: 100 }).notNull(), // registration, session, sponsorship, admin, etc.
+  resourceId: int("resource_id"), // ID of the affected resource
+  details: text("details"), // JSON string with additional details
+  ipAddress: varchar("ip_address", { length: 50 }),
+  userAgent: text("user_agent"),
+  timestamp: timestamp("timestamp").defaultNow().notNull(),
+});
+
+export type AuditLog = typeof auditLogs.$inferSelect;
+export type NewAuditLog = typeof auditLogs.$inferInsert;
