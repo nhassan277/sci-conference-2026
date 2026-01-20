@@ -30,7 +30,7 @@
 🎓 **ورش عمل احترافية** بالتعاون مع NAWAH Scientific مع شهادات معتمدة
 
 **تحت رعاية:**
-🏛️ أ.د/ محمد سامي عبد الصادق - رئيس جامعة القاهرة
+🏛️ أ.د/ محمد سامي - رئيس جامعة القاهرة
 🏛️ أ.د/ سهير رمضان - عميد كلية العلوم
 
 🔗 **للتسجيل والمزيد من المعلومات:**
@@ -75,7 +75,7 @@ The Faculty of Science at Cairo University is proud to announce the internationa
 • Industry Partners
 
 **Under the Patronage of:**
-🏛️ Prof. Mohamed Samy Abdel Sadek - President of Cairo University
+🏛️ Prof. Mohamed Samy - President of Cairo University
 🏛️ Prof. Soheir Ramadan - Dean, Faculty of Science
 
 🔗 **Register Now:**
