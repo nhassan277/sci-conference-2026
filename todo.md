@@ -291,3 +291,12 @@
 
 ### Update President Name
 - [x] Update university president's name to "محمد سامي عبد الصادق" in all website locations
+
+### Review Promotional Materials for President Name
+- [x] Search all code files for president's name references
+- [x] Check promotional images and posters
+- [x] Review external registration forms (Google Forms)
+- [x] Document findings and provide recommendations
+
+### Replace Conference Flyer
+- [x] Replace old conference flyer with updated version containing correct president name
