@@ -324,3 +324,5 @@
 - [x] Implement image optimization and thumbnail generation
 - [x] Write integration tests for gallery system (7 tests)
 - [x] Update website patronage section to add Prof. Emtithal Mohamed Abdel Samie as conference coordinator (English & Arabic)
+- [x] Replace current poster image with new updated poster
+- [x] Add Organizing Committee section with coordinator and team members

@@ -270,6 +270,65 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Organizing Committee Section */}
+      <section className="py-20 bg-gradient-to-b from-accent/5 to-white">
+        <div className="container">
+          <div className="text-center space-y-4 mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-primary">Organizing Committee</h2>
+            <p className="text-2xl font-semibold text-secondary" dir="rtl">اللجنة التنظيمية</p>
+          </div>
+
+          {/* Coordinator */}
+          <div className="max-w-2xl mx-auto mb-12">
+            <Card className="border-2 border-primary/30 hover:border-primary/50 transition-colors">
+              <CardHeader className="text-center">
+                <CardTitle className="text-2xl text-primary">Prof. Emtessal Mohamed Abdel Samie</CardTitle>
+                <CardDescription className="text-lg" dir="rtl">
+                  الأستاذ الدكتور/ امتثال محمد عبد السميع
+                </CardDescription>
+                <CardDescription className="text-base font-semibold text-primary">
+                  Conference General Coordinator
+                </CardDescription>
+                <CardDescription className="text-base" dir="rtl">
+                  المنسق العام للمؤتمر
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          </div>
+
+          {/* Team Members */}
+          <div className="max-w-5xl mx-auto">
+            <h3 className="text-2xl font-bold text-center mb-8 text-primary">Team | الفريق</h3>
+            <div className="grid md:grid-cols-3 gap-6">
+              <Card className="hover:shadow-lg transition-shadow border-2 hover:border-primary/50">
+                <CardHeader className="text-center">
+                  <CardTitle className="text-lg">Dr. Nourhan Hassan</CardTitle>
+                  <CardDescription dir="rtl">
+                    د. نورهان حسن
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+              <Card className="hover:shadow-lg transition-shadow border-2 hover:border-primary/50">
+                <CardHeader className="text-center">
+                  <CardTitle className="text-lg">Dr. Dina Amr</CardTitle>
+                  <CardDescription dir="rtl">
+                    د. دينا عمرو
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+              <Card className="hover:shadow-lg transition-shadow border-2 hover:border-primary/50">
+                <CardHeader className="text-center">
+                  <CardTitle className="text-lg">Dr. Nahla Osama</CardTitle>
+                  <CardDescription dir="rtl">
+                    د. نهلة أسامة
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* About Section */}
       <section id="about" className="py-20 bg-gradient-to-b from-accent/5 to-white">
         <div className="container">
