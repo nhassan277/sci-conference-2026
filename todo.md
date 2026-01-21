@@ -334,3 +334,4 @@
 - [x] Build frontend subscription form component
 - [x] Write tests for subscription functionality
 - [x] Fix hero section poster size - image is too large and cutting off content
+- [x] Replace current poster with new version and reduce size to fit page properly

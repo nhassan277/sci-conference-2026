@@ -201,8 +201,8 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="relative">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl max-h-[600px] flex items-center justify-center bg-white">
+            <div className="relative max-w-md mx-auto">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl max-h-[500px] flex items-center justify-center bg-white">
                 <img 
                   src="/images/conference-poster-new.jpeg" 
                   alt="SCI 2026 Conference" 
