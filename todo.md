@@ -327,3 +327,4 @@
 - [x] Replace current poster image with new updated poster
 - [x] Add Organizing Committee section with coordinator and team members
 - [x] Remove poster image from website hero section
+- [x] Add poster back to website hero section with proper alignment

@@ -199,7 +199,17 @@ export default function Home() {
               </div>
             </div>
 
-
+            <div className="relative">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                <img 
+                  src="/images/conference-poster-new.jpeg" 
+                  alt="SCI 2026 Conference" 
+                  className="w-full h-auto"
+                />
+              </div>
+              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-secondary/20 rounded-full blur-3xl"></div>
+              <div className="absolute -top-6 -left-6 w-32 h-32 bg-primary/20 rounded-full blur-3xl"></div>
+            </div>
           </div>
           
           {/* Countdown Timer Section */}
