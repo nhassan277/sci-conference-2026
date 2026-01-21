@@ -339,3 +339,4 @@
 - [x] Fix poster to show full content without cropping - reduce size but keep all content visible
 - [x] Correct conference coordinator name from "Emtessal" to "Emtithal" throughout website
 - [x] Replace logo in VIP invitation card with new Faculty of Science logo
+- [x] Update conference poster on website with new version featuring updated Faculty of Science logo
