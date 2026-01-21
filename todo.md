@@ -337,3 +337,4 @@
 - [x] Replace current poster with new version and reduce size to fit page properly
 - [ ] Fix poster to show full content without cropping - reduce size but keep all content visible
 - [x] Fix poster to show full content without cropping - reduce size but keep all content visible
+- [x] Correct conference coordinator name from "Emtessal" to "Emtithal" throughout website

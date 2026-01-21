@@ -264,7 +264,7 @@ export default function Home() {
             <div className="max-w-2xl mx-auto mt-8">
               <Card className="border-2 hover:border-primary/50 transition-colors">
                 <CardHeader>
-                  <CardTitle className="text-xl">Prof. Emtessal Mohamed Abdel Samie</CardTitle>
+                  <CardTitle className="text-xl">Prof. Emtithal Mohamed Abdel Samie</CardTitle>
                   <CardDescription className="text-base" dir="rtl">
                     الأستاذ الدكتور/ امتثال محمد عبد السميع<br/>
                     المنسق العام للمؤتمر
@@ -291,7 +291,7 @@ export default function Home() {
           <div className="max-w-2xl mx-auto mb-12">
             <Card className="border-2 border-primary/30 hover:border-primary/50 transition-colors">
               <CardHeader className="text-center">
-                <CardTitle className="text-2xl text-primary">Prof. Emtessal Mohamed Abdel Samie</CardTitle>
+                <CardTitle className="text-2xl text-primary">Prof. Emtithal Mohamed Abdel Samie</CardTitle>
                 <CardDescription className="text-lg" dir="rtl">
                   الأستاذ الدكتور/ امتثال محمد عبد السميع
                 </CardDescription>
