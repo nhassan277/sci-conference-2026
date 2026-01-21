@@ -3,6 +3,7 @@
 ## Pending Tasks
 - [ ] Implement email notifications for new registrations
 - [ ] Add admin dashboard to view/manage registrations
+- [x] Add conference coordinator information to website patronage section (الأستاذ الدكتور/ امتثال عبد السميع)
 
 ## In Progress
 
