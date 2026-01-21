@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import CountdownTimer from "@/components/CountdownTimer";
 import { SocialShareButtons } from "@/components/SocialShareButtons";
+import { NewsletterSubscription } from "@/components/NewsletterSubscription";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, MapPin, Users, Lightbulb, Award, BookOpen, GraduationCap, Mail, Microscope, FlaskConical, Globe, Calculator, Heart, Sparkles, Atom, Zap } from "lucide-react";
@@ -564,6 +565,15 @@ export default function Home() {
                 </CardContent>
               </Card>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Newsletter Subscription Section */}
+      <section className="py-20 bg-white">
+        <div className="container">
+          <div className="max-w-3xl mx-auto">
+            <NewsletterSubscription />
           </div>
         </div>
       </section>

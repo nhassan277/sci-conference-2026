@@ -3,7 +3,7 @@ import { z } from "zod";
 import { eq, desc } from "drizzle-orm";
 import superjson from "superjson";
 import { db } from "./db.js";
-import { registrations, sponsorships, sessions, supportTickets, admins, auditLogs, reminderSubscriptions, galleryPhotos } from "../drizzle/schema.js";
+import { registrations, sponsorships, sessions, supportTickets, admins, auditLogs, reminderSubscriptions, galleryPhotos, newsletterSubscriptions } from "../drizzle/schema.js";
 import { verifyToken, isOwner } from "./auth.js";
 import { logAuditAction, getIpAddress, getUserAgent } from "./audit.js";
 import { getAdminByOpenId, hasPermission, getRolePermissions, ensureOwnerIsSuperAdmin } from "./admin-management.js";
@@ -1379,6 +1379,111 @@ export const appRouter = router({
         .from(reminderSubscriptions)
         .orderBy(desc(reminderSubscriptions.subscribedAt));
       return allSubscriptions;
+    }),
+  }),
+
+  // Newsletter Subscriptions
+  newsletter: router({
+    subscribe: publicProcedure
+      .input(
+        z.object({
+          email: z.string().email("Invalid email address"),
+          name: z.string().optional(),
+        })
+      )
+      .mutation(async ({ input }) => {
+        try {
+          // Check if already subscribed
+          const existing = await db
+            .select()
+            .from(newsletterSubscriptions)
+            .where(eq(newsletterSubscriptions.email, input.email))
+            .limit(1);
+
+          if (existing.length > 0) {
+            if (!existing[0].isActive) {
+              // Reactivate if previously unsubscribed
+              await db
+                .update(newsletterSubscriptions)
+                .set({
+                  isActive: true,
+                  unsubscribedAt: null,
+                  subscribedAt: new Date(),
+                  name: input.name || existing[0].name,
+                })
+                .where(eq(newsletterSubscriptions.email, input.email));
+              return {
+                success: true,
+                message: "You have been resubscribed to conference updates",
+              };
+            }
+            return {
+              success: true,
+              message: "You are already subscribed to conference updates",
+            };
+          }
+
+          // Create new subscription
+          await db.insert(newsletterSubscriptions).values({
+            email: input.email,
+            name: input.name,
+            source: "website",
+          });
+
+          return {
+            success: true,
+            message: "Successfully subscribed to conference updates",
+          };
+        } catch (error) {
+          console.error("Newsletter subscription error:", error);
+          throw new TRPCError({
+            code: "INTERNAL_SERVER_ERROR",
+            message: "Failed to subscribe to newsletter",
+          });
+        }
+      }),
+
+    unsubscribe: publicProcedure
+      .input(
+        z.object({
+          email: z.string().email("Invalid email address"),
+        })
+      )
+      .mutation(async ({ input }) => {
+        await db
+          .update(newsletterSubscriptions)
+          .set({
+            isActive: false,
+            unsubscribedAt: new Date(),
+          })
+          .where(eq(newsletterSubscriptions.email, input.email));
+
+        return {
+          success: true,
+          message: "Successfully unsubscribed from conference updates",
+        };
+      }),
+
+    // Admin: List all subscriptions
+    list: adminProcedure.query(async () => {
+      const allSubscriptions = await db
+        .select()
+        .from(newsletterSubscriptions)
+        .orderBy(desc(newsletterSubscriptions.subscribedAt));
+      return allSubscriptions;
+    }),
+
+    // Admin: Get subscription stats
+    stats: adminProcedure.query(async () => {
+      const allSubscriptions = await db.select().from(newsletterSubscriptions);
+      const activeCount = allSubscriptions.filter((s) => s.isActive).length;
+      const inactiveCount = allSubscriptions.filter((s) => !s.isActive).length;
+
+      return {
+        total: allSubscriptions.length,
+        active: activeCount,
+        inactive: inactiveCount,
+      };
     }),
   }),
   // gallery: galleryRouter, // Temporarily disabled

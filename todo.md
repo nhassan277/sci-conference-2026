@@ -329,3 +329,7 @@
 - [x] Remove poster image from website hero section
 - [x] Add poster back to website hero section with proper alignment
 - [x] Add social media share buttons (Facebook, Twitter, LinkedIn) to promote the conference
+- [x] Create email subscription form with database schema
+- [x] Implement backend API for email subscriptions
+- [x] Build frontend subscription form component
+- [x] Write tests for subscription functionality

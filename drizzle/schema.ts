@@ -207,3 +207,17 @@ export const galleryPhotos = mysqlTable("gallery_photos", {
 
 export type GalleryPhoto = typeof galleryPhotos.$inferSelect;
 export type NewGalleryPhoto = typeof galleryPhotos.$inferInsert;
+
+// Newsletter Subscriptions
+export const newsletterSubscriptions = mysqlTable("newsletter_subscriptions", {
+  id: int("id").primaryKey().autoincrement(),
+  email: varchar("email", { length: 255 }).notNull().unique(),
+  name: varchar("name", { length: 255 }),
+  subscribedAt: timestamp("subscribed_at").defaultNow().notNull(),
+  isActive: boolean("is_active").default(true).notNull(),
+  unsubscribedAt: timestamp("unsubscribed_at"),
+  source: varchar("source", { length: 50 }).default("website").notNull(), // website, registration, manual
+});
+
+export type NewsletterSubscription = typeof newsletterSubscriptions.$inferSelect;
+export type NewNewsletterSubscription = typeof newsletterSubscriptions.$inferInsert;
