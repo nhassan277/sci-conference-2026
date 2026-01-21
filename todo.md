@@ -333,3 +333,4 @@
 - [x] Implement backend API for email subscriptions
 - [x] Build frontend subscription form component
 - [x] Write tests for subscription functionality
+- [x] Fix hero section poster size - image is too large and cutting off content
