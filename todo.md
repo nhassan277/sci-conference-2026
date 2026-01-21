@@ -335,3 +335,5 @@
 - [x] Write tests for subscription functionality
 - [x] Fix hero section poster size - image is too large and cutting off content
 - [x] Replace current poster with new version and reduce size to fit page properly
+- [ ] Fix poster to show full content without cropping - reduce size but keep all content visible
+- [x] Fix poster to show full content without cropping - reduce size but keep all content visible

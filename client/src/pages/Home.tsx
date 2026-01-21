@@ -201,12 +201,12 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="relative max-w-md mx-auto">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl max-h-[500px] flex items-center justify-center bg-white">
+            <div className="relative max-w-sm mx-auto">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-white">
                 <img 
-                  src="/images/conference-poster-new.jpeg" 
+                  src="/images/conference-poster-new.png" 
                   alt="SCI 2026 Conference" 
-                  className="w-full h-full object-contain"
+                  className="w-full h-auto"
                 />
               </div>
               <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-secondary/20 rounded-full blur-3xl"></div>
