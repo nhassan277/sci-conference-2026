@@ -323,3 +323,4 @@
 - [x] Add photo categories (Opening Ceremony, Workshops, Presentations, Networking, etc.)
 - [x] Implement image optimization and thumbnail generation
 - [x] Write integration tests for gallery system (7 tests)
+- [x] Update website patronage section to add Prof. Emtithal Mohamed Abdel Samie as conference coordinator (English & Arabic)

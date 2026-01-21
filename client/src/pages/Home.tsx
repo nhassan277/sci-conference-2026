@@ -255,9 +255,9 @@ export default function Home() {
             <div className="max-w-2xl mx-auto mt-8">
               <Card className="border-2 hover:border-primary/50 transition-colors">
                 <CardHeader>
-                  <CardTitle className="text-xl">Prof. Emtessal Abdel Samie</CardTitle>
+                  <CardTitle className="text-xl">Prof. Emtessal Mohamed Abdel Samie</CardTitle>
                   <CardDescription className="text-base" dir="rtl">
-                    الأستاذ الدكتور/ امتثال عبد السميع<br/>
+                    الأستاذ الدكتور/ امتثال محمد عبد السميع<br/>
                     المنسق العام للمؤتمر
                   </CardDescription>
                   <CardDescription className="text-sm">
