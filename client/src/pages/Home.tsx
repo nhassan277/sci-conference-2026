@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import CountdownTimer from "@/components/CountdownTimer";
+import { SocialShareButtons } from "@/components/SocialShareButtons";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, MapPin, Users, Lightbulb, Award, BookOpen, GraduationCap, Mail, Microscope, FlaskConical, Globe, Calculator, Heart, Sparkles, Atom, Zap } from "lucide-react";
@@ -215,6 +216,13 @@ export default function Home() {
           {/* Countdown Timer Section */}
           <div className="container relative py-12">
             <CountdownTimer />
+          </div>
+          
+          {/* Social Share Section */}
+          <div className="container relative pb-12">
+            <div className="flex justify-center">
+              <SocialShareButtons />
+            </div>
           </div>
         </div>
       </section>

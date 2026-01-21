@@ -328,3 +328,4 @@
 - [x] Add Organizing Committee section with coordinator and team members
 - [x] Remove poster image from website hero section
 - [x] Add poster back to website hero section with proper alignment
+- [x] Add social media share buttons (Facebook, Twitter, LinkedIn) to promote the conference
