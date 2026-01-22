@@ -362,3 +362,5 @@
 - [ ] Add analytics page with registration statistics and charts
 - [ ] Implement email system for sending confirmations and announcements
 - [ ] Test registration management system end-to-end
+- [x] Update research tracks from 6 to 9 comprehensive tracks
+- [x] Add "Astronomy, Space & Meteorology" (الفلك والفضاء والأرصاد الجوية) as new research track

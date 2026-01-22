@@ -5,7 +5,7 @@ import { SocialShareButtons } from "@/components/SocialShareButtons";
 import { NewsletterSubscription } from "@/components/NewsletterSubscription";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, MapPin, Users, Lightbulb, Award, BookOpen, GraduationCap, Mail, Microscope, FlaskConical, Globe, Calculator, Heart, Sparkles, Atom, Zap } from "lucide-react";
+import { Calendar, MapPin, Users, Lightbulb, Award, BookOpen, GraduationCap, Mail, Microscope, FlaskConical, Globe, Calculator, Heart, Sparkles, Atom, Zap, Telescope } from "lucide-react";
 
 export default function Home() {
   const tracks = [
@@ -64,6 +64,13 @@ export default function Home() {
       titleAr: "علوم المواد المتقدمة",
       description: "Innovations in nanomaterials, polymers, and composites for industrial applications",
       color: "bg-teal-100 text-teal-700"
+    },
+    {
+      icon: Telescope,
+      title: "Astronomy, Space & Meteorology",
+      titleAr: "الفلك والفضاء والأرصاد الجوية",
+      description: "Astrophysics, Space Exploration, Climate Science, Atmospheric Research",
+      color: "bg-cyan-100 text-cyan-700"
     }
   ];
 
@@ -387,7 +394,7 @@ export default function Home() {
             <h2 className="text-4xl md:text-5xl font-bold text-primary">Research Tracks</h2>
             <p className="text-2xl font-semibold text-secondary" dir="rtl">المحاور البحثية</p>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Six comprehensive tracks covering all scientific disciplines
+              Nine comprehensive tracks covering all scientific disciplines
             </p>
           </div>
 
