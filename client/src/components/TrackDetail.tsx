@@ -122,6 +122,29 @@ export default function TrackDetail({ track }: TrackDetailProps) {
 
           {/* Sidebar */}
           <div className="space-y-6">
+            {/* General Submission Information */}
+            <Card className={`border-2 ${track.borderColor}`}>
+              <CardHeader>
+                <CardTitle>General Submission Information</CardTitle>
+                <CardDescription dir="rtl" className="font-medium">معلومات التقديم العامة</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <p className="text-sm text-muted-foreground">
+                  To submit your research abstract for this track, please use the conference registration form.
+                </p>
+                <p className="text-sm text-muted-foreground" dir="rtl">
+                  لتقديم ملخص بحثك لهذا المحور، يرجى استخدام نموذج التسجيل في المؤتمر.
+                </p>
+                <div className="pt-4 border-t">
+                  <a href="https://sciconf26.website/#registration" target="_blank" rel="noopener noreferrer">
+                    <Button className={`w-full bg-${track.bgColor}-600 hover:bg-${track.bgColor}-700`}>
+                      Register Now | سجل الآن
+                    </Button>
+                  </a>
+                </div>
+              </CardContent>
+            </Card>
+
             {/* Important Dates */}
             <Card>
               <CardHeader>

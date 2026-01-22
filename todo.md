@@ -371,3 +371,5 @@
 - [x] Update navigation to link to individual track pages
 - [x] Remove Submission Guidelines section from track detail pages
 - [x] Remove Track Chair section from track detail pages
+- [x] Add General Submission Information section to track detail pages
+- [x] Link "Register Now" button to https://sciconf26.website/#registration
