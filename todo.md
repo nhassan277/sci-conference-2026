@@ -355,3 +355,10 @@
 - [x] Add "Logo on website and conference printings (size depends on package)" to all sponsorship packages
 - [x] Remove "Sponsoring a Talk" benefit from sponsorship packages table
 - [x] Remove "Website" benefit from sponsorship packages table
+- [ ] Set up Google Sheets API integration for 4 registration forms
+- [ ] Create database schema for storing registration data
+- [ ] Build backend API to fetch and sync Google Sheets data
+- [ ] Create admin-only registration dashboard with filtering and search
+- [ ] Add analytics page with registration statistics and charts
+- [ ] Implement email system for sending confirmations and announcements
+- [ ] Test registration management system end-to-end

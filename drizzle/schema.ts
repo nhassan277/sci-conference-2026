@@ -20,7 +20,11 @@ export const registrations = mysqlTable("registrations", {
   checkedInAt: timestamp("checked_in_at"),
   checkedInBy: varchar("checked_in_by", { length: 255 }), // staff member who checked them in
   isVIP: boolean("is_vip").default(false).notNull(), // VIP status for priority alerts
+  sourceSheetId: varchar("source_sheet_id", { length: 255 }), // Google Sheet ID where this registration came from
+  sourceRowIndex: int("source_row_index"), // Row number in the source sheet
+  rawFormData: json("raw_form_data"), // Store original form data for reference
   createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
 
 export type Registration = typeof registrations.$inferSelect;
@@ -221,3 +225,19 @@ export const newsletterSubscriptions = mysqlTable("newsletter_subscriptions", {
 
 export type NewsletterSubscription = typeof newsletterSubscriptions.$inferSelect;
 export type NewNewsletterSubscription = typeof newsletterSubscriptions.$inferInsert;
+
+// Google Sheets Sync Tracking
+export const googleSheetsSyncs = mysqlTable("google_sheets_syncs", {
+  id: int("id").primaryKey().autoincrement(),
+  sheetId: varchar("sheet_id", { length: 255 }).notNull().unique(),
+  sheetName: varchar("sheet_name", { length: 255 }).notNull(),
+  category: varchar("category", { length: 50 }).notNull(), // student, faculty, external, industry
+  lastSyncedAt: timestamp("last_synced_at"),
+  lastRowCount: int("last_row_count").default(0),
+  syncStatus: varchar("sync_status", { length: 50 }).default("pending").notNull(), // pending, syncing, success, error
+  errorMessage: text("error_message"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export type GoogleSheetsSync = typeof googleSheetsSyncs.$inferSelect;
+export type NewGoogleSheetsSync = typeof googleSheetsSyncs.$inferInsert;

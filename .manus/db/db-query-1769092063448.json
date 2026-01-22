@@ -1,0 +1,9 @@
+{
+  "query": "ALTER TABLE `registrations` ADD `source_sheet_id` varchar(255);\nALTER TABLE `registrations` ADD `source_row_index` int;\nALTER TABLE `registrations` ADD `raw_form_data` json;\nALTER TABLE `registrations` ADD `updated_at` timestamp DEFAULT (now()) NOT NULL;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute ALTER TABLE `registrations` ADD `source_sheet_id` varchar(255);\nALTER TABLE `registrations` ADD `source_row_index` int;\nALTER TABLE `registrations` ADD `raw_form_data` json;\nALTER TABLE `registrations` ADD `updated_at` timestamp DEFAULT (now()) NOT NULL;",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 3751
+}

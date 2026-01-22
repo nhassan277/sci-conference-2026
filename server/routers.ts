@@ -3,7 +3,8 @@ import { z } from "zod";
 import { eq, desc } from "drizzle-orm";
 import superjson from "superjson";
 import { db } from "./db.js";
-import { registrations, sponsorships, sessions, supportTickets, admins, auditLogs, reminderSubscriptions, galleryPhotos, newsletterSubscriptions } from "../drizzle/schema.js";
+import { registrations, sponsorships, sessions, supportTickets, admins, auditLogs, reminderSubscriptions, galleryPhotos, newsletterSubscriptions, googleSheetsSyncs } from "../drizzle/schema.js";
+import { syncAllSheets, SHEETS_CONFIG, type SheetCategory } from "./googleSheets.js";
 import { verifyToken, isOwner } from "./auth.js";
 import { logAuditAction, getIpAddress, getUserAgent } from "./audit.js";
 import { getAdminByOpenId, hasPermission, getRolePermissions, ensureOwnerIsSuperAdmin } from "./admin-management.js";
@@ -1486,6 +1487,156 @@ export const appRouter = router({
       };
     }),
   }),
+
+  // Google Sheets Sync
+  sheetsSync: router({
+    // Trigger manual sync of all Google Sheets
+    syncAll: adminProcedure.mutation(async ({ ctx }) => {
+      try {
+        const results = await syncAllSheets();
+        
+        // Update sync tracking table
+        for (const result of results) {
+          const sheetConfig = SHEETS_CONFIG.find(s => s.category === result.category);
+          if (!sheetConfig) continue;
+
+          // Check if sync record exists
+          const existing = await db
+            .select()
+            .from(googleSheetsSyncs)
+            .where(eq(googleSheetsSyncs.sheetId, sheetConfig.id))
+            .limit(1);
+
+          if (existing.length > 0) {
+            // Update existing record
+            await db
+              .update(googleSheetsSyncs)
+              .set({
+                lastSyncedAt: new Date(),
+                lastRowCount: result.rowCount,
+                syncStatus: 'success',
+                errorMessage: null,
+              })
+              .where(eq(googleSheetsSyncs.sheetId, sheetConfig.id));
+          } else {
+            // Create new record
+            await db.insert(googleSheetsSyncs).values({
+              sheetId: sheetConfig.id,
+              sheetName: sheetConfig.name,
+              category: sheetConfig.category,
+              lastSyncedAt: new Date(),
+              lastRowCount: result.rowCount,
+              syncStatus: 'success',
+            });
+          }
+
+          // Insert/update registrations
+          for (let i = 0; i < result.data.length; i++) {
+            const row = result.data[i];
+            
+            // Check if registration already exists (by email + sheet)
+            const existingReg = await db
+              .select()
+              .from(registrations)
+              .where(eq(registrations.email, row.email))
+              .limit(1);
+
+            const registrationData = {
+              fullNameEnglish: row.fullNameEnglish || '',
+              fullNameArabic: row.fullNameArabic || '',
+              email: row.email || '',
+              phone: row.phone || '',
+              affiliation: row.affiliation || '',
+              attendeeCategory: result.category,
+              participationType: row.participationType || 'attendee',
+              researchTitle: row.researchTitle,
+              researchAbstract: row.researchAbstract,
+              sourceSheetId: sheetConfig.id,
+              sourceRowIndex: i + 2, // +2 because row 1 is header, and array is 0-indexed
+              rawFormData: row,
+              wantsCertificate: false,
+              paymentStatus: 'unpaid',
+              checkedIn: false,
+              isVIP: false,
+            };
+
+            if (existingReg.length === 0) {
+              // Insert new registration
+              await db.insert(registrations).values(registrationData);
+            } else {
+              // Update existing registration
+              await db
+                .update(registrations)
+                .set({
+                  ...registrationData,
+                  updatedAt: new Date(),
+                })
+                .where(eq(registrations.id, existingReg[0].id));
+            }
+          }
+        }
+
+        // Log audit action
+        await logAuditAction({
+          adminId: ctx.admin?.id,
+          adminEmail: ctx.user?.email,
+          adminName: ctx.user?.name,
+          action: 'sync',
+          resourceType: 'google_sheets',
+          details: {
+            sheetsCount: results.length,
+            totalRows: results.reduce((sum, r) => sum + r.rowCount, 0),
+          },
+          ipAddress: getIpAddress(ctx.req),
+          userAgent: getUserAgent(ctx.req),
+        });
+
+        return {
+          success: true,
+          results: results.map(r => ({
+            category: r.category,
+            sheetName: r.sheetName,
+            rowCount: r.rowCount,
+          })),
+        };
+      } catch (error) {
+        console.error('Sheets sync error:', error);
+        throw new TRPCError({
+          code: 'INTERNAL_SERVER_ERROR',
+          message: `Failed to sync sheets: ${error instanceof Error ? error.message : 'Unknown error'}`,
+        });
+      }
+    }),
+
+    // Get sync status for all sheets
+    getStatus: adminProcedure.query(async () => {
+      const syncs = await db
+        .select()
+        .from(googleSheetsSyncs)
+        .orderBy(desc(googleSheetsSyncs.lastSyncedAt));
+      return syncs;
+    }),
+
+    // Get registration statistics by category
+    getStats: adminProcedure.query(async () => {
+      const allRegistrations = await db.select().from(registrations);
+      
+      const stats = {
+        total: allRegistrations.length,
+        byCategory: {
+          student: allRegistrations.filter(r => r.attendeeCategory === 'student').length,
+          faculty: allRegistrations.filter(r => r.attendeeCategory === 'faculty').length,
+          external: allRegistrations.filter(r => r.attendeeCategory === 'researcher').length,
+          industry: allRegistrations.filter(r => r.attendeeCategory === 'industry').length,
+        },
+        checkedIn: allRegistrations.filter(r => r.checkedIn).length,
+        withCertificate: allRegistrations.filter(r => r.wantsCertificate).length,
+      };
+
+      return stats;
+    }),
+  }),
+
   // gallery: galleryRouter, // Temporarily disabled
 });
 export type AppRouter = typeof appRouter;

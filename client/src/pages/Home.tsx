@@ -786,6 +786,9 @@ export default function Home() {
           </div>
           <div className="border-t border-primary-foreground/20 mt-8 pt-8 text-center text-sm opacity-75">
             <p>© 2026 Faculty of Science, Cairo University. All rights reserved.</p>
+            <p className="mt-2">
+              <a href="/admin.html" className="hover:underline opacity-50 hover:opacity-100">Admin Dashboard</a>
+            </p>
           </div>
         </div>
       </footer>

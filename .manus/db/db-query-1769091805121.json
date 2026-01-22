@@ -1,0 +1,9 @@
+{
+  "query": "CREATE TABLE IF NOT EXISTS `google_sheets_syncs` (\n\t`id` int AUTO_INCREMENT NOT NULL,\n\t`sheet_id` varchar(255) NOT NULL,\n\t`sheet_name` varchar(255) NOT NULL,\n\t`category` varchar(50) NOT NULL,\n\t`last_synced_at` timestamp NULL,\n\t`last_row_count` int DEFAULT 0,\n\t`sync_status` varchar(50) NOT NULL DEFAULT 'pending',\n\t`error_message` text,\n\t`created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\n\tCONSTRAINT `google_sheets_syncs_id` PRIMARY KEY(`id`),\n\tCONSTRAINT `google_sheets_syncs_sheet_id_unique` UNIQUE(`sheet_id`)\n);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute CREATE TABLE IF NOT EXISTS `google_sheets_syncs` (\n\t`id` int AUTO_INCREMENT NOT NULL,\n\t`sheet_id` varchar(255) NOT NULL,\n\t`sheet_name` varchar(255) NOT NULL,\n\t`category` varchar(50) NOT NULL,\n\t`last_synced_at` timestamp NULL,\n\t`last_row_count` int DEFAULT 0,\n\t`sync_status` varchar(50) NOT NULL DEFAULT 'pending',\n\t`error_message` text,\n\t`created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\n\tCONSTRAINT `google_sheets_syncs_id` PRIMARY KEY(`id`),\n\tCONSTRAINT `google_sheets_syncs_sheet_id_unique` UNIQUE(`sheet_id`)\n);",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 1798
+}

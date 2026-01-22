@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - SCI 2026</title>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .admin-container {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      max-width: 1400px;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .admin-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 30px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .admin-header h1 {
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    .admin-header .user-info {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .admin-header .user-info button {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.3s;
+    }
+
+    .admin-header .user-info button:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .admin-body {
+      padding: 40px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .stat-card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .stat-card h3 {
+      font-size: 14px;
+      font-weight: 500;
+      opacity: 0.9;
+      margin-bottom: 10px;
+    }
+
+    .stat-card .value {
+      font-size: 36px;
+      font-weight: 700;
+    }
+
+    .controls {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .controls input[type="text"] {
+      flex: 1;
+      min-width: 250px;
+      padding: 12px 16px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: border-color 0.3s;
+    }
+
+    .controls input[type="text"]:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+
+    .controls select {
+      padding: 12px 16px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      background: white;
+    }
+
+    .controls button {
+      background: #667eea;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .controls button:hover {
+      background: #5568d3;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    }
+
+    .controls button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .table-container {
+      overflow-x: auto;
+      border-radius: 12px;
+      border: 1px solid #e0e0e0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+    }
+
+    thead {
+      background: #f8f9fa;
+    }
+
+    th {
+      padding: 16px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 13px;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 2px solid #e0e0e0;
+    }
+
+    td {
+      padding: 16px;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 14px;
+    }
+
+    tr:hover {
+      background: #f8f9fa;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: capitalize;
+    }
+
+    .badge.student {
+      background: #e3f2fd;
+      color: #1976d2;
+    }
+
+    .badge.faculty {
+      background: #f3e5f5;
+      color: #7b1fa2;
+    }
+
+    .badge.researcher {
+      background: #e8f5e9;
+      color: #388e3c;
+    }
+
+    .badge.industry {
+      background: #fff3e0;
+      color: #f57c00;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 60px;
+      color: #999;
+    }
+
+    .loading-spinner {
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #667eea;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 60px;
+      color: #999;
+    }
+
+    .empty-state svg {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 20px;
+      opacity: 0.5;
+    }
+
+    .sync-status {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+    }
+
+    .sync-status h3 {
+      font-size: 16px;
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    .sync-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
+
+    .sync-item {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      border-left: 4px solid #667eea;
+    }
+
+    .sync-item .label {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 5px;
+    }
+
+    .sync-item .value {
+      font-size: 16px;
+      font-weight: 600;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="admin-container">
+    <div class="admin-header">
+      <h1>📊 Registration Management Dashboard</h1>
+      <div class="user-info">
+        <span id="adminName">Admin</span>
+        <button onclick="window.location.href='/'">Back to Website</button>
+      </div>
+    </div>
+
+    <div class="admin-body">
+      <!-- Statistics -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h3>Total Registrations</h3>
+          <div class="value" id="totalCount">0</div>
+        </div>
+        <div class="stat-card">
+          <h3>Students</h3>
+          <div class="value" id="studentCount">0</div>
+        </div>
+        <div class="stat-card">
+          <h3>Faculty Members</h3>
+          <div class="value" id="facultyCount">0</div>
+        </div>
+        <div class="stat-card">
+          <h3>External Researchers</h3>
+          <div class="value" id="externalCount">0</div>
+        </div>
+        <div class="stat-card">
+          <h3>Industry Partners</h3>
+          <div class="value" id="industryCount">0</div>
+        </div>
+      </div>
+
+      <!-- Sync Status -->
+      <div class="sync-status">
+        <h3>Google Sheets Sync Status</h3>
+        <div class="sync-info" id="syncInfo">
+          <div class="loading">Loading sync status...</div>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <div class="controls">
+        <input type="text" id="searchInput" placeholder="Search by name, email, or affiliation..." />
+        <select id="categoryFilter">
+          <option value="">All Categories</option>
+          <option value="student">Students</option>
+          <option value="faculty">Faculty Members</option>
+          <option value="researcher">External Researchers</option>
+          <option value="industry">Industry Partners</option>
+        </select>
+        <button onclick="syncSheets()" id="syncBtn">🔄 Sync from Google Sheets</button>
+        <button onclick="exportToCSV()">📥 Export to CSV</button>
+      </div>
+
+      <!-- Table -->
+      <div class="table-container">
+        <table id="registrationsTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name (English)</th>
+              <th>Name (Arabic)</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Affiliation</th>
+              <th>Category</th>
+              <th>Registered</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <tr>
+              <td colspan="8">
+                <div class="loading">
+                  <div class="loading-spinner"></div>
+                  <p>Loading registrations...</p>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let allRegistrations = [];
+    let syncStatus = [];
+
+    // Load data on page load
+    window.addEventListener('DOMContentLoaded', async () => {
+      await loadRegistrations();
+      await loadSyncStatus();
+      await loadStats();
+    });
+
+    // Search and filter
+    document.getElementById('searchInput').addEventListener('input', filterTable);
+    document.getElementById('categoryFilter').addEventListener('change', filterTable);
+
+    async function loadRegistrations() {
+      try {
+        const response = await fetch('/api/trpc/registration.list', {
+          method: 'GET',
+          credentials: 'include',
+        });
+        
+        if (!response.ok) {
+          throw new Error('Failed to load registrations');
+        }
+
+        const data = await response.json();
+        allRegistrations = data.result.data || [];
+        renderTable(allRegistrations);
+      } catch (error) {
+        console.error('Error loading registrations:', error);
+        document.getElementById('tableBody').innerHTML = `
+          <tr>
+            <td colspan="8">
+              <div class="empty-state">
+                <p>❌ Failed to load registrations. Please check your admin access.</p>
+              </div>
+            </td>
+          </tr>
+        `;
+      }
+    }
+
+    async function loadSyncStatus() {
+      try {
+        const response = await fetch('/api/trpc/sheetsSync.getStatus', {
+          method: 'GET',
+          credentials: 'include',
+        });
+        
+        if (!response.ok) {
+          throw new Error('Failed to load sync status');
+        }
+
+        const data = await response.json();
+        syncStatus = data.result.data || [];
+        renderSyncStatus(syncStatus);
+      } catch (error) {
+        console.error('Error loading sync status:', error);
+        document.getElementById('syncInfo').innerHTML = '<div class="empty-state"><p>Unable to load sync status</p></div>';
+      }
+    }
+
+    async function loadStats() {
+      try {
+        const response = await fetch('/api/trpc/sheetsSync.getStats', {
+          method: 'GET',
+          credentials: 'include',
+        });
+        
+        if (!response.ok) {
+          throw new Error('Failed to load stats');
+        }
+
+        const data = await response.json();
+        const stats = data.result.data;
+        
+        document.getElementById('totalCount').textContent = stats.total;
+        document.getElementById('studentCount').textContent = stats.byCategory.student;
+        document.getElementById('facultyCount').textContent = stats.byCategory.faculty;
+        document.getElementById('externalCount').textContent = stats.byCategory.external;
+        document.getElementById('industryCount').textContent = stats.byCategory.industry;
+      } catch (error) {
+        console.error('Error loading stats:', error);
+      }
+    }
+
+    function renderSyncStatus(syncs) {
+      if (syncs.length === 0) {
+        document.getElementById('syncInfo').innerHTML = '<div class="empty-state"><p>No sync history yet. Click "Sync from Google Sheets" to start.</p></div>';
+        return;
+      }
+
+      const html = syncs.map(sync => `
+        <div class="sync-item">
+          <div class="label">${sync.sheetName}</div>
+          <div class="value">${sync.lastRowCount || 0} rows</div>
+          <div class="label" style="margin-top: 8px;">Last synced: ${sync.lastSyncedAt ? new Date(sync.lastSyncedAt).toLocaleString() : 'Never'}</div>
+        </div>
+      `).join('');
+
+      document.getElementById('syncInfo').innerHTML = html;
+    }
+
+    function renderTable(registrations) {
+      if (registrations.length === 0) {
+        document.getElementById('tableBody').innerHTML = `
+          <tr>
+            <td colspan="8">
+              <div class="empty-state">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path>
+                </svg>
+                <p>No registrations found. Sync from Google Sheets to import data.</p>
+              </div>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      const html = registrations.map(reg => `
+        <tr>
+          <td>${reg.id}</td>
+          <td>${reg.fullNameEnglish}</td>
+          <td dir="rtl">${reg.fullNameArabic}</td>
+          <td>${reg.email}</td>
+          <td>${reg.phone}</td>
+          <td>${reg.affiliation}</td>
+          <td><span class="badge ${reg.attendeeCategory}">${reg.attendeeCategory}</span></td>
+          <td>${new Date(reg.createdAt).toLocaleDateString()}</td>
+        </tr>
+      `).join('');
+
+      document.getElementById('tableBody').innerHTML = html;
+    }
+
+    function filterTable() {
+      const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+      const category = document.getElementById('categoryFilter').value;
+
+      const filtered = allRegistrations.filter(reg => {
+        const matchesSearch = 
+          reg.fullNameEnglish.toLowerCase().includes(searchTerm) ||
+          reg.fullNameArabic.includes(searchTerm) ||
+          reg.email.toLowerCase().includes(searchTerm) ||
+          reg.affiliation.toLowerCase().includes(searchTerm);
+
+        const matchesCategory = !category || reg.attendeeCategory === category;
+
+        return matchesSearch && matchesCategory;
+      });
+
+      renderTable(filtered);
+    }
+
+    async function syncSheets() {
+      const btn = document.getElementById('syncBtn');
+      btn.disabled = true;
+      btn.textContent = '⏳ Syncing...';
+
+      try {
+        const response = await fetch('/api/trpc/sheetsSync.syncAll', {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({}),
+        });
+
+        if (!response.ok) {
+          throw new Error('Sync failed');
+        }
+
+        const data = await response.json();
+        alert(`✅ Sync completed!\n\nTotal rows synced: ${data.result.data.results.reduce((sum, r) => sum + r.rowCount, 0)}`);
+        
+        // Reload data
+        await loadRegistrations();
+        await loadSyncStatus();
+        await loadStats();
+      } catch (error) {
+        console.error('Sync error:', error);
+        alert('❌ Sync failed. Please check your admin access and try again.');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = '🔄 Sync from Google Sheets';
+      }
+    }
+
+    function exportToCSV() {
+      const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+      const category = document.getElementById('categoryFilter').value;
+
+      const filtered = allRegistrations.filter(reg => {
+        const matchesSearch = 
+          reg.fullNameEnglish.toLowerCase().includes(searchTerm) ||
+          reg.fullNameArabic.includes(searchTerm) ||
+          reg.email.toLowerCase().includes(searchTerm) ||
+          reg.affiliation.toLowerCase().includes(searchTerm);
+
+        const matchesCategory = !category || reg.attendeeCategory === category;
+
+        return matchesSearch && matchesCategory;
+      });
+
+      const headers = ['ID', 'Name (English)', 'Name (Arabic)', 'Email', 'Phone', 'Affiliation', 'Category', 'Registered'];
+      const rows = filtered.map(reg => [
+        reg.id,
+        reg.fullNameEnglish,
+        reg.fullNameArabic,
+        reg.email,
+        reg.phone,
+        reg.affiliation,
+        reg.attendeeCategory,
+        new Date(reg.createdAt).toLocaleDateString(),
+      ]);
+
+      const csv = [headers, ...rows].map(row => row.map(cell => `"${cell}"`).join(',')).join('\n');
+      const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = `sci2026-registrations-${new Date().toISOString().split('T')[0]}.csv`;
+      link.click();
+    }
+  </script>
+</body>
+</html>
