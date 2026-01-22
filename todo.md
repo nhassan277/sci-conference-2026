@@ -351,3 +351,5 @@
 - [x] Replace conference poster on website with latest version (same size)
 - [x] Add Facebook page link (https://www.facebook.com/share/14SDnqU7p4X/?mibextid=wwXIfr) to website
 - [x] Update Chemical Sciences description from "Chemistry, Analytical Chemistry..." to "Physical Chemistry, Analytical Chemistry..."
+- [x] Add "Speaking Opportunity (Panel or Sponsor Session)" to Gold package benefits
+- [x] Add "Logo on website and conference printings (size depends on package)" to all sponsorship packages

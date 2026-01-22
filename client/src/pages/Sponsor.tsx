@@ -29,7 +29,7 @@ const benefits = [
   {
     name: "Speaking Opportunity (Panel or Sponsor Session)",
     platinum: true,
-    gold: false,
+    gold: true,
     silver: false,
     bronze: false,
   },
@@ -49,6 +49,13 @@ const benefits = [
   },
   {
     name: "Merch (Tote bag, Leaflet, Notebook, Lanyard, Pen)",
+    platinum: true,
+    gold: true,
+    silver: true,
+    bronze: true,
+  },
+  {
+    name: "Logo on Website and Conference Printings (size depends on package)",
     platinum: true,
     gold: true,
     silver: true,
