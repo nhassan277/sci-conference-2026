@@ -250,7 +250,7 @@ export default function Home() {
                 <CardHeader>
                   <CardTitle className="text-xl">Prof. Dr. Sohair Ramadan Fahmy</CardTitle>
                   <CardDescription className="text-base" dir="rtl">
-                    الأستاذة الدكتورة/ سهير رمضان فهمي<br/>
+                    الأستاذ الدكتور/ سهير رمضان فهمي<br/>
                     عميد كلية العلوم جامعة القاهرة
                   </CardDescription>
                   <CardDescription className="text-sm">

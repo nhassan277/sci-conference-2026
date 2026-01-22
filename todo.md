@@ -342,3 +342,4 @@
 - [x] Update conference poster on website with new version featuring updated Faculty of Science logo
 - [x] Update patron names to use full "Prof. Dr." format: Mohamed Samy Abdel Sadek, Sohair Ramadan Fahmy, Emtithal Mohamed Abdel Samie
 - [x] Update Dean title from "Dean, Faculty of Science" to "Dean of Faculty of Science"
+- [x] Change Arabic title for Prof. Dr. Sohair from "الأستاذة الدكتورة" to "الأستاذ الدكتور"
