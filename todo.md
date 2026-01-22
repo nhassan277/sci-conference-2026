@@ -369,3 +369,5 @@
 - [x] Include topic examples for each research area
 - [x] Add bilingual content (English/Arabic) for all track pages
 - [x] Update navigation to link to individual track pages
+- [x] Remove Submission Guidelines section from track detail pages
+- [x] Remove Track Chair section from track detail pages

@@ -122,44 +122,6 @@ export default function TrackDetail({ track }: TrackDetailProps) {
 
           {/* Sidebar */}
           <div className="space-y-6">
-            {/* Submission Guidelines */}
-            <Card className={`border-2 ${track.borderColor}`}>
-              <CardHeader>
-                <CardTitle>Submission Guidelines</CardTitle>
-                <CardDescription dir="rtl" className="font-medium">إرشادات التقديم</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <h4 className="font-semibold mb-2">Abstract Length</h4>
-                  <p className="text-sm text-muted-foreground">250-300 words</p>
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-2">Format</h4>
-                  <p className="text-sm text-muted-foreground">English or Arabic, structured abstract preferred</p>
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-2">Required Sections</h4>
-                  <ul className="text-sm text-muted-foreground space-y-1">
-                    <li>• Background/Objectives</li>
-                    <li>• Methods</li>
-                    <li>• Results</li>
-                    <li>• Conclusions</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-2">Keywords</h4>
-                  <p className="text-sm text-muted-foreground">3-5 keywords required</p>
-                </div>
-                <div className="pt-4 border-t">
-                  <Link href="/#registration">
-                    <Button className={`w-full bg-${track.bgColor}-600 hover:bg-${track.bgColor}-700`}>
-                      Submit Abstract
-                    </Button>
-                  </Link>
-                </div>
-              </CardContent>
-            </Card>
-
             {/* Important Dates */}
             <Card>
               <CardHeader>
@@ -179,22 +141,6 @@ export default function TrackDetail({ track }: TrackDetailProps) {
                   <p className="font-semibold">Conference Dates</p>
                   <p className="text-muted-foreground">April 7-8, 2026</p>
                 </div>
-              </CardContent>
-            </Card>
-
-            {/* Contact */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Track Chair</CardTitle>
-              </CardHeader>
-              <CardContent className="text-sm">
-                <p className="font-semibold">{track.chairName}</p>
-                <p className="text-muted-foreground">{track.chairTitle}</p>
-                <p className="text-muted-foreground mt-2">
-                  <a href={`mailto:${track.chairEmail}`} className={`text-${track.bgColor}-600 hover:underline`}>
-                    {track.chairEmail}
-                  </a>
-                </p>
               </CardContent>
             </Card>
           </div>
