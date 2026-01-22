@@ -254,7 +254,8 @@ export default function Home() {
                     عميد كلية العلوم جامعة القاهرة
                   </CardDescription>
                   <CardDescription className="text-sm">
-                    عميد كلية العلوم - جامعة القاهرة
+                    عميد كلية العلوم - جامعة القاهرة<br/>
+                    Dean of Faculty of Science - Cairo University
                   </CardDescription>
                 </CardHeader>
               </Card>
