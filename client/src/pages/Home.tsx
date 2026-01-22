@@ -590,7 +590,7 @@ export default function Home() {
                   Conference Hall, Cairo University, University Hostel
                 </p>
                 <p className="text-lg text-muted-foreground" dir="rtl">
-                  قاعة المؤتمرات، جامعة القاهرة، المدينة الجامعية
+                  مركز المؤتمرات، جامعة القاهرة، المدينة الجامعية
                 </p>
               </div>
             </div>
@@ -729,7 +729,7 @@ export default function Home() {
                       Conference Hall, Cairo University, University Hostel
                     </p>
                     <p className="text-sm text-muted-foreground" dir="rtl">
-                      قاعة المؤتمرات، جامعة القاهرة، المدينة الجامعية
+                      مركز المؤتمرات، جامعة القاهرة، المدينة الجامعية
                     </p>
                   </div>
                 </div>

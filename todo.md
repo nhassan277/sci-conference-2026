@@ -345,3 +345,4 @@
 - [x] Change Arabic title for Prof. Dr. Sohair from "الأستاذة الدكتورة" to "الأستاذ الدكتور"
 - [x] Create engaging Facebook post in Arabic to encourage student registration
 - [x] Change Dean title from "Dean of Faculty of Science - Cairo University" to "عميد كلية العلوم - جامعة القاهرة"
+- [x] Change venue name from "قاعة المؤتمرات" to "مركز المؤتمرات" on website
