@@ -33,13 +33,7 @@ const benefits = [
     silver: false,
     bronze: false,
   },
-  {
-    name: "Sponsoring a Talk",
-    platinum: true,
-    gold: true,
-    silver: false,
-    bronze: false,
-  },
+
   {
     name: "Company Stand at the Conference Fair (Foyer)",
     platinum: true,
@@ -61,13 +55,7 @@ const benefits = [
     silver: true,
     bronze: true,
   },
-  {
-    name: "Website",
-    platinum: true,
-    gold: true,
-    silver: true,
-    bronze: true,
-  },
+
   {
     name: "Conference Tickets",
     platinum: true,

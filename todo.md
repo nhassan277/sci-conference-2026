@@ -353,3 +353,5 @@
 - [x] Update Chemical Sciences description from "Chemistry, Analytical Chemistry..." to "Physical Chemistry, Analytical Chemistry..."
 - [x] Add "Speaking Opportunity (Panel or Sponsor Session)" to Gold package benefits
 - [x] Add "Logo on website and conference printings (size depends on package)" to all sponsorship packages
+- [x] Remove "Sponsoring a Talk" benefit from sponsorship packages table
+- [x] Remove "Website" benefit from sponsorship packages table
