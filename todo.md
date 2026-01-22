@@ -348,3 +348,4 @@
 - [x] Change venue name from "قاعة المؤتمرات" to "مركز المؤتمرات" on website
 - [x] Add English Dean title "Dean of Faculty of Science - Cairo University" below Arabic title
 - [x] Remove duplicate Arabic Dean title line "عميد كلية العلوم جامعة القاهرة"
+- [x] Replace conference poster on website with latest version (same size)
