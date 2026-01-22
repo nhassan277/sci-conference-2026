@@ -27,7 +27,7 @@ export default function Home() {
       icon: Atom,
       title: "Chemical Sciences",
       titleAr: "العلوم الكيميائية",
-      description: "Chemistry, Analytical Chemistry, Organic Chemistry, Inorganic Chemistry",
+      description: "Physical Chemistry, Analytical Chemistry, Organic Chemistry, Inorganic Chemistry",
       color: "bg-pink-100 text-pink-700"
     },
     {
