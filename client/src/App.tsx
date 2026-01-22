@@ -17,6 +17,8 @@ import AdminManagement from "./pages/AdminManagement";
 import AuditLog from "./pages/AuditLog";
 import DigestSettings from "./pages/DigestSettings";
 import SurveyResponse from "./pages/SurveyResponse";
+import ResearchTracks from "./pages/ResearchTracks";
+import TrackDetailPage from "./pages/TrackDetailPage";
 // import LiveGallery from "./pages/LiveGallery";
 // import GalleryUpload from "./pages/GalleryUpload";
 
@@ -36,6 +38,8 @@ function Router() {
       <Route path={"/audit-log"} component={AuditLog} />
       <Route path={"/digest-settings"} component={DigestSettings} />
       <Route path={"/survey/:token"} component={SurveyResponse} />
+      <Route path={"/tracks"} component={ResearchTracks} />
+      <Route path={"/tracks/:trackId"} component={TrackDetailPage} />
       {/* <Route path={"/live-gallery"} component={LiveGallery} /> */}
       {/* <Route path={"/gallery-upload"} component={GalleryUpload} /> */}
       <Route path={"/404"} component={NotFound} />

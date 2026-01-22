@@ -396,6 +396,11 @@ export default function Home() {
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Nine comprehensive tracks covering all scientific disciplines
             </p>
+            <Link href="/tracks">
+              <Button variant="outline" size="lg" className="mt-4">
+                View All Tracks | عرض جميع المحاور
+              </Button>
+            </Link>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
