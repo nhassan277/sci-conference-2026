@@ -343,3 +343,5 @@
 - [x] Update patron names to use full "Prof. Dr." format: Mohamed Samy Abdel Sadek, Sohair Ramadan Fahmy, Emtithal Mohamed Abdel Samie
 - [x] Update Dean title from "Dean, Faculty of Science" to "Dean of Faculty of Science"
 - [x] Change Arabic title for Prof. Dr. Sohair from "الأستاذة الدكتورة" to "الأستاذ الدكتور"
+- [x] Create engaging Facebook post in Arabic to encourage student registration
+- [x] Change Dean title from "Dean of Faculty of Science - Cairo University" to "عميد كلية العلوم - جامعة القاهرة"
