@@ -3,7 +3,7 @@ import { z } from "zod";
 import { eq, desc } from "drizzle-orm";
 import superjson from "superjson";
 import { db } from "./db.js";
-import { registrations, sponsorships, sessions, supportTickets, admins, auditLogs, reminderSubscriptions, galleryPhotos, newsletterSubscriptions, googleSheetsSyncs } from "../drizzle/schema.js";
+import { registrations, sponsorships, sessions, supportTickets, admins, auditLogs, reminderSubscriptions, galleryPhotos, newsletterSubscriptions, googleSheetsSyncs, certificateRequests } from "../drizzle/schema.js";
 import { syncAllSheets, SHEETS_CONFIG, type SheetCategory } from "./googleSheets.js";
 import { verifyToken, isOwner } from "./auth.js";
 import { logAuditAction, getIpAddress, getUserAgent } from "./audit.js";
@@ -1638,5 +1638,146 @@ export const appRouter = router({
   }),
 
   // gallery: galleryRouter, // Temporarily disabled
+
+  certificate: router({
+    // Create certificate request
+    create: publicProcedure
+      .input(
+        z.object({
+          fullName: z.string().min(1, "Full name is required"),
+          email: z.string().email("Valid email is required"),
+          phone: z.string().min(1, "Phone number is required"),
+          affiliation: z.string().min(1, "Affiliation is required"),
+          attendeeCategory: z.enum(["student", "faculty", "researcher", "industry"]),
+        })
+      )
+      .mutation(async ({ input }) => {
+        const newRequest = await db.insert(certificateRequests).values({
+          fullName: input.fullName,
+          email: input.email,
+          phone: input.phone,
+          affiliation: input.affiliation,
+          attendeeCategory: input.attendeeCategory,
+          amount: "100.00",
+          currency: "EGP",
+          paymentStatus: "pending",
+        });
+
+        // Get the inserted ID
+        const insertedId = (newRequest as any).insertId || 0;
+
+        return {
+          success: true,
+          requestId: Number(insertedId),
+        };
+      }),
+
+    // Create Stripe checkout session for certificate payment
+    createCheckoutSession: publicProcedure
+      .input(
+        z.object({
+          requestId: z.number(),
+        })
+      )
+      .mutation(async ({ input, ctx }) => {
+        const request = await db
+          .select()
+          .from(certificateRequests)
+          .where(eq(certificateRequests.id, input.requestId))
+          .limit(1);
+
+        if (request.length === 0) {
+          throw new TRPCError({
+            code: "NOT_FOUND",
+            message: "Certificate request not found",
+          });
+        }
+
+        const certificateRequest = request[0];
+
+        if (certificateRequest.paymentStatus === "completed") {
+          throw new TRPCError({
+            code: "BAD_REQUEST",
+            message: "Certificate already paid for",
+          });
+        }
+
+        // Import Stripe
+        const stripe = (await import("stripe")).default;
+        const stripeClient = new stripe(process.env.STRIPE_SECRET_KEY!, {
+          apiVersion: "2025-12-15.clover" as any,
+        });
+
+        const origin = ctx.req?.headers?.origin || "http://localhost:3000";
+
+        const session = await stripeClient.checkout.sessions.create({
+          payment_method_types: ["card"],
+          line_items: [
+            {
+              price_data: {
+                currency: "egp",
+                product_data: {
+                  name: "SCI 2026 Conference Certificate",
+                  description: `Certificate for ${certificateRequest.fullName}`,
+                },
+                unit_amount: 10000, // 100 EGP in cents
+              },
+              quantity: 1,
+            },
+          ],
+          mode: "payment",
+          success_url: `${origin}/certificate-success?session_id={CHECKOUT_SESSION_ID}`,
+          cancel_url: `${origin}/request-certificate`,
+          client_reference_id: input.requestId.toString(),
+          customer_email: certificateRequest.email,
+          metadata: {
+            requestId: input.requestId.toString(),
+            fullName: certificateRequest.fullName,
+            email: certificateRequest.email,
+          },
+        });
+
+        // Update request with checkout session ID
+        await db
+          .update(certificateRequests)
+          .set({
+            stripeCheckoutSessionId: session.id,
+          })
+          .where(eq(certificateRequests.id, input.requestId));
+
+        return {
+          checkoutUrl: session.url,
+        };
+      }),
+
+    // Get certificate request by ID
+    getById: publicProcedure
+      .input(z.object({ id: z.number() }))
+      .query(async ({ input }) => {
+        const request = await db
+          .select()
+          .from(certificateRequests)
+          .where(eq(certificateRequests.id, input.id))
+          .limit(1);
+
+        if (request.length === 0) {
+          throw new TRPCError({
+            code: "NOT_FOUND",
+            message: "Certificate request not found",
+          });
+        }
+
+        return request[0];
+      }),
+
+    // Admin: List all certificate requests
+    list: adminProcedure.query(async () => {
+      const requests = await db
+        .select()
+        .from(certificateRequests)
+        .orderBy(desc(certificateRequests.createdAt));
+      return requests;
+    }),
+  }),
 });
 export type AppRouter = typeof appRouter;

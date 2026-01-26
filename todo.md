@@ -378,3 +378,9 @@
 - [x] Create pricing card in registration section
 - [x] Add pricing information to track detail pages
 - [x] Make pricing information bilingual (English/Arabic)
+- [x] Create database schema for certificate requests
+- [x] Add backend API endpoints for certificate requests
+- [x] Integrate Stripe payment for 100 EGP certificate fee
+- [x] Build certificate request form page
+- [x] Add certificate request link to navigation
+- [ ] Test payment flow and certificate request submission

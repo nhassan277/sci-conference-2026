@@ -19,6 +19,8 @@ import DigestSettings from "./pages/DigestSettings";
 import SurveyResponse from "./pages/SurveyResponse";
 import ResearchTracks from "./pages/ResearchTracks";
 import TrackDetailPage from "./pages/TrackDetailPage";
+import RequestCertificate from "./pages/RequestCertificate";
+import CertificateSuccess from "./pages/CertificateSuccess";
 // import LiveGallery from "./pages/LiveGallery";
 // import GalleryUpload from "./pages/GalleryUpload";
 
@@ -40,6 +42,8 @@ function Router() {
       <Route path={"/survey/:token"} component={SurveyResponse} />
       <Route path={"/tracks"} component={ResearchTracks} />
       <Route path={"/tracks/:trackId"} component={TrackDetailPage} />
+      <Route path={"/request-certificate"} component={RequestCertificate} />
+      <Route path={"/certificate-success"} component={CertificateSuccess} />
       {/* <Route path={"/live-gallery"} component={LiveGallery} /> */}
       {/* <Route path={"/gallery-upload"} component={GalleryUpload} /> */}
       <Route path={"/404"} component={NotFound} />

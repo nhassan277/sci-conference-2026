@@ -473,6 +473,15 @@ export default function Home() {
             </CardContent>
           </Card>
 
+          {/* Certificate Request Button */}
+          <div className="text-center mb-12">
+            <Link href="/request-certificate">
+              <Button size="lg" variant="outline" className="px-8 py-6 text-lg border-2 border-primary hover:bg-primary hover:text-white">
+                🎓 Request Certificate | طلب شهادة
+              </Button>
+            </Link>
+          </div>
+
           <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
             {registrationCategories.map((category, index) => (
               <Card key={index} className="hover:shadow-lg transition-shadow border-2 hover:border-primary/50">
