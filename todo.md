@@ -373,14 +373,4 @@
 - [x] Remove Track Chair section from track detail pages
 - [x] Add General Submission Information section to track detail pages
 - [x] Link "Register Now" button to https://sciconf26.website/#registration
-- [x] Add free attendance notice to homepage hero section
-- [x] Add certificate pricing (100 EGP) information prominently
-- [x] Create pricing card in registration section
-- [x] Add pricing information to track detail pages
-- [x] Make pricing information bilingual (English/Arabic)
-- [x] Create database schema for certificate requests
-- [x] Add backend API endpoints for certificate requests
-- [x] Integrate Stripe payment for 100 EGP certificate fee
-- [x] Build certificate request form page
-- [x] Add certificate request link to navigation
-- [ ] Test payment flow and certificate request submission
+- [x] Design fourth certificate for keynote speakers with luxurious design and lecture title field

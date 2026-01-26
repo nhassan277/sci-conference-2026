@@ -92,13 +92,6 @@
       "when": 1769092037743,
       "tag": "0012_third_warbound",
       "breakpoints": true
-    },
-    {
-      "idx": 13,
-      "version": "5",
-      "when": 1769438686046,
-      "tag": "0013_medical_sunset_bain",
-      "breakpoints": true
     }
   ]
 }

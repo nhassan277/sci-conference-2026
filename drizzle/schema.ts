@@ -241,28 +241,3 @@ export const googleSheetsSyncs = mysqlTable("google_sheets_syncs", {
 
 export type GoogleSheetsSync = typeof googleSheetsSyncs.$inferSelect;
 export type NewGoogleSheetsSync = typeof googleSheetsSyncs.$inferInsert;
-
-// Certificate Requests
-export const certificateRequests = mysqlTable("certificate_requests", {
-  id: int("id").primaryKey().autoincrement(),
-  fullName: varchar("full_name", { length: 255 }).notNull(),
-  email: varchar("email", { length: 255 }).notNull(),
-  phone: varchar("phone", { length: 50 }).notNull(),
-  affiliation: varchar("affiliation", { length: 255 }).notNull(),
-  attendeeCategory: varchar("attendee_category", { length: 50 }).notNull(), // student, faculty, researcher, industry
-  registrationId: int("registration_id"), // Link to registration if exists
-  amount: decimal("amount", { precision: 10, scale: 2 }).notNull().default("100.00"),
-  currency: varchar("currency", { length: 10 }).notNull().default("EGP"),
-  paymentStatus: varchar("payment_status", { length: 20 }).default("pending").notNull(), // pending, completed, failed, refunded
-  stripePaymentIntentId: varchar("stripe_payment_intent_id", { length: 255 }),
-  stripeCheckoutSessionId: varchar("stripe_checkout_session_id", { length: 255 }),
-  paidAt: timestamp("paid_at"),
-  certificateGenerated: boolean("certificate_generated").default(false).notNull(),
-  certificateUrl: varchar("certificate_url", { length: 500 }),
-  certificateGeneratedAt: timestamp("certificate_generated_at"),
-  createdAt: timestamp("created_at").defaultNow().notNull(),
-  updatedAt: timestamp("updated_at").defaultNow().onUpdateNow().notNull(),
-});
-
-export type CertificateRequest = typeof certificateRequests.$inferSelect;
-export type NewCertificateRequest = typeof certificateRequests.$inferInsert;

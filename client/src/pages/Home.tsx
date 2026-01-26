@@ -143,14 +143,9 @@ export default function Home() {
         <div className="container relative py-20 md:py-32">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
-              <div className="flex flex-wrap gap-3">
-                <Badge className="bg-secondary text-secondary-foreground px-4 py-1.5 text-sm font-medium">
-                  April 7-8, 2026 | ٧-٨ أبريل ٢٠٢٦
-                </Badge>
-                <Badge className="bg-green-600 text-white px-4 py-1.5 text-sm font-medium">
-                  🎉 FREE Attendance | الحضور مجاني
-                </Badge>
-              </div>
+              <Badge className="bg-secondary text-secondary-foreground px-4 py-1.5 text-sm font-medium">
+                April 7-8, 2026 | ٧-٨ أبريل ٢٠٢٦
+              </Badge>
               
               <div className="space-y-4">
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-primary">
@@ -438,48 +433,6 @@ export default function Home() {
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Choose your category and submit your registration
             </p>
-          </div>
-
-          {/* Pricing Information Card */}
-          <Card className="max-w-3xl mx-auto mb-12 border-2 border-green-500 bg-green-50/50">
-            <CardHeader className="text-center">
-              <CardTitle className="text-2xl text-green-700">
-                🎉 Free Conference Attendance | الحضور مجاني
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid md:grid-cols-2 gap-6 text-center">
-                <div className="space-y-2">
-                  <div className="text-4xl font-bold text-green-600">FREE</div>
-                  <p className="text-lg font-semibold">Conference Attendance</p>
-                  <p className="text-sm text-muted-foreground">
-                    Attend all sessions, workshops, and networking events at no cost
-                  </p>
-                  <p className="text-sm text-muted-foreground" dir="rtl">
-                    حضور جميع الجلسات وورش العمل مجانًا
-                  </p>
-                </div>
-                <div className="space-y-2 border-l-2 border-green-200 pl-6">
-                  <div className="text-4xl font-bold text-primary">100 EGP</div>
-                  <p className="text-lg font-semibold">Certificate Only</p>
-                  <p className="text-sm text-muted-foreground">
-                    Optional: Purchase an official participation certificate
-                  </p>
-                  <p className="text-sm text-muted-foreground" dir="rtl">
-                    اختياري: شهادة مشاركة رسمية فقط
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Certificate Request Button */}
-          <div className="text-center mb-12">
-            <Link href="/request-certificate">
-              <Button size="lg" variant="outline" className="px-8 py-6 text-lg border-2 border-primary hover:bg-primary hover:text-white">
-                🎓 Request Certificate | طلب شهادة
-              </Button>
-            </Link>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
