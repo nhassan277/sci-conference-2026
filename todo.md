@@ -373,3 +373,8 @@
 - [x] Remove Track Chair section from track detail pages
 - [x] Add General Submission Information section to track detail pages
 - [x] Link "Register Now" button to https://sciconf26.website/#registration
+- [x] Add free attendance notice to homepage hero section
+- [x] Add certificate pricing (100 EGP) information prominently
+- [x] Create pricing card in registration section
+- [x] Add pricing information to track detail pages
+- [x] Make pricing information bilingual (English/Arabic)

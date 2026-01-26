@@ -135,6 +135,14 @@ export default function TrackDetail({ track }: TrackDetailProps) {
                 <p className="text-sm text-muted-foreground" dir="rtl">
                   لتقديم ملخص بحثك لهذا المحور، يرجى استخدام نموذج التسجيل في المؤتمر.
                 </p>
+                <div className="bg-green-50 border border-green-200 rounded-lg p-4 my-4">
+                  <p className="text-sm font-semibold text-green-700 mb-2">
+                    🎉 Free Attendance | الحضور مجاني
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    Certificate: 100 EGP (optional) | الشهادة: ١٠٠ جنيه (اختياري)
+                  </p>
+                </div>
                 <div className="pt-4 border-t">
                   <a href="https://sciconf26.website/#registration" target="_blank" rel="noopener noreferrer">
                     <Button className={`w-full bg-${track.bgColor}-600 hover:bg-${track.bgColor}-700`}>
