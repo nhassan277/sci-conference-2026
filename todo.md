@@ -377,3 +377,4 @@
 - [x] Create English-only versions of attendance, research participation, and appreciation certificates
 - [x] Create English-only version of keynote speaker certificate with lighter background
 - [x] Change keynote speaker English certificate background to beige/golden like other certificates
+- [x] Create bilingual Scientific Committees page with 11 departments in alphabetical order

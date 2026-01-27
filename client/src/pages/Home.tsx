@@ -769,6 +769,7 @@ export default function Home() {
               <ul className="space-y-2 text-sm opacity-90">
                 <li><a href="#about" className="hover:underline">About</a></li>
                 <li><a href="#tracks" className="hover:underline">Research Tracks</a></li>
+                <li><Link href="/committees" className="hover:underline">Scientific Committees</Link></li>
                 <li><a href="#registration" className="hover:underline">Registration</a></li>
                 <li><a href="#contact" className="hover:underline">Contact</a></li>
               </ul>
