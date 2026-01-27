@@ -375,3 +375,4 @@
 - [x] Link "Register Now" button to https://sciconf26.website/#registration
 - [x] Design fourth certificate for keynote speakers with luxurious design and lecture title field
 - [x] Create English-only versions of attendance, research participation, and appreciation certificates
+- [x] Create English-only version of keynote speaker certificate with lighter background
