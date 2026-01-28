@@ -13,7 +13,7 @@ export default function Committees() {
         { nameAr: "د. طارق قابيل", nameEn: "Dr. Tarek Qabil" },
         { nameAr: "د. أحمد فؤاد", nameEn: "Dr. Ahmed Fouad" },
         { nameAr: "د. دينا عمر", nameEn: "Dr. Dina Omar" },
-        { nameAr: "د. نهلة عصام", nameEn: "Dr. Nahla Essam" }
+        { nameAr: "د. نهلة أسامة", nameEn: "Dr. Nahla Osama" }
       ]
     },
     {
@@ -96,13 +96,11 @@ export default function Committees() {
       nameAr: "الكيمياء",
       nameEn: "Chemistry",
       chair: {
-        nameAr: "أ.د. أحمد أبو الروس",
-        nameEn: "Prof. Dr. Ahmed Abou El-Rous"
+        nameAr: "أ.د. تيسير عبدالخالق عبدالله",
+        nameEn: "Prof. Dr. Tayseer Abdel-Khaleq Abdullah"
       },
       members: [
-        { nameAr: "أ.د. محمد علي", nameEn: "Prof. Dr. Mohamed Ali" },
-        { nameAr: "د. أحمد", nameEn: "Dr. Ahmed" },
-        { nameAr: "د. محمد", nameEn: "Dr. Mohamed" }
+        { nameAr: "أ.د. أحمد الوحي", nameEn: "Prof. Dr. Ahmed Elwahy" }
       ]
     },
     {
@@ -120,13 +118,11 @@ export default function Committees() {
       nameAr: "علم الحيوان",
       nameEn: "Zoology",
       chair: {
-        nameAr: "أ.د. هالة عبد الله",
-        nameEn: "Prof. Dr. Hala Abdullah"
+        nameAr: "أ.د. سلوى عبدالحميد",
+        nameEn: "Prof. Dr. Salwa Abdelhamid"
       },
       members: [
-        { nameAr: "أ.د. محمد", nameEn: "Prof. Dr. Mohamed" },
-        { nameAr: "د. أحمد", nameEn: "Dr. Ahmed" },
-        { nameAr: "د. سارة", nameEn: "Dr. Sarah" }
+        { nameAr: "أ.د. سلوى ثابت", nameEn: "Prof. Dr. Salwa Thabet" }
       ]
     },
     {
@@ -137,9 +133,10 @@ export default function Committees() {
         nameEn: "Dr. Tarek Abdel-Mawgoud"
       },
       members: [
-        { nameAr: "أ.د. محمد", nameEn: "Prof. Dr. Mohamed" },
-        { nameAr: "د. فاطمة", nameEn: "Dr. Fatma" },
-        { nameAr: "د. علي", nameEn: "Dr. Ali" }
+        { nameAr: "أ.د. ميمونة كرد", nameEn: "Prof. Dr. Maimoona Kord" },
+        { nameAr: "أ.د. وليد أبو السعود", nameEn: "Prof. Dr. Walid Abo-ElSooad" },
+        { nameAr: "أ.د. هناء بدوي", nameEn: "Prof. Dr. Hanaa Badawy" },
+        { nameAr: "أ.د. شريف النجدي", nameEn: "Prof. Dr. Sherif Elnagdy" }
       ]
     }
   ];
