@@ -11,7 +11,7 @@ export default function Committees() {
       },
       members: [
         { nameAr: "د. طارق قابيل", nameEn: "Dr. Tarek Qabil" },
-        { nameAr: "د. أحمد فؤاد", nameEn: "Dr. Ahmed Fouad" },
+        { nameAr: "أ.د. أحمد فؤاد", nameEn: "Prof. Dr. Ahmed Fouad" },
         { nameAr: "د. دينا عمرو", nameEn: "Dr. Dina Amr" },
         { nameAr: "د. نهلة أسامة", nameEn: "Dr. Nahla Osama" }
       ]

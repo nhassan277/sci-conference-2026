@@ -381,3 +381,4 @@
 - [x] Update Scientific Committees page with corrected names for Biotechnology, Chemistry, Zoology, and Botany
 - [x] Update committee titles and names: Botany chair to Prof., fix Chemistry member name, remove Physics Assistant Professor title
 - [x] Correct Dr. Dina's last name from Omar to Amr in Biotechnology department
+- [x] Update Dr. Ahmed Fouad's title to Prof. Dr. in Biotechnology department
