@@ -63,7 +63,7 @@ export default function Committees() {
       chair: "Dr. Sameh Tahoun",
       members: [
         "Dr. Abdel-Hamid El-Manawy",
-        "Dr. Mortada"
+        "Prof. Dr. Mortada Mourad El Aref"
       ]
     },
     {

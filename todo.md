@@ -399,3 +399,4 @@
 - [x] Remove Dr. Sherif Elnagdy and Dr. Hanaa Badawy from Botany department committee
 - [x] Correct Mathematics committee: change Ahmed Ramadan to Mohamed Ramadan
 - [x] Reorder Mathematics committee: move Prof. Dr. Mohamed El-Zawawi before Dr. Walid Abdullah
+- [x] Update Geology committee: change Dr. Mortada to Prof. Dr. Mortada Mourad El Aref
