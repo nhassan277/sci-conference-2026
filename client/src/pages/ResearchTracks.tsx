@@ -167,7 +167,7 @@ export default function ResearchTracks() {
             <CardContent className="space-y-4">
               <div>
                 <h3 className="font-semibold text-lg mb-2">Abstract Submission Deadline</h3>
-                <p className="text-muted-foreground">March 15, 2026</p>
+                <p className="text-muted-foreground">February 28, 2026</p>
               </div>
               <div>
                 <h3 className="font-semibold text-lg mb-2">Notification of Acceptance</h3>
@@ -184,7 +184,7 @@ export default function ResearchTracks() {
               </div>
               <div>
                 <h3 className="font-semibold text-lg mb-2" dir="rtl">موعد تقديم الملخصات</h3>
-                <p className="text-muted-foreground" dir="rtl">15 مارس 2026</p>
+                <p className="text-muted-foreground" dir="rtl">28 فبراير 2026</p>
               </div>
               <div className="pt-4">
                 <Link href="/#registration">

@@ -182,7 +182,7 @@ export default function LifeSciences() {
               <CardContent className="space-y-3 text-sm">
                 <div>
                   <p className="font-semibold">Abstract Submission</p>
-                  <p className="text-muted-foreground">March 15, 2026</p>
+                  <p className="text-muted-foreground">February 28, 2026</p>
                 </div>
                 <div>
                   <p className="font-semibold">Notification</p>
