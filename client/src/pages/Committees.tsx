@@ -78,7 +78,7 @@ export default function Committees() {
       members: [
         { nameAr: "أ.د. جمال عبد الناصر", nameEn: "Prof. Dr. Gamal Abdel-Nasser" },
         { nameAr: "أ.د. عبير عبد الله", nameEn: "Prof. Dr. Abeer Abdullah" },
-        { nameAr: "د. محمد مصطفى عرمان", nameEn: "Dr. Mohamed Mostafa Arman", title: "أستاذ مساعد", titleEn: "Assistant Professor" }
+        { nameAr: "د. محمد مصطفى عرمان", nameEn: "Dr. Mohamed Mostafa Arman" }
       ]
     },
     {
@@ -100,7 +100,7 @@ export default function Committees() {
         nameEn: "Prof. Dr. Tayseer Abdel-Khaleq Abdullah"
       },
       members: [
-        { nameAr: "أ.د. أحمد الوحي", nameEn: "Prof. Dr. Ahmed Elwahy" }
+        { nameAr: "أ.د. أحمد الواحي", nameEn: "Prof. Dr. Ahmed Elwahy" }
       ]
     },
     {
@@ -129,8 +129,8 @@ export default function Committees() {
       nameAr: "علم النبات",
       nameEn: "Botany",
       chair: {
-        nameAr: "د. طارق عبد الموجود",
-        nameEn: "Dr. Tarek Abdel-Mawgoud"
+        nameAr: "أ.د. طارق عبد الموجود",
+        nameEn: "Prof. Dr. Tarek Abdel-Mawgoud"
       },
       members: [
         { nameAr: "أ.د. ميمونة كرد", nameEn: "Prof. Dr. Maimoona Kord" },

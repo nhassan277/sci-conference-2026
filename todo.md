@@ -379,3 +379,4 @@
 - [x] Change keynote speaker English certificate background to beige/golden like other certificates
 - [x] Create bilingual Scientific Committees page with 11 departments in alphabetical order
 - [x] Update Scientific Committees page with corrected names for Biotechnology, Chemistry, Zoology, and Botany
+- [x] Update committee titles and names: Botany chair to Prof., fix Chemistry member name, remove Physics Assistant Professor title
