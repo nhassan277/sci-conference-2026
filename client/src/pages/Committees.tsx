@@ -1,59 +1,7 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function Committees() {
   const committees = [
-    {
-      nameAr: "التقنية الحيوية",
-      nameEn: "Biotechnology",
-      chair: {
-        nameAr: "أ.د. رفعت جبر",
-        nameEn: "Prof. Dr. Refaat Gabr"
-      },
-      members: [
-        { nameAr: "د. طارق قابيل", nameEn: "Dr. Tarek Qabil" },
-        { nameAr: "أ.د. أحمد فؤاد", nameEn: "Prof. Dr. Ahmed Fouad" },
-        { nameAr: "د. دينا عمرو", nameEn: "Dr. Dina Amr" },
-        { nameAr: "د. نهلة أسامة", nameEn: "Dr. Nahla Osama" }
-      ]
-    },
-    {
-      nameAr: "الجيوفيزياء",
-      nameEn: "Geophysics",
-      chair: {
-        nameAr: "د. وليد مبروك",
-        nameEn: "Dr. Walid Mabrouk"
-      },
-      members: [
-        { nameAr: "أ.د. محمد حسن", nameEn: "Prof. Dr. Mohamed Hassan" },
-        { nameAr: "د. أحمد محسن", nameEn: "Dr. Ahmed Mohsen" }
-      ]
-    },
-    {
-      nameAr: "الجيولوجيا",
-      nameEn: "Geology",
-      chair: {
-        nameAr: "أ.د. هاني عبد الحميد",
-        nameEn: "Prof. Dr. Hany Abdel-Hamid"
-      },
-      members: [
-        { nameAr: "أ.د. حسام الدين حسن", nameEn: "Prof. Dr. Hossam El-Din Hassan" },
-        { nameAr: "د. وليد عبد الله", nameEn: "Dr. Walid Abdullah" },
-        { nameAr: "د. محمد حسن", nameEn: "Dr. Mohamed Hassan" }
-      ]
-    },
-    {
-      nameAr: "الرياضيات",
-      nameEn: "Mathematics",
-      chair: {
-        nameAr: "أ.د. ناصر العزب",
-        nameEn: "Prof. Dr. Nasser El-Azab"
-      },
-      members: [
-        { nameAr: "أ.د. أحمد الجندي", nameEn: "Prof. Dr. Ahmed El-Gendy" },
-        { nameAr: "د. وليد عبد الله", nameEn: "Dr. Walid Abdullah" },
-        { nameAr: "أ.د. محمد الزواوي", nameEn: "Prof. Dr. Mohamed El-Zawawi" }
-      ]
-    },
     {
       nameAr: "الفلك",
       nameEn: "Astronomy",
@@ -69,19 +17,6 @@ export default function Committees() {
       ]
     },
     {
-      nameAr: "الفيزياء",
-      nameEn: "Physics",
-      chair: {
-        nameAr: "أ.د. منال مكرم سعد",
-        nameEn: "Prof. Dr. Manal Makram Saad"
-      },
-      members: [
-        { nameAr: "أ.د. جمال عبد الناصر", nameEn: "Prof. Dr. Gamal Abdel-Nasser" },
-        { nameAr: "أ.د. عبير عبد الله", nameEn: "Prof. Dr. Abeer Abdullah" },
-        { nameAr: "د. محمد مصطفى عرمان", nameEn: "Dr. Mohamed Mostafa Arman" }
-      ]
-    },
-    {
       nameAr: "الفيزياء الحيوية",
       nameEn: "Biophysics",
       chair: {
@@ -90,6 +25,34 @@ export default function Committees() {
       },
       members: [
         { nameAr: "د. محمود", nameEn: "Dr. Mahmoud" }
+      ]
+    },
+    {
+      nameAr: "التقنية الحيوية",
+      nameEn: "Biotechnology",
+      chair: {
+        nameAr: "أ.د. رفعت جبر",
+        nameEn: "Prof. Dr. Refaat Gabr"
+      },
+      members: [
+        { nameAr: "د. طارق قابيل", nameEn: "Dr. Tarek Qabil" },
+        { nameAr: "أ.د. أحمد فؤاد", nameEn: "Prof. Dr. Ahmed Fouad" },
+        { nameAr: "د. دينا عمرو", nameEn: "Dr. Dina Amr" },
+        { nameAr: "د. نهلة أسامة", nameEn: "Dr. Nahla Osama" }
+      ]
+    },
+    {
+      nameAr: "علم النبات",
+      nameEn: "Botany",
+      chair: {
+        nameAr: "أ.د. طارق عبد الموجود",
+        nameEn: "Prof. Dr. Tarek Abdel-Mawgoud"
+      },
+      members: [
+        { nameAr: "أ.د. ميمونة كرد", nameEn: "Prof. Dr. Maimoona Kord" },
+        { nameAr: "أ.د. وليد أبو السعود", nameEn: "Prof. Dr. Walid Abo-ElSooad" },
+        { nameAr: "أ.د. هناء بدوي", nameEn: "Prof. Dr. Hanaa Badawy" },
+        { nameAr: "أ.د. شريف النجدي", nameEn: "Prof. Dr. Sherif Elnagdy" }
       ]
     },
     {
@@ -115,6 +78,57 @@ export default function Committees() {
       ]
     },
     {
+      nameAr: "الجيولوجيا",
+      nameEn: "Geology",
+      chair: {
+        nameAr: "أ.د. هاني عبد الحميد",
+        nameEn: "Prof. Dr. Hany Abdel-Hamid"
+      },
+      members: [
+        { nameAr: "أ.د. حسام الدين حسن", nameEn: "Prof. Dr. Hossam El-Din Hassan" },
+        { nameAr: "د. وليد عبد الله", nameEn: "Dr. Walid Abdullah" },
+        { nameAr: "د. محمد حسن", nameEn: "Dr. Mohamed Hassan" }
+      ]
+    },
+    {
+      nameAr: "الجيوفيزياء",
+      nameEn: "Geophysics",
+      chair: {
+        nameAr: "د. وليد مبروك",
+        nameEn: "Dr. Walid Mabrouk"
+      },
+      members: [
+        { nameAr: "أ.د. محمد حسن", nameEn: "Prof. Dr. Mohamed Hassan" },
+        { nameAr: "د. أحمد محسن", nameEn: "Dr. Ahmed Mohsen" }
+      ]
+    },
+    {
+      nameAr: "الرياضيات",
+      nameEn: "Mathematics",
+      chair: {
+        nameAr: "أ.د. ناصر العزب",
+        nameEn: "Prof. Dr. Nasser El-Azab"
+      },
+      members: [
+        { nameAr: "أ.د. أحمد الجندي", nameEn: "Prof. Dr. Ahmed El-Gendy" },
+        { nameAr: "د. وليد عبد الله", nameEn: "Dr. Walid Abdullah" },
+        { nameAr: "أ.د. محمد الزواوي", nameEn: "Prof. Dr. Mohamed El-Zawawi" }
+      ]
+    },
+    {
+      nameAr: "الفيزياء",
+      nameEn: "Physics",
+      chair: {
+        nameAr: "أ.د. منال مكرم سعد",
+        nameEn: "Prof. Dr. Manal Makram Saad"
+      },
+      members: [
+        { nameAr: "أ.د. جمال عبد الناصر", nameEn: "Prof. Dr. Gamal Abdel-Nasser" },
+        { nameAr: "أ.د. عبير عبد الله", nameEn: "Prof. Dr. Abeer Abdullah" },
+        { nameAr: "د. محمد مصطفى عرمان", nameEn: "Dr. Mohamed Mostafa Arman" }
+      ]
+    },
+    {
       nameAr: "علم الحيوان",
       nameEn: "Zoology",
       chair: {
@@ -123,20 +137,6 @@ export default function Committees() {
       },
       members: [
         { nameAr: "أ.د. سلوى ثابت", nameEn: "Prof. Dr. Salwa Thabet" }
-      ]
-    },
-    {
-      nameAr: "علم النبات",
-      nameEn: "Botany",
-      chair: {
-        nameAr: "أ.د. طارق عبد الموجود",
-        nameEn: "Prof. Dr. Tarek Abdel-Mawgoud"
-      },
-      members: [
-        { nameAr: "أ.د. ميمونة كرد", nameEn: "Prof. Dr. Maimoona Kord" },
-        { nameAr: "أ.د. وليد أبو السعود", nameEn: "Prof. Dr. Walid Abo-ElSooad" },
-        { nameAr: "أ.د. هناء بدوي", nameEn: "Prof. Dr. Hanaa Badawy" },
-        { nameAr: "أ.د. شريف النجدي", nameEn: "Prof. Dr. Sherif Elnagdy" }
       ]
     }
   ];
@@ -147,17 +147,10 @@ export default function Committees() {
       <section className="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-16">
         <div className="container">
           <div className="text-center space-y-4">
-            <h1 className="text-4xl md:text-5xl font-bold">
-              Scientific Committees
-            </h1>
-            <p className="text-3xl font-semibold" dir="rtl">
-              اللجان العلمية
-            </p>
-            <p className="text-lg md:text-xl text-blue-100 max-w-3xl mx-auto">
-              Distinguished faculty members leading the scientific tracks of SCI 2026
-            </p>
-            <p className="text-base md:text-lg text-blue-100" dir="rtl">
-              أعضاء هيئة التدريس المتميزون الذين يقودون المحاور العلمية للمؤتمر
+            <h1 className="text-4xl md:text-5xl font-bold">Scientific Committees</h1>
+            <p className="text-2xl font-semibold" dir="rtl">اللجان العلمية</p>
+            <p className="text-lg max-w-2xl mx-auto">
+              Distinguished faculty members leading the scientific organization of SCI 2026
             </p>
           </div>
         </div>
@@ -168,79 +161,43 @@ export default function Committees() {
         <div className="container">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {committees.map((committee, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow border-2 hover:border-primary/50">
-                <CardHeader className="bg-gradient-to-r from-blue-50 to-blue-100">
-                  <CardTitle className="text-xl">
-                    <div className="space-y-2">
-                      <div className="text-primary font-bold">
-                        {committee.nameEn}
-                      </div>
-                      <div className="text-lg text-secondary" dir="rtl">
-                        {committee.nameAr}
-                      </div>
-                    </div>
-                  </CardTitle>
+              <Card key={index} className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <CardTitle className="text-xl text-primary">{committee.nameEn}</CardTitle>
+                  <CardDescription className="text-base font-medium" dir="rtl">
+                    {committee.nameAr}
+                  </CardDescription>
                 </CardHeader>
-                <CardContent className="pt-6 space-y-4">
-                  {/* Chair */}
-                  <div className="border-b pb-4">
+                <CardContent className="space-y-4">
+                  <div>
                     <p className="text-sm font-semibold text-muted-foreground mb-2">
                       Chair / رئيس القسم
                     </p>
-                    <p className="font-bold text-primary">
-                      {committee.chair.nameEn}
-                    </p>
-                    <p className="text-sm text-secondary" dir="rtl">
+                    <p className="font-medium">{committee.chair.nameEn}</p>
+                    <p className="text-sm text-muted-foreground" dir="rtl">
                       {committee.chair.nameAr}
                     </p>
                   </div>
-
-                  {/* Members */}
-                  <div>
-                    <p className="text-sm font-semibold text-muted-foreground mb-3">
-                      Committee Members / أعضاء اللجنة
-                    </p>
-                    <ul className="space-y-2">
-                      {committee.members.map((member, idx) => (
-                        <li key={idx} className="text-sm">
-                          <p className="font-medium text-gray-900">
-                            {member.nameEn}
-                            {member.titleEn && (
-                              <span className="text-xs text-muted-foreground ml-2">
-                                ({member.titleEn})
-                              </span>
-                            )}
-                          </p>
-                          <p className="text-gray-600" dir="rtl">
-                            {member.nameAr}
-                            {member.title && (
-                              <span className="text-xs mr-2">
-                                ({member.title})
-                              </span>
-                            )}
-                          </p>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  {committee.members.length > 0 && (
+                    <div>
+                      <p className="text-sm font-semibold text-muted-foreground mb-2">
+                        Committee Members / أعضاء اللجنة
+                      </p>
+                      <ul className="space-y-2">
+                        {committee.members.map((member, idx) => (
+                          <li key={idx}>
+                            <p className="text-sm font-medium">{member.nameEn}</p>
+                            <p className="text-xs text-muted-foreground" dir="rtl">
+                              {member.nameAr}
+                            </p>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Note Section */}
-      <section className="py-12 bg-blue-50">
-        <div className="container">
-          <div className="max-w-3xl mx-auto text-center space-y-3">
-            <p className="text-sm text-muted-foreground">
-              The Scientific Committees are responsible for reviewing submissions, 
-              organizing sessions, and ensuring the academic quality of the conference.
-            </p>
-            <p className="text-sm text-muted-foreground" dir="rtl">
-              اللجان العلمية مسؤولة عن مراجعة المشاركات وتنظيم الجلسات وضمان الجودة الأكاديمية للمؤتمر.
-            </p>
           </div>
         </div>
       </section>
