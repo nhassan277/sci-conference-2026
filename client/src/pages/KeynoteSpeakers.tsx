@@ -65,7 +65,7 @@ export default function KeynoteSpeakers() {
         <div className="container py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-6">
-              <img src="/images/logo_cu.png" alt="Cairo University" className="h-16 object-contain" />
+              <img src="/images/logo_cu_new.png" alt="Cairo University" className="h-16 object-contain" />
               <div className="hidden md:block">
                 <h1 className="text-xl font-bold text-primary">SCI 2026</h1>
                 <p className="text-sm text-muted-foreground">Faculty of Science</p>
