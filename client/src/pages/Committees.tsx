@@ -18,7 +18,7 @@ export default function Committees() {
       nameEn: "Department of Biophysics",
       chair: "Dr. Mohamed Hassanein Gaber",
       members: [
-        "Dr. Mahmoud"
+        "Prof. Dr. Haitham Sharaf El-Din"
       ]
     },
     {
@@ -26,7 +26,7 @@ export default function Committees() {
       nameEn: "Department of Biotechnology",
       chair: "Prof. Dr. Refaat Gabre",
       members: [
-        "Dr. Tarek Kabil",
+        "Prof. em. Tarek Kabil",
         "Prof. Dr. Ahmed Fouad",
         "Dr. Dina Amr",
         "Dr. Nahla Osama"
@@ -62,11 +62,10 @@ export default function Committees() {
     {
       nameAr: "الجيولوجيا",
       nameEn: "Department of Geology",
-      chair: "Prof. Dr. Hany Abdel-Hamid",
+      chair: "Dr. Sameh Tahoun",
       members: [
-        "Prof. Dr. Hossam El-Din Hassan",
-        "Dr. Walid Abdullah",
-        "Dr. Mohamed Hassan"
+        "Dr. Abdel-Hamid El-Manawy",
+        "Dr. Mortada"
       ]
     },
     {
@@ -84,6 +83,7 @@ export default function Committees() {
       chair: "Prof. Dr. Nasser El-Azab",
       members: [
         "Prof. Dr. Ahmed El-Gendy",
+        "Prof. Dr. Ahmed Ramadan",
         "Dr. Walid Abdullah",
         "Prof. Dr. Mohamed El-Zawawi"
       ]
