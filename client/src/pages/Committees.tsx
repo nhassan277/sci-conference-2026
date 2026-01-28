@@ -54,7 +54,7 @@ export default function Committees() {
       nameEn: "Department of Entomology",
       chair: "Dr. Nagwa Rashdan",
       members: [
-        "Dr. Youssef"
+        "Dr. Youssef El-Demerdash"
       ]
     },
     {

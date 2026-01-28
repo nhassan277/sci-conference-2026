@@ -400,3 +400,4 @@
 - [x] Correct Mathematics committee: change Ahmed Ramadan to Mohamed Ramadan
 - [x] Reorder Mathematics committee: move Prof. Dr. Mohamed El-Zawawi before Dr. Walid Abdullah
 - [x] Update Geology committee: change Dr. Mortada to Prof. Dr. Mortada Mourad El Aref
+- [x] Update Entomology committee: change Dr. Youssef to Dr. Youssef El-Demerdash
