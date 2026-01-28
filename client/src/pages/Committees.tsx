@@ -38,9 +38,7 @@ export default function Committees() {
       chair: "Prof. Dr. Tarek Abdel-Mawgoud",
       members: [
         "Prof. Dr. Maimoona Kord",
-        "Prof. Dr. Walid Abo-ElSooad",
-        "Prof. Dr. Hanaa Badawy",
-        "Prof. Dr. Sherif Elnagdy"
+        "Prof. Dr. Walid Abo-ElSooad"
       ]
     },
     {

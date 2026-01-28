@@ -396,3 +396,4 @@
 - [x] Add Prof. Dr. Ahmed Ramadan to Mathematics committee before Dr. Walid Abdullah
 - [x] Update Biotechnology - change Dr. Tarek Kabil to Prof. em. Tarek Kabil
 - [x] Update Geology committee with Dr. Sameh Tahoun (Chair), Dr. Abdel-Hamid El-Manawy, and Dr. Mortada
+- [x] Remove Dr. Sherif Elnagdy and Dr. Hanaa Badawy from Botany department committee
