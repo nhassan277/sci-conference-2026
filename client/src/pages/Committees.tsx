@@ -63,7 +63,7 @@ export default function Committees() {
       nameEn: "Department of Geology",
       chair: "Prof. Dr. Sameh Tahoun",
       members: [
-        "Prof. Dr. Abdelatty-Hameed Wagdy El Manawy",
+        "Prof. Dr. Abdel-Hameed Wagdy El Manawy",
         "Prof. Dr. Mortada Mourad El Aref"
       ]
     },

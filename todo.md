@@ -406,3 +406,4 @@
 - [x] Update Geophysics: Change Chair title to Prof. Dr. Waleed Mabrouk
 - [x] Update Physics: Change Chair to Prof. Dr. Mohamed Hassanein Gaber
 - [x] Update Geology: Change Chair title to Prof. Dr., update member name to Prof. Dr. Abdelatty-Hameed Wagdy El Manawy
+- [x] Correct Geology member name spelling: Abdelatty-Hameed to Abdel-Hameed
