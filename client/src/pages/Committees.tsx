@@ -137,14 +137,14 @@ export default function Committees() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div>
-                    <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
+                    <p className="text-xs font-semibold text-orange-600 uppercase tracking-wide mb-2">
                       Chair
                     </p>
                     <p className="font-medium text-sm">{committee.chair}</p>
                   </div>
                   {committee.members.length > 0 && (
                     <div>
-                      <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
+                      <p className="text-xs font-semibold text-orange-600 uppercase tracking-wide mb-2">
                         Committee Members
                       </p>
                       <ul className="space-y-1.5">

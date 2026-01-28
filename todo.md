@@ -384,3 +384,4 @@
 - [x] Update Dr. Ahmed Fouad's title to Prof. Dr. in Biotechnology department
 - [x] Reorder departments alphabetically by English names (A-Z) on Scientific Committees page
 - [x] Update Scientific Committees: change Astronomy name, remove Arabic member names, add 'Department of' prefix, fix name spellings
+- [x] Change Chair and Committee Members labels to orange color on Committees page
