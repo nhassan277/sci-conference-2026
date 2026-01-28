@@ -81,9 +81,9 @@ export default function Committees() {
       chair: "Prof. Dr. Nasser El-Azab",
       members: [
         "Prof. Dr. Ahmed El-Gendy",
-        "Prof. Dr. Ahmed Ramadan",
-        "Dr. Walid Abdullah",
-        "Prof. Dr. Mohamed El-Zawawi"
+        "Prof. Dr. Mohamed Ramadan",
+        "Prof. Dr. Mohamed El-Zawawi",
+        "Dr. Walid Abdullah"
       ]
     },
     {
