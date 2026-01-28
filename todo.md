@@ -385,3 +385,6 @@
 - [x] Reorder departments alphabetically by English names (A-Z) on Scientific Committees page
 - [x] Update Scientific Committees: change Astronomy name, remove Arabic member names, add 'Department of' prefix, fix name spellings
 - [x] Change Chair and Committee Members labels to orange color on Committees page
+- [x] Create Keynote Speakers page with 4 invited speakers
+- [x] Add navigation link for Keynote Speakers page
+- [ ] Design 4 social media announcements for keynote speakers
