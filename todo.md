@@ -389,3 +389,4 @@
 - [x] Add navigation link for Keynote Speakers page
 - [ ] Design 4 social media announcements for keynote speakers
 - [x] Change abstract submission deadline from March 15 to February 28, 2026
+- [x] Add Keynote Speakers link to main navigation bar

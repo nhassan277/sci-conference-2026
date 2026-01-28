@@ -121,6 +121,9 @@ export default function Home() {
               <a href="#registration" className="text-sm font-medium hover:text-primary transition-colors">
                 Registration
               </a>
+              <a href="/speakers" className="text-sm font-medium hover:text-primary transition-colors">
+                Keynote Speakers
+              </a>
               <a href="/schedule" className="text-sm font-medium hover:text-primary transition-colors">
                 Schedule
               </a>
