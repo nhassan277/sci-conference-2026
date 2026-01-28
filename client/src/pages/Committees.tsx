@@ -52,24 +52,25 @@ export default function Committees() {
     {
       nameAr: "علم الحشرات",
       nameEn: "Department of Entomology",
-      chair: "Dr. Nagwa Rashdan",
+      chair: "Prof. Dr. Aly Younes",
       members: [
-        "Dr. Youssef El-Demerdash"
+        "Prof. Dr. Nagwa Rashdan",
+        "Prof. Dr. Youssef El-Demerdash"
       ]
     },
     {
       nameAr: "الجيولوجيا",
       nameEn: "Department of Geology",
-      chair: "Dr. Sameh Tahoun",
+      chair: "Prof. Dr. Sameh Tahoun",
       members: [
-        "Dr. Abdel-Hamid El-Manawy",
+        "Prof. Dr. Abdelatty-Hameed Wagdy El Manawy",
         "Prof. Dr. Mortada Mourad El Aref"
       ]
     },
     {
       nameAr: "الجيوفيزياء",
       nameEn: "Department of Geophysics",
-      chair: "Dr. Walid Mabrouk",
+      chair: "Prof. Dr. Waleed Mabrouk",
       members: [
         "Prof. Dr. Mohamed Hassan",
         "Dr. Ahmed Mohsen"
@@ -89,7 +90,7 @@ export default function Committees() {
     {
       nameAr: "الفيزياء",
       nameEn: "Department of Physics",
-      chair: "Prof. Dr. Manal Makram Saad",
+      chair: "Prof. Dr. Mohamed Hassanein Gaber",
       members: [
         "Prof. Dr. Gamal Abdel-Nasser",
         "Prof. Dr. Abeer Abdullah",

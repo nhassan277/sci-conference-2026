@@ -402,3 +402,7 @@
 - [x] Update Geology committee: change Dr. Mortada to Prof. Dr. Mortada Mourad El Aref
 - [x] Update Entomology committee: change Dr. Youssef to Dr. Youssef El-Demerdash
 - [x] Replace Cairo University logo on Keynote Speakers page with new logo
+- [x] Update Entomology: Chair to Prof. Dr. Aly Younes, add Prof. Dr. Nagwa Rashdan as member
+- [x] Update Geophysics: Change Chair title to Prof. Dr. Waleed Mabrouk
+- [x] Update Physics: Change Chair to Prof. Dr. Mohamed Hassanein Gaber
+- [x] Update Geology: Change Chair title to Prof. Dr., update member name to Prof. Dr. Abdelatty-Hameed Wagdy El Manawy
