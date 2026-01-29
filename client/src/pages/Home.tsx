@@ -149,9 +149,17 @@ export default function Home() {
         <div className="container relative py-20 md:py-32">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
-              <Badge className="bg-secondary text-secondary-foreground px-4 py-1.5 text-sm font-medium">
-                April 7-8, 2026 | ٧-٨ أبريل ٢٠٢٦
-              </Badge>
+              <div className="flex flex-wrap gap-3">
+                <Badge className="bg-secondary text-secondary-foreground px-4 py-1.5 text-sm font-medium">
+                  April 7-8, 2026 | ٧-٨ أبريل ٢٠٢٦
+                </Badge>
+                <Badge className="bg-green-600 text-white px-4 py-1.5 text-sm font-medium">
+                  ✓ Free Attendance | الحضور مجاناً
+                </Badge>
+                <Badge className="bg-blue-600 text-white px-4 py-1.5 text-sm font-medium">
+                  Certificate: 100 EGP | الشهادة: ١٠٠ ج
+                </Badge>
+              </div>
               
               <div className="space-y-4">
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-primary">
@@ -439,6 +447,14 @@ export default function Home() {
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Choose your category and submit your registration
             </p>
+            <div className="flex flex-wrap justify-center gap-4 mt-6">
+              <Badge className="bg-green-600 text-white px-6 py-2 text-base font-medium">
+                ✓ Conference Attendance is FREE | الحضور مجاناً
+              </Badge>
+              <Badge className="bg-blue-600 text-white px-6 py-2 text-base font-medium">
+                Certificate Available: 100 EGP | الشهادة متاحة: ١٠٠ جنيه
+              </Badge>
+            </div>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">

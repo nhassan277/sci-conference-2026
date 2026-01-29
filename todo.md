@@ -430,3 +430,9 @@
 - [x] Fix SEO issues: add meta description and keywords to homepage
 - [x] Update patronage banner layout: university president in separate row
 - [x] Modify patronage banner based on original design: move president to separate row
+
+## Pricing Information Display
+- [x] Add free attendance notice to homepage
+- [x] Add certificate pricing (100 EGP) to homepage
+- [x] Update registration page with pricing information
+- [x] Add pricing badge/banner to hero section
