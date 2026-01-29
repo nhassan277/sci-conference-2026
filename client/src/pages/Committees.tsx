@@ -46,7 +46,7 @@ export default function Committees() {
       nameEn: "Department of Chemistry",
       chair: "Prof. Dr. Tayseer Abdel-Khaleq Abdullah",
       members: [
-        "Prof. Dr. Ahmed Elwahy"
+        "Prof. Dr. Ahmed Helmy Elwahy"
       ]
     },
     {
