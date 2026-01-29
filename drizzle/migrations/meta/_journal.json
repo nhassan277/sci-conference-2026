@@ -92,6 +92,13 @@
       "when": 1769092037743,
       "tag": "0012_third_warbound",
       "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "5",
+      "when": 1769714215875,
+      "tag": "0013_whole_sentinels",
+      "breakpoints": true
     }
   ]
 }

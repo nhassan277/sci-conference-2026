@@ -241,3 +241,52 @@ export const googleSheetsSyncs = mysqlTable("google_sheets_syncs", {
 
 export type GoogleSheetsSync = typeof googleSheetsSyncs.$inferSelect;
 export type NewGoogleSheetsSync = typeof googleSheetsSyncs.$inferInsert;
+
+// Media Registrations (Press & TV Coverage)
+export const mediaRegistrations = mysqlTable("media_registrations", {
+  id: int("id").primaryKey().autoincrement(),
+  // Conference Info
+  conferenceName: varchar("conference_name", { length: 255 }).notNull().default("SCI 2026"),
+  conferenceDate: varchar("conference_date", { length: 100 }).notNull().default("April 7-8, 2026"),
+  conferenceLocation: varchar("conference_location", { length: 255 }).notNull().default("Faculty of Science, Cairo University"),
+  
+  // Media Organization Info
+  organizationName: varchar("organization_name", { length: 255 }).notNull(),
+  organizationType: varchar("organization_type", { length: 50 }).notNull(), // newspaper, news_website, tv_channel, radio
+  coverageType: varchar("coverage_type", { length: 50 }).notNull(), // written, photo, video, live_broadcast
+  
+  // Journalist/Reporter Info
+  fullName: varchar("full_name", { length: 255 }).notNull(),
+  jobTitle: varchar("job_title", { length: 255 }).notNull(),
+  phone: varchar("phone", { length: 50 }).notNull(),
+  email: varchar("email", { length: 255 }).notNull(),
+  pressCardNumber: varchar("press_card_number", { length: 100 }), // optional
+  
+  // Coverage Team (stored as JSON array)
+  teamMembers: json("team_members"), // [{name: string, role: string, phone: string}]
+  
+  // Status & Approval
+  status: varchar("status", { length: 50 }).default("pending").notNull(), // pending, approved, rejected
+  approvedBy: varchar("approved_by", { length: 255 }), // admin openId
+  approvedAt: timestamp("approved_at"),
+  rejectionReason: text("rejection_reason"),
+  
+  // Badge & Access
+  badgeIssued: boolean("badge_issued").default(false).notNull(),
+  badgeIssuedAt: timestamp("badge_issued_at"),
+  badgeNumber: varchar("badge_number", { length: 50 }),
+  
+  // Compliance
+  agreementAccepted: boolean("agreement_accepted").default(true).notNull(),
+  
+  // Metadata
+  ipAddress: varchar("ip_address", { length: 50 }),
+  userAgent: text("user_agent"),
+  notes: text("notes"), // admin notes
+  
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().onUpdateNow().notNull(),
+});
+
+export type MediaRegistration = typeof mediaRegistrations.$inferSelect;
+export type NewMediaRegistration = typeof mediaRegistrations.$inferInsert;

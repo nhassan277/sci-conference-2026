@@ -13,6 +13,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Checkbox } from "@/components/ui/checkbox";
 import { Camera, Newspaper, Radio, Tv, Plus, Trash2 } from "lucide-react";
 import { toast } from "sonner";
+import { trpc } from "@/lib/trpc";
 
 interface TeamMember {
   id: string;
@@ -26,6 +27,23 @@ export default function MediaRegistration() {
   const [coverageType, setCoverageType] = useState<string[]>([]);
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
   const [agreedToTerms, setAgreedToTerms] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const registerMutation = trpc.media.register.useMutation({
+    onSuccess: () => {
+      toast.success("تم التسجيل بنجاح - سيتم التواصل معكم قريباً");
+      // Reset form
+      setMediaType("");
+      setCoverageType([]);
+      setTeamMembers([]);
+      setAgreedToTerms(false);
+      setIsSubmitting(false);
+    },
+    onError: (error) => {
+      toast.error(error.message || "فشل التسجيل - يرجى المحاولة مرة أخرى");
+      setIsSubmitting(false);
+    },
+  });
 
   const addTeamMember = () => {
     setTeamMembers([
@@ -61,12 +79,44 @@ export default function MediaRegistration() {
     e.preventDefault();
     
     if (!agreedToTerms) {
-    toast.error("يرجى الموافقة على الإقرار قبل التسجيل");
+      toast.error("يرجى الموافقة على الإقرار قبل التسجيل");
       return;
     }
 
-    // Here you would typically send the data to your backend
-    toast.success("تم التسجيل بنجاح - سيتم التواصل معكم قريباً");
+    const formData = new FormData(e.currentTarget);
+    
+    // Validate required fields
+    const organizationName = formData.get("organizationName") as string;
+    const organizationType = formData.get("organizationType") as string;
+    const fullName = formData.get("fullName") as string;
+    const jobTitle = formData.get("jobTitle") as string;
+    const phone = formData.get("phone") as string;
+    const email = formData.get("email") as string;
+
+    if (!organizationName || !organizationType || !fullName || !jobTitle || !phone || !email) {
+      toast.error("يرجى ملء جميع الحقول المطلوبة");
+      return;
+    }
+
+    if (coverageType.length === 0) {
+      toast.error("يرجى اختيار نوع التغطية");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    registerMutation.mutate({
+      organizationName,
+      organizationType: organizationType as "newspaper" | "news_website" | "tv_channel" | "radio",
+      coverageType: coverageType[0] as "written" | "photo" | "video" | "live_broadcast",
+      fullName,
+      jobTitle,
+      phone,
+      email,
+      pressCardNumber: formData.get("pressCardNumber") as string | undefined,
+      teamMembers: teamMembers.filter(m => m.name && m.role && m.phone),
+      agreementAccepted: agreedToTerms,
+    });
   };
 
   return (
@@ -126,14 +176,14 @@ export default function MediaRegistration() {
                 <Label htmlFor="org-name">
                   Organization Name | اسم الجهة الإعلامية <span className="text-destructive">*</span>
                 </Label>
-                <Input id="org-name" required placeholder="أدخل اسم الجهة الإعلامية" />
+                <Input id="org-name" name="organizationName" required placeholder="أدخل اسم الجهة الإعلامية" />
               </div>
 
               <div>
                 <Label htmlFor="media-type">
                   Media Type | نوع الجهة <span className="text-destructive">*</span>
                 </Label>
-                <Select value={mediaType} onValueChange={setMediaType} required>
+                <Select value={mediaType} onValueChange={setMediaType} name="organizationType" required>
                   <SelectTrigger id="media-type">
                     <SelectValue placeholder="اختر نوع الجهة" />
                   </SelectTrigger>
@@ -203,14 +253,14 @@ export default function MediaRegistration() {
                 <Label htmlFor="journalist-name">
                   Full Name | الاسم بالكامل <span className="text-destructive">*</span>
                 </Label>
-                <Input id="journalist-name" required placeholder="أدخل الاسم بالكامل" />
+                <Input id="journalist-name" name="fullName" required placeholder="أدخل الاسم بالكامل" />
               </div>
 
               <div>
                 <Label htmlFor="position">
                   Position | الصفة الوظيفية <span className="text-destructive">*</span>
                 </Label>
-                <Input id="position" required placeholder="مثال: محرر، مراسل، مصور" />
+                <Input id="position" name="jobTitle" required placeholder="مثال: محرر، مراسل، مصور" />
               </div>
 
               <div className="grid md:grid-cols-2 gap-4">
@@ -220,6 +270,7 @@ export default function MediaRegistration() {
                   </Label>
                   <Input
                     id="phone"
+                    name="phone"
                     type="tel"
                     required
                     placeholder="+20 123 456 7890"
@@ -232,6 +283,7 @@ export default function MediaRegistration() {
                   </Label>
                   <Input
                     id="email"
+                    name="email"
                     type="email"
                     required
                     placeholder="example@email.com"
@@ -244,7 +296,7 @@ export default function MediaRegistration() {
                 <Label htmlFor="id-number">
                   ID Card / Press Card Number | رقم البطاقة أو كارنيه النقابة
                 </Label>
-                <Input id="id-number" placeholder="اختياري" />
+                <Input id="id-number" name="pressCardNumber" placeholder="اختياري" />
               </div>
             </CardContent>
           </Card>

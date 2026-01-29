@@ -3,7 +3,7 @@ import { z } from "zod";
 import { eq, desc } from "drizzle-orm";
 import superjson from "superjson";
 import { db } from "./db.js";
-import { registrations, sponsorships, sessions, supportTickets, admins, auditLogs, reminderSubscriptions, galleryPhotos, newsletterSubscriptions, googleSheetsSyncs } from "../drizzle/schema.js";
+import { registrations, sponsorships, sessions, supportTickets, admins, auditLogs, reminderSubscriptions, galleryPhotos, newsletterSubscriptions, googleSheetsSyncs, mediaRegistrations } from "../drizzle/schema.js";
 import { syncAllSheets, SHEETS_CONFIG, type SheetCategory } from "./googleSheets.js";
 import { verifyToken, isOwner } from "./auth.js";
 import { logAuditAction, getIpAddress, getUserAgent } from "./audit.js";
@@ -1638,5 +1638,275 @@ export const appRouter = router({
   }),
 
   // gallery: galleryRouter, // Temporarily disabled
+
+  // Media Registration (Press & TV Coverage)
+  media: router({
+    // Submit media registration
+    register: publicProcedure
+      .input(
+        z.object({
+          organizationName: z.string().min(1, "Organization name is required"),
+          organizationType: z.enum(["newspaper", "news_website", "tv_channel", "radio"]),
+          coverageType: z.enum(["written", "photo", "video", "live_broadcast"]),
+          fullName: z.string().min(1, "Full name is required"),
+          jobTitle: z.string().min(1, "Job title is required"),
+          phone: z.string().min(1, "Phone number is required"),
+          email: z.string().email("Invalid email address"),
+          pressCardNumber: z.string().optional(),
+          teamMembers: z.array(
+            z.object({
+              name: z.string(),
+              role: z.string(),
+              phone: z.string(),
+            })
+          ).optional(),
+          agreementAccepted: z.boolean().refine(val => val === true, {
+            message: "You must accept the coverage agreement",
+          }),
+        })
+      )
+      .mutation(async ({ input, ctx }) => {
+        try {
+          const ipAddress = getIpAddress(ctx.req);
+          const userAgent = getUserAgent(ctx.req);
+
+          const [registration] = await db
+            .insert(mediaRegistrations)
+            .values({
+              organizationName: input.organizationName,
+              organizationType: input.organizationType,
+              coverageType: input.coverageType,
+              fullName: input.fullName,
+              jobTitle: input.jobTitle,
+              phone: input.phone,
+              email: input.email,
+              pressCardNumber: input.pressCardNumber,
+              teamMembers: input.teamMembers || [],
+              agreementAccepted: input.agreementAccepted,
+              ipAddress,
+              userAgent,
+              status: "pending",
+            });
+
+          // TODO: Send email notifications (will implement in next phase)
+          // 1. Confirmation email to journalist
+          // 2. Alert email to conference organizers
+
+          return {
+            success: true,
+            message: "Registration submitted successfully. You will receive a confirmation email shortly.",
+            registrationId: registration.insertId,
+          };
+        } catch (error) {
+          console.error("Media registration error:", error);
+          throw new TRPCError({
+            code: "INTERNAL_SERVER_ERROR",
+            message: "Failed to submit registration. Please try again.",
+          });
+        }
+      }),
+
+    // Admin: Get all media registrations
+    getAll: adminProcedure
+      .input(
+        z.object({
+          status: z.enum(["all", "pending", "approved", "rejected"]).optional(),
+        }).optional()
+      )
+      .query(async ({ input }) => {
+        let query = db.select().from(mediaRegistrations);
+        
+        if (input?.status && input.status !== "all") {
+          query = query.where(eq(mediaRegistrations.status, input.status)) as any;
+        }
+
+        const registrations = await query.orderBy(desc(mediaRegistrations.createdAt));
+        return registrations;
+      }),
+
+    // Admin: Get single media registration
+    getById: adminProcedure
+      .input(z.object({ id: z.number() }))
+      .query(async ({ input }) => {
+        const [registration] = await db
+          .select()
+          .from(mediaRegistrations)
+          .where(eq(mediaRegistrations.id, input.id));
+
+        if (!registration) {
+          throw new TRPCError({
+            code: "NOT_FOUND",
+            message: "Registration not found",
+          });
+        }
+
+        return registration;
+      }),
+
+    // Admin: Approve media registration
+    approve: adminProcedure
+      .input(
+        z.object({
+          id: z.number(),
+          badgeNumber: z.string().optional(),
+        })
+      )
+      .mutation(async ({ input, ctx }) => {
+        const [registration] = await db
+          .select()
+          .from(mediaRegistrations)
+          .where(eq(mediaRegistrations.id, input.id));
+
+        if (!registration) {
+          throw new TRPCError({
+            code: "NOT_FOUND",
+            message: "Registration not found",
+          });
+        }
+
+        await db
+          .update(mediaRegistrations)
+          .set({
+            status: "approved",
+            approvedBy: ctx.user?.openId,
+            approvedAt: new Date(),
+            badgeNumber: input.badgeNumber,
+          })
+          .where(eq(mediaRegistrations.id, input.id));
+
+        // Log audit action
+        await logAuditAction({
+          adminId: undefined,
+          adminEmail: ctx.user?.email,
+          adminName: ctx.user?.name,
+          action: "approve",
+          resourceType: "media_registration",
+          resourceId: input.id,
+          details: {
+            message: `Approved media registration for ${registration.fullName} from ${registration.organizationName}`,
+            badgeNumber: input.badgeNumber,
+          },
+          ipAddress: getIpAddress(ctx.req),
+          userAgent: getUserAgent(ctx.req),
+        });
+
+        // TODO: Send approval email to journalist (will implement in next phase)
+
+        return { success: true, message: "Registration approved successfully" };
+      }),
+
+    // Admin: Reject media registration
+    reject: adminProcedure
+      .input(
+        z.object({
+          id: z.number(),
+          reason: z.string().min(1, "Rejection reason is required"),
+        })
+      )
+      .mutation(async ({ input, ctx }) => {
+        const [registration] = await db
+          .select()
+          .from(mediaRegistrations)
+          .where(eq(mediaRegistrations.id, input.id));
+
+        if (!registration) {
+          throw new TRPCError({
+            code: "NOT_FOUND",
+            message: "Registration not found",
+          });
+        }
+
+        await db
+          .update(mediaRegistrations)
+          .set({
+            status: "rejected",
+            approvedBy: ctx.user?.openId,
+            approvedAt: new Date(),
+            rejectionReason: input.reason,
+          })
+          .where(eq(mediaRegistrations.id, input.id));
+
+        // Log audit action
+        await logAuditAction({
+          adminId: undefined,
+          adminEmail: ctx.user?.email,
+          adminName: ctx.user?.name,
+          action: "reject",
+          resourceType: "media_registration",
+          resourceId: input.id,
+          details: {
+            message: `Rejected media registration for ${registration.fullName}`,
+            reason: input.reason,
+          },
+          ipAddress: getIpAddress(ctx.req),
+          userAgent: getUserAgent(ctx.req),
+        });
+
+        // TODO: Send rejection email to journalist (will implement in next phase)
+
+        return { success: true, message: "Registration rejected" };
+      }),
+
+    // Admin: Update notes
+    updateNotes: adminProcedure
+      .input(
+        z.object({
+          id: z.number(),
+          notes: z.string(),
+        })
+      )
+      .mutation(async ({ input }) => {
+        await db
+          .update(mediaRegistrations)
+          .set({ notes: input.notes })
+          .where(eq(mediaRegistrations.id, input.id));
+
+        return { success: true };
+      }),
+
+    // Admin: Issue badge
+    issueBadge: adminProcedure
+      .input(
+        z.object({
+          id: z.number(),
+          badgeNumber: z.string().min(1, "Badge number is required"),
+        })
+      )
+      .mutation(async ({ input }) => {
+        await db
+          .update(mediaRegistrations)
+          .set({
+            badgeIssued: true,
+            badgeIssuedAt: new Date(),
+            badgeNumber: input.badgeNumber,
+          })
+          .where(eq(mediaRegistrations.id, input.id));
+
+        return { success: true, message: "Badge issued successfully" };
+      }),
+
+    // Admin: Get statistics
+    getStats: adminProcedure.query(async () => {
+      const allRegistrations = await db.select().from(mediaRegistrations);
+
+      const stats = {
+        total: allRegistrations.length,
+        byStatus: {
+          pending: allRegistrations.filter(r => r.status === "pending").length,
+          approved: allRegistrations.filter(r => r.status === "approved").length,
+          rejected: allRegistrations.filter(r => r.status === "rejected").length,
+        },
+        byType: {
+          newspaper: allRegistrations.filter(r => r.organizationType === "newspaper").length,
+          news_website: allRegistrations.filter(r => r.organizationType === "news_website").length,
+          tv_channel: allRegistrations.filter(r => r.organizationType === "tv_channel").length,
+          radio: allRegistrations.filter(r => r.organizationType === "radio").length,
+        },
+        badgesIssued: allRegistrations.filter(r => r.badgeIssued).length,
+      };
+
+      return stats;
+    }),
+  }),
 });
 export type AppRouter = typeof appRouter;
