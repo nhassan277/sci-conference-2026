@@ -408,3 +408,11 @@
 - [x] Update Geology: Change Chair title to Prof. Dr., update member name to Prof. Dr. Abdelatty-Hameed Wagdy El Manawy
 - [x] Correct Geology member name spelling: Abdelatty-Hameed to Abdel-Hameed
 - [x] Update Botany member name: Ahmed Elwahy to Ahmed Helmy Elwahy
+- [x] Generate vertical lecture room banner (80cm × 2m)
+- [x] Generate horizontal stage banner (3m × 1m)
+- [x] Regenerate banners as clean print-ready files without annotations
+- [x] Generate square welcome banner for entrance stand (2m × 2m)
+- [x] Generate horizontal patronage banner with president, dean, and coordinator (3m × 1m)
+- [x] Update patronage banner with correct coordinator name: Dr. Emtithal Mohamed Abdel Samie
+- [x] Create media registration form page with all required fields
+- [x] Add media registration route and navigation link
