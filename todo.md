@@ -429,3 +429,4 @@
 - [x] Regenerate Facebook post with actual NAWAH logo
 - [x] Fix SEO issues: add meta description and keywords to homepage
 - [x] Update patronage banner layout: university president in separate row
+- [x] Modify patronage banner based on original design: move president to separate row
