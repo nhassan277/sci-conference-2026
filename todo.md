@@ -416,3 +416,5 @@
 - [x] Update patronage banner with correct coordinator name: Dr. Emtithal Mohamed Abdel Samie
 - [x] Create media registration form page with all required fields
 - [x] Add media registration route and navigation link
+- [x] Update NAWAH workshops section with full workshop details
+- [x] Generate Facebook post for NAWAH workshop announcement with logo

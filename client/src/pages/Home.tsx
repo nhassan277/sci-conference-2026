@@ -500,18 +500,30 @@ export default function Home() {
 
             <Card className="border-2 border-primary/20">
               <CardHeader>
-                <CardTitle className="text-2xl">Hands-on Training & Certification</CardTitle>
+                <CardTitle className="text-2xl">How to Convert Research Findings into Business Ideas</CardTitle>
                 <CardDescription className="text-base space-y-4 pt-4">
-                  <p>
-                    As part of the conference program, a series of hands-on and professional workshops will be delivered 
-                    in collaboration with <strong>NAWAH Scientific</strong>, a leading provider of advanced scientific services 
+                  <p className="text-foreground font-medium">
+                    In collaboration with <strong>NAWAH Scientific</strong>, a leading provider of advanced scientific services 
                     and research solutions.
                   </p>
-                  <ul className="list-disc list-inside space-y-2 text-left">
-                    <li>Workshops will be open to registered participants</li>
-                    <li>Separate workshop registration may apply due to limited capacity</li>
-                    <li>Certificates of completion will be provided by NAWAH</li>
-                  </ul>
+                  
+                  <div className="bg-primary/5 p-4 rounded-lg">
+                    <p className="text-sm text-muted-foreground mb-2"><strong>Duration:</strong> 4 hours (2h theoretical + 2h practical)</p>
+                  </div>
+
+                  <p className="text-justify">
+                    This course bridges the gap between laboratory results and real-world ventures, guiding participants to identify which scientific findings have true commercial potential. It distinguishes clearly between business ideas and sustainable business models, and introduces core fundraising concepts relevant to early-stage science-based startups. The session concludes with a hands-on Business Model Canvas workshop, where attendees transform a lab-derived concept into a structured, investor-ready business framework.
+                  </p>
+
+                  <div className="border-t pt-4 mt-4">
+                    <p className="text-sm text-muted-foreground"><strong>Workshop Details:</strong></p>
+                    <ul className="list-disc list-inside space-y-2 text-left mt-2">
+                      <li>Open to all registered conference participants</li>
+                      <li>Separate workshop registration may apply due to limited capacity</li>
+                      <li>Certificate of completion provided by NAWAH Scientific</li>
+                      <li>Interactive hands-on Business Model Canvas session included</li>
+                    </ul>
+                  </div>
                 </CardDescription>
               </CardHeader>
             </Card>
