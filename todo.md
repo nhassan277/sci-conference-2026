@@ -428,3 +428,4 @@
 - [ ] Test complete media registration workflow
 - [x] Regenerate Facebook post with actual NAWAH logo
 - [x] Fix SEO issues: add meta description and keywords to homepage
+- [x] Update patronage banner layout: university president in separate row
