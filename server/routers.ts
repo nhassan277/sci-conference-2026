@@ -7,6 +7,7 @@ import { registrations, sponsorships, sessions, supportTickets, admins, auditLog
 import { syncAllSheets, SHEETS_CONFIG, type SheetCategory } from "./googleSheets.js";
 import { verifyToken, isOwner } from "./auth.js";
 import { logAuditAction, getIpAddress, getUserAgent } from "./audit.js";
+import { sendMediaRegistrationNotification } from "./email.js";
 import { getAdminByOpenId, hasPermission, getRolePermissions, ensureOwnerIsSuperAdmin } from "./admin-management.js";
 import { notificationEmitter } from "./notification-emitter.js";
 
@@ -1688,9 +1689,18 @@ export const appRouter = router({
               status: "pending",
             });
 
-          // TODO: Send email notifications (will implement in next phase)
-          // 1. Confirmation email to journalist
-          // 2. Alert email to conference organizers
+          // Send email notification to organizers
+          await sendMediaRegistrationNotification({
+            organizationName: input.organizationName,
+            organizationType: input.organizationType,
+            fullName: input.fullName,
+            email: input.email,
+            phone: input.phone,
+            jobTitle: input.jobTitle,
+            coverageType: [input.coverageType],
+            teamMembers: input.teamMembers || [],
+            registrationId: registration.insertId,
+          });
 
           return {
             success: true,

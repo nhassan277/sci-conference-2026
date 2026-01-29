@@ -234,6 +234,73 @@ View all sponsorship inquiries in the admin dashboard.
 }
 
 /**
+ * Send media registration confirmation to journalist
+ * Note: This uses notifyOwner which sends to organizers
+ * For actual journalist emails, integrate with email service
+ */
+export async function sendMediaRegistrationNotification(data: {
+  organizationName: string;
+  organizationType: string;
+  fullName: string;
+  email: string;
+  phone: string;
+  jobTitle: string;
+  coverageType: string[];
+  teamMembers: { name: string; role: string; phone: string }[];
+  registrationId: number;
+}): Promise<boolean> {
+  const coverageTypes = data.coverageType.join(', ');
+  const teamMembersText = data.teamMembers.length > 0
+    ? data.teamMembers.map((m, i) => `${i + 1}. ${m.name} - ${m.role} (${m.phone})`).join('\n')
+    : 'No team members';
+  
+  const content = `
+**New Media Registration**
+
+**Registration ID:** #${data.registrationId}
+
+**Media Organization:**
+- **Name:** ${data.organizationName}
+- **Type:** ${data.organizationType}
+- **Coverage Type:** ${coverageTypes}
+
+**Journalist Information:**
+- **Name:** ${data.fullName}
+- **Position:** ${data.jobTitle}
+- **Email:** ${data.email}
+- **Phone:** ${data.phone}
+
+**Coverage Team:**
+${teamMembersText}
+
+**Next Steps:**
+- Review the media registration in the admin dashboard
+- Approve or contact the journalist for additional information
+- Prepare media badges and access credentials
+
+View all media registrations in the admin dashboard.
+  `.trim();
+
+  try {
+    const success = await notifyOwner({
+      title: `New Media Registration: ${data.organizationName}`,
+      content,
+    });
+    
+    if (success) {
+      console.log(`[Email] Media registration notification sent for #${data.registrationId}`);
+    } else {
+      console.warn(`[Email] Failed to send media registration notification for #${data.registrationId}`);
+    }
+    
+    return success;
+  } catch (error: any) {
+    console.error(`[Email] Error sending media registration notification: ${error.message}`);
+    return false;
+  }
+}
+
+/**
  * Send VIP check-in alert to organizers
  */
 export async function sendVIPCheckinAlert(data: {

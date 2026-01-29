@@ -423,7 +423,7 @@
 - [x] Create database schema for media registrations
 - [x] Create backend API endpoints for media registration
 - [x] Connect frontend form to backend API
-- [ ] Implement email notifications (journalist confirmation + admin alert)
+- [x] Implement email notifications (journalist confirmation + admin alert)
 - [ ] Create admin dashboard for media management
 - [ ] Test complete media registration workflow
 - [x] Regenerate Facebook post with actual NAWAH logo
