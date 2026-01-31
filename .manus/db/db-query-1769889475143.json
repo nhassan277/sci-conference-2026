@@ -1,0 +1,9 @@
+{
+  "query": "INSERT INTO committees (full_name, title, committee_type, department, role, email, phone, display_order) VALUES\n('سلوى عبد الحميد حمدي', 'أ.د', 'scientific', 'Zoology', 'Member', NULL, NULL, 1),\n('سلوى ثابت', 'أ.د', 'scientific', 'Zoology', 'Member', NULL, NULL, 2),\n('هالة علي عبد السلام', 'أ.د', 'scientific', 'Zoology', 'Member', NULL, NULL, 3),\n('منه هاني', 'د', 'reception', NULL, 'Member', NULL, NULL, 1),\n('شيماء يسري', '', 'reception', NULL, 'Member', NULL, NULL, 2);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute INSERT INTO committees (full_name, title, committee_type, department, role, email, phone, display_order) VALUES\n('سلوى عبد الحميد حمدي', 'أ.د', 'scientific', 'Zoology', 'Member', NULL, NULL, 1),\n('سلوى ثابت', 'أ.د', 'scientific', 'Zoology', 'Member', NULL, NULL, 2),\n('هالة علي عبد السلام', 'أ.د', 'scientific', 'Zoology', 'Member', NULL, NULL, 3),\n('منه هاني', 'د', 'reception', NULL, 'Member', NULL, NULL, 1),\n('شيماء يسري', '', 'reception', NULL, 'Member', NULL, NULL, 2);",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 1656
+}

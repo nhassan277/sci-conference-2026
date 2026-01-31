@@ -3,7 +3,7 @@ import { z } from "zod";
 import { eq, desc } from "drizzle-orm";
 import superjson from "superjson";
 import { db } from "./db.js";
-import { registrations, sponsorships, sessions, supportTickets, admins, auditLogs, reminderSubscriptions, galleryPhotos, newsletterSubscriptions, googleSheetsSyncs, mediaRegistrations } from "../drizzle/schema.js";
+import { registrations, sponsorships, sessions, supportTickets, admins, auditLogs, reminderSubscriptions, galleryPhotos, newsletterSubscriptions, googleSheetsSyncs, mediaRegistrations, committees } from "../drizzle/schema.js";
 import { syncAllSheets, SHEETS_CONFIG, type SheetCategory } from "./googleSheets.js";
 import { verifyToken, isOwner } from "./auth.js";
 import { logAuditAction, getIpAddress, getUserAgent } from "./audit.js";
@@ -1917,6 +1917,187 @@ export const appRouter = router({
 
       return stats;
     }),
+  }),
+
+  // Committee Management
+  committee: router({
+    // Public: List all committees
+    list: publicProcedure.query(async () => {
+      const allCommittees = await db
+        .select()
+        .from(committees)
+        .orderBy(committees.displayOrder, committees.id);
+
+      // Group by committee type
+      const grouped = allCommittees.reduce((acc, committee) => {
+        const type = committee.committeeType;
+        if (!acc[type]) {
+          acc[type] = [];
+        }
+        acc[type].push(committee);
+        return acc;
+      }, {} as Record<string, typeof allCommittees>);
+
+      return { committees: allCommittees, grouped };
+    }),
+
+    // Admin: Get all committees
+    getAll: adminProcedure.query(async () => {
+      return await db
+        .select()
+        .from(committees)
+        .orderBy(committees.committeeType, committees.displayOrder, committees.id);
+    }),
+
+    // Admin: Get single committee
+    getById: adminProcedure
+      .input(z.object({ id: z.number() }))
+      .query(async ({ input }) => {
+        const committee = await db
+          .select()
+          .from(committees)
+          .where(eq(committees.id, input.id))
+          .limit(1);
+
+        if (!committee || committee.length === 0) {
+          throw new TRPCError({
+            code: "NOT_FOUND",
+            message: "Committee member not found",
+          });
+        }
+
+        return committee[0];
+      }),
+
+    // Admin: Create committee member
+    create: adminProcedure
+      .input(
+        z.object({
+          fullName: z.string().min(1, "Full name is required"),
+          title: z.string().min(1, "Title is required"),
+          committeeType: z.enum(["scientific", "organizing", "reception", "technical"]),
+          department: z.string().optional(),
+          role: z.string().optional(),
+          email: z.string().email().optional().or(z.literal("")),
+          phone: z.string().optional(),
+          displayOrder: z.number().default(0),
+        })
+      )
+      .mutation(async ({ input, ctx }) => {
+        const [newCommittee] = await db.insert(committees).values({
+          fullName: input.fullName,
+          title: input.title,
+          committeeType: input.committeeType,
+          department: input.department || null,
+          role: input.role || null,
+          email: input.email || null,
+          phone: input.phone || null,
+          displayOrder: input.displayOrder,
+        });
+
+        // Log audit action
+        await logAuditAction({
+          adminId: undefined,
+          adminEmail: ctx.user?.email,
+          adminName: ctx.user?.name,
+          action: "create",
+          resourceType: "committee",
+          resourceId: Number(newCommittee.insertId),
+          details: {
+            message: `Created committee member: ${input.fullName}`,
+            committeeType: input.committeeType,
+          },
+          ipAddress: getIpAddress(ctx.req),
+          userAgent: getUserAgent(ctx.req),
+        });
+
+        return { success: true, id: Number(newCommittee.insertId) };
+      }),
+
+    // Admin: Update committee member
+    update: adminProcedure
+      .input(
+        z.object({
+          id: z.number(),
+          fullName: z.string().min(1, "Full name is required"),
+          title: z.string().min(1, "Title is required"),
+          committeeType: z.enum(["scientific", "organizing", "reception", "technical"]),
+          department: z.string().optional(),
+          role: z.string().optional(),
+          email: z.string().email().optional().or(z.literal("")),
+          phone: z.string().optional(),
+          displayOrder: z.number().default(0),
+        })
+      )
+      .mutation(async ({ input, ctx }) => {
+        await db
+          .update(committees)
+          .set({
+            fullName: input.fullName,
+            title: input.title,
+            committeeType: input.committeeType,
+            department: input.department || null,
+            role: input.role || null,
+            email: input.email || null,
+            phone: input.phone || null,
+            displayOrder: input.displayOrder,
+          })
+          .where(eq(committees.id, input.id));
+
+        // Log audit action
+        await logAuditAction({
+          adminId: undefined,
+          adminEmail: ctx.user?.email,
+          adminName: ctx.user?.name,
+          action: "update",
+          resourceType: "committee",
+          resourceId: input.id,
+          details: {
+            message: `Updated committee member: ${input.fullName}`,
+          },
+          ipAddress: getIpAddress(ctx.req),
+          userAgent: getUserAgent(ctx.req),
+        });
+
+        return { success: true };
+      }),
+
+    // Admin: Delete committee member
+    delete: adminProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input, ctx }) => {
+        const committee = await db
+          .select()
+          .from(committees)
+          .where(eq(committees.id, input.id))
+          .limit(1);
+
+        if (!committee || committee.length === 0) {
+          throw new TRPCError({
+            code: "NOT_FOUND",
+            message: "Committee member not found",
+          });
+        }
+
+        await db.delete(committees).where(eq(committees.id, input.id));
+
+        // Log audit action
+        await logAuditAction({
+          adminId: undefined,
+          adminEmail: ctx.user?.email,
+          adminName: ctx.user?.name,
+          action: "delete",
+          resourceType: "committee",
+          resourceId: input.id,
+          details: {
+            message: `Deleted committee member: ${committee[0].fullName}`,
+          },
+          ipAddress: getIpAddress(ctx.req),
+          userAgent: getUserAgent(ctx.req),
+        });
+
+        return { success: true };
+      }),
   }),
 });
 export type AppRouter = typeof appRouter;

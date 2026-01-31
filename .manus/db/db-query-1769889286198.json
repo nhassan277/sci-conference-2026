@@ -1,0 +1,9 @@
+{
+  "query": "CREATE TABLE IF NOT EXISTS committees (\n  id INT AUTO_INCREMENT PRIMARY KEY,\n  full_name VARCHAR(255) NOT NULL,\n  title VARCHAR(100) NOT NULL,\n  committee_type VARCHAR(50) NOT NULL,\n  department VARCHAR(255),\n  role VARCHAR(100),\n  email VARCHAR(255),\n  phone VARCHAR(50),\n  display_order INT DEFAULT 0 NOT NULL,\n  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,\n  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL\n);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute CREATE TABLE IF NOT EXISTS committees (\n  id INT AUTO_INCREMENT PRIMARY KEY,\n  full_name VARCHAR(255) NOT NULL,\n  title VARCHAR(100) NOT NULL,\n  committee_type VARCHAR(50) NOT NULL,\n  department VARCHAR(255),\n  role VARCHAR(100),\n  email VARCHAR(255),\n  phone VARCHAR(50),\n  display_order INT DEFAULT 0 NOT NULL,\n  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,\n  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL\n);",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 2273
+}

@@ -1,111 +1,24 @@
+import { trpc } from "@/lib/trpc";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Users, Mail, Phone } from "lucide-react";
 
 export default function Committees() {
-  const committees = [
-    {
-      nameAr: "الفلك والفضاء والأرصاد الجوية",
-      nameEn: "Department of Astronomy, Space Science and Meteorology",
-      chair: "Prof. Dr. Fawzy Ahmed Abdel-Salam",
-      members: [
-        "Prof. Dr. Mohamed Magdy Abdel-Wahab",
-        "Prof. Dr. Osama Shalabya",
-        "Prof. Dr. Alaa El-Din Mohamed Fouad",
-        "Dr. Hussein Mohamed Farid"
-      ]
-    },
-    {
-      nameAr: "الفيزياء الحيوية",
-      nameEn: "Department of Biophysics",
-      chair: "Dr. Mohamed Hassanein Gaber",
-      members: [
-        "Prof. Dr. Haitham Sharaf El-Din"
-      ]
-    },
-    {
-      nameAr: "التقنية الحيوية",
-      nameEn: "Department of Biotechnology",
-      chair: "Prof. Dr. Refaat Gabre",
-      members: [
-        "Prof. em. Tarek Kabil",
-        "Prof. Dr. Ahmed Fouad",
-        "Dr. Dina Amr",
-        "Dr. Nahla Osama"
-      ]
-    },
-    {
-      nameAr: "علم النبات",
-      nameEn: "Department of Botany",
-      chair: "Prof. Dr. Tarek Abdel-Mawgoud",
-      members: [
-        "Prof. Dr. Maimoona Kord",
-        "Prof. Dr. Walid Abo-ElSooad"
-      ]
-    },
-    {
-      nameAr: "الكيمياء",
-      nameEn: "Department of Chemistry",
-      chair: "Prof. Dr. Tayseer Abdel-Khaleq Abdullah",
-      members: [
-        "Prof. Dr. Ahmed Helmy Elwahy"
-      ]
-    },
-    {
-      nameAr: "علم الحشرات",
-      nameEn: "Department of Entomology",
-      chair: "Prof. Dr. Aly Younes",
-      members: [
-        "Prof. Dr. Nagwa Rashdan",
-        "Prof. Dr. Youssef El-Demerdash"
-      ]
-    },
-    {
-      nameAr: "الجيولوجيا",
-      nameEn: "Department of Geology",
-      chair: "Prof. Dr. Sameh Tahoun",
-      members: [
-        "Prof. Dr. Abdel-Hameed Wagdy El Manawy",
-        "Prof. Dr. Mortada Mourad El Aref"
-      ]
-    },
-    {
-      nameAr: "الجيوفيزياء",
-      nameEn: "Department of Geophysics",
-      chair: "Prof. Dr. Waleed Mabrouk",
-      members: [
-        "Prof. Dr. Mohamed Hassan",
-        "Dr. Ahmed Mohsen"
-      ]
-    },
-    {
-      nameAr: "الرياضيات",
-      nameEn: "Department of Mathematics",
-      chair: "Prof. Dr. Nasser El-Azab",
-      members: [
-        "Prof. Dr. Ahmed El-Gendy",
-        "Prof. Dr. Mohamed Ramadan",
-        "Prof. Dr. Mohamed El-Zawawi",
-        "Dr. Walid Abdullah"
-      ]
-    },
-    {
-      nameAr: "الفيزياء",
-      nameEn: "Department of Physics",
-      chair: "Prof. Dr. Mohamed Hassanein Gaber",
-      members: [
-        "Prof. Dr. Gamal Abdel-Nasser",
-        "Prof. Dr. Abeer Abdullah",
-        "Dr. Mohamed Mostafa Arman"
-      ]
-    },
-    {
-      nameAr: "علم الحيوان",
-      nameEn: "Department of Zoology",
-      chair: "Prof. Dr. Salwa Abdelhamid",
-      members: [
-        "Prof. Dr. Salwa Thabet"
-      ]
-    }
-  ];
+  const { data, isLoading } = trpc.committee.list.useQuery();
+
+  const committeeTypeLabels: Record<string, { en: string; ar: string }> = {
+    scientific: { en: "Scientific Committee", ar: "اللجنة العلمية" },
+    organizing: { en: "Organizing Committee", ar: "اللجنة التنظيمية" },
+    reception: { en: "Reception Committee", ar: "لجنة الاستقبال" },
+    technical: { en: "Technical Committee", ar: "اللجنة الفنية" },
+  };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-lg">Loading committees...</div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
@@ -113,52 +26,122 @@ export default function Committees() {
       <section className="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-16">
         <div className="container">
           <div className="text-center space-y-4">
-            <h1 className="text-4xl md:text-5xl font-bold">Scientific Committees</h1>
-            <p className="text-2xl font-semibold" dir="rtl">اللجان العلمية</p>
+            <h1 className="text-4xl md:text-5xl font-bold">Conference Committees</h1>
+            <p className="text-2xl font-semibold" dir="rtl">لجان المؤتمر</p>
             <p className="text-lg max-w-2xl mx-auto">
-              Distinguished faculty members leading the scientific organization of SCI 2026
+              Distinguished faculty and staff members organizing SCI 2026
             </p>
           </div>
         </div>
       </section>
 
-      {/* Committees Grid */}
+      {/* Committees by Type */}
       <section className="py-16">
-        <div className="container">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {committees.map((committee, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <CardTitle className="text-lg text-primary leading-tight">{committee.nameEn}</CardTitle>
-                  <p className="text-sm font-medium text-muted-foreground mt-1" dir="rtl">
-                    {committee.nameAr}
-                  </p>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div>
-                    <p className="text-xs font-semibold text-orange-600 uppercase tracking-wide mb-2">
-                      Chair
-                    </p>
-                    <p className="font-medium text-sm">{committee.chair}</p>
-                  </div>
-                  {committee.members.length > 0 && (
-                    <div>
-                      <p className="text-xs font-semibold text-orange-600 uppercase tracking-wide mb-2">
-                        Committee Members
-                      </p>
-                      <ul className="space-y-1.5">
-                        {committee.members.map((member, idx) => (
-                          <li key={idx}>
-                            <p className="text-sm">{member}</p>
-                          </li>
-                        ))}
-                      </ul>
+        <div className="container space-y-12">
+          {Object.entries(data?.grouped || {}).map(([type, members]) => (
+            <div key={type}>
+              <div className="mb-8 text-center">
+                <h2 className="text-3xl font-bold text-primary flex items-center justify-center gap-3">
+                  <Users className="w-8 h-8" />
+                  {committeeTypeLabels[type]?.en || type}
+                </h2>
+                <p className="text-xl font-semibold text-muted-foreground mt-2" dir="rtl">
+                  {committeeTypeLabels[type]?.ar || type}
+                </p>
+              </div>
+
+              {/* Group by department for scientific committees */}
+              {type === "scientific" ? (
+                <div className="space-y-8">
+                  {Object.entries(
+                    members.reduce((acc, member) => {
+                      const dept = member.department || "General";
+                      if (!acc[dept]) acc[dept] = [];
+                      acc[dept].push(member);
+                      return acc;
+                    }, {} as Record<string, typeof members>)
+                  ).map(([department, deptMembers]) => (
+                    <Card key={department} className="hover:shadow-lg transition-shadow">
+                      <CardHeader className="bg-gradient-to-r from-blue-50 to-white">
+                        <CardTitle className="text-xl text-primary">{department}</CardTitle>
+                      </CardHeader>
+                      <CardContent className="pt-6">
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                          {deptMembers.map((member) => (
+                            <div key={member.id} className="space-y-2 p-4 border rounded-lg bg-white">
+                              <div className="font-semibold text-primary">
+                                {member.title} {member.fullName}
+                              </div>
+                              {member.role && (
+                                <div className="text-sm text-orange-600 font-medium">
+                                  {member.role}
+                                </div>
+                              )}
+                              {member.email && (
+                                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                                  <Mail className="w-3 h-3" />
+                                  <a href={`mailto:${member.email}`} className="hover:text-primary">
+                                    {member.email}
+                                  </a>
+                                </div>
+                              )}
+                              {member.phone && (
+                                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                                  <Phone className="w-3 h-3" />
+                                  {member.phone}
+                                </div>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              ) : (
+                <Card className="hover:shadow-lg transition-shadow">
+                  <CardContent className="pt-6">
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {members.map((member) => (
+                        <div key={member.id} className="space-y-2 p-4 border rounded-lg bg-white">
+                          <div className="font-semibold text-primary">
+                            {member.title} {member.fullName}
+                          </div>
+                          {member.role && (
+                            <div className="text-sm text-orange-600 font-medium">
+                              {member.role}
+                            </div>
+                          )}
+                          {member.email && (
+                            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                              <Mail className="w-3 h-3" />
+                              <a href={`mailto:${member.email}`} className="hover:text-primary">
+                                {member.email}
+                              </a>
+                            </div>
+                          )}
+                          {member.phone && (
+                            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                              <Phone className="w-3 h-3" />
+                              {member.phone}
+                            </div>
+                          )}
+                        </div>
+                      ))}
                     </div>
-                  )}
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                  </CardContent>
+                </Card>
+              )}
+            </div>
+          ))}
+
+          {(!data?.committees || data.committees.length === 0) && (
+            <div className="text-center py-12">
+              <p className="text-lg text-muted-foreground">
+                Committee information will be available soon.
+              </p>
+            </div>
+          )}
         </div>
       </section>
     </div>

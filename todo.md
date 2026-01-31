@@ -436,3 +436,11 @@
 - [x] Add certificate pricing (100 EGP) to homepage
 - [x] Update registration page with pricing information
 - [x] Add pricing badge/banner to hero section
+
+## Committee Management System
+- [x] Create database schema for committees table
+- [x] Create backend procedures for committee CRUD operations
+- [x] Create admin interface for managing committees
+- [x] Create public page to display committees
+- [x] Add initial committee data (Zoology scientific committee + reception committee)
+- [x] Test committee management system

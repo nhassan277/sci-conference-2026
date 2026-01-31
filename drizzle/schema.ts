@@ -290,3 +290,31 @@ export const mediaRegistrations = mysqlTable("media_registrations", {
 
 export type MediaRegistration = typeof mediaRegistrations.$inferSelect;
 export type NewMediaRegistration = typeof mediaRegistrations.$inferInsert;
+
+// Conference Committees
+export const committees = mysqlTable("committees", {
+  id: int("id").primaryKey().autoincrement(),
+  
+  // Member Information
+  fullName: varchar("full_name", { length: 255 }).notNull(),
+  title: varchar("title", { length: 100 }).notNull(), // Prof., Dr., etc.
+  
+  // Committee Details
+  committeeType: varchar("committee_type", { length: 50 }).notNull(), // scientific, organizing, reception, technical
+  department: varchar("department", { length: 255 }), // For scientific committees: Zoology, Physics, etc.
+  role: varchar("role", { length: 100 }), // Chair, Co-chair, Member, etc.
+  
+  // Contact (optional)
+  email: varchar("email", { length: 255 }),
+  phone: varchar("phone", { length: 50 }),
+  
+  // Display Order
+  displayOrder: int("display_order").default(0).notNull(),
+  
+  // Metadata
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Committee = typeof committees.$inferSelect;
+export type NewCommittee = typeof committees.$inferInsert;
