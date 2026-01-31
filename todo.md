@@ -444,3 +444,6 @@
 - [x] Create public page to display committees
 - [x] Add initial committee data (Zoology scientific committee + reception committee)
 - [x] Test committee management system
+
+## Restore All Department Scientific Committees
+- [x] Add all scientific committees from original page to database (Astronomy, Biophysics, Biotechnology, Botany, Chemistry, Entomology, Geology, Geophysics, Mathematics, Physics)
