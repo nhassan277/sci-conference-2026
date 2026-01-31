@@ -1,0 +1,9 @@
+{
+  "query": "-- First, delete existing Zoology committee members\nDELETE FROM committees WHERE department = 'Zoology';\n\n-- Then insert the correct members with proper names\nINSERT INTO committees (full_name, title, committee_type, department, role, display_order) VALUES\n('Salwa Abdelhamid Hamdi', 'Prof. Dr.', 'scientific', 'Zoology', 'Chair', 110),\n('Salwa Thabet', 'Prof. Dr.', 'scientific', 'Zoology', 'Member', 111),\n('Hala Ali Abdel Salam', 'Prof. Dr.', 'scientific', 'Zoology', 'Member', 112);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute -- First, delete existing Zoology committee members\nDELETE FROM committees WHERE department = 'Zoology';\n\n-- Then insert the correct members with proper names\nINSERT INTO committees (full_name, title, committee_type, department, role, display_order) VALUES\n('Salwa Abdelhamid Hamdi', 'Prof. Dr.', 'scientific', 'Zoology', 'Chair', 110),\n('Salwa Thabet', 'Prof. Dr.', 'scientific', 'Zoology', 'Member', 111),\n('Hala Ali Abdel Salam', 'Prof. Dr.', 'scientific', 'Zoology', 'Member', 112);",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 1836
+}

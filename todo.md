@@ -447,3 +447,6 @@
 
 ## Restore All Department Scientific Committees
 - [x] Add all scientific committees from original page to database (Astronomy, Biophysics, Biotechnology, Botany, Chemistry, Entomology, Geology, Geophysics, Mathematics, Physics)
+
+## Update Zoology Committee Names
+- [x] Update Zoology committee member names with correct English full names
