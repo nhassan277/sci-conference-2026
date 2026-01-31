@@ -450,3 +450,7 @@
 
 ## Update Zoology Committee Names
 - [x] Update Zoology committee member names with correct English full names
+
+## Committee Updates
+- [x] Remove reception committee members from database
+- [x] Update all department names to 'Department of [Name]' format
