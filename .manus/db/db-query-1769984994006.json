@@ -1,0 +1,9 @@
+{
+  "query": "INSERT INTO keynote_speakers (\n  full_name,\n  title,\n  affiliation,\n  presentation_title,\n  photo_url,\n  display_order,\n  is_visible\n) VALUES (\n  'Khalid Amer',\n  'Major General Dr.',\n  'Egypt Centre for Research and Regenerative Medicine',\n  'Egypt Genome; From Dream to Reality',\n  '/images/speakers/khalid-amer.jpg',\n  1,\n  TRUE\n);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute INSERT INTO keynote_speakers (\n  full_name,\n  title,\n  affiliation,\n  presentation_title,\n  photo_url,\n  display_order,\n  is_visible\n) VALUES (\n  'Khalid Amer',\n  'Major General Dr.',\n  'Egypt Centre for Research and Regenerative Medicine',\n  'Egypt Genome; From Dream to Reality',\n  '/images/speakers/khalid-amer.jpg',\n  1,\n  TRUE\n);",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 1609
+}

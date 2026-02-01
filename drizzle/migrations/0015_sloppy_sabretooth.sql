@@ -1,0 +1,20 @@
+CREATE TABLE `keynote_speakers` (
+	`id` int AUTO_INCREMENT NOT NULL,
+	`full_name` varchar(255) NOT NULL,
+	`title` varchar(100) NOT NULL,
+	`affiliation` varchar(500) NOT NULL,
+	`presentation_title` varchar(500) NOT NULL,
+	`presentation_title_ar` varchar(500),
+	`presentation_abstract` text,
+	`bio` text,
+	`bio_ar` text,
+	`photo_url` varchar(500),
+	`linkedin_url` varchar(500),
+	`twitter_url` varchar(500),
+	`website_url` varchar(500),
+	`display_order` int NOT NULL DEFAULT 0,
+	`is_visible` boolean NOT NULL DEFAULT true,
+	`created_at` timestamp NOT NULL DEFAULT (now()),
+	`updated_at` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,
+	CONSTRAINT `keynote_speakers_id` PRIMARY KEY(`id`)
+);

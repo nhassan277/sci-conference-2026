@@ -1,62 +1,19 @@
+import { trpc } from "@/lib/trpc";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { User } from "lucide-react";
+import { User, Loader2, Linkedin, Twitter, Globe } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function KeynoteSpeakers() {
-  const speakers = [
-    {
-      id: 1,
-      type: "General Keynote",
-      typeAr: "محاضرة عامة رئيسية",
-      name: "Prof. Dr. Mortada Mourad El Aref",
-      nameAr: "أ.د. مرتضى مراد العارف",
-      title: "Professor of Ore Geology",
-      titleAr: "أستاذ جيولوجيا الخامات",
-      affiliation: "Geology Department, Faculty of Science, Cairo University",
-      affiliationAr: "قسم الجيولوجيا، كلية العلوم، جامعة القاهرة",
-      lecture: "Karstology (Science of Unlimited Multi-Discipline Approaches), promising Setting for Industrial Raw Materials",
-      lectureAr: "علم الكارست (علم النهج متعدد التخصصات غير المحدود)، بيئة واعدة للمواد الخام الصناعية"
-    },
-    {
-      id: 2,
-      type: "Invited Talk",
-      typeAr: "محاضرة متخصصة",
-      name: "Prof. Dr. Mortada Mourad El Aref",
-      nameAr: "أ.د. مرتضى مراد العارف",
-      title: "Professor of Ore Geology",
-      titleAr: "أستاذ جيولوجيا الخامات",
-      affiliation: "Geology Department, Faculty of Science, Cairo University",
-      affiliationAr: "قسم الجيولوجيا، كلية العلوم، جامعة القاهرة",
-      lecture: "Egyptian Iron Ore for Supporting National Economy - Opportunities and Challenges",
-      lectureAr: "خام الحديد المصري لدعم الاقتصاد الوطني - الفرص والتحديات"
-    },
-    {
-      id: 3,
-      type: "Invited Talk",
-      typeAr: "محاضرة متخصصة",
-      name: "Prof. Dr. Mahmoud Nasr",
-      nameAr: "أ.د. محمود نصر",
-      title: "Professor of Ore Beneficiation and Manufacturing",
-      titleAr: "أستاذ تجهيز الخامات والتصنيع",
-      affiliation: "Egyptian Central Metallurgical Research & Development Institute (CMRDI)",
-      affiliationAr: "مركز بحوث وتطوير الفلزات",
-      lecture: "Egyptian Iron Ore as a Feedstock to the Iron and Steel Industry",
-      lectureAr: "خام الحديد المصري كمادة خام لصناعة الحديد والصلب"
-    },
-    {
-      id: 4,
-      type: "Invited Talk",
-      typeAr: "محاضرة متخصصة",
-      name: "Prof. Dr. Mohamed I. El-Anbaawy",
-      nameAr: "أ.د. محمد إبراهيم الأنبعاوي",
-      title: "Professor of Geology",
-      titleAr: "أستاذ الجيولوجيا",
-      affiliation: "Geology Department, Faculty of Science, Cairo University",
-      affiliationAr: "قسم الجيولوجيا، كلية العلوم، جامعة القاهرة",
-      lecture: "Economic utilization of Shale in desert land reclamation and cement industry",
-      lectureAr: "الاستخدام الاقتصادي للصخر الزيتي في استصلاح الأراضي الصحراوية وصناعة الأسمنت"
-    }
-  ];
+  const { data: speakers, isLoading } = trpc.keynoteSpeakers.list.useQuery();
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-accent/5">
@@ -99,51 +56,127 @@ export default function KeynoteSpeakers() {
       {/* Speakers Section */}
       <section className="py-20">
         <div className="container">
-          <div className="grid gap-8 max-w-5xl mx-auto">
-            {speakers.map((speaker) => (
-              <Card key={speaker.id} className="hover:shadow-lg transition-shadow border-2">
-                <CardHeader>
-                  <div className="flex items-start gap-6">
-                    {/* Placeholder for speaker photo */}
-                    <div className="flex-shrink-0 w-24 h-24 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-full flex items-center justify-center">
-                      <User className="w-12 h-12 text-primary/40" />
+          {speakers && speakers.length > 0 ? (
+            <div className="grid gap-8 max-w-5xl mx-auto">
+              {speakers.map((speaker) => (
+                <Card key={speaker.id} className="hover:shadow-lg transition-shadow border-2">
+                  <CardHeader>
+                    <div className="flex items-start gap-6">
+                      {/* Speaker photo */}
+                      <div className="flex-shrink-0">
+                        {speaker.photoUrl ? (
+                          <img
+                            src={speaker.photoUrl}
+                            alt={speaker.fullName}
+                            className="w-32 h-32 rounded-lg object-cover shadow-md"
+                          />
+                        ) : (
+                          <div className="w-32 h-32 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg flex items-center justify-center">
+                            <User className="w-16 h-16 text-primary/40" />
+                          </div>
+                        )}
+                      </div>
+                      
+                      <div className="flex-1 space-y-3">
+                        <div>
+                          <CardTitle className="text-2xl mb-1">
+                            {speaker.title} {speaker.fullName}
+                          </CardTitle>
+                        </div>
+                        
+                        <div className="space-y-1">
+                          <p className="text-sm font-medium text-primary">{speaker.affiliation}</p>
+                        </div>
+
+                        {/* Social Links */}
+                        {(speaker.linkedinUrl || speaker.twitterUrl || speaker.websiteUrl) && (
+                          <div className="flex gap-2">
+                            {speaker.linkedinUrl && (
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => window.open(speaker.linkedinUrl!, '_blank')}
+                              >
+                                <Linkedin className="w-4 h-4" />
+                              </Button>
+                            )}
+                            {speaker.twitterUrl && (
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => window.open(speaker.twitterUrl!, '_blank')}
+                              >
+                                <Twitter className="w-4 h-4" />
+                              </Button>
+                            )}
+                            {speaker.websiteUrl && (
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => window.open(speaker.websiteUrl!, '_blank')}
+                              >
+                                <Globe className="w-4 h-4" />
+                              </Button>
+                            )}
+                          </div>
+                        )}
+                      </div>
                     </div>
-                    
-                    <div className="flex-1 space-y-3">
-                      <Badge className="bg-orange-100 text-orange-700 hover:bg-orange-100">
-                        {speaker.type} | {speaker.typeAr}
-                      </Badge>
-                      
-                      <div>
-                        <CardTitle className="text-2xl mb-1">{speaker.name}</CardTitle>
-                        <p className="text-lg text-muted-foreground" dir="rtl">{speaker.nameAr}</p>
+                  </CardHeader>
+                  
+                  <CardContent>
+                    <div className="space-y-4">
+                      {/* Presentation Title */}
+                      <div className="space-y-2 pt-4 border-t">
+                        <p className="text-xs font-semibold text-orange-600 uppercase tracking-wide">
+                          Presentation Title
+                        </p>
+                        <p className="font-medium text-base leading-relaxed">{speaker.presentationTitle}</p>
+                        {speaker.presentationTitleAr && (
+                          <p className="text-muted-foreground text-sm leading-relaxed" dir="rtl">
+                            {speaker.presentationTitleAr}
+                          </p>
+                        )}
                       </div>
-                      
-                      <div className="space-y-1">
-                        <p className="text-sm font-medium text-primary">{speaker.title}</p>
-                        <p className="text-sm text-muted-foreground" dir="rtl">{speaker.titleAr}</p>
-                      </div>
-                      
-                      <div className="space-y-1">
-                        <p className="text-sm">{speaker.affiliation}</p>
-                        <p className="text-sm text-muted-foreground" dir="rtl">{speaker.affiliationAr}</p>
-                      </div>
+
+                      {/* Abstract */}
+                      {speaker.presentationAbstract && (
+                        <div className="space-y-2 pt-4 border-t">
+                          <p className="text-xs font-semibold text-orange-600 uppercase tracking-wide">
+                            Abstract
+                          </p>
+                          <p className="text-sm leading-relaxed text-muted-foreground">
+                            {speaker.presentationAbstract}
+                          </p>
+                        </div>
+                      )}
+
+                      {/* Biography */}
+                      {speaker.bio && (
+                        <div className="space-y-2 pt-4 border-t">
+                          <p className="text-xs font-semibold text-orange-600 uppercase tracking-wide">
+                            Biography
+                          </p>
+                          <p className="text-sm leading-relaxed text-muted-foreground">
+                            {speaker.bio}
+                          </p>
+                          {speaker.bioAr && (
+                            <p className="text-sm leading-relaxed text-muted-foreground" dir="rtl">
+                              {speaker.bioAr}
+                            </p>
+                          )}
+                        </div>
+                      )}
                     </div>
-                  </div>
-                </CardHeader>
-                
-                <CardContent>
-                  <div className="space-y-2 pt-4 border-t">
-                    <p className="text-xs font-semibold text-orange-600 uppercase tracking-wide">
-                      Lecture Title
-                    </p>
-                    <p className="font-medium text-base leading-relaxed">{speaker.lecture}</p>
-                    <p className="text-muted-foreground text-sm leading-relaxed" dir="rtl">{speaker.lectureAr}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12">
+              <p className="text-muted-foreground">No keynote speakers announced yet.</p>
+            </div>
+          )}
         </div>
       </section>
 

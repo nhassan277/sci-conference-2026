@@ -318,3 +318,43 @@ export const committees = mysqlTable("committees", {
 
 export type Committee = typeof committees.$inferSelect;
 export type NewCommittee = typeof committees.$inferInsert;
+
+// Keynote Speakers
+export const keynoteSpeakers = mysqlTable("keynote_speakers", {
+  id: int("id").primaryKey().autoincrement(),
+  
+  // Speaker Information
+  fullName: varchar("full_name", { length: 255 }).notNull(),
+  title: varchar("title", { length: 100 }).notNull(), // Major General Dr., Prof. Dr., Dr., etc.
+  affiliation: varchar("affiliation", { length: 500 }).notNull(),
+  
+  // Presentation Details
+  presentationTitle: varchar("presentation_title", { length: 500 }).notNull(),
+  presentationTitleAr: varchar("presentation_title_ar", { length: 500 }),
+  presentationAbstract: text("presentation_abstract"),
+  
+  // Biography
+  bio: text("bio"),
+  bioAr: text("bio_ar"),
+  
+  // Media
+  photoUrl: varchar("photo_url", { length: 500 }),
+  
+  // Social Links (optional)
+  linkedinUrl: varchar("linkedin_url", { length: 500 }),
+  twitterUrl: varchar("twitter_url", { length: 500 }),
+  websiteUrl: varchar("website_url", { length: 500 }),
+  
+  // Display Order
+  displayOrder: int("display_order").default(0).notNull(),
+  
+  // Visibility
+  isVisible: boolean("is_visible").default(true).notNull(),
+  
+  // Metadata
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().onUpdateNow().notNull(),
+});
+
+export type KeynoteSpeaker = typeof keynoteSpeakers.$inferSelect;
+export type NewKeynoteSpeaker = typeof keynoteSpeakers.$inferInsert;

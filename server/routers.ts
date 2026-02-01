@@ -3,7 +3,7 @@ import { z } from "zod";
 import { eq, desc } from "drizzle-orm";
 import superjson from "superjson";
 import { db } from "./db.js";
-import { registrations, sponsorships, sessions, supportTickets, admins, auditLogs, reminderSubscriptions, galleryPhotos, newsletterSubscriptions, googleSheetsSyncs, mediaRegistrations, committees } from "../drizzle/schema.js";
+import { registrations, sponsorships, sessions, supportTickets, admins, auditLogs, reminderSubscriptions, galleryPhotos, newsletterSubscriptions, googleSheetsSyncs, mediaRegistrations, committees, keynoteSpeakers } from "../drizzle/schema.js";
 import { syncAllSheets, SHEETS_CONFIG, type SheetCategory } from "./googleSheets.js";
 import { verifyToken, isOwner } from "./auth.js";
 import { logAuditAction, getIpAddress, getUserAgent } from "./audit.js";
@@ -2091,6 +2091,183 @@ export const appRouter = router({
           resourceId: input.id,
           details: {
             message: `Deleted committee member: ${committee[0].fullName}`,
+          },
+          ipAddress: getIpAddress(ctx.req),
+          userAgent: getUserAgent(ctx.req),
+        });
+
+        return { success: true };
+      }),
+  }),
+
+  // Keynote Speakers Router
+  keynoteSpeakers: router({
+    // Public: Get all visible keynote speakers
+    list: publicProcedure.query(async () => {
+      const speakers = await db
+        .select()
+        .from(keynoteSpeakers)
+        .where(eq(keynoteSpeakers.isVisible, true))
+        .orderBy(keynoteSpeakers.displayOrder);
+      return speakers;
+    }),
+
+    // Admin: Get all keynote speakers (including hidden)
+    listAll: adminProcedure.query(async () => {
+      const speakers = await db
+        .select()
+        .from(keynoteSpeakers)
+        .orderBy(keynoteSpeakers.displayOrder);
+      return speakers;
+    }),
+
+    // Admin: Create keynote speaker
+    create: adminProcedure
+      .input(
+        z.object({
+          fullName: z.string().min(1, "Full name is required"),
+          title: z.string().min(1, "Title is required"),
+          affiliation: z.string().min(1, "Affiliation is required"),
+          presentationTitle: z.string().min(1, "Presentation title is required"),
+          presentationTitleAr: z.string().optional(),
+          presentationAbstract: z.string().optional(),
+          bio: z.string().optional(),
+          bioAr: z.string().optional(),
+          photoUrl: z.string().optional(),
+          linkedinUrl: z.string().url().optional().or(z.literal("")),
+          twitterUrl: z.string().url().optional().or(z.literal("")),
+          websiteUrl: z.string().url().optional().or(z.literal("")),
+          displayOrder: z.number().default(0),
+          isVisible: z.boolean().default(true),
+        })
+      )
+      .mutation(async ({ input, ctx }) => {
+        const newSpeaker = await db.insert(keynoteSpeakers).values({
+          fullName: input.fullName,
+          title: input.title,
+          affiliation: input.affiliation,
+          presentationTitle: input.presentationTitle,
+          presentationTitleAr: input.presentationTitleAr || null,
+          presentationAbstract: input.presentationAbstract || null,
+          bio: input.bio || null,
+          bioAr: input.bioAr || null,
+          photoUrl: input.photoUrl || null,
+          linkedinUrl: input.linkedinUrl || null,
+          twitterUrl: input.twitterUrl || null,
+          websiteUrl: input.websiteUrl || null,
+          displayOrder: input.displayOrder,
+          isVisible: input.isVisible,
+        });
+
+        const speakerId = Number((newSpeaker as any).insertId);
+
+        // Log audit action
+        await logAuditAction({
+          adminId: undefined,
+          adminEmail: ctx.user?.email,
+          adminName: ctx.user?.name,
+          action: "create",
+          resourceType: "keynote_speaker",
+          resourceId: speakerId,
+          details: {
+            message: `Created keynote speaker: ${input.fullName}`,
+          },
+          ipAddress: getIpAddress(ctx.req),
+          userAgent: getUserAgent(ctx.req),
+        });
+
+        return { success: true, id: speakerId };
+      }),
+
+    // Admin: Update keynote speaker
+    update: adminProcedure
+      .input(
+        z.object({
+          id: z.number(),
+          fullName: z.string().min(1, "Full name is required"),
+          title: z.string().min(1, "Title is required"),
+          affiliation: z.string().min(1, "Affiliation is required"),
+          presentationTitle: z.string().min(1, "Presentation title is required"),
+          presentationTitleAr: z.string().optional(),
+          presentationAbstract: z.string().optional(),
+          bio: z.string().optional(),
+          bioAr: z.string().optional(),
+          photoUrl: z.string().optional(),
+          linkedinUrl: z.string().url().optional().or(z.literal("")),
+          twitterUrl: z.string().url().optional().or(z.literal("")),
+          websiteUrl: z.string().url().optional().or(z.literal("")),
+          displayOrder: z.number().default(0),
+          isVisible: z.boolean().default(true),
+        })
+      )
+      .mutation(async ({ input, ctx }) => {
+        await db
+          .update(keynoteSpeakers)
+          .set({
+            fullName: input.fullName,
+            title: input.title,
+            affiliation: input.affiliation,
+            presentationTitle: input.presentationTitle,
+            presentationTitleAr: input.presentationTitleAr || null,
+            presentationAbstract: input.presentationAbstract || null,
+            bio: input.bio || null,
+            bioAr: input.bioAr || null,
+            photoUrl: input.photoUrl || null,
+            linkedinUrl: input.linkedinUrl || null,
+            twitterUrl: input.twitterUrl || null,
+            websiteUrl: input.websiteUrl || null,
+            displayOrder: input.displayOrder,
+            isVisible: input.isVisible,
+          })
+          .where(eq(keynoteSpeakers.id, input.id));
+
+        // Log audit action
+        await logAuditAction({
+          adminId: undefined,
+          adminEmail: ctx.user?.email,
+          adminName: ctx.user?.name,
+          action: "update",
+          resourceType: "keynote_speaker",
+          resourceId: input.id,
+          details: {
+            message: `Updated keynote speaker: ${input.fullName}`,
+          },
+          ipAddress: getIpAddress(ctx.req),
+          userAgent: getUserAgent(ctx.req),
+        });
+
+        return { success: true };
+      }),
+
+    // Admin: Delete keynote speaker
+    delete: adminProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input, ctx }) => {
+        const speaker = await db
+          .select()
+          .from(keynoteSpeakers)
+          .where(eq(keynoteSpeakers.id, input.id))
+          .limit(1);
+
+        if (!speaker || speaker.length === 0) {
+          throw new TRPCError({
+            code: "NOT_FOUND",
+            message: "Keynote speaker not found",
+          });
+        }
+
+        await db.delete(keynoteSpeakers).where(eq(keynoteSpeakers.id, input.id));
+
+        // Log audit action
+        await logAuditAction({
+          adminId: undefined,
+          adminEmail: ctx.user?.email,
+          adminName: ctx.user?.name,
+          action: "delete",
+          resourceType: "keynote_speaker",
+          resourceId: input.id,
+          details: {
+            message: `Deleted keynote speaker: ${speaker[0].fullName}`,
           },
           ipAddress: getIpAddress(ctx.req),
           userAgent: getUserAgent(ctx.req),

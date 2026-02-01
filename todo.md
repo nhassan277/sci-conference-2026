@@ -457,3 +457,12 @@
 
 ## Update Botany Department Name
 - [x] Change 'Department of Botany' to 'Department of Botany and Microbiology' in scientific committees
+
+## Keynote Speakers System
+- [x] Create keynote_speakers table in database schema
+- [x] Create backend procedures for keynote speaker CRUD operations
+- [x] Copy Dr. Khalid Amer photo to project images folder
+- [x] Create admin interface for managing keynote speakers
+- [x] Update public keynote speakers page with database integration
+- [x] Add Dr. Khalid Amer as first keynote speaker
+- [x] Test keynote speakers system
