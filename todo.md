@@ -454,3 +454,6 @@
 ## Committee Updates
 - [x] Remove reception committee members from database
 - [x] Update all department names to 'Department of [Name]' format
+
+## Update Botany Department Name
+- [x] Change 'Department of Botany' to 'Department of Botany and Microbiology' in scientific committees
