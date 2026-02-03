@@ -466,3 +466,11 @@
 - [x] Update public keynote speakers page with database integration
 - [x] Add Dr. Khalid Amer as first keynote speaker
 - [x] Test keynote speakers system
+
+## Speaker Announcement Graphics
+- [x] Create speaker announcement graphic for Dr. Khalid Amer
+- [x] Create blank reusable template for future speaker announcements
+
+## Add Dr. Ibrahim El-Sherbiny as Keynote Speaker
+- [x] Create announcement graphic for Dr. El-Sherbiny
+- [x] Add Dr. El-Sherbiny to keynote speakers database with his details
