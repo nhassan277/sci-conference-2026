@@ -474,3 +474,18 @@
 ## Add Dr. Ibrahim El-Sherbiny as Keynote Speaker
 - [x] Create announcement graphic for Dr. El-Sherbiny
 - [x] Add Dr. El-Sherbiny to keynote speakers database with his details
+
+## Create New Dr. Khalid Amer Announcement
+- [x] Generate new announcement graphic using updated template design
+
+## Upload Dr. El-Sherbiny Photo
+- [x] Upload photo to S3 cloud storage
+- [x] Update database with public photo URL
+- [x] Verify photo displays correctly on website
+
+## Add New Keynote Speakers from CV Documents
+- [x] Read and extract information from KhTshortCVBRICS.doc
+- [x] Read and extract information from englishbiography.docx
+- [x] Upload speaker photos to S3
+- [x] Add speakers to keynote speakers database
+- [x] Create announcement graphics for each new speaker

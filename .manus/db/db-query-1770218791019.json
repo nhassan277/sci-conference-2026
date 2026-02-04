@@ -1,0 +1,38 @@
+{
+  "query": "SELECT id, full_name, title, presentation_title, display_order FROM keynote_speakers ORDER BY display_order;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name, title, presentation_title, display_order FROM keynote_speakers ORDER BY display_order;",
+  "rows": [
+    {
+      "id": "1",
+      "full_name": "Khalid Amer",
+      "title": "Major General Dr.",
+      "presentation_title": "Egypt Genome; From Dream to Reality",
+      "display_order": "1"
+    },
+    {
+      "id": "2",
+      "full_name": "Ibrahim M. El-Sherbiny",
+      "title": "Prof. Dr.",
+      "presentation_title": "Basic Sciences As the Foundation of Innovation: Some Success Stories for Disease Treatment and Advanced Biomedical Applications (From Lab to Society)",
+      "display_order": "2"
+    },
+    {
+      "id": "60001",
+      "full_name": "Prof. Dr. Khalid Muhammad Taalab",
+      "title": "Nuclear Medicine Professor at Military Medical Academy",
+      "presentation_title": "Radiopharmaceuticals and Precision Medicine",
+      "display_order": "3"
+    },
+    {
+      "id": "60002",
+      "full_name": "Prof. Dr. Osama Azmy",
+      "title": "Consultant to President of National Research Centre",
+      "presentation_title": "Management of the Rosy Years of Life",
+      "display_order": "4"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tfull_name\ttitle\tpresentation_title\tdisplay_order\n1\tKhalid Amer\tMajor General Dr.\tEgypt Genome; From Dream to Reality\t1\n2\tIbrahim M. El-Sherbiny\tProf. Dr.\tBasic Sciences As the Foundation of Innovation: Some Success Stories for Disease Treatment and Advanced Biomedical Applications (From Lab to Society)\t2\n60001\tProf. Dr. Khalid Muhammad Taalab\tNuclear Medicine Professor at Military Medical Academy\tRadiopharmaceuticals and Precision Medicine\t3\n60002\tProf. Dr. Osama Azmy\tConsultant to President of National Research Centre\tManagement of the Rosy Years of Life\t4\n",
+  "stderr": "",
+  "execution_time_ms": 1658
+}
