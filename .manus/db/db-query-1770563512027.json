@@ -1,0 +1,25 @@
+{
+  "query": "SELECT id, full_name, department FROM committees WHERE committee_type = 'scientific' AND (department LIKE '%Chemistry%' OR department LIKE '%كيمياء%' OR full_name LIKE '%Hamed%Eid%');",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name, department FROM committees WHERE committee_type = 'scientific' AND (department LIKE '%Chemistry%' OR department LIKE '%كيمياء%' OR full_name LIKE '%Hamed%Eid%');",
+  "rows": [
+    {
+      "id": "21",
+      "full_name": "Tayseer Abdel-Khaleq Abdullah",
+      "department": "Department of Chemistry"
+    },
+    {
+      "id": "22",
+      "full_name": "Ahmed Helmy Elwahy",
+      "department": "Department of Chemistry"
+    },
+    {
+      "id": "41",
+      "full_name": "Hamed Eid",
+      "department": "Department of Chemistry "
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tfull_name\tdepartment\n21\tTayseer Abdel-Khaleq Abdullah\tDepartment of Chemistry\n22\tAhmed Helmy Elwahy\tDepartment of Chemistry\n41\tHamed Eid\tDepartment of Chemistry \n",
+  "stderr": "",
+  "execution_time_ms": 1587
+}

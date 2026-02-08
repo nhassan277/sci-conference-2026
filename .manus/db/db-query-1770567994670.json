@@ -1,0 +1,17 @@
+{
+  "query": "SELECT id, full_name, department, CHAR_LENGTH(department) as dept_length, HEX(department) as dept_hex FROM committees WHERE full_name LIKE '%Hamed%Eid%';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name, department, CHAR_LENGTH(department) as dept_length, HEX(department) as dept_hex FROM committees WHERE full_name LIKE '%Hamed%Eid%';",
+  "rows": [
+    {
+      "id": "41",
+      "full_name": "Hamed Eid",
+      "department": "Department of Chemistry",
+      "dept_length": "23",
+      "dept_hex": "4465706172746D656E74206F66204368656D6973747279"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tfull_name\tdepartment\tdept_length\tdept_hex\n41\tHamed Eid\tDepartment of Chemistry\t23\t4465706172746D656E74206F66204368656D6973747279\n",
+  "stderr": "",
+  "execution_time_ms": 1633
+}

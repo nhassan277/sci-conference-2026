@@ -1,0 +1,17 @@
+{
+  "query": "SELECT id, full_name, committee_type, department, role FROM committees WHERE full_name LIKE '%Hamed%Eid%' OR full_name LIKE '%حامد%عيد%';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name, committee_type, department, role FROM committees WHERE full_name LIKE '%Hamed%Eid%' OR full_name LIKE '%حامد%عيد%';",
+  "rows": [
+    {
+      "id": "41",
+      "full_name": "Hamed Eid",
+      "committee_type": "scientific ",
+      "department": "Department of Chemistry ",
+      "role": "Member"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tfull_name\tcommittee_type\tdepartment\trole\n41\tHamed Eid\tscientific \tDepartment of Chemistry \tMember\n",
+  "stderr": "",
+  "execution_time_ms": 1589
+}

@@ -1,0 +1,283 @@
+{
+  "query": "SELECT id, full_name, committee_type, department, role FROM committees WHERE committee_type = 'scientific' ORDER BY department, full_name;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name, committee_type, department, role FROM committees WHERE committee_type = 'scientific' ORDER BY department, full_name;",
+  "rows": [
+    {
+      "id": "9",
+      "full_name": "Alaa El-Din Mohamed Fouad",
+      "committee_type": "scientific",
+      "department": "Department of Astronomy, Space Science and Meteorology",
+      "role": "Member"
+    },
+    {
+      "id": "6",
+      "full_name": "Fawzy Ahmed Abdel-Salam",
+      "committee_type": "scientific",
+      "department": "Department of Astronomy, Space Science and Meteorology",
+      "role": "Chair"
+    },
+    {
+      "id": "10",
+      "full_name": "Hussein Mohamed Farid",
+      "committee_type": "scientific",
+      "department": "Department of Astronomy, Space Science and Meteorology",
+      "role": "Member"
+    },
+    {
+      "id": "7",
+      "full_name": "Mohamed Magdy Abdel-Wahab",
+      "committee_type": "scientific",
+      "department": "Department of Astronomy, Space Science and Meteorology",
+      "role": "Member"
+    },
+    {
+      "id": "8",
+      "full_name": "Osama Shalabya",
+      "committee_type": "scientific",
+      "department": "Department of Astronomy, Space Science and Meteorology",
+      "role": "Member"
+    },
+    {
+      "id": "12",
+      "full_name": "Haitham Sharaf El-Din",
+      "committee_type": "scientific",
+      "department": "Department of Biophysics",
+      "role": "Member"
+    },
+    {
+      "id": "11",
+      "full_name": "Mohamed Hassanein Gaber",
+      "committee_type": "scientific",
+      "department": "Department of Biophysics",
+      "role": "Chair"
+    },
+    {
+      "id": "15",
+      "full_name": "Ahmed Fouad",
+      "committee_type": "scientific",
+      "department": "Department of Biotechnology",
+      "role": "Member"
+    },
+    {
+      "id": "16",
+      "full_name": "Dina Amr",
+      "committee_type": "scientific",
+      "department": "Department of Biotechnology",
+      "role": "Member"
+    },
+    {
+      "id": "17",
+      "full_name": "Nahla Osama",
+      "committee_type": "scientific",
+      "department": "Department of Biotechnology",
+      "role": "Member"
+    },
+    {
+      "id": "13",
+      "full_name": "Refaat Gabre",
+      "committee_type": "scientific",
+      "department": "Department of Biotechnology",
+      "role": "Chair"
+    },
+    {
+      "id": "14",
+      "full_name": "Tarek Kabil",
+      "committee_type": "scientific",
+      "department": "Department of Biotechnology",
+      "role": "Member"
+    },
+    {
+      "id": "19",
+      "full_name": "Maimoona Kord",
+      "committee_type": "scientific",
+      "department": "Department of Botany and Microbiology",
+      "role": "Member"
+    },
+    {
+      "id": "18",
+      "full_name": "Tarek Abdel-Mawgoud",
+      "committee_type": "scientific",
+      "department": "Department of Botany and Microbiology",
+      "role": "Chair"
+    },
+    {
+      "id": "20",
+      "full_name": "Walid Abo-ElSooad",
+      "committee_type": "scientific",
+      "department": "Department of Botany and Microbiology",
+      "role": "Member"
+    },
+    {
+      "id": "22",
+      "full_name": "Ahmed Helmy Elwahy",
+      "committee_type": "scientific",
+      "department": "Department of Chemistry",
+      "role": "Member"
+    },
+    {
+      "id": "41",
+      "full_name": "Hamed Eid",
+      "committee_type": "scientific ",
+      "department": "Department of Chemistry ",
+      "role": "Member"
+    },
+    {
+      "id": "21",
+      "full_name": "Tayseer Abdel-Khaleq Abdullah",
+      "committee_type": "scientific",
+      "department": "Department of Chemistry",
+      "role": "Chair"
+    },
+    {
+      "id": "23",
+      "full_name": "Aly Younes",
+      "committee_type": "scientific",
+      "department": "Department of Entomology",
+      "role": "Chair"
+    },
+    {
+      "id": "24",
+      "full_name": "Nagwa Rashdan",
+      "committee_type": "scientific",
+      "department": "Department of Entomology",
+      "role": "Member"
+    },
+    {
+      "id": "25",
+      "full_name": "Youssef El-Demerdash",
+      "committee_type": "scientific",
+      "department": "Department of Entomology",
+      "role": "Member"
+    },
+    {
+      "id": "27",
+      "full_name": "Abdel-Hameed Wagdy El Manawy",
+      "committee_type": "scientific",
+      "department": "Department of Geology",
+      "role": "Member"
+    },
+    {
+      "id": "28",
+      "full_name": "Mortada Mourad El Aref",
+      "committee_type": "scientific",
+      "department": "Department of Geology",
+      "role": "Member"
+    },
+    {
+      "id": "26",
+      "full_name": "Sameh Tahoun",
+      "committee_type": "scientific",
+      "department": "Department of Geology",
+      "role": "Chair"
+    },
+    {
+      "id": "31",
+      "full_name": "Ahmed Mohsen",
+      "committee_type": "scientific",
+      "department": "Department of Geophysics",
+      "role": "Member"
+    },
+    {
+      "id": "30",
+      "full_name": "Mohamed Hassan",
+      "committee_type": "scientific",
+      "department": "Department of Geophysics",
+      "role": "Member"
+    },
+    {
+      "id": "29",
+      "full_name": "Waleed Mabrouk",
+      "committee_type": "scientific",
+      "department": "Department of Geophysics",
+      "role": "Chair"
+    },
+    {
+      "id": "33",
+      "full_name": "Ahmed El-Gendy",
+      "committee_type": "scientific",
+      "department": "Department of Mathematics",
+      "role": "Member"
+    },
+    {
+      "id": "35",
+      "full_name": "Mohamed El-Zawawi",
+      "committee_type": "scientific",
+      "department": "Department of Mathematics",
+      "role": "Member"
+    },
+    {
+      "id": "34",
+      "full_name": "Mohamed Ramadan",
+      "committee_type": "scientific",
+      "department": "Department of Mathematics",
+      "role": "Member"
+    },
+    {
+      "id": "32",
+      "full_name": "Nasser El-Azab",
+      "committee_type": "scientific",
+      "department": "Department of Mathematics",
+      "role": "Chair"
+    },
+    {
+      "id": "36",
+      "full_name": "Walid Abdullah",
+      "committee_type": "scientific",
+      "department": "Department of Mathematics",
+      "role": "Member"
+    },
+    {
+      "id": "39",
+      "full_name": "Abeer Abdullah",
+      "committee_type": "scientific",
+      "department": "Department of Physics",
+      "role": "Member"
+    },
+    {
+      "id": "38",
+      "full_name": "Gamal Abdel-Nasser",
+      "committee_type": "scientific",
+      "department": "Department of Physics",
+      "role": "Member"
+    },
+    {
+      "id": "37",
+      "full_name": "Mohamed Hassanein Gaber",
+      "committee_type": "scientific",
+      "department": "Department of Physics",
+      "role": "Chair"
+    },
+    {
+      "id": "40",
+      "full_name": "Mohamed Mostafa Arman",
+      "committee_type": "scientific",
+      "department": "Department of Physics",
+      "role": "Member"
+    },
+    {
+      "id": "44",
+      "full_name": "Hala Ali Abdel Salam",
+      "committee_type": "scientific",
+      "department": "Department of Zoology",
+      "role": "Member"
+    },
+    {
+      "id": "42",
+      "full_name": "Salwa Abdelhamid Hamdi",
+      "committee_type": "scientific",
+      "department": "Department of Zoology",
+      "role": "Chair"
+    },
+    {
+      "id": "43",
+      "full_name": "Salwa Thabet",
+      "committee_type": "scientific",
+      "department": "Department of Zoology",
+      "role": "Member"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tfull_name\tcommittee_type\tdepartment\trole\n9\tAlaa El-Din Mohamed Fouad\tscientific\tDepartment of Astronomy, Space Science and Meteorology\tMember\n6\tFawzy Ahmed Abdel-Salam\tscientific\tDepartment of Astronomy, Space Science and Meteorology\tChair\n10\tHussein Mohamed Farid\tscientific\tDepartment of Astronomy, Space Science and Meteorology\tMember\n7\tMohamed Magdy Abdel-Wahab\tscientific\tDepartment of Astronomy, Space Science and Meteorology\tMember\n8\tOsama Shalabya\tscientific\tDepartment of Astronomy, Space Science and Meteorology\tMember\n12\tHaitham Sharaf El-Din\tscientific\tDepartment of Biophysics\tMember\n11\tMohamed Hassanein Gaber\tscientific\tDepartment of Biophysics\tChair\n15\tAhmed Fouad\tscientific\tDepartment of Biotechnology\tMember\n16\tDina Amr\tscientific\tDepartment of Biotechnology\tMember\n17\tNahla Osama\tscientific\tDepartment of Biotechnology\tMember\n13\tRefaat Gabre\tscientific\tDepartment of Biotechnology\tChair\n14\tTarek Kabil\tscientific\tDepartment of Biotechnology\tMember\n19\tMaimoona Kord\tscientific\tDepartment of Botany and Microbiology\tMember\n18\tTarek Abdel-Mawgoud\tscientific\tDepartment of Botany and Microbiology\tChair\n20\tWalid Abo-ElSooad\tscientific\tDepartment of Botany and Microbiology\tMember\n22\tAhmed Helmy Elwahy\tscientific\tDepartment of Chemistry\tMember\n41\tHamed Eid\tscientific \tDepartment of Chemistry \tMember\n21\tTayseer Abdel-Khaleq Abdullah\tscientific\tDepartment of Chemistry\tChair\n23\tAly Younes\tscientific\tDepartment of Entomology\tChair\n24\tNagwa Rashdan\tscientific\tDepartment of Entomology\tMember\n25\tYoussef El-Demerdash\tscientific\tDepartment of Entomology\tMember\n27\tAbdel-Hameed Wagdy El Manawy\tscientific\tDepartment of Geology\tMember\n28\tMortada Mourad El Aref\tscientific\tDepartment of Geology\tMember\n26\tSameh Tahoun\tscientific\tDepartment of Geology\tChair\n31\tAhmed Mohsen\tscientific\tDepartment of Geophysics\tMember\n30\tMohamed Hassan\tscientific\tDepartment of Geophysics\tMember\n29\tWaleed Mabrouk\tscientific\tDepartment of Geophysics\tChair\n33\tAhmed El-Gendy\tscientific\tDepartment of Mathematics\tMember\n35\tMohamed El-Zawawi\tscientific\tDepartment of Mathematics\tMember\n34\tMohamed Ramadan\tscientific\tDepartment of Mathematics\tMember\n32\tNasser El-Azab\tscientific\tDepartment of Mathematics\tChair\n36\tWalid Abdullah\tscientific\tDepartment of Mathematics\tMember\n39\tAbeer Abdullah\tscientific\tDepartment of Physics\tMember\n38\tGamal Abdel-Nasser\tscientific\tDepartment of Physics\tMember\n37\tMohamed Hassanein Gaber\tscientific\tDepartment of Physics\tChair\n40\tMohamed Mostafa Arman\tscientific\tDepartment of Physics\tMember\n44\tHala Ali Abdel Salam\tscientific\tDepartment of Zoology\tMember\n42\tSalwa Abdelhamid Hamdi\tscientific\tDepartment of Zoology\tChair\n43\tSalwa Thabet\tscientific\tDepartment of Zoology\tMember\n",
+  "stderr": "",
+  "execution_time_ms": 1585
+}

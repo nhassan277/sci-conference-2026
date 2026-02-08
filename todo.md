@@ -489,3 +489,32 @@
 - [x] Upload speaker photos to S3
 - [x] Add speakers to keynote speakers database
 - [x] Create announcement graphics for each new speaker
+
+## Create Prof. Taalab Announcement Graphic Using Template
+- [x] Analyze the template design from Dr. El-Sherbiny's graphic
+- [x] Create announcement graphic for Prof. Dr. Khalid Muhammad Taalab matching template style
+- [x] Include: photo, name, title, affiliation, presentation title
+
+## Create Prof. Azmy Announcement Graphic Using Template
+- [x] Create announcement graphic for Prof. Dr. Osama Azmy matching template style
+- [x] Include: photo, name, title, affiliation, presentation title
+
+## Create Social Media Posts for Keynote Speakers
+- [x] Create social media post for Prof. Dr. Khalid Amer
+- [x] Create social media post for Prof. Dr. Ibrahim M. El-Sherbiny
+- [x] Create social media post for Prof. Dr. Khalid Muhammad Taalab
+- [x] Create social media post for Prof. Dr. Osama Azmy
+
+## Recreate Dr. Azmy Graphic Using El-Sherbiny Template
+- [x] Generate new Dr. Azmy announcement graphic matching El-Sherbiny's beige/tan template design
+
+## Fix Scientific Committee Grouping Issue
+- [x] Investigate why Prof. Dr. Hamed Eid appears as separate list instead of under Chemistry department
+- [x] Fix the database or display logic to properly group him under Chemistry
+- [x] Verify the fix on the website
+
+## Re-investigate Committees Display Issue
+- [x] Check the actual website display to see how Prof. Hamed Eid appears
+- [x] Identify why the fix didn't work on the live website
+- [x] Apply the correct fix
+- [x] Verify on live website before checkpoint
