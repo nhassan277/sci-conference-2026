@@ -518,3 +518,8 @@
 - [x] Identify why the fix didn't work on the live website
 - [x] Apply the correct fix
 - [x] Verify on live website before checkpoint
+
+## Add Prof. Dr. Hamed Eid to Scientific Committee
+- [x] Add Prof. Dr. Hamed Eid to committees table under Department of Chemistry
+- [x] Verify the addition in database
+- [x] Save checkpoint

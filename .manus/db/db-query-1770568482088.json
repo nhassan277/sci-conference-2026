@@ -1,0 +1,28 @@
+{
+  "query": "SELECT id, full_name, title, department FROM committees WHERE committee_type = 'scientific' AND department = 'Department of Chemistry' ORDER BY full_name;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name, title, department FROM committees WHERE committee_type = 'scientific' AND department = 'Department of Chemistry' ORDER BY full_name;",
+  "rows": [
+    {
+      "id": "22",
+      "full_name": "Ahmed Helmy Elwahy",
+      "title": "Prof. Dr.",
+      "department": "Department of Chemistry"
+    },
+    {
+      "id": "90001",
+      "full_name": "Hamed Eid",
+      "title": "Prof. Dr.",
+      "department": "Department of Chemistry"
+    },
+    {
+      "id": "21",
+      "full_name": "Tayseer Abdel-Khaleq Abdullah",
+      "title": "Prof. Dr.",
+      "department": "Department of Chemistry"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tfull_name\ttitle\tdepartment\n22\tAhmed Helmy Elwahy\tProf. Dr.\tDepartment of Chemistry\n90001\tHamed Eid\tProf. Dr.\tDepartment of Chemistry\n21\tTayseer Abdel-Khaleq Abdullah\tProf. Dr.\tDepartment of Chemistry\n",
+  "stderr": "",
+  "execution_time_ms": 1589
+}
