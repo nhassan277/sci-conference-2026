@@ -579,3 +579,7 @@
 ## Add Workshop Registration Links
 - [x] Add NAWAH workshop registration button to homepage
 - [x] Add MARC workshop registration button to homepage
+
+## Add Dr. Ashraf Tabll as Keynote Speaker
+- [x] Upload Dr. Tabll's photo to S3
+- [x] Add Dr. Tabll to keynote speakers section on website
