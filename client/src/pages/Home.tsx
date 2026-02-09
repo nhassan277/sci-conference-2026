@@ -548,6 +548,14 @@ export default function Home() {
                     </div>
                   </CardDescription>
                 </CardHeader>
+                <CardContent>
+                  <Button 
+                    className="w-full" 
+                    onClick={() => window.open('https://forms.gle/xEZ42tTnxJzYZADU7', '_blank')}
+                  >
+                    Register Now | سجل الآن
+                  </Button>
+                </CardContent>
               </Card>
 
               {/* MARC Workshop */}
@@ -584,6 +592,14 @@ export default function Home() {
                     </div>
                   </CardDescription>
                 </CardHeader>
+                <CardContent>
+                  <Button 
+                    className="w-full" 
+                    onClick={() => window.open('https://forms.gle/JzAcT5HKBRqLLME8A', '_blank')}
+                  >
+                    Register Now | سجل الآن
+                  </Button>
+                </CardContent>
               </Card>
             </div>
           </div>

@@ -575,3 +575,7 @@
 - [x] Increase MARC logo size on homepage
 - [x] Increase NAWAH logo size on Sponsors page
 - [x] Increase MARC logo size on Sponsors page
+
+## Add Workshop Registration Links
+- [x] Add NAWAH workshop registration button to homepage
+- [x] Add MARC workshop registration button to homepage
