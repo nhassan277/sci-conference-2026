@@ -1,0 +1,30 @@
+{
+  "query": "SELECT full_name, affiliation, presentation_title FROM keynote_speakers ORDER BY display_order;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT full_name, affiliation, presentation_title FROM keynote_speakers ORDER BY display_order;",
+  "rows": [
+    {
+      "full_name": "Khaled Amer",
+      "affiliation": "Principal Investigator of Human Genome project, Egypt Centre for Research and Regenerative Medicine (ECRRM)",
+      "presentation_title": "Egypt Genome; From Dream to Reality"
+    },
+    {
+      "full_name": "Ibrahim M. El-Sherbiny",
+      "affiliation": "Professor of Nanotechnology & Nanomedicine, Founding Chairman of Nanoscience Program, Founding Director of Center of Materials Science, Acting President of the University of Science and Technology at Zewail City",
+      "presentation_title": "Basic Sciences As the Foundation of Innovation: Some Success Stories for Disease Treatment and Advanced Biomedical Applications (From Lab to Society)"
+    },
+    {
+      "full_name": "Khalid Muhammad Taalab",
+      "affiliation": "Nuclear Medicine Professor at Military Medical Academy, Egypt Centre of Research and Regenerative Medicine (ECRRM)",
+      "presentation_title": "Radiopharmaceuticals and Precision Medicine"
+    },
+    {
+      "full_name": "Osama Azmy",
+      "affiliation": "Consultant to President of National Research Centre, Egypt Centre of Research and Regenerative Medicine (ECRRM)",
+      "presentation_title": "Management of the Rosy Years of Life"
+    }
+  ],
+  "messages": [],
+  "stdout": "full_name\taffiliation\tpresentation_title\nKhaled Amer\tPrincipal Investigator of Human Genome project, Egypt Centre for Research and Regenerative Medicine (ECRRM)\tEgypt Genome; From Dream to Reality\nIbrahim M. El-Sherbiny\tProfessor of Nanotechnology & Nanomedicine, Founding Chairman of Nanoscience Program, Founding Director of Center of Materials Science, Acting President of the University of Science and Technology at Zewail City\tBasic Sciences As the Foundation of Innovation: Some Success Stories for Disease Treatment and Advanced Biomedical Applications (From Lab to Society)\nKhalid Muhammad Taalab\tNuclear Medicine Professor at Military Medical Academy, Egypt Centre of Research and Regenerative Medicine (ECRRM)\tRadiopharmaceuticals and Precision Medicine\nOsama Azmy\tConsultant to President of National Research Centre, Egypt Centre of Research and Regenerative Medicine (ECRRM)\tManagement of the Rosy Years of Life\n",
+  "stderr": "",
+  "execution_time_ms": 1570
+}

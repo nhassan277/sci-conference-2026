@@ -22,6 +22,7 @@ import TrackDetailPage from "./pages/TrackDetailPage";
 import Committees from "./pages/Committees";
 import KeynoteSpeakers from "./pages/KeynoteSpeakers";
 import MediaRegistration from "./pages/MediaRegistration";
+import Sponsors from "./pages/Sponsors";
 import CommitteeManagement from "./pages/admin/CommitteeManagement";
 import KeynoteSpeakersManagement from "./pages/admin/KeynoteSpeakersManagement";
 // import LiveGallery from "./pages/LiveGallery";
@@ -46,7 +47,9 @@ function Router() {
       <Route path={"/tracks"} component={ResearchTracks} />
       <Route path={"/tracks/:trackId"} component={TrackDetailPage} />
       <Route path={"/committees"} component={Committees} />
-      <Route path={"/speakers"} component={KeynoteSpeakers} />      <Route path={"/media-registration"} component={MediaRegistration} />
+      <Route path={"/speakers"} component={KeynoteSpeakers} />
+      <Route path={"/sponsors"} component={Sponsors} />
+      <Route path={"/media-registration"} component={MediaRegistration} />
       <Route path={"/admin/committees"} component={CommitteeManagement} />
       <Route path={"/admin/speakers"} component={KeynoteSpeakersManagement} />
       {/* <Route path={"/ live-gallery"} component={LiveGallery} /> */}

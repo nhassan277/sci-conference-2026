@@ -503,46 +503,89 @@ export default function Home() {
         </div>
       </section>
 
-      {/* NAWAH Workshops */}
+      {/* Professional Workshops */}
       <section className="py-20 bg-white">
         <div className="container">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-5xl mx-auto">
             <div className="text-center space-y-4 mb-12">
               <h2 className="text-4xl md:text-5xl font-bold text-primary">Professional Workshops</h2>
               <p className="text-xl text-muted-foreground">
-                In collaboration with NAWAH Scientific
+                In collaboration with NAWAH Scientific and MARC
               </p>
             </div>
 
-            <Card className="border-2 border-primary/20">
-              <CardHeader>
-                <CardTitle className="text-2xl">How to Convert Research Findings into Business Ideas</CardTitle>
-                <CardDescription className="text-base space-y-4 pt-4">
-                  <p className="text-foreground font-medium">
-                    In collaboration with <strong>NAWAH Scientific</strong>, a leading provider of advanced scientific services 
-                    and research solutions.
-                  </p>
-                  
-                  <div className="bg-primary/5 p-4 rounded-lg">
-                    <p className="text-sm text-muted-foreground mb-2"><strong>Duration:</strong> 4 hours (2h theoretical + 2h practical)</p>
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* NAWAH Workshop */}
+              <Card className="border-2 border-primary/20">
+                <CardHeader>
+                  <div className="flex justify-center mb-4">
+                    <img 
+                      src="https://s3.manus.im/sandbox/tPNLwMNbWs5kxeQroiv2yU/nawah-logo_1770631621000_na1fn.png" 
+                      alt="NAWAH Scientific" 
+                      className="h-20 object-contain"
+                    />
                   </div>
+                  <CardTitle className="text-xl">How to Convert Research Findings into Business Ideas</CardTitle>
+                  <CardDescription className="text-base space-y-4 pt-4">
+                    <p className="text-foreground font-medium">
+                      In collaboration with <strong>NAWAH Scientific</strong>
+                    </p>
+                    
+                    <div className="bg-primary/5 p-4 rounded-lg">
+                      <p className="text-sm text-muted-foreground mb-2"><strong>Duration:</strong> 4 hours</p>
+                    </div>
 
-                  <p className="text-justify">
-                    This course bridges the gap between laboratory results and real-world ventures, guiding participants to identify which scientific findings have true commercial potential. It distinguishes clearly between business ideas and sustainable business models, and introduces core fundraising concepts relevant to early-stage science-based startups. The session concludes with a hands-on Business Model Canvas workshop, where attendees transform a lab-derived concept into a structured, investor-ready business framework.
-                  </p>
+                    <p className="text-sm text-justify">
+                      This course bridges the gap between laboratory results and real-world ventures, guiding participants to identify which scientific findings have true commercial potential. It distinguishes clearly between business ideas and sustainable business models, and introduces core fundraising concepts relevant to early-stage science-based startups.
+                    </p>
 
-                  <div className="border-t pt-4 mt-4">
-                    <p className="text-sm text-muted-foreground"><strong>Workshop Details:</strong></p>
-                    <ul className="list-disc list-inside space-y-2 text-left mt-2">
-                      <li>Open to all registered conference participants</li>
-                      <li>Separate workshop registration may apply due to limited capacity</li>
-                      <li>Certificate of completion provided by NAWAH Scientific</li>
-                      <li>Interactive hands-on Business Model Canvas session included</li>
-                    </ul>
+                    <div className="border-t pt-4 mt-4">
+                      <ul className="list-disc list-inside space-y-1 text-left text-sm">
+                        <li>Open to all registered participants</li>
+                        <li>Certificate of completion provided</li>
+                        <li>Interactive Business Model Canvas session</li>
+                      </ul>
+                    </div>
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+
+              {/* MARC Workshop */}
+              <Card className="border-2 border-secondary/20">
+                <CardHeader>
+                  <div className="flex justify-center mb-4">
+                    <img 
+                      src="https://s3.manus.im/sandbox/tPNLwMNbWs5kxeQroiv2yU/marc-logo_1770631626000_na1fn.png" 
+                      alt="MARC" 
+                      className="h-20 object-contain"
+                    />
                   </div>
-                </CardDescription>
-              </CardHeader>
-            </Card>
+                  <CardTitle className="text-xl">Good Clinical Practice (GCP) Workshop</CardTitle>
+                  <CardDescription className="text-base space-y-4 pt-4">
+                    <p className="text-foreground font-medium">
+                      In collaboration with <strong>MARC</strong> (Medical Applications Research Center)
+                    </p>
+                    
+                    <div className="bg-secondary/5 p-4 rounded-lg">
+                      <p className="text-sm text-muted-foreground mb-2"><strong>Duration:</strong> 3 hours</p>
+                    </div>
+
+                    <p className="text-sm text-justify">
+                      Comprehensive training in Good Clinical Practice covering ICH-GCP guidelines, ethical principles in clinical research, informed consent procedures, protocol compliance, data integrity, regulatory requirements, adverse event reporting, and monitoring procedures.
+                    </p>
+
+                    <div className="border-t pt-4 mt-4">
+                      <ul className="list-disc list-inside space-y-1 text-left text-sm">
+                        <li>ICH-GCP guidelines and regulations</li>
+                        <li>Ethical principles and informed consent</li>
+                        <li>Data integrity and protocol compliance</li>
+                        <li>Certificate of completion provided</li>
+                      </ul>
+                    </div>
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+            </div>
           </div>
         </div>
       </section>
@@ -556,13 +599,57 @@ export default function Home() {
               <p className="text-2xl font-semibold text-secondary" dir="rtl">الرعاة والشركاء</p>
             </div>
 
+            {/* Platinum Sponsor - Taiba Group */}
+            <div className="mb-12">
+              <div className="text-center mb-6">
+                <Badge className="bg-primary text-white px-4 py-1.5 text-sm font-medium">
+                  Platinum Sponsor | الراعي البلاتيني
+                </Badge>
+              </div>
+              <Card className="border-4 border-primary/30 hover:shadow-xl transition-shadow">
+                <CardHeader>
+                  <div className="flex items-center justify-center h-40 bg-white rounded-lg mb-4 p-4">
+                    <img 
+                      src="https://s3.manus.im/sandbox/tPNLwMNbWs5kxeQroiv2yU/taiba-sponsor-logo_1770631616000_na1fn.png" 
+                      alt="Taiba Group" 
+                      className="h-full w-auto object-contain"
+                    />
+                  </div>
+                  <CardTitle className="text-2xl text-center">Taiba Group for Feed and Poultry</CardTitle>
+                  <CardDescription className="text-center text-lg" dir="rtl">
+                    مجموعة طيبة للأعلاف والدواجن
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground text-center">
+                    Leading Egyptian company supporting scientific research and innovation
+                  </p>
+                  <p className="text-sm text-muted-foreground text-center mt-2" dir="rtl">
+                    شركة مصرية رائدة تدعم البحث العلمي والابتكار
+                  </p>
+                  <div className="text-center mt-4">
+                    <Link href="/sponsors">
+                      <Button variant="outline" size="sm">
+                        Learn More | اعرف المزيد
+                      </Button>
+                    </Link>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Workshop Partners */}
+            <div className="text-center mb-6">
+              <h3 className="text-2xl font-bold text-primary">Workshop Partners</h3>
+              <p className="text-lg text-muted-foreground" dir="rtl">شركاء ورش العمل</p>
+            </div>
             <div className="grid md:grid-cols-2 gap-8">
               {/* NAWAH Scientific */}
               <Card className="hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <div className="flex items-center justify-center h-32 bg-white rounded-lg mb-4 p-4">
                     <img 
-                      src="/images/nawah-logo.webp" 
+                      src="https://s3.manus.im/sandbox/tPNLwMNbWs5kxeQroiv2yU/nawah-logo_1770631621000_na1fn.png" 
                       alt="NAWAH Scientific" 
                       className="h-full w-auto object-contain"
                     />
@@ -582,32 +669,31 @@ export default function Home() {
                 </CardContent>
               </Card>
 
-              {/* Placeholder for future sponsors */}
-              <Card className="hover:shadow-lg transition-shadow border-dashed">
+              {/* MARC */}
+              <Card className="hover:shadow-lg transition-shadow">
                 <CardHeader>
-                  <div className="flex items-center justify-center h-32 bg-gradient-to-br from-muted/30 to-muted/10 rounded-lg mb-4">
-                    <div className="text-center">
-                      <h3 className="text-xl font-semibold text-muted-foreground">Your Organization</h3>
-                      <p className="text-sm text-muted-foreground mt-1">Become a Sponsor</p>
-                    </div>
+                  <div className="flex items-center justify-center h-32 bg-white rounded-lg mb-4 p-4">
+                    <img 
+                      src="https://s3.manus.im/sandbox/tPNLwMNbWs5kxeQroiv2yU/marc-logo_1770631626000_na1fn.png" 
+                      alt="MARC" 
+                      className="h-full w-auto object-contain"
+                    />
                   </div>
-                  <CardTitle className="text-xl text-center">Sponsorship Opportunities</CardTitle>
+                  <CardTitle className="text-xl text-center">MARC</CardTitle>
+                  <CardDescription className="text-center">
+                    Medical Applications Research Center
+                  </CardDescription>
                   <CardDescription className="text-center" dir="rtl">
-                    فرص الرعاية
+                    مركز أبحاث التطبيقات الطبية
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-muted-foreground text-center mb-4">
-                    Join us as a sponsor and support scientific innovation
+                  <p className="text-sm text-muted-foreground text-center">
+                    Specializing in medical research applications and clinical training
                   </p>
-                  <Link href="/sponsor">
-                    <Button 
-                      variant="outline" 
-                      className="w-full"
-                    >
-                      View Packages | عرض الباقات
-                    </Button>
-                  </Link>
+                  <p className="text-sm text-muted-foreground text-center mt-2" dir="rtl">
+                    متخصص في تطبيقات البحوث الطبية والتدريب السريري
+                  </p>
                 </CardContent>
               </Card>
             </div>

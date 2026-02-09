@@ -523,3 +523,35 @@
 - [x] Add Prof. Dr. Hamed Eid to committees table under Department of Chemistry
 - [x] Verify the addition in database
 - [x] Save checkpoint
+
+## Update Conference Banner with Patronage Section
+- [x] Create updated banner with "تحت رعاية" section in the middle
+- [x] Include three names in Arabic with titles and positions
+- [x] Maintain original banner design and branding
+
+## Create Print Version of Conference Banner
+- [x] Generate high-resolution banner for 200 cm × 100 cm printing
+- [x] Ensure print quality and color accuracy for professional output
+
+## Create Double-Sided A5 Conference Flyer
+- [x] Gather all conference information (tracks, speakers, dates, contact)
+- [x] Design front side with branding, title, date, venue, patronage
+- [x] Design back side with tracks, speakers, registration, workshops, QR code
+- [x] Ensure A5 size (148mm × 210mm) optimized for print
+
+## Update Flyer with Complete Research Tracks
+- [x] Query database to get all research tracks from website
+- [x] Regenerate flyer back side with all tracks included
+- [x] Ensure layout fits all tracks while maintaining readability
+
+## Remove Dimensions from Flyer Back Side
+- [x] Regenerate flyer back side without dimension labels and measurement markers
+- [x] Create clean print-ready version
+
+## Add Sponsor and Partner Logos to Flyer and Website
+- [ ] Upload Taiba Group, NAWAH, and MARC logos to S3
+- [ ] Update flyer front side with Taiba Group sponsor logo
+- [ ] Update flyer back side with NAWAH and MARC logos in workshops section
+- [ ] Create sponsors section on website with Taiba Group (150,000 EGP sponsor)
+- [ ] Add MARC GCP workshop details to website (3-hour workshop with key topics)
+- [ ] Save checkpoint
