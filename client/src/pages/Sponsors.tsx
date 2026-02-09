@@ -38,7 +38,7 @@ export default function Sponsors() {
               <CardHeader className="text-center pb-4">
                 <div className="flex justify-center mb-6">
                   <img 
-                    src="https://s3.manus.im/sandbox/tPNLwMNbWs5kxeQroiv2yU/taiba-sponsor-logo_1770631616000_na1fn.png" 
+                    src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/AnhypChIFEYqXvzy.png" 
                     alt="Sami Ayed Group" 
                     className="h-40 object-contain"
                   />
@@ -96,7 +96,7 @@ export default function Sponsors() {
               <CardHeader className="text-center">
                 <div className="flex justify-center mb-4">
                   <img 
-                    src="https://s3.manus.im/sandbox/tPNLwMNbWs5kxeQroiv2yU/nawah-logo_1770631621000_na1fn.png" 
+                    src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/ndKRwnmyKdJLbGXC.png" 
                     alt="NAWAH Scientific" 
                     className="h-32 object-contain"
                   />
@@ -123,7 +123,7 @@ export default function Sponsors() {
               <CardHeader className="text-center">
                 <div className="flex justify-center mb-4">
                   <img 
-                    src="https://s3.manus.im/sandbox/tPNLwMNbWs5kxeQroiv2yU/marc-logo_1770631626000_na1fn.png" 
+                    src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/ovrQFMOFiOzebFkT.jpg" 
                     alt="MARC" 
                     className="h-32 object-contain"
                   />

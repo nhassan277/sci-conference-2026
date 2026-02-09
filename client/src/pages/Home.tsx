@@ -520,7 +520,7 @@ export default function Home() {
                 <CardHeader>
                   <div className="flex justify-center mb-4">
                     <img 
-                      src="https://s3.manus.im/sandbox/tPNLwMNbWs5kxeQroiv2yU/nawah-logo_1770631621000_na1fn.png" 
+                      src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/ndKRwnmyKdJLbGXC.png" 
                       alt="NAWAH Scientific" 
                       className="h-20 object-contain"
                     />
@@ -555,7 +555,7 @@ export default function Home() {
                 <CardHeader>
                   <div className="flex justify-center mb-4">
                     <img 
-                      src="https://s3.manus.im/sandbox/tPNLwMNbWs5kxeQroiv2yU/marc-logo_1770631626000_na1fn.png" 
+                      src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/ovrQFMOFiOzebFkT.jpg" 
                       alt="MARC" 
                       className="h-20 object-contain"
                     />
@@ -610,7 +610,7 @@ export default function Home() {
                 <CardHeader>
                   <div className="flex items-center justify-center h-40 bg-white rounded-lg mb-4 p-4">
                     <img 
-                      src="https://s3.manus.im/sandbox/tPNLwMNbWs5kxeQroiv2yU/taiba-sponsor-logo_1770631616000_na1fn.png" 
+                      src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/AnhypChIFEYqXvzy.png" 
                       alt="Taiba Group" 
                       className="h-full w-auto object-contain"
                     />
@@ -649,7 +649,7 @@ export default function Home() {
                 <CardHeader>
                   <div className="flex items-center justify-center h-32 bg-white rounded-lg mb-4 p-4">
                     <img 
-                      src="https://s3.manus.im/sandbox/tPNLwMNbWs5kxeQroiv2yU/nawah-logo_1770631621000_na1fn.png" 
+                      src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/ndKRwnmyKdJLbGXC.png" 
                       alt="NAWAH Scientific" 
                       className="h-full w-auto object-contain"
                     />
@@ -674,7 +674,7 @@ export default function Home() {
                 <CardHeader>
                   <div className="flex items-center justify-center h-32 bg-white rounded-lg mb-4 p-4">
                     <img 
-                      src="https://s3.manus.im/sandbox/tPNLwMNbWs5kxeQroiv2yU/marc-logo_1770631626000_na1fn.png" 
+                      src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/ovrQFMOFiOzebFkT.jpg" 
                       alt="MARC" 
                       className="h-full w-auto object-contain"
                     />

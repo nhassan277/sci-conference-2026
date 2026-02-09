@@ -560,3 +560,10 @@
 - [ ] Correct sponsor name from Taiba Group to Sami Ayed Group (مجموعة سامي عايد للأعلاف والدواجن) on flyer front
 - [x] Correct sponsor name on website /sponsors page
 - [x] Correct sponsor name on homepage sponsors section
+
+## Fix Missing Sponsor Logos
+- [x] Upload Sami Ayed Group logo to S3
+- [x] Upload NAWAH Scientific logo to S3
+- [x] Upload MARC logo to S3
+- [x] Update homepage sponsor logo references
+- [x] Update Sponsors page logo references
