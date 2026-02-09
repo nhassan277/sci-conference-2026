@@ -555,3 +555,8 @@
 - [ ] Create sponsors section on website with Taiba Group (150,000 EGP sponsor)
 - [ ] Add MARC GCP workshop details to website (3-hour workshop with key topics)
 - [ ] Save checkpoint
+
+## Sponsor Name Correction
+- [ ] Correct sponsor name from Taiba Group to Sami Ayed Group (مجموعة سامي عايد للأعلاف والدواجن) on flyer front
+- [x] Correct sponsor name on website /sponsors page
+- [x] Correct sponsor name on homepage sponsors section

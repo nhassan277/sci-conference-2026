@@ -615,9 +615,9 @@ export default function Home() {
                       className="h-full w-auto object-contain"
                     />
                   </div>
-                  <CardTitle className="text-2xl text-center">Taiba Group for Feed and Poultry</CardTitle>
+                  <CardTitle className="text-2xl text-center">Sami Ayed Group for Feed and Poultry</CardTitle>
                   <CardDescription className="text-center text-lg" dir="rtl">
-                    مجموعة طيبة للأعلاف والدواجن
+                    مجموعة سامي عايد للأعلاف والدواجن
                   </CardDescription>
                 </CardHeader>
                 <CardContent>

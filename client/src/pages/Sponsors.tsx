@@ -39,28 +39,28 @@ export default function Sponsors() {
                 <div className="flex justify-center mb-6">
                   <img 
                     src="https://s3.manus.im/sandbox/tPNLwMNbWs5kxeQroiv2yU/taiba-sponsor-logo_1770631616000_na1fn.png" 
-                    alt="Taiba Group" 
+                    alt="Sami Ayed Group" 
                     className="h-40 object-contain"
                   />
                 </div>
-                <CardTitle className="text-3xl">Taiba Group for Feed and Poultry</CardTitle>
+                <CardTitle className="text-3xl">Sami Ayed Group for Feed and Poultry</CardTitle>
                 <CardTitle className="text-2xl text-muted-foreground" dir="rtl">
-                  مجموعة طيبة للأعلاف والدواجن
+                  مجموعة سامي عايد للأعلاف والدواجن
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="prose prose-lg max-w-none">
                   <p className="text-center text-lg leading-relaxed">
-                    Taiba Group is a leading Egyptian company in the poultry and feed industry, 
+                    Sami Ayed Group is a leading Egyptian company in the poultry and feed industry, 
                     committed to supporting scientific research and innovation. Through their 
-                    generous sponsorship of SCI 2026, Taiba Group demonstrates their dedication 
+                    generous sponsorship of SCI 2026, Sami Ayed Group demonstrates their dedication 
                     to building effective partnerships between universities and industry, fostering 
                     the next generation of scientific breakthroughs.
                   </p>
                   <p className="text-center text-lg leading-relaxed" dir="rtl">
-                    مجموعة طيبة هي شركة مصرية رائدة في صناعة الدواجن والأعلاف، ملتزمة بدعم 
+                    مجموعة سامي عايد هي شركة مصرية رائدة في صناعة الدواجن والأعلاف، ملتزمة بدعم 
                     البحث العلمي والابتكار. من خلال رعايتها السخية لمؤتمر SCI 2026، تُظهر 
-                    مجموعة طيبة تفانيها في بناء شراكات فعالة بين الجامعات والصناعة، وتعزيز 
+                    مجموعة سامي عايد تفانيها في بناء شراكات فعالة بين الجامعات والصناعة، وتعزيز 
                     الجيل القادم من الاختراقات العلمية.
                   </p>
                 </div>
