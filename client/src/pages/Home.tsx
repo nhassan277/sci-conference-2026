@@ -522,7 +522,7 @@ export default function Home() {
                     <img 
                       src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/ndKRwnmyKdJLbGXC.png" 
                       alt="NAWAH Scientific" 
-                      className="h-20 object-contain"
+                      className="h-28 object-contain"
                     />
                   </div>
                   <CardTitle className="text-xl">How to Convert Research Findings into Business Ideas</CardTitle>
@@ -557,13 +557,13 @@ export default function Home() {
                     <img 
                       src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/ovrQFMOFiOzebFkT.jpg" 
                       alt="MARC" 
-                      className="h-20 object-contain"
+                      className="h-28 object-contain"
                     />
                   </div>
                   <CardTitle className="text-xl">Good Clinical Practice (GCP) Workshop</CardTitle>
                   <CardDescription className="text-base space-y-4 pt-4">
                     <p className="text-foreground font-medium">
-                      In collaboration with <strong>MARC</strong> (Medical Applications Research Center)
+                      In collaboration with <strong>MARC</strong>
                     </p>
                     
                     <div className="bg-secondary/5 p-4 rounded-lg">
@@ -680,9 +680,6 @@ export default function Home() {
                     />
                   </div>
                   <CardTitle className="text-xl text-center">MARC</CardTitle>
-                  <CardDescription className="text-center">
-                    Medical Applications Research Center
-                  </CardDescription>
                   <CardDescription className="text-center" dir="rtl">
                     مركز أبحاث التطبيقات الطبية
                   </CardDescription>

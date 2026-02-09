@@ -98,7 +98,7 @@ export default function Sponsors() {
                   <img 
                     src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/ndKRwnmyKdJLbGXC.png" 
                     alt="NAWAH Scientific" 
-                    className="h-32 object-contain"
+                    className="h-40 object-contain"
                   />
                 </div>
                 <CardTitle className="text-2xl">NAWAH Scientific</CardTitle>
@@ -125,13 +125,10 @@ export default function Sponsors() {
                   <img 
                     src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/ovrQFMOFiOzebFkT.jpg" 
                     alt="MARC" 
-                    className="h-32 object-contain"
+                    className="h-40 object-contain"
                   />
                 </div>
                 <CardTitle className="text-2xl">MARC</CardTitle>
-                <CardDescription className="text-lg font-semibold mt-2">
-                  Medical Applications Research Center
-                </CardDescription>
               </CardHeader>
               <CardContent>
                 <CardDescription className="text-base space-y-3">

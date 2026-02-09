@@ -567,3 +567,11 @@
 - [x] Upload MARC logo to S3
 - [x] Update homepage sponsor logo references
 - [x] Update Sponsors page logo references
+
+## Update MARC Name and Logo Sizes
+- [x] Remove "(Medical Applications Research Center)" from MARC name on homepage
+- [x] Remove "(Medical Applications Research Center)" from MARC name on Sponsors page
+- [x] Increase NAWAH logo size on homepage
+- [x] Increase MARC logo size on homepage
+- [x] Increase NAWAH logo size on Sponsors page
+- [x] Increase MARC logo size on Sponsors page
