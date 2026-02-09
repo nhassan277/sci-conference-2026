@@ -583,3 +583,8 @@
 ## Add Dr. Ashraf Tabll as Keynote Speaker
 - [x] Upload Dr. Tabll's photo to S3
 - [x] Add Dr. Tabll to keynote speakers section on website
+
+## Add Dr. Mortada Mourad El Aref as Keynote Speaker
+- [x] Translate Arabic biography to English
+- [x] Upload Dr. El Aref's photo to S3
+- [x] Add Dr. El Aref to keynote speakers database
