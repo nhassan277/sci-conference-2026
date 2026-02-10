@@ -604,3 +604,5 @@
 
 - [x] Add Prof. Dr. Osama Azmy as invited speaker to website
 - [x] Add Prof. Dr. Khalid Taalab as invited speaker to website
+
+- [x] Rename navigation menu from 'Keynote Speakers' to 'Keynote and Invited Speakers'
