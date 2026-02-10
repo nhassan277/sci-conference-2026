@@ -1,0 +1,52 @@
+{
+  "query": "SELECT id, full_name, title, speaker_type FROM keynote_speakers ORDER BY speaker_type, display_order;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name, title, speaker_type FROM keynote_speakers ORDER BY speaker_type, display_order;",
+  "rows": [
+    {
+      "id": "7",
+      "full_name": "Nagwa El-Badri",
+      "title": "Prof. Dr.",
+      "speaker_type": "invited"
+    },
+    {
+      "id": "1",
+      "full_name": "Khaled Amer",
+      "title": "Major General Dr.",
+      "speaker_type": "keynote"
+    },
+    {
+      "id": "2",
+      "full_name": "Ibrahim M. El-Sherbiny",
+      "title": "Prof. Dr.",
+      "speaker_type": "keynote"
+    },
+    {
+      "id": "3",
+      "full_name": "Khalid Muhammad Taalab",
+      "title": "Prof. Dr.",
+      "speaker_type": "keynote"
+    },
+    {
+      "id": "6",
+      "full_name": "Mortada Mourad Taha El Aref",
+      "title": "Prof. Dr.",
+      "speaker_type": "keynote"
+    },
+    {
+      "id": "4",
+      "full_name": "Osama Azmy",
+      "title": "Prof. Dr. ",
+      "speaker_type": "keynote"
+    },
+    {
+      "id": "5",
+      "full_name": "Ashraf Abdou Tabll",
+      "title": "Prof. Dr.",
+      "speaker_type": "keynote"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tfull_name\ttitle\tspeaker_type\n7\tNagwa El-Badri\tProf. Dr.\tinvited\n1\tKhaled Amer\tMajor General Dr.\tkeynote\n2\tIbrahim M. El-Sherbiny\tProf. Dr.\tkeynote\n3\tKhalid Muhammad Taalab\tProf. Dr.\tkeynote\n6\tMortada Mourad Taha El Aref\tProf. Dr.\tkeynote\n4\tOsama Azmy\tProf. Dr. \tkeynote\n5\tAshraf Abdou Tabll\tProf. Dr.\tkeynote\n",
+  "stderr": "",
+  "execution_time_ms": 1589
+}

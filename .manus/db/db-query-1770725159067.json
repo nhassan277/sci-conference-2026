@@ -1,0 +1,9 @@
+{
+  "query": "UPDATE keynote_speakers SET speaker_type = 'invited' WHERE full_name IN ('Ashraf Tabll', 'Ibrahim El-Sherbiny', 'Mortada Mourad El Aref');",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute UPDATE keynote_speakers SET speaker_type = 'invited' WHERE full_name IN ('Ashraf Tabll', 'Ibrahim El-Sherbiny', 'Mortada Mourad El Aref');",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 1569
+}

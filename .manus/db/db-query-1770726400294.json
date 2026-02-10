@@ -1,0 +1,31 @@
+{
+  "query": "SELECT id, full_name, title, presentation_title, speaker_type FROM keynote_speakers WHERE speaker_type = 'invited' ORDER BY display_order;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name, title, presentation_title, speaker_type FROM keynote_speakers WHERE speaker_type = 'invited' ORDER BY display_order;",
+  "rows": [
+    {
+      "id": "7",
+      "full_name": "Nagwa El-Badri",
+      "title": "Prof. Dr.",
+      "presentation_title": "Biomimetic Scaffolds and Amniotic Membranes",
+      "speaker_type": "invited"
+    },
+    {
+      "id": "240001",
+      "full_name": "Osama Azmy",
+      "title": "Prof. Dr.",
+      "presentation_title": "Management of the Rosy Years of Life",
+      "speaker_type": "invited"
+    },
+    {
+      "id": "240002",
+      "full_name": "Khalid Muhammad Taalab",
+      "title": "Prof. Dr.",
+      "presentation_title": "Radiopharmaceuticals and Precision Medicine",
+      "speaker_type": "invited"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tfull_name\ttitle\tpresentation_title\tspeaker_type\n7\tNagwa El-Badri\tProf. Dr.\tBiomimetic Scaffolds and Amniotic Membranes\tinvited\n240001\tOsama Azmy\tProf. Dr.\tManagement of the Rosy Years of Life\tinvited\n240002\tKhalid Muhammad Taalab\tProf. Dr.\tRadiopharmaceuticals and Precision Medicine\tinvited\n",
+  "stderr": "",
+  "execution_time_ms": 1587
+}

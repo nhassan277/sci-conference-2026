@@ -1,0 +1,1 @@
+ALTER TABLE `keynote_speakers` ADD `speaker_type` varchar(50) DEFAULT 'keynote' NOT NULL;

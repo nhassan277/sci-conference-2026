@@ -1,0 +1,18 @@
+{
+  "query": "SELECT id, full_name, title, speaker_type, presentation_title, is_visible FROM keynote_speakers WHERE speaker_type = 'invited';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name, title, speaker_type, presentation_title, is_visible FROM keynote_speakers WHERE speaker_type = 'invited';",
+  "rows": [
+    {
+      "id": "180001",
+      "full_name": "Nagwa El-Badri",
+      "title": "Prof. Dr.",
+      "speaker_type": "invited",
+      "presentation_title": "Biomimetic Scaffolds and Amniotic Membranes",
+      "is_visible": "1"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tfull_name\ttitle\tspeaker_type\tpresentation_title\tis_visible\n180001\tNagwa El-Badri\tProf. Dr.\tinvited\tBiomimetic Scaffolds and Amniotic Membranes\t1\n",
+  "stderr": "",
+  "execution_time_ms": 1790
+}

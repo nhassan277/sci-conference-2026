@@ -345,6 +345,9 @@ export const keynoteSpeakers = mysqlTable("keynote_speakers", {
   twitterUrl: varchar("twitter_url", { length: 500 }),
   websiteUrl: varchar("website_url", { length: 500 }),
   
+  // Speaker Type
+  speakerType: varchar("speaker_type", { length: 50 }).default("keynote").notNull(), // keynote or invited
+  
   // Display Order
   displayOrder: int("display_order").default(0).notNull(),
   

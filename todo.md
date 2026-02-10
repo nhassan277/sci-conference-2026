@@ -588,3 +588,19 @@
 - [x] Translate Arabic biography to English
 - [x] Upload Dr. El Aref's photo to S3
 - [x] Add Dr. El Aref to keynote speakers database
+- [x] Replace Keynote Speakers section with Conference Awards on banner
+- [x] Generate updated conference banner with awards section
+
+- [x] Generate invited speaker announcement poster for Prof. Dr. Nagwa El-Badri
+- [x] Upload Dr. Nagwa El-Badri poster to CDN
+
+- [x] Upload Dr. Nagwa's photo to CDN for website
+- [x] Update speakers page to include Invited Speakers section
+- [x] Add Dr. Nagwa El-Badri to database as invited speaker
+
+- [x] Reclassify Dr. Ashraf Tabll as invited speaker
+- [x] Reclassify Dr. Ibrahim El-Sherbiny as invited speaker
+- [x] Reclassify Dr. Mortada El Aref as invited speaker
+
+- [x] Add Prof. Dr. Osama Azmy as invited speaker to website
+- [x] Add Prof. Dr. Khalid Taalab as invited speaker to website
