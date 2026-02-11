@@ -340,7 +340,10 @@ export default function Home() {
 
           {/* Team Members */}
           <div className="max-w-5xl mx-auto">
-            <h3 className="text-2xl font-bold text-center mb-8 text-primary">Team | الفريق</h3>
+            <h3 className="text-2xl font-bold text-center mb-2 text-primary">Team | الفريق</h3>
+            <p className="text-center text-base text-muted-foreground mb-8">
+              Lecturers at Biotechnology Department | مدرسون بقسم التكنولوجيا الحيوية
+            </p>
             <div className="grid md:grid-cols-3 gap-6">
               <Card className="hover:shadow-lg transition-shadow border-2 hover:border-primary/50">
                 <CardHeader className="text-center">

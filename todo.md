@@ -627,3 +627,4 @@
 - [x] Add awards section to website homepage with awards graphic
 - [x] Create Facebook post for conference awards announcement
 - [x] Add photos to organizing committee members (Prof. Emtithal and 3 team members)
+- [x] Add Biotechnology Department affiliation to organizing committee team members
