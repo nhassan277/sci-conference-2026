@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Youtube, Instagram } from "lucide-react";
+import { Mail, MapPin, Facebook } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -72,16 +72,11 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-3">
                 <Mail className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                <a href="mailto:sci2026@cu.edu.eg" className="text-sm text-slate-400 hover:text-white transition-colors">
-                  sci2026@cu.edu.eg
+                <a href="mailto:science.faculty.conference2026@gmail.com" className="text-sm text-slate-400 hover:text-white transition-colors">
+                  science.faculty.conference2026@gmail.com
                 </a>
               </li>
-              <li className="flex items-start gap-3">
-                <Phone className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                <a href="tel:+20235676211" className="text-sm text-slate-400 hover:text-white transition-colors">
-                  +20 2 3567 6211
-                </a>
-              </li>
+
             </ul>
           </div>
 
@@ -93,49 +88,13 @@ export default function Footer() {
             </p>
             <div className="flex gap-3 mb-6">
               <a
-                href="https://www.facebook.com/CairoUniversity"
+                href="https://www.facebook.com/share/19H9L2Nnd2/?mibextid=wwXIfr"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-slate-800 hover:bg-primary flex items-center justify-center transition-colors"
                 aria-label="Facebook"
               >
                 <Facebook className="w-5 h-5" />
-              </a>
-              <a
-                href="https://twitter.com/CairoUniv"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-slate-800 hover:bg-primary flex items-center justify-center transition-colors"
-                aria-label="Twitter"
-              >
-                <Twitter className="w-5 h-5" />
-              </a>
-              <a
-                href="https://www.linkedin.com/school/cairo-university"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-slate-800 hover:bg-primary flex items-center justify-center transition-colors"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="w-5 h-5" />
-              </a>
-              <a
-                href="https://www.youtube.com/@CairoUniversity"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-slate-800 hover:bg-primary flex items-center justify-center transition-colors"
-                aria-label="YouTube"
-              >
-                <Youtube className="w-5 h-5" />
-              </a>
-              <a
-                href="https://www.instagram.com/cairouniversity"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-slate-800 hover:bg-primary flex items-center justify-center transition-colors"
-                aria-label="Instagram"
-              >
-                <Instagram className="w-5 h-5" />
               </a>
             </div>
           </div>

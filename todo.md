@@ -635,3 +635,5 @@
 - [x] Update Awards page - remove graphic, add trophy/certificate icons, add CTA section
 - [x] Fix Button import error in Awards page
 - [x] Remove duplicate "Ready to Compete?" section from bottom of Awards page
+- [x] Update footer to show only Facebook link and remove phone number
+- [x] Update footer email to science.faculty.conference2026@gmail.com
