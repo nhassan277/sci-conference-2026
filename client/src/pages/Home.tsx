@@ -130,11 +130,11 @@ export default function Home() {
               <a href="/media-registration" className="text-sm font-medium hover:text-primary transition-colors">
                 Media
               </a>
+              <a href="/sponsor" className="text-sm font-medium hover:text-primary transition-colors">
+                Sponsors
+              </a>
               <a href="/checkin-dashboard" className="text-sm font-medium hover:text-primary transition-colors">
                 Dashboard
-              </a>
-              <a href="#sponsors" className="text-sm font-medium hover:text-primary transition-colors">
-                Sponsors
               </a>
             </nav>
             <img src="/images/logo_pioneers.png" alt="Pioneers in Science" className="h-16 object-contain" />

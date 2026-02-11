@@ -606,3 +606,9 @@
 - [x] Add Prof. Dr. Khalid Taalab as invited speaker to website
 
 - [x] Rename navigation menu from 'Keynote Speakers' to 'Keynote and Invited Speakers'
+
+- [x] Add Prof. Dr. Mohamed Ibrahim El-Anbawy as invited speaker to website
+
+- [x] Generate invited speaker announcement poster for Dr. Mohamed Ibrahim El-Anbawy
+
+- [x] Restore Sponsors/Sponsorship Packages link in navigation menu
