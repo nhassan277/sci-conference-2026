@@ -633,3 +633,4 @@
 - [x] Remove duplicate Faculty of Science logo from headers
 - [x] Add comprehensive footer section with contact info, social media, navigation, and copyright
 - [x] Update Awards page - remove graphic, add trophy/certificate icons, add CTA section
+- [x] Fix Button import error in Awards page

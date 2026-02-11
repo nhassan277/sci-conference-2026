@@ -2,6 +2,7 @@ import { Award, Trophy, GraduationCap, FileText, Presentation, Lightbulb, Newspa
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 
 export default function Awards() {
   const awards = [
@@ -87,19 +88,19 @@ export default function Awards() {
         <div className="container">
           <div className="max-w-4xl mx-auto text-center space-y-8">
             {/* Title with Icons */}
-            <div className="flex items-center justify-center gap-4">
-              <Trophy className="w-12 h-12 text-amber-600" />
-              <Award className="w-12 h-12 text-amber-600" />
-              <div>
-                <h1 className="text-5xl md:text-6xl font-bold text-primary">
+            <div className="flex flex-col items-center justify-center space-y-4">
+              <div className="flex items-center justify-center gap-6">
+                <Trophy className="w-16 h-16 md:w-20 md:h-20 text-amber-500 flex-shrink-0" />
+                <Award className="w-16 h-16 md:w-20 md:h-20 text-amber-500 flex-shrink-0" />
+              </div>
+              <div className="text-center">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary">
                   Conference Awards
                 </h1>
-                <p className="text-3xl font-semibold text-secondary mt-2" dir="rtl">
+                <p className="text-2xl md:text-3xl font-semibold text-secondary mt-2" dir="rtl">
                   جوائز المؤتمر
                 </p>
               </div>
-              <Award className="w-12 h-12 text-amber-600" />
-              <Trophy className="w-12 h-12 text-amber-600" />
             </div>
             
             {/* Call to Action */}
