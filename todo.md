@@ -630,3 +630,4 @@
 - [x] Add Biotechnology Department affiliation to organizing committee team members
 - [x] Verify Cairo University logo consistency across all website sections
 - [x] Add Faculty of Science logo alongside Cairo University logo in header
+- [x] Remove duplicate Faculty of Science logo from headers
