@@ -315,6 +315,15 @@ export default function Home() {
           <div className="max-w-2xl mx-auto mb-12">
             <Card className="border-2 border-primary/30 hover:border-primary/50 transition-colors">
               <CardHeader className="text-center">
+                <div className="flex justify-center mb-6">
+                  <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-primary/20 shadow-lg">
+                    <img 
+                      src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/jIIzDxPeBLWRTLvp.jpeg" 
+                      alt="Prof. Dr. Emtithal Mohamed Abdel Samie" 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
                 <CardTitle className="text-2xl text-primary">Prof. Dr. Emtithal Mohamed Abdel Samie</CardTitle>
                 <CardDescription className="text-lg" dir="rtl">
                   الأستاذ الدكتور/ امتثال محمد عبد السميع
@@ -335,6 +344,15 @@ export default function Home() {
             <div className="grid md:grid-cols-3 gap-6">
               <Card className="hover:shadow-lg transition-shadow border-2 hover:border-primary/50">
                 <CardHeader className="text-center">
+                  <div className="flex justify-center mb-4">
+                    <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-primary/20 shadow-lg">
+                      <img 
+                        src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/AgfGFlGDGhMgodtH.jpg" 
+                        alt="Dr. Nourhan Hassan" 
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
                   <CardTitle className="text-lg">Dr. Nourhan Hassan</CardTitle>
                   <CardDescription dir="rtl">
                     د. نورهان حسن
@@ -343,6 +361,15 @@ export default function Home() {
               </Card>
               <Card className="hover:shadow-lg transition-shadow border-2 hover:border-primary/50">
                 <CardHeader className="text-center">
+                  <div className="flex justify-center mb-4">
+                    <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-primary/20 shadow-lg">
+                      <img 
+                        src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/HCudslpDEDaERdsP.png" 
+                        alt="Dr. Dina Amr" 
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
                   <CardTitle className="text-lg">Dr. Dina Amr</CardTitle>
                   <CardDescription dir="rtl">
                     د. دينا عمرو
@@ -351,6 +378,15 @@ export default function Home() {
               </Card>
               <Card className="hover:shadow-lg transition-shadow border-2 hover:border-primary/50">
                 <CardHeader className="text-center">
+                  <div className="flex justify-center mb-4">
+                    <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-primary/20 shadow-lg">
+                      <img 
+                        src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/PTtRzbZnNIobKpQd.jpeg" 
+                        alt="Dr. Nahla Osama" 
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
                   <CardTitle className="text-lg">Dr. Nahla Osama</CardTitle>
                   <CardDescription dir="rtl">
                     د. نهلة أسامة

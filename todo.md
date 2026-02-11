@@ -626,3 +626,4 @@
 - [x] Create press release announcing conference awards
 - [x] Add awards section to website homepage with awards graphic
 - [x] Create Facebook post for conference awards announcement
+- [x] Add photos to organizing committee members (Prof. Emtithal and 3 team members)
