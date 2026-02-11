@@ -227,36 +227,7 @@ export default function Awards() {
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className="py-20 bg-gradient-to-br from-primary/10 to-secondary/10">
-        <div className="container">
-          <div className="max-w-3xl mx-auto text-center space-y-6">
-            <Trophy className="w-20 h-20 text-primary mx-auto" />
-            <h2 className="text-4xl font-bold text-primary">Ready to Compete?</h2>
-            <p className="text-2xl font-semibold text-secondary" dir="rtl">هل أنت مستعد للمنافسة؟</p>
-            <p className="text-lg text-muted-foreground">
-              Register for the conference and showcase your research to compete for these prestigious awards
-            </p>
-            <p className="text-lg text-muted-foreground" dir="rtl">
-              سجل في المؤتمر واعرض بحثك للمنافسة على هذه الجوائز المرموقة
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-              <a
-                href="/registration"
-                className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-8"
-              >
-                Register Now | سجل الآن
-              </a>
-              <a
-                href="/"
-                className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-11 px-8"
-              >
-                Back to Home | العودة للرئيسية
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+
     </div>
   );
 }
