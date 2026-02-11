@@ -1,4 +1,5 @@
 import { useParams, useLocation } from "wouter";
+import Footer from "@/components/Footer";
 import TrackDetail from "@/components/TrackDetail";
 import { tracksData } from "@/data/tracksData";
 import NotFound from "./NotFound";

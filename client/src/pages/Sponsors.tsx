@@ -1,4 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import Footer from "@/components/Footer";
 import { Badge } from "@/components/ui/badge";
 import { Award, Heart, Handshake } from "lucide-react";
 

@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import CountdownTimer from "@/components/CountdownTimer";
 import { SocialShareButtons } from "@/components/SocialShareButtons";
 import { NewsletterSubscription } from "@/components/NewsletterSubscription";
+import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, MapPin, Users, Lightbulb, Award, BookOpen, GraduationCap, Mail, Microscope, FlaskConical, Globe, Calculator, Heart, Sparkles, Atom, Zap, Telescope } from "lucide-react";
@@ -990,60 +991,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-primary text-primary-foreground py-12">
-        <div className="container">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div>
-              <h3 className="font-bold text-lg mb-4">SCI 2026</h3>
-              <p className="text-sm opacity-90">
-                Science at the Core of Innovation
-              </p>
-              <p className="text-sm opacity-90" dir="rtl">
-                العلوم في قلب الإبتكار
-              </p>
-            </div>
-            <div>
-              <h3 className="font-bold text-lg mb-4">Quick Links</h3>
-              <ul className="space-y-2 text-sm opacity-90">
-                <li><a href="#about" className="hover:underline">About</a></li>
-                <li><a href="#tracks" className="hover:underline">Research Tracks</a></li>
-                <li><Link href="/committees" className="hover:underline">Scientific Committees</Link></li>
-                <li><a href="#registration" className="hover:underline">Registration</a></li>
-                <li><a href="#contact" className="hover:underline">Contact</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-bold text-lg mb-4">Organizers</h3>
-              <p className="text-sm opacity-90">
-                Faculty of Science<br/>
-                Cairo University<br/>
-                Egypt
-              </p>
-              <div className="mt-4">
-                <h4 className="font-semibold text-sm mb-2">Follow Us</h4>
-                <a 
-                  href="https://www.facebook.com/share/14SDnqU7p4X/?mibextid=wwXIfr" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-sm opacity-90 hover:opacity-100 hover:underline inline-flex items-center gap-2"
-                >
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                  </svg>
-                  Sci2026
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="border-t border-primary-foreground/20 mt-8 pt-8 text-center text-sm opacity-75">
-            <p>© 2026 Faculty of Science, Cairo University. All rights reserved.</p>
-            <p className="mt-2">
-              <a href="/admin.html" className="hover:underline opacity-50 hover:opacity-100">Admin Dashboard</a>
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import { trpc } from "@/lib/trpc";
+import Footer from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { User, Loader2, Linkedin, Twitter, Globe } from "lucide-react";
@@ -314,19 +315,7 @@ export default function KeynoteSpeakers() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-primary text-primary-foreground py-12">
-        <div className="container">
-          <div className="text-center space-y-4">
-            <p className="text-lg font-semibold">
-              Science at the Core of Innovation (SCI 2026)
-            </p>
-            <p dir="rtl">العلوم في قلب الإبتكار</p>
-            <p className="text-sm opacity-90">
-              Faculty of Science, Cairo University
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import { Award, Trophy, GraduationCap, FileText, Presentation, Lightbulb, Newspaper } from "lucide-react";
+import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
