@@ -220,6 +220,86 @@ export const appRouter = router({
         };
       }),
 
+    uploadMaterials: publicProcedure
+      .input(
+        z.object({
+          sponsorshipId: z.number(),
+          companyDescription: z.string(),
+          logo: z.object({
+            data: z.string(),
+            name: z.string(),
+            type: z.string(),
+          }).optional(),
+          banner: z.object({
+            data: z.string(),
+            name: z.string(),
+            type: z.string(),
+          }).optional(),
+          brochure: z.object({
+            data: z.string(),
+            name: z.string(),
+            type: z.string(),
+          }).optional(),
+          workshopMaterials: z.object({
+            data: z.string(),
+            name: z.string(),
+            type: z.string(),
+          }).optional(),
+        })
+      )
+      .mutation(async ({ input }) => {
+        // Verify sponsorship exists
+        const [sponsorship] = await db.select().from(sponsorships).where(eq(sponsorships.id, input.sponsorshipId));
+        if (!sponsorship) {
+          throw new TRPCError({
+            code: "NOT_FOUND",
+            message: "Sponsorship not found. Please check your Sponsorship ID.",
+          });
+        }
+
+        // Upload files to S3 and get URLs
+        const { storagePut } = await import("../storage/index.js");
+        const uploadFile = async (file: { data: string; name: string; type: string } | undefined, prefix: string) => {
+          if (!file) return null;
+          
+          // Convert base64 to buffer
+          const base64Data = file.data.split(",")[1];
+          const buffer = Buffer.from(base64Data, "base64");
+          
+          // Generate unique filename
+          const timestamp = Date.now();
+          const randomSuffix = Math.random().toString(36).substring(7);
+          const extension = file.name.split(".").pop();
+          const key = `sponsors/${input.sponsorshipId}/${prefix}-${timestamp}-${randomSuffix}.${extension}`;
+          
+          const result = await storagePut(key, buffer, file.type);
+          return result.url;
+        };
+
+        const logoUrl = await uploadFile(input.logo, "logo");
+        const bannerUrl = await uploadFile(input.banner, "banner");
+        const brochureUrl = await uploadFile(input.brochure, "brochure");
+        const workshopMaterialsUrl = await uploadFile(input.workshopMaterials, "workshop");
+
+        // Update sponsorship with file URLs and description
+        await db.update(sponsorships)
+          .set({
+            companyDescription: input.companyDescription,
+            logoUrl: logoUrl || sponsorship.logoUrl,
+            bannerUrl: bannerUrl || sponsorship.bannerUrl,
+            brochureUrl: brochureUrl || sponsorship.brochureUrl,
+            workshopMaterialsUrl: workshopMaterialsUrl || sponsorship.workshopMaterialsUrl,
+            materialsUploadedAt: new Date(),
+            updatedAt: new Date(),
+          })
+          .where(eq(sponsorships.id, input.sponsorshipId));
+
+        return {
+          success: true,
+          message: "Materials uploaded successfully",
+        };
+      }),
+
     list: adminProcedure.query(async () => {
       const allSponsorships = await db.select().from(sponsorships);
       return allSponsorships;

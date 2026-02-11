@@ -39,7 +39,15 @@ export const sponsorships = mysqlTable("sponsorships", {
   packageType: varchar("package_type", { length: 50 }).notNull(), // platinum, gold, silver, bronze
   companyWebsite: varchar("company_website", { length: 255 }),
   message: text("message"),
+  status: varchar("status", { length: 50 }).default("pending").notNull(), // pending, confirmed, rejected
+  logoUrl: varchar("logo_url", { length: 500 }),
+  bannerUrl: varchar("banner_url", { length: 500 }),
+  brochureUrl: varchar("brochure_url", { length: 500 }),
+  workshopMaterialsUrl: varchar("workshop_materials_url", { length: 500 }),
+  companyDescription: text("company_description"),
+  materialsUploadedAt: timestamp("materials_uploaded_at"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
 
 export type Sponsorship = typeof sponsorships.$inferSelect;

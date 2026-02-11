@@ -1,0 +1,9 @@
+{
+  "query": "ALTER TABLE `sponsorships` ADD `status` varchar(50) DEFAULT 'pending' NOT NULL;\nALTER TABLE `sponsorships` ADD `logo_url` varchar(500);\nALTER TABLE `sponsorships` ADD `banner_url` varchar(500);\nALTER TABLE `sponsorships` ADD `brochure_url` varchar(500);\nALTER TABLE `sponsorships` ADD `workshop_materials_url` varchar(500);\nALTER TABLE `sponsorships` ADD `company_description` text;\nALTER TABLE `sponsorships` ADD `materials_uploaded_at` timestamp;\nALTER TABLE `sponsorships` ADD `updated_at` timestamp DEFAULT (now()) NOT NULL;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute ALTER TABLE `sponsorships` ADD `status` varchar(50) DEFAULT 'pending' NOT NULL;\nALTER TABLE `sponsorships` ADD `logo_url` varchar(500);\nALTER TABLE `sponsorships` ADD `banner_url` varchar(500);\nALTER TABLE `sponsorships` ADD `brochure_url` varchar(500);\nALTER TABLE `sponsorships` ADD `workshop_materials_url` varchar(500);\nALTER TABLE `sponsorships` ADD `company_description` text;\nALTER TABLE `sponsorships` ADD `materials_uploaded_at` timestamp;\nALTER TABLE `sponsorships` ADD `updated_at` timestamp DEFAULT (now()) NOT NULL;",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 7024
+}
