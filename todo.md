@@ -638,3 +638,5 @@
 - [x] Update footer to show only Facebook link and remove phone number
 - [x] Update footer email to science.faculty.conference2026@gmail.com
 - [x] Update footer "Keynote Speakers" to "Keynote and Invited Speakers"
+- [x] Update sponsorship package prices (Platinum: 150K, Gold: 100K, Silver: 50K, Bronze: 20K)
+- [x] Add exclusive advantage for Platinum tier

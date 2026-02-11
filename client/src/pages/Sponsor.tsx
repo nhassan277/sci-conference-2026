@@ -27,6 +27,13 @@ type SponsorshipForm = z.infer<typeof sponsorshipSchema>;
 
 const benefits = [
   {
+    name: "Dedicated Workshop/Training Session (Exclusive to Platinum)",
+    platinum: true,
+    gold: false,
+    silver: false,
+    bronze: false,
+  },
+  {
     name: "Speaking Opportunity (Panel or Sponsor Session)",
     platinum: true,
     gold: true,
@@ -170,25 +177,25 @@ export default function Sponsor() {
                       <th className="p-4 text-center font-bold text-lg">
                         <div className="space-y-1">
                           <div className="text-slate-600">Platinum</div>
-                          <div className="text-2xl text-primary">200,000 EGP</div>
-                        </div>
-                      </th>
-                      <th className="p-4 text-center font-bold text-lg">
-                        <div className="space-y-1">
-                          <div className="text-yellow-600">Gold</div>
                           <div className="text-2xl text-primary">150,000 EGP</div>
                         </div>
                       </th>
                       <th className="p-4 text-center font-bold text-lg">
                         <div className="space-y-1">
-                          <div className="text-gray-500">Silver</div>
+                          <div className="text-yellow-600">Gold</div>
                           <div className="text-2xl text-primary">100,000 EGP</div>
                         </div>
                       </th>
                       <th className="p-4 text-center font-bold text-lg">
                         <div className="space-y-1">
-                          <div className="text-orange-700">Bronze</div>
+                          <div className="text-gray-500">Silver</div>
                           <div className="text-2xl text-primary">50,000 EGP</div>
+                        </div>
+                      </th>
+                      <th className="p-4 text-center font-bold text-lg">
+                        <div className="space-y-1">
+                          <div className="text-orange-700">Bronze</div>
+                          <div className="text-2xl text-primary">20,000 EGP</div>
                         </div>
                       </th>
                     </tr>
