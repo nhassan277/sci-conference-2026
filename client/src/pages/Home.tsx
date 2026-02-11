@@ -107,8 +107,10 @@ export default function Home() {
       <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="container py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-4">
               <img src="/images/logo_cu_new.png" alt="Cairo University" className="h-16 object-contain" />
+              <img src="/images/logo_faculty_science.jpeg" alt="Faculty of Science" className="h-16 object-contain" />
+              <img src="/images/logo_faculty_science.jpeg" alt="Faculty of Science" className="h-16 object-contain" />
               <div className="hidden md:block">
                 <h1 className="text-xl font-bold text-primary">SCI 2026</h1>
                 <p className="text-sm text-muted-foreground">Faculty of Science</p>

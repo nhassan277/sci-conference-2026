@@ -629,3 +629,4 @@
 - [x] Add photos to organizing committee members (Prof. Emtithal and 3 team members)
 - [x] Add Biotechnology Department affiliation to organizing committee team members
 - [x] Verify Cairo University logo consistency across all website sections
+- [x] Add Faculty of Science logo alongside Cairo University logo in header
