@@ -85,24 +85,46 @@ export default function Awards() {
       {/* Hero Section */}
       <section className="py-16 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/10">
         <div className="container">
-          <div className="max-w-4xl mx-auto text-center space-y-6">
-            <Badge className="bg-secondary text-secondary-foreground px-4 py-1.5 text-sm font-medium">
-              Conference Awards | جوائز المؤتمر
-            </Badge>
+          <div className="max-w-4xl mx-auto text-center space-y-8">
+            {/* Title with Icons */}
+            <div className="flex items-center justify-center gap-4">
+              <Trophy className="w-12 h-12 text-amber-600" />
+              <Award className="w-12 h-12 text-amber-600" />
+              <div>
+                <h1 className="text-5xl md:text-6xl font-bold text-primary">
+                  Conference Awards
+                </h1>
+                <p className="text-3xl font-semibold text-secondary mt-2" dir="rtl">
+                  جوائز المؤتمر
+                </p>
+              </div>
+              <Award className="w-12 h-12 text-amber-600" />
+              <Trophy className="w-12 h-12 text-amber-600" />
+            </div>
             
-            <h1 className="text-5xl md:text-6xl font-bold text-primary">
-              Conference Awards
-            </h1>
-            <p className="text-3xl font-semibold text-secondary" dir="rtl">
-              جوائز المؤتمر
-            </p>
-            
-            <p className="text-xl text-muted-foreground leading-relaxed">
-              Recognizing Excellence in Scientific Research and Innovation
-            </p>
-            <p className="text-xl text-muted-foreground" dir="rtl">
-              تقديراً للتميز في البحث العلمي والابتكار
-            </p>
+            {/* Call to Action */}
+            <div className="bg-white rounded-2xl shadow-lg p-8 mt-8">
+              <h2 className="text-3xl font-bold text-primary mb-2">
+                Ready to Compete?
+              </h2>
+              <p className="text-2xl font-semibold text-secondary mb-4" dir="rtl">
+                هل أنت مستعد للمنافسة؟
+              </p>
+              <p className="text-lg text-muted-foreground mb-2">
+                Register for the conference and showcase your research to compete for these prestigious awards
+              </p>
+              <p className="text-lg text-muted-foreground mb-6" dir="rtl">
+                سجل في المؤتمر واعرض بحثك للمنافسة على هذه الجوائز المرموقة
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button size="lg" asChild className="text-lg px-8">
+                  <a href="https://sciconf26.website/#registration">Register Now | سجل الآن</a>
+                </Button>
+                <Button size="lg" variant="outline" asChild className="text-lg px-8">
+                  <a href="/">Back to Home | العودة للرئيسية</a>
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
