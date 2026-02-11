@@ -33,7 +33,7 @@ export default function Footer() {
               </li>
               <li>
                 <a href="/speakers" className="text-sm text-slate-400 hover:text-white transition-colors">
-                  Keynote Speakers
+                  Keynote and Invited Speakers
                 </a>
               </li>
               <li>
