@@ -1,0 +1,17 @@
+{
+  "query": "SELECT id, full_name, title, presentation_title, speaker_type FROM keynote_speakers WHERE full_name = 'Sohair Ramadan Fahmy';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name, title, presentation_title, speaker_type FROM keynote_speakers WHERE full_name = 'Sohair Ramadan Fahmy';",
+  "rows": [
+    {
+      "id": "270003",
+      "full_name": "Sohair Ramadan Fahmy",
+      "title": "Prof. Dr.",
+      "presentation_title": "Practical Aspects of Experimental Design in Laboratory Animal Science",
+      "speaker_type": "invited"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tfull_name\ttitle\tpresentation_title\tspeaker_type\n270003\tSohair Ramadan Fahmy\tProf. Dr.\tPractical Aspects of Experimental Design in Laboratory Animal Science\tinvited\n",
+  "stderr": "",
+  "execution_time_ms": 1667
+}

@@ -23,6 +23,7 @@ import Committees from "./pages/Committees";
 import KeynoteSpeakers from "./pages/KeynoteSpeakers";
 import MediaRegistration from "./pages/MediaRegistration";
 import Sponsors from "./pages/Sponsors";
+import Awards from "./pages/Awards";
 import CommitteeManagement from "./pages/admin/CommitteeManagement";
 import KeynoteSpeakersManagement from "./pages/admin/KeynoteSpeakersManagement";
 // import LiveGallery from "./pages/LiveGallery";
@@ -50,6 +51,7 @@ function Router() {
       <Route path={"/speakers"} component={KeynoteSpeakers} />
       <Route path={"/sponsors"} component={Sponsors} />
       <Route path={"/media-registration"} component={MediaRegistration} />
+      <Route path={"/awards"} component={Awards} />
       <Route path={"/admin/committees"} component={CommitteeManagement} />
       <Route path={"/admin/speakers"} component={KeynoteSpeakersManagement} />
       {/* <Route path={"/ live-gallery"} component={LiveGallery} /> */}

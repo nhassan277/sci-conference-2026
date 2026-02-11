@@ -612,3 +612,17 @@
 - [x] Generate invited speaker announcement poster for Dr. Mohamed Ibrahim El-Anbawy
 
 - [x] Restore Sponsors/Sponsorship Packages link in navigation menu
+
+- [x] Add Prof. Dr. Mahmoud Nasr as invited speaker to website
+
+- [x] Add Dr. Sahar Hassan as invited speaker to website
+
+- [x] Add Prof. Dr. Sohair Ramadan Fahmy as invited speaker to website
+
+- [x] Create dedicated Awards page on website
+- [x] Add Awards link to navigation menu
+- [x] Generate social media graphics for awards promotion
+- [x] Create downloadable awards flyer/poster
+- [x] Create press release announcing conference awards
+- [x] Add awards section to website homepage with awards graphic
+- [x] Create Facebook post for conference awards announcement

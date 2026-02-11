@@ -1,0 +1,17 @@
+{
+  "query": "SELECT id, full_name, title, presentation_title, speaker_type FROM keynote_speakers WHERE full_name = 'Mahmoud Ibrahim Nasr';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name, title, presentation_title, speaker_type FROM keynote_speakers WHERE full_name = 'Mahmoud Ibrahim Nasr';",
+  "rows": [
+    {
+      "id": "270001",
+      "full_name": "Mahmoud Ibrahim Nasr",
+      "title": "Prof. Dr.",
+      "presentation_title": "Egyptian Iron Ore as a Feedstock to the Iron and Steel Industry",
+      "speaker_type": "invited"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tfull_name\ttitle\tpresentation_title\tspeaker_type\n270001\tMahmoud Ibrahim Nasr\tProf. Dr.\tEgyptian Iron Ore as a Feedstock to the Iron and Steel Industry\tinvited\n",
+  "stderr": "",
+  "execution_time_ms": 1543
+}

@@ -127,6 +127,9 @@ export default function Home() {
               <a href="/schedule" className="text-sm font-medium hover:text-primary transition-colors">
                 Schedule
               </a>
+              <a href="/awards" className="text-sm font-medium hover:text-primary transition-colors">
+                Awards
+              </a>
               <a href="/media-registration" className="text-sm font-medium hover:text-primary transition-colors">
                 Media
               </a>
@@ -397,6 +400,69 @@ export default function Home() {
                 </CardHeader>
               </Card>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Conference Awards Section */}
+      <section className="py-20 bg-gradient-to-b from-white to-accent/5">
+        <div className="container">
+          <div className="text-center space-y-4 mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-primary">Conference Awards</h2>
+            <p className="text-2xl font-semibold text-secondary" dir="rtl">جوائز المؤتمر</p>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              Seven prestigious awards recognizing excellence in scientific research and innovation
+            </p>
+            <p className="text-base text-muted-foreground max-w-3xl mx-auto" dir="rtl">
+              سبع جوائز مرموقة لتكريم التميز في البحث العلمي والابتكار
+            </p>
+          </div>
+
+          {/* Awards Graphic */}
+          <div className="max-w-4xl mx-auto mb-12">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+              <img 
+                src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/iDQaNJqKhQPQfZIT.png" 
+                alt="SCI 2026 Conference Awards" 
+                className="w-full h-auto"
+              />
+            </div>
+          </div>
+
+          {/* Key Information */}
+          <div className="max-w-3xl mx-auto">
+            <Card className="border-2 border-primary/20 bg-gradient-to-br from-primary/5 to-secondary/5">
+              <CardHeader>
+                <CardTitle className="text-2xl text-center">Automatic Eligibility for All Participants</CardTitle>
+                <CardDescription className="text-center text-lg" dir="rtl">
+                  الأهلية التلقائية لجميع المشاركين
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <p className="text-center text-base">
+                  All registered participants who present research, projects, or innovations during SCI 2026 
+                  will be automatically considered for the relevant awards. No separate application needed!
+                </p>
+                <p className="text-center text-base" dir="rtl">
+                  جميع المشاركين المسجلين الذين يقدمون أبحاثًا أو مشاريع أو ابتكارات خلال SCI 2026 
+                  سيتم النظر فيهم تلقائيًا للجوائز ذات الصلة. لا حاجة لتقديم طلب منفصل!
+                </p>
+                <div className="flex items-center justify-center gap-2 pt-4">
+                  <Award className="w-6 h-6 text-primary" />
+                  <p className="font-semibold text-lg">Winners Announced at Closing Ceremony - April 8, 2026</p>
+                </div>
+                <p className="text-center font-semibold text-base" dir="rtl">
+                  الإعلان عن الفائزين في حفل الختام - ٨ أبريل ٢٠٢٦
+                </p>
+                <div className="flex justify-center pt-4">
+                  <Link href="/awards">
+                    <Button size="lg" className="bg-primary hover:bg-primary/90">
+                      Learn More About Awards | معرفة المزيد عن الجوائز
+                    </Button>
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
