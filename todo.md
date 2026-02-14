@@ -688,3 +688,9 @@
 - [x] Fix empty Select.Item values causing form crash
 - [x] Test volunteer registration form
 - [x] Verify form submission works correctly
+
+## Update Prof. Hamed A. Ead Biography
+- [x] Write professional expanded biography in English
+- [x] Write professional expanded biography in Arabic
+- [x] Update biography in database
+- [x] Verify biography appears correctly on website
