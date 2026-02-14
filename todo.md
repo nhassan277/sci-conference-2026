@@ -677,3 +677,9 @@
 - [x] Add bulk email button and dialog to admin dashboard
 - [x] Test email sending functionality
 - [x] Add email sending confirmation and error handling
+
+## Add Keynote Speaker - Prof. Hamed A. Ead
+- [x] Upload speaker photo to S3 and get CDN URL
+- [x] Add speaker to database with full information
+- [x] Verify speaker appears on keynote speakers page
+- [x] Test speaker profile display
