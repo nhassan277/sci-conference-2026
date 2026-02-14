@@ -683,3 +683,8 @@
 - [x] Add speaker to database with full information
 - [x] Verify speaker appears on keynote speakers page
 - [x] Test speaker profile display
+
+## Fix Volunteer Registration Form Error
+- [x] Fix empty Select.Item values causing form crash
+- [x] Test volunteer registration form
+- [x] Verify form submission works correctly

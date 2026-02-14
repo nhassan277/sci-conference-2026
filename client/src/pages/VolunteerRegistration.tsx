@@ -357,7 +357,7 @@ export default function VolunteerRegistration() {
                       <SelectValue placeholder="Select your second choice" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">None</SelectItem>
+                      <SelectItem value="none">None</SelectItem>
                       {COMMITTEES.filter((c) => c.id !== formData.preferredCommittee).map((committee) => (
                         <SelectItem key={committee.id} value={committee.id}>
                           {committee.name} - {committee.nameAr}
