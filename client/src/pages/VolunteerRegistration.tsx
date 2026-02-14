@@ -495,10 +495,7 @@ export default function VolunteerRegistration() {
           </CardHeader>
           <CardContent className="space-y-2 text-sm">
             <p>✅ Official volunteer certificate from Cairo University</p>
-            <p>✅ Conference attendance certificate (100 hours of continuing education)</p>
-            <p>✅ Conference bag with materials and gifts</p>
-            <p>✅ Free meals during conference days</p>
-            <p>✅ Volunteer t-shirt (if available)</p>
+            <p>✅ Conference attendance certificate</p>
             <p>✅ Networking opportunities with researchers and companies</p>
             <p>✅ Valuable event organization experience</p>
           </CardContent>
