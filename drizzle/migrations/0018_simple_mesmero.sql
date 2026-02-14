@@ -1,0 +1,23 @@
+CREATE TABLE `volunteers` (
+	`id` int AUTO_INCREMENT NOT NULL,
+	`full_name` varchar(255) NOT NULL,
+	`email` varchar(255) NOT NULL,
+	`phone` varchar(50) NOT NULL,
+	`student_id` varchar(50) NOT NULL,
+	`academic_year` varchar(20) NOT NULL,
+	`department` varchar(255) NOT NULL,
+	`preferred_committee` varchar(100) NOT NULL,
+	`second_choice_committee` varchar(100),
+	`skills` text,
+	`previous_experience` text,
+	`availability` json,
+	`why_volunteer` text,
+	`status` varchar(20) NOT NULL DEFAULT 'pending',
+	`assigned_committee` varchar(100),
+	`notes` text,
+	`reviewed_by` varchar(255),
+	`reviewed_at` timestamp,
+	`created_at` timestamp NOT NULL DEFAULT (now()),
+	`updated_at` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,
+	CONSTRAINT `volunteers_id` PRIMARY KEY(`id`)
+);

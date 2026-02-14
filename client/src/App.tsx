@@ -27,6 +27,8 @@ import Awards from "./pages/Awards";
 import SponsorDashboard from "./pages/SponsorDashboard";
 import CommitteeManagement from "./pages/admin/CommitteeManagement";
 import KeynoteSpeakersManagement from "./pages/admin/KeynoteSpeakersManagement";
+import VolunteerRegistration from "./pages/VolunteerRegistration";
+import VolunteerManagement from "./pages/admin/VolunteerManagement";
 // import LiveGallery from "./pages/LiveGallery";
 // import GalleryUpload from "./pages/GalleryUpload";
 
@@ -56,6 +58,8 @@ function Router() {
       <Route path={"/sponsor-dashboard"} component={SponsorDashboard} />
       <Route path={"/admin/committees"} component={CommitteeManagement} />
       <Route path={"/admin/speakers"} component={KeynoteSpeakersManagement} />
+      <Route path={"/volunteer"} component={VolunteerRegistration} />
+      <Route path={"/admin/volunteers"} component={VolunteerManagement} />
       {/* <Route path={"/ live-gallery"} component={LiveGallery} /> */}
       {/* <Route path={"/gallery-upload"} component={GalleryUpload} /> */}
       <Route path={"/404"} component={NotFound} />

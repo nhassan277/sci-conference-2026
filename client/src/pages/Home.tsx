@@ -135,6 +135,9 @@ export default function Home() {
               <a href="/media-registration" className="text-sm font-medium hover:text-primary transition-colors">
                 Media
               </a>
+              <a href="/volunteer" className="text-sm font-medium hover:text-primary transition-colors">
+                Volunteer
+              </a>
               <a href="/sponsor" className="text-sm font-medium hover:text-primary transition-colors">
                 Sponsors
               </a>

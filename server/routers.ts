@@ -3,7 +3,7 @@ import { z } from "zod";
 import { eq, desc } from "drizzle-orm";
 import superjson from "superjson";
 import { db } from "./db.js";
-import { registrations, sponsorships, sessions, supportTickets, admins, auditLogs, reminderSubscriptions, galleryPhotos, newsletterSubscriptions, googleSheetsSyncs, mediaRegistrations, committees, keynoteSpeakers } from "../drizzle/schema.js";
+import { registrations, sponsorships, sessions, supportTickets, admins, auditLogs, reminderSubscriptions, galleryPhotos, newsletterSubscriptions, googleSheetsSyncs, mediaRegistrations, committees, keynoteSpeakers, volunteers } from "../drizzle/schema.js";
 import { syncAllSheets, SHEETS_CONFIG, type SheetCategory } from "./googleSheets.js";
 import { verifyToken, isOwner } from "./auth.js";
 import { logAuditAction, getIpAddress, getUserAgent } from "./audit.js";
@@ -2348,6 +2348,202 @@ export const appRouter = router({
           resourceId: input.id,
           details: {
             message: `Deleted keynote speaker: ${speaker[0].fullName}`,
+          },
+          ipAddress: getIpAddress(ctx.req),
+          userAgent: getUserAgent(ctx.req),
+        });
+
+        return { success: true };
+      }),
+  }),
+
+  // Volunteer Registration
+  volunteers: router({
+    // Public: Submit volunteer application
+    submit: publicProcedure
+      .input(
+        z.object({
+          fullName: z.string().min(1, "Full name is required"),
+          email: z.string().email("Invalid email address"),
+          phone: z.string().min(1, "Phone number is required"),
+          studentId: z.string().min(1, "Student ID is required"),
+          academicYear: z.enum(["1", "2", "3", "4", "graduate"]),
+          department: z.string().min(1, "Department is required"),
+          preferredCommittee: z.string().min(1, "Please select a committee"),
+          secondChoiceCommittee: z.string().optional(),
+          skills: z.string().optional(),
+          previousExperience: z.string().optional(),
+          availability: z.object({
+            day1: z.boolean(),
+            day2: z.boolean(),
+            beforeConference: z.boolean(),
+          }),
+          whyVolunteer: z.string().min(10, "Please tell us why you want to volunteer (minimum 10 characters)"),
+        })
+      )
+      .mutation(async ({ input }) => {
+        const result = await db.insert(volunteers).values({
+          fullName: input.fullName,
+          email: input.email,
+          phone: input.phone,
+          studentId: input.studentId,
+          academicYear: input.academicYear,
+          department: input.department,
+          preferredCommittee: input.preferredCommittee,
+          secondChoiceCommittee: input.secondChoiceCommittee || null,
+          skills: input.skills || null,
+          previousExperience: input.previousExperience || null,
+          availability: input.availability,
+          whyVolunteer: input.whyVolunteer,
+          status: "pending",
+        });
+
+        return {
+          success: true,
+          id: result[0].insertId,
+          message: "Your volunteer application has been submitted successfully!",
+        };
+      }),
+
+    // Admin: List all volunteers with filters
+    list: adminProcedure
+      .input(
+        z.object({
+          status: z.enum(["all", "pending", "approved", "rejected"]).optional(),
+          committee: z.string().optional(),
+          academicYear: z.string().optional(),
+        })
+      )
+      .query(async ({ input }) => {
+        let query = db.select().from(volunteers);
+
+        // Apply filters
+        const conditions = [];
+        if (input.status && input.status !== "all") {
+          conditions.push(eq(volunteers.status, input.status));
+        }
+        if (input.committee) {
+          conditions.push(eq(volunteers.preferredCommittee, input.committee));
+        }
+        if (input.academicYear) {
+          conditions.push(eq(volunteers.academicYear, input.academicYear));
+        }
+
+        const results = await db
+          .select()
+          .from(volunteers)
+          .orderBy(desc(volunteers.createdAt));
+
+        // Filter in memory (simpler for now)
+        let filtered = results;
+        if (input.status && input.status !== "all") {
+          filtered = filtered.filter((v) => v.status === input.status);
+        }
+        if (input.committee) {
+          filtered = filtered.filter((v) => v.preferredCommittee === input.committee);
+        }
+        if (input.academicYear) {
+          filtered = filtered.filter((v) => v.academicYear === input.academicYear);
+        }
+
+        return filtered;
+      }),
+
+    // Admin: Get volunteer statistics
+    stats: adminProcedure.query(async () => {
+      const allVolunteers = await db.select().from(volunteers);
+
+      const stats = {
+        total: allVolunteers.length,
+        pending: allVolunteers.filter((v) => v.status === "pending").length,
+        approved: allVolunteers.filter((v) => v.status === "approved").length,
+        rejected: allVolunteers.filter((v) => v.status === "rejected").length,
+        byCommittee: {} as Record<string, number>,
+        byYear: {} as Record<string, number>,
+      };
+
+      // Count by committee
+      allVolunteers.forEach((v) => {
+        stats.byCommittee[v.preferredCommittee] = (stats.byCommittee[v.preferredCommittee] || 0) + 1;
+      });
+
+      // Count by academic year
+      allVolunteers.forEach((v) => {
+        stats.byYear[v.academicYear] = (stats.byYear[v.academicYear] || 0) + 1;
+      });
+
+      return stats;
+    }),
+
+    // Admin: Update volunteer status
+    updateStatus: adminProcedure
+      .input(
+        z.object({
+          id: z.number(),
+          status: z.enum(["pending", "approved", "rejected"]),
+          assignedCommittee: z.string().optional(),
+          notes: z.string().optional(),
+        })
+      )
+      .mutation(async ({ input, ctx }) => {
+        await db
+          .update(volunteers)
+          .set({
+            status: input.status,
+            assignedCommittee: input.assignedCommittee || null,
+            notes: input.notes || null,
+            reviewedBy: ctx.user?.email || null,
+            reviewedAt: new Date(),
+          })
+          .where(eq(volunteers.id, input.id));
+
+        // Log audit action
+        await logAuditAction({
+          adminId: undefined,
+          adminEmail: ctx.user?.email,
+          adminName: ctx.user?.name,
+          action: "update",
+          resourceType: "volunteer",
+          resourceId: input.id,
+          details: {
+            message: `Updated volunteer status to ${input.status}`,
+          },
+          ipAddress: getIpAddress(ctx.req),
+          userAgent: getUserAgent(ctx.req),
+        });
+
+        return { success: true };
+      }),
+
+    // Admin: Delete volunteer application
+    delete: adminProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input, ctx }) => {
+        const volunteer = await db
+          .select()
+          .from(volunteers)
+          .where(eq(volunteers.id, input.id))
+          .limit(1);
+
+        if (!volunteer || volunteer.length === 0) {
+          throw new TRPCError({
+            code: "NOT_FOUND",
+            message: "Volunteer application not found",
+          });
+        }
+
+        await db.delete(volunteers).where(eq(volunteers.id, input.id));
+
+        // Log audit action
+        await logAuditAction({
+          adminId: undefined,
+          adminEmail: ctx.user?.email,
+          adminName: ctx.user?.name,
+          action: "delete",
+          resourceType: "volunteer",
+          resourceId: input.id,
+          details: {
+            message: `Deleted volunteer application: ${volunteer[0].fullName}`,
           },
           ipAddress: getIpAddress(ctx.req),
           userAgent: getUserAgent(ctx.req),

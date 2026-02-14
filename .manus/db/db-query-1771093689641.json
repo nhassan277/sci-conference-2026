@@ -1,0 +1,9 @@
+{
+  "query": "CREATE TABLE IF NOT EXISTS volunteers (\n  id INT AUTO_INCREMENT PRIMARY KEY,\n  full_name VARCHAR(255) NOT NULL,\n  email VARCHAR(255) NOT NULL,\n  phone VARCHAR(50) NOT NULL,\n  student_id VARCHAR(50) NOT NULL,\n  academic_year VARCHAR(20) NOT NULL,\n  department VARCHAR(255) NOT NULL,\n  preferred_committee VARCHAR(100) NOT NULL,\n  second_choice_committee VARCHAR(100),\n  skills TEXT,\n  previous_experience TEXT,\n  availability JSON,\n  why_volunteer TEXT,\n  status VARCHAR(20) NOT NULL DEFAULT 'pending',\n  assigned_committee VARCHAR(100),\n  notes TEXT,\n  reviewed_by VARCHAR(255),\n  reviewed_at TIMESTAMP NULL,\n  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,\n  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP\n);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute CREATE TABLE IF NOT EXISTS volunteers (\n  id INT AUTO_INCREMENT PRIMARY KEY,\n  full_name VARCHAR(255) NOT NULL,\n  email VARCHAR(255) NOT NULL,\n  phone VARCHAR(50) NOT NULL,\n  student_id VARCHAR(50) NOT NULL,\n  academic_year VARCHAR(20) NOT NULL,\n  department VARCHAR(255) NOT NULL,\n  preferred_committee VARCHAR(100) NOT NULL,\n  second_choice_committee VARCHAR(100),\n  skills TEXT,\n  previous_experience TEXT,\n  availability JSON,\n  why_volunteer TEXT,\n  status VARCHAR(20) NOT NULL DEFAULT 'pending',\n  assigned_committee VARCHAR(100),\n  notes TEXT,\n  reviewed_by VARCHAR(255),\n  reviewed_at TIMESTAMP NULL,\n  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,\n  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP\n);",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 2699
+}

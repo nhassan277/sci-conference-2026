@@ -657,3 +657,15 @@
 - [x] Show parallel session tracks (Biological & Chemical Sciences vs Mathematics, Physics, Geology, Astronomy)
 - [x] Add closing ceremony details with awards announcement
 - [x] Test schedule page display and navigation
+
+## Volunteer Registration System
+- [x] Design database schema for volunteer applications (volunteers table)
+- [x] Create backend procedures for volunteer registration (submit, list, update status)
+- [x] Build volunteer registration form page with bilingual UI
+- [x] Add committee selection with descriptions
+- [x] Implement form validation and submission
+- [x] Create admin dashboard page for managing volunteers
+- [x] Add filtering and search functionality
+- [x] Add export to Excel functionality
+- [x] Test volunteer registration flow
+- [x] Test admin dashboard functionality

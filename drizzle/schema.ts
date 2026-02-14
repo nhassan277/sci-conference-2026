@@ -200,6 +200,33 @@ export const reminderSubscriptions = mysqlTable("reminder_subscriptions", {
 export type ReminderSubscription = typeof reminderSubscriptions.$inferSelect;
 export type NewReminderSubscription = typeof reminderSubscriptions.$inferInsert;
 
+// Volunteer Applications for Conference Organization
+export const volunteers = mysqlTable("volunteers", {
+  id: int("id").primaryKey().autoincrement(),
+  fullName: varchar("full_name", { length: 255 }).notNull(),
+  email: varchar("email", { length: 255 }).notNull(),
+  phone: varchar("phone", { length: 50 }).notNull(),
+  studentId: varchar("student_id", { length: 50 }).notNull(),
+  academicYear: varchar("academic_year", { length: 20 }).notNull(), // 1, 2, 3, 4, graduate
+  department: varchar("department", { length: 255 }).notNull(),
+  preferredCommittee: varchar("preferred_committee", { length: 100 }).notNull(), // hall_organization, reception, logistics, etc.
+  secondChoiceCommittee: varchar("second_choice_committee", { length: 100 }),
+  skills: text("skills"), // Technical skills, languages, etc.
+  previousExperience: text("previous_experience"),
+  availability: json("availability"), // {day1: boolean, day2: boolean, beforeConference: boolean}
+  whyVolunteer: text("why_volunteer"),
+  status: varchar("status", { length: 20 }).default("pending").notNull(), // pending, approved, rejected
+  assignedCommittee: varchar("assigned_committee", { length: 100 }),
+  notes: text("notes"), // Admin notes
+  reviewedBy: varchar("reviewed_by", { length: 255 }), // Admin who reviewed
+  reviewedAt: timestamp("reviewed_at"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Volunteer = typeof volunteers.$inferSelect;
+export type NewVolunteer = typeof volunteers.$inferInsert;
+
 // Gallery Photos
 export const galleryPhotos = mysqlTable("gallery_photos", {
   id: int("id").primaryKey().autoincrement(),
