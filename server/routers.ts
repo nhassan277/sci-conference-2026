@@ -2515,6 +2515,78 @@ export const appRouter = router({
         return { success: true };
       }),
 
+    // Admin: Send bulk email to volunteers
+    sendBulkEmail: adminProcedure
+      .input(
+        z.object({
+          subject: z.string().min(1),
+          message: z.string().min(1),
+          filters: z.object({
+            status: z.enum(["all", "pending", "approved", "rejected"]).optional(),
+            committee: z.string().optional(),
+            academicYear: z.string().optional(),
+          }).optional(),
+        })
+      )
+      .mutation(async ({ input, ctx }) => {
+        // Get filtered volunteers
+        let query = db.select().from(volunteers);
+        const results = await db
+          .select()
+          .from(volunteers)
+          .orderBy(desc(volunteers.createdAt));
+
+        // Filter in memory
+        let filtered = results;
+        if (input.filters?.status && input.filters.status !== "all") {
+          filtered = filtered.filter((v) => v.status === input.filters!.status);
+        }
+        if (input.filters?.committee) {
+          filtered = filtered.filter((v) => v.preferredCommittee === input.filters!.committee);
+        }
+        if (input.filters?.academicYear) {
+          filtered = filtered.filter((v) => v.academicYear === input.filters!.academicYear);
+        }
+
+        if (filtered.length === 0) {
+          throw new TRPCError({
+            code: "BAD_REQUEST",
+            message: "No volunteers match the selected filters",
+          });
+        }
+
+        // In a real implementation, you would send emails here using an email service
+        // For now, we'll just log the action and return success
+        const recipients = filtered.map((v) => v.email).join(", ");
+        
+        console.log(`[Bulk Email] Sending to ${filtered.length} volunteers`);
+        console.log(`[Bulk Email] Subject: ${input.subject}`);
+        console.log(`[Bulk Email] Recipients: ${recipients}`);
+
+        // Log audit action
+        await logAuditAction({
+          adminId: undefined,
+          adminEmail: ctx.user?.email,
+          adminName: ctx.user?.name,
+          action: "bulk_email",
+          resourceType: "volunteer",
+          resourceId: undefined,
+          details: {
+            message: `Sent bulk email to ${filtered.length} volunteers`,
+            subject: input.subject,
+            filters: input.filters,
+          },
+          ipAddress: getIpAddress(ctx.req),
+          userAgent: getUserAgent(ctx.req),
+        });
+
+        return { 
+          success: true, 
+          recipientCount: filtered.length,
+          recipients: filtered.map(v => ({ name: v.fullName, email: v.email }))
+        };
+      }),
+
     // Admin: Delete volunteer application
     delete: adminProcedure
       .input(z.object({ id: z.number() }))

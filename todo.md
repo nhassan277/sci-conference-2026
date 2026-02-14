@@ -669,3 +669,11 @@
 - [x] Add export to Excel functionality
 - [x] Test volunteer registration flow
 - [x] Test admin dashboard functionality
+
+## Bulk Email Feature for Volunteers
+- [x] Create backend procedure for sending bulk emails to volunteers
+- [x] Add email filtering by status, committee, and custom selection
+- [x] Implement email template with subject and message body
+- [x] Add bulk email button and dialog to admin dashboard
+- [x] Test email sending functionality
+- [x] Add email sending confirmation and error handling

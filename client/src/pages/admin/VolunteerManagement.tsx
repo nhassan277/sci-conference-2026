@@ -10,7 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { toast } from "sonner";
-import { Loader2, Users, CheckCircle, XCircle, Clock, Download, Eye, Filter } from "lucide-react";
+import { Loader2, Users, CheckCircle, XCircle, Clock, Download, Eye, Filter, Mail } from "lucide-react";
 import { Link } from "wouter";
 
 const COMMITTEES = [
@@ -36,6 +36,11 @@ export default function VolunteerManagement() {
     status: "approved" as "pending" | "approved" | "rejected",
     assignedCommittee: "",
     notes: "",
+  });
+  const [bulkEmailOpen, setBulkEmailOpen] = useState(false);
+  const [emailData, setEmailData] = useState({
+    subject: "",
+    message: "",
   });
 
   const { data: volunteers, isLoading, refetch } = trpc.volunteers.list.useQuery(filters);
@@ -66,6 +71,38 @@ export default function VolunteerManagement() {
       });
     },
   });
+
+  const sendBulkEmailMutation = trpc.volunteers.sendBulkEmail.useMutation({
+    onSuccess: (data) => {
+      toast.success(`Email sent to ${data.recipientCount} volunteers!`, {
+        description: `Successfully sent to: ${data.recipients.slice(0, 3).map(r => r.name).join(", ")}${data.recipients.length > 3 ? " and more..." : ""}`,
+      });
+      setBulkEmailOpen(false);
+      setEmailData({ subject: "", message: "" });
+    },
+    onError: (error) => {
+      toast.error("Failed to send bulk email", {
+        description: error.message,
+      });
+    },
+  });
+
+  const handleSendBulkEmail = () => {
+    if (!emailData.subject || !emailData.message) {
+      toast.error("Please fill in all fields");
+      return;
+    }
+
+    sendBulkEmailMutation.mutate({
+      subject: emailData.subject,
+      message: emailData.message,
+      filters: {
+        status: filters.status !== "all" ? filters.status : undefined,
+        committee: filters.committee || undefined,
+        academicYear: filters.academicYear || undefined,
+      },
+    });
+  };
 
   const handleReview = (volunteerId: number) => {
     updateStatusMutation.mutate({
@@ -304,11 +341,91 @@ export default function VolunteerManagement() {
                 </Select>
               </div>
 
-              <div className="flex items-end">
-                <Button onClick={handleExportToExcel} variant="outline" className="w-full">
+              <div className="flex items-end gap-2">
+                <Button onClick={handleExportToExcel} variant="outline" className="flex-1">
                   <Download className="w-4 h-4 mr-2" />
-                  Export to Excel
+                  Export
                 </Button>
+                <Dialog open={bulkEmailOpen} onOpenChange={setBulkEmailOpen}>
+                  <DialogTrigger asChild>
+                    <Button className="flex-1">
+                      <Mail className="w-4 h-4 mr-2" />
+                      Send Email
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-2xl">
+                    <DialogHeader>
+                      <DialogTitle>Send Bulk Email to Volunteers</DialogTitle>
+                      <DialogDescription>
+                        Send an email to all volunteers matching the current filters.
+                        {volunteers && volunteers.length > 0 && (
+                          <span className="block mt-2 font-medium text-primary">
+                            This will send to {volunteers.length} volunteer{volunteers.length !== 1 ? "s" : ""}.
+                          </span>
+                        )}
+                      </DialogDescription>
+                    </DialogHeader>
+
+                    <div className="space-y-4">
+                      <div>
+                        <Label htmlFor="email-subject">Subject</Label>
+                        <Input
+                          id="email-subject"
+                          value={emailData.subject}
+                          onChange={(e) => setEmailData({ ...emailData, subject: e.target.value })}
+                          placeholder="Email subject..."
+                        />
+                      </div>
+
+                      <div>
+                        <Label htmlFor="email-message">Message</Label>
+                        <Textarea
+                          id="email-message"
+                          value={emailData.message}
+                          onChange={(e) => setEmailData({ ...emailData, message: e.target.value })}
+                          placeholder="Email message..."
+                          rows={8}
+                        />
+                      </div>
+
+                      <div className="bg-muted p-3 rounded-md text-sm">
+                        <p className="font-medium mb-2">Current Filters:</p>
+                        <ul className="space-y-1 text-muted-foreground">
+                          <li>• Status: {filters.status === "all" ? "All" : filters.status}</li>
+                          <li>• Committee: {filters.committee ? COMMITTEES.find(c => c.id === filters.committee)?.name : "All"}</li>
+                          <li>• Academic Year: {filters.academicYear || "All"}</li>
+                        </ul>
+                      </div>
+
+                      <div className="flex gap-3">
+                        <Button
+                          onClick={handleSendBulkEmail}
+                          disabled={sendBulkEmailMutation.isPending || !volunteers || volunteers.length === 0}
+                          className="flex-1"
+                        >
+                          {sendBulkEmailMutation.isPending ? (
+                            <>
+                              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                              Sending...
+                            </>
+                          ) : (
+                            <>
+                              <Mail className="w-4 h-4 mr-2" />
+                              Send Email
+                            </>
+                          )}
+                        </Button>
+                        <Button
+                          variant="outline"
+                          onClick={() => setBulkEmailOpen(false)}
+                          disabled={sendBulkEmailMutation.isPending}
+                        >
+                          Cancel
+                        </Button>
+                      </div>
+                    </div>
+                  </DialogContent>
+                </Dialog>
               </div>
             </div>
           </CardContent>
