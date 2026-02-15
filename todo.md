@@ -713,3 +713,8 @@
 - [x] Upload photo to S3 and get CDN URL
 - [x] Update database with photo URL
 - [x] Verify photo appears on speakers page
+
+## Add Invited Speaker - Dr. Ahmed Fikry El-Sayed
+- [x] Upload speaker photo to S3
+- [x] Add speaker to database with bio and abstract
+- [x] Verify speaker appears on website
