@@ -718,3 +718,8 @@
 - [x] Upload speaker photo to S3
 - [x] Add speaker to database with bio and abstract
 - [x] Verify speaker appears on website
+
+## Add Keynote Speaker - Prof. Ehab El-Dabaa
+- [x] Upload speaker photo to S3
+- [x] Add speaker to database with bio and affiliation
+- [x] Verify speaker appears on website
