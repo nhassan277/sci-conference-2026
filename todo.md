@@ -698,3 +698,8 @@
 ## Update Volunteer Benefits Section
 - [x] Update volunteer benefits content on registration page
 - [x] Verify updated content displays correctly
+
+## Add Invited Speaker - Dr. Ayman El-Shibiny
+- [x] Extract speaker information from document
+- [x] Add speaker to database as invited speaker
+- [x] Verify speaker appears on website
