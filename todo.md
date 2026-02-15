@@ -703,3 +703,8 @@
 - [x] Extract speaker information from document
 - [x] Add speaker to database as invited speaker
 - [x] Verify speaker appears on website
+
+## Update Participation Deadline
+- [x] Find all deadline references on website
+- [x] Update deadline to March 1, 2026 (01/03/2026)
+- [x] Verify updated deadline displays correctly
