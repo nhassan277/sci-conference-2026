@@ -708,3 +708,8 @@
 - [x] Find all deadline references on website
 - [x] Update deadline to March 1, 2026 (01/03/2026)
 - [x] Verify updated deadline displays correctly
+
+## Upload Dr. El-Shibiny Photo
+- [x] Upload photo to S3 and get CDN URL
+- [x] Update database with photo URL
+- [x] Verify photo appears on speakers page
