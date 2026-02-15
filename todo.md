@@ -723,3 +723,8 @@
 - [x] Upload speaker photo to S3
 - [x] Add speaker to database with bio and affiliation
 - [x] Verify speaker appears on website
+
+## Update Dr. Ayman El-Shibiny Photo
+- [x] Upload correct photo to S3
+- [x] Update database with new photo URL
+- [x] Verify photo appears on website
