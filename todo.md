@@ -742,3 +742,9 @@
 - [x] Add Medsol logo to workshop partners section
 - [x] Update professional workshops text to include "NAWAH Scientific, MARC, and Medsol"
 - [x] Upload Medsol logo to S3 CDN
+
+## Add Medsol Workshop Card to Home Page
+- [x] Add Medsol workshop card to Professional Workshops section on home page
+- [x] Include Medsol logo, workshop title, duration, and description
+- [x] Adjust grid layout to accommodate three workshop cards (NAWAH, MARC, Medsol)
+- [x] Ensure consistent styling with existing workshop cards

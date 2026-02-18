@@ -624,7 +624,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid md:grid-cols-3 gap-8">
               {/* NAWAH Workshop */}
               <Card className="border-2 border-primary/20">
                 <CardHeader>
@@ -706,6 +706,50 @@ export default function Home() {
                   <Button 
                     className="w-full" 
                     onClick={() => window.open('https://forms.gle/JzAcT5HKBRqLLME8A', '_blank')}
+                  >
+                    Register Now | سجل الآن
+                  </Button>
+                </CardContent>
+              </Card>
+
+              {/* Medsol Workshop */}
+              <Card className="border-2 border-accent/20">
+                <CardHeader>
+                  <div className="flex justify-center mb-4">
+                    <img 
+                      src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/suhdZISVxwwlvpPk.png" 
+                      alt="Medsol" 
+                      className="h-28 object-contain"
+                    />
+                  </div>
+                  <CardTitle className="text-xl">From DNA to Proteins: Advanced Sequencing Technologies Workshop</CardTitle>
+                  <CardDescription className="text-base space-y-4 pt-4">
+                    <p className="text-foreground font-medium">
+                      In collaboration with <strong>Medsol</strong>
+                    </p>
+                    
+                    <div className="bg-accent/5 p-4 rounded-lg">
+                      <p className="text-sm text-muted-foreground mb-2"><strong>Duration:</strong> 3 hours</p>
+                    </div>
+
+                    <p className="text-sm text-justify">
+                      This workshop provides a comprehensive introduction to cutting-edge sequencing technologies that are shaping the future of life sciences. Participants will explore Oxford Nanopore sequencing alongside Quantum-Si's innovative protein sequencing platform, gaining insights into workflows, data interpretation, and applications across both research and industry.
+                    </p>
+
+                    <div className="border-t pt-4 mt-4">
+                      <ul className="list-disc list-inside space-y-1 text-left text-sm">
+                        <li>Oxford Nanopore sequencing workflows</li>
+                        <li>Quantum-Si protein sequencing platform</li>
+                        <li>Data interpretation and analysis</li>
+                        <li>Certificate of completion provided</li>
+                      </ul>
+                    </div>
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Button 
+                    className="w-full" 
+                    onClick={() => window.open('https://forms.gle/medsol-workshop', '_blank')}
                   >
                     Register Now | سجل الآن
                   </Button>
