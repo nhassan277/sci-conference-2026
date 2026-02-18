@@ -86,12 +86,13 @@ export default function Sponsors() {
           <div className="text-center space-y-4 mb-12">
             <Handshake className="w-16 h-16 text-secondary mx-auto" />
             <h2 className="text-4xl font-bold text-primary">Workshop Partners</h2>
+            <p className="text-2xl font-semibold text-secondary" dir="rtl">شركاء ورش العمل</p>
             <p className="text-lg text-muted-foreground">
               Delivering Professional Training and Certification
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* NAWAH Scientific */}
             <Card className="hover:shadow-lg transition-shadow">
               <CardHeader className="text-center">
@@ -141,6 +142,33 @@ export default function Sponsors() {
                     They will conduct a comprehensive 3-hour Good Clinical Practice (GCP) workshop, 
                     equipping researchers with essential knowledge for conducting ethical and 
                     compliant clinical research.
+                  </p>
+                </CardDescription>
+              </CardContent>
+            </Card>
+
+            {/* Medsol */}
+            <Card className="hover:shadow-lg transition-shadow">
+              <CardHeader className="text-center">
+                <div className="flex justify-center mb-4">
+                  <img 
+                    src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/suhdZISVxwwlvpPk.png" 
+                    alt="Medsol" 
+                    className="h-40 object-contain"
+                  />
+                </div>
+                <CardTitle className="text-2xl">Medsol</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-base space-y-3">
+                  <p>
+                    Medsol provides cutting-edge solutions in genomics and proteomics, 
+                    specializing in advanced sequencing technologies and molecular analysis.
+                  </p>
+                  <p>
+                    They will deliver a comprehensive workshop on Oxford Nanopore sequencing 
+                    and Quantum-Si protein sequencing platforms, bridging scientific discovery 
+                    with practical implementation.
                   </p>
                 </CardDescription>
               </CardContent>

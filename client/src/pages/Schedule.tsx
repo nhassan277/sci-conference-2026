@@ -93,7 +93,7 @@ const sessions = {
       ],
       workshops: [
         { room: "Workshop Room 1", roomAr: "غرفة ورشة العمل ١", name: "MARC Workshop", nameAr: "ورشة عمل MARC" },
-        { room: "Workshop Room 2", roomAr: "غرفة ورشة العمل ٢", name: "Medsol Workshop: From DNA to Proteins", nameAr: "ورشة عمل Medsol: من الحمض النووي إلى البروتينات" }
+        { room: "Workshop Room 2", roomAr: "غرفة ورشة العمل ٢", name: "From DNA to Proteins: Advanced Sequencing Technologies Workshop", nameAr: "من الحمض النووي إلى البروتينات: ورشة عمل تقنيات التسلسل المتقدمة" }
       ]
     },
     {
@@ -111,7 +111,7 @@ const sessions = {
       ],
       workshops: [
         { room: "Workshop Room 1", roomAr: "غرفة ورشة العمل ١", name: "MARC Workshop", nameAr: "ورشة عمل MARC" },
-        { room: "Workshop Room 2", roomAr: "غرفة ورشة العمل ٢", name: "Medsol Workshop: From DNA to Proteins", nameAr: "ورشة عمل Medsol: من الحمض النووي إلى البروتينات" }
+        { room: "Workshop Room 2", roomAr: "غرفة ورشة العمل ٢", name: "From DNA to Proteins: Advanced Sequencing Technologies Workshop", nameAr: "من الحمض النووي إلى البروتينات: ورشة عمل تقنيات التسلسل المتقدمة" }
       ]
     },
     {

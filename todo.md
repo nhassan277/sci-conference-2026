@@ -735,3 +735,10 @@
 - [ ] Generate promotional graphics for all speakers
 - [ ] Include speaker photo, name (EN/AR), title, affiliation, presentation title, date
 - [ ] Deliver all graphics to user
+
+## Medsol Workshop Updates
+- [x] Update workshop title to "From DNA to Proteins: Advanced Sequencing Technologies Workshop"
+- [x] Update workshop description with comprehensive text about Oxford Nanopore and Quantum-Si technologies
+- [x] Add Medsol logo to workshop partners section
+- [x] Update professional workshops text to include "NAWAH Scientific, MARC, and Medsol"
+- [x] Upload Medsol logo to S3 CDN

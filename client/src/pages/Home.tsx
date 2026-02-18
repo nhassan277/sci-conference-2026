@@ -620,7 +620,7 @@ export default function Home() {
             <div className="text-center space-y-4 mb-12">
               <h2 className="text-4xl md:text-5xl font-bold text-primary">Professional Workshops</h2>
               <p className="text-xl text-muted-foreground">
-                In collaboration with NAWAH Scientific and MARC
+                In collaboration with NAWAH Scientific, MARC, and Medsol
               </p>
             </div>
 
