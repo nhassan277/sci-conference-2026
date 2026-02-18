@@ -728,3 +728,10 @@
 - [x] Upload correct photo to S3
 - [x] Update database with new photo URL
 - [x] Verify photo appears on website
+
+## Create Speaker Promotional Materials
+- [ ] Fetch all 16 speakers from database
+- [ ] Design consistent square template with conference branding
+- [ ] Generate promotional graphics for all speakers
+- [ ] Include speaker photo, name (EN/AR), title, affiliation, presentation title, date
+- [ ] Deliver all graphics to user

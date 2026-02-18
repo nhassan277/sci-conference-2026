@@ -92,7 +92,8 @@ const sessions = {
         { hall: "Hall D", hallAr: "القاعة د", topic: "Mathematics, Physics, Geology, Astronomy & other sciences", topicAr: "الرياضيات، الفيزياء، الجيولوجيا، الفلك والعلوم الأخرى", speaker: "Participant Speaker 1" }
       ],
       workshops: [
-        { room: "Workshop Room 1", roomAr: "غرفة ورشة العمل ١", name: "MARC Workshop", nameAr: "ورشة عمل MARC" }
+        { room: "Workshop Room 1", roomAr: "غرفة ورشة العمل ١", name: "MARC Workshop", nameAr: "ورشة عمل MARC" },
+        { room: "Workshop Room 2", roomAr: "غرفة ورشة العمل ٢", name: "Medsol Workshop: From DNA to Proteins", nameAr: "ورشة عمل Medsol: من الحمض النووي إلى البروتينات" }
       ]
     },
     {
@@ -109,7 +110,8 @@ const sessions = {
         { hall: "Hall D", hallAr: "القاعة د", topic: "Mathematics, Physics, Geology, Astronomy & other sciences", topicAr: "الرياضيات، الفيزياء، الجيولوجيا، الفلك والعلوم الأخرى", speaker: "Participant Speaker 2" }
       ],
       workshops: [
-        { room: "Workshop Room 1", roomAr: "غرفة ورشة العمل ١", name: "MARC Workshop", nameAr: "ورشة عمل MARC" }
+        { room: "Workshop Room 1", roomAr: "غرفة ورشة العمل ١", name: "MARC Workshop", nameAr: "ورشة عمل MARC" },
+        { room: "Workshop Room 2", roomAr: "غرفة ورشة العمل ٢", name: "Medsol Workshop: From DNA to Proteins", nameAr: "ورشة عمل Medsol: من الحمض النووي إلى البروتينات" }
       ]
     },
     {

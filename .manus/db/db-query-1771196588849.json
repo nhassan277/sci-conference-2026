@@ -1,0 +1,109 @@
+{
+  "query": "SELECT id, full_name, title, affiliation, presentation_title, photo_url FROM keynote_speakers WHERE speaker_type = 'invited' ORDER BY display_order;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name, title, affiliation, presentation_title, photo_url FROM keynote_speakers WHERE speaker_type = 'invited' ORDER BY display_order;",
+  "rows": [
+    {
+      "id": "12",
+      "full_name": "Sohair Ramadan Fahmy",
+      "title": "Prof. Dr.",
+      "affiliation": "Dean of Faculty of Science, Cairo University; General Coordinator of the Sustainability Office; Professor of Physiology, Zoology Department, Faculty of Science, Cairo University",
+      "presentation_title": "Practical Aspects of Experimental Design in Laboratory Animal Science",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/hqCqvqYZLfAAyYbb.png"
+    },
+    {
+      "id": "5",
+      "full_name": "Nagwa El-Badri",
+      "title": "Prof. Dr.",
+      "affiliation": "Director of Biomedical Sciences Program, Director of Center of Excellence for Stem Cells and Regenerative Medicine, Professor, Biomedical Sciences Program, Zewail City of Science, Technology and Innovation",
+      "presentation_title": "Biomimetic Scaffolds and Amniotic Membranes",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/XhCVtcmaxCborVYI.png"
+    },
+    {
+      "id": "2",
+      "full_name": "Ibrahim M. El-Sherbiny",
+      "title": "Prof. Dr.",
+      "affiliation": "Professor of Nanotechnology & Nanomedicine, Founding Chairman of Nanoscience Program, Founding Director of Center of Materials Science, Acting President of the University of Science and Technology at Zewail City",
+      "presentation_title": "Basic Sciences As the Foundation of Innovation: Some Success Stories for Disease Treatment and Advanced Biomedical Applications (From Lab to Society)",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/CzEOiUuHXNdycLQK.jpeg"
+    },
+    {
+      "id": "9",
+      "full_name": "Mahmoud Ibrahim Nasr",
+      "title": "Prof. Dr.",
+      "affiliation": "Professor of Ore Beneficiation and Manufacturing, Egyptian Central Metallurgical Research & Development Institute (CMRDI)",
+      "presentation_title": "Egyptian Iron Ore as a Feedstock to the Iron and Steel Industry",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/zBUqJnTzJbTTCvpq.jpg"
+    },
+    {
+      "id": "7",
+      "full_name": "Khalid Muhammad Taalab",
+      "title": "Prof. Dr.",
+      "affiliation": "Nuclear Medicine Professor at Military Medical Academy, Egypt Centre of Research and Regenerative Medicine (ECRRM)",
+      "presentation_title": "Radiopharmaceuticals and Precision Medicine",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/yopjWqQNqSdHnLgX.png"
+    },
+    {
+      "id": "8",
+      "full_name": "Mohamed Ibrahim El-Anbawy",
+      "title": "Prof. Dr.",
+      "affiliation": "Professor of Environmental Geology, Geology Department, Faculty of Science, Cairo University",
+      "presentation_title": "Economic Utilization of Shale in Desert Land Reclamation and Cement Industry",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/fEpxsoPAkLpFAtDV.jpg"
+    },
+    {
+      "id": "6",
+      "full_name": "Osama Azmy",
+      "title": "Prof. Dr.",
+      "affiliation": "Consultant to the President of the National Research Centre for medical clinical trials, Head of the Regenerative Medicine Unit at NRC, Fellow of the Royal College of Obstetricians and Gynecologists (FRCOG)",
+      "presentation_title": "Management of the Rosy Years of Life",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/QRaHoRvWllHeUlfD.png"
+    },
+    {
+      "id": "3",
+      "full_name": "Ashraf Abdou Tabll",
+      "title": "Prof. Dr.",
+      "affiliation": "Professor of Medical Biotechnology, Egypt Center for Research and Regenerative Medicine (ECRRM)",
+      "presentation_title": "Current Status and Future Prospects of Medical Biotechnology in Egypt: Lessons from Monoclonal and IgY Antibodies",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/JmdTRNcwzCEaJjrU.jpeg"
+    },
+    {
+      "id": "14",
+      "full_name": "Ayman El-Shibiny",
+      "title": "Prof. Dr. ",
+      "affiliation": "Professor of Biomedical Sciences, and Director of CMP, Zewail City of Science and Technology",
+      "presentation_title": "Phage Innovation: Targeted Solutions for Regional Antimicrobial Challenges",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/wWlOEHhvidephepp.png"
+    },
+    {
+      "id": "17",
+      "full_name": "Naglaa A. Abdallah",
+      "title": "Prof. Dr. ",
+      "affiliation": "Professor of Genetics, Faculty of Agriculture, Cairo University",
+      "presentation_title": "Novel Genome Editing Approaches for a Sustainable Future",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/SiZQEfsvJgBfqrHD.png"
+    },
+    {
+      "id": "15",
+      "full_name": "Ahmed Fikry El-Sayed",
+      "title": "Dr.",
+      "affiliation": "Assistant Professor, King Salman International University",
+      "presentation_title": "Computer-Aided Drug Design: From Code to Cure",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/TbmaCrtrtyaJjSsm.png"
+    },
+    {
+      "id": "11",
+      "full_name": "Sahar Hassan",
+      "title": "Dr.",
+      "affiliation": "Senior Geologist and Sedimentologist, Digital Subsurface Solutions, SLB",
+      "presentation_title": "Revolutionizing Subsurface Understanding: AI-Driven Logging-While-Drilling Technologies",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/TAxrmfwYatNFofbJ.jpg"
+    }
+  ],
+  "messages": [
+    "10\tMortada Mourad El Aref\tProf. Dr.\tProfessor of Ore Geology, Geology Department, Faculty of Science, Cairo University",
+    "\tEgyptian Iron Ore for Supporting National Economy - Opportunities and Challenges\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/XcXczPQWMszNbalu.png"
+  ],
+  "stdout": "id\tfull_name\ttitle\taffiliation\tpresentation_title\tphoto_url\n12\tSohair Ramadan Fahmy\tProf. Dr.\tDean of Faculty of Science, Cairo University; General Coordinator of the Sustainability Office; Professor of Physiology, Zoology Department, Faculty of Science, Cairo University\tPractical Aspects of Experimental Design in Laboratory Animal Science\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/hqCqvqYZLfAAyYbb.png\n5\tNagwa El-Badri\tProf. Dr.\tDirector of Biomedical Sciences Program, Director of Center of Excellence for Stem Cells and Regenerative Medicine, Professor, Biomedical Sciences Program, Zewail City of Science, Technology and Innovation\tBiomimetic Scaffolds and Amniotic Membranes\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/XhCVtcmaxCborVYI.png\n10\tMortada Mourad El Aref\tProf. Dr.\tProfessor of Ore Geology, Geology Department, Faculty of Science, Cairo University\n\tEgyptian Iron Ore for Supporting National Economy - Opportunities and Challenges\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/XcXczPQWMszNbalu.png\n2\tIbrahim M. El-Sherbiny\tProf. Dr.\tProfessor of Nanotechnology & Nanomedicine, Founding Chairman of Nanoscience Program, Founding Director of Center of Materials Science, Acting President of the University of Science and Technology at Zewail City\tBasic Sciences As the Foundation of Innovation: Some Success Stories for Disease Treatment and Advanced Biomedical Applications (From Lab to Society)\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/CzEOiUuHXNdycLQK.jpeg\n9\tMahmoud Ibrahim Nasr\tProf. Dr.\tProfessor of Ore Beneficiation and Manufacturing, Egyptian Central Metallurgical Research & Development Institute (CMRDI)\tEgyptian Iron Ore as a Feedstock to the Iron and Steel Industry\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/zBUqJnTzJbTTCvpq.jpg\n7\tKhalid Muhammad Taalab\tProf. Dr.\tNuclear Medicine Professor at Military Medical Academy, Egypt Centre of Research and Regenerative Medicine (ECRRM)\tRadiopharmaceuticals and Precision Medicine\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/yopjWqQNqSdHnLgX.png\n8\tMohamed Ibrahim El-Anbawy\tProf. Dr.\tProfessor of Environmental Geology, Geology Department, Faculty of Science, Cairo University\tEconomic Utilization of Shale in Desert Land Reclamation and Cement Industry\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/fEpxsoPAkLpFAtDV.jpg\n6\tOsama Azmy\tProf. Dr.\tConsultant to the President of the National Research Centre for medical clinical trials, Head of the Regenerative Medicine Unit at NRC, Fellow of the Royal College of Obstetricians and Gynecologists (FRCOG)\tManagement of the Rosy Years of Life\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/QRaHoRvWllHeUlfD.png\n3\tAshraf Abdou Tabll\tProf. Dr.\tProfessor of Medical Biotechnology, Egypt Center for Research and Regenerative Medicine (ECRRM)\tCurrent Status and Future Prospects of Medical Biotechnology in Egypt: Lessons from Monoclonal and IgY Antibodies\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/JmdTRNcwzCEaJjrU.jpeg\n14\tAyman El-Shibiny\tProf. Dr. \tProfessor of Biomedical Sciences, and Director of CMP, Zewail City of Science and Technology\tPhage Innovation: Targeted Solutions for Regional Antimicrobial Challenges\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/wWlOEHhvidephepp.png\n17\tNaglaa A. Abdallah\tProf. Dr. \tProfessor of Genetics, Faculty of Agriculture, Cairo University\tNovel Genome Editing Approaches for a Sustainable Future\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/SiZQEfsvJgBfqrHD.png\n15\tAhmed Fikry El-Sayed\tDr.\tAssistant Professor, King Salman International University\tComputer-Aided Drug Design: From Code to Cure\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/TbmaCrtrtyaJjSsm.png\n11\tSahar Hassan\tDr.\tSenior Geologist and Sedimentologist, Digital Subsurface Solutions, SLB\tRevolutionizing Subsurface Understanding: AI-Driven Logging-While-Drilling Technologies\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/TAxrmfwYatNFofbJ.jpg\n",
+  "stderr": "",
+  "execution_time_ms": 1569
+}

@@ -1,0 +1,29 @@
+Invited Speakers for Graphics Generation:
+
+1. Dr. Ayman El-Shibiny
+   Title: Professor and Director, Center for Microbiology and Phage Therapy
+   Affiliation: Zewail City
+   Presentation: Phage Innovation for Antimicrobial Challenges
+   Photo: https://files.manuscdn.com/user_upload_by_module/session_file/118031311/wWlOEHhvidephepp.png
+
+2. Dr. Ahmed Fikry El-Sayed
+   Title: Ph.D. – Molecular Biotechnologist
+   Affiliation: Assistant Professor, King Salman International University
+   Presentation: Computer-Aided Drug Design: From Code to Cure
+   Photo: https://files.manuscdn.com/user_upload_by_module/session_file/118031311/zyVjVNBfVGbNXqPZ.png
+
+3. Mortada Mourad El Aref
+   Title: Prof. Dr.
+   Affiliation: Professor of Ore Geology, Geology Department, Faculty of Science, Cairo University
+   Presentation: Egyptian Iron Ore for Supporting National Economy - Opportunities and Challenges
+   Photo: https://files.manuscdn.com/user_upload_by_module/session_file/118031311/XcXczPQWMszNbalu.png
+
+4. Prof. Naglaa A. Abdallah (ALREADY DONE)
+   Title: Professor of Genetics
+   Affiliation: Faculty of Agriculture, Cairo University
+   Presentation: Novel Genome Editing Approaches for a Sustainable Future
+   Photo: https://files.manuscdn.com/user_upload_by_module/session_file/118031311/SiZQEfsvJgBfqrHD.png
+
+Plus 8 more invited speakers with placeholder photos that need graphics generated.
+
+Total: 12 invited speakers in database

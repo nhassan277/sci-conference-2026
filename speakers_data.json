@@ -1,0 +1,137 @@
+[
+  {
+    "id": 1,
+    "full_name": "Prof. Dr. Khalid Muhammad Taalab",
+    "title": "Prof. Dr.",
+    "affiliation": "Nuclear Medicine Professor",
+    "presentation_title": "Radiopharmaceuticals and Precision Medicine",
+    "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/RWFOxOFVGVdJXpGq.png",
+    "speaker_type": "keynote"
+  },
+  {
+    "id": 2,
+    "full_name": "Prof. Dr. Ibrahim M. El-Sherbiny",
+    "title": "Prof. Dr.",
+    "affiliation": "Acting President, Zewail City",
+    "presentation_title": "Basic Sciences As Foundation of Innovation",
+    "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/bxCfJCMKXcMCMJRZ.png",
+    "speaker_type": "keynote"
+  },
+  {
+    "id": 3,
+    "full_name": "Prof. Dr. Osama Azmy",
+    "title": "Prof. Dr.",
+    "affiliation": "Consultant to President of NRC",
+    "presentation_title": "Management of the Rosy Years of Life",
+    "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/QvJPKmNNQJfCHdZC.png",
+    "speaker_type": "keynote"
+  },
+  {
+    "id": 4,
+    "full_name": "Prof. Dr. Hamed A. Ead",
+    "title": "Prof. Dr.",
+    "affiliation": "Professor of Chemistry and History of Science, Cairo University",
+    "presentation_title": "The Pioneers of Science in Egypt",
+    "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/xKNfqrPBqPQJxRqZ.png",
+    "speaker_type": "keynote"
+  },
+  {
+    "id": 5,
+    "full_name": "Dr. Ayman El-Shibiny",
+    "title": "Dr.",
+    "affiliation": "Professor and Director, Center for Microbiology and Phage Therapy, Zewail City",
+    "presentation_title": "Phage Innovation for Antimicrobial Challenges",
+    "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/XrzVjlBjoeVJBfHW.png",
+    "speaker_type": "invited"
+  },
+  {
+    "id": 6,
+    "full_name": "Dr. Ahmed Fikry El-Sayed",
+    "title": "Dr.",
+    "affiliation": "Assistant Professor, Biotechnology Department, Faculty of Science, Cairo University",
+    "presentation_title": "Computer-Aided Drug Design: From Code to Cure",
+    "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/zyVjVNBfVGbNXqPZ.png",
+    "speaker_type": "invited"
+  },
+  {
+    "id": 7,
+    "full_name": "Prof. Dr. Ehab El-Dabaa",
+    "title": "Prof. Dr.",
+    "affiliation": "Professor and Head of Biochemistry and Molecular Biology Department, Theodor Bilharz Research Institute",
+    "presentation_title": "Recombinant Biopharmaceutical Proteins",
+    "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/VGbNXqPZzyVjVNBf.png",
+    "speaker_type": "keynote"
+  },
+  {
+    "id": 8,
+    "full_name": "Khaled Amer",
+    "title": "Prof. Dr.",
+    "affiliation": "Egypt Genome Project Director",
+    "presentation_title": "Egypt Genome; From Dream to Reality",
+    "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/placeholder.png",
+    "speaker_type": "keynote"
+  },
+  {
+    "id": 9,
+    "full_name": "Samir Farid",
+    "title": "Prof. Dr.",
+    "affiliation": "Professor of Organic Chemistry, Faculty of Science, Cairo University",
+    "presentation_title": "Organic Chemistry in Drug Discovery",
+    "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/placeholder2.png",
+    "speaker_type": "invited"
+  },
+  {
+    "id": 10,
+    "full_name": "Mortada Mourad El Aref",
+    "title": "Prof. Dr.",
+    "affiliation": "Professor of Ore Geology, Geology Department, Faculty of Science, Cairo University",
+    "presentation_title": "Egyptian Iron Ore for Supporting National Economy - Opportunities and Challenges",
+    "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/XcXczPQWMszNbalu.png",
+    "speaker_type": "invited"
+  },
+  {
+    "id": 11,
+    "full_name": "Mohamed Abdel-Raheem",
+    "title": "Dr.",
+    "affiliation": "Associate Professor, Zoology Department, Faculty of Science, Cairo University",
+    "presentation_title": "Biodiversity Conservation in Egypt",
+    "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/placeholder3.png",
+    "speaker_type": "invited"
+  },
+  {
+    "id": 12,
+    "full_name": "Noha Salah Donia",
+    "title": "Dr.",
+    "affiliation": "Associate Professor, Physics Department, Faculty of Science, Cairo University",
+    "presentation_title": "Nanomaterials for Energy Applications",
+    "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/placeholder4.png",
+    "speaker_type": "invited"
+  },
+  {
+    "id": 13,
+    "full_name": "Ahmed Zewail Memorial",
+    "title": "Prof. Dr.",
+    "affiliation": "Zewail City of Science and Technology",
+    "presentation_title": "Ahmed Zewail's Legacy in Science",
+    "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/placeholder5.png",
+    "speaker_type": "keynote"
+  },
+  {
+    "id": 14,
+    "full_name": "Hala Zayed",
+    "title": "Dr.",
+    "affiliation": "Assistant Professor, Microbiology Department, Faculty of Science, Cairo University",
+    "presentation_title": "Antimicrobial Resistance: A Global Challenge",
+    "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/placeholder6.png",
+    "speaker_type": "invited"
+  },
+  {
+    "id": 15,
+    "full_name": "Amr Adel",
+    "title": "Dr.",
+    "affiliation": "Assistant Professor, Mathematics Department, Faculty of Science, Cairo University",
+    "presentation_title": "Mathematical Modeling in Biological Systems",
+    "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/placeholder7.png",
+    "speaker_type": "invited"
+  }
+]

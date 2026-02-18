@@ -153,7 +153,7 @@ export default function KeynoteSpeakers() {
                                 <p className="text-xs font-semibold text-orange-600 uppercase tracking-wide">
                                   Abstract
                                 </p>
-                                <p className="text-sm leading-relaxed text-muted-foreground">
+                                <p className="text-sm leading-relaxed text-muted-foreground text-justify">
                                   {speaker.presentationAbstract}
                                 </p>
                               </div>
@@ -165,11 +165,11 @@ export default function KeynoteSpeakers() {
                                 <p className="text-xs font-semibold text-orange-600 uppercase tracking-wide">
                                   Biography
                                 </p>
-                                <p className="text-sm leading-relaxed text-muted-foreground">
+                                <p className="text-sm leading-relaxed text-muted-foreground text-justify">
                                   {speaker.bio}
                                 </p>
                                 {speaker.bioAr && (
-                                  <p className="text-sm leading-relaxed text-muted-foreground" dir="rtl">
+                                  <p className="text-sm leading-relaxed text-muted-foreground text-justify" dir="rtl">
                                     {speaker.bioAr}
                                   </p>
                                 )}
@@ -276,7 +276,7 @@ export default function KeynoteSpeakers() {
                           <p className="text-xs font-semibold text-orange-600 uppercase tracking-wide">
                             Abstract
                           </p>
-                          <p className="text-sm leading-relaxed text-muted-foreground">
+                          <p className="text-sm leading-relaxed text-muted-foreground text-justify">
                             {speaker.presentationAbstract}
                           </p>
                         </div>
@@ -288,11 +288,11 @@ export default function KeynoteSpeakers() {
                           <p className="text-xs font-semibold text-orange-600 uppercase tracking-wide">
                             Biography
                           </p>
-                          <p className="text-sm leading-relaxed text-muted-foreground">
+                          <p className="text-sm leading-relaxed text-muted-foreground text-justify">
                             {speaker.bio}
                           </p>
                           {speaker.bioAr && (
-                            <p className="text-sm leading-relaxed text-muted-foreground" dir="rtl">
+                            <p className="text-sm leading-relaxed text-muted-foreground text-justify" dir="rtl">
                               {speaker.bioAr}
                             </p>
                           )}
