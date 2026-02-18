@@ -807,63 +807,6 @@ export default function Home() {
                 </CardContent>
               </Card>
             </div>
-
-            {/* Workshop Partners */}
-            <div className="text-center mb-6">
-              <h3 className="text-2xl font-bold text-primary">Workshop Partners</h3>
-              <p className="text-lg text-muted-foreground" dir="rtl">شركاء ورش العمل</p>
-            </div>
-            <div className="grid md:grid-cols-2 gap-8">
-              {/* NAWAH Scientific */}
-              <Card className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="flex items-center justify-center h-32 bg-white rounded-lg mb-4 p-4">
-                    <img 
-                      src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/ndKRwnmyKdJLbGXC.png" 
-                      alt="NAWAH Scientific" 
-                      className="h-full w-auto object-contain"
-                    />
-                  </div>
-                  <CardTitle className="text-xl text-center">NAWAH Scientific</CardTitle>
-                  <CardDescription className="text-center">
-                    Workshop Partner | شريك ورش العمل
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground text-center">
-                    Leading provider of advanced scientific services and research solutions
-                  </p>
-                  <p className="text-sm text-muted-foreground text-center mt-2" dir="rtl">
-                    مزود رائد للخدمات العلمية المتقدمة وحلول البحث
-                  </p>
-                </CardContent>
-              </Card>
-
-              {/* MARC */}
-              <Card className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="flex items-center justify-center h-32 bg-white rounded-lg mb-4 p-4">
-                    <img 
-                      src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/ovrQFMOFiOzebFkT.jpg" 
-                      alt="MARC" 
-                      className="h-full w-auto object-contain"
-                    />
-                  </div>
-                  <CardTitle className="text-xl text-center">MARC</CardTitle>
-                  <CardDescription className="text-center" dir="rtl">
-                    مركز أبحاث التطبيقات الطبية
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground text-center">
-                    Specializing in medical research applications and clinical training
-                  </p>
-                  <p className="text-sm text-muted-foreground text-center mt-2" dir="rtl">
-                    متخصص في تطبيقات البحوث الطبية والتدريب السريري
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
           </div>
         </div>
       </section>

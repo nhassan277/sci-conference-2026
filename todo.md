@@ -751,3 +751,7 @@
 
 ## Update Medsol Workshop Registration Link
 - [x] Update Medsol workshop registration button URL to https://forms.gle/nJ8QRmqboZr1VGfP8
+
+## Remove Workshop Partners Section from Home Page
+- [x] Remove Workshop Partners section (NAWAH and MARC cards) from home page
+- [x] Keep Workshop Partners section on Sponsors page only
