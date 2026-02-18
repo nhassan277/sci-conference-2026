@@ -749,7 +749,7 @@ export default function Home() {
                 <CardContent>
                   <Button 
                     className="w-full" 
-                    onClick={() => window.open('https://forms.gle/medsol-workshop', '_blank')}
+                    onClick={() => window.open('https://forms.gle/nJ8QRmqboZr1VGfP8', '_blank')}
                   >
                     Register Now | سجل الآن
                   </Button>

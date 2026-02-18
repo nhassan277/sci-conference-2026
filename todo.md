@@ -748,3 +748,6 @@
 - [x] Include Medsol logo, workshop title, duration, and description
 - [x] Adjust grid layout to accommodate three workshop cards (NAWAH, MARC, Medsol)
 - [x] Ensure consistent styling with existing workshop cards
+
+## Update Medsol Workshop Registration Link
+- [x] Update Medsol workshop registration button URL to https://forms.gle/nJ8QRmqboZr1VGfP8
