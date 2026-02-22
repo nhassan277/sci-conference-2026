@@ -755,3 +755,9 @@
 ## Remove Workshop Partners Section from Home Page
 - [x] Remove Workshop Partners section (NAWAH and MARC cards) from home page
 - [x] Keep Workshop Partners section on Sponsors page only
+
+## Add Prof. Tarek Kapiel as Invited Speaker
+- [x] Upload Prof. Tarek Kapiel's photo to S3 CDN
+- [x] Add Prof. Tarek Kapiel to speakers database with title, biography, and abstract
+- [x] Display Prof. Tarek Kapiel on Keynote and Invited Speakers page
+- [x] Add Prof. Tarek Kapiel to schedule if needed
