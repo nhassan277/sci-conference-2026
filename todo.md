@@ -761,3 +761,8 @@
 - [x] Add Prof. Tarek Kapiel to speakers database with title, biography, and abstract
 - [x] Display Prof. Tarek Kapiel on Keynote and Invited Speakers page
 - [x] Add Prof. Tarek Kapiel to schedule if needed
+
+## Add Prof. Osama Shalabiea as Invited Speaker
+- [x] Upload Prof. Osama Shalabiea's photo to S3 CDN
+- [x] Add Prof. Osama Shalabiea to speakers database with bilingual title and abstract
+- [x] Display Prof. Osama Shalabiea on Keynote and Invited Speakers page
