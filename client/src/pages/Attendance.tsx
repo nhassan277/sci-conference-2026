@@ -114,13 +114,21 @@ export default function Attendance() {
               شكراً لتسجيلك في مؤتمر SCI 2026. لقد استلمنا تسجيلك وسنتواصل معك عبر البريد الإلكتروني بمزيد من التفاصيل.
             </p>
             {wantsCertificate && (
-              <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                <p className="text-sm font-medium text-blue-900">
-                  Payment window opened in a new tab. Please complete your certificate payment.
+              <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg space-y-2 text-left">
+                <p className="text-sm font-semibold text-blue-900">
+                  Certificate Payment Instructions | تعليمات دفع الشهادة
                 </p>
-                <p className="text-xs text-blue-700 mt-1" dir="rtl">
-                  تم فتح نافذة الدفع في علامة تبويب جديدة. يرجى إكمال دفع الشهادة.
+                <p className="text-xs text-blue-800">
+                  Please transfer <strong>100 EGP</strong> to the bank account below and bring the receipt on the day of the conference.
                 </p>
+                <p className="text-xs text-blue-800" dir="rtl">
+                  يرجى تحويل <strong>100 جنيه مصري</strong> إلى الحساب البنكي التالي وإحضار الإيصال يوم المؤتمر.
+                </p>
+                <div className="p-3 bg-white border border-blue-300 rounded text-sm space-y-1" dir="rtl">
+                  <p className="font-semibold text-blue-900">ح/ صندوق الخدمات التعليمية</p>
+                  <p className="text-blue-800">كلية العلوم - جامعة القاهرة</p>
+                  <p className="text-blue-800">رقم الحساب: <span className="font-mono font-bold">7/450/88516/9</span></p>
+                </div>
               </div>
             )}
             <Button onClick={() => {
@@ -284,11 +292,27 @@ export default function Attendance() {
                     <p className="text-sm text-muted-foreground">
                       أرغب في شراء شهادة (100 جنيه مصري)
                     </p>
-                    <p className="text-xs text-muted-foreground">
-                      You will be redirected to payment after registration
-                    </p>
                   </div>
                 </div>
+
+                {wantsCertificate && (
+                  <div className="mt-3 p-4 bg-blue-50 border border-blue-200 rounded-lg space-y-2">
+                    <p className="text-sm font-semibold text-blue-900">
+                      Payment Instructions | تعليمات الدفع
+                    </p>
+                    <p className="text-xs text-blue-800">
+                      Please transfer <strong>100 EGP</strong> to the following bank account and bring the receipt on the day of the conference.
+                    </p>
+                    <p className="text-xs text-blue-800" dir="rtl">
+                      يرجى تحويل <strong>100 جنيه مصري</strong> إلى الحساب البنكي التالي وإحضار الإيصال يوم المؤتمر.
+                    </p>
+                    <div className="mt-2 p-3 bg-white border border-blue-300 rounded text-sm space-y-1" dir="rtl">
+                      <p className="font-semibold text-blue-900">ح/ صندوق الخدمات التعليمية</p>
+                      <p className="text-blue-800">كلية العلوم - جامعة القاهرة</p>
+                      <p className="text-blue-800">رقم الحساب: <span className="font-mono font-bold">7/450/88516/9</span></p>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Submit Button */}

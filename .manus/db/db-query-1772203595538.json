@@ -1,0 +1,9 @@
+{
+  "query": "INSERT INTO keynote_speakers (full_name, title, affiliation, presentation_title, photo_url, speaker_type, display_order, is_visible) VALUES ('Ahmed Youssef', 'Dr.', '', '', 'https://files.manuscdn.com/user_upload_by_module/session_file/118031311/NKfXBKqJcSQePjbF.jpeg', 'invited', 10, true);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute INSERT INTO keynote_speakers (full_name, title, affiliation, presentation_title, photo_url, speaker_type, display_order, is_visible) VALUES ('Ahmed Youssef', 'Dr.', '', '', 'https://files.manuscdn.com/user_upload_by_module/session_file/118031311/NKfXBKqJcSQePjbF.jpeg', 'invited', 10, true);",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 1506
+}

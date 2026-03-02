@@ -766,3 +766,81 @@
 - [x] Upload Prof. Osama Shalabiea's photo to S3 CDN
 - [x] Add Prof. Osama Shalabiea to speakers database with bilingual title and abstract
 - [x] Display Prof. Osama Shalabiea on Keynote and Invited Speakers page
+
+## Create Speaker Announcement Graphics
+- [x] Generate announcement graphic for Dr. Osama Shalabiea matching the template design
+- [x] Generate announcement graphic for Dr. Tarek Kapiel matching the template design
+- [x] Deliver both graphics to user
+
+## Regenerate Prof. Osama Shalabiea Speaker Announcement Graphic
+- [x] Regenerate speaker announcement graphic for Prof. Osama Shalabiea using his actual photo
+- [x] Deliver updated graphic to user
+
+## Regenerate Prof. Tarek Kapiel Speaker Announcement Graphic
+- [x] Regenerate speaker announcement graphic for Prof. Tarek Kapiel using his actual photo
+- [x] Deliver updated graphic to user
+
+## Create Medsol Workshop Announcement Graphic
+- [x] Generate workshop announcement graphic for Medsol matching the MARC template design
+- [x] Deliver graphic to user
+
+## Redesign Conference Invitation for Envelope Format
+- [x] Analyze envelope video to understand dimensions and format requirements
+- [x] Design new invitation layout with patronage section (تحت رعاية) at top
+- [x] Add conference information section at bottom
+- [x] Ensure design fits envelope format shown in video
+- [x] Deliver redesigned invitation to user
+
+## Create Two Landscape Invitation Versions
+- [x] Generate traditional green/gold Islamic-style invitation in landscape format
+- [x] Generate modern minimalist invitation with research tracks in landscape format
+- [x] Deliver both invitations to user
+
+## Remove Dotted Line from Traditional Invitation
+- [x] Regenerate traditional landscape invitation without dotted line for recipient name
+- [x] Update colors to match modern invitation palette (navy blue, gold, sage green, cream)
+- [x] Deliver updated invitation to user
+
+## Create Simplified Modern Invitation
+- [x] Generate modern invitation without Dr. Soheir and Dr. Samy names
+- [x] Keep research tracks, date, venue, logos, and awards for students
+- [x] Deliver simplified invitation to user
+
+## Create Traditional Invitation with Conference Details Only
+- [x] Generate traditional Islamic-style invitation without patron names or recipient name line
+- [x] Include only conference details: title, date, venue, tracks, contact
+- [x] Deliver traditional simplified invitation to user
+
+## Create Simple Invitation for Semi-Transparent Paper
+- [x] Generate minimalist invitation design optimized for semi-transparent paper printing
+- [x] Use simple borders and minimal decorative elements
+- [x] Ensure clear text readability
+- [x] Deliver simple invitation to user
+
+## Create Landscape Simple Invitation
+- [x] Generate landscape orientation version of simple invitation for semi-transparent paper
+- [x] Deliver landscape invitation to user
+
+## Update Invitation with All Nine Research Tracks
+- [x] Generate simple landscape invitation with all nine research tracks
+- [x] Deliver updated invitation to user
+
+## Create Social Media Posts
+- [x] Write social media post for Prof. Osama Shalabiea
+- [x] Write social media post for Prof. Tarek Kapiel
+- [x] Write social media post for Medsol workshop
+- [x] Deliver all social media posts to user
+
+## Create Social Media Reel Script for Workshops
+- [x] Write engaging reel script for NAWAH, MARC, and Medsol workshops
+- [x] Include scene breakdown, text overlays, and voiceover
+- [x] Deliver reel script to user
+
+## Upload Ahmed Youssef Photo
+- [x] Upload photo to S3 storage
+- [x] Save reference in database
+
+## Add Certificate Payment Information
+- [x] Restart dev server
+- [x] Add bank transfer payment section for conference certificate (100 EGP)
+- [x] Display account details: صندوق الخدمات التعليمية - كلية العلوم - جامعة القاهرة, Account: 7/450/88516/9
