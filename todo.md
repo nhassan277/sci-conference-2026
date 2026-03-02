@@ -847,3 +847,7 @@
 
 ## Fix Certificate Bank Account Number
 - [x] Update account number from 7/450/88516/9 to 9/450/88216/7 in Attendance.tsx
+
+## Update Abstract Submission Deadline
+- [x] Update deadline date to March 7, 2026 across the codebase
+- [x] Add urgent deadline-approaching banner/highlight on the website homepage and registration page

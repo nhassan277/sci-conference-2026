@@ -167,9 +167,11 @@ export default function ResearchTracks() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div>
-                <h3 className="font-semibold text-lg mb-2">Abstract Submission Deadline</h3>
-                <p className="text-muted-foreground">March 1, 2026</p>
+              <div className="p-3 bg-red-50 border-2 border-red-300 rounded-lg">
+                <h3 className="font-semibold text-lg mb-1 text-red-700">⚠️ Abstract Submission Deadline</h3>
+                <p className="text-red-600 font-bold text-xl">March 7, 2026</p>
+                <p className="text-sm text-red-500 mt-1">Deadline is approaching — only 5 days left! Submit your abstract now.</p>
+                <p className="text-sm text-red-500 mt-1" dir="rtl">الموعد النهائي يقترب — 5 أيام فقط! قدّم ملخصك الآن.</p>
               </div>
               <div>
                 <h3 className="font-semibold text-lg mb-2">Notification of Acceptance</h3>
@@ -184,9 +186,9 @@ export default function ResearchTracks() {
                   <li>Submit in English or Arabic</li>
                 </ul>
               </div>
-              <div>
-                <h3 className="font-semibold text-lg mb-2" dir="rtl">موعد تقديم الملخصات</h3>
-                <p className="text-muted-foreground" dir="rtl">1 مارس 2026</p>
+              <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
+                <h3 className="font-semibold text-lg mb-1 text-red-700" dir="rtl">⚠️ موعد تقديم الملخصات</h3>
+                <p className="text-red-600 font-bold text-xl" dir="rtl">7 مارس 2026</p>
               </div>
               <div className="pt-4">
                 <Link href="/#registration">

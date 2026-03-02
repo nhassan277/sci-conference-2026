@@ -181,9 +181,12 @@ export default function LifeSciences() {
                 <CardDescription dir="rtl" className="font-medium">التواريخ المهمة</CardDescription>
               </CardHeader>
               <CardContent className="space-y-3 text-sm">
-                <div>
-                  <p className="font-semibold">Abstract Submission</p>
-                  <p className="text-muted-foreground">February 28, 2026</p>
+                <div className="p-2 bg-red-50 border border-red-200 rounded-lg">
+                  <p className="font-semibold text-red-700">⚠️ Abstract Submission Deadline</p>
+                  <p className="text-red-600 font-bold">March 7, 2026</p>
+                  <p className="text-xs text-red-500 mt-1">Deadline approaching — 5 days left!</p>
+                  <p className="text-xs text-red-500" dir="rtl">الموعد النهائي يقترب — 5 أيام متبقية!
+                  </p>
                 </div>
                 <div>
                   <p className="font-semibold">Notification</p>
