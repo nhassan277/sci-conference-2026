@@ -844,3 +844,6 @@
 - [x] Restart dev server
 - [x] Add bank transfer payment section for conference certificate (100 EGP)
 - [x] Display account details: صندوق الخدمات التعليمية - كلية العلوم - جامعة القاهرة, Account: 7/450/88516/9
+
+## Fix Certificate Bank Account Number
+- [x] Update account number from 7/450/88516/9 to 9/450/88216/7 in Attendance.tsx

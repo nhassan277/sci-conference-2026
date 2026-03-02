@@ -127,7 +127,7 @@ export default function Attendance() {
                 <div className="p-3 bg-white border border-blue-300 rounded text-sm space-y-1" dir="rtl">
                   <p className="font-semibold text-blue-900">ح/ صندوق الخدمات التعليمية</p>
                   <p className="text-blue-800">كلية العلوم - جامعة القاهرة</p>
-                  <p className="text-blue-800">رقم الحساب: <span className="font-mono font-bold">7/450/88516/9</span></p>
+                  <p className="text-blue-800">رقم الحساب: <span className="font-mono font-bold">9/450/88216/7</span></p>
                 </div>
               </div>
             )}
@@ -309,7 +309,7 @@ export default function Attendance() {
                     <div className="mt-2 p-3 bg-white border border-blue-300 rounded text-sm space-y-1" dir="rtl">
                       <p className="font-semibold text-blue-900">ح/ صندوق الخدمات التعليمية</p>
                       <p className="text-blue-800">كلية العلوم - جامعة القاهرة</p>
-                      <p className="text-blue-800">رقم الحساب: <span className="font-mono font-bold">7/450/88516/9</span></p>
+                      <p className="text-blue-800">رقم الحساب: <span className="font-mono font-bold">9/450/88216/7</span></p>
                     </div>
                   </div>
                 )}
