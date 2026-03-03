@@ -636,9 +636,25 @@ export default function Home() {
           <div className="max-w-5xl mx-auto">
             <div className="text-center space-y-4 mb-12">
               <h2 className="text-4xl md:text-5xl font-bold text-primary">Professional Workshops</h2>
+              <p className="text-2xl font-semibold text-secondary" dir="rtl">ورش العمل المهنية</p>
               <p className="text-xl text-muted-foreground">
                 In collaboration with NAWAH Scientific, MARC, and Medsol
               </p>
+              {/* Pricing Banner */}
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-4">
+                <Badge className="bg-amber-500 text-white px-4 py-2 text-base font-bold">
+                  200 EGP per workshop
+                </Badge>
+                <Badge className="bg-red-600 text-white px-4 py-2 text-base font-bold">
+                  🔥 First 30 participants only | أول 30 مشارك فقط
+                </Badge>
+              </div>
+              {/* Notice */}
+              <div className="max-w-2xl mx-auto p-4 bg-amber-50 border-2 border-amber-300 rounded-xl text-sm text-amber-900 space-y-1">
+                <p className="font-bold flex items-center justify-center gap-2">⚠️ Important Notice | تنبيه هام</p>
+                <p>Each participant may register for <strong>ONE workshop only</strong>. Priority is given to the first 30 participants who pay and upload their payment invoice. Register early to secure your spot!</p>
+                <p dir="rtl" className="text-amber-800">يمكن لكل مشارك التسجيل في <strong>ورشة عمل واحدة فقط</strong>. الأولوية لأول 30 مشاركاً يدفعون ويرفعون إيصال الدفع. سجّل مبكراً لضمان مكانك!</p>
+              </div>
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
@@ -677,10 +693,10 @@ export default function Home() {
                 </CardHeader>
                 <CardContent>
                   <Button 
-                    className="w-full" 
-                    onClick={() => window.open('https://forms.gle/xEZ42tTnxJzYZADU7', '_blank')}
+                    className="w-full bg-amber-600 hover:bg-amber-700" 
+                    onClick={() => { window.location.href = '/attendance'; }}
                   >
-                    Register Now | سجل الآن
+                    Register & Upload Invoice | سجّل وارفع الإيصال
                   </Button>
                 </CardContent>
               </Card>
@@ -721,10 +737,10 @@ export default function Home() {
                 </CardHeader>
                 <CardContent>
                   <Button 
-                    className="w-full" 
-                    onClick={() => window.open('https://forms.gle/JzAcT5HKBRqLLME8A', '_blank')}
+                    className="w-full bg-amber-600 hover:bg-amber-700" 
+                    onClick={() => { window.location.href = '/attendance'; }}
                   >
-                    Register Now | سجل الآن
+                    Register & Upload Invoice | سجّل وارفع الإيصال
                   </Button>
                 </CardContent>
               </Card>
@@ -765,13 +781,82 @@ export default function Home() {
                 </CardHeader>
                 <CardContent>
                   <Button 
-                    className="w-full" 
-                    onClick={() => window.open('https://forms.gle/nJ8QRmqboZr1VGfP8', '_blank')}
+                    className="w-full bg-amber-600 hover:bg-amber-700" 
+                    onClick={() => { window.location.href = '/attendance'; }}
                   >
-                    Register Now | سجل الآن
+                    Register & Upload Invoice | سجّل وارفع الإيصال
                   </Button>
                 </CardContent>
               </Card>
+            </div>
+
+            {/* ─── Pre/Post Conference Workshops ─── */}
+            <div className="mt-16 space-y-8">
+              <div className="text-center space-y-3">
+                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-secondary text-white px-6 py-2 rounded-full font-bold text-lg">
+                  🎉 Surprise Announcement! | إعلان مفاجأة!
+                </div>
+                <h3 className="text-3xl font-bold text-primary">Extended Workshop Days</h3>
+                <p className="text-2xl font-semibold text-secondary" dir="rtl">أيام ورش عمل إضافية</p>
+              </div>
+
+              <div className="max-w-3xl mx-auto p-6 bg-gradient-to-br from-primary/5 to-secondary/5 border-2 border-primary/20 rounded-2xl space-y-4">
+                <p className="text-base text-foreground leading-relaxed">
+                  Due to the <strong>huge demand</strong> and the strong interest of companies to participate in the conference, we are thrilled to announce <strong>two additional workshop days</strong> — one before and one after the main conference!
+                </p>
+                <p className="text-base text-foreground leading-relaxed" dir="rtl">
+                  نظراً للطلب الكبير واهتمام الشركات بالمشاركة في المؤتمر، يسعدنا الإعلان عن <strong>يومين إضافيين لورش العمل</strong> — يوم قبل المؤتمر ويوم بعده!
+                </p>
+
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="p-4 bg-white border-2 border-blue-200 rounded-xl">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-2xl">📅</span>
+                      <div>
+                        <p className="font-bold text-blue-900">Pre-Conference Day</p>
+                        <p className="text-blue-700 font-semibold">April 6, 2026</p>
+                        <p className="text-blue-600 text-sm" dir="rtl">يوم ما قبل المؤتمر — ٦ أبريل ٢٠٢٦</p>
+                      </div>
+                    </div>
+                    <p className="text-sm text-muted-foreground">2 workshops on this day</p>
+                  </div>
+                  <div className="p-4 bg-white border-2 border-green-200 rounded-xl">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-2xl">📅</span>
+                      <div>
+                        <p className="font-bold text-green-900">Post-Conference Day</p>
+                        <p className="text-green-700 font-semibold">April 9, 2026</p>
+                        <p className="text-green-600 text-sm" dir="rtl">يوم ما بعد المؤتمر — ٩ أبريل ٢٠٢٦</p>
+                      </div>
+                    </div>
+                    <p className="text-sm text-muted-foreground">2 workshops on this day</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-center gap-3 flex-wrap">
+                  <Badge className="bg-primary text-white px-4 py-2 text-base font-bold">
+                    350 EGP per workshop
+                  </Badge>
+                  <Badge className="bg-muted text-muted-foreground px-4 py-2 text-sm">
+                    Companies will be announced soon | الشركات ستُعلن قريباً
+                  </Badge>
+                </div>
+              </div>
+
+              {/* HVD Teaser */}
+              <div className="max-w-2xl mx-auto">
+                <div className="p-6 bg-gradient-to-r from-purple-50 to-indigo-50 border-2 border-purple-300 rounded-2xl text-center space-y-3">
+                  <div className="text-4xl">🔮</div>
+                  <h4 className="text-2xl font-bold text-purple-900">Surprise Workshop Coming Soon!</h4>
+                  <p className="text-lg font-semibold text-purple-700" dir="rtl">ورشة عمل مفاجأة قادمة!</p>
+                  <div className="inline-block bg-white border-2 border-purple-400 rounded-xl px-6 py-3">
+                    <p className="text-xl font-black text-purple-900 tracking-widest">HVD Company</p>
+                    <p className="text-sm text-purple-600 mt-1">Stay tuned... 👀 | ترقّبوا...</p>
+                  </div>
+                  <p className="text-sm text-muted-foreground">More details will be revealed soon. Watch this space!</p>
+                  <p className="text-sm text-muted-foreground" dir="rtl">سيتم الكشف عن مزيد من التفاصيل قريباً. ترقّبوا!</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

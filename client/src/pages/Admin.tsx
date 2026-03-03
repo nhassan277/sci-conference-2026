@@ -661,6 +661,7 @@ export default function Admin() {
                           <TableHead>Type</TableHead>
                           <TableHead>VIP</TableHead>
                           <TableHead>Certificate</TableHead>
+                          <TableHead>Workshop</TableHead>
                           <TableHead>Payment</TableHead>
                           <TableHead>Date</TableHead>
                           <TableHead className="text-right">Actions</TableHead>
@@ -669,13 +670,13 @@ export default function Admin() {
                       <TableBody>
                         {loadingRegistrations ? (
                           <TableRow>
-                            <TableCell colSpan={9} className="text-center py-8">
+                            <TableCell colSpan={10} className="text-center py-8">
                               Loading...
                             </TableCell>
                           </TableRow>
                         ) : filteredRegistrations.length === 0 ? (
                           <TableRow>
-                            <TableCell colSpan={9} className="text-center py-8 text-muted-foreground">
+                            <TableCell colSpan={10} className="text-center py-8 text-muted-foreground">
                               No registrations found
                             </TableCell>
                           </TableRow>
@@ -707,11 +708,48 @@ export default function Admin() {
                                 </Button>
                               </TableCell>
                               <TableCell>
-                                {reg.wantsCertificate ? (
-                                  <Badge variant="secondary">Yes</Badge>
-                                ) : (
-                                  <Badge variant="outline">No</Badge>
-                                )}
+                                <div className="space-y-1">
+                                  {reg.wantsCertificate ? (
+                                    <Badge variant="secondary" className="block w-fit">Cert ✓</Badge>
+                                  ) : (
+                                    <Badge variant="outline" className="block w-fit">No Cert</Badge>
+                                  )}
+                                  {reg.certificateInvoiceUrl ? (
+                                    <a
+                                      href={reg.certificateInvoiceUrl}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="text-xs text-blue-600 underline hover:text-blue-800 block"
+                                    >
+                                      📄 Cert Invoice
+                                    </a>
+                                  ) : reg.wantsCertificate ? (
+                                    <span className="text-xs text-red-500">⚠ No invoice</span>
+                                  ) : null}
+                                </div>
+                              </TableCell>
+                              <TableCell>
+                                <div className="space-y-1">
+                                  {reg.wantsWorkshop ? (
+                                    <Badge className="bg-amber-100 text-amber-800 block w-fit">
+                                      {reg.workshopChoice?.toUpperCase() || "Workshop"}
+                                    </Badge>
+                                  ) : (
+                                    <Badge variant="outline" className="block w-fit">No WS</Badge>
+                                  )}
+                                  {reg.workshopInvoiceUrl ? (
+                                    <a
+                                      href={reg.workshopInvoiceUrl}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="text-xs text-amber-600 underline hover:text-amber-800 block"
+                                    >
+                                      📄 WS Invoice
+                                    </a>
+                                  ) : reg.wantsWorkshop ? (
+                                    <span className="text-xs text-red-500">⚠ No invoice</span>
+                                  ) : null}
+                                </div>
                               </TableCell>
                               <TableCell>
                                 <Badge

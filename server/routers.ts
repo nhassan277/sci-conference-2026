@@ -96,10 +96,17 @@ export const appRouter = router({
           researchTitle: z.string().optional(),
           researchAbstract: z.string().optional(),
           wantsCertificate: z.boolean().default(false),
+          certificateInvoiceUrl: z.string().optional(),
+          wantsWorkshop: z.boolean().default(false),
+          workshopChoice: z.enum(["nawah", "marc", "medsol"]).optional(),
+          workshopInvoiceUrl: z.string().optional(),
         })
       )
       .mutation(async ({ input }) => {
-        const [result] = await db.insert(registrations).values(input);
+        const [result] = await db.insert(registrations).values({
+          ...input,
+          workshopPaymentStatus: input.wantsWorkshop && input.workshopInvoiceUrl ? "pending" : "unpaid",
+        });
         const registrationId = result.insertId;
         
         // Emit real-time notification
@@ -186,6 +193,50 @@ export const appRouter = router({
         });
 
         return { success: true };
+      }),
+
+    uploadInvoice: publicProcedure
+      .input(
+        z.object({
+          registrationId: z.number(),
+          invoiceType: z.enum(["certificate", "workshop"]),
+          file: z.object({
+            data: z.string(), // base64
+            name: z.string(),
+            type: z.string(),
+          }),
+        })
+      )
+      .mutation(async ({ input }) => {
+        const [registration] = await db
+          .select()
+          .from(registrations)
+          .where(eq(registrations.id, input.registrationId));
+
+        if (!registration) {
+          throw new TRPCError({ code: "NOT_FOUND", message: "Registration not found" });
+        }
+
+        const { storagePut } = await import("../storage/index.js");
+        const base64Data = input.file.data.split(",")[1];
+        const buffer = Buffer.from(base64Data, "base64");
+        const timestamp = Date.now();
+        const randomSuffix = Math.random().toString(36).substring(7);
+        const extension = input.file.name.split(".").pop();
+        const key = `invoices/${input.invoiceType}/${input.registrationId}-${timestamp}-${randomSuffix}.${extension}`;
+        const result = await storagePut(key, buffer, input.file.type);
+
+        if (input.invoiceType === "certificate") {
+          await db.update(registrations)
+            .set({ certificateInvoiceUrl: result.url, updatedAt: new Date() })
+            .where(eq(registrations.id, input.registrationId));
+        } else {
+          await db.update(registrations)
+            .set({ workshopInvoiceUrl: result.url, workshopPaymentStatus: "pending", updatedAt: new Date() })
+            .where(eq(registrations.id, input.registrationId));
+        }
+
+        return { success: true, url: result.url };
       }),
   }),
 

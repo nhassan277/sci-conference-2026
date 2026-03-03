@@ -851,3 +851,12 @@
 ## Update Abstract Submission Deadline
 - [x] Update deadline date to March 7, 2026 across the codebase
 - [x] Add urgent deadline-approaching banner/highlight on the website homepage and registration page
+
+## Certificate Invoice Upload & Workshop Announcements
+- [x] Add invoiceUrl column to registrations table in schema for certificate payment proof
+- [x] Add workshopChoice and workshopInvoiceUrl columns to registrations table for workshop registration
+- [x] Update Attendance page: add mandatory invoice upload step for certificate (S3 upload)
+- [x] Update Home page: announce workshop fees (200 EGP, first 30 participants, one workshop only)
+- [x] Update Home page: announce pre/post conference workshops (350 EGP, Apr 6 & 9)
+- [x] Add HVD company teaser to workshops section
+- [x] Update admin dashboard to display invoice images for certificate and workshop payments

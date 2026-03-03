@@ -12,6 +12,11 @@ export const registrations = mysqlTable("registrations", {
   researchTitle: text("research_title"), // optional, for presenters
   researchAbstract: text("research_abstract"), // optional, for presenters
   wantsCertificate: boolean("wants_certificate").default(false).notNull(),
+  certificateInvoiceUrl: varchar("certificate_invoice_url", { length: 500 }), // uploaded payment receipt for certificate
+  wantsWorkshop: boolean("wants_workshop").default(false).notNull(),
+  workshopChoice: varchar("workshop_choice", { length: 50 }), // nawah, marc, medsol
+  workshopInvoiceUrl: varchar("workshop_invoice_url", { length: 500 }), // uploaded payment receipt for workshop
+  workshopPaymentStatus: varchar("workshop_payment_status", { length: 20 }).default("unpaid").notNull(),
   paymentStatus: varchar("payment_status", { length: 20 }).default("unpaid").notNull(), // unpaid, pending, paid
   stripePaymentIntentId: varchar("stripe_payment_intent_id", { length: 255 }),
   stripeCheckoutSessionId: varchar("stripe_checkout_session_id", { length: 255 }),

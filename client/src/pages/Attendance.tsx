@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -9,8 +9,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
-import { CheckCircle2, Loader2 } from "lucide-react";
+import { CheckCircle2, Loader2, Upload, AlertCircle, X, ImageIcon } from "lucide-react";
 
 const registrationSchema = z.object({
   fullNameEnglish: z.string().min(1, "English name is required"),
@@ -21,13 +22,83 @@ const registrationSchema = z.object({
   attendeeCategory: z.enum(["student", "faculty", "researcher", "industry"]),
   participationType: z.literal("attendee"),
   wantsCertificate: z.boolean(),
+  wantsWorkshop: z.boolean(),
+  workshopChoice: z.enum(["nawah", "marc", "medsol"]).optional(),
 });
 
 type RegistrationFormData = z.infer<typeof registrationSchema>;
 
+function fileToBase64(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result as string);
+    reader.onerror = reject;
+  });
+}
+
+function InvoiceUpload({
+  label,
+  labelAr,
+  file,
+  onFileChange,
+  required,
+}: {
+  label: string;
+  labelAr: string;
+  file: File | null;
+  onFileChange: (f: File | null) => void;
+  required?: boolean;
+}) {
+  const inputRef = useRef<HTMLInputElement>(null);
+  return (
+    <div className="space-y-2">
+      <Label>
+        {label} {required && <span className="text-red-500">*</span>}
+      </Label>
+      <p className="text-xs text-muted-foreground" dir="rtl">{labelAr}</p>
+      {file ? (
+        <div className="flex items-center gap-3 p-3 bg-green-50 border border-green-200 rounded-lg">
+          <ImageIcon className="w-5 h-5 text-green-600 shrink-0" />
+          <span className="text-sm text-green-800 truncate flex-1">{file.name}</span>
+          <button
+            type="button"
+            onClick={() => onFileChange(null)}
+            className="text-red-400 hover:text-red-600"
+          >
+            <X className="w-4 h-4" />
+          </button>
+        </div>
+      ) : (
+        <div
+          className="border-2 border-dashed border-muted-foreground/30 rounded-lg p-6 text-center cursor-pointer hover:border-primary/50 hover:bg-primary/5 transition-colors"
+          onClick={() => inputRef.current?.click()}
+        >
+          <Upload className="w-8 h-8 text-muted-foreground mx-auto mb-2" />
+          <p className="text-sm text-muted-foreground">Click to upload invoice photo (JPG, PNG, PDF)</p>
+          <p className="text-xs text-muted-foreground mt-1" dir="rtl">اضغط لرفع صورة الإيصال</p>
+        </div>
+      )}
+      <input
+        ref={inputRef}
+        type="file"
+        accept="image/*,.pdf"
+        className="hidden"
+        onChange={(e) => onFileChange(e.target.files?.[0] ?? null)}
+      />
+    </div>
+  );
+}
+
 export default function Attendance() {
   const [showSuccess, setShowSuccess] = useState(false);
+  const [registrationId, setRegistrationId] = useState<number | null>(null);
   const [wantsCertificate, setWantsCertificate] = useState(false);
+  const [wantsWorkshop, setWantsWorkshop] = useState(false);
+  const [workshopChoice, setWorkshopChoice] = useState<"nawah" | "marc" | "medsol" | "">("");
+  const [certInvoiceFile, setCertInvoiceFile] = useState<File | null>(null);
+  const [workshopInvoiceFile, setWorkshopInvoiceFile] = useState<File | null>(null);
+  const [uploadingInvoice, setUploadingInvoice] = useState(false);
 
   const {
     register,
@@ -35,63 +106,95 @@ export default function Attendance() {
     formState: { errors },
     setValue,
     reset,
-    getValues,
   } = useForm<RegistrationFormData>({
     resolver: zodResolver(registrationSchema),
     defaultValues: {
       participationType: "attendee",
       wantsCertificate: false,
+      wantsWorkshop: false,
     },
   });
 
+  const uploadInvoice = trpc.registration.uploadInvoice.useMutation();
+
   const createRegistration = trpc.registration.create.useMutation({
-    onSuccess: (data) => {
+    onSuccess: async (data) => {
+      setRegistrationId(data.id);
+      setUploadingInvoice(true);
+
+      try {
+        // Upload certificate invoice if needed
+        if (wantsCertificate && certInvoiceFile) {
+          const certBase64 = await fileToBase64(certInvoiceFile);
+          await uploadInvoice.mutateAsync({
+            registrationId: data.id,
+            invoiceType: "certificate",
+            file: {
+              data: certBase64,
+              name: certInvoiceFile.name,
+              type: certInvoiceFile.type,
+            },
+          });
+        }
+
+        // Upload workshop invoice if needed
+        if (wantsWorkshop && workshopInvoiceFile) {
+          const wsBase64 = await fileToBase64(workshopInvoiceFile);
+          await uploadInvoice.mutateAsync({
+            registrationId: data.id,
+            invoiceType: "workshop",
+            file: {
+              data: wsBase64,
+              name: workshopInvoiceFile.name,
+              type: workshopInvoiceFile.type,
+            },
+          });
+        }
+      } catch {
+        toast.error("Registration saved but invoice upload failed. Please contact us.");
+      }
+
+      setUploadingInvoice(false);
       setShowSuccess(true);
       toast.success("Registration submitted successfully!");
-      
-      // If certificate is requested, redirect to payment
-      if (wantsCertificate) {
-        handlePayment(data.id);
-      } else {
-        reset();
-        setTimeout(() => {
-          setShowSuccess(false);
-          setWantsCertificate(false);
-        }, 5000);
-      }
     },
     onError: (error) => {
       toast.error(`Registration failed: ${error.message}`);
     },
   });
 
-  const createCheckoutSession = trpc.payment.createCheckoutSession.useMutation({
-    onSuccess: (data) => {
-      if (data.checkoutUrl) {
-        toast.info("Redirecting to payment...");
-        window.open(data.checkoutUrl, "_blank");
-      }
-    },
-    onError: (error) => {
-      toast.error(`Payment setup failed: ${error.message}`);
-    },
-  });
-
-  const handlePayment = (regId: number) => {
-    const formData = getValues();
-    createCheckoutSession.mutate({
-      registrationId: regId,
-      email: formData.email,
-      fullName: formData.fullNameEnglish,
-    });
-  };
-
   const onSubmit = handleSubmit((data) => {
+    // Validate certificate invoice
+    if (wantsCertificate && !certInvoiceFile) {
+      toast.error("Please upload the certificate payment invoice before submitting.");
+      return;
+    }
+    // Validate workshop invoice
+    if (wantsWorkshop && !workshopInvoiceFile) {
+      toast.error("Please upload the workshop payment invoice before submitting.");
+      return;
+    }
+    if (wantsWorkshop && !workshopChoice) {
+      toast.error("Please select a workshop.");
+      return;
+    }
+
     createRegistration.mutate({
       ...data,
       wantsCertificate,
+      wantsWorkshop,
+      workshopChoice: workshopChoice || undefined,
     });
   });
+
+  const bankDetails = (
+    <div className="p-3 bg-white border border-blue-300 rounded text-sm space-y-1" dir="rtl">
+      <p className="font-semibold text-blue-900">ح/ صندوق الخدمات التعليمية</p>
+      <p className="text-blue-800">كلية العلوم - جامعة القاهرة</p>
+      <p className="text-blue-800">البنك المركزي المصري</p>
+      <p className="text-blue-800">رقم الحساب: <span className="font-mono font-bold">9/450/88216/7</span></p>
+    </div>
+  );
 
   if (showSuccess) {
     return (
@@ -102,39 +205,54 @@ export default function Attendance() {
               <CheckCircle2 className="w-10 h-10 text-green-600" />
             </div>
             <CardTitle className="text-3xl text-green-700">Registration Successful!</CardTitle>
-            <CardDescription className="text-lg" dir="rtl">
-              تم التسجيل بنجاح!
-            </CardDescription>
+            <CardDescription className="text-lg" dir="rtl">تم التسجيل بنجاح!</CardDescription>
           </CardHeader>
           <CardContent className="text-center space-y-4">
             <p className="text-muted-foreground">
-              Thank you for registering for SCI 2026. We have received your registration and will contact you via email with further details.
+              Thank you for registering for SCI 2026. We will contact you via email with further details.
             </p>
             <p className="text-muted-foreground" dir="rtl">
-              شكراً لتسجيلك في مؤتمر SCI 2026. لقد استلمنا تسجيلك وسنتواصل معك عبر البريد الإلكتروني بمزيد من التفاصيل.
+              شكراً لتسجيلك في مؤتمر SCI 2026. سنتواصل معك عبر البريد الإلكتروني بمزيد من التفاصيل.
             </p>
+
             {wantsCertificate && (
               <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg space-y-2 text-left">
-                <p className="text-sm font-semibold text-blue-900">
-                  Certificate Payment Instructions | تعليمات دفع الشهادة
-                </p>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-green-600" />
+                  <p className="text-sm font-semibold text-blue-900">Certificate Invoice Uploaded ✓</p>
+                </div>
                 <p className="text-xs text-blue-800">
-                  Please transfer <strong>100 EGP</strong> to the bank account below and bring the receipt on the day of the conference.
+                  Your payment invoice has been received. Your certificate request is under review and will be confirmed shortly.
                 </p>
                 <p className="text-xs text-blue-800" dir="rtl">
-                  يرجى تحويل <strong>100 جنيه مصري</strong> إلى الحساب البنكي التالي وإحضار الإيصال يوم المؤتمر.
+                  تم استلام إيصال الدفع الخاص بك. طلب الشهادة قيد المراجعة وسيتم تأكيده قريباً.
                 </p>
-                <div className="p-3 bg-white border border-blue-300 rounded text-sm space-y-1" dir="rtl">
-                  <p className="font-semibold text-blue-900">ح/ صندوق الخدمات التعليمية</p>
-                  <p className="text-blue-800">كلية العلوم - جامعة القاهرة</p>
-                  <p className="text-blue-800">البنك المركزي المصري</p>
-                  <p className="text-blue-800">رقم الحساب: <span className="font-mono font-bold">9/450/88216/7</span></p>
-                </div>
+                {bankDetails}
               </div>
             )}
+
+            {wantsWorkshop && (
+              <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg space-y-2 text-left">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-green-600" />
+                  <p className="text-sm font-semibold text-amber-900">Workshop Invoice Uploaded ✓</p>
+                </div>
+                <p className="text-xs text-amber-800">
+                  Your workshop payment invoice has been received. Your spot will be confirmed once payment is verified (first 30 participants).
+                </p>
+                <p className="text-xs text-amber-800" dir="rtl">
+                  تم استلام إيصال دفع ورشة العمل. سيتم تأكيد مكانك بعد التحقق من الدفع (أول 30 مشارك).
+                </p>
+              </div>
+            )}
+
             <Button onClick={() => {
               setShowSuccess(false);
               setWantsCertificate(false);
+              setWantsWorkshop(false);
+              setWorkshopChoice("");
+              setCertInvoiceFile(null);
+              setWorkshopInvoiceFile(null);
               reset();
             }} className="mt-6">
               Register Another Attendee | تسجيل مشارك آخر
@@ -150,15 +268,12 @@ export default function Attendance() {
       <div className="container max-w-4xl">
         <div className="text-center mb-8">
           <h1 className="text-4xl md:text-5xl font-bold text-primary mb-2">Attendance Registration</h1>
-          <p className="text-2xl font-semibold text-secondary" dir="rtl">
-            تسجيل الحضور
-          </p>
+          <p className="text-2xl font-semibold text-secondary" dir="rtl">تسجيل الحضور</p>
           <p className="text-muted-foreground mt-4">
             Science at the Core of Innovation (SCI 2026) | April 7-8, 2026
           </p>
           <p className="text-sm text-muted-foreground mt-2">
-            This form is for <strong>attendance only</strong>. If you plan to present research or participate in workshops, 
-            please use the participation registration forms on the homepage.
+            This form is for <strong>attendance only</strong>. If you plan to present research, please use the participation registration forms on the homepage.
           </p>
         </div>
 
@@ -173,95 +288,44 @@ export default function Attendance() {
             <form onSubmit={onSubmit} className="space-y-6">
               {/* Full Name English */}
               <div className="space-y-2">
-                <Label htmlFor="fullNameEnglish">
-                  Full Name (English) <span className="text-red-500">*</span>
-                </Label>
-                <Input
-                  id="fullNameEnglish"
-                  {...register("fullNameEnglish")}
-                  placeholder="John Doe"
-                />
-                {errors.fullNameEnglish && (
-                  <p className="text-sm text-red-500">{errors.fullNameEnglish.message}</p>
-                )}
+                <Label htmlFor="fullNameEnglish">Full Name (English) <span className="text-red-500">*</span></Label>
+                <Input id="fullNameEnglish" {...register("fullNameEnglish")} placeholder="John Doe" />
+                {errors.fullNameEnglish && <p className="text-sm text-red-500">{errors.fullNameEnglish.message}</p>}
               </div>
 
               {/* Full Name Arabic */}
               <div className="space-y-2">
-                <Label htmlFor="fullNameArabic" dir="rtl">
-                  الاسم الكامل (بالعربية) <span className="text-red-500">*</span>
-                </Label>
-                <Input
-                  id="fullNameArabic"
-                  {...register("fullNameArabic")}
-                  placeholder="محمد أحمد"
-                  dir="rtl"
-                />
-                {errors.fullNameArabic && (
-                  <p className="text-sm text-red-500">{errors.fullNameArabic.message}</p>
-                )}
+                <Label htmlFor="fullNameArabic" dir="rtl">الاسم الكامل (بالعربية) <span className="text-red-500">*</span></Label>
+                <Input id="fullNameArabic" {...register("fullNameArabic")} placeholder="محمد أحمد" dir="rtl" />
+                {errors.fullNameArabic && <p className="text-sm text-red-500">{errors.fullNameArabic.message}</p>}
               </div>
 
               {/* Email & Phone */}
               <div className="grid md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="email">
-                    Email Address <span className="text-red-500">*</span>
-                  </Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    {...register("email")}
-                    placeholder="john.doe@example.com"
-                  />
-                  {errors.email && (
-                    <p className="text-sm text-red-500">{errors.email.message}</p>
-                  )}
+                  <Label htmlFor="email">Email Address <span className="text-red-500">*</span></Label>
+                  <Input id="email" type="email" {...register("email")} placeholder="john.doe@example.com" />
+                  {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
                 </div>
-
                 <div className="space-y-2">
-                  <Label htmlFor="phone">
-                    Phone Number <span className="text-red-500">*</span>
-                  </Label>
-                  <Input
-                    id="phone"
-                    {...register("phone")}
-                    placeholder="+20 123 456 7890"
-                  />
-                  {errors.phone && (
-                    <p className="text-sm text-red-500">{errors.phone.message}</p>
-                  )}
+                  <Label htmlFor="phone">Phone Number <span className="text-red-500">*</span></Label>
+                  <Input id="phone" {...register("phone")} placeholder="+20 123 456 7890" />
+                  {errors.phone && <p className="text-sm text-red-500">{errors.phone.message}</p>}
                 </div>
               </div>
 
               {/* Affiliation */}
               <div className="space-y-2">
-                <Label htmlFor="affiliation">
-                  Affiliation / Organization <span className="text-red-500">*</span>
-                </Label>
-                <Input
-                  id="affiliation"
-                  {...register("affiliation")}
-                  placeholder="Cairo University, Faculty of Science"
-                />
-                {errors.affiliation && (
-                  <p className="text-sm text-red-500">{errors.affiliation.message}</p>
-                )}
+                <Label htmlFor="affiliation">Affiliation / Organization <span className="text-red-500">*</span></Label>
+                <Input id="affiliation" {...register("affiliation")} placeholder="Cairo University, Faculty of Science" />
+                {errors.affiliation && <p className="text-sm text-red-500">{errors.affiliation.message}</p>}
               </div>
 
               {/* Attendee Category */}
               <div className="space-y-2">
-                <Label htmlFor="attendeeCategory">
-                  Attendee Category <span className="text-red-500">*</span>
-                </Label>
-                <Select
-                  onValueChange={(value) =>
-                    setValue("attendeeCategory", value as any, { shouldValidate: true })
-                  }
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select category" />
-                  </SelectTrigger>
+                <Label>Attendee Category <span className="text-red-500">*</span></Label>
+                <Select onValueChange={(value) => setValue("attendeeCategory", value as any, { shouldValidate: true })}>
+                  <SelectTrigger><SelectValue placeholder="Select category" /></SelectTrigger>
                   <SelectContent>
                     <SelectItem value="student">Student / طالب</SelectItem>
                     <SelectItem value="faculty">Faculty Member / عضو هيئة تدريس</SelectItem>
@@ -269,13 +333,11 @@ export default function Attendance() {
                     <SelectItem value="industry">Industry Partner / شريك صناعي</SelectItem>
                   </SelectContent>
                 </Select>
-                {errors.attendeeCategory && (
-                  <p className="text-sm text-red-500">{errors.attendeeCategory.message}</p>
-                )}
+                {errors.attendeeCategory && <p className="text-sm text-red-500">{errors.attendeeCategory.message}</p>}
               </div>
 
-              {/* Certificate Option */}
-              <div className="space-y-4 p-4 border rounded-lg bg-accent/5">
+              {/* ─── Certificate Section ─── */}
+              <div className="space-y-4 p-4 border-2 rounded-lg bg-blue-50/50 border-blue-200">
                 <div className="flex items-start space-x-3">
                   <Checkbox
                     id="wantsCertificate"
@@ -287,32 +349,145 @@ export default function Attendance() {
                     }}
                   />
                   <div className="space-y-1">
-                    <Label htmlFor="wantsCertificate" className="font-medium cursor-pointer">
-                      I want to purchase a certificate (100 EGP)
+                    <Label htmlFor="wantsCertificate" className="font-semibold cursor-pointer text-blue-900">
+                      I want to receive a participation certificate — 100 EGP
                     </Label>
-                    <p className="text-sm text-muted-foreground">
-                      أرغب في شراء شهادة (100 جنيه مصري)
-                    </p>
+                    <p className="text-sm text-blue-700" dir="rtl">أرغب في الحصول على شهادة مشاركة — 100 جنيه مصري</p>
                   </div>
                 </div>
 
                 {wantsCertificate && (
-                  <div className="mt-3 p-4 bg-blue-50 border border-blue-200 rounded-lg space-y-2">
-                    <p className="text-sm font-semibold text-blue-900">
-                      Payment Instructions | تعليمات الدفع
-                    </p>
-                    <p className="text-xs text-blue-800">
-                      Please transfer <strong>100 EGP</strong> to the following bank account and bring the receipt on the day of the conference.
-                    </p>
-                    <p className="text-xs text-blue-800" dir="rtl">
-                      يرجى تحويل <strong>100 جنيه مصري</strong> إلى الحساب البنكي التالي وإحضار الإيصال يوم المؤتمر.
-                    </p>
-                    <div className="mt-2 p-3 bg-white border border-blue-300 rounded text-sm space-y-1" dir="rtl">
-                      <p className="font-semibold text-blue-900">ح/ صندوق الخدمات التعليمية</p>
-                      <p className="text-blue-800">كلية العلوم - جامعة القاهرة</p>
-                      <p className="text-blue-800">البنك المركزي المصري</p>
-                      <p className="text-blue-800">رقم الحساب: <span className="font-mono font-bold">9/450/88216/7</span></p>
+                  <div className="space-y-4 mt-2">
+                    {/* Payment instructions */}
+                    <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg space-y-2">
+                      <p className="text-sm font-semibold text-blue-900 flex items-center gap-2">
+                        <AlertCircle className="w-4 h-4" /> Payment Instructions | تعليمات الدفع
+                      </p>
+                      <p className="text-xs text-blue-800">
+                        Transfer <strong>100 EGP</strong> to the bank account below, then upload a photo of the transfer receipt below. <strong>Uploading the invoice is mandatory for certificate printing.</strong>
+                      </p>
+                      <p className="text-xs text-blue-800" dir="rtl">
+                        حوّل <strong>100 جنيه مصري</strong> إلى الحساب البنكي التالي، ثم ارفع صورة إيصال التحويل أدناه. <strong>رفع الإيصال إلزامي لطباعة الشهادة.</strong>
+                      </p>
+                      {bankDetails}
                     </div>
+
+                    {/* Invoice Upload */}
+                    <InvoiceUpload
+                      label="Upload Certificate Payment Invoice (Required)"
+                      labelAr="ارفع صورة إيصال دفع الشهادة (إلزامي)"
+                      file={certInvoiceFile}
+                      onFileChange={setCertInvoiceFile}
+                      required
+                    />
+                    {wantsCertificate && !certInvoiceFile && (
+                      <p className="text-xs text-red-500 flex items-center gap-1">
+                        <AlertCircle className="w-3 h-3" /> Invoice upload is required to complete certificate registration.
+                      </p>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              {/* ─── Workshop Section ─── */}
+              <div className="space-y-4 p-4 border-2 rounded-lg bg-amber-50/50 border-amber-200">
+                <div className="flex items-start justify-between">
+                  <div className="flex items-start space-x-3">
+                    <Checkbox
+                      id="wantsWorkshop"
+                      checked={wantsWorkshop}
+                      onCheckedChange={(checked) => {
+                        const value = checked === true;
+                        setWantsWorkshop(value);
+                        setValue("wantsWorkshop", value);
+                        if (!value) setWorkshopChoice("");
+                      }}
+                    />
+                    <div className="space-y-1">
+                      <Label htmlFor="wantsWorkshop" className="font-semibold cursor-pointer text-amber-900">
+                        I want to register for a workshop — 200 EGP
+                      </Label>
+                      <p className="text-sm text-amber-700" dir="rtl">أرغب في التسجيل في ورشة عمل — 200 جنيه مصري</p>
+                    </div>
+                  </div>
+                  <Badge className="bg-red-100 text-red-700 border-red-200 text-xs shrink-0">First 30 only | أول 30 مشارك</Badge>
+                </div>
+
+                {wantsWorkshop && (
+                  <div className="space-y-4 mt-2">
+                    {/* Notice */}
+                    <div className="p-3 bg-amber-100 border border-amber-300 rounded-lg">
+                      <p className="text-xs font-semibold text-amber-900 flex items-center gap-1 mb-1">
+                        <AlertCircle className="w-3 h-3" /> Important Notice | تنبيه هام
+                      </p>
+                      <p className="text-xs text-amber-800">
+                        You may register for <strong>ONE workshop only</strong>. Priority is given to the first 30 participants who pay and upload their invoice. Places are limited — register early!
+                      </p>
+                      <p className="text-xs text-amber-800 mt-1" dir="rtl">
+                        يمكنك التسجيل في <strong>ورشة عمل واحدة فقط</strong>. الأولوية لأول 30 مشاركاً يدفعون ويرفعون الإيصال. الأماكن محدودة — سجّل مبكراً!
+                      </p>
+                    </div>
+
+                    {/* Workshop Choice */}
+                    <div className="space-y-2">
+                      <Label>Choose Your Workshop <span className="text-red-500">*</span></Label>
+                      <p className="text-xs text-muted-foreground" dir="rtl">اختر ورشة العمل المفضلة لديك</p>
+                      <div className="grid gap-3">
+                        {[
+                          { value: "nawah", label: "NAWAH Scientific", desc: "Research to Business — Translating Science into Industry", descAr: "من البحث إلى الأعمال — تحويل العلوم إلى صناعة" },
+                          { value: "marc", label: "MARC", desc: "Good Clinical Practice (GCP) Workshop", descAr: "ورشة الممارسة السريرية الجيدة" },
+                          { value: "medsol", label: "Medsol", desc: "From DNA to Proteins: Advanced Sequencing Technologies", descAr: "من الحمض النووي إلى البروتينات: تقنيات التسلسل المتقدمة" },
+                        ].map((ws) => (
+                          <div
+                            key={ws.value}
+                            onClick={() => {
+                              setWorkshopChoice(ws.value as any);
+                              setValue("workshopChoice", ws.value as any);
+                            }}
+                            className={`p-3 border-2 rounded-lg cursor-pointer transition-all ${workshopChoice === ws.value ? "border-amber-500 bg-amber-50" : "border-muted hover:border-amber-300"}`}
+                          >
+                            <div className="flex items-center gap-2">
+                              <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center shrink-0 ${workshopChoice === ws.value ? "border-amber-500 bg-amber-500" : "border-muted-foreground"}`}>
+                                {workshopChoice === ws.value && <div className="w-2 h-2 rounded-full bg-white" />}
+                              </div>
+                              <div>
+                                <p className="font-semibold text-sm">{ws.label}</p>
+                                <p className="text-xs text-muted-foreground">{ws.desc}</p>
+                                <p className="text-xs text-muted-foreground" dir="rtl">{ws.descAr}</p>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Workshop Payment Instructions */}
+                    <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg space-y-2">
+                      <p className="text-sm font-semibold text-amber-900 flex items-center gap-2">
+                        <AlertCircle className="w-4 h-4" /> Workshop Payment Instructions | تعليمات دفع ورشة العمل
+                      </p>
+                      <p className="text-xs text-amber-800">
+                        Transfer <strong>200 EGP</strong> to the same bank account below, then upload a photo of the transfer receipt. <strong>Uploading the invoice is mandatory to confirm your workshop spot.</strong>
+                      </p>
+                      <p className="text-xs text-amber-800" dir="rtl">
+                        حوّل <strong>200 جنيه مصري</strong> إلى نفس الحساب البنكي أدناه، ثم ارفع صورة إيصال التحويل. <strong>رفع الإيصال إلزامي لتأكيد مكانك في ورشة العمل.</strong>
+                      </p>
+                      {bankDetails}
+                    </div>
+
+                    {/* Workshop Invoice Upload */}
+                    <InvoiceUpload
+                      label="Upload Workshop Payment Invoice (Required)"
+                      labelAr="ارفع صورة إيصال دفع ورشة العمل (إلزامي)"
+                      file={workshopInvoiceFile}
+                      onFileChange={setWorkshopInvoiceFile}
+                      required
+                    />
+                    {wantsWorkshop && !workshopInvoiceFile && (
+                      <p className="text-xs text-red-500 flex items-center gap-1">
+                        <AlertCircle className="w-3 h-3" /> Invoice upload is required to confirm your workshop spot.
+                      </p>
+                    )}
                   </div>
                 )}
               </div>
@@ -322,12 +497,12 @@ export default function Attendance() {
                 type="submit"
                 size="lg"
                 className="w-full"
-                disabled={createRegistration.isPending}
+                disabled={createRegistration.isPending || uploadingInvoice}
               >
-                {createRegistration.isPending ? (
+                {(createRegistration.isPending || uploadingInvoice) ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Submitting...
+                    {uploadingInvoice ? "Uploading invoice..." : "Submitting..."}
                   </>
                 ) : (
                   "Submit Registration | إرسال التسجيل"
