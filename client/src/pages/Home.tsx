@@ -866,7 +866,13 @@ export default function Home() {
               {/* HVD Teaser */}
               <div className="max-w-2xl mx-auto">
                 <div className="p-6 bg-gradient-to-r from-purple-50 to-indigo-50 border-2 border-purple-300 rounded-2xl text-center space-y-3">
-                  <div className="text-4xl">⭐</div>
+                  <div className="flex justify-center mb-2">
+                    <img
+                      src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/PRFFSxcVTWICaEUG.png"
+                      alt="HVD Life Sciences"
+                      className="h-16 object-contain"
+                    />
+                  </div>
                   <h4 className="text-2xl font-bold text-purple-900">Featured Scientific Workshop</h4>
                   <p className="text-lg font-semibold text-purple-700" dir="rtl">ورشة عمل علمية مميزة</p>
                   <div className="inline-block bg-white border-2 border-purple-400 rounded-xl px-6 py-3">
