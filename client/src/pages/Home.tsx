@@ -7,8 +7,19 @@ import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, MapPin, Users, Lightbulb, Award, BookOpen, GraduationCap, Mail, Microscope, FlaskConical, Globe, Calculator, Heart, Sparkles, Atom, Zap, Telescope } from "lucide-react";
+import { trpc } from "@/lib/trpc";
 
 export default function Home() {
+  const { data: workshopCounts } = trpc.registration.getWorkshopCounts.useQuery();
+  const WORKSHOP_LIMIT = 30;
+
+  const getSpotsBadge = (count: number) => {
+    const remaining = WORKSHOP_LIMIT - count;
+    if (remaining <= 0) return <Badge className="bg-red-100 text-red-800 text-xs">Full 🔴</Badge>;
+    if (remaining <= 5) return <Badge className="bg-red-100 text-red-800 text-xs">{remaining} spots left 🔴</Badge>;
+    if (remaining <= 15) return <Badge className="bg-amber-100 text-amber-800 text-xs">{remaining}/{WORKSHOP_LIMIT} spots left 🟡</Badge>;
+    return <Badge className="bg-green-100 text-green-800 text-xs">{remaining}/{WORKSHOP_LIMIT} spots left 🟢</Badge>;
+  };
   const tracks = [
     {
       icon: Microscope,
@@ -668,7 +679,10 @@ export default function Home() {
                       className="h-28 object-contain"
                     />
                   </div>
-                  <CardTitle className="text-xl">How to Convert Research Findings into Business Ideas</CardTitle>
+                  <div className="flex items-center justify-between mb-1">
+                    <CardTitle className="text-xl">How to Convert Research Findings into Business Ideas</CardTitle>
+                    {workshopCounts && getSpotsBadge(workshopCounts.nawah)}
+                  </div>
                   <CardDescription className="text-base space-y-4 pt-4">
                     <p className="text-foreground font-medium">
                       In collaboration with <strong>NAWAH Scientific</strong>
@@ -711,7 +725,10 @@ export default function Home() {
                       className="h-28 object-contain"
                     />
                   </div>
-                  <CardTitle className="text-xl">Good Clinical Practice (GCP) Workshop</CardTitle>
+                  <div className="flex items-center justify-between mb-1">
+                    <CardTitle className="text-xl">Good Clinical Practice (GCP) Workshop</CardTitle>
+                    {workshopCounts && getSpotsBadge(workshopCounts.marc)}
+                  </div>
                   <CardDescription className="text-base space-y-4 pt-4">
                     <p className="text-foreground font-medium">
                       In collaboration with <strong>MARC</strong>
@@ -755,7 +772,10 @@ export default function Home() {
                       className="h-28 object-contain"
                     />
                   </div>
-                  <CardTitle className="text-xl">From DNA to Proteins: Advanced Sequencing Technologies Workshop</CardTitle>
+                  <div className="flex items-center justify-between mb-1">
+                    <CardTitle className="text-xl">From DNA to Proteins: Advanced Sequencing Technologies Workshop</CardTitle>
+                    {workshopCounts && getSpotsBadge(workshopCounts.medsol)}
+                  </div>
                   <CardDescription className="text-base space-y-4 pt-4">
                     <p className="text-foreground font-medium">
                       In collaboration with <strong>Medsol</strong>

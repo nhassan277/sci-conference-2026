@@ -1,9 +1,9 @@
 import { initTRPC, TRPCError } from "@trpc/server";
 import { z } from "zod";
-import { eq, desc } from "drizzle-orm";
+import { eq, desc, sql, and } from "drizzle-orm";
 import superjson from "superjson";
 import { db } from "./db.js";
-import { registrations, sponsorships, sessions, supportTickets, admins, auditLogs, reminderSubscriptions, galleryPhotos, newsletterSubscriptions, googleSheetsSyncs, mediaRegistrations, committees, keynoteSpeakers, volunteers } from "../drizzle/schema.js";
+import { registrations, sponsorships, sessions, supportTickets, admins, auditLogs, reminderSubscriptions, galleryPhotos, newsletterSubscriptions, googleSheetsSyncs, mediaRegistrations, committees, keynoteSpeakers, volunteers, surveys, surveyResponses } from "../drizzle/schema.js";
 import { syncAllSheets, SHEETS_CONFIG, type SheetCategory } from "./googleSheets.js";
 import { verifyToken, isOwner } from "./auth.js";
 import { logAuditAction, getIpAddress, getUserAgent } from "./audit.js";
@@ -237,6 +237,32 @@ export const appRouter = router({
         }
 
         return { success: true, url: result.url };
+      }),
+
+    getWorkshopCounts: publicProcedure.query(async () => {
+      const allRegs = await db.select().from(registrations);
+      const nawah = allRegs.filter(r => r.wantsWorkshop && r.workshopChoice === 'nawah' && r.workshopPaymentStatus !== 'rejected').length;
+      const marc = allRegs.filter(r => r.wantsWorkshop && r.workshopChoice === 'marc' && r.workshopPaymentStatus !== 'rejected').length;
+      const medsol = allRegs.filter(r => r.wantsWorkshop && r.workshopChoice === 'medsol' && r.workshopPaymentStatus !== 'rejected').length;
+      return { nawah, marc, medsol };
+    }),
+
+    confirmWorkshopPayment: adminProcedure
+      .input(z.object({ registrationId: z.number() }))
+      .mutation(async ({ input }) => {
+        await db.update(registrations)
+          .set({ workshopPaymentStatus: 'confirmed', updatedAt: new Date() })
+          .where(eq(registrations.id, input.registrationId));
+        return { success: true };
+      }),
+
+    rejectWorkshopPayment: adminProcedure
+      .input(z.object({ registrationId: z.number() }))
+      .mutation(async ({ input }) => {
+        await db.update(registrations)
+          .set({ workshopPaymentStatus: 'rejected', updatedAt: new Date() })
+          .where(eq(registrations.id, input.registrationId));
+        return { success: true };
       }),
   }),
 

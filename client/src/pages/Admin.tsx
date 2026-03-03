@@ -200,13 +200,35 @@ export default function Admin() {
     },
   });
 
-  const deleteSessionMutation = trpc.session.delete.useMutation({
+   const deleteSessionMutation = trpc.session.delete.useMutation({
     onSuccess: () => {
       toast.success("Session deleted successfully");
       refetchSessions();
     },
     onError: (error) => {
       toast.error(error.message || "Failed to delete session");
+    },
+  });
+
+  const utils = trpc.useUtils();
+
+  const confirmWorkshopPaymentMutation = trpc.registration.confirmWorkshopPayment.useMutation({
+    onSuccess: () => {
+      toast.success("Workshop payment confirmed ✅");
+      utils.registration.list.invalidate();
+    },
+    onError: (error) => {
+      toast.error(error.message || "Failed to confirm payment");
+    },
+  });
+
+  const rejectWorkshopPaymentMutation = trpc.registration.rejectWorkshopPayment.useMutation({
+    onSuccess: () => {
+      toast.success("Workshop payment rejected");
+      utils.registration.list.invalidate();
+    },
+    onError: (error) => {
+      toast.error(error.message || "Failed to reject payment");
     },
   });
 
@@ -661,7 +683,7 @@ export default function Admin() {
                           <TableHead>Type</TableHead>
                           <TableHead>VIP</TableHead>
                           <TableHead>Certificate</TableHead>
-                          <TableHead>Workshop</TableHead>
+                          <TableHead>Workshop Payment</TableHead>
                           <TableHead>Payment</TableHead>
                           <TableHead>Date</TableHead>
                           <TableHead className="text-right">Actions</TableHead>
@@ -729,26 +751,56 @@ export default function Admin() {
                                 </div>
                               </TableCell>
                               <TableCell>
-                                <div className="space-y-1">
+                                <div className="space-y-1 min-w-[140px]">
                                   {reg.wantsWorkshop ? (
-                                    <Badge className="bg-amber-100 text-amber-800 block w-fit">
-                                      {reg.workshopChoice?.toUpperCase() || "Workshop"}
-                                    </Badge>
+                                    <>
+                                      <Badge className="bg-amber-100 text-amber-800 block w-fit">
+                                        {reg.workshopChoice?.toUpperCase() || "Workshop"}
+                                      </Badge>
+                                      {(reg as any).workshopPaymentStatus === "confirmed" ? (
+                                        <Badge className="bg-green-100 text-green-800 block w-fit text-xs">✅ Confirmed</Badge>
+                                      ) : (reg as any).workshopPaymentStatus === "rejected" ? (
+                                        <Badge className="bg-red-100 text-red-800 block w-fit text-xs">❌ Rejected</Badge>
+                                      ) : (
+                                        <Badge className="bg-yellow-100 text-yellow-800 block w-fit text-xs">⏳ Pending</Badge>
+                                      )}
+                                      {reg.workshopInvoiceUrl ? (
+                                        <a
+                                          href={reg.workshopInvoiceUrl}
+                                          target="_blank"
+                                          rel="noopener noreferrer"
+                                          className="text-xs text-amber-600 underline hover:text-amber-800 block"
+                                        >
+                                          📄 WS Invoice
+                                        </a>
+                                      ) : (
+                                        <span className="text-xs text-red-500">⚠ No invoice</span>
+                                      )}
+                                      {(reg as any).workshopPaymentStatus !== "confirmed" && (
+                                        <Button
+                                          size="sm"
+                                          className="h-6 text-xs px-2 bg-green-600 hover:bg-green-700 text-white w-full"
+                                          onClick={() => confirmWorkshopPaymentMutation.mutate({ registrationId: reg.id })}
+                                          disabled={confirmWorkshopPaymentMutation.isPending}
+                                        >
+                                          ✅ Confirm
+                                        </Button>
+                                      )}
+                                      {(reg as any).workshopPaymentStatus !== "rejected" && (
+                                        <Button
+                                          size="sm"
+                                          variant="outline"
+                                          className="h-6 text-xs px-2 border-red-300 text-red-600 hover:bg-red-50 w-full"
+                                          onClick={() => rejectWorkshopPaymentMutation.mutate({ registrationId: reg.id })}
+                                          disabled={rejectWorkshopPaymentMutation.isPending}
+                                        >
+                                          ❌ Reject
+                                        </Button>
+                                      )}
+                                    </>
                                   ) : (
                                     <Badge variant="outline" className="block w-fit">No WS</Badge>
                                   )}
-                                  {reg.workshopInvoiceUrl ? (
-                                    <a
-                                      href={reg.workshopInvoiceUrl}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      className="text-xs text-amber-600 underline hover:text-amber-800 block"
-                                    >
-                                      📄 WS Invoice
-                                    </a>
-                                  ) : reg.wantsWorkshop ? (
-                                    <span className="text-xs text-red-500">⚠ No invoice</span>
-                                  ) : null}
                                 </div>
                               </TableCell>
                               <TableCell>
