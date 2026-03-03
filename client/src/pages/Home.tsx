@@ -866,15 +866,15 @@ export default function Home() {
               {/* HVD Teaser */}
               <div className="max-w-2xl mx-auto">
                 <div className="p-6 bg-gradient-to-r from-purple-50 to-indigo-50 border-2 border-purple-300 rounded-2xl text-center space-y-3">
-                  <div className="text-4xl">🔮</div>
-                  <h4 className="text-2xl font-bold text-purple-900">Surprise Workshop Coming Soon!</h4>
-                  <p className="text-lg font-semibold text-purple-700" dir="rtl">ورشة عمل مفاجأة قادمة!</p>
+                  <div className="text-4xl">⭐</div>
+                  <h4 className="text-2xl font-bold text-purple-900">Featured Scientific Workshop</h4>
+                  <p className="text-lg font-semibold text-purple-700" dir="rtl">ورشة عمل علمية مميزة</p>
                   <div className="inline-block bg-white border-2 border-purple-400 rounded-xl px-6 py-3">
                     <p className="text-xl font-black text-purple-900 tracking-widest">HVD Company</p>
-                    <p className="text-sm text-purple-600 mt-1">Stay tuned... 👀 | ترقّبوا...</p>
+                    <p className="text-sm text-purple-600 mt-1">Details to Be Announced | التفاصيل قريباً</p>
                   </div>
-                  <p className="text-sm text-muted-foreground">More details will be revealed soon. Watch this space!</p>
-                  <p className="text-sm text-muted-foreground" dir="rtl">سيتم الكشف عن مزيد من التفاصيل قريباً. ترقّبوا!</p>
+                  <p className="text-sm text-muted-foreground">Featured Scientific Workshop – Details to Be Announced.</p>
+                  <p className="text-sm text-muted-foreground" dir="rtl">ورشة عمل علمية مميزة — سيتم الإعلان عن التفاصيل قريباً.</p>
                 </div>
               </div>
             </div>
