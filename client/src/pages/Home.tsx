@@ -707,7 +707,7 @@ export default function Home() {
                 </CardHeader>
                 <CardContent>
                   <Button 
-                    className="w-full bg-amber-600 hover:bg-amber-700" 
+                    className="w-full bg-amber-600 hover:bg-amber-700 text-xs px-2" 
                     onClick={() => { window.location.href = '/attendance'; }}
                   >
                     Register & Upload Invoice | سجّل وارفع الإيصال
@@ -754,7 +754,7 @@ export default function Home() {
                 </CardHeader>
                 <CardContent>
                   <Button 
-                    className="w-full bg-amber-600 hover:bg-amber-700" 
+                    className="w-full bg-amber-600 hover:bg-amber-700 text-xs px-2" 
                     onClick={() => { window.location.href = '/attendance'; }}
                   >
                     Register & Upload Invoice | سجّل وارفع الإيصال
@@ -801,7 +801,7 @@ export default function Home() {
                 </CardHeader>
                 <CardContent>
                   <Button 
-                    className="w-full bg-amber-600 hover:bg-amber-700" 
+                    className="w-full bg-amber-600 hover:bg-amber-700 text-xs px-2" 
                     onClick={() => { window.location.href = '/attendance'; }}
                   >
                     Register & Upload Invoice | سجّل وارفع الإيصال
