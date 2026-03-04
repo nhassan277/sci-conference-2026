@@ -14,7 +14,7 @@ export const registrations = mysqlTable("registrations", {
   wantsCertificate: boolean("wants_certificate").default(false).notNull(),
   certificateInvoiceUrl: varchar("certificate_invoice_url", { length: 500 }), // uploaded payment receipt for certificate
   wantsWorkshop: boolean("wants_workshop").default(false).notNull(),
-  workshopChoice: varchar("workshop_choice", { length: 50 }), // nawah, marc, medsol
+  workshopChoice: varchar("workshop_choice", { length: 50 }), // nawah, marc, medsol, geochemistry
   workshopInvoiceUrl: varchar("workshop_invoice_url", { length: 500 }), // uploaded payment receipt for workshop
   workshopPaymentStatus: varchar("workshop_payment_status", { length: 20 }).default("unpaid").notNull(),
   // Pre/Post conference workshops (350 EGP)

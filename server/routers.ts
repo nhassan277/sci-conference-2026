@@ -98,7 +98,7 @@ export const appRouter = router({
           wantsCertificate: z.boolean().default(false),
           certificateInvoiceUrl: z.string().optional(),
           wantsWorkshop: z.boolean().default(false),
-          workshopChoice: z.enum(["nawah", "marc", "medsol"]).optional(),
+          workshopChoice: z.enum(["nawah", "marc", "medsol", "geochemistry"]).optional(),
           workshopInvoiceUrl: z.string().optional(),
           wantsExtWorkshop: z.boolean().default(false),
           extWorkshopChoice: z.string().optional(),
@@ -252,8 +252,9 @@ export const appRouter = router({
       const nawah = allRegs.filter(r => r.wantsWorkshop && r.workshopChoice === 'nawah' && r.workshopPaymentStatus !== 'rejected').length;
       const marc = allRegs.filter(r => r.wantsWorkshop && r.workshopChoice === 'marc' && r.workshopPaymentStatus !== 'rejected').length;
       const medsol = allRegs.filter(r => r.wantsWorkshop && r.workshopChoice === 'medsol' && r.workshopPaymentStatus !== 'rejected').length;
+      const geochemistry = allRegs.filter(r => r.wantsWorkshop && r.workshopChoice === 'geochemistry' && r.workshopPaymentStatus !== 'rejected').length;
       const ai_biotech = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'ai_biotech' && r.extWorkshopPaymentStatus !== 'rejected').length;
-      return { nawah, marc, medsol, ai_biotech };
+      return { nawah, marc, medsol, geochemistry, ai_biotech };
     }),
 
     confirmWorkshopPayment: adminProcedure

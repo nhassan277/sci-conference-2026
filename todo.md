@@ -883,3 +883,4 @@
 - [ ] Add NAWAH prize card to Awards page (Master & PhD project selection, scientific incubators, July announcement)
 - [ ] Regenerate Facebook sponsor prizes graphic with NAWAH included
 - [ ] Save checkpoint
+- [x] Add Dr. Jan Sedláček Environmental Geochemical Data Analysis workshop (7-8 April, 90 min/day, two-day, main conference days) to Home page and Registration form

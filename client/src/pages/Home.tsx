@@ -649,7 +649,7 @@ export default function Home() {
               <h2 className="text-4xl md:text-5xl font-bold text-primary">Professional Workshops</h2>
               <p className="text-2xl font-semibold text-secondary" dir="rtl">ورش العمل المهنية</p>
               <p className="text-xl text-muted-foreground">
-                In collaboration with NAWAH Scientific, MARC, and Medsol
+                In collaboration with NAWAH Scientific, MARC, Medsol, and Palacký University Olomouc
               </p>
               {/* Pricing Banner */}
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-4">
@@ -668,7 +668,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {/* NAWAH Workshop */}
               <Card className="border-2 border-primary/20">
                 <CardHeader>
@@ -805,6 +805,56 @@ export default function Home() {
                     onClick={() => { window.location.href = '/attendance'; }}
                   >
                     Register & Upload Invoice | سجّل وارفع الإيصال
+                  </Button>
+                </CardContent>
+              </Card>
+              {/* Dr. Jan Sedláček Workshop */}
+              <Card className="border-2 border-emerald-200">
+                <CardHeader>
+                  <div className="flex justify-center mb-4">
+                    <div className="h-28 flex items-center justify-center">
+                      <div className="text-center">
+                        <Globe className="w-12 h-12 text-emerald-600 mx-auto mb-1" />
+                        <p className="text-xs font-bold text-emerald-800 leading-tight">Palacký University</p>
+                        <p className="text-xs text-emerald-600">Olomouc, Czech Republic</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between mb-1">
+                    <CardTitle className="text-xl">Environmental Geochemical Data Analysis Workshop</CardTitle>
+                    {workshopCounts && getSpotsBadge(workshopCounts.geochemistry ?? 0)}
+                  </div>
+                  <CardDescription className="text-base space-y-4 pt-4">
+                    <p className="text-foreground font-medium">
+                      By <strong>Dr. Jan Sedláček</strong>
+                    </p>
+                    <p className="text-sm text-muted-foreground italic">Palacký University Olomouc, Czech Republic</p>
+
+                    <div className="bg-emerald-50 p-4 rounded-lg">
+                      <p className="text-sm text-muted-foreground mb-1"><strong>Duration:</strong> 2 days × 90 min/day</p>
+                      <p className="text-sm text-muted-foreground"><strong>Dates:</strong> April 7 &amp; 8, 2026</p>
+                    </div>
+
+                    <p className="text-sm text-justify">
+                      Practical Application of Statistical Methodologies for Pollution Source Apportionment — a hands-on two-day workshop covering environmental geochemical data analysis techniques used to identify and quantify pollution sources.
+                    </p>
+
+                    <div className="border-t pt-4 mt-4">
+                      <ul className="list-disc list-inside space-y-1 text-left text-sm">
+                        <li>Statistical methods for geochemical data</li>
+                        <li>Pollution source apportionment techniques</li>
+                        <li>Practical data analysis exercises</li>
+                        <li>Certificate of completion provided</li>
+                      </ul>
+                    </div>
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Button
+                    className="w-full bg-emerald-700 hover:bg-emerald-800 text-xs px-2"
+                    onClick={() => { window.location.href = '/attendance'; }}
+                  >
+                    Register &amp; Upload Invoice | سجّل وارفع الإيصال
                   </Button>
                 </CardContent>
               </Card>

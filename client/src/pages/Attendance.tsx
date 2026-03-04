@@ -23,7 +23,7 @@ const registrationSchema = z.object({
   participationType: z.literal("attendee"),
   wantsCertificate: z.boolean(),
   wantsWorkshop: z.boolean(),
-  workshopChoice: z.enum(["nawah", "marc", "medsol"]).optional(),
+  workshopChoice: z.enum(["nawah", "marc", "medsol", "geochemistry"]).optional(),
   wantsExtWorkshop: z.boolean(),
   extWorkshopChoice: z.string().optional(),
 });
@@ -97,7 +97,7 @@ export default function Attendance() {
   const [registrationId, setRegistrationId] = useState<number | null>(null);
   const [wantsCertificate, setWantsCertificate] = useState(false);
   const [wantsWorkshop, setWantsWorkshop] = useState(false);
-  const [workshopChoice, setWorkshopChoice] = useState<"nawah" | "marc" | "medsol" | "">("")
+  const [workshopChoice, setWorkshopChoice] = useState<"nawah" | "marc" | "medsol" | "geochemistry" | "">("")
   const [wantsExtWorkshop, setWantsExtWorkshop] = useState(false);
   const [extWorkshopChoice, setExtWorkshopChoice] = useState("");
   const [certInvoiceFile, setCertInvoiceFile] = useState<File | null>(null);
@@ -486,6 +486,7 @@ export default function Attendance() {
                           { value: "nawah", label: "NAWAH Scientific", desc: "Research to Business — Translating Science into Industry", descAr: "من البحث إلى الأعمال — تحويل العلوم إلى صناعة" },
                           { value: "marc", label: "MARC", desc: "Good Clinical Practice (GCP) Workshop", descAr: "ورشة الممارسة السريرية الجيدة" },
                           { value: "medsol", label: "Medsol", desc: "From DNA to Proteins: Advanced Sequencing Technologies", descAr: "من الحمض النووي إلى البروتينات: تقنيات التسلسل المتقدمة" },
+                          { value: "geochemistry", label: "Dr. Jan Sedláček (Palacký University)", desc: "Environmental Geochemical Data Analysis — Statistical Methodologies for Pollution Source Apportionment", descAr: "تحليل بيانات الجيوكيمياء البيئية — الأساليب الإحصائية لتحديد مصادر التلوث" },
                         ].map((ws) => (
                           <div
                             key={ws.value}
