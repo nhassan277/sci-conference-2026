@@ -705,7 +705,7 @@ export default function Home() {
                 </CardHeader>
                 <CardContent className="pt-0">
                   <Button 
-                    className="w-full bg-amber-600 hover:bg-amber-700 text-xs px-2" 
+                    className="w-full bg-amber-600 hover:bg-amber-700 text-sm h-auto py-2 px-3 whitespace-normal leading-snug text-center" 
                     onClick={() => { window.location.href = '/attendance'; }}
                   >
                     Register & Upload Invoice | سجّل وارفع الإيصال
@@ -750,7 +750,7 @@ export default function Home() {
                 </CardHeader>
                 <CardContent className="pt-0">
                   <Button 
-                    className="w-full bg-amber-600 hover:bg-amber-700 text-xs px-2" 
+                    className="w-full bg-amber-600 hover:bg-amber-700 text-sm h-auto py-2 px-3 whitespace-normal leading-snug text-center" 
                     onClick={() => { window.location.href = '/attendance'; }}
                   >
                     Register & Upload Invoice | سجّل وارفع الإيصال
@@ -795,7 +795,7 @@ export default function Home() {
                 </CardHeader>
                 <CardContent className="pt-0">
                   <Button 
-                    className="w-full bg-amber-600 hover:bg-amber-700 text-xs px-2" 
+                    className="w-full bg-amber-600 hover:bg-amber-700 text-sm h-auto py-2 px-3 whitespace-normal leading-snug text-center" 
                     onClick={() => { window.location.href = '/attendance'; }}
                   >
                     Register & Upload Invoice | سجّل وارفع الإيصال
@@ -843,10 +843,10 @@ export default function Home() {
                 </CardHeader>
                 <CardContent className="pt-0">
                   <Button
-                    className="w-full bg-emerald-700 hover:bg-emerald-800 text-xs px-2"
+                    className="w-full bg-emerald-700 hover:bg-emerald-800 text-sm h-auto py-2 px-3 whitespace-normal leading-snug text-center"
                     onClick={() => { window.location.href = '/attendance'; }}
                   >
-                    Register &amp; Upload Invoice | سجّل وارفع الإيصال
+                    Register & Upload Invoice | سجّل وارفع الإيصال
                   </Button>
                 </CardContent>
               </Card>
