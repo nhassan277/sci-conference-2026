@@ -866,20 +866,13 @@ export default function Home() {
               {/* AI Meets Biotech Workshop Card */}
               <div className="max-w-2xl mx-auto">
                 <div className="p-6 bg-gradient-to-r from-purple-50 to-indigo-50 border-2 border-purple-300 rounded-2xl space-y-4">
-                  {/* Header with logos */}
+                  {/* Header with logo */}
                   <div className="flex items-center justify-between flex-wrap gap-3">
-                    <div className="flex items-center gap-3">
-                      <img
-                        src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/PRFFSxcVTWICaEUG.png"
-                        alt="HVD Life Sciences"
-                        className="h-12 object-contain"
-                      />
-                      <img
-                        src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/QvdupTbEZQQzfgEz.jpeg"
-                        alt="AI بالعربي"
-                        className="h-12 object-contain"
-                      />
-                    </div>
+                    <img
+                      src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/QvdupTbEZQQzfgEz.jpeg"
+                      alt="AI بالعربي"
+                      className="h-20 object-contain"
+                    />
                     <Badge className="bg-purple-100 text-purple-800 border-purple-300 text-xs">
                       Post-Conference | بعد المؤتمر
                     </Badge>

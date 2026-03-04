@@ -866,4 +866,15 @@
 - [x] Update HVD workshop card with full workshop details (title, description, date/time)
 - [x] Add "ai_biotech" as a new workshop choice option in schema, routers, and Attendance form
 - [x] Update workshop counts to include ai_biotech
+- [x] Save checkpoint
+
+## Facebook Graphic & Admin Dashboard Update
+- [x] Create Facebook promotional graphic for AI Meets Biotech workshop
+- [x] Update admin dashboard to show ext_workshop_payment_status column and confirm/reject buttons
 - [ ] Save checkpoint
+
+## AI Meets Biotech Card Fixes
+- [x] Remove HVD logo from AI Meets Biotech card header
+- [x] Enlarge AI بالعربي logo in the card
+- [x] Keep Featured Scientific Workshop section as a separate card
+- [x] Regenerate Facebook graphic without HVD logo and with larger AI logo

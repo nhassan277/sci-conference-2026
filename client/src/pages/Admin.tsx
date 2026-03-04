@@ -232,6 +232,26 @@ export default function Admin() {
     },
   });
 
+  const confirmExtWorkshopPaymentMutation = trpc.registration.confirmExtWorkshopPayment.useMutation({
+    onSuccess: () => {
+      toast.success("Pre/Post workshop payment confirmed ✅");
+      utils.registration.list.invalidate();
+    },
+    onError: (error) => {
+      toast.error(error.message || "Failed to confirm payment");
+    },
+  });
+
+  const rejectExtWorkshopPaymentMutation = trpc.registration.rejectExtWorkshopPayment.useMutation({
+    onSuccess: () => {
+      toast.success("Pre/Post workshop payment rejected");
+      utils.registration.list.invalidate();
+    },
+    onError: (error) => {
+      toast.error(error.message || "Failed to reject payment");
+    },
+  });
+
   const resetSessionForm = () => {
     setSessionForm({
       title: "",
@@ -684,6 +704,7 @@ export default function Admin() {
                           <TableHead>VIP</TableHead>
                           <TableHead>Certificate</TableHead>
                           <TableHead>Workshop Payment</TableHead>
+                          <TableHead>Pre/Post WS</TableHead>
                           <TableHead>Payment</TableHead>
                           <TableHead>Date</TableHead>
                           <TableHead className="text-right">Actions</TableHead>
@@ -800,6 +821,60 @@ export default function Admin() {
                                     </>
                                   ) : (
                                     <Badge variant="outline" className="block w-fit">No WS</Badge>
+                                  )}
+                                </div>
+                              </TableCell>
+                              {/* Pre/Post Conference Workshop Column */}
+                              <TableCell>
+                                <div className="space-y-1 min-w-[140px]">
+                                  {(reg as any).wantsExtWorkshop ? (
+                                    <>
+                                      <Badge className="bg-purple-100 text-purple-800 block w-fit text-xs">
+                                        {(reg as any).extWorkshopChoice === 'ai_biotech' ? 'AI Meets Biotech' : ((reg as any).extWorkshopChoice?.toUpperCase() || 'Pre/Post WS')}
+                                      </Badge>
+                                      {(reg as any).extWorkshopPaymentStatus === "confirmed" ? (
+                                        <Badge className="bg-green-100 text-green-800 block w-fit text-xs">✅ Confirmed</Badge>
+                                      ) : (reg as any).extWorkshopPaymentStatus === "rejected" ? (
+                                        <Badge className="bg-red-100 text-red-800 block w-fit text-xs">❌ Rejected</Badge>
+                                      ) : (
+                                        <Badge className="bg-yellow-100 text-yellow-800 block w-fit text-xs">⏳ Pending</Badge>
+                                      )}
+                                      {(reg as any).extWorkshopInvoiceUrl ? (
+                                        <a
+                                          href={(reg as any).extWorkshopInvoiceUrl}
+                                          target="_blank"
+                                          rel="noopener noreferrer"
+                                          className="text-xs text-purple-600 underline hover:text-purple-800 block"
+                                        >
+                                          📄 Invoice
+                                        </a>
+                                      ) : (
+                                        <span className="text-xs text-red-500">⚠ No invoice</span>
+                                      )}
+                                      {(reg as any).extWorkshopPaymentStatus !== "confirmed" && (
+                                        <Button
+                                          size="sm"
+                                          className="h-6 text-xs px-2 bg-green-600 hover:bg-green-700 text-white w-full"
+                                          onClick={() => confirmExtWorkshopPaymentMutation.mutate({ registrationId: reg.id })}
+                                          disabled={confirmExtWorkshopPaymentMutation.isPending}
+                                        >
+                                          ✅ Confirm
+                                        </Button>
+                                      )}
+                                      {(reg as any).extWorkshopPaymentStatus !== "rejected" && (
+                                        <Button
+                                          size="sm"
+                                          variant="outline"
+                                          className="h-6 text-xs px-2 border-red-300 text-red-600 hover:bg-red-50 w-full"
+                                          onClick={() => rejectExtWorkshopPaymentMutation.mutate({ registrationId: reg.id })}
+                                          disabled={rejectExtWorkshopPaymentMutation.isPending}
+                                        >
+                                          ❌ Reject
+                                        </Button>
+                                      )}
+                                    </>
+                                  ) : (
+                                    <Badge variant="outline" className="block w-fit text-xs">None</Badge>
                                   )}
                                 </div>
                               </TableCell>
