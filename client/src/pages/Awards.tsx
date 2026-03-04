@@ -113,7 +113,7 @@ export default function Awards() {
     {
       sponsor: "Agitech",
       sponsorEn: "Agitech",
-      logo: null,
+      logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/VgPdbFhKiVTOdmtC.png",
       icon: Gift,
       prize: "2 Free Sample Kits",
       prizeAr: "مجموعتا عينات مجانية",
