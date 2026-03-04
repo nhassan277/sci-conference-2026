@@ -871,7 +871,7 @@
 ## Facebook Graphic & Admin Dashboard Update
 - [x] Create Facebook promotional graphic for AI Meets Biotech workshop
 - [x] Update admin dashboard to show ext_workshop_payment_status column and confirm/reject buttons
-- [ ] Save checkpoint
+- [x] Save checkpoint
 
 ## AI Meets Biotech Card Fixes
 - [x] Remove HVD logo from AI Meets Biotech card header

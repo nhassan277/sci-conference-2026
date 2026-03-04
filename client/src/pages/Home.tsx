@@ -871,7 +871,7 @@ export default function Home() {
                     <img
                       src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/QvdupTbEZQQzfgEz.jpeg"
                       alt="AI بالعربي"
-                      className="h-20 object-contain"
+                      className="h-32 object-contain"
                     />
                     <Badge className="bg-purple-100 text-purple-800 border-purple-300 text-xs">
                       Post-Conference | بعد المؤتمر
