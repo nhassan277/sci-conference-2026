@@ -878,3 +878,8 @@
 - [x] Enlarge AI بالعربي logo in the card
 - [x] Keep Featured Scientific Workshop section as a separate card
 - [x] Regenerate Facebook graphic without HVD logo and with larger AI logo
+
+## NAWAH Prize Addition
+- [ ] Add NAWAH prize card to Awards page (Master & PhD project selection, scientific incubators, July announcement)
+- [ ] Regenerate Facebook sponsor prizes graphic with NAWAH included
+- [ ] Save checkpoint

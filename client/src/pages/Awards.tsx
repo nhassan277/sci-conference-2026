@@ -66,6 +66,21 @@ export default function Awards() {
 
   const sponsorAwards = [
     {
+      sponsor: "NAWAH Scientific",
+      sponsorEn: "NAWAH Scientific",
+      logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/ndKRwnmyKdJLbGXC.png",
+      icon: GraduationCap,
+      prize: "Scientific Incubators for Master & PhD Projects",
+      prizeAr: "حاضنات علمية لمشاريع الماجستير والدكتوراه",
+      description: "NAWAH Scientific will select outstanding Master's and PhD research projects to receive full scientific incubation support — mentorship, resources, and a pathway to real-world application. Winners will be announced in July 2026.",
+      descriptionAr: "ستختار NAWAH Scientific مشاريع بحثية متميزة على مستوى الماجستير والدكتوراه لتحظى بدعم الحاضنة العلمية الكاملة — إرشاد وموارد ومسار نحو التطبيق الفعلي. سيُعلَن عن الفائزين في يوليو 2026.",
+      badgeColor: "bg-amber-100 text-amber-800 border-amber-200",
+      cardBorder: "border-amber-200 hover:border-amber-400",
+      iconBg: "bg-amber-100 text-amber-700",
+      tag: "Announced July 2026",
+      tagAr: "الإعلان يوليو ٢٠٢٦"
+    },
+    {
       sponsor: "AI بالعربي",
       sponsorEn: "AI بالعربي",
       logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/KlrhKxhzNQOHAlor.jpeg",
