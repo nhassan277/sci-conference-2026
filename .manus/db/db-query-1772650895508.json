@@ -1,0 +1,160 @@
+{
+  "query": "SELECT id, full_name, speaker_type, photo_url FROM keynote_speakers ORDER BY display_order, id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name, speaker_type, photo_url FROM keynote_speakers ORDER BY display_order, id;",
+  "rows": [
+    {
+      "id": "1",
+      "full_name": "Khaled Amer",
+      "speaker_type": "keynote",
+      "photo_url": "/images/speakers/khalid-amer.jpg"
+    },
+    {
+      "id": "4",
+      "full_name": "Mortada Mourad Taha El Aref",
+      "speaker_type": "keynote",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/XcXczPQWMszNbalu.png"
+    },
+    {
+      "id": "16",
+      "full_name": "Ehab El-Dabaa",
+      "speaker_type": "keynote",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/FrVXvngjcwapBBSa.png"
+    },
+    {
+      "id": "13",
+      "full_name": "Hamed A. Ead",
+      "speaker_type": "keynote",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/AtNmemNuRnYHUIWu.png"
+    },
+    {
+      "id": "12",
+      "full_name": "Sohair Ramadan Fahmy",
+      "speaker_type": "invited",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/hqCqvqYZLfAAyYbb.png"
+    },
+    {
+      "id": "5",
+      "full_name": "Nagwa El-Badri",
+      "speaker_type": "invited",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/XhCVtcmaxCborVYI.png"
+    },
+    {
+      "id": "10",
+      "full_name": "Mortada Mourad El Aref",
+      "speaker_type": "invited",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/XcXczPQWMszNbalu.png"
+    },
+    {
+      "id": "2",
+      "full_name": "Ibrahim M. El-Sherbiny",
+      "speaker_type": "invited",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/CzEOiUuHXNdycLQK.jpeg"
+    },
+    {
+      "id": "9",
+      "full_name": "Mahmoud Ibrahim Nasr",
+      "speaker_type": "invited",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/zBUqJnTzJbTTCvpq.jpg"
+    },
+    {
+      "id": "7",
+      "full_name": "Khalid Muhammad Taalab",
+      "speaker_type": "invited",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/yopjWqQNqSdHnLgX.png"
+    },
+    {
+      "id": "8",
+      "full_name": "Mohamed Ibrahim El-Anbawy",
+      "speaker_type": "invited",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/fEpxsoPAkLpFAtDV.jpg"
+    },
+    {
+      "id": "6",
+      "full_name": "Osama Azmy",
+      "speaker_type": "invited",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/QRaHoRvWllHeUlfD.png"
+    },
+    {
+      "id": "3",
+      "full_name": "Ashraf Abdou Tabll",
+      "speaker_type": "invited",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/JmdTRNcwzCEaJjrU.jpeg"
+    },
+    {
+      "id": "14",
+      "full_name": "Ayman El-Shibiny",
+      "speaker_type": "invited",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/wWlOEHhvidephepp.png"
+    },
+    {
+      "id": "17",
+      "full_name": "Naglaa A. Abdallah",
+      "speaker_type": "invited",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/SiZQEfsvJgBfqrHD.png"
+    },
+    {
+      "id": "19",
+      "full_name": "Osama Shalabiea",
+      "speaker_type": "invited",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/XuXUgGyzMuvjEFhM.jpeg"
+    },
+    {
+      "id": "18",
+      "full_name": "Tarek Kapiel",
+      "speaker_type": "invited",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/ASFgJyOIuZIbQQTd.png"
+    },
+    {
+      "id": "15",
+      "full_name": "Ahmed Fikry El-Sayed",
+      "speaker_type": "invited",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/TbmaCrtrtyaJjSsm.png"
+    },
+    {
+      "id": "11",
+      "full_name": "Sahar Hassan",
+      "speaker_type": "invited",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/TAxrmfwYatNFofbJ.jpg"
+    },
+    {
+      "id": "20",
+      "full_name": "Areeg Abdalla",
+      "speaker_type": "invited",
+      "photo_url": "NULL"
+    },
+    {
+      "id": "21",
+      "full_name": "Walaa Abbas Elsayed Omar",
+      "speaker_type": "invited",
+      "photo_url": "NULL"
+    },
+    {
+      "id": "22",
+      "full_name": "Ahmed Youssef ",
+      "speaker_type": "invited",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/NKfXBKqJcSQePjbF.jpeg"
+    },
+    {
+      "id": "23",
+      "full_name": "Mohamed Hamed",
+      "speaker_type": "invited",
+      "photo_url": "NULL"
+    },
+    {
+      "id": "24",
+      "full_name": "Rashika El Ridi",
+      "speaker_type": "invited",
+      "photo_url": "NULL"
+    },
+    {
+      "id": "25",
+      "full_name": "Ahmad Wafik Al Shareif",
+      "speaker_type": "invited",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/QQVlSCCSsDGYbpzD.png"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tfull_name\tspeaker_type\tphoto_url\n1\tKhaled Amer\tkeynote\t/images/speakers/khalid-amer.jpg\n4\tMortada Mourad Taha El Aref\tkeynote\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/XcXczPQWMszNbalu.png\n16\tEhab El-Dabaa\tkeynote\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/FrVXvngjcwapBBSa.png\n13\tHamed A. Ead\tkeynote\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/AtNmemNuRnYHUIWu.png\n12\tSohair Ramadan Fahmy\tinvited\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/hqCqvqYZLfAAyYbb.png\n5\tNagwa El-Badri\tinvited\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/XhCVtcmaxCborVYI.png\n10\tMortada Mourad El Aref\tinvited\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/XcXczPQWMszNbalu.png\n2\tIbrahim M. El-Sherbiny\tinvited\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/CzEOiUuHXNdycLQK.jpeg\n9\tMahmoud Ibrahim Nasr\tinvited\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/zBUqJnTzJbTTCvpq.jpg\n7\tKhalid Muhammad Taalab\tinvited\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/yopjWqQNqSdHnLgX.png\n8\tMohamed Ibrahim El-Anbawy\tinvited\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/fEpxsoPAkLpFAtDV.jpg\n6\tOsama Azmy\tinvited\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/QRaHoRvWllHeUlfD.png\n3\tAshraf Abdou Tabll\tinvited\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/JmdTRNcwzCEaJjrU.jpeg\n14\tAyman El-Shibiny\tinvited\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/wWlOEHhvidephepp.png\n17\tNaglaa A. Abdallah\tinvited\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/SiZQEfsvJgBfqrHD.png\n19\tOsama Shalabiea\tinvited\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/XuXUgGyzMuvjEFhM.jpeg\n18\tTarek Kapiel\tinvited\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/ASFgJyOIuZIbQQTd.png\n15\tAhmed Fikry El-Sayed\tinvited\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/TbmaCrtrtyaJjSsm.png\n11\tSahar Hassan\tinvited\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/TAxrmfwYatNFofbJ.jpg\n20\tAreeg Abdalla\tinvited\tNULL\n21\tWalaa Abbas Elsayed Omar\tinvited\tNULL\n22\tAhmed Youssef \tinvited\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/NKfXBKqJcSQePjbF.jpeg\n23\tMohamed Hamed\tinvited\tNULL\n24\tRashika El Ridi\tinvited\tNULL\n25\tAhmad Wafik Al Shareif\tinvited\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/QQVlSCCSsDGYbpzD.png\n",
+  "stderr": "",
+  "execution_time_ms": 1588
+}

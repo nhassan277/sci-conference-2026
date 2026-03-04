@@ -1,0 +1,15 @@
+{
+  "query": "SELECT id, full_name, photo_url FROM keynote_speakers WHERE id = 25;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name, photo_url FROM keynote_speakers WHERE id = 25;",
+  "rows": [
+    {
+      "id": "25",
+      "full_name": "Ahmad Wafik Al Shareif",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/QQVlSCCSsDGYbpzD.png"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tfull_name\tphoto_url\n25\tAhmad Wafik Al Shareif\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/QQVlSCCSsDGYbpzD.png\n",
+  "stderr": "",
+  "execution_time_ms": 1590
+}
