@@ -1,4 +1,4 @@
-import { Award, Trophy, GraduationCap, FileText, Presentation, Lightbulb, Newspaper } from "lucide-react";
+import { Award, Trophy, GraduationCap, FileText, Presentation, Lightbulb, Newspaper, Sparkles, Brain, Dna, FlaskConical, Gift } from "lucide-react";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -61,6 +61,69 @@ export default function Awards() {
       description: "Celebrating exceptional written research contributions",
       descriptionAr: "احتفاءً بالمساهمات البحثية المكتوبة الاستثنائية",
       color: "bg-indigo-100 text-indigo-700"
+    }
+  ];
+
+  const sponsorAwards = [
+    {
+      sponsor: "AI بالعربي",
+      sponsorEn: "AI بالعربي",
+      logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/KlrhKxhzNQOHAlor.jpeg",
+      icon: Brain,
+      prize: "Technical AI Project Support",
+      prizeAr: "دعم تقني لمشروع في مجال الذكاء الاصطناعي",
+      description: "AI بالعربي will provide full technical support to one outstanding project in the field of Artificial Intelligence — turning your research idea into a working AI solution.",
+      descriptionAr: "ستقدم AI بالعربي دعماً تقنياً كاملاً لمشروع متميز في مجال الذكاء الاصطناعي — لتحويل فكرتك البحثية إلى حل ذكاء اصطناعي حقيقي.",
+      badgeColor: "bg-red-100 text-red-800 border-red-200",
+      cardBorder: "border-red-200 hover:border-red-400",
+      iconBg: "bg-red-100 text-red-700",
+      tag: "1 Prize",
+      tagAr: "جائزة واحدة"
+    },
+    {
+      sponsor: "MARC",
+      sponsorEn: "MARC",
+      logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/VulsiXaRGfrttVQf.png",
+      icon: Trophy,
+      prize: "Training Opportunity + 5,000 EGP Cash Prize",
+      prizeAr: "فرصة تدريبية + جائزة نقدية 5000 جنيه",
+      description: "MARC will select 2 participants for a professional training opportunity, and award 5,000 EGP to the winner of the Best Poster Award.",
+      descriptionAr: "ستختار MARC مشاركَين للحصول على فرصة تدريبية متخصصة، وستمنح 5000 جنيه مصري لصاحب أفضل ملصق علمي.",
+      badgeColor: "bg-blue-100 text-blue-800 border-blue-200",
+      cardBorder: "border-blue-200 hover:border-blue-400",
+      iconBg: "bg-blue-100 text-blue-700",
+      tag: "3 Prizes",
+      tagAr: "٣ جوائز"
+    },
+    {
+      sponsor: "Mina Pharm",
+      sponsorEn: "Mina Pharm",
+      logo: null,
+      icon: FlaskConical,
+      prize: "Health Product Samples + 2 Surprise Bags",
+      prizeAr: "عينات منتجات صحية + حقيبتا مفاجآت",
+      description: "Mina Pharm will present iron and vitamin supplement samples for menopause health, along with 2 exclusive surprise gift bags for 2 lucky prize winners at the conference.",
+      descriptionAr: "ستقدم Mina Pharm عينات من مكملات الحديد والفيتامينات لصحة سن اليأس، إلى جانب حقيبتَي هدايا مفاجئة لاثنين من الفائزين في المؤتمر.",
+      badgeColor: "bg-pink-100 text-pink-800 border-pink-200",
+      cardBorder: "border-pink-200 hover:border-pink-400",
+      iconBg: "bg-pink-100 text-pink-700",
+      tag: "2 Prizes",
+      tagAr: "جائزتان"
+    },
+    {
+      sponsor: "Agitech",
+      sponsorEn: "Agitech",
+      logo: null,
+      icon: Gift,
+      prize: "2 Free Sample Kits",
+      prizeAr: "مجموعتا عينات مجانية",
+      description: "Agitech will award 2 free professional sample kits to 2 prize winners at the conference — giving researchers direct access to cutting-edge scientific tools.",
+      descriptionAr: "ستمنح Agitech مجموعتَي عينات احترافية مجانية لاثنين من الفائزين في المؤتمر — مما يتيح للباحثين الوصول المباشر إلى أحدث الأدوات العلمية.",
+      badgeColor: "bg-emerald-100 text-emerald-800 border-emerald-200",
+      cardBorder: "border-emerald-200 hover:border-emerald-400",
+      iconBg: "bg-emerald-100 text-emerald-700",
+      tag: "2 Prizes",
+      tagAr: "جائزتان"
     }
   ];
 
@@ -161,6 +224,84 @@ export default function Awards() {
                 </CardHeader>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Sponsor Awards — NEW SECTION */}
+      <section className="py-20 bg-gradient-to-b from-amber-50/40 to-white">
+        <div className="container">
+          <div className="text-center space-y-4 mb-12">
+            <div className="flex items-center justify-center gap-3 mb-2">
+              <Sparkles className="w-8 h-8 text-amber-500" />
+              <h2 className="text-4xl md:text-5xl font-bold text-primary">Sponsor Prizes</h2>
+              <Sparkles className="w-8 h-8 text-amber-500" />
+            </div>
+            <p className="text-2xl font-semibold text-secondary" dir="rtl">جوائز الرعاة</p>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Our generous sponsors are offering exclusive prizes and opportunities to outstanding conference participants
+            </p>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto" dir="rtl">
+              يقدم رعاتنا الكرام جوائز وفرصاً حصرية للمشاركين المتميزين في المؤتمر
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {sponsorAwards.map((item, index) => (
+              <Card key={index} className={`hover:shadow-xl transition-all border-2 ${item.cardBorder} overflow-hidden`}>
+                {/* Card top accent bar */}
+                <div className={`h-1.5 w-full ${item.iconBg.replace("text-", "bg-").split(" ")[0]}`} />
+                <CardHeader className="pb-3">
+                  <div className="flex items-start justify-between gap-4">
+                    {/* Logo or icon */}
+                    <div className="flex items-center gap-3">
+                      {item.logo ? (
+                        <img
+                          src={item.logo}
+                          alt={item.sponsorEn}
+                          className="h-14 w-auto object-contain rounded-lg bg-white border border-gray-100 p-1 shadow-sm"
+                        />
+                      ) : (
+                        <div className={`w-14 h-14 rounded-xl ${item.iconBg} flex items-center justify-center shadow-sm`}>
+                          <item.icon className="w-7 h-7" />
+                        </div>
+                      )}
+                      <div>
+                        <p className="text-xs text-muted-foreground font-medium uppercase tracking-wide">Sponsored by</p>
+                        <p className="font-bold text-lg text-foreground">{item.sponsor}</p>
+                      </div>
+                    </div>
+                    <Badge className={`${item.badgeColor} border text-xs font-semibold shrink-0`}>
+                      {item.tag}
+                    </Badge>
+                  </div>
+                </CardHeader>
+
+                <CardContent className="space-y-3 pt-0">
+                  {/* Prize title */}
+                  <div className={`rounded-lg px-4 py-3 ${item.iconBg.split(" ")[0].replace("text-", "bg-")}/10 border ${item.badgeColor.split(" ")[0].replace("text-", "border-")}`}>
+                    <p className="font-bold text-base text-foreground">{item.prize}</p>
+                    <p className="text-sm font-semibold text-muted-foreground mt-0.5" dir="rtl">{item.prizeAr}</p>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed" dir="rtl">{item.descriptionAr}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* Teaser note */}
+          <div className="mt-12 text-center">
+            <div className="inline-block bg-amber-50 border border-amber-200 rounded-2xl px-8 py-5 max-w-2xl">
+              <p className="text-amber-800 font-semibold text-base">
+                🌟 More sponsor prizes will be announced soon — stay tuned!
+              </p>
+              <p className="text-amber-700 text-sm mt-1" dir="rtl">
+                🌟 المزيد من جوائز الرعاة سيتم الإعلان عنها قريباً — ترقبوا!
+              </p>
+            </div>
           </div>
         </div>
       </section>
