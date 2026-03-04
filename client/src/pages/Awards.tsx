@@ -98,7 +98,7 @@ export default function Awards() {
     {
       sponsor: "Mina Pharm",
       sponsorEn: "Mina Pharm",
-      logo: null,
+      logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/VSYnJUbvoViFDJRE.png",
       icon: FlaskConical,
       prize: "Health Product Samples + 2 Surprise Bags",
       prizeAr: "عينات منتجات صحية + حقيبتا مفاجآت",
