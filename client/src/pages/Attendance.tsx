@@ -24,6 +24,8 @@ const registrationSchema = z.object({
   wantsCertificate: z.boolean(),
   wantsWorkshop: z.boolean(),
   workshopChoice: z.enum(["nawah", "marc", "medsol"]).optional(),
+  wantsExtWorkshop: z.boolean(),
+  extWorkshopChoice: z.string().optional(),
 });
 
 type RegistrationFormData = z.infer<typeof registrationSchema>;
@@ -95,9 +97,12 @@ export default function Attendance() {
   const [registrationId, setRegistrationId] = useState<number | null>(null);
   const [wantsCertificate, setWantsCertificate] = useState(false);
   const [wantsWorkshop, setWantsWorkshop] = useState(false);
-  const [workshopChoice, setWorkshopChoice] = useState<"nawah" | "marc" | "medsol" | "">("");
+  const [workshopChoice, setWorkshopChoice] = useState<"nawah" | "marc" | "medsol" | "">("")
+  const [wantsExtWorkshop, setWantsExtWorkshop] = useState(false);
+  const [extWorkshopChoice, setExtWorkshopChoice] = useState("");
   const [certInvoiceFile, setCertInvoiceFile] = useState<File | null>(null);
   const [workshopInvoiceFile, setWorkshopInvoiceFile] = useState<File | null>(null);
+  const [extWorkshopInvoiceFile, setExtWorkshopInvoiceFile] = useState<File | null>(null);
   const [uploadingInvoice, setUploadingInvoice] = useState(false);
 
   const {
@@ -112,6 +117,7 @@ export default function Attendance() {
       participationType: "attendee",
       wantsCertificate: false,
       wantsWorkshop: false,
+      wantsExtWorkshop: false,
     },
   });
 
@@ -150,6 +156,20 @@ export default function Attendance() {
             },
           });
         }
+
+        // Upload ext workshop invoice if needed
+        if (wantsExtWorkshop && extWorkshopInvoiceFile) {
+          const extBase64 = await fileToBase64(extWorkshopInvoiceFile);
+          await uploadInvoice.mutateAsync({
+            registrationId: data.id,
+            invoiceType: "ext_workshop",
+            file: {
+              data: extBase64,
+              name: extWorkshopInvoiceFile.name,
+              type: extWorkshopInvoiceFile.type,
+            },
+          });
+        }
       } catch {
         toast.error("Registration saved but invoice upload failed. Please contact us.");
       }
@@ -178,12 +198,23 @@ export default function Attendance() {
       toast.error("Please select a workshop.");
       return;
     }
+    // Validate ext workshop
+    if (wantsExtWorkshop && !extWorkshopChoice) {
+      toast.error("Please select a pre/post conference workshop.");
+      return;
+    }
+    if (wantsExtWorkshop && !extWorkshopInvoiceFile) {
+      toast.error("Please upload the pre/post conference workshop payment invoice before submitting.");
+      return;
+    }
 
     createRegistration.mutate({
       ...data,
       wantsCertificate,
       wantsWorkshop,
       workshopChoice: workshopChoice || undefined,
+      wantsExtWorkshop,
+      extWorkshopChoice: extWorkshopChoice || undefined,
     });
   });
 
@@ -240,8 +271,23 @@ export default function Attendance() {
                 <p className="text-xs text-amber-800">
                   Your workshop payment invoice has been received. Your spot will be confirmed once payment is verified (first 30 participants).
                 </p>
-                <p className="text-xs text-amber-800" dir="rtl">
+                <p className="text-xs text-amber-800 mt-1" dir="rtl">
                   تم استلام إيصال دفع ورشة العمل. سيتم تأكيد مكانك بعد التحقق من الدفع (أول 30 مشارك).
+                </p>
+              </div>
+            )}
+
+            {wantsExtWorkshop && (
+              <div className="p-4 bg-purple-50 border border-purple-200 rounded-lg space-y-2 text-left">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-green-600" />
+                  <p className="text-sm font-semibold text-purple-900">Pre/Post Conference Workshop Invoice Uploaded ✓</p>
+                </div>
+                <p className="text-xs text-purple-800">
+                  Your pre/post conference workshop payment invoice has been received. Your spot will be confirmed once payment is verified.
+                </p>
+                <p className="text-xs text-purple-800 mt-1" dir="rtl">
+                  تم استلام إيصال دفع ورشة ما قبل/بعد المؤتمر. سيتم تأكيد مكانك بعد التحقق من الدفع.
                 </p>
               </div>
             )}
@@ -251,8 +297,11 @@ export default function Attendance() {
               setWantsCertificate(false);
               setWantsWorkshop(false);
               setWorkshopChoice("");
+              setWantsExtWorkshop(false);
+              setExtWorkshopChoice("");
               setCertInvoiceFile(null);
               setWorkshopInvoiceFile(null);
+              setExtWorkshopInvoiceFile(null);
               reset();
             }} className="mt-6">
               Register Another Attendee | تسجيل مشارك آخر
@@ -484,6 +533,110 @@ export default function Attendance() {
                       required
                     />
                     {wantsWorkshop && !workshopInvoiceFile && (
+                      <p className="text-xs text-red-500 flex items-center gap-1">
+                        <AlertCircle className="w-3 h-3" /> Invoice upload is required to confirm your workshop spot.
+                      </p>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              {/* ─── Pre/Post Conference Workshop Section ─── */}
+              <div className="space-y-4 p-4 border-2 rounded-lg bg-purple-50/50 border-purple-200">
+                <div className="flex items-start space-x-3">
+                  <Checkbox
+                    id="wantsExtWorkshop"
+                    checked={wantsExtWorkshop}
+                    onCheckedChange={(checked) => {
+                      const value = checked === true;
+                      setWantsExtWorkshop(value);
+                      setValue("wantsExtWorkshop", value);
+                      if (!value) setExtWorkshopChoice("");
+                    }}
+                  />
+                  <div className="space-y-1">
+                    <Label htmlFor="wantsExtWorkshop" className="font-semibold cursor-pointer text-purple-900">
+                      I want to register for a Pre/Post Conference Workshop — 350 EGP
+                    </Label>
+                    <p className="text-sm text-purple-700" dir="rtl">أرغب في التسجيل في ورشة عمل ما قبل/بعد المؤتمر — 350 جنيه مصري</p>
+                    <p className="text-xs text-purple-600">April 6 (Pre-Conference) or April 9 (Post-Conference), 2026</p>
+                    <p className="text-xs text-purple-600" dir="rtl">٦ أبريل (قبل المؤتمر) أو ٩ أبريل (بعد المؤتمر) ٢٠٢٦</p>
+                  </div>
+                </div>
+
+                {wantsExtWorkshop && (
+                  <div className="space-y-4 mt-2">
+                    {/* Workshop Choice */}
+                    <div className="space-y-2">
+                      <Label>Choose Your Workshop <span className="text-red-500">*</span></Label>
+                      <p className="text-xs text-muted-foreground" dir="rtl">اختر ورشة العمل المفضلة لديك</p>
+                      <div className="grid gap-3">
+                        {[
+                          {
+                            value: "ai_biotech",
+                            label: "AI Meets Biotech",
+                            labelAr: "الذكاء الاصطناعي يلتقي بالتكنولوجيا الحيوية",
+                            desc: "How to leverage AI in Biotechnology — Predict 3D structures of proteins, genes & enzymes",
+                            descAr: "كيفية توظيف الذكاء الاصطناعي في التكنولوجيا الحيوية — التنبؤ بالبنى ثلاثية الأبعاد للبروتينات والجينات والإنزيمات",
+                            date: "April 9, 2026 | 1:00 – 3:00 PM",
+                            dateAr: "٩ أبريل ٢٠٢٦ | ١:٠٠ – ٣:٠٠ م",
+                            by: "AI بالعربي",
+                            logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/QvdupTbEZQQzfgEz.jpeg",
+                          },
+                        ].map((ws) => (
+                          <div
+                            key={ws.value}
+                            onClick={() => {
+                              setExtWorkshopChoice(ws.value);
+                              setValue("extWorkshopChoice", ws.value);
+                            }}
+                            className={`p-3 border-2 rounded-lg cursor-pointer transition-all ${extWorkshopChoice === ws.value ? "border-purple-500 bg-purple-50" : "border-muted hover:border-purple-300"}`}
+                          >
+                            <div className="flex items-start gap-3">
+                              <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center shrink-0 mt-1 ${extWorkshopChoice === ws.value ? "border-purple-500 bg-purple-500" : "border-muted-foreground"}`}>
+                                {extWorkshopChoice === ws.value && <div className="w-2 h-2 rounded-full bg-white" />}
+                              </div>
+                              <div className="flex-1">
+                                <div className="flex items-center gap-2 mb-1">
+                                  <img src={ws.logo} alt={ws.by} className="h-6 object-contain" />
+                                  <p className="font-bold text-sm text-purple-900">{ws.label}</p>
+                                </div>
+                                <p className="text-xs font-medium text-purple-700" dir="rtl">{ws.labelAr}</p>
+                                <p className="text-xs text-muted-foreground mt-1">{ws.desc}</p>
+                                <p className="text-xs text-muted-foreground" dir="rtl">{ws.descAr}</p>
+                                <p className="text-xs font-semibold text-purple-800 mt-1">📅 {ws.date}</p>
+                                <p className="text-xs font-semibold text-purple-800" dir="rtl">📅 {ws.dateAr}</p>
+                                <p className="text-xs text-muted-foreground">By: {ws.by}</p>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Payment Instructions */}
+                    <div className="p-4 bg-purple-50 border border-purple-200 rounded-lg space-y-2">
+                      <p className="text-sm font-semibold text-purple-900 flex items-center gap-2">
+                        <AlertCircle className="w-4 h-4" /> Payment Instructions | تعليمات الدفع
+                      </p>
+                      <p className="text-xs text-purple-800">
+                        Transfer <strong>350 EGP</strong> to the bank account below, then upload a photo of the transfer receipt. <strong>Uploading the invoice is mandatory to confirm your spot.</strong>
+                      </p>
+                      <p className="text-xs text-purple-800" dir="rtl">
+                        حوّل <strong>350 جنيه مصري</strong> إلى الحساب البنكي أدناه، ثم ارفع صورة إيصال التحويل. <strong>رفع الإيصال إلزامي لتأكيد مكانك.</strong>
+                      </p>
+                      {bankDetails}
+                    </div>
+
+                    {/* Invoice Upload */}
+                    <InvoiceUpload
+                      label="Upload Pre/Post Workshop Payment Invoice (Required)"
+                      labelAr="ارفع صورة إيصال دفع ورشة ما قبل/بعد المؤتمر (إلزامي)"
+                      file={extWorkshopInvoiceFile}
+                      onFileChange={setExtWorkshopInvoiceFile}
+                      required
+                    />
+                    {wantsExtWorkshop && !extWorkshopInvoiceFile && (
                       <p className="text-xs text-red-500 flex items-center gap-1">
                         <AlertCircle className="w-3 h-3" /> Invoice upload is required to confirm your workshop spot.
                       </p>

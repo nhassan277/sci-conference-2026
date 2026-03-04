@@ -100,12 +100,16 @@ export const appRouter = router({
           wantsWorkshop: z.boolean().default(false),
           workshopChoice: z.enum(["nawah", "marc", "medsol"]).optional(),
           workshopInvoiceUrl: z.string().optional(),
+          wantsExtWorkshop: z.boolean().default(false),
+          extWorkshopChoice: z.string().optional(),
+          extWorkshopInvoiceUrl: z.string().optional(),
         })
       )
       .mutation(async ({ input }) => {
         const [result] = await db.insert(registrations).values({
           ...input,
           workshopPaymentStatus: input.wantsWorkshop && input.workshopInvoiceUrl ? "pending" : "unpaid",
+          extWorkshopPaymentStatus: input.wantsExtWorkshop && input.extWorkshopInvoiceUrl ? "pending" : "unpaid",
         });
         const registrationId = result.insertId;
         
@@ -199,7 +203,7 @@ export const appRouter = router({
       .input(
         z.object({
           registrationId: z.number(),
-          invoiceType: z.enum(["certificate", "workshop"]),
+          invoiceType: z.enum(["certificate", "workshop", "ext_workshop"]),
           file: z.object({
             data: z.string(), // base64
             name: z.string(),
@@ -230,6 +234,10 @@ export const appRouter = router({
           await db.update(registrations)
             .set({ certificateInvoiceUrl: result.url, updatedAt: new Date() })
             .where(eq(registrations.id, input.registrationId));
+        } else if (input.invoiceType === "ext_workshop") {
+          await db.update(registrations)
+            .set({ extWorkshopInvoiceUrl: result.url, extWorkshopPaymentStatus: "pending", updatedAt: new Date() })
+            .where(eq(registrations.id, input.registrationId));
         } else {
           await db.update(registrations)
             .set({ workshopInvoiceUrl: result.url, workshopPaymentStatus: "pending", updatedAt: new Date() })
@@ -244,7 +252,8 @@ export const appRouter = router({
       const nawah = allRegs.filter(r => r.wantsWorkshop && r.workshopChoice === 'nawah' && r.workshopPaymentStatus !== 'rejected').length;
       const marc = allRegs.filter(r => r.wantsWorkshop && r.workshopChoice === 'marc' && r.workshopPaymentStatus !== 'rejected').length;
       const medsol = allRegs.filter(r => r.wantsWorkshop && r.workshopChoice === 'medsol' && r.workshopPaymentStatus !== 'rejected').length;
-      return { nawah, marc, medsol };
+      const ai_biotech = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'ai_biotech' && r.extWorkshopPaymentStatus !== 'rejected').length;
+      return { nawah, marc, medsol, ai_biotech };
     }),
 
     confirmWorkshopPayment: adminProcedure
@@ -261,6 +270,24 @@ export const appRouter = router({
       .mutation(async ({ input }) => {
         await db.update(registrations)
           .set({ workshopPaymentStatus: 'rejected', updatedAt: new Date() })
+          .where(eq(registrations.id, input.registrationId));
+        return { success: true };
+      }),
+
+    confirmExtWorkshopPayment: adminProcedure
+      .input(z.object({ registrationId: z.number() }))
+      .mutation(async ({ input }) => {
+        await db.update(registrations)
+          .set({ extWorkshopPaymentStatus: 'confirmed', updatedAt: new Date() })
+          .where(eq(registrations.id, input.registrationId));
+        return { success: true };
+      }),
+
+    rejectExtWorkshopPayment: adminProcedure
+      .input(z.object({ registrationId: z.number() }))
+      .mutation(async ({ input }) => {
+        await db.update(registrations)
+          .set({ extWorkshopPaymentStatus: 'rejected', updatedAt: new Date() })
           .where(eq(registrations.id, input.registrationId));
         return { success: true };
       }),

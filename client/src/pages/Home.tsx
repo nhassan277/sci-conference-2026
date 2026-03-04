@@ -863,24 +863,78 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* HVD Teaser */}
+              {/* AI Meets Biotech Workshop Card */}
               <div className="max-w-2xl mx-auto">
-                <div className="p-6 bg-gradient-to-r from-purple-50 to-indigo-50 border-2 border-purple-300 rounded-2xl text-center space-y-3">
-                  <div className="flex justify-center mb-2">
-                    <img
-                      src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/PRFFSxcVTWICaEUG.png"
-                      alt="HVD Life Sciences"
-                      className="h-16 object-contain"
-                    />
+                <div className="p-6 bg-gradient-to-r from-purple-50 to-indigo-50 border-2 border-purple-300 rounded-2xl space-y-4">
+                  {/* Header with logos */}
+                  <div className="flex items-center justify-between flex-wrap gap-3">
+                    <div className="flex items-center gap-3">
+                      <img
+                        src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/PRFFSxcVTWICaEUG.png"
+                        alt="HVD Life Sciences"
+                        className="h-12 object-contain"
+                      />
+                      <img
+                        src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/QvdupTbEZQQzfgEz.jpeg"
+                        alt="AI بالعربي"
+                        className="h-12 object-contain"
+                      />
+                    </div>
+                    <Badge className="bg-purple-100 text-purple-800 border-purple-300 text-xs">
+                      Post-Conference | بعد المؤتمر
+                    </Badge>
                   </div>
-                  <h4 className="text-2xl font-bold text-purple-900">Featured Scientific Workshop</h4>
-                  <p className="text-lg font-semibold text-purple-700" dir="rtl">ورشة عمل علمية مميزة</p>
-                  <div className="inline-block bg-white border-2 border-purple-400 rounded-xl px-6 py-3">
-                    <p className="text-xl font-black text-purple-900 tracking-widest">HVD Company</p>
-                    <p className="text-sm text-purple-600 mt-1">Details to Be Announced | التفاصيل قريباً</p>
+
+                  {/* Title */}
+                  <div>
+                    <h4 className="text-2xl font-bold text-purple-900">AI Meets Biotech</h4>
+                    <p className="text-lg font-semibold text-purple-700" dir="rtl">الذكاء الاصطناعي يلتقي بالتكنولوجيا الحيوية</p>
+                    <p className="text-sm text-purple-600 italic mt-1">“How to leverage AI in Biotechnology”</p>
                   </div>
-                  <p className="text-sm text-muted-foreground">Featured Scientific Workshop – Details to Be Announced.</p>
-                  <p className="text-sm text-muted-foreground" dir="rtl">ورشة عمل علمية مميزة — سيتم الإعلان عن التفاصيل قريباً.</p>
+
+                  {/* Description */}
+                  <p className="text-sm text-foreground leading-relaxed">
+                    A practical workshop bridging science and technology — from research hypothesis to hands-on experience with AI tools that predict 3D structures of proteins, genes, and enzymes, plus a general introduction to using AI in biotechnology.
+                  </p>
+                  <p className="text-sm text-foreground leading-relaxed" dir="rtl">
+                    ورشة عمل تطبيقية تجسر الهوة بين العلم والتكنولوجيا — من فرضية البحث حتى التجربة العملية بأدوات الذكاء الاصطناعي.
+                  </p>
+
+                  {/* Details grid */}
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="p-3 bg-white rounded-xl border border-purple-200">
+                      <p className="text-xs text-muted-foreground">📅 Date | التاريخ</p>
+                      <p className="font-bold text-purple-900 text-sm">April 9, 2026</p>
+                      <p className="text-purple-700 text-xs" dir="rtl">٩ أبريل ٢٠٢٦</p>
+                    </div>
+                    <div className="p-3 bg-white rounded-xl border border-purple-200">
+                      <p className="text-xs text-muted-foreground">⏰ Time | الوقت</p>
+                      <p className="font-bold text-purple-900 text-sm">1:00 – 3:00 PM</p>
+                      <p className="text-purple-700 text-xs" dir="rtl">١:٠٠ – ٣:٠٠ م</p>
+                    </div>
+                    <div className="p-3 bg-white rounded-xl border border-purple-200">
+                      <p className="text-xs text-muted-foreground">⏳ Duration | المدة</p>
+                      <p className="font-bold text-purple-900 text-sm">2 Hours</p>
+                      <p className="text-purple-700 text-xs" dir="rtl">٢ ساعتان</p>
+                    </div>
+                    <div className="p-3 bg-white rounded-xl border border-purple-200">
+                      <p className="text-xs text-muted-foreground">💰 Fee | الرسوم</p>
+                      <p className="font-bold text-purple-900 text-sm">350 EGP</p>
+                      <p className="text-purple-700 text-xs" dir="rtl">350 جنيه مصري</p>
+                    </div>
+                  </div>
+
+                  {/* Spots counter */}
+                  <div className="flex items-center justify-between">
+                    {workshopCounts && getSpotsBadge(workshopCounts.ai_biotech ?? 0)}
+                    <Button
+                      size="sm"
+                      className="bg-purple-700 hover:bg-purple-800 text-white text-xs px-3"
+                      onClick={() => { window.location.href = '/attendance'; }}
+                    >
+                      Register & Upload Invoice | سجّل وارفع الإيصال
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>

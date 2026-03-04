@@ -860,3 +860,10 @@
 - [x] Update Home page: announce pre/post conference workshops (350 EGP, Apr 6 & 9)
 - [x] Add HVD company teaser to workshops section
 - [x] Update admin dashboard to display invoice images for certificate and workshop payments
+
+## AI Meets Biotech Workshop (HVD Card Update)
+- [x] Upload AI بالعربي logo to CDN
+- [x] Update HVD workshop card with full workshop details (title, description, date/time)
+- [x] Add "ai_biotech" as a new workshop choice option in schema, routers, and Attendance form
+- [x] Update workshop counts to include ai_biotech
+- [ ] Save checkpoint
