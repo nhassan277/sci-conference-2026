@@ -668,10 +668,10 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
               {/* NAWAH Workshop */}
-              <Card className="border-2 border-primary/20">
-                <CardHeader>
+              <Card className="border-2 border-primary/20 flex flex-col">
+                <CardHeader className="flex-1">
                   <div className="flex justify-center mb-4">
                     <img 
                       src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/ndKRwnmyKdJLbGXC.png" 
@@ -679,11 +679,9 @@ export default function Home() {
                       className="h-28 object-contain"
                     />
                   </div>
-                  <div className="flex items-center justify-between mb-1">
-                    <CardTitle className="text-xl">How to Convert Research Findings into Business Ideas</CardTitle>
-                    {workshopCounts && getSpotsBadge(workshopCounts.nawah)}
-                  </div>
-                  <CardDescription className="text-base space-y-4 pt-4">
+                  <CardTitle className="text-xl mb-2">How to Convert Research Findings into Business Ideas</CardTitle>
+                  {workshopCounts && <div className="mb-2">{getSpotsBadge(workshopCounts.nawah)}</div>}
+                  <CardDescription className="text-base space-y-3 pt-2">
                     <p className="text-foreground font-medium">
                       In collaboration with <strong>NAWAH Scientific</strong>
                     </p>
@@ -705,7 +703,7 @@ export default function Home() {
                     </div>
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="pt-0">
                   <Button 
                     className="w-full bg-amber-600 hover:bg-amber-700 text-xs px-2" 
                     onClick={() => { window.location.href = '/attendance'; }}
@@ -716,8 +714,8 @@ export default function Home() {
               </Card>
 
               {/* MARC Workshop */}
-              <Card className="border-2 border-secondary/20">
-                <CardHeader>
+              <Card className="border-2 border-secondary/20 flex flex-col">
+                <CardHeader className="flex-1">
                   <div className="flex justify-center mb-4">
                     <img 
                       src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/ovrQFMOFiOzebFkT.jpg" 
@@ -725,11 +723,9 @@ export default function Home() {
                       className="h-28 object-contain"
                     />
                   </div>
-                  <div className="flex items-center justify-between mb-1">
-                    <CardTitle className="text-xl">Good Clinical Practice (GCP) Workshop</CardTitle>
-                    {workshopCounts && getSpotsBadge(workshopCounts.marc)}
-                  </div>
-                  <CardDescription className="text-base space-y-4 pt-4">
+                  <CardTitle className="text-xl mb-2">Good Clinical Practice (GCP) Workshop</CardTitle>
+                  {workshopCounts && <div className="mb-2">{getSpotsBadge(workshopCounts.marc)}</div>}
+                  <CardDescription className="text-base space-y-3 pt-2">
                     <p className="text-foreground font-medium">
                       In collaboration with <strong>MARC</strong>
                     </p>
@@ -752,7 +748,7 @@ export default function Home() {
                     </div>
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="pt-0">
                   <Button 
                     className="w-full bg-amber-600 hover:bg-amber-700 text-xs px-2" 
                     onClick={() => { window.location.href = '/attendance'; }}
@@ -763,8 +759,8 @@ export default function Home() {
               </Card>
 
               {/* Medsol Workshop */}
-              <Card className="border-2 border-accent/20">
-                <CardHeader>
+              <Card className="border-2 border-accent/20 flex flex-col">
+                <CardHeader className="flex-1">
                   <div className="flex justify-center mb-4">
                     <img 
                       src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/suhdZISVxwwlvpPk.png" 
@@ -772,11 +768,9 @@ export default function Home() {
                       className="h-28 object-contain"
                     />
                   </div>
-                  <div className="flex items-center justify-between mb-1">
-                    <CardTitle className="text-xl">From DNA to Proteins: Advanced Sequencing Technologies Workshop</CardTitle>
-                    {workshopCounts && getSpotsBadge(workshopCounts.medsol)}
-                  </div>
-                  <CardDescription className="text-base space-y-4 pt-4">
+                  <CardTitle className="text-xl mb-2">From DNA to Proteins: Advanced Sequencing Technologies Workshop</CardTitle>
+                  {workshopCounts && <div className="mb-2">{getSpotsBadge(workshopCounts.medsol)}</div>}
+                  <CardDescription className="text-base space-y-3 pt-2">
                     <p className="text-foreground font-medium">
                       In collaboration with <strong>Medsol</strong>
                     </p>
@@ -799,7 +793,7 @@ export default function Home() {
                     </div>
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="pt-0">
                   <Button 
                     className="w-full bg-amber-600 hover:bg-amber-700 text-xs px-2" 
                     onClick={() => { window.location.href = '/attendance'; }}
@@ -809,8 +803,8 @@ export default function Home() {
                 </CardContent>
               </Card>
               {/* Dr. Jan Sedláček Workshop */}
-              <Card className="border-2 border-emerald-200">
-                <CardHeader>
+              <Card className="border-2 border-emerald-200 flex flex-col">
+                <CardHeader className="flex-1">
                   <div className="flex justify-center mb-4">
                     <div className="h-28 flex items-center justify-center">
                       <div className="text-center">
@@ -820,11 +814,9 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
-                  <div className="flex items-center justify-between mb-1">
-                    <CardTitle className="text-xl">Environmental Geochemical Data Analysis Workshop</CardTitle>
-                    {workshopCounts && getSpotsBadge(workshopCounts.geochemistry ?? 0)}
-                  </div>
-                  <CardDescription className="text-base space-y-4 pt-4">
+                  <CardTitle className="text-xl mb-2">Environmental Geochemical Data Analysis Workshop</CardTitle>
+                  {workshopCounts && <div className="mb-2">{getSpotsBadge(workshopCounts.geochemistry ?? 0)}</div>}
+                  <CardDescription className="text-base space-y-3 pt-2">
                     <p className="text-foreground font-medium">
                       By <strong>Dr. Jan Sedláček</strong>
                     </p>
@@ -849,7 +841,7 @@ export default function Home() {
                     </div>
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="pt-0">
                   <Button
                     className="w-full bg-emerald-700 hover:bg-emerald-800 text-xs px-2"
                     onClick={() => { window.location.href = '/attendance'; }}
