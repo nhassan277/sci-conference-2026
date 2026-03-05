@@ -254,7 +254,8 @@ export const appRouter = router({
       const medsol = allRegs.filter(r => r.wantsWorkshop && r.workshopChoice === 'medsol' && r.workshopPaymentStatus !== 'rejected').length;
       const geochemistry = allRegs.filter(r => r.wantsWorkshop && r.workshopChoice === 'geochemistry' && r.workshopPaymentStatus !== 'rejected').length;
       const ai_biotech = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'ai_biotech' && r.extWorkshopPaymentStatus !== 'rejected').length;
-      return { nawah, marc, medsol, geochemistry, ai_biotech };
+      const chitosan = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'chitosan' && r.extWorkshopPaymentStatus !== 'rejected').length;
+      return { nawah, marc, medsol, geochemistry, ai_biotech, chitosan };
     }),
 
     confirmWorkshopPayment: adminProcedure
@@ -1202,8 +1203,8 @@ export const appRouter = router({
           adminEmail: ctx.admin.email,
           action: "updated",
           resourceType: "digest_preferences",
-          resourceId: ctx.admin.id.toString(),
-          details: `Updated digest preferences: ${input.frequency}, enabled: ${input.enabled}`,
+          resourceId: ctx.admin.id,
+          details: { frequency: input.frequency, enabled: input.enabled },
           ipAddress: ctx.req.ip || "unknown",
           userAgent: ctx.req.get("user-agent") || "unknown",
         });
@@ -1230,8 +1231,7 @@ export const appRouter = router({
             adminEmail: ctx.admin.email,
             action: "triggered",
             resourceType: "email_digest",
-            resourceId: input.frequency,
-            details: `Manually triggered ${input.frequency} digest`,
+            details: { action: `Manually triggered ${input.frequency} digest`, frequency: input.frequency },
             ipAddress: ctx.req.ip || "unknown",
             userAgent: ctx.req.get("user-agent") || "unknown",
           });
@@ -1290,8 +1290,8 @@ export const appRouter = router({
           adminEmail: ctx.admin.email,
           action: "created",
           resourceType: "survey",
-          resourceId: survey.insertId.toString(),
-          details: `Created survey: ${input.title}`,
+          resourceId: survey.insertId,
+          details: { title: input.title },
           ipAddress: ctx.req.ip || "unknown",
           userAgent: ctx.req.get("user-agent") || "unknown",
         });
@@ -1311,8 +1311,8 @@ export const appRouter = router({
           adminEmail: ctx.admin.email,
           action: "distributed",
           resourceType: "survey",
-          resourceId: input.id.toString(),
-          details: `Distributed survey: ${result.sent} sent, ${result.failed} failed, ${result.alreadyResponded} already responded`,
+          resourceId: input.id,
+          details: { sent: result.sent, failed: result.failed, alreadyResponded: result.alreadyResponded },
           ipAddress: ctx.req.ip || "unknown",
           userAgent: ctx.req.get("user-agent") || "unknown",
         });
@@ -1369,7 +1369,7 @@ export const appRouter = router({
       .input(
         z.object({
           token: z.string(),
-          answers: z.record(z.any()),
+          answers: z.record(z.string(), z.any()),
         })
       )
       .mutation(async ({ input, ctx }) => {

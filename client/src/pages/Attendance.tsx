@@ -574,6 +574,18 @@ export default function Attendance() {
                       <div className="grid gap-3">
                         {[
                           {
+                            value: "chitosan",
+                            label: "Biotech Product Development 101",
+                            labelAr: "تطوير المنتجات في التكنولوجيا الحيوية",
+                            desc: "From scientific ideas to real products — startup building roadmap for biotech. 3rd & 4th year undergrads + graduates only.",
+                            descAr: "من الأفكار العلمية إلى منتجات حقيقية — مسار بناء الشركات الناشئة في التكنولوجيا الحيوية.",
+                            date: "April 6, 2026 | 9:00 AM – 12:00 PM",
+                            dateAr: "٦ أبريل ٢٠٢٦ | ٩:٠٠ ص – ١٢:٠٠ ظ",
+                            by: "Chitosan",
+                            logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/GXxzRnTYsggXAHMu.png",
+                            eligibility: "3rd & 4th year undergrads + graduates | 30 spots only",
+                          },
+                          {
                             value: "ai_biotech",
                             label: "AI Meets Biotech",
                             labelAr: "الذكاء الاصطناعي يلتقي بالتكنولوجيا الحيوية",
@@ -608,6 +620,9 @@ export default function Attendance() {
                                 <p className="text-xs font-semibold text-purple-800 mt-1">📅 {ws.date}</p>
                                 <p className="text-xs font-semibold text-purple-800" dir="rtl">📅 {ws.dateAr}</p>
                                 <p className="text-xs text-muted-foreground">By: {ws.by}</p>
+                                {'eligibility' in ws && ws.eligibility && (
+                                  <p className="text-xs font-medium text-orange-700 mt-1">🎓 {ws.eligibility}</p>
+                                )}
                               </div>
                             </div>
                           </div>

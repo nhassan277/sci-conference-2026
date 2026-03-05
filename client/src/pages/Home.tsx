@@ -880,7 +880,7 @@ export default function Home() {
                         <p className="text-blue-600 text-sm" dir="rtl">يوم ما قبل المؤتمر — ٦ أبريل ٢٠٢٦</p>
                       </div>
                     </div>
-                    <p className="text-sm text-muted-foreground">2 workshops on this day</p>
+                    <p className="text-sm text-muted-foreground">3 workshops on this day</p>
                   </div>
                   <div className="p-4 bg-white border-2 border-green-200 rounded-xl">
                     <div className="flex items-center gap-2 mb-2">
@@ -902,6 +902,86 @@ export default function Home() {
                   <Badge className="bg-muted text-muted-foreground px-4 py-2 text-sm">
                     Companies will be announced soon | الشركات ستُعلن قريباً
                   </Badge>
+                </div>
+              </div>
+
+              {/* Chitosan Workshop Card — Biotech Product Development 101 */}
+              <div className="max-w-2xl mx-auto">
+                <div className="p-6 bg-gradient-to-r from-orange-50 to-amber-50 border-2 border-orange-300 rounded-2xl space-y-4">
+                  {/* Header with logo */}
+                  <div className="flex items-center justify-between flex-wrap gap-3">
+                    <img
+                      src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/GXxzRnTYsggXAHMu.png"
+                      alt="Chitosan"
+                      className="h-20 w-20 object-contain rounded-full"
+                    />
+                    <Badge className="bg-orange-100 text-orange-800 border-orange-300 text-xs">
+                      Pre-Conference | قبل المؤتمر
+                    </Badge>
+                  </div>
+
+                  {/* Title */}
+                  <div>
+                    <h4 className="text-2xl font-bold text-orange-900">Biotech Product Development 101</h4>
+                    <p className="text-sm text-orange-700 italic mt-1">By <strong>Chitosan</strong></p>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-sm text-foreground leading-relaxed text-justify">
+                    An interactive session designed for senior students, fresh graduates, and early-career researchers who want to learn how scientific ideas can be translated into real products. The session introduces a practical roadmap for biotech product development and potential startup building.
+                  </p>
+
+                  {/* Bullet points */}
+                  <ul className="list-disc list-inside space-y-1 text-sm text-foreground">
+                    <li>Identifying meaningful problems and opportunities in biotech</li>
+                    <li>Screening existing solutions (products, patents, scientific literature)</li>
+                    <li>Structured idea generation and innovation tools</li>
+                    <li>Developing product concepts and defining a value proposition</li>
+                    <li>Building an initial MVP and testing assumptions</li>
+                  </ul>
+
+                  {/* Eligibility note */}
+                  <div className="p-3 bg-orange-100 border border-orange-300 rounded-lg">
+                    <p className="text-xs font-semibold text-orange-900">🎓 Eligibility | الأهلية</p>
+                    <p className="text-xs text-orange-800 mt-1">Open to <strong>3rd &amp; 4th year undergraduate students</strong> and graduate/postgraduate students. Limited to <strong>30 participants</strong>.</p>
+                    <p className="text-xs text-orange-800" dir="rtl">مفتوح لطلاب السنة الثالثة والرابعة وطلاب الدراسات العليا. الأماكن محدودة بـ <strong>٣٠ مشاركاً</strong>.</p>
+                  </div>
+
+                  {/* Details grid */}
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="p-3 bg-white rounded-xl border border-orange-200">
+                      <p className="text-xs text-muted-foreground">📅 Date | التاريخ</p>
+                      <p className="font-bold text-orange-900 text-sm">April 6, 2026</p>
+                      <p className="text-orange-700 text-xs" dir="rtl">٦ أبريل ٢٠٢٦</p>
+                    </div>
+                    <div className="p-3 bg-white rounded-xl border border-orange-200">
+                      <p className="text-xs text-muted-foreground">⏰ Time | الوقت</p>
+                      <p className="font-bold text-orange-900 text-sm">9:00 AM – 12:00 PM</p>
+                      <p className="text-orange-700 text-xs" dir="rtl">٩:٠٠ ص – ١٢:٠٠ ظ</p>
+                    </div>
+                    <div className="p-3 bg-white rounded-xl border border-orange-200">
+                      <p className="text-xs text-muted-foreground">⏳ Duration | المدة</p>
+                      <p className="font-bold text-orange-900 text-sm">3 Hours</p>
+                      <p className="text-orange-700 text-xs" dir="rtl">٣ ساعات</p>
+                    </div>
+                    <div className="p-3 bg-white rounded-xl border border-orange-200">
+                      <p className="text-xs text-muted-foreground">👥 Capacity | الطاقة</p>
+                      <p className="font-bold text-orange-900 text-sm">30 Participants</p>
+                      <p className="text-orange-700 text-xs" dir="rtl">٣٠ مشاركاً</p>
+                    </div>
+                  </div>
+
+                  {/* Spots counter */}
+                  <div className="flex items-center justify-between">
+                    {workshopCounts && getSpotsBadge(workshopCounts.chitosan ?? 0)}
+                    <Button
+                      size="sm"
+                      className="bg-orange-600 hover:bg-orange-700 text-white text-xs px-3"
+                      onClick={() => { window.location.href = '/attendance'; }}
+                    >
+                      Register & Upload Invoice | سجّل وارفع الإيصال
+                    </Button>
+                  </div>
                 </div>
               </div>
 
