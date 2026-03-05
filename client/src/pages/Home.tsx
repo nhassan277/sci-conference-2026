@@ -897,7 +897,7 @@ export default function Home() {
 
                 <div className="flex items-center justify-center gap-3 flex-wrap">
                   <Badge className="bg-primary text-white px-4 py-2 text-base font-bold">
-                    350 EGP per workshop
+                    200 EGP per workshop
                   </Badge>
                   <Badge className="bg-muted text-muted-foreground px-4 py-2 text-sm">
                     Companies will be announced soon | الشركات ستُعلن قريباً
@@ -1034,8 +1034,8 @@ export default function Home() {
                     </div>
                     <div className="p-3 bg-white rounded-xl border border-purple-200">
                       <p className="text-xs text-muted-foreground">💰 Fee | الرسوم</p>
-                      <p className="font-bold text-purple-900 text-sm">350 EGP</p>
-                      <p className="text-purple-700 text-xs" dir="rtl">350 جنيه مصري</p>
+                      <p className="font-bold text-purple-900 text-sm">200 EGP</p>
+                      <p className="text-purple-700 text-xs" dir="rtl">200 جنيه مصري</p>
                     </div>
                   </div>
 

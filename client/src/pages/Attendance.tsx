@@ -557,9 +557,9 @@ export default function Attendance() {
                   />
                   <div className="space-y-1">
                     <Label htmlFor="wantsExtWorkshop" className="font-semibold cursor-pointer text-purple-900">
-                      I want to register for a Pre/Post Conference Workshop — 350 EGP
+                      I want to register for a Pre/Post Conference Workshop — 200 EGP
                     </Label>
-                    <p className="text-sm text-purple-700" dir="rtl">أرغب في التسجيل في ورشة عمل ما قبل/بعد المؤتمر — 350 جنيه مصري</p>
+                    <p className="text-sm text-purple-700" dir="rtl">أرغب في التسجيل في ورشة عمل ما قبل/بعد المؤتمر — 200 جنيه مصري</p>
                     <p className="text-xs text-purple-600">April 6 (Pre-Conference) or April 9 (Post-Conference), 2026</p>
                     <p className="text-xs text-purple-600" dir="rtl">٦ أبريل (قبل المؤتمر) أو ٩ أبريل (بعد المؤتمر) ٢٠٢٦</p>
                   </div>
@@ -636,10 +636,10 @@ export default function Attendance() {
                         <AlertCircle className="w-4 h-4" /> Payment Instructions | تعليمات الدفع
                       </p>
                       <p className="text-xs text-purple-800">
-                        Transfer <strong>350 EGP</strong> to the bank account below, then upload a photo of the transfer receipt. <strong>Uploading the invoice is mandatory to confirm your spot.</strong>
+                        Transfer <strong>200 EGP</strong> to the bank account below, then upload a photo of the transfer receipt. <strong>Uploading the invoice is mandatory to confirm your spot.</strong>
                       </p>
                       <p className="text-xs text-purple-800" dir="rtl">
-                        حوّل <strong>350 جنيه مصري</strong> إلى الحساب البنكي أدناه، ثم ارفع صورة إيصال التحويل. <strong>رفع الإيصال إلزامي لتأكيد مكانك.</strong>
+                        حوّل <strong>200 جنيه مصري</strong> إلى الحساب البنكي أدناه، ثم ارفع صورة إيصال التحويل. <strong>رفع الإيصال إلزامي لتأكيد مكانك.</strong>
                       </p>
                       {bankDetails}
                     </div>
