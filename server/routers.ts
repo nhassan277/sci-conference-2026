@@ -255,7 +255,8 @@ export const appRouter = router({
       const geochemistry = allRegs.filter(r => r.wantsWorkshop && r.workshopChoice === 'geochemistry' && r.workshopPaymentStatus !== 'rejected').length;
       const ai_biotech = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'ai_biotech' && r.extWorkshopPaymentStatus !== 'rejected').length;
       const chitosan = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'chitosan' && r.extWorkshopPaymentStatus !== 'rejected').length;
-      return { nawah, marc, medsol, geochemistry, ai_biotech, chitosan };
+      const scrna_seq = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'scrna_seq' && r.extWorkshopPaymentStatus !== 'rejected').length;
+      return { nawah, marc, medsol, geochemistry, ai_biotech, chitosan, scrna_seq };
     }),
 
     confirmWorkshopPayment: adminProcedure

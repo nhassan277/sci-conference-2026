@@ -891,7 +891,7 @@ export default function Home() {
                         <p className="text-green-600 text-sm" dir="rtl">يوم ما بعد المؤتمر — ٩ أبريل ٢٠٢٦</p>
                       </div>
                     </div>
-                    <p className="text-sm text-muted-foreground">2 workshops on this day</p>
+                    <p className="text-sm text-muted-foreground">3 workshops on this day</p>
                   </div>
                 </div>
 
@@ -980,6 +980,80 @@ export default function Home() {
                       onClick={() => { window.location.href = '/attendance'; }}
                     >
                       Register & Upload Invoice | سجّل وارفع الإيصال
+                    </Button>
+                  </div>
+                </div>
+              </div>
+
+              {/* EgcompBio scRNA-seq Workshop Card */}
+              <div className="max-w-2xl mx-auto mb-6">
+                <div className="p-6 bg-gradient-to-r from-teal-50 to-cyan-50 border-2 border-teal-300 rounded-2xl space-y-4">
+                  {/* Header */}
+                  <div className="flex items-center justify-between flex-wrap gap-3">
+                    <div>
+                      <p className="text-2xl font-extrabold text-teal-900">EgcompBio</p>
+                      <p className="text-sm text-teal-700 font-medium">Egyptian Computational Biology</p>
+                    </div>
+                    <Badge className="bg-teal-100 text-teal-800 border-teal-300 text-xs">
+                      Post-Conference | بعد المؤتمر
+                    </Badge>
+                  </div>
+
+                  {/* Title */}
+                  <div>
+                    <h4 className="text-2xl font-bold text-teal-900">Introduction to Single Cell Genomics</h4>
+                    <p className="text-lg font-semibold text-teal-700" dir="rtl">مقدمة في جينوميات الخلية الواحدة</p>
+                    <p className="text-sm text-teal-600 italic mt-1">"scRNA-seq Analysis in Cancer — Mini-Workshop"</p>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-sm text-foreground leading-relaxed">
+                    Explore single-cell RNA sequencing (scRNA-seq) as a powerful approach to study gene expression at the resolution of individual cells. Participants will learn how scRNA-seq reveals cellular diversity within complex tissues and uncovers the molecular basis of tumor heterogeneity, with hands-on computational training in R.
+                  </p>
+                  <p className="text-sm text-foreground leading-relaxed" dir="rtl">
+                    استكشف تسلسل الحمض النووي الريبوزي أحادي الخلية (scRNA-seq) لدراسة التعبير الجيني على مستوى الخلايا الفردية، مع تدريب حاسوبي عملي في سرطان الجينوم.
+                  </p>
+
+                  {/* Prerequisites note */}
+                  <div className="p-3 bg-teal-50 border border-teal-200 rounded-lg">
+                    <p className="text-xs font-semibold text-teal-900">⚠️ Prerequisites | المتطلبات المسبقة</p>
+                    <p className="text-xs text-teal-800 mt-1">Fair proficiency in R · Experience with dplyr, ggplot2, tidyverse · Bring your laptop with R ≥ 4.2, RStudio &amp; Seurat installed</p>
+                    <p className="text-xs text-teal-800 mt-1" dir="rtl">إجادة R · خبرة مع dplyr وggplot2 · أحضر لابتوب مثبت عليه R ≥ 4.2 وRStudio وSeurat</p>
+                  </div>
+
+                  {/* Details grid */}
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="p-3 bg-white rounded-xl border border-teal-200">
+                      <p className="text-xs text-muted-foreground">📅 Date | التاريخ</p>
+                      <p className="font-bold text-teal-900 text-sm">April 9, 2026</p>
+                      <p className="text-teal-700 text-xs" dir="rtl">٩ أبريل ٢٠٢٦</p>
+                    </div>
+                    <div className="p-3 bg-white rounded-xl border border-teal-200">
+                      <p className="text-xs text-muted-foreground">⏳ Duration | المدة</p>
+                      <p className="font-bold text-teal-900 text-sm">3 Hours</p>
+                      <p className="text-teal-700 text-xs" dir="rtl">٣ ساعات</p>
+                    </div>
+                    <div className="p-3 bg-white rounded-xl border border-teal-200">
+                      <p className="text-xs text-muted-foreground">👥 Capacity | السعة</p>
+                      <p className="font-bold text-teal-900 text-sm">30 Participants</p>
+                      <p className="text-teal-700 text-xs" dir="rtl">٣٠ مشاركاً فقط</p>
+                    </div>
+                    <div className="p-3 bg-white rounded-xl border border-teal-200">
+                      <p className="text-xs text-muted-foreground">💰 Fee | الرسوم</p>
+                      <p className="font-bold text-teal-900 text-sm">200 EGP</p>
+                      <p className="text-teal-700 text-xs" dir="rtl">200 جنيه مصري</p>
+                    </div>
+                  </div>
+
+                  {/* Spots counter */}
+                  <div className="flex items-center justify-between">
+                    {workshopCounts && getSpotsBadge(workshopCounts.scrna_seq ?? 0)}
+                    <Button
+                      size="sm"
+                      className="bg-teal-700 hover:bg-teal-800 text-white text-xs px-3"
+                      onClick={() => { window.location.href = '/attendance'; }}
+                    >
+                      Register &amp; Upload Invoice | سجّل وارفع الإيصال
                     </Button>
                   </div>
                 </div>

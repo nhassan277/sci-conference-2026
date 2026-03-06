@@ -586,6 +586,18 @@ export default function Attendance() {
                             eligibility: "3rd & 4th year undergrads + graduates | 30 spots only",
                           },
                           {
+                            value: "scrna_seq",
+                            label: "Introduction to Single Cell Genomics",
+                            labelAr: "مقدمة في جينوميات الخلية الواحدة",
+                            desc: "scRNA-seq Analysis in Cancer — Hands-on computational training in R. Prerequisites: R ≥ 4.2, RStudio & Seurat. Bring your laptop.",
+                            descAr: "تحليل scRNA-seq في السرطان — تدريب حاسوبي عملي بلغة R. المتطلبات: R ≥ 4.2 وRStudio وSeurat. أحضر لابتوبك.",
+                            date: "April 9, 2026 | 3 Hours",
+                            dateAr: "٩ أبريل ٢٠٢٦ | ٣ ساعات",
+                            by: "EgcompBio",
+                            logo: "",
+                            eligibility: "Intermediate to advanced level · 30 spots only",
+                          },
+                          {
                             value: "ai_biotech",
                             label: "AI Meets Biotech",
                             labelAr: "الذكاء الاصطناعي يلتقي بالتكنولوجيا الحيوية",
