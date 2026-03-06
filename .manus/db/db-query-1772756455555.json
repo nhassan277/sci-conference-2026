@@ -1,0 +1,24 @@
+{
+  "query": "\nSELECT 'NAWAH/MARC/MEDSOL workshops' as type, workshop_choice, workshop_payment_status, COUNT(*) as count, SUM(CASE WHEN workshop_invoice_url IS NOT NULL AND workshop_invoice_url != '' THEN 1 ELSE 0 END) as has_invoice FROM registrations WHERE wants_workshop = 1 GROUP BY workshop_choice, workshop_payment_status\nUNION ALL\nSELECT 'Ext workshops (pre/post)' as type, ext_workshop_choice, ext_workshop_payment_status, COUNT(*) as count, SUM(CASE WHEN ext_workshop_invoice_url IS NOT NULL AND ext_workshop_invoice_url != '' THEN 1 ELSE 0 END) as has_invoice FROM registrations WHERE wants_ext_workshop = 1 GROUP BY ext_workshop_choice, ext_workshop_payment_status;\n",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute \nSELECT 'NAWAH/MARC/MEDSOL workshops' as type, workshop_choice, workshop_payment_status, COUNT(*) as count, SUM(CASE WHEN workshop_invoice_url IS NOT NULL AND workshop_invoice_url != '' THEN 1 ELSE 0 END) as has_invoice FROM registrations WHERE wants_workshop = 1 GROUP BY workshop_choice, workshop_payment_status\nUNION ALL\nSELECT 'Ext workshops (pre/post)' as type, ext_workshop_choice, ext_workshop_payment_status, COUNT(*) as count, SUM(CASE WHEN ext_workshop_invoice_url IS NOT NULL AND ext_workshop_invoice_url != '' THEN 1 ELSE 0 END) as has_invoice FROM registrations WHERE wants_ext_workshop = 1 GROUP BY ext_workshop_choice, ext_workshop_payment_status;\n",
+  "rows": [
+    {
+      "type": "NAWAH/MARC/MEDSOL workshops",
+      "workshop_choice": "nawah",
+      "workshop_payment_status": "unpaid",
+      "count": "1",
+      "has_invoice": "0"
+    },
+    {
+      "type": "NAWAH/MARC/MEDSOL workshops",
+      "workshop_choice": "medsol",
+      "workshop_payment_status": "unpaid",
+      "count": "3",
+      "has_invoice": "0"
+    }
+  ],
+  "messages": [],
+  "stdout": "type\tworkshop_choice\tworkshop_payment_status\tcount\thas_invoice\nNAWAH/MARC/MEDSOL workshops\tnawah\tunpaid\t1\t0\nNAWAH/MARC/MEDSOL workshops\tmedsol\tunpaid\t3\t0\n",
+  "stderr": "",
+  "execution_time_ms": 1641
+}

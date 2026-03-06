@@ -608,6 +608,18 @@ export default function Attendance() {
                             by: "AI بالعربي",
                             logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/QvdupTbEZQQzfgEz.jpeg",
                           },
+                          {
+                            value: "hvd_genomics",
+                            label: "Integrating Genomics and Proteomics in Modern Biopharmaceutical R&D",
+                            labelAr: "دمج الجينوميكس والبروتيوميكس في أبحاث وتطوير الأدوية الحيوية",
+                            desc: "Bridging Omics Technologies for Drug Discovery — Hands-on workshop on genomics & proteomics integration in biopharma.",
+                            descAr: "تقنيات الأوميكس لاكتشاف الأدوية — ورشة عملية على دمج الجينوميكس والبروتيوميكس في صناعة الأدوية الحيوية.",
+                            date: "April 9, 2026 | 1:00 – 4:00 PM",
+                            dateAr: "٩ أبريل ٢٠٢٦ | ١:٠٠ – ٤:٠٠ م",
+                            by: "HVD Life Sciences",
+                            logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/YRjsfUntYtoaKgRD.png",
+                            eligibility: "30 spots only | Certificate provided by HVD",
+                          },
                         ].map((ws) => (
                           <div
                             key={ws.value}
