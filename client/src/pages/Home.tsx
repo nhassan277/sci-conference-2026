@@ -1065,7 +1065,7 @@ export default function Home() {
                   {/* Header with logo */}
                   <div className="flex items-center justify-between flex-wrap gap-3">
                     <img
-                      src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/YRjsfUntYtoaKgRD.png"
+                      src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/ESKuXfyYxzvODpYL.png"
                       alt="HVD Life Sciences"
                       className="h-16 object-contain"
                     />
