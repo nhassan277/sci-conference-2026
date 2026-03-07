@@ -990,9 +990,17 @@ export default function Home() {
                 <div className="p-6 bg-gradient-to-r from-teal-50 to-cyan-50 border-2 border-teal-300 rounded-2xl space-y-4">
                   {/* Header */}
                   <div className="flex items-center justify-between flex-wrap gap-3">
-                    <div>
-                      <p className="text-2xl font-extrabold text-teal-900">EgcompBio</p>
-                      <p className="text-sm text-teal-700 font-medium">Egyptian Computational Biology</p>
+                    <div className="flex items-center gap-3">
+                      <img
+                        src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/VSqePLOAbshMxznI.png"
+                        alt="EG-CompBio"
+                        className="h-12 object-contain"
+                      />
+                      <img
+                        src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/snJavEQgcNAGfzLj.png"
+                        alt="GARN - German Arab Research Network"
+                        className="h-12 object-contain"
+                      />
                     </div>
                     <Badge className="bg-teal-100 text-teal-800 border-teal-300 text-xs">
                       Post-Conference | بعد المؤتمر
