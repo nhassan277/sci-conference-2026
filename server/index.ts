@@ -56,7 +56,7 @@ async function startServer() {
       const oauthServerUrl = process.env.OAUTH_SERVER_URL;
       const appId = process.env.VITE_APP_ID;
 
-      const tokenResponse = await fetch(`${oauthServerUrl}/token`, {
+      const tokenResponse = await fetch(`${oauthServerUrl}/v1/auth/token`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -66,15 +66,16 @@ async function startServer() {
         }),
       });
 
-      if (!tokenResponse.ok) {
-        throw new Error("Failed to exchange code for token");
+      const tokenData = await tokenResponse.json();
+      if (!tokenResponse.ok || tokenData.error) {
+        console.error("Token exchange error:", tokenData);
+        throw new Error(`Failed to exchange code for token: ${tokenData.error_description || tokenData.error || tokenResponse.status}`);
       }
 
-      const tokenData = await tokenResponse.json();
-      const { accessToken } = tokenData;
+      const accessToken = tokenData.accessToken || tokenData.access_token;
 
       // Get user info
-      const userResponse = await fetch(`${oauthServerUrl}/userinfo`, {
+      const userResponse = await fetch(`${oauthServerUrl}/v1/auth/userinfo`, {
         headers: { Authorization: `Bearer ${accessToken}` },
       });
 
@@ -184,8 +185,8 @@ async function startServer() {
       router: appRouter,
       createContext: ({ req }: { req: AuthRequest }) => {
         const token = req.cookies?.auth_token;
-        const user = token ? verifyToken(token) : null;
-        return { user, req };
+        const user = token ? verifyToken(token) : undefined;
+        return { user: user ?? undefined, req };
       },
     })
   );

@@ -1,7 +1,7 @@
 import cron from "node-cron";
 import { db } from "./db.js";
 import { reminderSubscriptions } from "../drizzle/schema.js";
-import { eq } from "drizzle-orm";
+import { eq, and } from "drizzle-orm";
 // Import notifyOwner from email.ts where it's defined
 async function notifyOwner(data: { title: string; content: string }): Promise<boolean> {
   console.log("[Notification]", data.title);
@@ -35,8 +35,7 @@ async function sendConferenceReminders() {
     const subscriptions = await db
       .select()
       .from(reminderSubscriptions)
-      .where(eq(reminderSubscriptions.reminderSent, false))
-      .where(eq(reminderSubscriptions.unsubscribed, false));
+      .where(and(eq(reminderSubscriptions.reminderSent, false), eq(reminderSubscriptions.unsubscribed, false)));
 
     console.log(`[Reminder Scheduler] Found ${subscriptions.length} subscriptions to send reminders to`);
 

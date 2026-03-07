@@ -721,7 +721,7 @@ export const appRouter = router({
     // Lookup registration by ID (from QR code scan)
     lookup: adminProcedure
       .input(z.object({ registrationId: z.number() }))
-      .query(async ({ input }) => {
+      .mutation(async ({ input }) => {
         const [registration] = await db
           .select()
           .from(registrations)

@@ -1,0 +1,19 @@
+{
+  "query": "SELECT * FROM admins LIMIT 10;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT * FROM admins LIMIT 10;",
+  "rows": [
+    {
+      "id": "1",
+      "open_id": "Btow8urowKxdc3eQC9KNxc",
+      "email": "nourhan@example.com",
+      "name": "Nourhan Hassan",
+      "role": "super_admin",
+      "created_at": "2026-01-20 00:15:44",
+      "created_by": "NULL"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\topen_id\temail\tname\trole\tcreated_at\tcreated_by\n1\tBtow8urowKxdc3eQC9KNxc\tnourhan@example.com\tNourhan Hassan\tsuper_admin\t2026-01-20 00:15:44\tNULL\n",
+  "stderr": "",
+  "execution_time_ms": 1561
+}

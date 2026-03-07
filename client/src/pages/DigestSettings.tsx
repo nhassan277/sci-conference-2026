@@ -28,21 +28,25 @@ export default function DigestSettings() {
   }, [authLoading, isAuthenticated]);
 
   // Fetch current preferences
-  const { data: preferences, isLoading: prefsLoading, refetch } = trpc.digest.getPreferences.useQuery(
+  const { data: preferences, isLoading: prefsLoading, refetch, error: prefsError } = trpc.digest.getPreferences.useQuery(
     undefined,
     {
       enabled: isAuthenticated,
       retry: false,
-      onError: (error) => {
-        if (error.message.includes("FORBIDDEN") || error.message.includes("10002")) {
-          toast.error("Access Denied", {
-            description: "You do not have permission to access this page.",
-          });
-          navigate("/");
-        }
-      },
     }
   );
+
+  // Handle preferences error
+  useEffect(() => {
+    if (prefsError) {
+      if (prefsError.message.includes("FORBIDDEN") || prefsError.message.includes("10002")) {
+        toast.error("Access Denied", {
+          description: "You do not have permission to access this page.",
+        });
+        navigate("/");
+      }
+    }
+  }, [prefsError]);
 
   // Load preferences when data is available
   useEffect(() => {

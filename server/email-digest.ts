@@ -489,8 +489,8 @@ export async function sendDigestEmail(
   try {
     // TODO: Use the built-in notification system to send email
     // For now, just log that we would send the digest
-    console.log(`[Email Digest] Would send ${periodLabel} digest to ${recipient.email}`);
-    console.log(`[Email Digest] Digest contains ${data.totalRegistrations} total registrations, ${data.newRegistrations} new`);
+    console.log(`[Email Digest] Would send ${periodLabel} digest to ${email}`);
+    console.log(`[Email Digest] Digest contains ${metrics.totalRegistrations} total registrations, ${metrics.newRegistrations} new`);
     
     return true;
   } catch (error) {

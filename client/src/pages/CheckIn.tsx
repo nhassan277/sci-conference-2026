@@ -67,7 +67,7 @@ export default function CheckIn() {
       codeReader = new BrowserMultiFormatReader();
 
       codeReader
-        .decodeFromVideoDevice(undefined, videoRef.current, (result, error) => {
+        .decodeFromVideoDevice(null, videoRef.current, (result, error) => {
           if (result) {
             const text = result.getText();
             const registrationId = parseInt(text, 10);
