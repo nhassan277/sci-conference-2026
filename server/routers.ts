@@ -2999,15 +2999,18 @@ export const appRouter = router({
               We are pleased to confirm your registration for the <strong>1st Annual Conference of the Faculty of Science, Cairo University — SCI 2026</strong>, taking place on <strong>April 7–8, 2026</strong> at the University Hostel, Cairo University.
             </p>
             <p style="margin:0 0 16px;color:#374151;font-size:15px;line-height:1.7">
-              To complete your registration and secure your certificate, please send a soft copy (scan or clear photo) of your <strong>certificate payment receipt (100 EGP)</strong> to the following email address by <strong>April 1, 2026</strong>:
+              To complete your registration and secure your certificate, please pay the <strong>certificate fee (100 EGP)</strong> using one of the methods below, then send a soft copy (scan or clear photo) of your payment receipt to <strong>sci.conf.2026@gmail.com</strong> by <strong>April 1, 2026</strong>:
             </p>
 
-            <!-- Invoice CTA box -->
+            <!-- Payment methods box -->
             <table width="100%" cellpadding="0" cellspacing="0" style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;margin:0 0 24px">
               <tr>
                 <td style="padding:18px 24px">
-                  <p style="margin:0 0 6px;color:#1e40af;font-size:14px;font-weight:700">📧 Send your invoice to:</p>
-                  <p style="margin:0;color:#1d4ed8;font-size:16px;font-weight:700">sci.conf.2026@gmail.com</p>
+                  <p style="margin:0 0 12px;color:#1e40af;font-size:14px;font-weight:700">💳 Payment Methods (choose one):</p>
+                  <p style="margin:0 0 2px;color:#374151;font-size:13px;font-weight:600">Option 1 — InstaPay Transfer:</p>
+                  <p style="margin:0 0 12px;color:#1d4ed8;font-size:16px;font-weight:700">9450882167 (CBE)</p>
+                  <p style="margin:0 0 2px;color:#374151;font-size:13px;font-weight:600">Option 2 — Send receipt by email:</p>
+                  <p style="margin:0 0 12px;color:#1d4ed8;font-size:16px;font-weight:700">sci.conf.2026@gmail.com</p>
                   <p style="margin:8px 0 0;color:#374151;font-size:13px">Subject line: <em>Invoice – [Your Full Name] – SCI 2026</em></p>
                   <p style="margin:6px 0 0;color:#dc2626;font-size:13px;font-weight:600">⏰ Deadline: April 1, 2026</p>
                 </td>
@@ -3030,13 +3033,16 @@ export const appRouter = router({
                 يسعدنا تأكيد تسجيلك في <strong>المؤتمر السنوي الأول لكلية العلوم، جامعة القاهرة — SCI 2026</strong>، المقرر انعقاده في <strong>7–8 أبريل 2026</strong> بمدينة الضيافة، جامعة القاهرة.
               </p>
               <p style="margin:0 0 16px;color:#374151;font-size:15px;line-height:1.8">
-                لاستكمال تسجيلك والحصول على شهادة المشاركة، يُرجى إرسال صورة (سكان أو صورة واضحة) من <strong>إيصال سداد رسوم الشهادة (100 جنيه مصري)</strong> إلى البريد الإلكتروني التالي في موعد أقصاه <strong>1 أبريل 2026</strong>:
+                لاستكمال تسجيلك والحصول على شهادة المشاركة، يُرجى سداد <strong>رسوم الشهادة (100 جنيه مصري)</strong> بإحدى الطريقتين التاليتين، ثم إرسال صورة الإيصال إلى <strong>sci.conf.2026@gmail.com</strong> في موعد أقصاه <strong>1 أبريل 2026</strong>:
               </p>
               <table width="100%" cellpadding="0" cellspacing="0" style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;margin:0 0 20px">
                 <tr>
                   <td style="padding:18px 24px">
-                    <p style="margin:0 0 6px;color:#1e40af;font-size:14px;font-weight:700">📧 أرسل الإيصال إلى:</p>
-                    <p style="margin:0;color:#1d4ed8;font-size:16px;font-weight:700">sci.conf.2026@gmail.com</p>
+                    <p style="margin:0 0 12px;color:#1e40af;font-size:14px;font-weight:700">💳 طرق الدفع (اختر إحداهما):</p>
+                    <p style="margin:0 0 2px;color:#374151;font-size:13px;font-weight:600">الطريقة الأولى — التحويل عبر InstaPay:</p>
+                    <p style="margin:0 0 12px;color:#1d4ed8;font-size:16px;font-weight:700">9450882167 (البنك المركزي)</p>
+                    <p style="margin:0 0 2px;color:#374151;font-size:13px;font-weight:600">الطريقة الثانية — إرسال الإيصال بالبريد الإلكتروني:</p>
+                    <p style="margin:0 0 12px;color:#1d4ed8;font-size:16px;font-weight:700">sci.conf.2026@gmail.com</p>
                     <p style="margin:8px 0 0;color:#374151;font-size:13px">موضوع الرسالة: <em>إيصال – [اسمك الكامل] – SCI 2026</em></p>
                     <p style="margin:6px 0 0;color:#dc2626;font-size:13px;font-weight:600">⏰ الموعد النهائي: 1 أبريل 2026</p>
                   </td>
