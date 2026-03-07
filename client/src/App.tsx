@@ -29,6 +29,8 @@ import CommitteeManagement from "./pages/admin/CommitteeManagement";
 import KeynoteSpeakersManagement from "./pages/admin/KeynoteSpeakersManagement";
 import VolunteerRegistration from "./pages/VolunteerRegistration";
 import VolunteerManagement from "./pages/admin/VolunteerManagement";
+import AnnouncementsManagement from "./pages/admin/AnnouncementsManagement";
+import AnnouncementBanner from "./components/AnnouncementBanner";
 // import LiveGallery from "./pages/LiveGallery";
 // import GalleryUpload from "./pages/GalleryUpload";
 
@@ -60,6 +62,7 @@ function Router() {
       <Route path={"/admin/speakers"} component={KeynoteSpeakersManagement} />
       <Route path={"/volunteer"} component={VolunteerRegistration} />
       <Route path={"/admin/volunteers"} component={VolunteerManagement} />
+      <Route path={"/admin/announcements"} component={AnnouncementsManagement} />
       {/* <Route path={"/ live-gallery"} component={LiveGallery} /> */}
       {/* <Route path={"/gallery-upload"} component={GalleryUpload} /> */}
       <Route path={"/404"} component={NotFound} />
@@ -84,6 +87,7 @@ function App() {
         <UserProvider>
           <TooltipProvider>
             <Toaster />
+            <AnnouncementBanner />
             <Router />
           </TooltipProvider>
         </UserProvider>

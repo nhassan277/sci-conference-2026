@@ -1,0 +1,9 @@
+{
+  "query": "CREATE TABLE IF NOT EXISTS `announcements` (\n  `id` int AUTO_INCREMENT NOT NULL,\n  `message` text NOT NULL,\n  `message_ar` text,\n  `type` varchar(20) NOT NULL DEFAULT 'info',\n  `is_active` boolean NOT NULL DEFAULT true,\n  `link` varchar(500),\n  `link_text` varchar(100),\n  `created_by` varchar(255) NOT NULL,\n  `created_by_name` varchar(255) NOT NULL,\n  `created_at` timestamp NOT NULL DEFAULT (now()),\n  `updated_at` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,\n  CONSTRAINT `announcements_id` PRIMARY KEY(`id`)\n);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute CREATE TABLE IF NOT EXISTS `announcements` (\n  `id` int AUTO_INCREMENT NOT NULL,\n  `message` text NOT NULL,\n  `message_ar` text,\n  `type` varchar(20) NOT NULL DEFAULT 'info',\n  `is_active` boolean NOT NULL DEFAULT true,\n  `link` varchar(500),\n  `link_text` varchar(100),\n  `created_by` varchar(255) NOT NULL,\n  `created_by_name` varchar(255) NOT NULL,\n  `created_at` timestamp NOT NULL DEFAULT (now()),\n  `updated_at` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,\n  CONSTRAINT `announcements_id` PRIMARY KEY(`id`)\n);",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 2040
+}

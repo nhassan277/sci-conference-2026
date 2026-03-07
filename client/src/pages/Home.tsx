@@ -166,11 +166,11 @@ export default function Home() {
         <div className="container flex flex-col sm:flex-row items-center justify-center gap-2 text-center">
           <span className="text-lg font-bold animate-pulse">⚠️</span>
           <p className="font-semibold text-sm sm:text-base">
-            Abstract Submission Deadline: <span className="font-extrabold underline">March 7, 2026</span> — Only 5 days left! Submit your abstract now.
+            Abstract Submission Deadline: <span className="font-extrabold underline">March 9, 2026</span> — Deadline Extended! Submit your abstract now.
           </p>
           <span className="hidden sm:inline text-red-200">|</span>
           <p className="font-semibold text-sm sm:text-base" dir="rtl">
-            الموعد النهائي لتقديم الملخصات: <span className="font-extrabold underline">7 مارس 2026</span> — 5 أيام فقط!
+            الموعد النهائي لتقديم الملخصات: <span className="font-extrabold underline">9 مارس 2026</span> — تم تمديد الموعد!
           </p>
           <a href="#registration" className="ml-2 bg-white text-red-600 font-bold text-xs px-3 py-1 rounded-full hover:bg-red-50 transition-colors whitespace-nowrap">
             Register Now →
@@ -1065,7 +1065,7 @@ export default function Home() {
                   {/* Header with logo */}
                   <div className="flex items-center justify-between flex-wrap gap-3">
                     <img
-                      src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/ESKuXfyYxzvODpYL.png"
+                      src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/NlYUUYlTeGQwRRXp.png"
                       alt="HVD Life Sciences"
                       className="h-16 object-contain"
                     />

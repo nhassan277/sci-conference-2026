@@ -617,7 +617,7 @@ export default function Attendance() {
                             date: "April 9, 2026 | 1:00 – 4:00 PM",
                             dateAr: "٩ أبريل ٢٠٢٦ | ١:٠٠ – ٤:٠٠ م",
                             by: "HVD Life Sciences",
-                            logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/ESKuXfyYxzvODpYL.png",
+                            logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/NlYUUYlTeGQwRRXp.png",
                             eligibility: "30 spots only | Certificate provided by HVD",
                           },
                         ].map((ws) => (

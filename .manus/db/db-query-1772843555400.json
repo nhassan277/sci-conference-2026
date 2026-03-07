@@ -1,0 +1,9 @@
+{
+  "query": "INSERT INTO announcements (message, message_ar, type, is_active, link, link_text, created_by, created_by_name)\nVALUES (\n  'Abstract submission deadline extended to March 9, 2026 — Deadline Extended! Submit your abstract now.',\n  'تم تمديد الموعد النهائي لتقديم الملخصات إلى 9 مارس 2026 — سارع بتقديم ملخصك الآن!',\n  'urgent',\n  true,\n  '/attendance',\n  'Register Now',\n  'system',\n  'Conference Admin'\n);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute INSERT INTO announcements (message, message_ar, type, is_active, link, link_text, created_by, created_by_name)\nVALUES (\n  'Abstract submission deadline extended to March 9, 2026 — Deadline Extended! Submit your abstract now.',\n  'تم تمديد الموعد النهائي لتقديم الملخصات إلى 9 مارس 2026 — سارع بتقديم ملخصك الآن!',\n  'urgent',\n  true,\n  '/attendance',\n  'Register Now',\n  'system',\n  'Conference Admin'\n);",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 1512
+}

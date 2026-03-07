@@ -406,3 +406,21 @@ export const keynoteSpeakers = mysqlTable("keynote_speakers", {
 
 export type KeynoteSpeaker = typeof keynoteSpeakers.$inferSelect;
 export type NewKeynoteSpeaker = typeof keynoteSpeakers.$inferInsert;
+
+// Site Announcements (admin-controlled banner notifications)
+export const announcements = mysqlTable("announcements", {
+  id: int("id").primaryKey().autoincrement(),
+  message: text("message").notNull(),
+  messageAr: text("message_ar"), // Arabic translation
+  type: varchar("type", { length: 20 }).notNull().default("info"), // info, warning, success, urgent
+  isActive: boolean("is_active").default(true).notNull(),
+  link: varchar("link", { length: 500 }), // optional CTA link
+  linkText: varchar("link_text", { length: 100 }), // optional CTA button text
+  createdBy: varchar("created_by", { length: 255 }).notNull(), // admin openId
+  createdByName: varchar("created_by_name", { length: 255 }).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Announcement = typeof announcements.$inferSelect;
+export type NewAnnouncement = typeof announcements.$inferInsert;

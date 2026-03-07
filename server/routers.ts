@@ -3,7 +3,7 @@ import { z } from "zod";
 import { eq, desc, sql, and } from "drizzle-orm";
 import superjson from "superjson";
 import { db } from "./db.js";
-import { registrations, sponsorships, sessions, supportTickets, admins, auditLogs, reminderSubscriptions, galleryPhotos, newsletterSubscriptions, googleSheetsSyncs, mediaRegistrations, committees, keynoteSpeakers, volunteers, surveys, surveyResponses } from "../drizzle/schema.js";
+import { registrations, sponsorships, sessions, supportTickets, admins, auditLogs, reminderSubscriptions, galleryPhotos, newsletterSubscriptions, googleSheetsSyncs, mediaRegistrations, committees, keynoteSpeakers, volunteers, surveys, surveyResponses, announcements } from "../drizzle/schema.js";
 import { syncAllSheets, SHEETS_CONFIG, type SheetCategory } from "./googleSheets.js";
 import { verifyToken, isOwner } from "./auth.js";
 import { logAuditAction, getIpAddress, getUserAgent } from "./audit.js";
@@ -2729,6 +2729,397 @@ export const appRouter = router({
         });
 
         return { success: true };
+      }),
+  }),
+
+  // Announcements router
+  announcements: router({
+    // Public: get all active announcements
+    getActive: publicProcedure.query(async () => {
+      const activeAnnouncements = await db
+        .select()
+        .from(announcements)
+        .where(eq(announcements.isActive, true))
+        .orderBy(desc(announcements.createdAt));
+      return activeAnnouncements;
+    }),
+
+    // Admin: get all announcements
+    getAll: adminProcedure.query(async () => {
+      return await db.select().from(announcements).orderBy(desc(announcements.createdAt));
+    }),
+
+    // Admin: create announcement
+    create: adminProcedure
+      .input(z.object({
+        message: z.string().min(1).max(500),
+        messageAr: z.string().max(500).optional(),
+        type: z.enum(["info", "warning", "success", "urgent"]).default("info"),
+        isActive: z.boolean().default(true),
+        link: z.string().url().optional().or(z.literal("")),
+        linkText: z.string().max(100).optional(),
+      }))
+      .mutation(async ({ ctx, input }) => {
+        const admin = await getAdminByOpenId(ctx.user!.openId);
+        const result = await db.insert(announcements).values({
+          message: input.message,
+          messageAr: input.messageAr || null,
+          type: input.type,
+          isActive: input.isActive,
+          link: input.link || null,
+          linkText: input.linkText || null,
+          createdBy: ctx.user!.openId,
+          createdByName: admin?.name || ctx.user!.name || "Admin",
+        });
+        return { success: true, id: Number(result[0].insertId) };
+      }),
+
+    // Admin: update announcement
+    update: adminProcedure
+      .input(z.object({
+        id: z.number(),
+        message: z.string().min(1).max(500).optional(),
+        messageAr: z.string().max(500).optional().nullable(),
+        type: z.enum(["info", "warning", "success", "urgent"]).optional(),
+        isActive: z.boolean().optional(),
+        link: z.string().optional().nullable(),
+        linkText: z.string().max(100).optional().nullable(),
+      }))
+      .mutation(async ({ input }) => {
+        const { id, ...updates } = input;
+        await db.update(announcements).set(updates).where(eq(announcements.id, id));
+        return { success: true };
+      }),
+
+    // Admin: toggle active status
+    toggleActive: adminProcedure
+      .input(z.object({ id: z.number(), isActive: z.boolean() }))
+      .mutation(async ({ input }) => {
+        await db.update(announcements).set({ isActive: input.isActive }).where(eq(announcements.id, input.id));
+        return { success: true };
+      }),
+
+    // Admin: delete announcement
+    delete: adminProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input }) => {
+        await db.delete(announcements).where(eq(announcements.id, input.id));
+        return { success: true };
+      }),
+
+    // Admin: send announcement email to all registrants
+    sendToRegistrants: adminProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input }) => {
+        // Get the announcement
+        const [announcement] = await db
+          .select()
+          .from(announcements)
+          .where(eq(announcements.id, input.id))
+          .limit(1);
+        if (!announcement) throw new TRPCError({ code: "NOT_FOUND", message: "Announcement not found" });
+
+        // Get all registrant emails (distinct, non-null)
+        const allRegistrants = await db
+          .select({ email: registrations.email, name: registrations.fullNameEnglish })
+          .from(registrations);
+
+        const uniqueEmails = Array.from(
+          new Map(allRegistrants.filter(r => r.email).map(r => [r.email, r])).values()
+        );
+
+        if (uniqueEmails.length === 0) {
+          return { success: true, sent: 0, failed: 0, message: "No registrants found" };
+        }
+
+        const RESEND_API_KEY = process.env.RESEND_API_KEY;
+        if (!RESEND_API_KEY) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Email service not configured" });
+
+        const typeColors: Record<string, string> = {
+          info: "#2563eb",
+          warning: "#d97706",
+          success: "#16a34a",
+          urgent: "#dc2626",
+        };
+        const accentColor = typeColors[announcement.type] || "#2563eb";
+
+        let sent = 0;
+        let failed = 0;
+
+        // Send in batches of 10 to avoid rate limits
+        const BATCH_SIZE = 10;
+        for (let i = 0; i < uniqueEmails.length; i += BATCH_SIZE) {
+          const batch = uniqueEmails.slice(i, i + BATCH_SIZE);
+          await Promise.all(batch.map(async (registrant) => {
+            const htmlBody = `
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#f8fafc;font-family:Arial,sans-serif">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f8fafc;padding:32px 0">
+    <tr><td align="center">
+      <table width="600" cellpadding="0" cellspacing="0" style="background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08)">
+        <tr><td style="background:${accentColor};padding:24px 32px">
+          <h1 style="margin:0;color:#fff;font-size:22px;font-weight:700">SCI 2026 — Conference Announcement</h1>
+          <p style="margin:4px 0 0;color:rgba(255,255,255,.85);font-size:14px">Science at the Core of Innovation | Faculty of Science, Cairo University</p>
+        </td></tr>
+        <tr><td style="padding:32px">
+          <p style="margin:0 0 16px;color:#374151;font-size:16px;line-height:1.6">${announcement.message}</p>
+          ${announcement.messageAr ? `<p style="margin:0 0 16px;color:#374151;font-size:16px;line-height:1.6;direction:rtl;text-align:right">${announcement.messageAr}</p>` : ""}
+          ${announcement.link ? `<p style="margin:24px 0 0"><a href="${announcement.link}" style="background:${accentColor};color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px">${announcement.linkText || "Learn More"}</a></p>` : ""}
+        </td></tr>
+        <tr><td style="background:#f1f5f9;padding:20px 32px;border-top:1px solid #e2e8f0">
+          <p style="margin:0;color:#64748b;font-size:12px">You are receiving this email because you registered for SCI 2026. Conference: April 7-8, 2026 | Cairo University, Faculty of Science.</p>
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>`;
+
+            try {
+              const res = await fetch("https://api.resend.com/emails", {
+                method: "POST",
+                headers: {
+                  "Authorization": `Bearer ${RESEND_API_KEY}`,
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  from: "SCI 2026 <onboarding@resend.dev>",
+                  to: [registrant.email],
+                  subject: `[SCI 2026] ${announcement.message.slice(0, 80)}${announcement.message.length > 80 ? "..." : ""}`,
+                  html: htmlBody,
+                }),
+              });
+              const data = await res.json() as { id?: string; statusCode?: number; message?: string };
+              if (data.id) {
+                sent++;
+              } else {
+                console.error(`[Announcement Email] Failed to send to ${registrant.email}:`, data);
+                failed++;
+              }
+            } catch (err) {
+              console.error(`[Announcement Email] Error sending to ${registrant.email}:`, err);
+              failed++;
+            }
+          }));
+          // Small delay between batches
+          if (i + BATCH_SIZE < uniqueEmails.length) {
+            await new Promise(resolve => setTimeout(resolve, 500));
+          }
+        }
+
+        // Log the send action
+        await db.insert(auditLogs).values({
+          adminEmail: "system",
+          action: "announcement_email_sent",
+          resourceType: "announcement",
+          resourceId: announcement.id,
+          details: `Announcement #${announcement.id} sent to ${sent} registrants (${failed} failed): "${announcement.message.slice(0, 100)}"`
+        });
+
+        return {
+          success: true,
+          sent,
+          failed,
+          total: uniqueEmails.length,
+          message: `Email sent to ${sent} of ${uniqueEmails.length} registrants${failed > 0 ? ` (${failed} failed)` : ""}`,
+        };
+      }),
+
+    // Admin: send attendance confirmation + invoice request email to all registrants
+    sendAttendanceConfirmation: adminProcedure
+      .mutation(async () => {
+        // Get all registrants with their details
+        const allRegistrants = await db
+          .select({
+            email: registrations.email,
+            nameEn: registrations.fullNameEnglish,
+            nameAr: registrations.fullNameArabic,
+            participationType: registrations.participationType,
+            attendeeCategory: registrations.attendeeCategory,
+          })
+          .from(registrations);
+
+        const uniqueRegistrants = Array.from(
+          new Map(allRegistrants.filter(r => r.email).map(r => [r.email, r])).values()
+        );
+
+        if (uniqueRegistrants.length === 0) {
+          return { success: true, sent: 0, failed: 0, message: "No registrants found" };
+        }
+
+        const RESEND_API_KEY = process.env.RESEND_API_KEY;
+        if (!RESEND_API_KEY) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Email service not configured" });
+
+        let sent = 0;
+        let failed = 0;
+
+        const BATCH_SIZE = 10;
+        for (let i = 0; i < uniqueRegistrants.length; i += BATCH_SIZE) {
+          const batch = uniqueRegistrants.slice(i, i + BATCH_SIZE);
+          await Promise.all(batch.map(async (reg) => {
+            const firstName = reg.nameEn?.split(" ")[0] || "Participant";
+
+            const htmlBody = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SCI 2026 – Attendance Confirmation</title>
+</head>
+<body style="margin:0;padding:0;background:#f0f4f8;font-family:Arial,Helvetica,sans-serif">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f0f4f8;padding:32px 16px">
+    <tr><td align="center">
+      <table width="620" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.10)">
+
+        <!-- Header -->
+        <tr>
+          <td style="background:linear-gradient(135deg,#1a3a6b 0%,#2563eb 100%);padding:28px 36px">
+            <table width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td>
+                  <h1 style="margin:0;color:#ffffff;font-size:22px;font-weight:700;letter-spacing:-0.3px">SCI 2026 — Attendance Confirmation</h1>
+                  <p style="margin:6px 0 0;color:rgba(255,255,255,.80);font-size:13px">Science at the Core of Innovation | April 7–8, 2026</p>
+                  <p style="margin:2px 0 0;color:rgba(255,255,255,.70);font-size:12px">Faculty of Science, Cairo University</p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Body -->
+        <tr>
+          <td style="padding:32px 36px">
+
+            <!-- English section -->
+            <p style="margin:0 0 12px;color:#1e3a5f;font-size:16px;font-weight:600">Dear ${firstName},</p>
+            <p style="margin:0 0 16px;color:#374151;font-size:15px;line-height:1.7">
+              We are pleased to confirm your registration for the <strong>1st Annual Conference of the Faculty of Science, Cairo University — SCI 2026</strong>, taking place on <strong>April 7–8, 2026</strong> at the University Hostel, Cairo University.
+            </p>
+            <p style="margin:0 0 16px;color:#374151;font-size:15px;line-height:1.7">
+              To complete your registration and secure your certificate, please send a soft copy (scan or clear photo) of your <strong>certificate payment receipt (100 EGP)</strong> to the following email address by <strong>April 1, 2026</strong>:
+            </p>
+
+            <!-- Invoice CTA box -->
+            <table width="100%" cellpadding="0" cellspacing="0" style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;margin:0 0 24px">
+              <tr>
+                <td style="padding:18px 24px">
+                  <p style="margin:0 0 6px;color:#1e40af;font-size:14px;font-weight:700">📧 Send your invoice to:</p>
+                  <p style="margin:0;color:#1d4ed8;font-size:16px;font-weight:700">sci.conf.2026@gmail.com</p>
+                  <p style="margin:8px 0 0;color:#374151;font-size:13px">Subject line: <em>Invoice – [Your Full Name] – SCI 2026</em></p>
+                  <p style="margin:6px 0 0;color:#dc2626;font-size:13px;font-weight:600">⏰ Deadline: April 1, 2026</p>
+                </td>
+              </tr>
+            </table>
+
+            <p style="margin:0 0 8px;color:#374151;font-size:14px;line-height:1.6">
+              If you have already submitted your payment receipt, please disregard this message.
+            </p>
+            <p style="margin:0 0 24px;color:#374151;font-size:14px;line-height:1.6">
+              For any inquiries, feel free to reply to this email or contact us at <a href="mailto:sci.conf.2026@gmail.com" style="color:#2563eb">sci.conf.2026@gmail.com</a>.
+            </p>
+
+            <hr style="border:none;border-top:1px solid #e5e7eb;margin:24px 0">
+
+            <!-- Arabic section -->
+            <div dir="rtl" style="text-align:right">
+              <p style="margin:0 0 12px;color:#1e3a5f;font-size:16px;font-weight:600">عزيزي/عزيزتي ${firstName}،</p>
+              <p style="margin:0 0 16px;color:#374151;font-size:15px;line-height:1.8">
+                يسعدنا تأكيد تسجيلك في <strong>المؤتمر السنوي الأول لكلية العلوم، جامعة القاهرة — SCI 2026</strong>، المقرر انعقاده في <strong>7–8 أبريل 2026</strong> بمدينة الضيافة، جامعة القاهرة.
+              </p>
+              <p style="margin:0 0 16px;color:#374151;font-size:15px;line-height:1.8">
+                لاستكمال تسجيلك والحصول على شهادة المشاركة، يُرجى إرسال صورة (سكان أو صورة واضحة) من <strong>إيصال سداد رسوم الشهادة (100 جنيه مصري)</strong> إلى البريد الإلكتروني التالي في موعد أقصاه <strong>1 أبريل 2026</strong>:
+              </p>
+              <table width="100%" cellpadding="0" cellspacing="0" style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;margin:0 0 20px">
+                <tr>
+                  <td style="padding:18px 24px">
+                    <p style="margin:0 0 6px;color:#1e40af;font-size:14px;font-weight:700">📧 أرسل الإيصال إلى:</p>
+                    <p style="margin:0;color:#1d4ed8;font-size:16px;font-weight:700">sci.conf.2026@gmail.com</p>
+                    <p style="margin:8px 0 0;color:#374151;font-size:13px">موضوع الرسالة: <em>إيصال – [اسمك الكامل] – SCI 2026</em></p>
+                    <p style="margin:6px 0 0;color:#dc2626;font-size:13px;font-weight:600">⏰ الموعد النهائي: 1 أبريل 2026</p>
+                  </td>
+                </tr>
+              </table>
+              <p style="margin:0 0 8px;color:#374151;font-size:14px;line-height:1.7">إذا كنت قد أرسلت الإيصال بالفعل، يُرجى تجاهل هذه الرسالة.</p>
+            </div>
+
+          </td>
+        </tr>
+
+        <!-- Footer -->
+        <tr>
+          <td style="background:#f1f5f9;padding:20px 36px;border-top:1px solid #e2e8f0">
+            <table width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td>
+                  <p style="margin:0 0 4px;color:#1e3a5f;font-size:13px;font-weight:600">SCI 2026 Organizing Committee</p>
+                  <p style="margin:0;color:#64748b;font-size:12px">Faculty of Science, Cairo University | April 7–8, 2026</p>
+                  <p style="margin:4px 0 0;color:#64748b;font-size:12px">
+                    <a href="https://sciconf26.website" style="color:#2563eb;text-decoration:none">sciconf26.website</a> &nbsp;|&nbsp;
+                    <a href="mailto:sci.conf.2026@gmail.com" style="color:#2563eb;text-decoration:none">sci.conf.2026@gmail.com</a>
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>`;
+
+            try {
+              const res = await fetch("https://api.resend.com/emails", {
+                method: "POST",
+                headers: {
+                  "Authorization": `Bearer ${RESEND_API_KEY}`,
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  from: "SCI 2026 Organizing Committee <onboarding@resend.dev>",
+                  to: [reg.email],
+                  reply_to: "sci.conf.2026@gmail.com",
+                  subject: "[SCI 2026] Attendance Confirmation & Certificate Invoice Request | تأكيد الحضور وطلب إيصال الشهادة",
+                  html: htmlBody,
+                }),
+              });
+              const data = await res.json() as { id?: string; statusCode?: number; message?: string };
+              if (data.id) {
+                sent++;
+              } else {
+                console.error(`[Confirmation Email] Failed to send to ${reg.email}:`, data);
+                failed++;
+              }
+            } catch (err) {
+              console.error(`[Confirmation Email] Error sending to ${reg.email}:`, err);
+              failed++;
+            }
+          }));
+          if (i + BATCH_SIZE < uniqueRegistrants.length) {
+            await new Promise(resolve => setTimeout(resolve, 500));
+          }
+        }
+
+        // Log the action
+        await db.insert(auditLogs).values({
+          adminEmail: "system",
+          action: "attendance_confirmation_sent",
+          resourceType: "registration",
+          resourceId: 0,
+          details: `Attendance confirmation + invoice request sent to ${sent} registrants (${failed} failed)`
+        });
+
+        return {
+          success: true,
+          sent,
+          failed,
+          total: uniqueRegistrants.length,
+          message: `Confirmation email sent to ${sent} of ${uniqueRegistrants.length} registrants${failed > 0 ? ` (${failed} failed)` : ""}`,
+        };
       }),
   }),
 });

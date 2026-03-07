@@ -10,9 +10,57 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { LogOut, Download, Users, Building2, TrendingUp, Search, Plus, Edit, Trash2, Calendar, Shield, FileText, Mail } from "lucide-react";
+import { LogOut, Download, Users, Building2, TrendingUp, Search, Plus, Edit, Trash2, Calendar, Shield, FileText, Mail, Megaphone, SendHorizonal, CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
 import { useNotifications } from "@/hooks/useNotifications";
+
+function ConfirmationEmailCard() {
+  const [confirmed, setConfirmed] = useState(false);
+  const sendConfirmation = trpc.announcements.sendAttendanceConfirmation.useMutation({
+    onSuccess: (data) => {
+      toast.success(`✅ ${data.message}`);
+      setConfirmed(true);
+    },
+    onError: (err) => {
+      toast.error(`Failed to send emails: ${err.message}`);
+    },
+  });
+
+  const handleSend = () => {
+    if (!window.confirm(
+      `This will send an attendance confirmation + certificate invoice request email to ALL registered participants.\n\nAre you sure you want to proceed?`
+    )) return;
+    sendConfirmation.mutate();
+  };
+
+  return (
+    <Card className="hover:shadow-md transition-shadow border-green-200">
+      <CardContent className="flex items-center justify-between gap-4 p-6">
+        <div className="flex items-center gap-4">
+          <div className="p-3 bg-green-100 rounded-lg">
+            {confirmed ? (
+              <CheckCircle2 className="w-6 h-6 text-green-600" />
+            ) : (
+              <SendHorizonal className="w-6 h-6 text-green-600" />
+            )}
+          </div>
+          <div>
+            <h3 className="font-semibold">Send Attendance Confirmation</h3>
+            <p className="text-sm text-muted-foreground">Email all registrants: confirm attendance + request certificate invoice</p>
+          </div>
+        </div>
+        <Button
+          onClick={handleSend}
+          disabled={sendConfirmation.isPending}
+          className="bg-green-600 hover:bg-green-700 text-white shrink-0"
+          size="sm"
+        >
+          {sendConfirmation.isPending ? "Sending..." : "Send to All"}
+        </Button>
+      </CardContent>
+    </Card>
+  );
+}
 
 export default function Admin() {
   const { user, loading: authLoading, logout, login, isAuthenticated, isAdmin } = useUser();
@@ -560,6 +608,21 @@ export default function Admin() {
               </div>
             </CardContent>
           </Card>
+
+          <Card className="cursor-pointer hover:shadow-md transition-shadow border-orange-200" onClick={() => window.location.href = '/admin/announcements'}>
+            <CardContent className="flex items-center gap-4 p-6">
+              <div className="p-3 bg-orange-100 rounded-lg">
+                <Megaphone className="w-6 h-6 text-orange-600" />
+              </div>
+              <div>
+                <h3 className="font-semibold">Announcements</h3>
+                <p className="text-sm text-muted-foreground">Manage site-wide announcement banners</p>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Send Attendance Confirmation Email */}
+          <ConfirmationEmailCard />
         </div>
 
         {/* Statistics Cards */}
