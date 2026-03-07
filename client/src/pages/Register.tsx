@@ -10,7 +10,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
-import { CheckCircle2, Loader2 } from "lucide-react";
+import { CheckCircle2, Loader2, CreditCard } from "lucide-react";
 
 const registrationSchema = z.object({
   fullNameEnglish: z.string().min(1, "English name is required"),
@@ -99,6 +99,45 @@ export default function Register() {
           <p className="text-muted-foreground mt-4">
             Science at the Core of Innovation (SCI 2026) | April 7-8, 2026
           </p>
+        </div>
+
+        {/* Payment Info Banner */}
+        <div className="mb-6 rounded-xl border-2 border-blue-200 bg-blue-50 p-5">
+          <div className="flex items-start gap-3">
+            <CreditCard className="mt-0.5 h-5 w-5 shrink-0 text-blue-600" />
+            <div className="flex-1">
+              <p className="mb-3 font-semibold text-blue-800">
+                💳 Certificate Fee Payment | رسوم الشهادة (100 EGP)
+              </p>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {/* English */}
+                <div className="rounded-lg bg-white p-3 shadow-sm">
+                  <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-blue-600">Option 1 — InstaPay Transfer</p>
+                  <p className="text-lg font-bold text-blue-800">9450882167</p>
+                  <p className="text-xs text-gray-500">CBE (Central Bank of Egypt)</p>
+                </div>
+                <div className="rounded-lg bg-white p-3 shadow-sm">
+                  <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-blue-600">Option 2 — Email Receipt</p>
+                  <p className="text-sm font-bold text-blue-800">sci.conf.2026@gmail.com</p>
+                  <p className="text-xs text-gray-500">Subject: Invoice – [Your Name] – SCI 2026</p>
+                </div>
+              </div>
+              {/* Arabic */}
+              <div className="mt-3 grid gap-3 sm:grid-cols-2" dir="rtl">
+                <div className="rounded-lg bg-white p-3 shadow-sm">
+                  <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-blue-600">الطريقة الأولى — التحويل عبر InstaPay</p>
+                  <p className="text-lg font-bold text-blue-800">9450882167</p>
+                  <p className="text-xs text-gray-500">البنك المركزي المصري (CBE)</p>
+                </div>
+                <div className="rounded-lg bg-white p-3 shadow-sm">
+                  <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-blue-600">الطريقة الثانية — إرسال الإيصال بالبريد</p>
+                  <p className="text-sm font-bold text-blue-800">sci.conf.2026@gmail.com</p>
+                  <p className="text-xs text-gray-500">الموضوع: إيصال – [اسمك الكامل] – SCI 2026</p>
+                </div>
+              </div>
+              <p className="mt-3 text-xs text-red-600 font-medium">⏰ Deadline / الموعد النهائي: April 1, 2026 | 1 أبريل 2026</p>
+            </div>
+          </div>
         </div>
 
         <Card className="border-2">
