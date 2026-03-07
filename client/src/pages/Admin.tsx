@@ -72,47 +72,11 @@ export default function Admin() {
   // Real-time notifications
   const { notifications, isConnected } = useNotifications();
 
-  // Redirect if not admin
-  if (!authLoading && (!isAuthenticated || !isAdmin)) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-primary/5 to-white">
-        <Card className="w-full max-w-md">
-          <CardHeader>
-            <CardTitle>Admin Access Required</CardTitle>
-            <CardDescription>
-              You need admin privileges to access this page.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            {!isAuthenticated ? (
-              <>
-                <p className="text-sm text-muted-foreground">
-                  Please log in with an admin account to continue.
-                </p>
-                <Button onClick={login} className="w-full">
-                  Log In
-                </Button>
-              </>
-            ) : (
-              <>
-                <p className="text-sm text-muted-foreground">
-                  Your account does not have admin privileges. Please contact the system administrator.
-                </p>
-                <Button onClick={logout} variant="outline" className="w-full">
-                  Log Out
-                </Button>
-              </>
-            )}
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
-
-  const { data: registrations, isLoading: loadingRegistrations } = trpc.registration.list.useQuery();
-  const { data: sponsorships, isLoading: loadingSponsorships } = trpc.sponsorship.list.useQuery();
-  const { data: sessions, isLoading: loadingSessions, refetch: refetchSessions } = trpc.session.list.useQuery();
-  const { data: supportTickets, isLoading: loadingTickets, refetch: refetchTickets } = trpc.supportTicket.list.useQuery();
+  // All hooks must be called before any conditional returns (Rules of Hooks)
+  const { data: registrations, isLoading: loadingRegistrations } = trpc.registration.list.useQuery(undefined, { enabled: isAuthenticated && isAdmin });
+  const { data: sponsorships, isLoading: loadingSponsorships } = trpc.sponsorship.list.useQuery(undefined, { enabled: isAuthenticated && isAdmin });
+  const { data: sessions, isLoading: loadingSessions, refetch: refetchSessions } = trpc.session.list.useQuery(undefined, { enabled: isAuthenticated && isAdmin });
+  const { data: supportTickets, isLoading: loadingTickets, refetch: refetchTickets } = trpc.supportTicket.list.useQuery(undefined, { enabled: isAuthenticated && isAdmin });
 
   const [selectedTicket, setSelectedTicket] = useState<any>(null);
   const [ticketResponse, setTicketResponse] = useState("");
@@ -546,6 +510,54 @@ export default function Admin() {
       bronze: sponsorships?.filter((s) => s.packageType === "bronze").length || 0,
     },
   };
+
+  // Auth guard - show login screen if not authenticated/admin
+  if (!authLoading && (!isAuthenticated || !isAdmin)) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-primary/5 to-white">
+        <Card className="w-full max-w-md">
+          <CardHeader>
+            <CardTitle>Admin Access Required</CardTitle>
+            <CardDescription>
+              You need admin privileges to access this page.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {!isAuthenticated ? (
+              <>
+                <p className="text-sm text-muted-foreground">
+                  Please log in with an admin account to continue.
+                </p>
+                <Button onClick={login} className="w-full">
+                  Log In
+                </Button>
+              </>
+            ) : (
+              <>
+                <p className="text-sm text-muted-foreground">
+                  Your account does not have admin privileges. Please contact the system administrator.
+                </p>
+                <Button onClick={logout} variant="outline" className="w-full">
+                  Log Out
+                </Button>
+              </>
+            )}
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  if (authLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-muted-foreground">Loading...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-primary/5 to-white">
