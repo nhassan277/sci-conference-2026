@@ -118,7 +118,7 @@ export default function Register() {
                 </div>
                 <div className="rounded-lg bg-white p-3 shadow-sm">
                   <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-blue-600">Option 2 — Email Receipt</p>
-                  <p className="text-sm font-bold text-blue-800">sci.conf.2026@gmail.com</p>
+                  <p className="text-sm font-bold text-blue-800">science.faculty.conference2026@gmail.com</p>
                   <p className="text-xs text-gray-500">Subject: Invoice – [Your Name] – SCI 2026</p>
                 </div>
               </div>
@@ -131,7 +131,7 @@ export default function Register() {
                 </div>
                 <div className="rounded-lg bg-white p-3 shadow-sm">
                   <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-blue-600">الطريقة الثانية — إرسال الإيصال بالبريد</p>
-                  <p className="text-sm font-bold text-blue-800">sci.conf.2026@gmail.com</p>
+                  <p className="text-sm font-bold text-blue-800">science.faculty.conference2026@gmail.com</p>
                   <p className="text-xs text-gray-500">الموضوع: إيصال – [اسمك الكامل] – SCI 2026</p>
                 </div>
               </div>

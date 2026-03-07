@@ -2999,7 +2999,7 @@ export const appRouter = router({
               We are pleased to confirm your registration for the <strong>1st Annual Conference of the Faculty of Science, Cairo University — SCI 2026</strong>, taking place on <strong>April 7–8, 2026</strong> at the University Hostel, Cairo University.
             </p>
             <p style="margin:0 0 16px;color:#374151;font-size:15px;line-height:1.7">
-              To complete your registration and secure your certificate, please pay the <strong>certificate fee (100 EGP)</strong> using one of the methods below, then send a soft copy (scan or clear photo) of your payment receipt to <strong>sci.conf.2026@gmail.com</strong> by <strong>April 1, 2026</strong>:
+              To complete your registration and secure your certificate, please pay the <strong>certificate fee (100 EGP)</strong> using one of the methods below, then send a soft copy (scan or clear photo) of your payment receipt to <strong>science.faculty.conference2026@gmail.com</strong> by <strong>April 1, 2026</strong>:
             </p>
 
             <!-- Payment methods box -->
@@ -3010,7 +3010,7 @@ export const appRouter = router({
                   <p style="margin:0 0 2px;color:#374151;font-size:13px;font-weight:600">Option 1 — InstaPay Transfer:</p>
                   <p style="margin:0 0 12px;color:#1d4ed8;font-size:16px;font-weight:700">9450882167 (CBE)</p>
                   <p style="margin:0 0 2px;color:#374151;font-size:13px;font-weight:600">Option 2 — Send receipt by email:</p>
-                  <p style="margin:0 0 12px;color:#1d4ed8;font-size:16px;font-weight:700">sci.conf.2026@gmail.com</p>
+                  <p style="margin:0 0 12px;color:#1d4ed8;font-size:16px;font-weight:700">science.faculty.conference2026@gmail.com</p>
                   <p style="margin:8px 0 0;color:#374151;font-size:13px">Subject line: <em>Invoice – [Your Full Name] – SCI 2026</em></p>
                   <p style="margin:6px 0 0;color:#dc2626;font-size:13px;font-weight:600">⏰ Deadline: April 1, 2026</p>
                 </td>
@@ -3021,7 +3021,7 @@ export const appRouter = router({
               If you have already submitted your payment receipt, please disregard this message.
             </p>
             <p style="margin:0 0 24px;color:#374151;font-size:14px;line-height:1.6">
-              For any inquiries, feel free to reply to this email or contact us at <a href="mailto:sci.conf.2026@gmail.com" style="color:#2563eb">sci.conf.2026@gmail.com</a>.
+              For any inquiries, feel free to reply to this email or contact us at <a href="mailto:science.faculty.conference2026@gmail.com" style="color:#2563eb">science.faculty.conference2026@gmail.com</a>.
             </p>
 
             <hr style="border:none;border-top:1px solid #e5e7eb;margin:24px 0">
@@ -3033,7 +3033,7 @@ export const appRouter = router({
                 يسعدنا تأكيد تسجيلك في <strong>المؤتمر السنوي الأول لكلية العلوم، جامعة القاهرة — SCI 2026</strong>، المقرر انعقاده في <strong>7–8 أبريل 2026</strong> بمدينة الضيافة، جامعة القاهرة.
               </p>
               <p style="margin:0 0 16px;color:#374151;font-size:15px;line-height:1.8">
-                لاستكمال تسجيلك والحصول على شهادة المشاركة، يُرجى سداد <strong>رسوم الشهادة (100 جنيه مصري)</strong> بإحدى الطريقتين التاليتين، ثم إرسال صورة الإيصال إلى <strong>sci.conf.2026@gmail.com</strong> في موعد أقصاه <strong>1 أبريل 2026</strong>:
+                لاستكمال تسجيلك والحصول على شهادة المشاركة، يُرجى سداد <strong>رسوم الشهادة (100 جنيه مصري)</strong> بإحدى الطريقتين التاليتين، ثم إرسال صورة الإيصال إلى <strong>science.faculty.conference2026@gmail.com</strong> في موعد أقصاه <strong>1 أبريل 2026</strong>:
               </p>
               <table width="100%" cellpadding="0" cellspacing="0" style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;margin:0 0 20px">
                 <tr>
@@ -3042,7 +3042,7 @@ export const appRouter = router({
                     <p style="margin:0 0 2px;color:#374151;font-size:13px;font-weight:600">الطريقة الأولى — التحويل عبر InstaPay:</p>
                     <p style="margin:0 0 12px;color:#1d4ed8;font-size:16px;font-weight:700">9450882167 (البنك المركزي)</p>
                     <p style="margin:0 0 2px;color:#374151;font-size:13px;font-weight:600">الطريقة الثانية — إرسال الإيصال بالبريد الإلكتروني:</p>
-                    <p style="margin:0 0 12px;color:#1d4ed8;font-size:16px;font-weight:700">sci.conf.2026@gmail.com</p>
+                    <p style="margin:0 0 12px;color:#1d4ed8;font-size:16px;font-weight:700">science.faculty.conference2026@gmail.com</p>
                     <p style="margin:8px 0 0;color:#374151;font-size:13px">موضوع الرسالة: <em>إيصال – [اسمك الكامل] – SCI 2026</em></p>
                     <p style="margin:6px 0 0;color:#dc2626;font-size:13px;font-weight:600">⏰ الموعد النهائي: 1 أبريل 2026</p>
                   </td>
@@ -3064,7 +3064,7 @@ export const appRouter = router({
                   <p style="margin:0;color:#64748b;font-size:12px">Faculty of Science, Cairo University | April 7–8, 2026</p>
                   <p style="margin:4px 0 0;color:#64748b;font-size:12px">
                     <a href="https://sciconf26.website" style="color:#2563eb;text-decoration:none">sciconf26.website</a> &nbsp;|&nbsp;
-                    <a href="mailto:sci.conf.2026@gmail.com" style="color:#2563eb;text-decoration:none">sci.conf.2026@gmail.com</a>
+                    <a href="mailto:science.faculty.conference2026@gmail.com" style="color:#2563eb;text-decoration:none">science.faculty.conference2026@gmail.com</a>
                   </p>
                 </td>
               </tr>
@@ -3088,7 +3088,7 @@ export const appRouter = router({
                 body: JSON.stringify({
                   from: "SCI 2026 Organizing Committee <onboarding@resend.dev>",
                   to: [reg.email],
-                  reply_to: "sci.conf.2026@gmail.com",
+                  reply_to: "science.faculty.conference2026@gmail.com",
                   subject: "[SCI 2026] Attendance Confirmation & Certificate Invoice Request | تأكيد الحضور وطلب إيصال الشهادة",
                   html: htmlBody,
                 }),
