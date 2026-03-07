@@ -6,12 +6,13 @@ import { createExpressMiddleware } from "@trpc/server/adapters/express";
 import { appRouter } from "./routers.js";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
-import { generateToken, verifyToken, authMiddleware, AuthRequest } from "./auth.js";
+import { generateToken, verifyToken, AuthRequest } from "./auth.js";
 import { ensureOwnerIsSuperAdmin, getAdminByOpenId } from "./admin-management.js";
 import { notificationEmitter, NotificationEvent } from "./notification-emitter.js";
 import { initializeDigestScheduler } from "./digest-scheduler.js";
 import { initializeSurveyScheduler } from "./survey-scheduler.js";
 import { initReminderScheduler } from "./reminder-scheduler.js";
+import { setupVite, serveStatic } from "./vite.js";
 
 dotenv.config();
 
@@ -40,7 +41,8 @@ async function startServer() {
     await handleStripeWebhook(req, res);
   });
 
-  app.use(express.json());
+  app.use(express.json({ limit: "50mb" }));
+  app.use(express.urlencoded({ limit: "50mb", extended: true }));
   app.use(cookieParser());
 
   // OAuth callback endpoint
@@ -56,34 +58,52 @@ async function startServer() {
       const oauthServerUrl = process.env.OAUTH_SERVER_URL;
       const appId = process.env.VITE_APP_ID;
 
-      const tokenResponse = await fetch(`${oauthServerUrl}/v1/auth/token`, {
+      // Decode redirectUri from state (base64 encoded)
+      const redirectUri = state 
+        ? Buffer.from(state as string, 'base64').toString('utf-8') 
+        : `${req.protocol}://${req.get('host')}/api/oauth/callback`;
+
+      console.log("[OAuth] Exchanging code for token, redirectUri:", redirectUri);
+
+      const tokenResponse = await fetch(`${oauthServerUrl}/webdev.v1.WebDevAuthPublicService/ExchangeToken`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          appId,
+          clientId: appId,
           code,
           grantType: "authorization_code",
+          redirectUri,
         }),
       });
 
       const tokenData = await tokenResponse.json();
-      if (!tokenResponse.ok || tokenData.error) {
+      if (tokenData.code === 'unauthenticated' || tokenData.error) {
         console.error("Token exchange error:", tokenData);
-        throw new Error(`Failed to exchange code for token: ${tokenData.error_description || tokenData.error || tokenResponse.status}`);
+        throw new Error(`Failed to exchange code for token: ${tokenData.message || tokenData.error_description || tokenData.error}`);
       }
 
       const accessToken = tokenData.accessToken || tokenData.access_token;
-
-      // Get user info
-      const userResponse = await fetch(`${oauthServerUrl}/v1/auth/userinfo`, {
-        headers: { Authorization: `Bearer ${accessToken}` },
-      });
-
-      if (!userResponse.ok) {
-        throw new Error("Failed to get user info");
+      if (!accessToken) {
+        console.error("No access token in response:", tokenData);
+        throw new Error("No access token received");
       }
 
+      console.log("[OAuth] Token received, fetching user info...");
+
+      // Get user info
+      const userResponse = await fetch(`${oauthServerUrl}/webdev.v1.WebDevAuthPublicService/GetUserInfo`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ accessToken }),
+      });
+
       const userData = await userResponse.json();
+      if (userData.code === 'unauthenticated' || !userData.openId) {
+        console.error("Get user info error:", userData);
+        throw new Error(`Failed to get user info: ${userData.message || 'unknown error'}`);
+      }
+
+      console.log("[OAuth] User info received for:", userData.name || userData.openId);
 
       // Generate JWT
       const token = generateToken({
@@ -151,31 +171,24 @@ async function startServer() {
     res.setHeader("Content-Type", "text/event-stream");
     res.setHeader("Cache-Control", "no-cache");
     res.setHeader("Connection", "keep-alive");
-    res.setHeader("X-Accel-Buffering", "no"); // Disable nginx buffering
+    res.setHeader("X-Accel-Buffering", "no");
 
-    // Send initial connection message
     res.write(`data: ${JSON.stringify({ type: "connected", message: "Connected to notification stream" })}\n\n`);
 
-    // Create listener for notifications
     const notificationListener = (notification: NotificationEvent) => {
       res.write(`data: ${JSON.stringify(notification)}\n\n`);
     };
 
     notificationEmitter.on("notification", notificationListener);
 
-    // Send keepalive every 30 seconds
     const keepaliveInterval = setInterval(() => {
       res.write(`: keepalive\n\n`);
     }, 30000);
 
-    // Cleanup on connection close
     req.on("close", () => {
       clearInterval(keepaliveInterval);
       notificationEmitter.off("notification", notificationListener);
-      console.log(`[SSE] Admin ${admin.email} disconnected from notification stream`);
     });
-
-    console.log(`[SSE] Admin ${admin.email} connected to notification stream`);
   });
 
   // tRPC middleware with auth context
@@ -191,20 +204,14 @@ async function startServer() {
     })
   );
 
-  // Serve static files from dist/public in production
-  const staticPath =
-    process.env.NODE_ENV === "production"
-      ? path.resolve(__dirname, "public")
-      : path.resolve(__dirname, "..", "dist", "public");
+  // Setup Vite in development or serve static files in production
+  if (process.env.NODE_ENV === "development") {
+    await setupVite(app, server);
+  } else {
+    serveStatic(app);
+  }
 
-  app.use(express.static(staticPath));
-
-  // Handle client-side routing - serve index.html for all routes
-  app.get("*", (_req, res) => {
-    res.sendFile(path.join(staticPath, "index.html"));
-  });
-
-  const port = process.env.PORT || 3001;
+  const port = parseInt(process.env.PORT || "3000");
 
   server.listen(port, () => {
     console.log(`Server running on http://localhost:${port}/`);
