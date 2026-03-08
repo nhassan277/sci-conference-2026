@@ -10,7 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { LogOut, Download, Users, Building2, TrendingUp, Search, Plus, Edit, Trash2, Calendar, Shield, FileText, Mail, Megaphone, SendHorizonal, CheckCircle2 } from "lucide-react";
+import { LogOut, Download, Users, Building2, TrendingUp, Search, Plus, Edit, Trash2, Calendar, Shield, FileText, Mail, Megaphone, SendHorizonal, CheckCircle2, FlaskConical } from "lucide-react";
 import { toast } from "sonner";
 import { useNotifications } from "@/hooks/useNotifications";
 
@@ -77,6 +77,7 @@ export default function Admin() {
   const { data: sponsorships, isLoading: loadingSponsorships } = trpc.sponsorship.list.useQuery(undefined, { enabled: isAuthenticated && isAdmin });
   const { data: sessions, isLoading: loadingSessions, refetch: refetchSessions } = trpc.session.list.useQuery(undefined, { enabled: isAuthenticated && isAdmin });
   const { data: supportTickets, isLoading: loadingTickets, refetch: refetchTickets } = trpc.supportTicket.list.useQuery(undefined, { enabled: isAuthenticated && isAdmin });
+  const { data: workshopCounts } = trpc.registration.getWorkshopCounts.useQuery(undefined, { enabled: isAuthenticated && isAdmin });
 
   const [selectedTicket, setSelectedTicket] = useState<any>(null);
   const [ticketResponse, setTicketResponse] = useState("");
@@ -683,6 +684,80 @@ export default function Admin() {
             </CardContent>
           </Card>
         </div>
+
+        {/* Workshop Statistics */}
+        <Card className="mb-8">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <FlaskConical className="w-5 h-5 text-amber-600" />
+              Workshop Registration Statistics
+            </CardTitle>
+            <CardDescription>Live registration counts and capacity for all 8 workshops</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {/* During-Conference Workshops (200 EGP) */}
+              <div>
+                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">During Conference Workshops — April 7–8 (200 EGP each, capacity 30)</p>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  {[
+                    { key: "nawah", label: "Nawah Scientific", capacity: 30 },
+                    { key: "marc", label: "MARC", capacity: 30 },
+                    { key: "medsol", label: "MedSol", capacity: 30 },
+                    { key: "geochemistry", label: "Geochemistry", capacity: 30 },
+                  ].map(({ key, label, capacity }) => {
+                    const count = (workshopCounts as any)?.[key] ?? 0;
+                    const remaining = capacity - count;
+                    const pct = Math.min(100, Math.round((count / capacity) * 100));
+                    return (
+                      <div key={key} className="p-3 bg-muted/40 rounded-lg border">
+                        <p className="text-xs font-semibold truncate">{label}</p>
+                        <p className="text-2xl font-bold mt-1">{count}<span className="text-sm font-normal text-muted-foreground">/{capacity}</span></p>
+                        <div className="w-full bg-gray-200 rounded-full h-1.5 mt-2">
+                          <div className={`h-1.5 rounded-full ${pct >= 100 ? 'bg-red-500' : pct >= 70 ? 'bg-amber-500' : 'bg-green-500'}`} style={{ width: `${pct}%` }} />
+                        </div>
+                        <p className={`text-xs mt-1 ${remaining <= 0 ? 'text-red-600 font-semibold' : remaining <= 5 ? 'text-amber-600' : 'text-green-600'}`}>
+                          {remaining <= 0 ? 'FULL' : `${remaining} spots left`}
+                        </p>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Pre/Post Conference Workshops (200 EGP) */}
+              <div>
+                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">Pre/Post Conference Workshops — April 6 & 9 (200 EGP each)</p>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  {[
+                    { key: "chitosan", label: "Biotech Product Dev 101 (Chitosan)", capacity: 30, date: "Apr 6, 9:00–12:00" },
+                    { key: "agitech", label: "NGS & ddPCR in Targeted Therapy (Agitech)", capacity: 20, date: "Apr 6, 12:00–14:00" },
+                    { key: "scrna_seq", label: "Single Cell Genomics (EG-CompBio)", capacity: 30, date: "Apr 9" },
+                    { key: "hvd_genomics", label: "Genomics & Proteomics (HVD)", capacity: 30, date: "Apr 9" },
+                    { key: "ai_biotech", label: "AI Meets Biotech", capacity: 30, date: "Apr 9" },
+                  ].map(({ key, label, capacity, date }) => {
+                    const count = (workshopCounts as any)?.[key] ?? 0;
+                    const remaining = capacity - count;
+                    const pct = Math.min(100, Math.round((count / capacity) * 100));
+                    return (
+                      <div key={key} className="p-3 bg-muted/40 rounded-lg border">
+                        <p className="text-xs font-semibold leading-tight">{label}</p>
+                        <p className="text-xs text-muted-foreground mt-0.5">{date}</p>
+                        <p className="text-2xl font-bold mt-1">{count}<span className="text-sm font-normal text-muted-foreground">/{capacity}</span></p>
+                        <div className="w-full bg-gray-200 rounded-full h-1.5 mt-2">
+                          <div className={`h-1.5 rounded-full ${pct >= 100 ? 'bg-red-500' : pct >= 70 ? 'bg-amber-500' : 'bg-green-500'}`} style={{ width: `${pct}%` }} />
+                        </div>
+                        <p className={`text-xs mt-1 ${remaining <= 0 ? 'text-red-600 font-semibold' : remaining <= 5 ? 'text-amber-600' : 'text-green-600'}`}>
+                          {remaining <= 0 ? 'FULL' : `${remaining} spots left`}
+                        </p>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
         {/* Data Tables */}
         <Card>

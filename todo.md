@@ -906,3 +906,10 @@
 - [x] Run pnpm db:push to migrate (no schema change needed)
 - [x] Update workshop stats query in server/routers.ts to include agitech count (already existed)
 - [x] Add spots counter badge to Agitech card on Home page (capacity: 20)
+
+## Admin Dashboard Workshop Statistics
+- [x] Inspect admin dashboard workshop stats section
+- [x] Ensure all 8 workshops appear with correct counts and capacities (including Agitech 20 spots)
+- [x] Add workshopCounts query to Admin.tsx
+- [x] Add Workshop Registration Statistics card with progress bars to Admin.tsx
+- [ ] Add Agitech to registration form extWorkshopChoice if missing (to be verified)
