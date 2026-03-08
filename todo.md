@@ -918,3 +918,7 @@
 - [x] Add Agitech to registration form Pre/Post workshop choices (Attendance.tsx) — enhanced with logo and full details
 - [x] Add automatic 80% capacity notification for all workshops in server/routers.ts — triggers system_alert via notificationEmitter when count hits 80% threshold
 - [x] Add workshop filter to admin registrations table in Admin.tsx — dropdown with all 9 workshops + Any/None options
+
+## Agitech Registration & PDF Fix
+- [x] Verify Agitech appears as extWorkshopChoice in registration form (Attendance.tsx) — already present with full details
+- [x] Update Agitech time in PDF generator from "During Conference" to "April 6, 12:00 PM – 2:00 PM"
