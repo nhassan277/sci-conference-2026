@@ -1327,7 +1327,15 @@ export default function Home() {
 
                   {/* Spots counter */}
                   <div className="flex items-center justify-between">
-                    {workshopCounts && getSpotsBadge(workshopCounts.hvd_genomics ?? 0)}
+                    {workshopCounts && (() => {
+                      const count = workshopCounts.hvd_genomics ?? 0;
+                      const HVD_LIMIT = 20;
+                      const remaining = HVD_LIMIT - count;
+                      if (remaining <= 0) return <Badge className="bg-red-100 text-red-800 text-xs">Full 🔴</Badge>;
+                      if (remaining <= 5) return <Badge className="bg-red-100 text-red-800 text-xs">{remaining} spots left 🔴</Badge>;
+                      if (remaining <= 10) return <Badge className="bg-amber-100 text-amber-800 text-xs">{remaining}/{HVD_LIMIT} spots left 🟡</Badge>;
+                      return <Badge className="bg-green-100 text-green-800 text-xs">{remaining}/{HVD_LIMIT} spots left 🟢</Badge>;
+                    })()}
                     <Button
                       size="sm"
                       className="bg-blue-700 hover:bg-blue-800 text-white text-xs px-3"

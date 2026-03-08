@@ -132,7 +132,7 @@ export const appRouter = router({
           const allRegs = await db.select().from(registrations);
           const WORKSHOP_CAPACITIES: Record<string, number> = {
             nawah: 30, marc: 30, medsol: 30, geochemistry: 30, agitech: 20,
-            chitosan: 30, scrna_seq: 30, hvd_genomics: 30, ai_biotech: 30, colors_metagenomics: 25,
+            chitosan: 30, scrna_seq: 30, hvd_genomics: 20, ai_biotech: 30, colors_metagenomics: 25,
           };
           const workshopLabels: Record<string, string> = {
             nawah: "NAWAH Scientific", marc: "MARC", medsol: "Medsol Corporation",

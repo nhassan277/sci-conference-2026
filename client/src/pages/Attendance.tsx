@@ -644,7 +644,7 @@ export default function Attendance() {
                             dateAr: "سيتم الإعلان عن التاريخ والوقت قريباً",
                             by: "HVD Life Sciences — New Cairo (2C53+JCC, Cairo Governorate 4720113)",
                             logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/NlYUUYlTeGQwRRXp.png",
-                            eligibility: "30 spots only | Certificate provided by HVD",
+                            eligibility: "20 spots only | Certificate provided by HVD",
                           },
                           {
                             value: "colors_metagenomics",
