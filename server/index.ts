@@ -13,6 +13,7 @@ import { initializeDigestScheduler } from "./digest-scheduler.js";
 import { initializeSurveyScheduler } from "./survey-scheduler.js";
 import { initReminderScheduler } from "./reminder-scheduler.js";
 import { setupVite, serveStatic } from "./vite.js";
+import { generateSchedulePDF } from "./schedule-pdf.js";
 
 dotenv.config();
 
@@ -132,6 +133,16 @@ async function startServer() {
   app.post("/api/auth/logout", (req, res) => {
     res.clearCookie("auth_token");
     res.json({ success: true });
+  });
+
+  // Schedule PDF export endpoint (public)
+  app.get("/api/schedule/export-pdf", (req, res) => {
+    try {
+      generateSchedulePDF(res);
+    } catch (error) {
+      console.error("PDF generation error:", error);
+      res.status(500).json({ error: "Failed to generate PDF" });
+    }
   });
 
   // Get current user endpoint

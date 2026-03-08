@@ -14,7 +14,9 @@ import {
   MessageSquare,
   Mic,
   User,
-  FlaskConical
+  FlaskConical,
+  Download,
+  Loader2
 } from "lucide-react";
 
 // ─── KEYNOTE SPEAKERS (4 total) ───────────────────────────────────────────────
@@ -558,6 +560,29 @@ const getSessionColor = (type: string) => {
 
 export default function Schedule() {
   const [selectedDay, setSelectedDay] = useState("day1");
+  const [isExportingPDF, setIsExportingPDF] = useState(false);
+
+  const handleExportPDF = async () => {
+    setIsExportingPDF(true);
+    try {
+      const response = await fetch("/api/schedule/export-pdf");
+      if (!response.ok) throw new Error("Failed to generate PDF");
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "SCI2026-Conference-Schedule.pdf";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("PDF export failed:", error);
+      alert("Failed to export PDF. Please try again.");
+    } finally {
+      setIsExportingPDF(false);
+    }
+  };
 
   const currentSessions = selectedDay === "day1" ? sessions.day1 : sessions.day2;
 
@@ -595,6 +620,26 @@ export default function Schedule() {
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto" dir="rtl">
               البرنامج الكامل لليومين بما في ذلك المتحدثين الرئيسيين والجلسات المتوازية وورش العمل وحفل توزيع الجوائز
             </p>
+            <div className="pt-4">
+              <Button
+                size="lg"
+                onClick={handleExportPDF}
+                disabled={isExportingPDF}
+                className="bg-primary hover:bg-primary/90 gap-2"
+              >
+                {isExportingPDF ? (
+                  <>
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    Generating PDF...
+                  </>
+                ) : (
+                  <>
+                    <Download className="w-5 h-5" />
+                    Export Full Schedule as PDF | تحميل البرنامج PDF
+                  </>
+                )}
+              </Button>
+            </div>
           </div>
         </div>
       </section>
@@ -877,8 +922,27 @@ export default function Schedule() {
             </CardContent>
           </Card>
 
-          {/* Back to Home Button */}
-          <div className="mt-8 text-center">
+          {/* Action Buttons */}
+          <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+            <Button
+              size="lg"
+              onClick={handleExportPDF}
+              disabled={isExportingPDF}
+              variant="outline"
+              className="gap-2 border-primary text-primary hover:bg-primary hover:text-white"
+            >
+              {isExportingPDF ? (
+                <>
+                  <Loader2 className="w-5 h-5 animate-spin" />
+                  Generating PDF...
+                </>
+              ) : (
+                <>
+                  <Download className="w-5 h-5" />
+                  Export as PDF | تحميل PDF
+                </>
+              )}
+            </Button>
             <Button 
               size="lg" 
               onClick={() => window.location.href = '/'}

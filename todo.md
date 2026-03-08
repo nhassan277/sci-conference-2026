@@ -69,7 +69,13 @@
 - [x] Create responsive card-based timeline view
 - [x] Add navigation link from homepage
 - [x] Test all filtering and export features
-- [ ] Implement server-side PDF export for full schedule (placeholder alert added, can be implemented later)
+- [x] Implement server-side PDF export for full schedule (placeholder alert added, can be implemented later)
+
+## PDF Schedule Export
+- [x] Install pdfkit on the server
+- [x] Create Express route GET /api/schedule/export-pdf that generates a formatted PDF
+- [x] Add "Export as PDF" button to the Schedule page
+- [x] Test PDF generation and download in browser
 
 ## Navigation Menu Updates
 - [x] Verify About section has id="about"
