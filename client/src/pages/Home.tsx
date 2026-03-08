@@ -12,6 +12,7 @@ import { trpc } from "@/lib/trpc";
 export default function Home() {
   const { data: workshopCounts } = trpc.registration.getWorkshopCounts.useQuery();
   const WORKSHOP_LIMIT = 30;
+  const COLORS_LIMIT = 25;
 
   const getSpotsBadge = (count: number) => {
     const remaining = WORKSHOP_LIMIT - count;
@@ -1425,7 +1426,14 @@ export default function Home() {
 
                   {/* Spots counter */}
                   <div className="flex items-center justify-between">
-                    {workshopCounts && getSpotsBadge(workshopCounts.colors_metagenomics ?? 0)}
+                    {workshopCounts && (() => {
+                      const count = workshopCounts.colors_metagenomics ?? 0;
+                      const remaining = COLORS_LIMIT - count;
+                      if (remaining <= 0) return <Badge className="bg-red-100 text-red-800 text-xs">Full 🔴</Badge>;
+                      if (remaining <= 5) return <Badge className="bg-red-100 text-red-800 text-xs">{remaining} spots left 🔴</Badge>;
+                      if (remaining <= 10) return <Badge className="bg-amber-100 text-amber-800 text-xs">{remaining}/{COLORS_LIMIT} spots left 🟡</Badge>;
+                      return <Badge className="bg-green-100 text-green-800 text-xs">{remaining}/{COLORS_LIMIT} spots left 🟢</Badge>;
+                    })()}
                     <Button
                       size="sm"
                       className="bg-indigo-700 hover:bg-indigo-800 text-white text-xs px-3"
