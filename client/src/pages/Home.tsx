@@ -985,6 +985,76 @@ export default function Home() {
                 </div>
               </div>
 
+              {/* Agitech Workshop Card — NGS & ddPCR in Targeted Therapy */}
+              <div className="max-w-2xl mx-auto">
+                <div className="p-6 bg-gradient-to-r from-gray-50 to-slate-50 border-2 border-gray-300 rounded-2xl space-y-4">
+                  {/* Header with logo */}
+                  <div className="flex items-center justify-between flex-wrap gap-3">
+                    <img
+                      src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/edodYeJkMcSIdRYR.png"
+                      alt="Agitech"
+                      className="h-20 object-contain"
+                    />
+                    <Badge className="bg-gray-100 text-gray-800 border-gray-300 text-xs">
+                      Pre-Conference | قبل المؤتمر
+                    </Badge>
+                  </div>
+
+                  {/* Title */}
+                  <div>
+                    <h4 className="text-2xl font-bold text-gray-900">From Basic Research to Precision Medicine: Applications of NGS and ddPCR in Targeted Therapy</h4>
+                    <p className="text-sm text-gray-700 italic mt-1">By <strong>Agitech</strong> — For Integrated Scientific Instruments, SAE</p>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-sm text-foreground leading-relaxed text-justify">
+                    This workshop highlights how basic cancer research has enabled the discovery of molecular drivers that paved the way for targeted therapies. It demonstrates how modern technologies such as Next-Generation Sequencing (NGS) and Droplet Digital PCR (ddPCR) are used to detect disease-related biomarkers, supporting precision oncology by improving diagnosis, guiding therapy selection, and enabling effective treatment monitoring.
+                  </p>
+
+                  {/* Points of Discussion */}
+                  <ul className="list-disc list-inside space-y-1 text-sm text-foreground">
+                    <li>Overview of molecular drivers in cancer</li>
+                    <li>Application of modern molecular technologies: Next-Generation Sequencing and Droplet Digital PCR</li>
+                    <li>Clinical implementation of molecular diagnostics</li>
+                  </ul>
+
+                  {/* Details grid */}
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="p-3 bg-white rounded-xl border border-gray-200">
+                      <p className="text-xs text-muted-foreground">📅 Date | التاريخ</p>
+                      <p className="font-bold text-gray-900 text-sm">April 6, 2026</p>
+                      <p className="text-gray-700 text-xs" dir="rtl">٦ أبريل ٢٠٢٦</p>
+                    </div>
+                    <div className="p-3 bg-white rounded-xl border border-gray-200">
+                      <p className="text-xs text-muted-foreground">⏰ Time | الوقت</p>
+                      <p className="font-bold text-gray-900 text-sm">12:00 PM – 2:00 PM</p>
+                      <p className="text-gray-700 text-xs" dir="rtl">١٢:٠٠ ظ – ٢:٠٠ م</p>
+                    </div>
+                    <div className="p-3 bg-white rounded-xl border border-gray-200">
+                      <p className="text-xs text-muted-foreground">⏳ Duration | المدة</p>
+                      <p className="font-bold text-gray-900 text-sm">2 Hours</p>
+                      <p className="text-gray-700 text-xs" dir="rtl">ساعتان</p>
+                    </div>
+                    <div className="p-3 bg-white rounded-xl border border-gray-200">
+                      <p className="text-xs text-muted-foreground">🔬 Focus | المحور</p>
+                      <p className="font-bold text-gray-900 text-sm">Precision Oncology</p>
+                      <p className="text-gray-700 text-xs" dir="rtl">الأورام الدقيقة</p>
+                    </div>
+                  </div>
+
+                  {/* Register button */}
+                  <div className="flex items-center justify-end">
+                    <Button
+                      size="sm"
+                      className="bg-gray-700 hover:bg-gray-800 text-white text-xs px-3"
+                      onClick={() => { window.location.href = '/attendance'; }}
+                    >
+                      Register & Upload Invoice | سجّل وارفع الإيصال
+                    </Button>
+                  </div>
+                </div>
+              </div>
+
               {/* EgcompBio scRNA-seq Workshop Card */}
               <div className="max-w-2xl mx-auto mb-6">
                 <div className="p-6 bg-gradient-to-r from-teal-50 to-cyan-50 border-2 border-teal-300 rounded-2xl space-y-4">
