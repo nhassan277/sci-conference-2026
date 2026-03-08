@@ -389,12 +389,44 @@ export default function Sponsors() {
                 <CardTitle className="text-xl text-blue-700">MARC</CardTitle>
                 <CardDescription className="text-xs font-medium text-muted-foreground">Award Sponsor · راعي الجوائز</CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent className="space-y-4">
+                {/* Best Poster Cash Prizes */}
                 <CardDescription className="text-sm space-y-2">
-                  <p className="font-semibold text-blue-700">🏆 Training Opportunity + Best Poster Cash Prizes</p>
-                  <p>فرصة تدريبية + جوائز نقدية لأفضل الملصقات</p>
-                  <p className="text-xs text-muted-foreground">2 training spots + poster prizes: 1st — 2,500 EGP · 2nd — 1,500 EGP · 3rd — 1,000 EGP</p>
+                  <p className="font-semibold text-blue-700">🏆 Best Poster Award — Cash Prizes</p>
+                  <p className="text-xs" dir="rtl">جوائز نقدية لأفضل الملصقات العلمية</p>
                 </CardDescription>
+                <div className="grid grid-cols-3 gap-2">
+                  <div className="bg-amber-50 border border-amber-200 rounded p-2 text-center">
+                    <p className="text-xs text-muted-foreground">1st Place</p>
+                    <p className="text-sm font-bold text-amber-600">2,500 EGP</p>
+                  </div>
+                  <div className="bg-slate-50 border border-slate-200 rounded p-2 text-center">
+                    <p className="text-xs text-muted-foreground">2nd Place</p>
+                    <p className="text-sm font-bold text-slate-500">1,500 EGP</p>
+                  </div>
+                  <div className="bg-orange-50 border border-orange-200 rounded p-2 text-center">
+                    <p className="text-xs text-muted-foreground">3rd Place</p>
+                    <p className="text-sm font-bold text-orange-700">1,000 EGP</p>
+                  </div>
+                </div>
+                {/* Training Opportunities */}
+                <div className="border-t border-blue-100 pt-3">
+                  <CardDescription className="text-sm space-y-1">
+                    <p className="font-semibold text-blue-700">🎓 2 Professional Training Opportunities</p>
+                    <p className="text-xs" dir="rtl">فرصتا تدريب متخصصتان</p>
+                    <div className="grid grid-cols-2 gap-2 pt-1">
+                      <div className="bg-blue-50 border border-blue-200 rounded p-2 text-center">
+                        <p className="text-xs text-muted-foreground">Spot 1</p>
+                        <p className="text-sm font-bold text-blue-600">Training</p>
+                      </div>
+                      <div className="bg-blue-50 border border-blue-200 rounded p-2 text-center">
+                        <p className="text-xs text-muted-foreground">Spot 2</p>
+                        <p className="text-sm font-bold text-blue-600">Training</p>
+                      </div>
+                    </div>
+                    <p className="text-xs text-muted-foreground pt-1">MARC will select 2 outstanding participants for a professional training opportunity at their facility.</p>
+                  </CardDescription>
+                </div>
               </CardContent>
             </Card>
 
