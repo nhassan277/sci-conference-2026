@@ -1,0 +1,46 @@
+{
+  "query": "SELECT id, full_name, title, affiliation, speaker_type, presentation_title, display_order FROM keynote_speakers WHERE speaker_type = 'keynote' ORDER BY display_order, id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name, title, affiliation, speaker_type, presentation_title, display_order FROM keynote_speakers WHERE speaker_type = 'keynote' ORDER BY display_order, id;",
+  "rows": [
+    {
+      "id": "1",
+      "full_name": "Khaled Amer",
+      "title": "Major General Dr.",
+      "affiliation": "Principal Investigator of Human Genome project, Egypt Centre for Research and Regenerative Medicine (ECRRM)",
+      "speaker_type": "keynote",
+      "presentation_title": "Egypt Genome; From Dream to Reality",
+      "display_order": "1"
+    },
+    {
+      "id": "4",
+      "full_name": "Mortada Mourad Taha El Aref",
+      "title": "Prof. Dr.",
+      "affiliation": "Professor of Ore Geology, Geology Department, Faculty of Science, Cairo University",
+      "speaker_type": "keynote",
+      "presentation_title": "Karstology (Science of Unlimited Multi-Discipline Approaches), Promising Setting for Industrial Raw Materials",
+      "display_order": "2"
+    },
+    {
+      "id": "16",
+      "full_name": "Ehab El-Dabaa",
+      "title": "Prof. Dr. ",
+      "affiliation": "Deputy Director of the Biochemistry & Molecular Biology and Medicinal Chemistry Division and head of Center of Excellence in Recombinant Biopharmaceutical Proteins (CERBioP), Theodor Bilharz Research Institute, Egypt",
+      "speaker_type": "keynote",
+      "presentation_title": "Center of Excellence in Recombinant Biopharmaceutical Proteins (CERBioP) in TBRI;  From Scientific Innovation to The Egyptian Biopharmaceutical Industry",
+      "display_order": "2"
+    },
+    {
+      "id": "13",
+      "full_name": "Hamed A. Ead",
+      "title": "Prof. Dr. ",
+      "affiliation": "Professor of Chemistry, Faculty of Science, Cairo University",
+      "speaker_type": "keynote",
+      "presentation_title": "Science at the Core of Innovation: Reimagining the University–Industry Nexus for Transformative Impact",
+      "display_order": "3"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tfull_name\ttitle\taffiliation\tspeaker_type\tpresentation_title\tdisplay_order\n1\tKhaled Amer\tMajor General Dr.\tPrincipal Investigator of Human Genome project, Egypt Centre for Research and Regenerative Medicine (ECRRM)\tkeynote\tEgypt Genome; From Dream to Reality\t1\n4\tMortada Mourad Taha El Aref\tProf. Dr.\tProfessor of Ore Geology, Geology Department, Faculty of Science, Cairo University\tkeynote\tKarstology (Science of Unlimited Multi-Discipline Approaches), Promising Setting for Industrial Raw Materials\t2\n16\tEhab El-Dabaa\tProf. Dr. \tDeputy Director of the Biochemistry & Molecular Biology and Medicinal Chemistry Division and head of Center of Excellence in Recombinant Biopharmaceutical Proteins (CERBioP), Theodor Bilharz Research Institute, Egypt\tkeynote\tCenter of Excellence in Recombinant Biopharmaceutical Proteins (CERBioP) in TBRI;  From Scientific Innovation to The Egyptian Biopharmaceutical Industry\t2\n13\tHamed A. Ead\tProf. Dr. \tProfessor of Chemistry, Faculty of Science, Cairo University\tkeynote\tScience at the Core of Innovation: Reimagining the University–Industry Nexus for Transformative Impact\t3\n",
+  "stderr": "",
+  "execution_time_ms": 1535
+}
