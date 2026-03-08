@@ -219,9 +219,11 @@ export default function Sponsors() {
               <Card className="hover:shadow-lg transition-shadow">
                 <CardHeader className="text-center">
                   <div className="flex justify-center mb-4 h-40 items-center">
-                    <div className="w-24 h-24 rounded-full bg-orange-100 flex items-center justify-center">
-                      <span className="text-4xl">🌿</span>
-                    </div>
+                    <img
+                      src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/GXxzRnTYsggXAHMu.png"
+                      alt="Chitosan"
+                      className="h-32 object-contain"
+                    />
                   </div>
                   <CardTitle className="text-2xl">Chitosan</CardTitle>
                   <CardDescription className="text-sm font-medium text-muted-foreground">Biotech Product Development 101</CardDescription>
@@ -248,9 +250,11 @@ export default function Sponsors() {
               <Card className="hover:shadow-lg transition-shadow">
                 <CardHeader className="text-center">
                   <div className="flex justify-center mb-4 h-40 items-center">
-                    <div className="w-24 h-24 rounded-full bg-blue-100 flex items-center justify-center">
-                      <span className="text-4xl">🔬</span>
-                    </div>
+                    <img
+                      src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/VSqePLOAbshMxznI.png"
+                      alt="EG-CompBio"
+                      className="h-32 object-contain"
+                    />
                   </div>
                   <CardTitle className="text-2xl">EG-CompBio</CardTitle>
                   <CardDescription className="text-sm font-medium text-muted-foreground">Egyptian Computational Biology Society</CardDescription>
@@ -277,9 +281,11 @@ export default function Sponsors() {
               <Card className="hover:shadow-lg transition-shadow">
                 <CardHeader className="text-center">
                   <div className="flex justify-center mb-4 h-40 items-center">
-                    <div className="w-24 h-24 rounded-full bg-purple-100 flex items-center justify-center">
-                      <span className="text-4xl">🧫</span>
-                    </div>
+                    <img
+                      src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/NlYUUYlTeGQwRRXp.png"
+                      alt="HVD Life Sciences"
+                      className="h-32 object-contain"
+                    />
                   </div>
                   <CardTitle className="text-2xl">HVD</CardTitle>
                   <CardDescription className="text-sm font-medium text-muted-foreground">Genomics &amp; Proteomics Solutions</CardDescription>
