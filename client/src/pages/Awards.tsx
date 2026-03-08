@@ -61,6 +61,14 @@ export default function Awards() {
       description: "Celebrating exceptional written research contributions",
       descriptionAr: "احتفاءً بالمساهمات البحثية المكتوبة الاستثنائية",
       color: "bg-indigo-100 text-indigo-700"
+    },
+    {
+      icon: Lightbulb,
+      title: "Best Innovative Research Idea Award",
+      titleAr: "جائزة أفضل فكرة بحثية مبتكرة",
+      description: "Sponsored by Medsol Corporation — Cash prizes for the most creative and impactful scientific ideas (3,000 / 2,000 / 1,000 EGP)",
+      descriptionAr: "برعاية Medsol Corporation — جوائز نقدية لأكثر الأفكار العلمية إبداعاً وأثراً (3000 / 2000 / 1000 جنيه)",
+      color: "bg-teal-100 text-teal-700"
     }
   ];
 

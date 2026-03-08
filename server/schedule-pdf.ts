@@ -512,6 +512,70 @@ export function generateSchedulePDF(res: Response): void {
   doc.fontSize(7.5).fillColor(COLORS.midGray).font("Helvetica")
     .text("* Workshop fee: 200 EGP per workshop · Payment via InstaPay (CBE account: 9450882167) · Limited to 30 participants each", margin, y + 6, { width: contentWidth });
 
+  // ── AWARDS SECTION ──────────────────────────────────────────────────────
+  doc.addPage();
+  y = 50;
+
+  // Section header
+  doc.rect(margin, y, contentWidth, 28).fill(COLORS.primary);
+  doc.fontSize(14).fillColor(COLORS.white).font("Helvetica-Bold").text("Conference Awards", margin, y + 8, { width: contentWidth, align: "center" });
+  y += 36;
+
+  // Awards categories
+  const awardCategories = [
+    { title: "Best Oral Presentation", titleAr: "جائزة أفضل عرض شفهي", description: "Awarded to the most outstanding oral research presentation across all tracks" },
+    { title: "Best Poster Presentation", titleAr: "جائزة أفضل ملصق بحثي", description: "Recognizing the most visually compelling and scientifically rigorous poster" },
+    { title: "Best Graduation Project", titleAr: "جائزة أفضل مشروع تخرج", description: "Honoring the most innovative and impactful undergraduate graduation project" },
+    { title: "Best Paper Award", titleAr: "جائزة أفضل بحث علمي", description: "Celebrating exceptional written research contributions" },
+    { title: "Best Innovative Research Idea Award", titleAr: "جائزة أفضل فكرة بحثية مبتكرة", description: "Sponsored by Medsol Corporation — Cash prizes for the most creative and impactful scientific ideas" },
+  ];
+
+  doc.fontSize(11).fillColor(COLORS.primary).font("Helvetica-Bold").text("Award Categories", margin, y);
+  y += 16;
+
+  for (const award of awardCategories) {
+    if (y > doc.page.height - 60) { doc.addPage(); y = 50; }
+    doc.rect(margin, y, 4, 28).fill(COLORS.secondary);
+    doc.fontSize(9).fillColor(COLORS.darkText).font("Helvetica-Bold").text(award.title, margin + 10, y);
+    y += 11;
+    doc.fontSize(8).fillColor(COLORS.midGray).font("Helvetica").text(award.titleAr, margin + 10, y);
+    y += 10;
+    doc.fontSize(7.5).fillColor(COLORS.midGray).font("Helvetica").text(award.description, margin + 10, y, { width: contentWidth - 14 });
+    y += 16;
+  }
+
+  y += 10;
+
+  // Medsol Corporation spotlight
+  doc.rect(margin, y, contentWidth, 24).fill("#0d9488");
+  doc.fontSize(11).fillColor(COLORS.white).font("Helvetica-Bold").text("Medsol Corporation Award", margin, y + 7, { width: contentWidth, align: "center" });
+  y += 30;
+
+  doc.fontSize(10).fillColor(COLORS.primary).font("Helvetica-Bold").text("Best Innovative Research Idea Award", margin, y);
+  y += 14;
+  doc.fontSize(8.5).fillColor(COLORS.darkText).font("Helvetica").text("Sponsored by Medsol Corporation", margin, y);
+  y += 12;
+  doc.fontSize(8).fillColor(COLORS.midGray).font("Helvetica").text(
+    "Cash prizes will be awarded to the top three most creative and impactful scientific research ideas presented at the conference.",
+    margin, y, { width: contentWidth }
+  );
+  y += 20;
+
+  const prizes = [
+    { place: "1st Place", amount: "3,000 EGP", color: "#f59e0b" },
+    { place: "2nd Place", amount: "2,000 EGP", color: "#94a3b8" },
+    { place: "3rd Place", amount: "1,000 EGP", color: "#b45309" },
+  ];
+
+  const prizeColW = (contentWidth - 20) / 3;
+  for (let i = 0; i < prizes.length; i++) {
+    const px = margin + i * (prizeColW + 10);
+    doc.rect(px, y, prizeColW, 36).fill(prizes[i].color);
+    doc.fontSize(9).fillColor(COLORS.white).font("Helvetica-Bold").text(prizes[i].place, px, y + 6, { width: prizeColW, align: "center" });
+    doc.fontSize(11).fillColor(COLORS.white).font("Helvetica-Bold").text(prizes[i].amount, px, y + 18, { width: prizeColW, align: "center" });
+  }
+  y += 46;
+
   // ── FOOTER ON ALL PAGES ──────────────────────────────────────────────────
   const totalPages = (doc as any).bufferedPageRange().count;
   for (let i = 0; i < totalPages; i++) {

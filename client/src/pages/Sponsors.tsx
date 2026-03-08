@@ -307,6 +307,67 @@ export default function Sponsors() {
         </div>
       </section>
 
+      {/* Award Sponsors */}
+      <section className="py-16">
+        <div className="container">
+          <div className="text-center space-y-4 mb-12">
+            <Award className="w-16 h-16 text-teal-600 mx-auto" />
+            <h2 className="text-4xl font-bold text-primary">Award Sponsors</h2>
+            <p className="text-2xl font-semibold text-secondary" dir="rtl">رعاة الجوائز</p>
+            <p className="text-lg text-muted-foreground">
+              Recognizing and Rewarding Scientific Excellence
+            </p>
+          </div>
+
+          <div className="max-w-2xl mx-auto">
+            <Card className="border-2 border-teal-200 shadow-lg hover:shadow-xl transition-shadow">
+              <CardHeader className="text-center">
+                <div className="flex justify-center mb-4">
+                  <div className="w-20 h-20 rounded-full bg-teal-100 flex items-center justify-center">
+                    <span className="text-3xl">🏆</span>
+                  </div>
+                </div>
+                <CardTitle className="text-2xl text-teal-700">Medsol Corporation</CardTitle>
+                <CardDescription className="text-sm font-medium text-muted-foreground">
+                  Award Sponsor · راعي الجوائز
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <CardDescription className="text-base">
+                  <p>
+                    Medsol Corporation is proud to sponsor the <strong>Best Innovative Research Idea Award</strong> at SCI 2026,
+                    recognizing the most creative and impactful scientific research ideas presented at the conference.
+                  </p>
+                  <p className="mt-2" dir="rtl">
+                    تفخر Medsol Corporation برعاية <strong>جائزة أفضل فكرة بحثية مبتكرة</strong> في مؤتمر SCI 2026،
+                    تقديراً للأفكار البحثية العلمية الأكثر إبداعاً وأثراً.
+                  </p>
+                </CardDescription>
+
+                <div className="grid grid-cols-3 gap-3 pt-2">
+                  <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 text-center">
+                    <p className="text-xs text-muted-foreground font-medium">1st Place</p>
+                    <p className="text-xl font-bold text-amber-600">3,000 EGP</p>
+                  </div>
+                  <div className="bg-slate-50 border border-slate-200 rounded-lg p-3 text-center">
+                    <p className="text-xs text-muted-foreground font-medium">2nd Place</p>
+                    <p className="text-xl font-bold text-slate-500">2,000 EGP</p>
+                  </div>
+                  <div className="bg-orange-50 border border-orange-200 rounded-lg p-3 text-center">
+                    <p className="text-xs text-muted-foreground font-medium">3rd Place</p>
+                    <p className="text-xl font-bold text-orange-700">1,000 EGP</p>
+                  </div>
+                </div>
+
+                <p className="text-sm text-center text-muted-foreground pt-1">
+                  🏅 Best Innovative Research Idea Award · جائزة أفضل فكرة بحثية مبتكرة
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* Become a Sponsor CTA */}
       <section className="py-16">
         <div className="container">
