@@ -745,7 +745,7 @@ export default function Admin() {
                     { key: "chitosan", label: "Biotech Product Dev 101 (Chitosan)", capacity: 30, date: "Apr 6, 9:00–12:00" },
                     { key: "agitech", label: "NGS & ddPCR in Targeted Therapy (Agitech)", capacity: 20, date: "Apr 6, 12:00–14:00" },
                     { key: "scrna_seq", label: "Single Cell Genomics (EG-CompBio)", capacity: 30, date: "Apr 9, 10:00–13:00" },
-                    { key: "hvd_genomics", label: "Genomics & Proteomics (HVD)", capacity: 30, date: "Apr 9" },
+                    { key: "hvd_genomics", label: "Genomics & Proteomics (HVD)", capacity: 30, date: "Date TBA — New Cairo" },
                     { key: "ai_biotech", label: "AI Meets Biotech", capacity: 30, date: "Apr 9" },
                   ].map(({ key, label, capacity, date }) => {
                     const count = (workshopCounts as any)?.[key] ?? 0;

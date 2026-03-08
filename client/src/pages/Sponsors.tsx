@@ -296,7 +296,7 @@ export default function Sponsors() {
                       expression analysis for translational research applications.
                     </p>
                     <p className="text-sm text-muted-foreground font-medium">
-                      📅 April 9, 2026 &nbsp;|&nbsp; 🕘 Post-Conference &nbsp;|&nbsp; 👥 30 spots
+                      📅 Date &amp; Time TBA &nbsp;|&nbsp; 📍 HVD Company, New Cairo &nbsp;|&nbsp; 👥 30 spots
                     </p>
                   </CardDescription>
                 </CardContent>

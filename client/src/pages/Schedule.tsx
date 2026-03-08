@@ -884,7 +884,7 @@ export default function Schedule() {
                     </div>
                     <div>
                       <p className="font-semibold">Integrating Genomics & Proteomics in Biopharmaceutical R&D</p>
-                      <p className="text-xs text-muted-foreground">By HVD Life Sciences · 1:00–4:00 PM · 30 seats</p>
+                      <p className="text-xs text-muted-foreground">By HVD Life Sciences · Date &amp; Time TBA · HVD Company, New Cairo · 30 seats</p>
                     </div>
                     <div>
                       <p className="font-semibold">AI Meets Biotech</p>

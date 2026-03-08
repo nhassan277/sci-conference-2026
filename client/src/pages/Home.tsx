@@ -1146,76 +1146,8 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* HVD Life Sciences Workshop Card */}
-              <div className="max-w-2xl mx-auto mb-6">
-                <div className="p-6 bg-gradient-to-r from-blue-50 to-slate-50 border-2 border-blue-300 rounded-2xl space-y-4">
-                  {/* Header with logo */}
-                  <div className="flex items-center justify-between flex-wrap gap-3">
-                    <img
-                      src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/NlYUUYlTeGQwRRXp.png"
-                      alt="HVD Life Sciences"
-                      className="h-16 object-contain"
-                    />
-                    <Badge className="bg-blue-100 text-blue-800 border-blue-300 text-xs">
-                      Post-Conference | بعد المؤتمر
-                    </Badge>
-                  </div>
-
-                  {/* Title */}
-                  <div>
-                    <h4 className="text-xl font-bold text-blue-900">Integrating Genomics and Proteomics in Modern Biopharmaceutical R&amp;D</h4>
-                    <p className="text-base font-semibold text-blue-700 mt-1" dir="rtl">دمج الجينوميكس والبروتيوميكس في أبحاث وتطوير الأدوية الحيوية</p>
-                    <p className="text-sm text-blue-600 italic mt-1">&ldquo;Bridging Omics Technologies for Drug Discovery&rdquo;</p>
-                  </div>
-
-                  {/* Description */}
-                  <p className="text-sm text-foreground leading-relaxed">
-                    A hands-on workshop exploring how genomics and proteomics technologies are integrated in modern biopharmaceutical research and drug development. Participants will gain practical insights into omics data analysis workflows used in drug discovery pipelines.
-                  </p>
-                  <p className="text-sm text-foreground leading-relaxed" dir="rtl">
-                    ورشة عمل تطبيقية تستعرض كيفية دمج تقنيات الجينوميكس والبروتيوميكس في أبحاث الأدوية الحيوية الحديثة، مع تدريب عملي على تحليل البيانات.
-                  </p>
-
-                  {/* Details grid */}
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="p-3 bg-white rounded-xl border border-blue-200">
-                      <p className="text-xs text-muted-foreground">📅 Date | التاريخ</p>
-                      <p className="font-bold text-blue-900 text-sm">April 9, 2026</p>
-                      <p className="text-blue-700 text-xs" dir="rtl">٩ أبريل ٢٠٢٦</p>
-                    </div>
-                    <div className="p-3 bg-white rounded-xl border border-blue-200">
-                      <p className="text-xs text-muted-foreground">⏰ Time | الوقت</p>
-                      <p className="font-bold text-blue-900 text-sm">1:00 – 4:00 PM</p>
-                      <p className="text-blue-700 text-xs" dir="rtl">١:٠٠ – ٤:٠٠ م</p>
-                    </div>
-                    <div className="p-3 bg-white rounded-xl border border-blue-200">
-                      <p className="text-xs text-muted-foreground">⏳ Duration | المدة</p>
-                      <p className="font-bold text-blue-900 text-sm">3 Hours</p>
-                      <p className="text-blue-700 text-xs" dir="rtl">٣ ساعات</p>
-                    </div>
-                    <div className="p-3 bg-white rounded-xl border border-blue-200">
-                      <p className="text-xs text-muted-foreground">💰 Fee | الرسوم</p>
-                      <p className="font-bold text-blue-900 text-sm">200 EGP</p>
-                      <p className="text-blue-700 text-xs" dir="rtl">200 جنيه مصري</p>
-                    </div>
-                  </div>
-
-                  {/* Spots counter */}
-                  <div className="flex items-center justify-between">
-                    {workshopCounts && getSpotsBadge(workshopCounts.hvd_genomics ?? 0)}
-                    <Button
-                      size="sm"
-                      className="bg-blue-700 hover:bg-blue-800 text-white text-xs px-3"
-                      onClick={() => { window.location.href = '/attendance'; }}
-                    >
-                      Register &amp; Upload Invoice | سجّل وارفع الإيصال
-                    </Button>
-                  </div>
-                </div>
-              </div>
-
               {/* AI Meets Biotech Workshop Card */}
-              <div className="max-w-2xl mx-auto">
+              <div className="max-w-2xl mx-auto mb-6">
                 <div className="p-6 bg-gradient-to-r from-purple-50 to-indigo-50 border-2 border-purple-300 rounded-2xl space-y-4">
                   {/* Header with logo */}
                   <div className="flex items-center justify-between flex-wrap gap-3">
@@ -1277,6 +1209,100 @@ export default function Home() {
                       onClick={() => { window.location.href = '/attendance'; }}
                     >
                       Register & Upload Invoice | سجّل وارفع الإيصال
+                    </Button>
+                  </div>
+                </div>
+              </div>
+
+              {/* HVD Life Sciences Workshop Card */}
+              <div className="max-w-2xl mx-auto">
+                <div className="p-6 bg-gradient-to-r from-blue-50 to-slate-50 border-2 border-blue-300 rounded-2xl space-y-4">
+                  {/* Header with logo */}
+                  <div className="flex items-center justify-between flex-wrap gap-3">
+                    <img
+                      src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/NlYUUYlTeGQwRRXp.png"
+                      alt="HVD Life Sciences"
+                      className="h-16 object-contain"
+                    />
+                    <Badge className="bg-blue-100 text-blue-800 border-blue-300 text-xs">
+                      Post-Conference | بعد المؤتمر
+                    </Badge>
+                  </div>
+
+                  {/* Title */}
+                  <div>
+                    <h4 className="text-xl font-bold text-blue-900">Integrating Genomics and Proteomics in Modern Biopharmaceutical R&amp;D</h4>
+                    <p className="text-base font-semibold text-blue-700 mt-1" dir="rtl">دمج الجينوميكس والبروتيوميكس في أبحاث وتطوير الأدوية الحيوية</p>
+                    <p className="text-sm text-blue-600 italic mt-1">&ldquo;Bridging Omics Technologies for Drug Discovery&rdquo;</p>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-sm text-foreground leading-relaxed">
+                    A hands-on workshop exploring how genomics and proteomics technologies are integrated in modern biopharmaceutical research and drug development. Participants will gain practical insights into omics data analysis workflows used in drug discovery pipelines.
+                  </p>
+                  <p className="text-sm text-foreground leading-relaxed" dir="rtl">
+                    ورشة عمل تطبيقية تستعرض كيفية دمج تقنيات الجينوميكس والبروتيوميكس في أبحاث الأدوية الحيوية الحديثة، مع تدريب عملي على تحليل البيانات.
+                  </p>
+
+                  {/* TBA Notice */}
+                  <div className="p-3 bg-amber-50 border border-amber-300 rounded-lg flex items-start gap-2">
+                    <span className="text-amber-600 text-lg">📂</span>
+                    <div>
+                      <p className="text-xs font-bold text-amber-800">Date &amp; Time — To Be Announced | سيتم الإعلان عن التاريخ والوقت قريباً</p>
+                      <p className="text-xs text-amber-700 mt-0.5">Stay tuned for the confirmed schedule.</p>
+                    </div>
+                  </div>
+
+                  {/* Location */}
+                  <div className="p-3 bg-white rounded-xl border border-blue-200 flex items-start gap-2">
+                    <span className="text-blue-600 text-base mt-0.5">📍</span>
+                    <div>
+                      <p className="text-xs text-muted-foreground font-semibold">Location | المكان</p>
+                      <p className="font-bold text-blue-900 text-sm">HVD Company — New Cairo</p>
+                      <a
+                        href="https://share.google/8FTOPPpd0JLDz8h2k"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs text-blue-600 underline hover:text-blue-800 break-all"
+                      >
+                        2C53+JCC, New Cairo 1, Cairo Governorate 4720113
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Details grid */}
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="p-3 bg-white rounded-xl border border-blue-200">
+                      <p className="text-xs text-muted-foreground">⏳ Duration | المدة</p>
+                      <p className="font-bold text-blue-900 text-sm">3 Hours</p>
+                      <p className="text-blue-700 text-xs" dir="rtl">٣ ساعات</p>
+                    </div>
+                    <div className="p-3 bg-white rounded-xl border border-blue-200">
+                      <p className="text-xs text-muted-foreground">💰 Fee | الرسوم</p>
+                      <p className="font-bold text-blue-900 text-sm">200 EGP</p>
+                      <p className="text-blue-700 text-xs" dir="rtl">200 جنيه مصري</p>
+                    </div>
+                    <div className="p-3 bg-white rounded-xl border border-blue-200">
+                      <p className="text-xs text-muted-foreground">👥 Capacity | السعة</p>
+                      <p className="font-bold text-blue-900 text-sm">30 Participants</p>
+                      <p className="text-blue-700 text-xs" dir="rtl">٣٠ مشاركاً فقط</p>
+                    </div>
+                    <div className="p-3 bg-white rounded-xl border border-blue-200">
+                      <p className="text-xs text-muted-foreground">🏷️ Type | النوع</p>
+                      <p className="font-bold text-blue-900 text-sm">Hands-on</p>
+                      <p className="text-blue-700 text-xs" dir="rtl">عملي تطبيقي</p>
+                    </div>
+                  </div>
+
+                  {/* Spots counter */}
+                  <div className="flex items-center justify-between">
+                    {workshopCounts && getSpotsBadge(workshopCounts.hvd_genomics ?? 0)}
+                    <Button
+                      size="sm"
+                      className="bg-blue-700 hover:bg-blue-800 text-white text-xs px-3"
+                      onClick={() => { window.location.href = '/attendance'; }}
+                    >
+                      Register &amp; Upload Invoice | سجّل وارفع الإيصال
                     </Button>
                   </div>
                 </div>

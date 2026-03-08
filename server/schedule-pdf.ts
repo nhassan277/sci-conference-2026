@@ -488,7 +488,7 @@ export function generateSchedulePDF(res: Response): void {
       color: COLORS.closing,
       items: [
         { name: "Introduction to Single Cell Genomics", detail: "By EG-CompBio & GARN · April 9, 10:00 AM – 1:00 PM · 3 hours · 30 seats" },
-        { name: "Integrating Genomics & Proteomics in Biopharmaceutical R&D", detail: "By HVD Life Sciences · 1:00–4:00 PM · 30 seats" },
+        { name: "Integrating Genomics & Proteomics in Biopharmaceutical R&D", detail: "By HVD Life Sciences · Date & Time TBA · HVD Company, New Cairo · 30 seats" },
         { name: "AI Meets Biotech", detail: "How to leverage AI in Biotechnology · 3 hours" },
       ],
     },
