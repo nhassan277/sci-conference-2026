@@ -132,7 +132,7 @@ export const appRouter = router({
           const allRegs = await db.select().from(registrations);
           const WORKSHOP_CAPACITIES: Record<string, number> = {
             nawah: 30, marc: 30, medsol: 30, geochemistry: 30, agitech: 20,
-            chitosan: 30, scrna_seq: 30, hvd_genomics: 30, ai_biotech: 30,
+            chitosan: 30, scrna_seq: 30, hvd_genomics: 30, ai_biotech: 30, colors_metagenomics: 25,
           };
           const workshopLabels: Record<string, string> = {
             nawah: "NAWAH Scientific", marc: "MARC", medsol: "Medsol Corporation",
@@ -141,6 +141,7 @@ export const appRouter = router({
             scrna_seq: "Single Cell Genomics (EG-CompBio)",
             hvd_genomics: "Genomics & Proteomics (HVD)",
             ai_biotech: "AI Meets Biotech",
+            colors_metagenomics: "Metagenomics & Microbiome (Colors Educational Hub)",
           };
           // Check during-conference workshops
           for (const [key, capacity] of Object.entries(WORKSHOP_CAPACITIES)) {
@@ -294,7 +295,8 @@ export const appRouter = router({
       const scrna_seq = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'scrna_seq' && r.extWorkshopPaymentStatus !== 'rejected').length;
       const hvd_genomics = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'hvd_genomics' && r.extWorkshopPaymentStatus !== 'rejected').length;
       const agitech = allRegs.filter(r => r.wantsWorkshop && r.workshopChoice === 'agitech' && r.workshopPaymentStatus !== 'rejected').length;
-      return { nawah, marc, medsol, geochemistry, agitech, ai_biotech, chitosan, scrna_seq, hvd_genomics };
+      const colors_metagenomics = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'colors_metagenomics' && r.extWorkshopPaymentStatus !== 'rejected').length;
+      return { nawah, marc, medsol, geochemistry, agitech, ai_biotech, chitosan, scrna_seq, hvd_genomics, colors_metagenomics };
     }),
 
     confirmWorkshopPayment: adminProcedure

@@ -646,6 +646,18 @@ export default function Attendance() {
                             logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/NlYUUYlTeGQwRRXp.png",
                             eligibility: "30 spots only | Certificate provided by HVD",
                           },
+                          {
+                            value: "colors_metagenomics",
+                            label: "Metagenomics, Microbiome & 16S rRNA Sequencing",
+                            labelAr: "الميتاجينوميكس، الميكروبيوم وتسلسل الـ 16S rRNA",
+                            desc: "Hands-on workshop on metagenomics, microbiome analysis, and 16S rRNA sequencing. Title to be announced soon.",
+                            descAr: "ورشة عملية في الميتاجينوميكس وتحليل الميكروبيوم وتسلسل الـ 16S rRNA. سيتم الإعلان عن العنوان قريباً.",
+                            date: "Date & Time — To Be Announced",
+                            dateAr: "سيتم الإعلان عن التاريخ والوقت قريباً",
+                            by: "Colors Educational Hub — Maadi, Cairo (4 شارع 160، برج رهام، المعادي 11431)",
+                            logo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/logo_colors_52f6762b.png",
+                            eligibility: "25 spots only | 200 EGP",
+                          },
                         ].map((ws) => (
                           <div
                             key={ws.value}

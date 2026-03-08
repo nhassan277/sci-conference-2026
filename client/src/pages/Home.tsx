@@ -1337,6 +1337,105 @@ export default function Home() {
                   </div>
                 </div>
               </div>
+
+              {/* Colors Educational Hub Workshop Card */}
+              <div className="max-w-2xl mx-auto">
+                <div className="p-6 bg-gradient-to-r from-indigo-50 to-teal-50 border-2 border-indigo-300 rounded-2xl space-y-4">
+                  {/* Header with logo */}
+                  <div className="flex items-center justify-between flex-wrap gap-3">
+                    <img
+                      src="https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/logo_colors_52f6762b.png"
+                      alt="Colors Educational Hub"
+                      className="h-16 object-contain"
+                    />
+                    <Badge className="bg-indigo-100 text-indigo-800 border-indigo-300 text-xs">
+                      Post-Conference | بعد المؤتمر
+                    </Badge>
+                  </div>
+
+                  {/* Title */}
+                  <div>
+                    <h4 className="text-xl font-bold text-indigo-900">Metagenomics, Microbiome & 16S rRNA Sequencing</h4>
+                    <p className="text-base font-semibold text-indigo-700 mt-1" dir="rtl">الميتاجينوميكس، الميكروبيوم وتسلسل الـ 16S rRNA</p>
+                    <p className="text-sm text-indigo-600 italic mt-1">&ldquo;Title to be announced soon&rdquo;</p>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-sm text-foreground leading-relaxed">
+                    A hands-on workshop covering metagenomics approaches, microbiome analysis, and 16S rRNA sequencing techniques. Participants will explore the diversity of microbial communities and learn state-of-the-art bioinformatics workflows for microbiome data analysis.
+                  </p>
+                  <p className="text-sm text-foreground leading-relaxed" dir="rtl">
+                    ورشة عمل تطبيقية تغطي أساليب الميتاجينوميكس وتحليل الميكروبيوم وتقنيات تسلسل الـ 16S rRNA، مع تدريب على سير عمل المعلوماتية الحيوية.
+                  </p>
+
+                  {/* TBA Notice */}
+                  <div className="p-3 bg-amber-50 border border-amber-300 rounded-lg flex items-start gap-2">
+                    <span className="text-amber-600 text-lg">📂</span>
+                    <div>
+                      <p className="text-xs font-bold text-amber-800">Title, Date &amp; Time — To Be Announced | سيتم الإعلان عن العنوان والتاريخ والوقت قريباً</p>
+                      <p className="text-xs text-amber-700 mt-0.5">Stay tuned for the confirmed schedule.</p>
+                    </div>
+                  </div>
+
+                  {/* Location */}
+                  <div className="p-3 bg-white rounded-xl border border-indigo-200 flex items-start gap-2">
+                    <span className="text-indigo-600 text-base mt-0.5">📍</span>
+                    <div>
+                      <p className="text-xs text-muted-foreground font-semibold">Location | المكان</p>
+                      <p className="font-bold text-indigo-900 text-sm">Colors Educational Hub — Maadi, Cairo</p>
+                      <a
+                        href="https://share.google/XzvUcdryGtkmA5QQd"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs text-indigo-600 underline hover:text-indigo-800 break-all"
+                      >
+                        4 شارع 160، برج رهام، المعادي الخبيري الغربية، المعادي، القاهرة 11431
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Details grid */}
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="p-3 bg-white rounded-xl border border-indigo-200">
+                      <p className="text-xs text-muted-foreground">💰 Fee | الرسوم</p>
+                      <p className="font-bold text-indigo-900 text-sm">200 EGP</p>
+                      <p className="text-indigo-700 text-xs" dir="rtl">200 جنيه مصري</p>
+                    </div>
+                    <div className="p-3 bg-white rounded-xl border border-indigo-200">
+                      <p className="text-xs text-muted-foreground">👥 Capacity | السعة</p>
+                      <p className="font-bold text-indigo-900 text-sm">25 Students</p>
+                      <p className="text-indigo-700 text-xs" dir="rtl">٢٥ طالباً فقط</p>
+                    </div>
+                    <div className="p-3 bg-white rounded-xl border border-indigo-200">
+                      <p className="text-xs text-muted-foreground">🏷️ Type | النوع</p>
+                      <p className="font-bold text-indigo-900 text-sm">Hands-on</p>
+                      <p className="text-indigo-700 text-xs" dir="rtl">عملي تطبيقي</p>
+                    </div>
+                    <div className="p-3 bg-white rounded-xl border border-indigo-200">
+                      <p className="text-xs text-muted-foreground">🏢 By | المنظم</p>
+                      <p className="font-bold text-indigo-900 text-sm">Colors Educational Hub</p>
+                    </div>
+                  </div>
+
+                  {/* Certificate Note */}
+                  <div className="p-3 bg-green-50 border border-green-200 rounded-lg flex items-start gap-2">
+                    <span className="text-green-600 text-sm mt-0.5">🎓</span>
+                    <p className="text-xs text-green-700">Certificate co-signed by <strong>Colors Educational Hub</strong> &amp; <strong>Faculty of Science, Cairo University</strong> | شهادة معتمدة من Colors Educational Hub وكلية العلوم، جامعة القاهرة</p>
+                  </div>
+
+                  {/* Spots counter */}
+                  <div className="flex items-center justify-between">
+                    {workshopCounts && getSpotsBadge(workshopCounts.colors_metagenomics ?? 0)}
+                    <Button
+                      size="sm"
+                      className="bg-indigo-700 hover:bg-indigo-800 text-white text-xs px-3"
+                      onClick={() => { window.location.href = '/attendance'; }}
+                    >
+                      Register &amp; Upload Invoice | سجّل وارفع الإيصال
+                    </Button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

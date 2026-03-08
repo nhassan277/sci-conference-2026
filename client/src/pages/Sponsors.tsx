@@ -313,6 +313,37 @@ export default function Sponsors() {
                 </CardContent>
               </Card>
 
+              {/* Colors Educational Hub */}
+              <Card className="hover:shadow-lg transition-shadow">
+                <CardHeader className="text-center">
+                  <div className="flex justify-center mb-4 h-40 items-center">
+                    <img
+                      src="https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/logo_colors_52f6762b.png"
+                      alt="Colors Educational Hub"
+                      className="h-32 object-contain"
+                    />
+                  </div>
+                  <CardTitle className="text-2xl">Colors Educational Hub</CardTitle>
+                  <CardDescription className="text-sm font-medium text-muted-foreground">Metagenomics, Microbiome &amp; 16S rRNA Sequencing</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-base space-y-3">
+                    <p>
+                      Colors Educational Hub is a specialized scientific training center based in Maadi, Cairo, 
+                      providing hands-on courses and workshops in modern molecular biology and bioinformatics.
+                    </p>
+                    <p>
+                      They will conduct a workshop on <strong>Metagenomics, Microbiome &amp; 16S rRNA Sequencing</strong>, 
+                      covering microbial community diversity analysis and state-of-the-art bioinformatics workflows. 
+                      Full title to be announced soon.
+                    </p>
+                    <p className="text-sm text-muted-foreground font-medium">
+                      📅 Date &amp; Time TBA &nbsp;|&nbsp; 📍 Maadi, Cairo &nbsp;|&nbsp; 👥 25 spots &nbsp;|&nbsp; 💰 200 EGP
+                    </p>
+                  </CardDescription>
+                </CardContent>
+              </Card>
+
             </div>
           </div>
         </div>
