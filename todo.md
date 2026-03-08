@@ -894,3 +894,9 @@
 - [x] Update workshop price from 350 EGP to 200 EGP across Home.tsx and Attendance.tsx
 # Email All feature added
 - [ ] Add InstaPay payment instructions (CBE account 9450882167) to Attendance Confirmation email
+
+## Agitech Workshop Addition
+- [x] Add Agitech logo to public/images
+- [x] Add Agitech workshop to Workshops page
+- [x] Add Agitech workshop to Schedule page (workshops summary section)
+- [x] Update PDF generator to include Agitech workshop

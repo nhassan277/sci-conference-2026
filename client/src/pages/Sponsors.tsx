@@ -92,7 +92,7 @@ export default function Sponsors() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
             {/* NAWAH Scientific */}
             <Card className="hover:shadow-lg transition-shadow">
               <CardHeader className="text-center">
@@ -169,6 +169,33 @@ export default function Sponsors() {
                     They will deliver a comprehensive workshop on Oxford Nanopore sequencing 
                     and Quantum-Si protein sequencing platforms, bridging scientific discovery 
                     with practical implementation.
+                  </p>
+                </CardDescription>
+              </CardContent>
+            </Card>
+
+            {/* Agitech */}
+            <Card className="hover:shadow-lg transition-shadow">
+              <CardHeader className="text-center">
+                <div className="flex justify-center mb-4">
+                  <img 
+                    src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/edodYeJkMcSIdRYR.png" 
+                    alt="Agitech" 
+                    className="h-40 object-contain"
+                  />
+                </div>
+                <CardTitle className="text-2xl">Agitech</CardTitle>
+                <CardDescription className="text-sm font-medium text-muted-foreground">For Integrated Scientific Instruments, SAE</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-base space-y-3">
+                  <p>
+                    Agitech is a leading provider of integrated scientific instruments and solutions, 
+                    bridging cutting-edge laboratory technology with practical biomedical applications.
+                  </p>
+                  <p>
+                    They will deliver a workshop on <strong>"From Basic Research to Precision Medicine: Applications of NGS and ddPCR in Targeted Therapy"</strong>, 
+                    demonstrating how Next-Generation Sequencing and Droplet Digital PCR are applied in precision oncology.
                   </p>
                 </CardDescription>
               </CardContent>

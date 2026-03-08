@@ -98,7 +98,7 @@ export const appRouter = router({
           wantsCertificate: z.boolean().default(false),
           certificateInvoiceUrl: z.string().optional(),
           wantsWorkshop: z.boolean().default(false),
-          workshopChoice: z.enum(["nawah", "marc", "medsol", "geochemistry"]).optional(),
+          workshopChoice: z.enum(["nawah", "marc", "medsol", "geochemistry", "agitech"]).optional(),
           workshopInvoiceUrl: z.string().optional(),
           wantsExtWorkshop: z.boolean().default(false),
           extWorkshopChoice: z.string().optional(),
@@ -257,7 +257,8 @@ export const appRouter = router({
       const chitosan = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'chitosan' && r.extWorkshopPaymentStatus !== 'rejected').length;
       const scrna_seq = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'scrna_seq' && r.extWorkshopPaymentStatus !== 'rejected').length;
       const hvd_genomics = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'hvd_genomics' && r.extWorkshopPaymentStatus !== 'rejected').length;
-      return { nawah, marc, medsol, geochemistry, ai_biotech, chitosan, scrna_seq, hvd_genomics };
+      const agitech = allRegs.filter(r => r.wantsWorkshop && r.workshopChoice === 'agitech' && r.workshopPaymentStatus !== 'rejected').length;
+      return { nawah, marc, medsol, geochemistry, agitech, ai_biotech, chitosan, scrna_seq, hvd_genomics };
     }),
 
     confirmWorkshopPayment: adminProcedure

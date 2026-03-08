@@ -23,7 +23,7 @@ const registrationSchema = z.object({
   participationType: z.literal("attendee"),
   wantsCertificate: z.boolean(),
   wantsWorkshop: z.boolean(),
-  workshopChoice: z.enum(["nawah", "marc", "medsol", "geochemistry"]).optional(),
+  workshopChoice: z.enum(["nawah", "marc", "medsol", "geochemistry", "agitech"]).optional(),
   wantsExtWorkshop: z.boolean(),
   extWorkshopChoice: z.string().optional(),
 });
@@ -487,6 +487,7 @@ export default function Attendance() {
                           { value: "marc", label: "MARC", desc: "Good Clinical Practice (GCP) Workshop", descAr: "ورشة الممارسة السريرية الجيدة" },
                           { value: "medsol", label: "Medsol", desc: "From DNA to Proteins: Advanced Sequencing Technologies", descAr: "من الحمض النووي إلى البروتينات: تقنيات التسلسل المتقدمة" },
                           { value: "geochemistry", label: "Dr. Jan Sedláček (Palacký University)", desc: "Environmental Geochemical Data Analysis — Statistical Methodologies for Pollution Source Apportionment", descAr: "تحليل بيانات الجيوكيمياء البيئية — الأساليب الإحصائية لتحديد مصادر التلوث" },
+                          { value: "agitech", label: "Agitech", desc: "From Basic Research to Precision Medicine: Applications of NGS and ddPCR in Targeted Therapy", descAr: "من البحث الأساسي إلى الطب الدقيق: تطبيقات NGS و ddPCR في العلاج الموجه" },
                         ].map((ws) => (
                           <div
                             key={ws.value}

@@ -480,6 +480,7 @@ export function generateSchedulePDF(res: Response): void {
         { name: "MARC Workshop", detail: "By MARC · Day 1 (April 7) · Workshop Rooms 1 & 2" },
         { name: "From DNA to Proteins: Advanced Sequencing Technologies", detail: "By Nawah Scientific · Day 1 (April 7) · Workshop Room 2" },
         { name: "Nawah Scientific Workshop", detail: "By Nawah Scientific · Day 2 (April 8) · Workshop Rooms 1 & 2" },
+        { name: "From Basic Research to Precision Medicine: Applications of NGS and ddPCR in Targeted Therapy", detail: "By Agitech (For Integrated Scientific Instruments, SAE) · During Conference · Workshop Room" },
       ],
     },
     {

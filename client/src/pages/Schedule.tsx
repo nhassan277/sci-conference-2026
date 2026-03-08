@@ -841,7 +841,7 @@ export default function Schedule() {
                 <FlaskConical className="w-5 h-5 text-amber-600" />
                 Workshop Program | برنامج ورش العمل
               </CardTitle>
-              <CardDescription>7 workshops across 4 days (April 6–9, 2026)</CardDescription>
+              <CardDescription>8 workshops across 4 days (April 6–9, 2026)</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-3 gap-4">
@@ -868,6 +868,10 @@ export default function Schedule() {
                     <div>
                       <p className="font-semibold">Nawah Scientific Workshop</p>
                       <p className="text-xs text-muted-foreground">By Nawah Scientific · Day 2 (April 8) · Workshop Rooms 1 & 2</p>
+                    </div>
+                    <div>
+                      <p className="font-semibold">From Basic Research to Precision Medicine: Applications of NGS and ddPCR in Targeted Therapy</p>
+                      <p className="text-xs text-muted-foreground">By Agitech · During Conference · Workshop Room</p>
                     </div>
                   </div>
                 </div>
