@@ -515,6 +515,16 @@ export default function Attendance() {
                       </div>
                     </div>
 
+                    {/* Certificate Note */}
+                    <div className="p-3 bg-green-50 border border-green-200 rounded-lg flex items-start gap-2">
+                      <span className="text-green-600 text-base mt-0.5">🎓</span>
+                      <div>
+                        <p className="text-xs font-bold text-green-800">Certificate of Completion | شهادة إتمام</p>
+                        <p className="text-xs text-green-700 mt-0.5">All workshops provide a certified certificate co-signed by the organizing company and the <strong>Faculty of Science, Cairo University</strong>.</p>
+                        <p className="text-xs text-green-700 mt-0.5" dir="rtl">جميع ورش العمل تمنح شهادة إتمام معتمدة موقّعة من الشركة المنظمة و<strong>كلية العلوم ، جامعة القاهرة</strong>.</p>
+                      </div>
+                    </div>
+
                     {/* Workshop Payment Instructions */}
                     <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg space-y-2">
                       <p className="text-sm font-semibold text-amber-900 flex items-center gap-2">
@@ -667,6 +677,16 @@ export default function Attendance() {
                             </div>
                           </div>
                         ))}
+                      </div>
+                    </div>
+
+                    {/* Certificate Note */}
+                    <div className="p-3 bg-green-50 border border-green-200 rounded-lg flex items-start gap-2">
+                      <span className="text-green-600 text-base mt-0.5">🎓</span>
+                      <div>
+                        <p className="text-xs font-bold text-green-800">Certificate of Completion | شهادة إتمام</p>
+                        <p className="text-xs text-green-700 mt-0.5">All workshops provide a certified certificate co-signed by the organizing company and the <strong>Faculty of Science, Cairo University</strong>.</p>
+                        <p className="text-xs text-green-700 mt-0.5" dir="rtl">جميع ورش العمل تمنح شهادة إتمام معتمدة موقّعة من الشركة المنظمة و<strong>كلية العلوم ، جامعة القاهرة</strong>.</p>
                       </div>
                     </div>
 

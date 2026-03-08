@@ -697,7 +697,7 @@ export default function Home() {
                     <div className="border-t pt-4 mt-4">
                       <ul className="list-disc list-inside space-y-1 text-left text-sm">
                         <li>Open to all registered participants</li>
-                        <li>Certificate of completion provided</li>
+                        <li>Certificate co-signed by company &amp; Faculty of Science, Cairo University</li>
                         <li>Interactive Business Model Canvas session</li>
                       </ul>
                     </div>
@@ -743,7 +743,7 @@ export default function Home() {
                         <li>ICH-GCP guidelines and regulations</li>
                         <li>Ethical principles and informed consent</li>
                         <li>Data integrity and protocol compliance</li>
-                        <li>Certificate of completion provided</li>
+                        <li>Certificate co-signed by company &amp; Faculty of Science, Cairo University</li>
                       </ul>
                     </div>
                   </CardDescription>
@@ -788,7 +788,7 @@ export default function Home() {
                         <li>Oxford Nanopore sequencing workflows</li>
                         <li>Quantum-Si protein sequencing platform</li>
                         <li>Data interpretation and analysis</li>
-                        <li>Certificate of completion provided</li>
+                        <li>Certificate co-signed by company &amp; Faculty of Science, Cairo University</li>
                       </ul>
                     </div>
                   </CardDescription>
@@ -836,7 +836,7 @@ export default function Home() {
                         <li>Statistical methods for geochemical data</li>
                         <li>Pollution source apportionment techniques</li>
                         <li>Practical data analysis exercises</li>
-                        <li>Certificate of completion provided</li>
+                        <li>Certificate co-signed by company &amp; Faculty of Science, Cairo University</li>
                       </ul>
                     </div>
                   </CardDescription>
@@ -971,6 +971,12 @@ export default function Home() {
                     </div>
                   </div>
 
+                  {/* Certificate Note */}
+                  <div className="p-3 bg-green-50 border border-green-200 rounded-lg flex items-start gap-2">
+                    <span className="text-green-600 text-sm mt-0.5">🎓</span>
+                    <p className="text-xs text-green-700">Certificate co-signed by <strong>Chitosan</strong> &amp; <strong>Faculty of Science, Cairo University</strong> | شهادة معتمدة من Chitosan وكلية العلوم ، جامعة القاهرة</p>
+                  </div>
+
                   {/* Spots counter */}
                   <div className="flex items-center justify-between">
                     {workshopCounts && getSpotsBadge(workshopCounts.chitosan ?? 0)}
@@ -1040,6 +1046,12 @@ export default function Home() {
                       <p className="font-bold text-gray-900 text-sm">Precision Oncology</p>
                       <p className="text-gray-700 text-xs" dir="rtl">الأورام الدقيقة</p>
                     </div>
+                  </div>
+
+                  {/* Certificate Note */}
+                  <div className="p-3 bg-green-50 border border-green-200 rounded-lg flex items-start gap-2">
+                    <span className="text-green-600 text-sm mt-0.5">🎓</span>
+                    <p className="text-xs text-green-700">Certificate co-signed by <strong>Agitech</strong> &amp; <strong>Faculty of Science, Cairo University</strong> | شهادة معتمدة من Agitech وكلية العلوم ، جامعة القاهرة</p>
                   </div>
 
                   {/* Spots counter + Register button */}
@@ -1132,6 +1144,12 @@ export default function Home() {
                     </div>
                   </div>
 
+                  {/* Certificate Note */}
+                  <div className="p-3 bg-green-50 border border-green-200 rounded-lg flex items-start gap-2">
+                    <span className="text-green-600 text-sm mt-0.5">🎓</span>
+                    <p className="text-xs text-green-700">Certificate co-signed by <strong>EG-CompBio</strong> &amp; <strong>Faculty of Science, Cairo University</strong> | شهادة معتمدة من EG-CompBio وكلية العلوم ، جامعة القاهرة</p>
+                  </div>
+
                   {/* Spots counter */}
                   <div className="flex items-center justify-between">
                     {workshopCounts && getSpotsBadge(workshopCounts.scrna_seq ?? 0)}
@@ -1198,6 +1216,12 @@ export default function Home() {
                       <p className="font-bold text-purple-900 text-sm">200 EGP</p>
                       <p className="text-purple-700 text-xs" dir="rtl">200 جنيه مصري</p>
                     </div>
+                  </div>
+
+                  {/* Certificate Note */}
+                  <div className="p-3 bg-green-50 border border-green-200 rounded-lg flex items-start gap-2">
+                    <span className="text-green-600 text-sm mt-0.5">🎓</span>
+                    <p className="text-xs text-green-700">Certificate co-signed by <strong>AI بالعربي</strong> &amp; <strong>Faculty of Science, Cairo University</strong> | شهادة معتمدة من AI بالعربي وكلية العلوم ، جامعة القاهرة</p>
                   </div>
 
                   {/* Spots counter */}
@@ -1292,6 +1316,12 @@ export default function Home() {
                       <p className="font-bold text-blue-900 text-sm">Hands-on</p>
                       <p className="text-blue-700 text-xs" dir="rtl">عملي تطبيقي</p>
                     </div>
+                  </div>
+
+                  {/* Certificate Note */}
+                  <div className="p-3 bg-green-50 border border-green-200 rounded-lg flex items-start gap-2">
+                    <span className="text-green-600 text-sm mt-0.5">🎓</span>
+                    <p className="text-xs text-green-700">Certificate co-signed by <strong>HVD Life Sciences</strong> &amp; <strong>Faculty of Science, Cairo University</strong> | شهادة معتمدة من HVD Life Sciences وكلية العلوم ، جامعة القاهرة</p>
                   </div>
 
                   {/* Spots counter */}
