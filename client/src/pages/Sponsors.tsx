@@ -92,114 +92,217 @@ export default function Sponsors() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-            {/* NAWAH Scientific */}
-            <Card className="hover:shadow-lg transition-shadow">
-              <CardHeader className="text-center">
-                <div className="flex justify-center mb-4">
-                  <img 
-                    src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/ndKRwnmyKdJLbGXC.png" 
-                    alt="NAWAH Scientific" 
-                    className="h-40 object-contain"
-                  />
-                </div>
-                <CardTitle className="text-2xl">NAWAH Scientific</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-base space-y-3">
-                  <p>
-                    NAWAH Scientific is a leading provider of advanced scientific services 
-                    and research solutions in Egypt and the Middle East.
-                  </p>
-                  <p>
-                    They will deliver hands-on professional workshops during the conference, 
-                    providing participants with practical training and certification in 
-                    cutting-edge scientific techniques.
-                  </p>
-                </CardDescription>
-              </CardContent>
-            </Card>
+          {/* During-Conference Workshops */}
+          <div className="mb-10">
+            <h3 className="text-xl font-semibold text-center text-muted-foreground mb-6 uppercase tracking-wide">
+              During Conference | أثناء المؤتمر
+            </h3>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+              {/* NAWAH Scientific */}
+              <Card className="hover:shadow-lg transition-shadow">
+                <CardHeader className="text-center">
+                  <div className="flex justify-center mb-4">
+                    <img 
+                      src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/ndKRwnmyKdJLbGXC.png" 
+                      alt="NAWAH Scientific" 
+                      className="h-40 object-contain"
+                    />
+                  </div>
+                  <CardTitle className="text-2xl">NAWAH Scientific</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-base space-y-3">
+                    <p>
+                      NAWAH Scientific is a leading provider of advanced scientific services 
+                      and research solutions in Egypt and the Middle East.
+                    </p>
+                    <p>
+                      They will deliver hands-on professional workshops during the conference, 
+                      providing participants with practical training and certification in 
+                      cutting-edge scientific techniques.
+                    </p>
+                  </CardDescription>
+                </CardContent>
+              </Card>
 
-            {/* MARC */}
-            <Card className="hover:shadow-lg transition-shadow">
-              <CardHeader className="text-center">
-                <div className="flex justify-center mb-4">
-                  <img 
-                    src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/ovrQFMOFiOzebFkT.jpg" 
-                    alt="MARC" 
-                    className="h-40 object-contain"
-                  />
-                </div>
-                <CardTitle className="text-2xl">MARC</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-base space-y-3">
-                  <p>
-                    MARC specializes in medical research applications and clinical training, 
-                    providing expertise in Good Clinical Practice (GCP) and research methodologies.
-                  </p>
-                  <p>
-                    They will conduct a comprehensive 3-hour Good Clinical Practice (GCP) workshop, 
-                    equipping researchers with essential knowledge for conducting ethical and 
-                    compliant clinical research.
-                  </p>
-                </CardDescription>
-              </CardContent>
-            </Card>
+              {/* MARC */}
+              <Card className="hover:shadow-lg transition-shadow">
+                <CardHeader className="text-center">
+                  <div className="flex justify-center mb-4">
+                    <img 
+                      src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/ovrQFMOFiOzebFkT.jpg" 
+                      alt="MARC" 
+                      className="h-40 object-contain"
+                    />
+                  </div>
+                  <CardTitle className="text-2xl">MARC</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-base space-y-3">
+                    <p>
+                      MARC specializes in medical research applications and clinical training, 
+                      providing expertise in Good Clinical Practice (GCP) and research methodologies.
+                    </p>
+                    <p>
+                      They will conduct a comprehensive 3-hour Good Clinical Practice (GCP) workshop, 
+                      equipping researchers with essential knowledge for conducting ethical and 
+                      compliant clinical research.
+                    </p>
+                  </CardDescription>
+                </CardContent>
+              </Card>
 
-            {/* Medsol */}
-            <Card className="hover:shadow-lg transition-shadow">
-              <CardHeader className="text-center">
-                <div className="flex justify-center mb-4">
-                  <img 
-                    src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/suhdZISVxwwlvpPk.png" 
-                    alt="Medsol" 
-                    className="h-40 object-contain"
-                  />
-                </div>
-                <CardTitle className="text-2xl">Medsol</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-base space-y-3">
-                  <p>
-                    Medsol provides cutting-edge solutions in genomics and proteomics, 
-                    specializing in advanced sequencing technologies and molecular analysis.
-                  </p>
-                  <p>
-                    They will deliver a comprehensive workshop on Oxford Nanopore sequencing 
-                    and Quantum-Si protein sequencing platforms, bridging scientific discovery 
-                    with practical implementation.
-                  </p>
-                </CardDescription>
-              </CardContent>
-            </Card>
+              {/* Medsol */}
+              <Card className="hover:shadow-lg transition-shadow">
+                <CardHeader className="text-center">
+                  <div className="flex justify-center mb-4">
+                    <img 
+                      src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/suhdZISVxwwlvpPk.png" 
+                      alt="Medsol" 
+                      className="h-40 object-contain"
+                    />
+                  </div>
+                  <CardTitle className="text-2xl">Medsol</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-base space-y-3">
+                    <p>
+                      Medsol provides cutting-edge solutions in genomics and proteomics, 
+                      specializing in advanced sequencing technologies and molecular analysis.
+                    </p>
+                    <p>
+                      They will deliver a comprehensive workshop on Oxford Nanopore sequencing 
+                      and Quantum-Si protein sequencing platforms, bridging scientific discovery 
+                      with practical implementation.
+                    </p>
+                  </CardDescription>
+                </CardContent>
+              </Card>
 
-            {/* Agitech */}
-            <Card className="hover:shadow-lg transition-shadow">
-              <CardHeader className="text-center">
-                <div className="flex justify-center mb-4">
-                  <img 
-                    src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/edodYeJkMcSIdRYR.png" 
-                    alt="Agitech" 
-                    className="h-40 object-contain"
-                  />
-                </div>
-                <CardTitle className="text-2xl">Agitech</CardTitle>
-                <CardDescription className="text-sm font-medium text-muted-foreground">For Integrated Scientific Instruments, SAE</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-base space-y-3">
-                  <p>
-                    Agitech is a leading provider of integrated scientific instruments and solutions, 
-                    bridging cutting-edge laboratory technology with practical biomedical applications.
-                  </p>
-                  <p>
-                    They will deliver a workshop on <strong>"From Basic Research to Precision Medicine: Applications of NGS and ddPCR in Targeted Therapy"</strong>, 
-                    demonstrating how Next-Generation Sequencing and Droplet Digital PCR are applied in precision oncology.
-                  </p>
-                </CardDescription>
-              </CardContent>
-            </Card>
+              {/* Agitech */}
+              <Card className="hover:shadow-lg transition-shadow">
+                <CardHeader className="text-center">
+                  <div className="flex justify-center mb-4">
+                    <img 
+                      src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/edodYeJkMcSIdRYR.png" 
+                      alt="Agitech" 
+                      className="h-40 object-contain"
+                    />
+                  </div>
+                  <CardTitle className="text-2xl">Agitech</CardTitle>
+                  <CardDescription className="text-sm font-medium text-muted-foreground">For Integrated Scientific Instruments, SAE</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-base space-y-3">
+                    <p>
+                      Agitech is a leading provider of integrated scientific instruments and solutions, 
+                      bridging cutting-edge laboratory technology with practical biomedical applications.
+                    </p>
+                    <p>
+                      They will deliver a workshop on <strong>"From Basic Research to Precision Medicine: Applications of NGS and ddPCR in Targeted Therapy"</strong>, 
+                      demonstrating how Next-Generation Sequencing and Droplet Digital PCR are applied in precision oncology.
+                    </p>
+                  </CardDescription>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+
+          {/* Pre/Post-Conference Workshops */}
+          <div>
+            <h3 className="text-xl font-semibold text-center text-muted-foreground mb-6 uppercase tracking-wide">
+              Pre &amp; Post Conference | قبل وبعد المؤتمر
+            </h3>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+
+              {/* Chitosan */}
+              <Card className="hover:shadow-lg transition-shadow">
+                <CardHeader className="text-center">
+                  <div className="flex justify-center mb-4 h-40 items-center">
+                    <div className="w-24 h-24 rounded-full bg-orange-100 flex items-center justify-center">
+                      <span className="text-4xl">🌿</span>
+                    </div>
+                  </div>
+                  <CardTitle className="text-2xl">Chitosan</CardTitle>
+                  <CardDescription className="text-sm font-medium text-muted-foreground">Biotech Product Development 101</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-base space-y-3">
+                    <p>
+                      An interactive session designed for senior students, fresh graduates, and early-career 
+                      researchers who want to learn how scientific ideas can be translated into real products.
+                    </p>
+                    <p>
+                      The workshop introduces a practical roadmap for biotech product development and 
+                      potential startup building — covering idea generation, screening, MVP design, 
+                      and value proposition.
+                    </p>
+                    <p className="text-sm text-muted-foreground font-medium">
+                      📅 April 6, 2026 &nbsp;|&nbsp; 🕘 9:00 AM – 12:00 PM &nbsp;|&nbsp; 👥 30 spots
+                    </p>
+                  </CardDescription>
+                </CardContent>
+              </Card>
+
+              {/* EG-CompBio */}
+              <Card className="hover:shadow-lg transition-shadow">
+                <CardHeader className="text-center">
+                  <div className="flex justify-center mb-4 h-40 items-center">
+                    <div className="w-24 h-24 rounded-full bg-blue-100 flex items-center justify-center">
+                      <span className="text-4xl">🔬</span>
+                    </div>
+                  </div>
+                  <CardTitle className="text-2xl">EG-CompBio</CardTitle>
+                  <CardDescription className="text-sm font-medium text-muted-foreground">Egyptian Computational Biology Society</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-base space-y-3">
+                    <p>
+                      EG-CompBio is Egypt's leading computational biology society, dedicated to advancing 
+                      bioinformatics and single-cell genomics research across the region.
+                    </p>
+                    <p>
+                      They will deliver a hands-on workshop on <strong>Single Cell RNA Sequencing (scRNA-seq)</strong>, 
+                      covering data analysis pipelines, cell clustering, and biological interpretation 
+                      of single-cell transcriptomic data.
+                    </p>
+                    <p className="text-sm text-muted-foreground font-medium">
+                      📅 April 9, 2026 &nbsp;|&nbsp; 🕘 Post-Conference &nbsp;|&nbsp; 👥 30 spots
+                    </p>
+                  </CardDescription>
+                </CardContent>
+              </Card>
+
+              {/* HVD */}
+              <Card className="hover:shadow-lg transition-shadow">
+                <CardHeader className="text-center">
+                  <div className="flex justify-center mb-4 h-40 items-center">
+                    <div className="w-24 h-24 rounded-full bg-purple-100 flex items-center justify-center">
+                      <span className="text-4xl">🧫</span>
+                    </div>
+                  </div>
+                  <CardTitle className="text-2xl">HVD</CardTitle>
+                  <CardDescription className="text-sm font-medium text-muted-foreground">Genomics &amp; Proteomics Solutions</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-base space-y-3">
+                    <p>
+                      HVD is a specialized provider of genomics and proteomics solutions, 
+                      offering advanced molecular diagnostic services and research support.
+                    </p>
+                    <p>
+                      They will conduct a workshop on <strong>Genomics &amp; Proteomics</strong>, 
+                      exploring cutting-edge technologies in DNA/RNA sequencing and protein 
+                      expression analysis for translational research applications.
+                    </p>
+                    <p className="text-sm text-muted-foreground font-medium">
+                      📅 April 9, 2026 &nbsp;|&nbsp; 🕘 Post-Conference &nbsp;|&nbsp; 👥 30 spots
+                    </p>
+                  </CardDescription>
+                </CardContent>
+              </Card>
+
+            </div>
           </div>
         </div>
       </section>
