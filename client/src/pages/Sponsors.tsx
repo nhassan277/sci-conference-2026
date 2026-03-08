@@ -414,16 +414,6 @@ export default function Sponsors() {
                   <CardDescription className="text-sm space-y-1">
                     <p className="font-semibold text-blue-700">🎓 2 Professional Training Opportunities</p>
                     <p className="text-xs" dir="rtl">فرصتا تدريب متخصصتان</p>
-                    <div className="grid grid-cols-2 gap-2 pt-1">
-                      <div className="bg-blue-50 border border-blue-200 rounded p-2 text-center">
-                        <p className="text-xs text-muted-foreground">Spot 1</p>
-                        <p className="text-sm font-bold text-blue-600">Training</p>
-                      </div>
-                      <div className="bg-blue-50 border border-blue-200 rounded p-2 text-center">
-                        <p className="text-xs text-muted-foreground">Spot 2</p>
-                        <p className="text-sm font-bold text-blue-600">Training</p>
-                      </div>
-                    </div>
                     <p className="text-xs text-muted-foreground pt-1">MARC will select 2 outstanding participants for a professional training opportunity at their facility.</p>
                   </CardDescription>
                 </div>
