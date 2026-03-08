@@ -580,12 +580,20 @@ export function generateSchedulePDF(res: Response): void {
   const totalPages = (doc as any).bufferedPageRange().count;
   for (let i = 0; i < totalPages; i++) {
     doc.switchToPage(i);
-    doc.rect(0, doc.page.height - 30, pageWidth, 30).fill(COLORS.primary);
+    // Two-line footer: certificate note + page info
+    doc.rect(0, doc.page.height - 42, pageWidth, 42).fill(COLORS.primary);
+    doc.fontSize(7).fillColor("#a5f3fc").font("Helvetica-Bold")
+      .text(
+        "🎓 All workshops provide a certified certificate of completion, co-signed by the organizing company and the Faculty of Science, Cairo University.",
+        margin,
+        doc.page.height - 38,
+        { width: contentWidth, align: "center" }
+      );
     doc.fontSize(7).fillColor(COLORS.white).font("Helvetica")
       .text(
         `SCI 2026 · Faculty of Science, Cairo University · April 7–8, 2026  |  Page ${i + 1} of ${totalPages}`,
         margin,
-        doc.page.height - 18,
+        doc.page.height - 16,
         { width: contentWidth, align: "center" }
       );
   }
