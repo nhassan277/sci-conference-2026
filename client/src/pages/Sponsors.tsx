@@ -308,6 +308,37 @@ export default function Sponsors() {
                 </CardContent>
               </Card>
 
+              {/* Agitech */}
+              <Card className="hover:shadow-lg transition-shadow">
+                <CardHeader className="text-center">
+                  <div className="flex justify-center mb-4 h-40 items-center">
+                    <img
+                      src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/qtvBAZFSrMqYBKkE.png"
+                      alt="Agitech"
+                      className="h-32 object-contain"
+                    />
+                  </div>
+                  <CardTitle className="text-2xl">Agitech</CardTitle>
+                  <CardDescription className="text-sm font-medium text-muted-foreground">NGS &amp; ddPCR in Targeted Therapy</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-base space-y-3">
+                    <p>
+                      Agitech — For Integrated Scientific Instruments (SAE) — is a leading provider 
+                      of advanced molecular biology instruments and solutions for research and diagnostics.
+                    </p>
+                    <p>
+                      They will deliver a workshop on <strong>NGS &amp; ddPCR in Targeted Therapy</strong>: 
+                      From Basic Research to Precision Medicine — covering applications of Next-Generation 
+                      Sequencing and digital droplet PCR in targeted cancer therapy.
+                    </p>
+                    <p className="text-sm text-muted-foreground font-medium">
+                      📅 April 6, 2026 &nbsp;|&nbsp; 🕛 12:00 PM – 2:00 PM &nbsp;|&nbsp; 👥 20 spots
+                    </p>
+                  </CardDescription>
+                </CardContent>
+              </Card>
+
             </div>
           </div>
         </div>
