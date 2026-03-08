@@ -598,7 +598,7 @@ export default function Attendance() {
                             date: "April 9, 2026 | 10:00 AM – 1:00 PM",
                             dateAr: "٩ أبريل ٢٠٢٦ | ١٠:٠٠ ص – ١:٠٠ م",
                             by: "EgcompBio",
-                            logo: "",
+                            logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/VSqePLOAbshMxznI.png",
                             eligibility: "Intermediate to advanced level · 30 spots only",
                           },
                           {
