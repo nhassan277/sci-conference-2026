@@ -97,7 +97,7 @@ export default function Sponsors() {
             <h3 className="text-xl font-semibold text-center text-muted-foreground mb-6 uppercase tracking-wide">
               During Conference | أثناء المؤتمر
             </h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
               {/* NAWAH Scientific */}
               <Card className="hover:shadow-lg transition-shadow">
                 <CardHeader className="text-center">
