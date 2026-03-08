@@ -521,7 +521,7 @@ export default function Sponsors() {
               </p>
               <div className="space-y-2">
                 <p className="text-lg font-semibold">
-                  📧 science.faculty.conference2026@gmail.com
+                  📧 sci.conf.2026@gmail.com
                 </p>
                 <p className="text-lg font-semibold">
                   🌐 sciconf26.website

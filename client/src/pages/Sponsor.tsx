@@ -362,10 +362,10 @@ export default function Sponsor() {
             لمزيد من المعلومات حول فرص الرعاية، يرجى الاتصال بنا:
           </p>
           <a
-            href="mailto:science.faculty.conference2026@gmail.com"
+            href="mailto:sci.conf.2026@gmail.com"
             className="text-primary hover:underline font-medium text-lg"
           >
-            science.faculty.conference2026@gmail.com
+            sci.conf.2026@gmail.com
           </a>
         </div>
       </div>
