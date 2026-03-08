@@ -900,3 +900,9 @@
 - [x] Add Agitech workshop to Workshops page
 - [x] Add Agitech workshop to Schedule page (workshops summary section)
 - [x] Update PDF generator to include Agitech workshop
+
+## Agitech Workshop Spots (20 spots)
+- [x] Add "agitech" to workshopChoice enum in drizzle/schema.ts (already existed)
+- [x] Run pnpm db:push to migrate (no schema change needed)
+- [x] Update workshop stats query in server/routers.ts to include agitech count (already existed)
+- [x] Add spots counter badge to Agitech card on Home page (capacity: 20)

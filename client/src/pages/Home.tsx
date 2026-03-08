@@ -1042,8 +1042,17 @@ export default function Home() {
                     </div>
                   </div>
 
-                  {/* Register button */}
-                  <div className="flex items-center justify-end">
+                  {/* Spots counter + Register button */}
+                  <div className="flex items-center justify-between">
+                    {workshopCounts && (() => {
+                      const AGITECH_LIMIT = 20;
+                      const count = workshopCounts.agitech ?? 0;
+                      const remaining = AGITECH_LIMIT - count;
+                      if (remaining <= 0) return <Badge className="bg-red-100 text-red-800 text-xs">Full 🔴</Badge>;
+                      if (remaining <= 5) return <Badge className="bg-red-100 text-red-800 text-xs">{remaining} spots left 🔴</Badge>;
+                      if (remaining <= 10) return <Badge className="bg-amber-100 text-amber-800 text-xs">{remaining}/{AGITECH_LIMIT} spots left 🟡</Badge>;
+                      return <Badge className="bg-green-100 text-green-800 text-xs">{remaining}/{AGITECH_LIMIT} spots left 🟢</Badge>;
+                    })()}
                     <Button
                       size="sm"
                       className="bg-gray-700 hover:bg-gray-800 text-white text-xs px-3"
