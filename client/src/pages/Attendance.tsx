@@ -487,7 +487,7 @@ export default function Attendance() {
                           { value: "marc", label: "MARC", desc: "Good Clinical Practice (GCP) Workshop", descAr: "ورشة الممارسة السريرية الجيدة" },
                           { value: "medsol", label: "Medsol", desc: "From DNA to Proteins: Advanced Sequencing Technologies", descAr: "من الحمض النووي إلى البروتينات: تقنيات التسلسل المتقدمة" },
                           { value: "geochemistry", label: "Dr. Jan Sedláček (Palacký University)", desc: "Environmental Geochemical Data Analysis — Statistical Methodologies for Pollution Source Apportionment", descAr: "تحليل بيانات الجيوكيمياء البيئية — الأساليب الإحصائية لتحديد مصادر التلوث" },
-                          { value: "agitech", label: "Agitech", desc: "From Basic Research to Precision Medicine: Applications of NGS and ddPCR in Targeted Therapy", descAr: "من البحث الأساسي إلى الطب الدقيق: تطبيقات NGS و ddPCR في العلاج الموجه" },
+                          { value: "agitech", label: "Agitech — NGS & ddPCR in Targeted Therapy", desc: "From Basic Research to Precision Medicine: Applications of NGS and ddPCR in Targeted Therapy. April 6, 12:00–14:00 | 20 spots only", descAr: "من البحث الأساسي إلى الطب الدقيق: تطبيقات NGS و ddPCR في العلاج الموجه. ٦ أبريل، ١٢:٠٠–٢:٠٠ م | ٢٠ مكاناً فقط", logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/qtvBAZFSrMqYBKkE.png" },
                         ].map((ws) => (
                           <div
                             key={ws.value}
@@ -501,8 +501,11 @@ export default function Attendance() {
                               <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center shrink-0 ${workshopChoice === ws.value ? "border-amber-500 bg-amber-500" : "border-muted-foreground"}`}>
                                 {workshopChoice === ws.value && <div className="w-2 h-2 rounded-full bg-white" />}
                               </div>
-                              <div>
-                                <p className="font-semibold text-sm">{ws.label}</p>
+                              <div className="flex-1">
+                                <div className="flex items-center gap-2 mb-0.5">
+                                  {(ws as any).logo && <img src={(ws as any).logo} alt={ws.label} className="h-5 object-contain" />}
+                                  <p className="font-semibold text-sm">{ws.label}</p>
+                                </div>
                                 <p className="text-xs text-muted-foreground">{ws.desc}</p>
                                 <p className="text-xs text-muted-foreground" dir="rtl">{ws.descAr}</p>
                               </div>

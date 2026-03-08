@@ -913,3 +913,8 @@
 - [x] Add workshopCounts query to Admin.tsx
 - [x] Add Workshop Registration Statistics card with progress bars to Admin.tsx
 - [ ] Add Agitech to registration form extWorkshopChoice if missing (to be verified)
+
+## Three New Features (March 2026)
+- [x] Add Agitech to registration form Pre/Post workshop choices (Attendance.tsx) — enhanced with logo and full details
+- [x] Add automatic 80% capacity notification for all workshops in server/routers.ts — triggers system_alert via notificationEmitter when count hits 80% threshold
+- [x] Add workshop filter to admin registrations table in Admin.tsx — dropdown with all 9 workshops + Any/None options

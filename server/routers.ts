@@ -126,7 +126,43 @@ export const appRouter = router({
           ...input,
           registrationId,
         });
-        
+
+        // Check 80% capacity threshold for workshops and send alert if crossed
+        try {
+          const allRegs = await db.select().from(registrations);
+          const WORKSHOP_CAPACITIES: Record<string, number> = {
+            nawah: 30, marc: 30, medsol: 30, geochemistry: 30, agitech: 20,
+            chitosan: 30, scrna_seq: 30, hvd_genomics: 30, ai_biotech: 30,
+          };
+          const workshopLabels: Record<string, string> = {
+            nawah: "NAWAH Scientific", marc: "MARC", medsol: "MedSol",
+            geochemistry: "Geochemistry", agitech: "Agitech (NGS & ddPCR)",
+            chitosan: "Biotech Product Dev 101 (Chitosan)",
+            scrna_seq: "Single Cell Genomics (EG-CompBio)",
+            hvd_genomics: "Genomics & Proteomics (HVD)",
+            ai_biotech: "AI Meets Biotech",
+          };
+          // Check during-conference workshops
+          for (const [key, capacity] of Object.entries(WORKSHOP_CAPACITIES)) {
+            const isDuring = ["nawah", "marc", "medsol", "geochemistry", "agitech"].includes(key);
+            const count = isDuring
+              ? allRegs.filter(r => r.wantsWorkshop && r.workshopChoice === key && r.workshopPaymentStatus !== "rejected").length
+              : allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === key && r.extWorkshopPaymentStatus !== "rejected").length;
+            const pct = (count / capacity) * 100;
+            const threshold80 = Math.floor(capacity * 0.8);
+            // Alert exactly when crossing 80% (i.e., count just hit the threshold)
+            if (count === threshold80) {
+              notificationEmitter.emitSystemAlert({
+                message: `⚠️ Workshop "${workshopLabels[key]}" has reached 80% capacity (${count}/${capacity} spots filled). Act now!`,
+                details: { workshop: key, count, capacity, percent: Math.round(pct) },
+              });
+              console.log(`[Capacity Alert] ${workshopLabels[key]}: ${count}/${capacity} (${Math.round(pct)}%)`);
+            }
+          }
+        } catch (capErr) {
+          console.error("[Capacity Check] Error:", capErr);
+        }
+
         return {
           success: true,
           id: registrationId,

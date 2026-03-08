@@ -68,6 +68,7 @@ export default function Admin() {
   const [categoryFilter, setCategoryFilter] = useState<string>("all");
   const [vipFilter, setVipFilter] = useState<string>("all");
   const [packageFilter, setPackageFilter] = useState<string>("all");
+  const [workshopFilter, setWorkshopFilter] = useState<string>("all");
   
   // Real-time notifications
   const { notifications, isConnected } = useNotifications();
@@ -342,9 +343,20 @@ export default function Admin() {
         (vipFilter === "vip" && reg.isVIP) ||
         (vipFilter === "non-vip" && !reg.isVIP);
 
-      return matchesSearch && matchesCategory && matchesVIP;
+      const matchesWorkshop = (() => {
+        if (workshopFilter === "all") return true;
+        if (workshopFilter === "none") return !reg.wantsWorkshop && !reg.wantsExtWorkshop;
+        if (workshopFilter === "any") return reg.wantsWorkshop || reg.wantsExtWorkshop;
+        // During-conference workshops
+        if (["nawah", "marc", "medsol", "geochemistry", "agitech"].includes(workshopFilter))
+          return reg.wantsWorkshop && reg.workshopChoice === workshopFilter;
+        // Pre/Post workshops
+        return reg.wantsExtWorkshop && reg.extWorkshopChoice === workshopFilter;
+      })();
+
+      return matchesSearch && matchesCategory && matchesVIP && matchesWorkshop;
     });
-  }, [registrations, searchTerm, categoryFilter, vipFilter]);
+  }, [registrations, searchTerm, categoryFilter, vipFilter, workshopFilter]);
 
   // Filter sponsorships
   const filteredSponsorships = useMemo(() => {
@@ -821,6 +833,25 @@ export default function Admin() {
                       <SelectItem value="all">All Attendees</SelectItem>
                       <SelectItem value="vip">⭐ VIP Only</SelectItem>
                       <SelectItem value="non-vip">Non-VIP</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <Select value={workshopFilter} onValueChange={setWorkshopFilter}>
+                    <SelectTrigger className="w-[200px]">
+                      <SelectValue placeholder="Filter by Workshop" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Workshops</SelectItem>
+                      <SelectItem value="any">Any Workshop</SelectItem>
+                      <SelectItem value="none">No Workshop</SelectItem>
+                      <SelectItem value="nawah">🔬 NAWAH Scientific</SelectItem>
+                      <SelectItem value="marc">🏥 MARC (GCP)</SelectItem>
+                      <SelectItem value="medsol">🧬 MedSol (Sequencing)</SelectItem>
+                      <SelectItem value="geochemistry">🌍 Geochemistry</SelectItem>
+                      <SelectItem value="agitech">💉 Agitech (NGS & ddPCR)</SelectItem>
+                      <SelectItem value="chitosan">🌿 Biotech Product Dev (Chitosan)</SelectItem>
+                      <SelectItem value="scrna_seq">🔭 Single Cell Genomics</SelectItem>
+                      <SelectItem value="ai_biotech">🤖 AI Meets Biotech</SelectItem>
+                      <SelectItem value="hvd_genomics">🧫 Genomics & Proteomics (HVD)</SelectItem>
                     </SelectContent>
                   </Select>
                   <Button onClick={handleExportRegistrations} variant="outline">
