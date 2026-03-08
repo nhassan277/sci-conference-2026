@@ -578,6 +578,18 @@ export default function Attendance() {
                       <div className="grid gap-3">
                         {[
                           {
+                            value: "agitech",
+                            label: "NGS & ddPCR in Targeted Therapy",
+                            labelAr: "تطبيقات NGS وddPCR في العلاج الموجه",
+                            desc: "From Basic Research to Precision Medicine: Applications of NGS and ddPCR in Targeted Therapy.",
+                            descAr: "من البحث الأساسي إلى الطب الدقيق: تطبيقات NGS و ddPCR في العلاج الموجه.",
+                            date: "April 6, 2026 | 12:00 – 2:00 PM",
+                            dateAr: "٦ أبريل ٢٠٢٦ | ١٢:٠٠ – ٢:٠٠ م",
+                            by: "Agitech",
+                            logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/qtvBAZFSrMqYBKkE.png",
+                            eligibility: "20 spots only",
+                          },
+                          {
                             value: "chitosan",
                             label: "Biotech Product Development 101",
                             labelAr: "تطوير المنتجات في التكنولوجيا الحيوية",
