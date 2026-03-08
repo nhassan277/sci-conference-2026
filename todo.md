@@ -922,3 +922,7 @@
 ## Agitech Registration & PDF Fix
 - [x] Verify Agitech appears as extWorkshopChoice in registration form (Attendance.tsx) — already present with full details
 - [x] Update Agitech time in PDF generator from "During Conference" to "April 6, 12:00 PM – 2:00 PM"
+
+## Medsol Rename & Awards Update
+- [ ] Replace all "Medsol" with "Medsol Corporation" across all frontend pages and server files
+- [ ] Add "Best Innovative Research Idea" award by Medsol Corporation (1st: 3000 EGP, 2nd: 2000 EGP, 3rd: 1000 EGP) to Awards page

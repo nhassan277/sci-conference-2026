@@ -139,6 +139,21 @@ export default function Awards() {
       iconBg: "bg-emerald-100 text-emerald-700",
       tag: "2 Prizes",
       tagAr: "جائزتان"
+    },
+    {
+      sponsor: "Medsol Corporation",
+      sponsorEn: "Medsol Corporation",
+      logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/suhdZISVxwwlvpPk.png",
+      icon: Lightbulb,
+      prize: "Best Innovative Research Idea (3,000 / 2,000 / 1,000 EGP)",
+      prizeAr: "جائزة أفضل فكرة بحثية مبتكرة (3000 / 2000 / 1000 جنيه)",
+      description: "Medsol Corporation will award cash prizes for the Best Innovative Research Idea competition: 1st Place — 3,000 EGP, 2nd Place — 2,000 EGP, 3rd Place — 1,000 EGP. Recognizing researchers who present the most creative and impactful scientific ideas.",
+      descriptionAr: "ستمنح Medsol Corporation جوائز نقدية لأفضل فكرة بحثية مبتكرة: المركز الأول — 3000 جنيه، المركز الثاني — 2000 جنيه، المركز الثالث — 1000 جنيه. تقديراً للباحثين الذين يقدمون أكثر الأفكار العلمية إبداعاً وأثراً.",
+      badgeColor: "bg-teal-100 text-teal-800 border-teal-200",
+      cardBorder: "border-teal-200 hover:border-teal-400",
+      iconBg: "bg-teal-100 text-teal-700",
+      tag: "3 Prizes",
+      tagAr: "٣ جوائز"
     }
   ];
 

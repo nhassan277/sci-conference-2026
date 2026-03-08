@@ -135,7 +135,7 @@ export const appRouter = router({
             chitosan: 30, scrna_seq: 30, hvd_genomics: 30, ai_biotech: 30,
           };
           const workshopLabels: Record<string, string> = {
-            nawah: "NAWAH Scientific", marc: "MARC", medsol: "MedSol",
+            nawah: "NAWAH Scientific", marc: "MARC", medsol: "Medsol Corporation",
             geochemistry: "Geochemistry", agitech: "Agitech (NGS & ddPCR)",
             chitosan: "Biotech Product Dev 101 (Chitosan)",
             scrna_seq: "Single Cell Genomics (EG-CompBio)",

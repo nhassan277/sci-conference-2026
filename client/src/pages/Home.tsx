@@ -649,7 +649,7 @@ export default function Home() {
               <h2 className="text-4xl md:text-5xl font-bold text-primary">Professional Workshops</h2>
               <p className="text-2xl font-semibold text-secondary" dir="rtl">ورش العمل المهنية</p>
               <p className="text-xl text-muted-foreground">
-                In collaboration with NAWAH Scientific, MARC, Medsol, and Palacký University Olomouc
+                In collaboration with NAWAH Scientific, MARC, Medsol Corporation, and Palacký University Olomouc
               </p>
               {/* Pricing Banner */}
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-4">
@@ -764,7 +764,7 @@ export default function Home() {
                   <div className="flex justify-center mb-4">
                     <img 
                       src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/suhdZISVxwwlvpPk.png" 
-                      alt="Medsol" 
+                      alt="Medsol Corporation" 
                       className="h-28 object-contain"
                     />
                   </div>
@@ -772,7 +772,7 @@ export default function Home() {
                   {workshopCounts && <div className="mb-2">{getSpotsBadge(workshopCounts.medsol)}</div>}
                   <CardDescription className="text-base space-y-3 pt-2">
                     <p className="text-foreground font-medium">
-                      In collaboration with <strong>Medsol</strong>
+                      In collaboration with <strong>Medsol Corporation</strong>
                     </p>
                     
                     <div className="bg-accent/5 p-4 rounded-lg">

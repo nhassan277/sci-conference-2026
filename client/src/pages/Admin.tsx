@@ -715,7 +715,7 @@ export default function Admin() {
                   {[
                     { key: "nawah", label: "Nawah Scientific", capacity: 30 },
                     { key: "marc", label: "MARC", capacity: 30 },
-                    { key: "medsol", label: "MedSol", capacity: 30 },
+                    { key: "medsol", label: "Medsol Corporation", capacity: 30 },
                     { key: "geochemistry", label: "Geochemistry", capacity: 30 },
                   ].map(({ key, label, capacity }) => {
                     const count = (workshopCounts as any)?.[key] ?? 0;
@@ -845,7 +845,7 @@ export default function Admin() {
                       <SelectItem value="none">No Workshop</SelectItem>
                       <SelectItem value="nawah">🔬 NAWAH Scientific</SelectItem>
                       <SelectItem value="marc">🏥 MARC (GCP)</SelectItem>
-                      <SelectItem value="medsol">🧬 MedSol (Sequencing)</SelectItem>
+                      <SelectItem value="medsol">🧬 Medsol Corporation (Sequencing)</SelectItem>
                       <SelectItem value="geochemistry">🌍 Geochemistry</SelectItem>
                       <SelectItem value="agitech">💉 Agitech (NGS & ddPCR)</SelectItem>
                       <SelectItem value="chitosan">🌿 Biotech Product Dev (Chitosan)</SelectItem>

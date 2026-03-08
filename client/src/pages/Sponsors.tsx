@@ -158,16 +158,16 @@ export default function Sponsors() {
                   <div className="flex justify-center mb-4">
                     <img 
                       src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/suhdZISVxwwlvpPk.png" 
-                      alt="Medsol" 
+                      alt="Medsol Corporation" 
                       className="h-40 object-contain"
                     />
                   </div>
-                  <CardTitle className="text-2xl">Medsol</CardTitle>
+                  <CardTitle className="text-2xl">Medsol Corporation</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <CardDescription className="text-base space-y-3">
                     <p>
-                      Medsol provides cutting-edge solutions in genomics and proteomics, 
+                      Medsol Corporation provides cutting-edge solutions in genomics and proteomics, 
                       specializing in advanced sequencing technologies and molecular analysis.
                     </p>
                     <p>

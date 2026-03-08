@@ -485,7 +485,7 @@ export default function Attendance() {
                         {[
                           { value: "nawah", label: "NAWAH Scientific", desc: "Research to Business — Translating Science into Industry", descAr: "من البحث إلى الأعمال — تحويل العلوم إلى صناعة" },
                           { value: "marc", label: "MARC", desc: "Good Clinical Practice (GCP) Workshop", descAr: "ورشة الممارسة السريرية الجيدة" },
-                          { value: "medsol", label: "Medsol", desc: "From DNA to Proteins: Advanced Sequencing Technologies", descAr: "من الحمض النووي إلى البروتينات: تقنيات التسلسل المتقدمة" },
+                          { value: "medsol", label: "Medsol Corporation", desc: "From DNA to Proteins: Advanced Sequencing Technologies", descAr: "من الحمض النووي إلى البروتينات: تقنيات التسلسل المتقدمة" },
                           { value: "geochemistry", label: "Dr. Jan Sedláček (Palacký University)", desc: "Environmental Geochemical Data Analysis — Statistical Methodologies for Pollution Source Apportionment", descAr: "تحليل بيانات الجيوكيمياء البيئية — الأساليب الإحصائية لتحديد مصادر التلوث" },
                           { value: "agitech", label: "Agitech — NGS & ddPCR in Targeted Therapy", desc: "From Basic Research to Precision Medicine: Applications of NGS and ddPCR in Targeted Therapy. April 6, 12:00–14:00 | 20 spots only", descAr: "من البحث الأساسي إلى الطب الدقيق: تطبيقات NGS و ddPCR في العلاج الموجه. ٦ أبريل، ١٢:٠٠–٢:٠٠ م | ٢٠ مكاناً فقط", logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/qtvBAZFSrMqYBKkE.png" },
                         ].map((ws) => (
