@@ -1116,9 +1116,9 @@ export default function Home() {
                       <p className="text-teal-700 text-xs" dir="rtl">٩ أبريل ٢٠٢٦</p>
                     </div>
                     <div className="p-3 bg-white rounded-xl border border-teal-200">
-                      <p className="text-xs text-muted-foreground">⏳ Duration | المدة</p>
-                      <p className="font-bold text-teal-900 text-sm">3 Hours</p>
-                      <p className="text-teal-700 text-xs" dir="rtl">٣ ساعات</p>
+                      <p className="text-xs text-muted-foreground">⏰ Time | الوقت</p>
+                      <p className="font-bold text-teal-900 text-sm">10:00 AM – 1:00 PM</p>
+                      <p className="text-teal-700 text-xs" dir="rtl">١٠:٠٠ ص – ١:٠٠ م</p>
                     </div>
                     <div className="p-3 bg-white rounded-xl border border-teal-200">
                       <p className="text-xs text-muted-foreground">👥 Capacity | السعة</p>

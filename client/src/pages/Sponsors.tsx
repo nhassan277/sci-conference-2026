@@ -267,7 +267,7 @@ export default function Sponsors() {
                       of single-cell transcriptomic data.
                     </p>
                     <p className="text-sm text-muted-foreground font-medium">
-                      📅 April 9, 2026 &nbsp;|&nbsp; 🕘 Post-Conference &nbsp;|&nbsp; 👥 30 spots
+                      📅 April 9, 2026 &nbsp;|&nbsp; 🕙 10:00 AM – 1:00 PM &nbsp;|&nbsp; 👥 30 spots
                     </p>
                   </CardDescription>
                 </CardContent>

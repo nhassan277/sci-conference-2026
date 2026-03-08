@@ -880,7 +880,7 @@ export default function Schedule() {
                   <div className="space-y-2 text-sm">
                     <div>
                       <p className="font-semibold">Introduction to Single Cell Genomics</p>
-                      <p className="text-xs text-muted-foreground">By EG-CompBio & GARN · 3 hours · 30 seats</p>
+                      <p className="text-xs text-muted-foreground">By EG-CompBio & GARN · 10:00 AM – 1:00 PM · 3 hours · 30 seats</p>
                     </div>
                     <div>
                       <p className="font-semibold">Integrating Genomics & Proteomics in Biopharmaceutical R&D</p>

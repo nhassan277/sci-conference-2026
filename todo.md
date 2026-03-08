@@ -931,3 +931,12 @@
 - [x] Add "Best Innovative Research Idea" to Award Categories grid in Awards.tsx
 - [x] Update PDF generator to include Medsol Corporation awards section (new Awards page in PDF)
 - [x] Add Medsol Corporation as award sponsor card in Sponsors page (new Award Sponsors section)
+
+## Single Cell Genomics Workshop (Apr 9, 10:00–13:00)
+- [ ] Check if scRNA-seq workshop already exists in the codebase
+- [ ] Add workshop card to Home page (after existing pre/post conference workshops)
+- [ ] Add to Schedule page workshops summary section
+- [ ] Add to registration form extWorkshopChoice list
+- [ ] Add to admin dashboard workshop statistics
+- [ ] Update PDF generator to include the new workshop
+- [ ] Add to Sponsors page if organizer info is available
