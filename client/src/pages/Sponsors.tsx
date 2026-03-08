@@ -356,51 +356,153 @@ export default function Sponsors() {
             </p>
           </div>
 
-          <div className="max-w-2xl mx-auto">
-            <Card className="border-2 border-teal-200 shadow-lg hover:shadow-xl transition-shadow">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+
+            {/* NAWAH Scientific */}
+            <Card className="border-2 border-green-200 shadow-md hover:shadow-lg transition-shadow">
               <CardHeader className="text-center">
-                <div className="flex justify-center mb-4">
-                  <div className="w-20 h-20 rounded-full bg-teal-100 flex items-center justify-center">
-                    <span className="text-3xl">🏆</span>
-                  </div>
+                <div className="flex justify-center mb-4 h-32 items-center">
+                  <img
+                    src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/ndKRwnmyKdJLbGXC.png"
+                    alt="NAWAH Scientific"
+                    className="h-28 object-contain"
+                  />
                 </div>
-                <CardTitle className="text-2xl text-teal-700">Medsol Corporation</CardTitle>
-                <CardDescription className="text-sm font-medium text-muted-foreground">
-                  Award Sponsor · راعي الجوائز
-                </CardDescription>
+                <CardTitle className="text-xl text-green-700">NAWAH Scientific</CardTitle>
+                <CardDescription className="text-xs font-medium text-muted-foreground">Award Sponsor · راعي الجوائز</CardDescription>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <CardDescription className="text-base">
-                  <p>
-                    Medsol Corporation is proud to sponsor the <strong>Best Innovative Research Idea Award</strong> at SCI 2026,
-                    recognizing the most creative and impactful scientific research ideas presented at the conference.
-                  </p>
-                  <p className="mt-2" dir="rtl">
-                    تفخر Medsol Corporation برعاية <strong>جائزة أفضل فكرة بحثية مبتكرة</strong> في مؤتمر SCI 2026،
-                    تقديراً للأفكار البحثية العلمية الأكثر إبداعاً وأثراً.
-                  </p>
+              <CardContent>
+                <CardDescription className="text-sm space-y-2">
+                  <p className="font-semibold text-green-700">🏆 Scientific Incubators for Master &amp; PhD Projects</p>
+                  <p>حاضنات علمية لمشاريع الماجستير والدكتوراه</p>
+                  <p className="text-xs text-muted-foreground">NAWAH will select outstanding Master’s and PhD projects for full scientific incubation support — mentorship, resources, and a pathway to real-world application.</p>
                 </CardDescription>
-
-                <div className="grid grid-cols-3 gap-3 pt-2">
-                  <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 text-center">
-                    <p className="text-xs text-muted-foreground font-medium">1st Place</p>
-                    <p className="text-xl font-bold text-amber-600">3,000 EGP</p>
-                  </div>
-                  <div className="bg-slate-50 border border-slate-200 rounded-lg p-3 text-center">
-                    <p className="text-xs text-muted-foreground font-medium">2nd Place</p>
-                    <p className="text-xl font-bold text-slate-500">2,000 EGP</p>
-                  </div>
-                  <div className="bg-orange-50 border border-orange-200 rounded-lg p-3 text-center">
-                    <p className="text-xs text-muted-foreground font-medium">3rd Place</p>
-                    <p className="text-xl font-bold text-orange-700">1,000 EGP</p>
-                  </div>
-                </div>
-
-                <p className="text-sm text-center text-muted-foreground pt-1">
-                  🏅 Best Innovative Research Idea Award · جائزة أفضل فكرة بحثية مبتكرة
-                </p>
               </CardContent>
             </Card>
+
+            {/* AI بالعربي */}
+            <Card className="border-2 border-violet-200 shadow-md hover:shadow-lg transition-shadow">
+              <CardHeader className="text-center">
+                <div className="flex justify-center mb-4 h-32 items-center">
+                  <img
+                    src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/KlrhKxhzNQOHAlor.jpeg"
+                    alt="AI بالعربي"
+                    className="h-28 object-contain"
+                  />
+                </div>
+                <CardTitle className="text-xl text-violet-700">AI بالعربي</CardTitle>
+                <CardDescription className="text-xs font-medium text-muted-foreground">Award Sponsor · راعي الجوائز</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-sm space-y-2">
+                  <p className="font-semibold text-violet-700">🤖 Technical AI Project Support</p>
+                  <p>دعم تقني لمشروع في مجال الذكاء الاصطناعي</p>
+                  <p className="text-xs text-muted-foreground">Full technical support for 1 outstanding AI project — turning your research idea into a working AI solution.</p>
+                </CardDescription>
+              </CardContent>
+            </Card>
+
+            {/* MARC */}
+            <Card className="border-2 border-blue-200 shadow-md hover:shadow-lg transition-shadow">
+              <CardHeader className="text-center">
+                <div className="flex justify-center mb-4 h-32 items-center">
+                  <img
+                    src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/VulsiXaRGfrttVQf.png"
+                    alt="MARC"
+                    className="h-28 object-contain"
+                  />
+                </div>
+                <CardTitle className="text-xl text-blue-700">MARC</CardTitle>
+                <CardDescription className="text-xs font-medium text-muted-foreground">Award Sponsor · راعي الجوائز</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-sm space-y-2">
+                  <p className="font-semibold text-blue-700">🏆 Training Opportunity + Best Poster Cash Prizes</p>
+                  <p>فرصة تدريبية + جوائز نقدية لأفضل الملصقات</p>
+                  <p className="text-xs text-muted-foreground">2 training spots + poster prizes: 1st — 2,500 EGP · 2nd — 1,500 EGP · 3rd — 1,000 EGP</p>
+                </CardDescription>
+              </CardContent>
+            </Card>
+
+            {/* Mina Pharm */}
+            <Card className="border-2 border-pink-200 shadow-md hover:shadow-lg transition-shadow">
+              <CardHeader className="text-center">
+                <div className="flex justify-center mb-4 h-32 items-center">
+                  <img
+                    src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/VSYnJUbvoViFDJRE.png"
+                    alt="Mina Pharm"
+                    className="h-28 object-contain"
+                  />
+                </div>
+                <CardTitle className="text-xl text-pink-700">Mina Pharm</CardTitle>
+                <CardDescription className="text-xs font-medium text-muted-foreground">Award Sponsor · راعي الجوائز</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-sm space-y-2">
+                  <p className="font-semibold text-pink-700">🎁 Health Product Samples + 2 Surprise Bags</p>
+                  <p>عينات منتجات صحية + حقيبتا مفاجآت</p>
+                  <p className="text-xs text-muted-foreground">Iron &amp; vitamin supplement samples for menopause health, plus 2 exclusive surprise gift bags for lucky winners.</p>
+                </CardDescription>
+              </CardContent>
+            </Card>
+
+            {/* Agitech */}
+            <Card className="border-2 border-emerald-200 shadow-md hover:shadow-lg transition-shadow">
+              <CardHeader className="text-center">
+                <div className="flex justify-center mb-4 h-32 items-center">
+                  <img
+                    src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/VgPdbFhKiVTOdmtC.png"
+                    alt="Agitech"
+                    className="h-28 object-contain"
+                  />
+                </div>
+                <CardTitle className="text-xl text-emerald-700">Agitech</CardTitle>
+                <CardDescription className="text-xs font-medium text-muted-foreground">Award Sponsor · راعي الجوائز</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-sm space-y-2">
+                  <p className="font-semibold text-emerald-700">🧪 2 Free Professional Sample Kits</p>
+                  <p>مجموعتا عينات احترافية مجانية</p>
+                  <p className="text-xs text-muted-foreground">2 free professional sample kits for 2 prize winners — direct access to cutting-edge scientific tools.</p>
+                </CardDescription>
+              </CardContent>
+            </Card>
+
+            {/* Medsol Corporation */}
+            <Card className="border-2 border-teal-200 shadow-md hover:shadow-lg transition-shadow">
+              <CardHeader className="text-center">
+                <div className="flex justify-center mb-4 h-32 items-center">
+                  <img
+                    src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/suhdZISVxwwlvpPk.png"
+                    alt="Medsol Corporation"
+                    className="h-28 object-contain"
+                  />
+                </div>
+                <CardTitle className="text-xl text-teal-700">Medsol Corporation</CardTitle>
+                <CardDescription className="text-xs font-medium text-muted-foreground">Award Sponsor · راعي الجوائز</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-sm space-y-2">
+                  <p className="font-semibold text-teal-700">💡 Best Innovative Research Idea Award</p>
+                  <p>جائزة أفضل فكرة بحثية مبتكرة</p>
+                  <div className="grid grid-cols-3 gap-2 pt-1">
+                    <div className="bg-amber-50 border border-amber-200 rounded p-2 text-center">
+                      <p className="text-xs text-muted-foreground">1st</p>
+                      <p className="text-sm font-bold text-amber-600">3,000 EGP</p>
+                    </div>
+                    <div className="bg-slate-50 border border-slate-200 rounded p-2 text-center">
+                      <p className="text-xs text-muted-foreground">2nd</p>
+                      <p className="text-sm font-bold text-slate-500">2,000 EGP</p>
+                    </div>
+                    <div className="bg-orange-50 border border-orange-200 rounded p-2 text-center">
+                      <p className="text-xs text-muted-foreground">3rd</p>
+                      <p className="text-sm font-bold text-orange-700">1,000 EGP</p>
+                    </div>
+                  </div>
+                </CardDescription>
+              </CardContent>
+            </Card>
+
           </div>
         </div>
       </section>
