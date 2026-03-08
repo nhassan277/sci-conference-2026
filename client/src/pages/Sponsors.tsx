@@ -530,6 +530,43 @@ export default function Sponsors() {
               </CardContent>
             </Card>
 
+            {/* Colors Educational Hub */}
+            <Card className="border-2 border-indigo-200 shadow-md hover:shadow-lg transition-shadow">
+              <CardHeader className="text-center">
+                <div className="flex justify-center mb-4 h-32 items-center">
+                  <img
+                    src="https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/logo_colors_52f6762b.png"
+                    alt="Colors Educational Hub"
+                    className="h-28 object-contain"
+                  />
+                </div>
+                <CardTitle className="text-xl text-indigo-700">Colors Educational Hub</CardTitle>
+                <CardDescription className="text-xs font-medium text-muted-foreground">Award Sponsor · راعي الجوائز</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-sm space-y-3">
+                  <p className="font-semibold text-indigo-700">🎓 Internship Training Awards</p>
+                  <p className="text-xs" dir="rtl">جوائز التدريب المتخصص — يختار Colors Educational Hub الفائزين بناءً على تقييمهم</p>
+                  <div className="space-y-2 pt-1">
+                    <div className="bg-indigo-50 border border-indigo-200 rounded p-2">
+                      <p className="text-xs text-muted-foreground">🏆 1st Award</p>
+                      <p className="text-sm font-bold text-indigo-700">Best Graduation Project</p>
+                      <p className="text-xs text-indigo-600">أفضل مشروع تخرج</p>
+                      <p className="text-xs text-muted-foreground mt-1">1 internship training spot at Colors Educational Hub</p>
+                      <p className="text-xs text-muted-foreground" dir="rtl">فرصة تدريب متخصصة في Colors Educational Hub</p>
+                    </div>
+                    <div className="bg-purple-50 border border-purple-200 rounded p-2">
+                      <p className="text-xs text-muted-foreground">🏅 2nd &amp; 3rd Awards</p>
+                      <p className="text-sm font-bold text-purple-700">Best Master's Projects</p>
+                      <p className="text-xs text-purple-600">أفضل مشروعَي ماجستير</p>
+                      <p className="text-xs text-muted-foreground mt-1">2 internship training spots at Colors Educational Hub</p>
+                      <p className="text-xs text-muted-foreground" dir="rtl">فرصتا تدريب متخصصتان في Colors Educational Hub</p>
+                    </div>
+                  </div>
+                </CardDescription>
+              </CardContent>
+            </Card>
+
           </div>
         </div>
       </section>

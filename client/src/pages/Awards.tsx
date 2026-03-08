@@ -162,6 +162,21 @@ export default function Awards() {
       iconBg: "bg-teal-100 text-teal-700",
       tag: "3 Prizes",
       tagAr: "٣ جوائز"
+    },
+    {
+      sponsor: "Colors Educational Hub",
+      sponsorEn: "Colors Educational Hub",
+      logo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/logo_colors_52f6762b.png",
+      icon: GraduationCap,
+      prize: "Internship Training Awards (1 Graduation Project + 2 Master's Projects)",
+      prizeAr: "جوائز التدريب المتخصص (أفضل مشروع تخرج + أفضل مشروعَي ماجستير)",
+      description: "Colors Educational Hub will award 3 internship training opportunities: 1 spot for the Best Graduation Project and 2 spots for the Best Master's Projects. Winners are selected by Colors Educational Hub based on their own evaluation criteria.",
+      descriptionAr: "ستمنح Colors Educational Hub ٣ فرص تدريب متخصصة: فرصة لصاحب أفضل مشروع تخرج، وفرصتان لصاحبَي أفضل مشروعَي ماجستير. يختار Colors Educational Hub الفائزين بناءً على تقييمهم الخاص.",
+      badgeColor: "bg-indigo-100 text-indigo-800 border-indigo-200",
+      cardBorder: "border-indigo-200 hover:border-indigo-400",
+      iconBg: "bg-indigo-100 text-indigo-700",
+      tag: "3 Opportunities",
+      tagAr: "٣ فرص"
     }
   ];
 
