@@ -192,6 +192,21 @@ export default function Awards() {
       iconBg: "bg-indigo-100 text-indigo-700",
       tag: "3 Opportunities",
       tagAr: "٣ فرص"
+    },
+    {
+      sponsor: "Chitosan",
+      sponsorEn: "Chitosan",
+      logo: "",
+      icon: FlaskConical,
+      prize: "Chitosan Supply + Technical Support for 1 Project in Biopackaging or Bioremediation",
+      prizeAr: "توريد كيتوسان ودعم تقني لمشروع واحد في التغليف الحيوي أو المعالجة الحيوية",
+      description: "Chitosan will sponsor one outstanding project in the fields of biopackaging or bioremediation by supplying the selected team with a quantity of chitosan material and providing full technical support throughout the project. The application will be tested on fruit samples to demonstrate real-world impact.",
+      descriptionAr: "ستدعم شركة كيتوسان مشروعاً متميزاً في مجال التغليف الحيوي أو المعالجة الحيوية، وذلك بتزويد الفريق الفائز بكمية من مادة الكيتوسان وتقديم الدعم التقني الكامل طوال فترة المشروع. سيُطبَّق المشروع على عينات من الثمار والفاكهة لإثبات الأثر الفعلي.",
+      badgeColor: "bg-teal-100 text-teal-800 border-teal-200",
+      cardBorder: "border-teal-200 hover:border-teal-400",
+      iconBg: "bg-teal-100 text-teal-700",
+      tag: "1 Project Sponsored",
+      tagAr: "مشروع واحد مدعوم"
     }
   ];
 
