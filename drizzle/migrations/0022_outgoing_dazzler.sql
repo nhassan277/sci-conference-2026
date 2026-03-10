@@ -1,0 +1,1 @@
+ALTER TABLE `keynote_speakers` ADD `speaker_sector` varchar(50) DEFAULT 'academia' NOT NULL;

@@ -393,6 +393,9 @@ export const keynoteSpeakers = mysqlTable("keynote_speakers", {
   // Speaker Type
   speakerType: varchar("speaker_type", { length: 50 }).default("keynote").notNull(), // keynote or invited
   
+  // Speaker Sector (for invited speakers)
+  speakerSector: varchar("speaker_sector", { length: 50 }).default("academia").notNull(), // academia or industry
+  
   // Display Order
   displayOrder: int("display_order").default(0).notNull(),
   
