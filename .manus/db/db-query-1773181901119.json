@@ -1,0 +1,15 @@
+{
+  "query": "SELECT id, full_name, photo_url FROM keynote_speakers WHERE id = 27;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name, photo_url FROM keynote_speakers WHERE id = 27;",
+  "rows": [
+    {
+      "id": "27",
+      "full_name": "Mostafa Nasser ",
+      "photo_url": "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/IMG_20231205_150442_744_46ccd42e.jpg"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tfull_name\tphoto_url\n27\tMostafa Nasser \thttps://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/IMG_20231205_150442_744_46ccd42e.jpg\n",
+  "stderr": "",
+  "execution_time_ms": 1553
+}

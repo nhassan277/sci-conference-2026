@@ -1,0 +1,8 @@
+{
+  "query": "UPDATE \"Speaker\" SET \"photoUrl\" = 'https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/IMG_20231205_150442_744_46ccd42e.jpg' WHERE name LIKE '%Mostafa%Nasser%' OR name LIKE '%مصطفى%ناصر%';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute UPDATE \"Speaker\" SET \"photoUrl\" = 'https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/IMG_20231205_150442_744_46ccd42e.jpg' WHERE name LIKE '%Mostafa%Nasser%' OR name LIKE '%مصطفى%ناصر%';",
+  "returncode": 1,
+  "logs": [
+    "ERROR 1064 (42000) at line 1: You have an error in your SQL syntax; check the manual that corresponds to your TiDB version for the right syntax to use line 1 column 16 near \"\"Speaker\" SET \"photoUrl\" = 'https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/IMG_20231205_150442_744_46ccd42e.jpg' WHERE name LIKE '%Mostafa%Nasser%' OR name LIKE '%مصطفى%ناصر%'\""
+  ]
+}
