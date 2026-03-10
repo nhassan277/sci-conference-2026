@@ -1,0 +1,15 @@
+{
+  "query": "SELECT id, full_name, photo_url FROM keynote_speakers WHERE id = 26;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name, photo_url FROM keynote_speakers WHERE id = 26;",
+  "rows": [
+    {
+      "id": "26",
+      "full_name": "Refaat Gabre",
+      "photo_url": "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_47sAul_image_09cbad67.png"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tfull_name\tphoto_url\n26\tRefaat Gabre\thttps://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_47sAul_image_09cbad67.png\n",
+  "stderr": "",
+  "execution_time_ms": 1625
+}
