@@ -368,11 +368,11 @@ export default function Sponsors() {
                 <div className="flex justify-center mb-6">
                   <img
                     src="https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/download(2)_577d8ace.png"
-                    alt="Startup Grind Cairo"
+                    alt="Startup Grind"
                     className="h-32 object-contain"
                   />
                 </div>
-                <CardTitle className="text-3xl">Startup Grind Cairo</CardTitle>
+                <CardTitle className="text-3xl">Startup Grind</CardTitle>
                 <CardDescription className="text-lg text-muted-foreground mt-2">
                   Global Entrepreneurship Community — Cairo Chapter
                 </CardDescription>
@@ -389,13 +389,13 @@ export default function Sponsors() {
                 <div className="bg-red-50 border border-red-200 rounded-xl p-6">
                   <p className="text-lg font-bold text-red-700 mb-3">🚀 Student Project Support Initiative</p>
                   <p className="text-base leading-relaxed text-muted-foreground">
-                    Startup Grind Cairo will review and select outstanding undergraduate and postgraduate
+                    Startup Grind will review and select outstanding undergraduate and postgraduate
                     student projects in <strong>Artificial Intelligence, Machine Learning, and Bioinformatics</strong>.
                     Selected teams will receive mentorship, networking opportunities, and entrepreneurial
                     support to help transform their research ideas into real-world solutions.
                   </p>
                   <p className="text-base leading-relaxed text-muted-foreground mt-3" dir="rtl">
-                    ستقوم Startup Grind Cairo بمراجعة واختيار مشاريع الطلاب المتميزة في مجالات الذكاء الاصطناعي
+                    ستقوم Startup Grind بمراجعة واختيار مشاريع الطلاب المتميزة في مجالات الذكاء الاصطناعي
                     والتعلم الآلي والمعلوماتية الحيوية، وتقديم الدعم والإرشاد اللازمين لتحويل الأفكار البحثية إلى حلول حقيقية.
                   </p>
                 </div>
@@ -407,7 +407,7 @@ export default function Sponsors() {
                     onClick={() => window.open('https://www.facebook.com/StartupgrindCAI/', '_blank')}
                   >
                     <Globe className="w-4 h-4 mr-2" />
-                    Follow Startup Grind Cairo
+                    Follow Startup Grind
                   </Button>
                 </div>
               </CardContent>
@@ -597,24 +597,24 @@ export default function Sponsors() {
               </CardContent>
             </Card>
 
-            {/* Startup Grind Cairo */}
+            {/* Startup Grind */}
             <Card className="border-2 border-red-200 shadow-md hover:shadow-lg transition-shadow">
               <CardHeader className="text-center">
                 <div className="flex justify-center mb-4 h-32 items-center">
                   <img
                     src="https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/download(2)_577d8ace.png"
-                    alt="Startup Grind Cairo"
+                    alt="Startup Grind"
                     className="h-28 object-contain"
                   />
                 </div>
-                <CardTitle className="text-xl text-red-700">Startup Grind Cairo</CardTitle>
+                <CardTitle className="text-xl text-red-700">Startup Grind</CardTitle>
                 <CardDescription className="text-xs font-medium text-muted-foreground">Community Partner · شريك مجتمعي</CardDescription>
               </CardHeader>
               <CardContent>
                 <CardDescription className="text-sm space-y-2">
                   <p className="font-semibold text-red-700">🚀 Student Project Selection & Support</p>
                   <p>اختيار ودعم مشاريع الطلاب في الذكاء الاصطناعي والمعلوماتية الحيوية</p>
-                  <p className="text-xs text-muted-foreground">Startup Grind Cairo will select outstanding student projects in AI, Machine Learning & Bioinformatics and provide mentorship, networking, and entrepreneurial support.</p>
+                  <p className="text-xs text-muted-foreground">Startup Grind will select outstanding student projects in AI, Machine Learning & Bioinformatics and provide mentorship, networking, and entrepreneurial support.</p>
                 </CardDescription>
               </CardContent>
             </Card>

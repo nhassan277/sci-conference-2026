@@ -164,14 +164,14 @@ export default function Awards() {
       tagAr: "٣ جوائز"
     },
     {
-      sponsor: "Startup Grind Cairo",
-      sponsorEn: "Startup Grind Cairo",
+      sponsor: "Startup Grind",
+      sponsorEn: "Startup Grind",
       logo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/download(2)_577d8ace.png",
       icon: Rocket,
       prize: "Student Project Selection & Entrepreneurial Support",
       prizeAr: "اختيار مشاريع الطلاب ودعمها ريادياً",
-      description: "Startup Grind Cairo will review and select outstanding undergraduate and postgraduate student projects in Artificial Intelligence, Machine Learning, and Bioinformatics. Selected teams will receive mentorship, networking opportunities, and entrepreneurial support to help transform their research ideas into real-world solutions.",
-      descriptionAr: "ستقوم Startup Grind Cairo بمراجعة واختيار مشاريع الطلاب المتميزة في مجالات الذكاء الاصطناعي والتعلم الآلي والمعلوماتية الحيوية، وتقديم الإرشاد وفرص التواصل والدعم الريادي لتحويل الأفكار البحثية إلى حلول حقيقية.",
+      description: "Startup Grind will review and select outstanding undergraduate and postgraduate student projects in Artificial Intelligence, Machine Learning, and Bioinformatics. Selected teams will receive mentorship, networking opportunities, and entrepreneurial support to help transform their research ideas into real-world solutions.",
+      descriptionAr: "ستقوم Startup Grind بمراجعة واختيار مشاريع الطلاب المتميزة في مجالات الذكاء الاصطناعي والتعلم الآلي والمعلوماتية الحيوية، وتقديم الإرشاد وفرص التواصل والدعم الريادي لتحويل الأفكار البحثية إلى حلول حقيقية.",
       badgeColor: "bg-red-100 text-red-800 border-red-200",
       cardBorder: "border-red-200 hover:border-red-400",
       iconBg: "bg-red-100 text-red-700",

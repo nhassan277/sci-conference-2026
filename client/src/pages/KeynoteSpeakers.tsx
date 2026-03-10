@@ -220,15 +220,6 @@ export default function KeynoteSpeakers() {
                   <p className="text-xl text-secondary font-semibold mb-8" dir="rtl">المتحدثون المدعوون — القطاع الصناعي والريادي</p>
 
                   {/* Startup Grind special highlight */}
-                  {invitedIndustry.some(s => s.fullName.toLowerCase().includes('startup grind')) && (
-                    <div className="mb-6 p-4 bg-gradient-to-r from-primary/5 to-secondary/5 border border-primary/20 rounded-xl">
-                      <p className="text-sm font-semibold text-primary mb-1">🚀 Student Project Support Initiative</p>
-                      <p className="text-sm text-muted-foreground">
-                        Startup Grind Cairo will review and select outstanding undergraduate and postgraduate student projects in
-                        <strong> AI, Machine Learning, and Bioinformatics</strong>, providing mentorship, networking, and entrepreneurial support to the selected teams.
-                      </p>
-                    </div>
-                  )}
 
                   <div className="grid gap-8">
                     {invitedIndustry.map((speaker) => (
