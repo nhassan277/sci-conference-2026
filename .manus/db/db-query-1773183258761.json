@@ -1,0 +1,19 @@
+{
+  "query": "SELECT id, full_name, title, affiliation, speaker_type, speaker_sector, is_visible FROM keynote_speakers WHERE full_name LIKE '%Mohamed Anwar%';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name, title, affiliation, speaker_type, speaker_sector, is_visible FROM keynote_speakers WHERE full_name LIKE '%Mohamed Anwar%';",
+  "rows": [
+    {
+      "id": "750003",
+      "full_name": "Mohamed Anwar Abdelwahab",
+      "title": "Dr.",
+      "affiliation": "R&D Manager, Techno Taste (Flavor House)",
+      "speaker_type": "invited",
+      "speaker_sector": "industry",
+      "is_visible": "1"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tfull_name\ttitle\taffiliation\tspeaker_type\tspeaker_sector\tis_visible\n750003\tMohamed Anwar Abdelwahab\tDr.\tR&D Manager, Techno Taste (Flavor House)\tinvited\tindustry\t1\n",
+  "stderr": "",
+  "execution_time_ms": 1520
+}
