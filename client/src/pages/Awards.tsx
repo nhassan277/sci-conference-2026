@@ -196,7 +196,7 @@ export default function Awards() {
     {
       sponsor: "Chitosan",
       sponsorEn: "Chitosan",
-      logo: "",
+      logo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_t1mp8m_image_bbedca70.png",
       icon: FlaskConical,
       prize: "Chitosan Supply + Technical Support for 1 Project in Biopackaging or Bioremediation",
       prizeAr: "توريد كيتوسان ودعم تقني لمشروع واحد في التغليف الحيوي أو المعالجة الحيوية",

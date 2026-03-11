@@ -656,6 +656,32 @@ export default function Sponsors() {
               </CardContent>
             </Card>
 
+            {/* Chitosan */}
+            <Card className="border-2 border-teal-200 shadow-md hover:shadow-lg transition-shadow">
+              <CardHeader className="text-center">
+                <div className="flex justify-center mb-4 h-32 items-center">
+                  <img
+                    src="https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_t1mp8m_image_bbedca70.png"
+                    alt="Chitosan"
+                    className="h-28 object-contain"
+                  />
+                </div>
+                <CardTitle className="text-xl text-teal-700">Chitosan</CardTitle>
+                <CardDescription className="text-xs font-medium text-muted-foreground">In-Kind Sponsor · راعي عيني</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-sm space-y-2">
+                  <p className="font-semibold text-teal-700">🧪 Chitosan Supply + Technical Support</p>
+                  <p dir="rtl">توريد كيتوسان ودعم تقني لمشروع واحد في التغليف الحيوي أو المعالجة الحيوية</p>
+                  <div className="bg-teal-50 border border-teal-200 rounded p-2 mt-2">
+                    <p className="text-xs font-semibold text-teal-700">🏆 1 Project Selected</p>
+                    <p className="text-xs text-muted-foreground mt-1">Chitosan will supply the winning team with chitosan material and provide full technical support. The project will be tested on fruit samples to demonstrate real-world impact.</p>
+                    <p className="text-xs text-muted-foreground mt-1" dir="rtl">سيحصل الفريق الفائز على كمية من مادة الكيتوسان ودعم تقني كامل، ويُطبَّق المشروع على عينات من الثمار والفاكهة.</p>
+                  </div>
+                </CardDescription>
+              </CardContent>
+            </Card>
+
           </div>
         </div>
       </section>
