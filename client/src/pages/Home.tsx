@@ -1513,13 +1513,73 @@ export default function Home() {
                       Register &amp; Upload Invoice | سجّل وارفع الإيصال
                     </Button>
                   </div>
+                 </div>
+              </div>
+
+              {/* Dr. Dina Amr — Introduction to Bioinformatics Workshop */}
+              <div className="bg-white rounded-2xl border-2 border-teal-200 overflow-hidden shadow-sm">
+                <div className="bg-gradient-to-r from-teal-700 to-teal-600 p-4 text-white">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <BookOpen className="w-6 h-6" />
+                      <div>
+                        <p className="font-bold text-sm">Post-Conference | بعد المؤتمر</p>
+                        <p className="text-teal-200 text-xs">Date &amp; Time to be announced | سيتم الإعلان عن الموعد</p>
+                      </div>
+                    </div>
+                    <Badge className="bg-teal-500 text-white text-xs">Max 30 Students</Badge>
+                  </div>
+                </div>
+                <div className="p-6 space-y-4">
+                  <div className="flex items-start gap-4">
+                    <div className="shrink-0">
+                      <div className="w-16 h-16 rounded-full bg-teal-100 flex items-center justify-center border-2 border-teal-300">
+                        <GraduationCap className="w-8 h-8 text-teal-700" />
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-foreground">Introduction to Bioinformatics</h3>
+                      <p className="text-teal-700 font-semibold text-sm mt-1">By <strong>Dr. Dina Amr</strong></p>
+                      <p className="text-muted-foreground text-xs">Lecturer, Biotechnology Department, Faculty of Science, Cairo University</p>
+                    </div>
+                  </div>
+
+                  <div className="bg-teal-50 p-4 rounded-lg space-y-1">
+                    <p className="text-sm text-muted-foreground"><strong>Duration:</strong> 3 hours hands-on training</p>
+                    <p className="text-sm text-muted-foreground"><strong>Target:</strong> 2nd &amp; 3rd year students</p>
+                    <p className="text-sm text-muted-foreground"><strong>Capacity:</strong> Maximum 30 students</p>
+                    <p className="text-sm text-muted-foreground"><strong>Certificate fee:</strong> 100 EGP</p>
+                  </div>
+
+                  <div>
+                    <p className="text-sm font-semibold text-foreground mb-2">Workshop Topics:</p>
+                    <ul className="list-disc list-inside space-y-1 text-left text-sm text-muted-foreground">
+                      <li>Working with Biological Databases</li>
+                      <li>Sequence Retrieval</li>
+                      <li>Primer Design</li>
+                      <li>Practical bioinformatics tools &amp; workflows</li>
+                    </ul>
+                  </div>
+
+                  <p className="text-xs text-green-700">Certificate co-signed by <strong>Dr. Dina Amr</strong> &amp; <strong>Faculty of Science, Cairo University</strong> | شهادة معتمدة من د. دينا عمر وكلية العلوم، جامعة القاهرة</p>
+
+                  <div className="flex items-center justify-between">
+                    <Badge className="bg-green-100 text-green-800 text-xs">30/30 spots left 🟢</Badge>
+                    <Button
+                      size="sm"
+                      className="bg-teal-700 hover:bg-teal-800 text-white text-xs px-3"
+                      onClick={() => { window.location.href = '/attendance'; }}
+                    >
+                      Register &amp; Upload Invoice | سجّل وارفع الإيصال
+                    </Button>
+                  </div>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
       </section>
-
       {/* Sponsors & Partners Section */}
       <section id="sponsors" className="py-20 bg-gradient-to-b from-white to-accent/5">
         <div className="container">

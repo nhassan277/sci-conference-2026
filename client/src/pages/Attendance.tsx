@@ -646,6 +646,17 @@ export default function Attendance() {
                             eligibility: "20 spots only | Certificate provided by HVD",
                           },
                           {
+                            value: "bioinformatics_dina",
+                            label: "Introduction to Bioinformatics",
+                            labelAr: "مقدمة في المعلوماتية الحيوية",
+                            desc: "Hands-on training: Working with Biological Databases, Sequence Retrieval, Primer Design, and practical bioinformatics tools.",
+                            descAr: "تدريب عملي: العمل مع قواعد البيانات الحيوية، استرجاع التسلسلات، تصميم البرايمر، وأدوات المعلوماتية الحيوية العملية.",
+                            date: "Date & Time — To Be Announced",
+                            dateAr: "سيتم الإعلان عن التاريخ والوقت قريباً",
+                            by: "Dr. Dina Amr — Lecturer, Biotechnology Dept., Faculty of Science, Cairo University",
+                            eligibility: "2nd & 3rd year students only | Max 30 students | Certificate: 100 EGP",
+                          },
+                          {
                             value: "colors_metagenomics",
                             label: "Metagenomics, Microbiome & 16S rRNA Sequencing",
                             labelAr: "الميتاجينوميكس، الميكروبيوم وتسلسل الـ 16S rRNA",
