@@ -808,15 +808,15 @@ export default function Home() {
                 <CardHeader className="flex-1">
                   <div className="flex justify-center mb-4">
                     <div className="h-28 flex items-center justify-center">
-                      <div className="text-center">
-                        <Globe className="w-12 h-12 text-emerald-600 mx-auto mb-1" />
-                        <p className="text-xs font-bold text-emerald-800 leading-tight">Palacký University</p>
-                        <p className="text-xs text-emerald-600">Olomouc, Czech Republic</p>
-                      </div>
+                      <img
+                        src="https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_KE7pNQ_image_92d74388.png"
+                        alt="Dr. Jan Sedláček"
+                        className="h-28 w-28 object-cover rounded-full border-2 border-emerald-300"
+                      />
                     </div>
                   </div>
                   <CardTitle className="text-xl mb-2">Environmental Geochemical Data Analysis Workshop</CardTitle>
-                  {workshopCounts && <div className="mb-2">{getSpotsBadge(workshopCounts.geochemistry ?? 0)}</div>}
+                  <div className="mb-2"><Badge className="bg-green-100 text-green-800 text-xs">Free Attendance ✅ | No Registration Required</Badge></div>
                   <CardDescription className="text-base space-y-3 pt-2">
                     <p className="text-foreground font-medium">
                       By <strong>Dr. Jan Sedláček</strong>
@@ -843,12 +843,10 @@ export default function Home() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="pt-0">
-                  <Button
-                    className="w-full bg-emerald-700 hover:bg-emerald-800 text-sm h-auto py-2 px-3 whitespace-normal leading-snug text-center"
-                    onClick={() => { window.location.href = '/attendance'; }}
-                  >
-                    Register & Upload Invoice | سجّل وارفع الإيصال
-                  </Button>
+                  <div className="w-full bg-emerald-50 border border-emerald-200 rounded-lg py-3 px-4 text-center">
+                    <p className="text-emerald-800 font-semibold text-sm">✅ Open to All Conference Attendees</p>
+                    <p className="text-emerald-700 text-xs mt-1">No registration or payment required</p>
+                  </div>
                 </CardContent>
               </Card>
             </div>
