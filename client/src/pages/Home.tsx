@@ -806,17 +806,17 @@ export default function Home() {
               {/* Dr. Jan Sedláček Workshop */}
               <Card className="border-2 border-emerald-200 flex flex-col">
                 <CardHeader className="flex-1">
-                  <div className="flex justify-center mb-4">
-                    <div className="h-28 flex items-center justify-center">
-                      <img
-                        src="https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_KE7pNQ_image_92d74388.png"
-                        alt="Dr. Jan Sedláček"
-                        className="h-28 w-28 object-cover rounded-full border-2 border-emerald-300"
-                      />
+                  <div className="flex items-start gap-4 mb-3">
+                    <img
+                      src="https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_KE7pNQ_image_92d74388.png"
+                      alt="Dr. Jan Sedláček"
+                      className="h-20 w-20 object-cover rounded-full border-2 border-emerald-300 shrink-0"
+                    />
+                    <div className="flex-1 min-w-0">
+                      <CardTitle className="text-xl mb-1">Environmental Geochemical Data Analysis Workshop</CardTitle>
+                      <Badge className="bg-green-100 text-green-800 text-xs">Free Attendance ✅ | No Registration Required</Badge>
                     </div>
                   </div>
-                  <CardTitle className="text-xl mb-2">Environmental Geochemical Data Analysis Workshop</CardTitle>
-                  <div className="mb-2"><Badge className="bg-green-100 text-green-800 text-xs">Free Attendance ✅ | No Registration Required</Badge></div>
                   <CardDescription className="text-base space-y-3 pt-2">
                     <p className="text-foreground font-medium">
                       By <strong>Dr. Jan Sedláček</strong>
