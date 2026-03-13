@@ -854,7 +854,7 @@ export default function Schedule() {
                     </div>
                     <div>
                       <p className="font-semibold">The Vaccine Industry Race: Ready to Play the Viruses' Game?</p>
-                      <p className="text-xs text-muted-foreground">By Jasmine Mohsen &amp; Dr. Khaled Walid · 2:00 PM – 5:00 PM · 2.5–3 hours · Unlimited seats</p>
+                      <p className="text-xs text-muted-foreground">By Jasmine Mohsen &amp; Dr. Khaled Walid — Vaccine Industry · April 6, 2:00–5:00 PM · 2.5–3 hours · Unlimited seats</p>
                     </div>
                   </div>
                 </div>
@@ -863,7 +863,7 @@ export default function Schedule() {
                   <div className="space-y-2 text-sm">
                     <div>
                       <p className="font-semibold">MARC Workshop</p>
-                      <p className="text-xs text-muted-foreground">By MARC · Day 1 (April 7) · Workshop Rooms 1 & 2</p>
+                      <p className="text-xs text-muted-foreground">By MARC · Day 1 (April 7) · Workshop Rooms 1 &amp; 2</p>
                     </div>
                     <div>
                       <p className="font-semibold">From DNA to Proteins: Advanced Sequencing Technologies</p>

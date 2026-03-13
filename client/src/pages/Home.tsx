@@ -1093,7 +1093,7 @@ export default function Home() {
                   {/* Title */}
                   <div>
                     <h4 className="text-2xl font-bold text-gray-900">The Vaccine Industry Race: Ready to Play the Viruses' Game?</h4>
-                    <p className="text-sm text-gray-700 italic mt-1">By <strong>Jasmine Mohsen</strong> — Virology Specialist, Vaccine Valley &amp; <strong>Dr. Khaled Walid</strong> — Vaccine Industry</p>
+                    <p className="text-sm text-gray-700 italic mt-1">By <strong>Jasmine Mohsen</strong> &amp; <strong>Dr. Khaled Walid</strong> — Vaccine Industry</p>
                   </div>
                   {/* Description */}
                   <p className="text-sm text-foreground leading-relaxed text-justify">
