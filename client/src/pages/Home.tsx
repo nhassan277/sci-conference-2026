@@ -1742,53 +1742,107 @@ export default function Home() {
           </div>
         </div>
       </section>
-      {/* Sponsors & Partners Section */}
+      {/* Meet Our Sponsors Section */}
       <section id="sponsors" className="py-20 bg-gradient-to-b from-white to-accent/5">
         <div className="container">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center space-y-4 mb-12">
-              <h2 className="text-4xl md:text-5xl font-bold text-primary">Sponsors & Partners</h2>
-              <p className="text-2xl font-semibold text-secondary" dir="rtl">الرعاة والشركاء</p>
-            </div>
+          <div className="text-center space-y-4 mb-14">
+            <h2 className="text-4xl md:text-5xl font-bold text-primary">Meet Our Sponsors</h2>
+            <p className="text-2xl font-semibold text-secondary" dir="rtl">تعرف على رعاتنا</p>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              SCI 2026 is made possible by the generous support of leading companies and organizations committed to advancing science and innovation in Egypt.
+            </p>
+          </div>
 
-            {/* Platinum Sponsor - Taiba Group */}
-            <div className="mb-12">
-              <div className="text-center mb-6">
-                <Badge className="bg-primary text-white px-4 py-1.5 text-sm font-medium">
-                  Platinum Sponsor | الراعي البلاتيني
-                </Badge>
-              </div>
-              <Card className="border-4 border-primary/30 hover:shadow-xl transition-shadow">
-                <CardHeader>
-                  <div className="flex items-center justify-center h-40 bg-white rounded-lg mb-4 p-4">
-                    <img 
-                      src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/AnhypChIFEYqXvzy.png" 
-                      alt="Taiba Group" 
-                      className="h-full w-auto object-contain"
-                    />
-                  </div>
-                  <CardTitle className="text-2xl text-center">Sami Ayed Group for Feed and Poultry</CardTitle>
-                  <CardDescription className="text-center text-lg" dir="rtl">
-                    مجموعة سامي عايد للأعلاف والدواجن
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground text-center">
-                    Leading Egyptian company supporting scientific research and innovation
-                  </p>
-                  <p className="text-sm text-muted-foreground text-center mt-2" dir="rtl">
-                    شركة مصرية رائدة تدعم البحث العلمي والابتكار
-                  </p>
-                  <div className="text-center mt-4">
-                    <Link href="/sponsors">
-                      <Button variant="outline" size="sm">
-                        Learn More | اعرف المزيد
-                      </Button>
-                    </Link>
-                  </div>
-                </CardContent>
-              </Card>
+          {/* Platinum Sponsor */}
+          <div className="mb-14">
+            <div className="text-center mb-6">
+              <Badge className="bg-primary text-white px-4 py-1.5 text-sm font-semibold tracking-wide">
+                🏅 Platinum Sponsor | الراعي البلاتيني
+              </Badge>
             </div>
+            <div className="max-w-sm mx-auto">
+              <div className="bg-white border-2 border-primary/30 rounded-2xl p-6 flex flex-col items-center gap-4 shadow-lg hover:shadow-xl transition-shadow">
+                <div className="h-28 flex items-center justify-center">
+                  <img src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/AnhypChIFEYqXvzy.png" alt="Sami Ayed Group" className="h-24 object-contain" />
+                </div>
+                <div className="text-center">
+                  <p className="font-bold text-base text-foreground">Sami Ayed Group for Feed & Poultry</p>
+                  <p className="text-sm text-muted-foreground" dir="rtl">مجموعة سامي عايد للأعلاف والدواجن</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Workshop Providers */}
+          <div className="mb-14">
+            <div className="text-center mb-8">
+              <Badge className="bg-blue-600 text-white px-4 py-1.5 text-sm font-semibold tracking-wide">
+                🔬 Workshop Providers | مقدمو الورش
+              </Badge>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 max-w-5xl mx-auto">
+              {[
+                { name: "NAWAH Scientific", logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/ndKRwnmyKdJLbGXC.png", linkedin: "https://www.linkedin.com/company/nawah-scientific/?originalSubdomain=eg" },
+                { name: "MARC", logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/VulsiXaRGfrttVQf.png", linkedin: "https://www.linkedin.com/company/marcresearch/posts/?feedView=all" },
+                { name: "Medsol Corporation", logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/suhdZISVxwwlvpPk.png", linkedin: "https://www.linkedin.com/company/medsolme/posts/?feedView=all" },
+                { name: "Agitech", logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/VgPdbFhKiVTOdmtC.png", linkedin: "https://www.linkedin.com/company/agitech-egypt/posts/?feedView=all" },
+                { name: "Colors Educational Hub", logo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/logo_colors_52f6762b.png", linkedin: "https://www.linkedin.com/company/colors-educational-hub/posts/?feedView=all" },
+                { name: "HVD Life Sciences", logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/HVDLogo.png", linkedin: "https://www.linkedin.com/company/hvdegypt/posts/?feedView=all" },
+                { name: "Chitosan Egypt", logo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_t1mp8m_image_bbedca70.png", linkedin: "https://www.linkedin.com/in/chitosan-egypt/" },
+                { name: "EgCompBio", logo: "/images/logo_egcompbio.png", linkedin: "https://www.linkedin.com/company/egcompbio/posts/?feedView=all" },
+                { name: "AI بالعربي", logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/KlrhKxhzNQOHAlor.jpeg", linkedin: "https://www.linkedin.com/company/ai-بالعربي/" },
+                { name: "GEnoEra Technology", logo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/ge_logo-1_c2bdf8df.png", linkedin: "https://www.linkedin.com/company/geno-era-technology/" },
+              ].map((s) => (
+                <a key={s.name} href={s.linkedin} target="_blank" rel="noopener noreferrer"
+                  className="bg-white border border-border rounded-xl p-4 flex flex-col items-center gap-3 shadow-sm hover:shadow-md hover:border-primary/40 transition-all group">
+                  <div className="h-16 flex items-center justify-center w-full">
+                    <img src={s.logo} alt={s.name} className="max-h-14 max-w-full object-contain" />
+                  </div>
+                  <p className="text-xs font-medium text-center text-muted-foreground group-hover:text-primary transition-colors leading-tight">{s.name}</p>
+                  <span className="inline-flex items-center gap-1 text-xs text-blue-600 font-medium">
+                    <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    LinkedIn
+                  </span>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Award Sponsors */}
+          <div className="mb-14">
+            <div className="text-center mb-8">
+              <Badge className="bg-amber-500 text-white px-4 py-1.5 text-sm font-semibold tracking-wide">
+                🏆 Award Sponsors | رعاة الجوائز
+              </Badge>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 max-w-5xl mx-auto">
+              {[
+                { name: "Mina Pharm", logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/VSYnJUbvoViFDJRE.png", linkedin: "https://www.linkedin.com/company/minapharm-pharmaceuticals/posts/?feedView=all" },
+                { name: "Startup Grind", logo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/download(2)_577d8ace.png", linkedin: "https://www.linkedin.com/company/startup-grind/posts/?feedView=all" },
+                { name: "Plasma", logo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/logo-2_953b35eb.jpeg", linkedin: "https://www.linkedin.com/company/plasma-company/?originalSubdomain=eg" },
+              ].map((s) => (
+                <a key={s.name} href={s.linkedin} target="_blank" rel="noopener noreferrer"
+                  className="bg-white border border-border rounded-xl p-4 flex flex-col items-center gap-3 shadow-sm hover:shadow-md hover:border-amber-400 transition-all group">
+                  <div className="h-16 flex items-center justify-center w-full">
+                    <img src={s.logo} alt={s.name} className="max-h-14 max-w-full object-contain" />
+                  </div>
+                  <p className="text-xs font-medium text-center text-muted-foreground group-hover:text-amber-600 transition-colors leading-tight">{s.name}</p>
+                  <span className="inline-flex items-center gap-1 text-xs text-blue-600 font-medium">
+                    <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    LinkedIn
+                  </span>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* CTA */}
+          <div className="text-center">
+            <Link href="/sponsors">
+              <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white transition-colors">
+                View All Sponsors & Details | عرض جميع الرعاة والتفاصيل
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
