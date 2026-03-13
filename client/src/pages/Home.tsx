@@ -805,16 +805,16 @@ export default function Home() {
               </Card>
               {/* Dr. Jan Sedláček Workshop */}
               <Card className="border-2 border-emerald-200 flex flex-col">
-                <CardHeader className="flex-1">
+                <CardHeader className="flex-1 px-6 pt-6">
                   <div className="flex flex-col items-center text-center mb-3 gap-3">
                     <img
                       src="https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_KE7pNQ_image_92d74388.png"
                       alt="Dr. Jan Sedláček"
                       className="h-24 w-24 object-cover rounded-full border-2 border-emerald-300 shrink-0"
                     />
-                    <div>
-                      <CardTitle className="text-xl mb-2">Environmental Geochemical Data Analysis Workshop</CardTitle>
-                      <Badge className="bg-green-100 text-green-800 text-xs">Free Attendance ✅ | No Registration Required</Badge>
+                    <div className="w-full px-2">
+                      <CardTitle className="text-xl mb-2 leading-snug">Environmental Geochemical Data Analysis Workshop</CardTitle>
+                      <Badge className="bg-green-100 text-green-800 text-xs whitespace-normal text-center">Free Attendance ✅ | No Registration Required</Badge>
                     </div>
                   </div>
                   <CardDescription className="text-base space-y-3 pt-2 text-center">
