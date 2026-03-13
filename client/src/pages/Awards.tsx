@@ -222,6 +222,21 @@ export default function Awards() {
       iconBg: "bg-violet-100 text-violet-700",
       tag: "7 Prize Bags",
       tagAr: "٧ حقائب كجوائز"
+    },
+    {
+      sponsor: "EgCompBio",
+      sponsorEn: "EgCompBio",
+      logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/VSqePLOAbshMxznI.png",
+      icon: Brain,
+      prize: "1 Free Course from EgCompBio for 1 Student",
+      prizeAr: "كورس مجاني من EgCompBio لطالب واحد",
+      description: "EgCompBio — the Egyptian Computational Biology Society — is sponsoring 1 full free course from their training catalog for 1 outstanding student participant at SCI 2026. The course covers cutting-edge topics in computational biology, bioinformatics, and single-cell genomics.",
+      descriptionAr: "تتبرع الجمعية المصرية للبيولوجيا الحسابية EgCompBio بكورس مجاني كامل من كتالوجها التدريبي لطالب متميز واحد من المشاركين في SCI 2026، يغطي أحدث موضوعات البيولوجيا الحسابية والمعلوماتية الحيوية وجينوميات الخلية المفردة.",
+      badgeColor: "bg-teal-100 text-teal-800 border-teal-200",
+      cardBorder: "border-teal-200 hover:border-teal-400",
+      iconBg: "bg-teal-100 text-teal-700",
+      tag: "1 Prize",
+      tagAr: "جائزة واحدة"
     }
   ];
 
