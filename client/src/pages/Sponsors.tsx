@@ -682,17 +682,17 @@ export default function Sponsors() {
               </CardContent>
             </Card>
 
-            {/* Genomic Expression (GE) */}
+            {/* GEnoEra Technology */}
             <Card className="border-2 border-violet-200 shadow-md hover:shadow-lg transition-shadow">
               <CardHeader className="text-center">
                 <div className="flex justify-center mb-4 h-32 items-center">
                   <img
                     src="https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/ge_logo-1_c2bdf8df.png"
-                    alt="Genomic Expression"
+                    alt="GEnoEra Technology"
                     className="h-28 object-contain"
                   />
                 </div>
-                <CardTitle className="text-xl text-violet-700">Genomic Expression (GE)</CardTitle>
+                <CardTitle className="text-xl text-violet-700">GEnoEra Technology</CardTitle>
                 <CardDescription className="text-xs font-medium text-muted-foreground">In-Kind Sponsor · راعي عيني</CardDescription>
               </CardHeader>
               <CardContent>
