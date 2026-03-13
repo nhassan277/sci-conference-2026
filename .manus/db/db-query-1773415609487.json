@@ -1,0 +1,150 @@
+{
+  "query": "SELECT id, full_name, title, photo_url, speaker_type FROM keynote_speakers LIMIT 20;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name, title, photo_url, speaker_type FROM keynote_speakers LIMIT 20;",
+  "rows": [
+    {
+      "id": "1",
+      "full_name": "Khaled Amer",
+      "title": "Major General Dr.",
+      "photo_url": "/images/speakers/khalid-amer.jpg",
+      "speaker_type": "keynote"
+    },
+    {
+      "id": "2",
+      "full_name": "Ibrahim M. El-Sherbiny",
+      "title": "Prof. Dr.",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/CzEOiUuHXNdycLQK.jpeg",
+      "speaker_type": "invited"
+    },
+    {
+      "id": "3",
+      "full_name": "Ashraf Abdou Tabll",
+      "title": "Prof. Dr.",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/JmdTRNcwzCEaJjrU.jpeg",
+      "speaker_type": "invited"
+    },
+    {
+      "id": "4",
+      "full_name": "Mortada Mourad Taha El Aref",
+      "title": "Prof. Dr.",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/XcXczPQWMszNbalu.png",
+      "speaker_type": "keynote"
+    },
+    {
+      "id": "5",
+      "full_name": "Nagwa El-Badri",
+      "title": "Prof. Dr.",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/XhCVtcmaxCborVYI.png",
+      "speaker_type": "invited"
+    },
+    {
+      "id": "6",
+      "full_name": "Osama Azmy",
+      "title": "Prof. Dr.",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/QRaHoRvWllHeUlfD.png",
+      "speaker_type": "invited"
+    },
+    {
+      "id": "7",
+      "full_name": "Khalid Muhammad Taalab",
+      "title": "Prof. Dr.",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/yopjWqQNqSdHnLgX.png",
+      "speaker_type": "invited"
+    },
+    {
+      "id": "8",
+      "full_name": "Mohamed Ibrahim El-Anbawy",
+      "title": "Prof. Dr.",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/fEpxsoPAkLpFAtDV.jpg",
+      "speaker_type": "invited"
+    },
+    {
+      "id": "9",
+      "full_name": "Mahmoud Ibrahim Nasr",
+      "title": "Prof. Dr.",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/zBUqJnTzJbTTCvpq.jpg",
+      "speaker_type": "invited"
+    },
+    {
+      "id": "10",
+      "full_name": "Mortada Mourad El Aref",
+      "title": "Prof. Dr.",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/XcXczPQWMszNbalu.png",
+      "speaker_type": "invited"
+    },
+    {
+      "id": "11",
+      "full_name": "Sahar Hassan",
+      "title": "Dr.",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/TAxrmfwYatNFofbJ.jpg",
+      "speaker_type": "invited"
+    },
+    {
+      "id": "12",
+      "full_name": "Sohair Ramadan Fahmy",
+      "title": "Prof. Dr.",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/hqCqvqYZLfAAyYbb.png",
+      "speaker_type": "invited"
+    },
+    {
+      "id": "13",
+      "full_name": "Hamed A. Ead",
+      "title": "Prof. Dr. ",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/AtNmemNuRnYHUIWu.png",
+      "speaker_type": "keynote"
+    },
+    {
+      "id": "14",
+      "full_name": "Ayman El-Shibiny",
+      "title": "Prof. Dr. ",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/wWlOEHhvidephepp.png",
+      "speaker_type": "invited"
+    },
+    {
+      "id": "15",
+      "full_name": "Ahmed Fikry El-Sayed",
+      "title": "Dr.",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/TbmaCrtrtyaJjSsm.png",
+      "speaker_type": "invited"
+    },
+    {
+      "id": "16",
+      "full_name": "Ehab El-Dabaa",
+      "title": "Prof. Dr. ",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/FrVXvngjcwapBBSa.png",
+      "speaker_type": "keynote"
+    },
+    {
+      "id": "17",
+      "full_name": "Naglaa A. Abdallah",
+      "title": "Prof. Dr. ",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/SiZQEfsvJgBfqrHD.png",
+      "speaker_type": "invited"
+    },
+    {
+      "id": "18",
+      "full_name": "Tarek Kapiel",
+      "title": "Prof. em.",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/ASFgJyOIuZIbQQTd.png",
+      "speaker_type": "invited"
+    },
+    {
+      "id": "19",
+      "full_name": "Osama Shalabiea",
+      "title": "Prof. Dr.",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/XuXUgGyzMuvjEFhM.jpeg",
+      "speaker_type": "invited"
+    },
+    {
+      "id": "20",
+      "full_name": "Areeg Abdalla",
+      "title": "Dr. ",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/rLwMVUiTPMbedEmY.png",
+      "speaker_type": "invited"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tfull_name\ttitle\tphoto_url\tspeaker_type\n1\tKhaled Amer\tMajor General Dr.\t/images/speakers/khalid-amer.jpg\tkeynote\n2\tIbrahim M. El-Sherbiny\tProf. Dr.\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/CzEOiUuHXNdycLQK.jpeg\tinvited\n3\tAshraf Abdou Tabll\tProf. Dr.\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/JmdTRNcwzCEaJjrU.jpeg\tinvited\n4\tMortada Mourad Taha El Aref\tProf. Dr.\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/XcXczPQWMszNbalu.png\tkeynote\n5\tNagwa El-Badri\tProf. Dr.\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/XhCVtcmaxCborVYI.png\tinvited\n6\tOsama Azmy\tProf. Dr.\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/QRaHoRvWllHeUlfD.png\tinvited\n7\tKhalid Muhammad Taalab\tProf. Dr.\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/yopjWqQNqSdHnLgX.png\tinvited\n8\tMohamed Ibrahim El-Anbawy\tProf. Dr.\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/fEpxsoPAkLpFAtDV.jpg\tinvited\n9\tMahmoud Ibrahim Nasr\tProf. Dr.\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/zBUqJnTzJbTTCvpq.jpg\tinvited\n10\tMortada Mourad El Aref\tProf. Dr.\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/XcXczPQWMszNbalu.png\tinvited\n11\tSahar Hassan\tDr.\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/TAxrmfwYatNFofbJ.jpg\tinvited\n12\tSohair Ramadan Fahmy\tProf. Dr.\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/hqCqvqYZLfAAyYbb.png\tinvited\n13\tHamed A. Ead\tProf. Dr. \thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/AtNmemNuRnYHUIWu.png\tkeynote\n14\tAyman El-Shibiny\tProf. Dr. \thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/wWlOEHhvidephepp.png\tinvited\n15\tAhmed Fikry El-Sayed\tDr.\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/TbmaCrtrtyaJjSsm.png\tinvited\n16\tEhab El-Dabaa\tProf. Dr. \thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/FrVXvngjcwapBBSa.png\tkeynote\n17\tNaglaa A. Abdallah\tProf. Dr. \thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/SiZQEfsvJgBfqrHD.png\tinvited\n18\tTarek Kapiel\tProf. em.\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/ASFgJyOIuZIbQQTd.png\tinvited\n19\tOsama Shalabiea\tProf. Dr.\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/XuXUgGyzMuvjEFhM.jpeg\tinvited\n20\tAreeg Abdalla\tDr. \thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/rLwMVUiTPMbedEmY.png\tinvited\n",
+  "stderr": "",
+  "execution_time_ms": 1536
+}

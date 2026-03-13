@@ -904,6 +904,10 @@ export default function Schedule() {
                       <p className="font-semibold">AI Meets Biotech</p>
                       <p className="text-xs text-muted-foreground">How to leverage AI in Biotechnology · 3 hours</p>
                     </div>
+                    <div>
+                      <p className="font-semibold">Introduction to Bioinformatics</p>
+                      <p className="text-xs text-muted-foreground">By Dr. Dina Amr · Wednesday, April 9, 2026 · 03:00 – 06:00 PM · 3 hours · 30 seats · 100 EGP · Suitable for anyone with no prior bioinformatics knowledge</p>
+                    </div>
                   </div>
                 </div>
               </div>

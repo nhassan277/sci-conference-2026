@@ -1,0 +1,18 @@
+{
+  "query": "SELECT id, full_name, title, photo_url, speaker_type, is_visible FROM keynote_speakers WHERE full_name LIKE '%Fath%' OR full_name LIKE '%Khodair%';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name, title, photo_url, speaker_type, is_visible FROM keynote_speakers WHERE full_name LIKE '%Fath%' OR full_name LIKE '%Khodair%';",
+  "rows": [
+    {
+      "id": "31",
+      "full_name": "Fathy Khodair",
+      "title": "Prof. Dr.",
+      "photo_url": "NULL",
+      "speaker_type": "invited",
+      "is_visible": "1"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tfull_name\ttitle\tphoto_url\tspeaker_type\tis_visible\n31\tFathy Khodair\tProf. Dr.\tNULL\tinvited\t1\n",
+  "stderr": "",
+  "execution_time_ms": 1585
+}

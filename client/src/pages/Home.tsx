@@ -1305,6 +1305,108 @@ export default function Home() {
                 </div>
               </div>
 
+              {/* Dr. Dina Amr — Introduction to Bioinformatics Workshop */}
+              <div className="max-w-2xl mx-auto">
+              <div className="bg-white rounded-2xl border-2 border-teal-200 overflow-hidden shadow-sm">
+                <div className="bg-gradient-to-r from-teal-700 to-teal-600 p-4 text-white">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <BookOpen className="w-6 h-6" />
+                      <div>
+                        <p className="font-bold text-sm">Post-Conference | بعد المؤتمر</p>
+                        <p className="text-teal-200 text-xs">Wednesday, April 9, 2026 | 03:00 – 06:00 PM</p>
+                      </div>
+                    </div>
+                    <Badge className="bg-teal-500 text-white text-xs">Max 30 Students</Badge>
+                  </div>
+                </div>
+                <div className="p-6 space-y-4">
+                  <div className="flex items-start gap-4">
+                    <div className="shrink-0">
+                      <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-teal-300">
+                        <img src="https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_naMOge_image_80a4d111.png" alt="Dr. Dina Amr" className="w-full h-full object-cover" />
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-foreground">Introduction to Bioinformatics</h3>
+                      <p className="text-teal-700 font-semibold text-sm mt-1">By <strong>Dr. Dina Amr</strong></p>
+                      <p className="text-muted-foreground text-xs">Lecturer, Biotechnology Department, Faculty of Science, Cairo University</p>
+                    </div>
+                  </div>
+
+                  <div className="bg-teal-50 p-4 rounded-lg space-y-1">
+                    <p className="text-sm text-muted-foreground"><strong>Duration:</strong> 3 hours hands-on training</p>
+                    <p className="text-sm text-muted-foreground"><strong>Suitable for:</strong> Anyone with no previous knowledge in bioinformatics</p>
+                    <p className="text-sm text-muted-foreground"><strong>Capacity:</strong> Maximum 30 students</p>
+                    <p className="text-sm font-bold text-amber-700"><strong>Fee:</strong> 100 EGP (incl. certificate)</p>
+                    <p className="text-xs text-amber-600" dir="rtl">100 جنيه مصري (شاملة الشهادة)</p>
+                  </div>
+
+                  {/* Overview */}
+                  <div className="bg-teal-50 border border-teal-200 rounded-lg p-3">
+                    <p className="text-xs text-teal-800 leading-relaxed">
+                      A 5-day workshop (~16 hours total) that includes theoretical and hands-on practical training in different bioinformatics techniques and online repositories and learn how to work with them.
+                    </p>
+                  </div>
+
+                  {/* Objectives */}
+                  <div>
+                    <p className="text-sm font-bold text-teal-700 mb-1">Workshop Objectives</p>
+                    <p className="text-xs text-muted-foreground leading-relaxed">The aim of this training is to equip participants with the basic knowledge and skills of bioinformatics.</p>
+                  </div>
+
+                  {/* Workshop Outline */}
+                  <div>
+                    <p className="text-sm font-bold text-teal-700 mb-2">Workshop Outline</p>
+                    <div className="grid grid-cols-2 gap-x-4 gap-y-1">
+                      <ul className="list-disc list-inside space-y-1 text-xs text-muted-foreground">
+                        <li>Introduction to Bioinformatics</li>
+                        <li>Bioinformatics Databases</li>
+                        <li>Bibliographic Search</li>
+                        <li>Sequence File Formats</li>
+                        <li>Sequence Retrieval from DNA and Protein databases</li>
+                        <li>Biological Functional Annotation</li>
+                        <li>Identification of sequence features and functional sites in Genes and Proteins</li>
+                      </ul>
+                      <ul className="list-disc list-inside space-y-1 text-xs text-muted-foreground">
+                        <li>Comparison and alignment of two or more sequences</li>
+                        <li>Pairwise &amp; Multiple Sequence Alignment</li>
+                        <li>Determination of consensus sequences</li>
+                        <li>Introduction to principles of Primer design</li>
+                        <li>Identify unknown DNA and protein sequence</li>
+                        <li>Similarity Search using BLAST</li>
+                        <li>Introduction to Phylogenetic Analysis</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Learning Outcomes */}
+                  <div>
+                    <p className="text-sm font-bold text-teal-700 mb-1">Learning Outcomes</p>
+                    <ul className="list-disc list-inside space-y-1 text-xs text-muted-foreground">
+                      <li>Experience to search and retrieve information from different databases and compare and analyze biological sequences</li>
+                      <li>Identify unknown sequence using online tools like BLAST for sequence search</li>
+                      <li>Locate consensus sequences and construct phylogenetic trees based on biological sequence data</li>
+                      <li>Assessment will be based upon performance by practical assignments at the end of each training session</li>
+                    </ul>
+                  </div>
+
+                  <p className="text-xs text-green-700">Certificate co-signed by <strong>Dr. Dina Amr</strong> &amp; <strong>Faculty of Science, Cairo University</strong> | شهادة معتمدة من د. دينا عمر وكلية العلوم، جامعة القاهرة</p>
+
+                  <div className="flex items-center justify-between">
+                    <Badge className="bg-green-100 text-green-800 text-xs">30/30 spots left 🟢</Badge>
+                    <Button
+                      size="sm"
+                      className="bg-teal-700 hover:bg-teal-800 text-white text-xs px-3"
+                      onClick={() => { window.location.href = '/attendance'; }}
+                    >
+                      Register &amp; Upload Invoice | سجّل وارفع الإيصال
+                    </Button>
+                  </div>
+                </div>
+              </div>
+              </div>
+
               {/* HVD Life Sciences Workshop Card */}
               <div className="max-w-2xl mx-auto">
                 <div className="p-6 bg-gradient-to-r from-blue-50 to-slate-50 border-2 border-blue-300 rounded-2xl space-y-4">
@@ -1519,68 +1621,7 @@ export default function Home() {
                  </div>
               </div>
 
-              {/* Dr. Dina Amr — Introduction to Bioinformatics Workshop */}
-              <div className="max-w-2xl mx-auto">
-              <div className="bg-white rounded-2xl border-2 border-teal-200 overflow-hidden shadow-sm">
-                <div className="bg-gradient-to-r from-teal-700 to-teal-600 p-4 text-white">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <BookOpen className="w-6 h-6" />
-                      <div>
-                        <p className="font-bold text-sm">Post-Conference | بعد المؤتمر</p>
-                        <p className="text-teal-200 text-xs">Date &amp; Time to be announced | سيتم الإعلان عن الموعد</p>
-                      </div>
-                    </div>
-                    <Badge className="bg-teal-500 text-white text-xs">Max 30 Students</Badge>
-                  </div>
-                </div>
-                <div className="p-6 space-y-4">
-                  <div className="flex items-start gap-4">
-                    <div className="shrink-0">
-                      <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-teal-300">
-                        <img src="https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_naMOge_image_80a4d111.png" alt="Dr. Dina Amr" className="w-full h-full object-cover" />
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-foreground">Introduction to Bioinformatics</h3>
-                      <p className="text-teal-700 font-semibold text-sm mt-1">By <strong>Dr. Dina Amr</strong></p>
-                      <p className="text-muted-foreground text-xs">Lecturer, Biotechnology Department, Faculty of Science, Cairo University</p>
-                    </div>
-                  </div>
 
-                  <div className="bg-teal-50 p-4 rounded-lg space-y-1">
-                    <p className="text-sm text-muted-foreground"><strong>Duration:</strong> 3 hours hands-on training</p>
-                    <p className="text-sm text-muted-foreground"><strong>Target:</strong> 2nd &amp; 3rd year students</p>
-                    <p className="text-sm text-muted-foreground"><strong>Capacity:</strong> Maximum 30 students</p>
-                    <p className="text-sm font-bold text-amber-700"><strong>Fee:</strong> 100 EGP (incl. certificate)</p>
-                    <p className="text-xs text-amber-600" dir="rtl">100 جنيه مصري (شاملة الشهادة)</p>
-                  </div>
-
-                  <div>
-                    <p className="text-sm font-semibold text-foreground mb-2">Workshop Topics:</p>
-                    <ul className="list-disc list-inside space-y-1 text-left text-sm text-muted-foreground">
-                      <li>Working with Biological Databases</li>
-                      <li>Sequence Retrieval</li>
-                      <li>Primer Design</li>
-                      <li>Practical bioinformatics tools &amp; workflows</li>
-                    </ul>
-                  </div>
-
-                  <p className="text-xs text-green-700">Certificate co-signed by <strong>Dr. Dina Amr</strong> &amp; <strong>Faculty of Science, Cairo University</strong> | شهادة معتمدة من د. دينا عمر وكلية العلوم، جامعة القاهرة</p>
-
-                  <div className="flex items-center justify-between">
-                    <Badge className="bg-green-100 text-green-800 text-xs">30/30 spots left 🟢</Badge>
-                    <Button
-                      size="sm"
-                      className="bg-teal-700 hover:bg-teal-800 text-white text-xs px-3"
-                      onClick={() => { window.location.href = '/attendance'; }}
-                    >
-                      Register &amp; Upload Invoice | سجّل وارفع الإيصال
-                    </Button>
-                  </div>
-                </div>
-              </div>
-              </div>
             </div>
           </div>
         </div>
