@@ -690,7 +690,7 @@ export default function Attendance() {
                             dateAr: "٦ أبريل ٢٠٢٦ | ٢:٠٠ – ٥:٠٠ م",
                             by: "Jasmine Mohsen & Dr. Khaled Walid",
                             byAr: "جاسمين محسن و د. خالد وليد",
-                            photo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/PTtRzbZnNIobKpQd.jpeg",
+                            icon: "💉",
                             eligibility: "100 EGP (incl. certificate)",
                             venue: "قاعة ابن سينا — قسم النبات القديم — كلية العلوم — جامعة القاهرة",
                             venueEn: "Ibn Sina Hall — Botany Dept. — Faculty of Science, Cairo University",
@@ -738,10 +738,18 @@ export default function Attendance() {
                                 {/* Title first */}
                                 <p className="font-bold text-sm text-purple-900 mb-1">{ws.label}</p>
                                 <p className="text-xs font-medium text-purple-700 mb-2" dir="rtl">{ws.labelAr}</p>
-                                {/* Speaker photo + name OR company logo */}
+                                {/* Speaker photo/icon + name OR company logo */}
                                 {'photo' in ws && ws.photo ? (
                                   <div className="flex items-center gap-2 mb-2">
                                     <img src={(ws as any).photo} alt={(ws as any).by} className="w-8 h-8 rounded-full object-cover border border-purple-200" />
+                                    <div>
+                                      <p className="text-xs font-semibold text-purple-800">{ws.by}</p>
+                                      {'byAr' in ws && <p className="text-xs text-purple-700" dir="rtl">{(ws as any).byAr}</p>}
+                                    </div>
+                                  </div>
+                                ) : 'icon' in ws && (ws as any).icon ? (
+                                  <div className="flex items-center gap-2 mb-2">
+                                    <span className="text-2xl">{(ws as any).icon}</span>
                                     <div>
                                       <p className="text-xs font-semibold text-purple-800">{ws.by}</p>
                                       {'byAr' in ws && <p className="text-xs text-purple-700" dir="rtl">{(ws as any).byAr}</p>}
