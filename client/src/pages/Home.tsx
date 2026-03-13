@@ -401,7 +401,7 @@ export default function Home() {
                   <div className="flex justify-center mb-4">
                     <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-primary/20 shadow-lg">
                       <img 
-                        src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/HCudslpDEDaERdsP.png" 
+                        src="https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_naMOge_image_80a4d111.png" 
                         alt="Dr. Dina Amr" 
                         className="w-full h-full object-cover"
                       />
@@ -1534,8 +1534,8 @@ export default function Home() {
                 <div className="p-6 space-y-4">
                   <div className="flex items-start gap-4">
                     <div className="shrink-0">
-                      <div className="w-16 h-16 rounded-full bg-teal-100 flex items-center justify-center border-2 border-teal-300">
-                        <GraduationCap className="w-8 h-8 text-teal-700" />
+                      <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-teal-300">
+                        <img src="https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_naMOge_image_80a4d111.png" alt="Dr. Dina Amr" className="w-full h-full object-cover" />
                       </div>
                     </div>
                     <div>
