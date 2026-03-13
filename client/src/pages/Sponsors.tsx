@@ -708,6 +708,32 @@ export default function Sponsors() {
               </CardContent>
             </Card>
 
+            {/* EgCompBio */}
+            <Card className="border-2 border-teal-200 shadow-md hover:shadow-lg transition-shadow">
+              <CardHeader className="text-center">
+                <div className="flex justify-center mb-4 h-44 items-center">
+                  <img
+                    src="/images/logo_egcompbio.png"
+                    alt="EgCompBio"
+                    className="h-40 object-contain"
+                  />
+                </div>
+                <CardTitle className="text-xl text-teal-700">EgCompBio</CardTitle>
+                <CardDescription className="text-xs font-medium text-muted-foreground">Award Sponsor · راعي الجوائز</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-sm space-y-2">
+                  <p className="font-semibold text-teal-700">🏆 1 Free Course for 1 Outstanding Student</p>
+                  <p dir="rtl">كورس مجاني كامل لطالب متميز واحد</p>
+                  <div className="bg-teal-50 border border-teal-200 rounded p-2 mt-2">
+                    <p className="text-xs font-semibold text-teal-700">🧬 EgCompBio Training Catalog</p>
+                    <p className="text-xs text-muted-foreground mt-1">EgCompBio — the Egyptian Computational Biology Society — is sponsoring 1 full free course from their training catalog for 1 outstanding student participant at SCI 2026, covering cutting-edge topics in computational biology, bioinformatics, and single-cell genomics.</p>
+                    <p className="text-xs text-muted-foreground mt-1" dir="rtl">تتبرع الجمعية المصرية للبيولوجيا الحسابية EgCompBio بكورس مجاني كامل من كتالوجها التدريبي لطالب متميز واحد من مشاركي SCI 2026، يغطي أحدث موضوعات البيولوجيا الحسابية والمعلوماتية الحيوية وجينوميات الخلية المفردة.</p>
+                  </div>
+                </CardDescription>
+              </CardContent>
+            </Card>
+
           </div>
         </div>
       </section>
