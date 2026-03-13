@@ -1352,12 +1352,12 @@ export default function Home() {
                     ورشة عمل تطبيقية تستعرض كيفية دمج تقنيات الجينوميكس والبروتيوميكس في أبحاث الأدوية الحيوية الحديثة، مع تدريب عملي على تحليل البيانات.
                   </p>
 
-                  {/* TBA Notice */}
-                  <div className="p-3 bg-amber-50 border border-amber-300 rounded-lg flex items-start gap-2">
-                    <span className="text-amber-600 text-lg">📂</span>
+                  {/* Date */}
+                  <div className="p-3 bg-blue-50 border border-blue-300 rounded-lg flex items-start gap-2">
+                    <span className="text-blue-600 text-lg">📅</span>
                     <div>
-                      <p className="text-xs font-bold text-amber-800">Date &amp; Time — To Be Announced | سيتم الإعلان عن التاريخ والوقت قريباً</p>
-                      <p className="text-xs text-amber-700 mt-0.5">Stay tuned for the confirmed schedule.</p>
+                      <p className="text-xs font-bold text-blue-800">Sunday, April 12, 2026 (Post-Conference) | الأحد ١٢ أبريل ٢٠٢٦ (بعد المؤتمر)</p>
+                      <p className="text-xs text-blue-700 mt-0.5">Time — To Be Announced | سيتم الإعلان عن الوقت قريباً</p>
                     </div>
                   </div>
 
