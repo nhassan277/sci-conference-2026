@@ -1,0 +1,46 @@
+{
+  "query": "SELECT id, full_name, title, affiliation, presentation_title, photo_url, speaker_type FROM keynote_speakers WHERE full_name LIKE '%Shaker%' OR full_name LIKE '%Salem%' OR full_name LIKE '%Mohamed%';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name, title, affiliation, presentation_title, photo_url, speaker_type FROM keynote_speakers WHERE full_name LIKE '%Shaker%' OR full_name LIKE '%Salem%' OR full_name LIKE '%Mohamed%';",
+  "rows": [
+    {
+      "id": "8",
+      "full_name": "Mohamed Ibrahim El-Anbawy",
+      "title": "Prof. Dr.",
+      "affiliation": "Professor of Environmental Geology, Geology Department, Faculty of Science, Cairo University",
+      "presentation_title": "Economic Utilization of Shale in Desert Land Reclamation and Cement Industry",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/fEpxsoPAkLpFAtDV.jpg",
+      "speaker_type": "invited"
+    },
+    {
+      "id": "22",
+      "full_name": "Mohamed Hamed",
+      "title": "Assoc. Prof. Dr. ",
+      "affiliation": "Associate professor of biomedical informatics and computational biology at the German University of Cairo (GUC).",
+      "presentation_title": "Computational Transformation in Drug Discovery: Bioinformatics and AI Innovations in Pharmaceutical Science",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/RYEfletAfTWjKCac.png",
+      "speaker_type": "invited"
+    },
+    {
+      "id": "28",
+      "full_name": "Mohamed Anwar Abdelwahab",
+      "title": "Dr.",
+      "affiliation": "R&D Manager, Techno Taste (Flavor House)",
+      "presentation_title": "From Molecules to Taste: The Role of Organic Chemistry in Flavor Manufacturing and Food Innovation",
+      "photo_url": "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_FsUHjJ_image_364cded7.png",
+      "speaker_type": "invited"
+    },
+    {
+      "id": "30",
+      "full_name": "Mohamed Shaker Salem",
+      "title": "Prof. Dr. ",
+      "affiliation": "Physics Department, Faculty of Science, Cairo University ",
+      "presentation_title": "Silicon Nanophotonics for On-Chip Integrated Circuit Technology",
+      "photo_url": "NULL",
+      "speaker_type": "invited"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tfull_name\ttitle\taffiliation\tpresentation_title\tphoto_url\tspeaker_type\n8\tMohamed Ibrahim El-Anbawy\tProf. Dr.\tProfessor of Environmental Geology, Geology Department, Faculty of Science, Cairo University\tEconomic Utilization of Shale in Desert Land Reclamation and Cement Industry\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/fEpxsoPAkLpFAtDV.jpg\tinvited\n22\tMohamed Hamed\tAssoc. Prof. Dr. \tAssociate professor of biomedical informatics and computational biology at the German University of Cairo (GUC).\tComputational Transformation in Drug Discovery: Bioinformatics and AI Innovations in Pharmaceutical Science\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/RYEfletAfTWjKCac.png\tinvited\n28\tMohamed Anwar Abdelwahab\tDr.\tR&D Manager, Techno Taste (Flavor House)\tFrom Molecules to Taste: The Role of Organic Chemistry in Flavor Manufacturing and Food Innovation\thttps://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_FsUHjJ_image_364cded7.png\tinvited\n30\tMohamed Shaker Salem\tProf. Dr. \tPhysics Department, Faculty of Science, Cairo University \tSilicon Nanophotonics for On-Chip Integrated Circuit Technology\tNULL\tinvited\n",
+  "stderr": "",
+  "execution_time_ms": 1560
+}

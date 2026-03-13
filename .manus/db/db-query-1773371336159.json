@@ -1,0 +1,26 @@
+{
+  "query": "SELECT id, full_name FROM keynote_speakers WHERE full_name LIKE '%Shaker%' OR full_name LIKE '%Salem%' OR full_name LIKE '%Mohamed%' LIMIT 10;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name FROM keynote_speakers WHERE full_name LIKE '%Shaker%' OR full_name LIKE '%Salem%' OR full_name LIKE '%Mohamed%' LIMIT 10;",
+  "rows": [
+    {
+      "id": "8",
+      "full_name": "Mohamed Ibrahim El-Anbawy"
+    },
+    {
+      "id": "22",
+      "full_name": "Mohamed Hamed"
+    },
+    {
+      "id": "28",
+      "full_name": "Mohamed Anwar Abdelwahab"
+    },
+    {
+      "id": "30",
+      "full_name": "Mohamed Shaker Salem"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tfull_name\n8\tMohamed Ibrahim El-Anbawy\n22\tMohamed Hamed\n28\tMohamed Anwar Abdelwahab\n30\tMohamed Shaker Salem\n",
+  "stderr": "",
+  "execution_time_ms": 1582
+}
