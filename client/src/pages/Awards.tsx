@@ -86,7 +86,9 @@ export default function Awards() {
       cardBorder: "border-amber-200 hover:border-amber-400",
       iconBg: "bg-amber-100 text-amber-700",
       tag: "Announced July 2026",
-      tagAr: "الإعلان يوليو ٢٠٢٦"
+      tagAr: "الإعلان يوليو ٢٠٢٦",
+      website: "https://www.linkedin.com/company/nawah-scientific/?originalSubdomain=eg",
+      websiteLabel: "Follow on LinkedIn"
     },
     {
       sponsor: "AI بالعربي",
@@ -101,7 +103,9 @@ export default function Awards() {
       cardBorder: "border-red-200 hover:border-red-400",
       iconBg: "bg-red-100 text-red-700",
       tag: "1 Prize",
-      tagAr: "جائزة واحدة"
+      tagAr: "جائزة واحدة",
+      website: "https://www.linkedin.com/company/ai-بالعربي/",
+      websiteLabel: "Follow on LinkedIn"
     },
     {
       sponsor: "MARC",
@@ -116,7 +120,9 @@ export default function Awards() {
       cardBorder: "border-blue-200 hover:border-blue-400",
       iconBg: "bg-blue-100 text-blue-700",
       tag: "3 Prizes",
-      tagAr: "٣ جوائز"
+      tagAr: "٣ جوائز",
+      website: "https://www.linkedin.com/company/marcresearch/posts/?feedView=all",
+      websiteLabel: "Follow on LinkedIn"
     },
     {
       sponsor: "Mina Pharm",
@@ -131,7 +137,9 @@ export default function Awards() {
       cardBorder: "border-pink-200 hover:border-pink-400",
       iconBg: "bg-pink-100 text-pink-700",
       tag: "2 Prizes",
-      tagAr: "جائزتان"
+      tagAr: "جائزتان",
+      website: "https://www.linkedin.com/company/minapharm-pharmaceuticals/posts/?feedView=all",
+      websiteLabel: "Follow on LinkedIn"
     },
     {
       sponsor: "Agitech",
@@ -146,7 +154,9 @@ export default function Awards() {
       cardBorder: "border-emerald-200 hover:border-emerald-400",
       iconBg: "bg-emerald-100 text-emerald-700",
       tag: "4 Prizes",
-      tagAr: "٤ جوائز"
+      tagAr: "٤ جوائز",
+      website: "https://www.linkedin.com/company/agitech-egypt/posts/?feedView=all",
+      websiteLabel: "Follow on LinkedIn"
     },
     {
       sponsor: "Medsol Corporation",
@@ -161,7 +171,9 @@ export default function Awards() {
       cardBorder: "border-teal-200 hover:border-teal-400",
       iconBg: "bg-teal-100 text-teal-700",
       tag: "3 Prizes",
-      tagAr: "٣ جوائز"
+      tagAr: "٣ جوائز",
+      website: "https://www.linkedin.com/company/medsolme/posts/?feedView=all",
+      websiteLabel: "Follow on LinkedIn"
     },
     {
       sponsor: "Startup Grind",
@@ -176,7 +188,9 @@ export default function Awards() {
       cardBorder: "border-red-200 hover:border-red-400",
       iconBg: "bg-red-100 text-red-700",
       tag: "Selected Projects",
-      tagAr: "مشاريع مختارة"
+      tagAr: "مشاريع مختارة",
+      website: "https://www.linkedin.com/company/startup-grind/posts/?feedView=all",
+      websiteLabel: "Follow on LinkedIn"
     },
     {
       sponsor: "Colors Educational Hub",
@@ -191,7 +205,9 @@ export default function Awards() {
       cardBorder: "border-indigo-200 hover:border-indigo-400",
       iconBg: "bg-indigo-100 text-indigo-700",
       tag: "3 Opportunities",
-      tagAr: "٣ فرص"
+      tagAr: "٣ فرص",
+      website: "https://www.linkedin.com/company/colors-educational-hub/posts/?feedView=all",
+      websiteLabel: "Follow on LinkedIn"
     },
     {
       sponsor: "Chitosan",
@@ -206,7 +222,9 @@ export default function Awards() {
       cardBorder: "border-teal-200 hover:border-teal-400",
       iconBg: "bg-teal-100 text-teal-700",
       tag: "1 Project Sponsored",
-      tagAr: "مشروع واحد مدعوم"
+      tagAr: "مشروع واحد مدعوم",
+      website: "https://www.linkedin.com/in/chitosan-egypt/",
+      websiteLabel: "Follow on LinkedIn"
     },
     {
       sponsor: "GEnoEra Technology",
@@ -221,7 +239,9 @@ export default function Awards() {
       cardBorder: "border-violet-200 hover:border-violet-400",
       iconBg: "bg-violet-100 text-violet-700",
       tag: "7 Prize Bags",
-      tagAr: "٧ حقائب كجوائز"
+      tagAr: "٧ حقائب كجوائز",
+      website: "https://www.linkedin.com/company/geno-era-technology/",
+      websiteLabel: "Follow on LinkedIn"
     },
     {
       sponsor: "EgCompBio",
@@ -236,7 +256,9 @@ export default function Awards() {
       cardBorder: "border-teal-200 hover:border-teal-400",
       iconBg: "bg-teal-100 text-teal-700",
       tag: "1 Prize",
-      tagAr: "جائزة واحدة"
+      tagAr: "جائزة واحدة",
+      website: "https://www.linkedin.com/company/egcompbio/posts/?feedView=all",
+      websiteLabel: "Follow on LinkedIn"
     },
     {
       sponsor: "Plasma",
@@ -253,7 +275,7 @@ export default function Awards() {
       tag: "4 Contributions",
       tagAr: "٤ مساهمات",
       website: "https://www.linkedin.com/company/plasma-company/?originalSubdomain=eg",
-      websiteLabel: "Follow on LinkedIn"
+      websiteLabel: "Follow Plasma on LinkedIn"
     }
   ];
 

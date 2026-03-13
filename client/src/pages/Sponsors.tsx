@@ -124,9 +124,15 @@ export default function Sponsors() {
                     </p>
                   </CardDescription>
                 </CardContent>
-              </Card>
+              <CardContent className="pt-0">
+                <a href="https://www.linkedin.com/company/ai-بالعربي/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-violet-600 hover:text-violet-800 font-medium">
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                  Follow AI بالعربي on LinkedIn
+                </a>
+              </CardContent>
+            </Card>
 
-              {/* MARC */}
+            {/* MARC */}
               <Card className="hover:shadow-lg transition-shadow">
                 <CardHeader className="text-center">
                   <div className="flex justify-center mb-4">
@@ -189,10 +195,8 @@ export default function Sponsors() {
               Pre &amp; Post Conference | قبل وبعد المؤتمر
             </h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-
-              {/* Chitosan */}
-              <Card className="hover:shadow-lg transition-shadow">
-                <CardHeader className="text-center">
+            {/* GEnoEra Technology */}
+              <Card className="hover:shadow-lg transition-shadow">            <CardHeader className="text-center">
                   <div className="flex justify-center mb-4 h-40 items-center">
                     <img
                       src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/GXxzRnTYsggXAHMu.png"
@@ -221,7 +225,7 @@ export default function Sponsors() {
                 </CardContent>
               </Card>
 
-              {/* EG-CompBio */}
+                {/* EgCompBio */}
               <Card className="hover:shadow-lg transition-shadow">
                 <CardHeader className="text-center">
                   <div className="flex justify-center mb-4 h-40 items-center">
@@ -283,7 +287,7 @@ export default function Sponsors() {
                 </CardContent>
               </Card>
 
-              {/* Agitech */}
+              {/* Chitosan */}
               <Card className="hover:shadow-lg transition-shadow">
                 <CardHeader className="text-center">
                   <div className="flex justify-center mb-4 h-40 items-center">
@@ -312,9 +316,15 @@ export default function Sponsors() {
                     </p>
                   </CardDescription>
                 </CardContent>
-              </Card>
+              <CardContent className="pt-0">
+                <a href="https://www.linkedin.com/company/startup-grind/posts/?feedView=all" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-red-600 hover:text-red-800 font-medium">
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                  Follow Startup Grind on LinkedIn
+                </a>
+              </CardContent>
+            </Card>
 
-              {/* Colors Educational Hub */}
+            {/* Colors Educational Hub */}
               <Card className="hover:shadow-lg transition-shadow">
                 <CardHeader className="text-center">
                   <div className="flex justify-center mb-4 h-40 items-center">
@@ -450,6 +460,12 @@ export default function Sponsors() {
                   <p className="text-xs text-muted-foreground">NAWAH will select outstanding Master’s and PhD projects for full scientific incubation support — mentorship, resources, and a pathway to real-world application.</p>
                 </CardDescription>
               </CardContent>
+              <CardContent className="pt-0">
+                <a href="https://www.linkedin.com/company/nawah-scientific/?originalSubdomain=eg" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-green-600 hover:text-green-800 font-medium">
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                  Follow NAWAH on LinkedIn
+                </a>
+              </CardContent>
             </Card>
 
             {/* AI بالعربي */}
@@ -516,6 +532,12 @@ export default function Sponsors() {
                   </CardDescription>
                 </div>
               </CardContent>
+              <CardContent className="pt-0">
+                <a href="https://www.linkedin.com/company/marcresearch/posts/?feedView=all" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-blue-600 hover:text-blue-800 font-medium">
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                  Follow MARC on LinkedIn
+                </a>
+              </CardContent>
             </Card>
 
             {/* Mina Pharm */}
@@ -537,6 +559,11 @@ export default function Sponsors() {
                   <p>عينات منتجات صحية + حقيبتا مفاجآت</p>
                   <p className="text-xs text-muted-foreground">Iron &amp; vitamin supplement samples for menopause health, plus 2 exclusive surprise gift bags for lucky winners.</p>
                 </CardDescription>
+              </CardContent>              <CardContent className="pt-0">
+                <a href="https://www.linkedin.com/company/minapharm-pharmaceuticals/posts/?feedView=all" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-pink-600 hover:text-pink-800 font-medium">
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                  Follow Mina Pharm on LinkedIn
+                </a>
               </CardContent>
             </Card>
 
@@ -559,6 +586,12 @@ export default function Sponsors() {
                   <p dir="rtl">٤ حقائب هدايا تحتوي على مجموعات عينات مجانية</p>
                   <p className="text-xs text-muted-foreground">4 gift bags containing free professional sample kits for 4 prize winners — direct access to cutting-edge scientific tools.</p>
                 </CardDescription>
+              </CardContent>
+              <CardContent className="pt-0">
+                <a href="https://www.linkedin.com/company/agitech-egypt/posts/?feedView=all" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-emerald-600 hover:text-emerald-800 font-medium">
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                  Follow Agitech on LinkedIn
+                </a>
               </CardContent>
             </Card>
 
@@ -594,6 +627,12 @@ export default function Sponsors() {
                     </div>
                   </div>
                 </CardDescription>
+              </CardContent>
+              <CardContent className="pt-0">
+                <a href="https://www.linkedin.com/company/medsolme/posts/?feedView=all" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-teal-600 hover:text-teal-800 font-medium">
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                  Follow Medsol on LinkedIn
+                </a>
               </CardContent>
             </Card>
 
@@ -654,6 +693,12 @@ export default function Sponsors() {
                   </div>
                 </CardDescription>
               </CardContent>
+              <CardContent className="pt-0">
+                <a href="https://www.linkedin.com/company/colors-educational-hub/posts/?feedView=all" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-indigo-600 hover:text-indigo-800 font-medium">
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                  Follow Colors Educational Hub on LinkedIn
+                </a>
+              </CardContent>
             </Card>
 
             {/* Chitosan */}
@@ -679,6 +724,12 @@ export default function Sponsors() {
                     <p className="text-xs text-muted-foreground mt-1" dir="rtl">سيحصل الفريق الفائز على كمية من مادة الكيتوسان ودعم تقني كامل، ويُطبَّق المشروع على عينات من الثمار والفاكهة.</p>
                   </div>
                 </CardDescription>
+              </CardContent>
+              <CardContent className="pt-0">
+                <a href="https://www.linkedin.com/in/chitosan-egypt/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-teal-600 hover:text-teal-800 font-medium">
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                  Follow Chitosan on LinkedIn
+                </a>
               </CardContent>
             </Card>
 
@@ -706,6 +757,12 @@ export default function Sponsors() {
                   </div>
                 </CardDescription>
               </CardContent>
+              <CardContent className="pt-0">
+                <a href="https://www.linkedin.com/company/geno-era-technology/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-violet-600 hover:text-violet-800 font-medium">
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                  Follow GEnoEra on LinkedIn
+                </a>
+              </CardContent>
             </Card>
 
             {/* EgCompBio */}
@@ -731,6 +788,12 @@ export default function Sponsors() {
                     <p className="text-xs text-muted-foreground mt-1" dir="rtl">تتبرع الجمعية المصرية للبيولوجيا الحسابية EgCompBio بكورس مجاني كامل من كتالوجها التدريبي لطالب متميز واحد من مشاركي SCI 2026، يغطي أحدث موضوعات البيولوجيا الحسابية والمعلوماتية الحيوية وجينوميات الخلية المفردة.</p>
                   </div>
                 </CardDescription>
+              </CardContent>
+              <CardContent className="pt-0">
+                <a href="https://www.linkedin.com/company/egcompbio/posts/?feedView=all" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-teal-600 hover:text-teal-800 font-medium">
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                  Follow EgCompBio on LinkedIn
+                </a>
               </CardContent>
             </Card>
 
