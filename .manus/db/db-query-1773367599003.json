@@ -1,0 +1,24 @@
+{
+  "query": "SELECT id, full_name, title, affiliation, photo_url FROM keynote_speakers WHERE full_name LIKE '%Kamal%' OR full_name LIKE '%Gabre%';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name, title, affiliation, photo_url FROM keynote_speakers WHERE full_name LIKE '%Kamal%' OR full_name LIKE '%Gabre%';",
+  "rows": [
+    {
+      "id": "26",
+      "full_name": "Refaat Gabre",
+      "title": "Prof. Dr. ",
+      "affiliation": "Head of Biotechnology Department, Faculty of Science, Cairo University",
+      "photo_url": "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_47sAul_image_09cbad67.png"
+    },
+    {
+      "id": "29",
+      "full_name": "Abdelfattah Kamal",
+      "title": "Dr.",
+      "affiliation": "Operations Director at BioGeneric pharma (BGP)",
+      "photo_url": "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_TRiV0W_image_c2f3f56c.png"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tfull_name\ttitle\taffiliation\tphoto_url\n26\tRefaat Gabre\tProf. Dr. \tHead of Biotechnology Department, Faculty of Science, Cairo University\thttps://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_47sAul_image_09cbad67.png\n29\tAbdelfattah Kamal\tDr.\tOperations Director at BioGeneric pharma (BGP)\thttps://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_TRiV0W_image_c2f3f56c.png\n",
+  "stderr": "",
+  "execution_time_ms": 1632
+}

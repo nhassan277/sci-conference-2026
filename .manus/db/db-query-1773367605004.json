@@ -1,0 +1,39 @@
+{
+  "query": "SELECT * FROM keynote_speakers WHERE full_name LIKE '%Kamal%' OR full_name LIKE '%Gabre%';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT * FROM keynote_speakers WHERE full_name LIKE '%Kamal%' OR full_name LIKE '%Gabre%';",
+  "rows": [
+    {
+      "id": "26",
+      "full_name": "Refaat Gabre",
+      "title": "Prof. Dr. ",
+      "affiliation": "Head of Biotechnology Department, Faculty of Science, Cairo University",
+      "presentation_title": "Transfer, localization, and reproduction of biotechnology in Egypt",
+      "presentation_title_ar": "NULL",
+      "presentation_abstract": "NULL",
+      "bio": "NULL",
+      "bio_ar": "NULL",
+      "photo_url": "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_47sAul_image_09cbad67.png",
+      "linkedin_url": "NULL",
+      "twitter_url": "NULL",
+      "website_url": "NULL",
+      "display_order": "26",
+      "is_visible": "1",
+      "created_at": "2026-03-07 23:59:04",
+      "updated_at": "2026-03-10 22:47:14",
+      "speaker_type": "invited",
+      "speaker_sector": "academia"
+    }
+  ],
+  "messages": [
+    "29\tAbdelfattah Kamal\tDr.\tOperations Director at BioGeneric pharma (BGP)\tAchieving Quality and Sustainable Local Vaccine Production in Africa to Improve Access\tNULL\tKey Highlights of the Session:",
+    "The Enablers: Exploring technological advancements, strategic collaborations, strong manufacturing capacities, and regulatory support driving the industry.",
+    "The Barriers: Addressing critical challenges such as high R&D costs, complex regulatory processes, supply chain issues, and intellectual property rights.",
+    "The Way Forward: Actionable strategies to overcome these obstacles and ensure that safe, effective vaccines are available to people worldwide.\tDr. Abdelfattah Kamal With over 24 years of leadership in the pharmaceutical and biopharmaceutical sectors, Dr. Abdel Fatah currently serves as the Operations Director at BioGeneric pharma (BGP).",
+    "He specializes in transforming complex scientific research into scalable, commercial realities, successfully spearheading the readiness of new bio-similar and sterile vial filling lines.",
+    "His professional mission is to build self-sustaining, cGMP-compliant manufacturing hubs that bridge the gap between innovation and patient access in emerging markets.",
+    "An expert in startup environments, he excels at implementing Lean and Six Sigma practices, reducing production costs, and integrating automation while maintaining the highest quality standards.\tNULL\thttps://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_TRiV0W_image_c2f3f56c.png\tNULL\tNULL\tNULL\t28\t1\t2026-03-13 00:58:28\t2026-03-13 01:01:57\tinvited\tindustry"
+  ],
+  "stdout": "id\tfull_name\ttitle\taffiliation\tpresentation_title\tpresentation_title_ar\tpresentation_abstract\tbio\tbio_ar\tphoto_url\tlinkedin_url\ttwitter_url\twebsite_url\tdisplay_order\tis_visible\tcreated_at\tupdated_at\tspeaker_type\tspeaker_sector\n26\tRefaat Gabre\tProf. Dr. \tHead of Biotechnology Department, Faculty of Science, Cairo University\tTransfer, localization, and reproduction of biotechnology in Egypt\tNULL\tNULL\tNULL\tNULL\thttps://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_47sAul_image_09cbad67.png\tNULL\tNULL\tNULL\t26\t1\t2026-03-07 23:59:04\t2026-03-10 22:47:14\tinvited\tacademia\n29\tAbdelfattah Kamal\tDr.\tOperations Director at BioGeneric pharma (BGP)\tAchieving Quality and Sustainable Local Vaccine Production in Africa to Improve Access\tNULL\tKey Highlights of the Session:\nThe Enablers: Exploring technological advancements, strategic collaborations, strong manufacturing capacities, and regulatory support driving the industry.\nThe Barriers: Addressing critical challenges such as high R&D costs, complex regulatory processes, supply chain issues, and intellectual property rights.\nThe Way Forward: Actionable strategies to overcome these obstacles and ensure that safe, effective vaccines are available to people worldwide.\tDr. Abdelfattah Kamal With over 24 years of leadership in the pharmaceutical and biopharmaceutical sectors, Dr. Abdel Fatah currently serves as the Operations Director at BioGeneric pharma (BGP).\nHe specializes in transforming complex scientific research into scalable, commercial realities, successfully spearheading the readiness of new bio-similar and sterile vial filling lines.\nHis professional mission is to build self-sustaining, cGMP-compliant manufacturing hubs that bridge the gap between innovation and patient access in emerging markets.\nAn expert in startup environments, he excels at implementing Lean and Six Sigma practices, reducing production costs, and integrating automation while maintaining the highest quality standards.\tNULL\thttps://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_TRiV0W_image_c2f3f56c.png\tNULL\tNULL\tNULL\t28\t1\t2026-03-13 00:58:28\t2026-03-13 01:01:57\tinvited\tindustry\n",
+  "stderr": "",
+  "execution_time_ms": 1643
+}

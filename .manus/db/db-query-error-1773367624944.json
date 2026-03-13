@@ -1,0 +1,8 @@
+{
+  "query": "SELECT id, full_name, title, affiliation, photo_url, session_title FROM keynote_speakers WHERE full_name LIKE '%Refaat%';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name, title, affiliation, photo_url, session_title FROM keynote_speakers WHERE full_name LIKE '%Refaat%';",
+  "returncode": 1,
+  "logs": [
+    "ERROR 1054 (42S22) at line 1: Unknown column 'session_title' in 'field list'"
+  ]
+}

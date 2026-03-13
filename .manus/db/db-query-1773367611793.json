@@ -1,0 +1,31 @@
+{
+  "query": "SELECT * FROM keynote_speakers WHERE full_name LIKE '%Refaat%';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT * FROM keynote_speakers WHERE full_name LIKE '%Refaat%';",
+  "rows": [
+    {
+      "id": "26",
+      "full_name": "Refaat Gabre",
+      "title": "Prof. Dr. ",
+      "affiliation": "Head of Biotechnology Department, Faculty of Science, Cairo University",
+      "presentation_title": "Transfer, localization, and reproduction of biotechnology in Egypt",
+      "presentation_title_ar": "NULL",
+      "presentation_abstract": "NULL",
+      "bio": "NULL",
+      "bio_ar": "NULL",
+      "photo_url": "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_47sAul_image_09cbad67.png",
+      "linkedin_url": "NULL",
+      "twitter_url": "NULL",
+      "website_url": "NULL",
+      "display_order": "26",
+      "is_visible": "1",
+      "created_at": "2026-03-07 23:59:04",
+      "updated_at": "2026-03-10 22:47:14",
+      "speaker_type": "invited",
+      "speaker_sector": "academia"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tfull_name\ttitle\taffiliation\tpresentation_title\tpresentation_title_ar\tpresentation_abstract\tbio\tbio_ar\tphoto_url\tlinkedin_url\ttwitter_url\twebsite_url\tdisplay_order\tis_visible\tcreated_at\tupdated_at\tspeaker_type\tspeaker_sector\n26\tRefaat Gabre\tProf. Dr. \tHead of Biotechnology Department, Faculty of Science, Cairo University\tTransfer, localization, and reproduction of biotechnology in Egypt\tNULL\tNULL\tNULL\tNULL\thttps://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_47sAul_image_09cbad67.png\tNULL\tNULL\tNULL\t26\t1\t2026-03-07 23:59:04\t2026-03-10 22:47:14\tinvited\tacademia\n",
+  "stderr": "",
+  "execution_time_ms": 1614
+}

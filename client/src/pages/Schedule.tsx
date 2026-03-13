@@ -166,7 +166,8 @@ const sessions = {
       ],
       workshops: [
         { room: "Workshop Room 1", roomAr: "غرفة ورشة العمل ١", name: "MARC Workshop", nameAr: "ورشة عمل MARC" },
-        { room: "Workshop Room 2", roomAr: "غرفة ورشة العمل ٢", name: "From DNA to Proteins: Advanced Sequencing Technologies", nameAr: "من الحمض النووي إلى البروتينات: تقنيات التسلسل المتقدمة" }
+        { room: "Workshop Room 2", roomAr: "غرفة ورشة العمل ٢", name: "From DNA to Proteins: Advanced Sequencing Technologies", nameAr: "من الحمض النووي إلى البروتينات: تقنيات التسلسل المتقدمة" },
+        { room: "Workshop Room 3", roomAr: "غرفة ورشة العمل ٣", name: "Environmental Geochemical Data Analysis — Session 1 (Dr. Jan Sedláček, Czech Geological Survey)", nameAr: "تحليل البيانات الجيوكيميائية البيئية — الجلسة الأولى" }
       ]
     },
     {
@@ -348,7 +349,8 @@ const sessions = {
         { hall: "Hall D", hallAr: "القاعة د", topic: "Other Sciences (Participants)", topicAr: "العلوم الأخرى (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" }
       ],
       workshops: [
-        { room: "Workshop Rooms 1 & 2", roomAr: "غرف ورشة العمل ١ و ٢", name: "Nawah Scientific Workshop", nameAr: "ورشة عمل نواة للعلوم" }
+        { room: "Workshop Rooms 1 & 2", roomAr: "غرف ورشة العمل ١ و ٢", name: "Nawah Scientific Workshop", nameAr: "ورشة عمل نواة للعلوم" },
+        { room: "Workshop Room 3", roomAr: "غرفة ورشة العمل ٣", name: "Environmental Geochemical Data Analysis — Session 2 (Dr. Jan Sedláček, Czech Geological Survey)", nameAr: "تحليل البيانات الجيوكيميائية البيئية — الجلسة الثانية" }
       ]
     },
     {
@@ -876,6 +878,14 @@ export default function Schedule() {
                     <div>
                       <p className="font-semibold">From Basic Research to Precision Medicine: Applications of NGS and ddPCR in Targeted Therapy</p>
                       <p className="text-xs text-muted-foreground">By Agitech · During Conference · Workshop Room</p>
+                    </div>
+                    <div>
+                      <p className="font-semibold">Environmental Geochemical Data Analysis (Session 1)</p>
+                      <p className="text-xs text-muted-foreground">By Dr. Jan Sedláček — Czech Geological Survey · April 7, 90 min · Free, No Registration Required</p>
+                    </div>
+                    <div>
+                      <p className="font-semibold">Environmental Geochemical Data Analysis (Session 2)</p>
+                      <p className="text-xs text-muted-foreground">By Dr. Jan Sedláček — Czech Geological Survey · April 8, 90 min · Free, No Registration Required</p>
                     </div>
                   </div>
                 </div>
