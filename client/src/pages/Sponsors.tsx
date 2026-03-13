@@ -749,8 +749,8 @@ export default function Sponsors() {
               </CardHeader>
               <CardContent>
                 <CardDescription className="text-sm space-y-2">
-                  <p className="font-semibold text-blue-700">🏆 Internship + Full Research Funding + Lab Support</p>
-                  <p dir="rtl">إنترنشيب + تمويل بحثي كامل + دعم معملي</p>
+                  <p className="font-semibold text-blue-700">🏆 Internship + Full Research Funding + Lab Support + Conference Gifts</p>
+                  <p dir="rtl">إنترنشيب + تمويل بحثي كامل + دعم معملي + توزيع هدايا يوم المؤتمر</p>
                   <div className="bg-blue-50 border border-blue-200 rounded p-2 mt-2 space-y-2">
                     <div>
                       <p className="text-xs font-semibold text-blue-700">👤 1. Internship Opportunities</p>
@@ -766,6 +766,11 @@ export default function Sponsors() {
                       <p className="text-xs font-semibold text-blue-700">🧪 3. Lab Contribution & Resources</p>
                       <p className="text-xs text-muted-foreground mt-1">For projects that require experimental work, Plasma will contribute lab resources and support through what is available in their laboratories.</p>
                       <p className="text-xs text-muted-foreground mt-1" dir="rtl">للمشاريع التي تحتاج إلى عمل تجريبي، ستساهم Plasma بموارد ودعم معملي من خلال ما هو متاح في معاملها.</p>
+                    </div>
+                    <div>
+                      <p className="text-xs font-semibold text-blue-700">🎁 4. Gift Distribution on Conference Day</p>
+                      <p className="text-xs text-muted-foreground mt-1">Plasma will distribute gifts to conference attendees on the day of the event as a gesture of goodwill and celebration of the scientific community.</p>
+                      <p className="text-xs text-muted-foreground mt-1" dir="rtl">ستوزع Plasma هدايا على الحضور يوم المؤتمر كبادرة حسن نية واحتفالاً بالمجتمع العلمي.</p>
                     </div>
                   </div>
                 </CardDescription>

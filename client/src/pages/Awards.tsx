@@ -243,15 +243,15 @@ export default function Awards() {
       sponsorEn: "Plasma",
       logo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/logo-2_953b35eb.jpeg",
       icon: Sparkles,
-      prize: "Internship + Full Research Funding + Lab Support",
-      prizeAr: "إنترنشيب + تمويل بحثي كامل + دعم معملي",
-      description: "Plasma is offering three exceptional opportunities for outstanding student projects at SCI 2026: (1) Internship opportunities for selected graduation project students, with hands-on training provided by Plasma's team; (2) Full financial support from A to Z for one outstanding applied research project selected by Plasma — covering all research needs from start to finish; (3) Lab contribution and resources for projects that require experimental work, through what is available in Plasma's laboratories.",
-      descriptionAr: "تقدم شركة Plasma ثلاث فرص استثنائية لمشاريع الطلاب المتميزة في SCI 2026: (1) فرص إنترنشيب لطلاب مشاريع التخرج المختارين، مع تدريب عملي متخصص من فريق Plasma؛ (2) دعم مالي كامل من الألف للياء لمشروع بحثي تطبيقي واحد متميز تختاره Plasma — يغطي جميع احتياجات البحث من البداية حتى النهاية؛ (3) مساهمة معملية وموارد للمشاريع التي تحتاج إلى عمل تجريبي، من خلال ما هو متاح في معامل Plasma.",
+      prize: "Internship + Full Research Funding + Lab Support + Conference Gifts",
+      prizeAr: "إنترنشيب + تمويل بحثي كامل + دعم معملي + توزيع هدايا يوم المؤتمر",
+      description: "Plasma is offering four exceptional contributions at SCI 2026: (1) Internship opportunities for selected graduation project students, with hands-on training provided by Plasma's team; (2) Full financial support from A to Z for one outstanding applied research project selected by Plasma — covering all research needs from start to finish; (3) Lab contribution and resources for projects that require experimental work, through what is available in Plasma's laboratories; (4) Gift distribution to conference attendees on the day of the event.",
+      descriptionAr: "تقدم شركة Plasma أربع مساهمات استثنائية في SCI 2026: (1) فرص إنترنشيب لطلاب مشاريع التخرج المختارين، مع تدريب عملي متخصص من فريق Plasma؛ (2) دعم مالي كامل من الألف للياء لمشروع بحثي تطبيقي واحد متميز تختاره Plasma — يغطي جميع احتياجات البحث من البداية حتى النهاية؛ (3) مساهمة معملية وموارد للمشاريع التي تحتاج إلى عمل تجريبي، من خلال ما هو متاح في معامل Plasma؛ (4) توزيع هدايا على الحضور يوم المؤتمر.",
       badgeColor: "bg-blue-100 text-blue-800 border-blue-200",
       cardBorder: "border-blue-200 hover:border-blue-400",
       iconBg: "bg-blue-100 text-blue-700",
-      tag: "3 Opportunities",
-      tagAr: "٣ فرص"
+      tag: "4 Contributions",
+      tagAr: "٤ مساهمات"
     }
   ];
 
