@@ -194,7 +194,7 @@ export default function Home() {
                   ✓ Free Attendance | الحضور مجاناً
                 </Badge>
                 <Badge className="bg-blue-600 text-white px-4 py-1.5 text-sm font-medium">
-                  Certificate: 100 EGP | الشهادة: ١٠٠ ج
+                  Conference Certificate: 100 EGP | شهادة المؤتمر: ١٠٠ ج
                 </Badge>
               </div>
               
@@ -591,7 +591,7 @@ export default function Home() {
                 ✓ Conference Attendance is FREE | الحضور مجاناً
               </Badge>
               <Badge className="bg-blue-600 text-white px-6 py-2 text-base font-medium">
-                Certificate Available: 100 EGP | الشهادة متاحة: ١٠٠ جنيه
+                Conference Certificate: 100 EGP | شهادة المؤتمر: ١٠٠ جنيه
               </Badge>
             </div>
           </div>
@@ -655,7 +655,7 @@ export default function Home() {
               {/* Pricing Banner */}
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-4">
                 <Badge className="bg-amber-500 text-white px-4 py-2 text-base font-bold">
-                  100 EGP per workshop (incl. certificate)
+                  200 EGP per workshop (incl. certificate)
                 </Badge>
                 <Badge className="bg-red-600 text-white px-4 py-2 text-base font-bold">
                   🔥 First 30 participants only | أول 30 مشارك فقط
@@ -689,6 +689,8 @@ export default function Home() {
                     
                     <div className="bg-primary/5 p-4 rounded-lg">
                       <p className="text-sm text-muted-foreground mb-2"><strong>Duration:</strong> 4 hours</p>
+                      <p className="font-bold text-amber-700 text-sm mt-1">200 EGP (incl. certificate)</p>
+                      <p className="text-amber-600 text-xs" dir="rtl">200 جنيه مصري (شاملة الشهادة)</p>
                     </div>
 
                     <p className="text-sm text-justify">
@@ -733,6 +735,8 @@ export default function Home() {
                     
                     <div className="bg-secondary/5 p-4 rounded-lg">
                       <p className="text-sm text-muted-foreground mb-2"><strong>Duration:</strong> 3 hours</p>
+                      <p className="font-bold text-amber-700 text-sm mt-1">200 EGP (incl. certificate)</p>
+                      <p className="text-amber-600 text-xs" dir="rtl">200 جنيه مصري (شاملة الشهادة)</p>
                     </div>
 
                     <p className="text-sm text-justify">
@@ -778,6 +782,8 @@ export default function Home() {
                     
                     <div className="bg-accent/5 p-4 rounded-lg">
                       <p className="text-sm text-muted-foreground mb-2"><strong>Duration:</strong> 3 hours</p>
+                      <p className="font-bold text-amber-700 text-sm mt-1">200 EGP (incl. certificate)</p>
+                      <p className="text-amber-600 text-xs" dir="rtl">200 جنيه مصري (شاملة الشهادة)</p>
                     </div>
 
                     <p className="text-sm text-justify">
@@ -895,8 +901,8 @@ export default function Home() {
                 </div>
 
                 <div className="flex items-center justify-center gap-3 flex-wrap">
-                  <Badge className="bg-primary text-white px-4 py-2 text-base font-bold">
-                    100–200 EGP per workshop (incl. certificate)
+                  <Badge className="bg-amber-500 text-white px-4 py-2 text-base font-bold">
+                    100 or 200 EGP per workshop (incl. certificate)
                   </Badge>
                   <Badge className="bg-muted text-muted-foreground px-4 py-2 text-sm">
                     Companies will be announced soon | الشركات ستُعلن قريباً
@@ -967,6 +973,11 @@ export default function Home() {
                       <p className="text-xs text-muted-foreground">👥 Capacity | الطاقة</p>
                       <p className="font-bold text-orange-900 text-sm">30 Participants</p>
                       <p className="text-orange-700 text-xs" dir="rtl">٣٠ مشاركاً</p>
+                    </div>
+                    <div className="p-3 bg-white rounded-xl border border-orange-200 col-span-2">
+                      <p className="text-xs text-muted-foreground">💰 Fee | الرسوم</p>
+                      <p className="font-bold text-amber-700 text-sm">100 EGP (incl. certificate)</p>
+                      <p className="text-amber-600 text-xs" dir="rtl">100 جنيه مصري (شاملة الشهادة)</p>
                     </div>
                   </div>
 
@@ -1131,6 +1142,11 @@ export default function Home() {
                       <p className="font-bold text-gray-900 text-sm">Unlimited</p>
                       <p className="text-gray-700 text-xs" dir="rtl">غير محدود</p>
                     </div>
+                    <div className="p-3 bg-white rounded-xl border border-gray-200 col-span-2">
+                      <p className="text-xs text-muted-foreground">💰 Fee | الرسوم</p>
+                      <p className="font-bold text-amber-700 text-sm">100 EGP (incl. certificate)</p>
+                      <p className="text-amber-600 text-xs" dir="rtl">100 جنيه مصري (شاملة الشهادة)</p>
+                    </div>
                   </div>
                   {/* Register button */}
                   <div className="flex items-center justify-end">
@@ -1207,9 +1223,8 @@ export default function Home() {
                       <p className="text-teal-700 text-xs" dir="rtl">٣٠ مشاركاً فقط</p>
                     </div>
                     <div className="p-3 bg-white rounded-xl border border-teal-200">
-                      <p className="text-xs text-muted-foreground">💰 Fee | الرسوم</p>
-                      <p className="font-bold text-teal-900 text-sm">200 EGP</p>
-                      <p className="text-teal-700 text-xs" dir="rtl">200 جنيه مصري</p>
+                      <p className="text-xs text-muted-foreground">💰 Fee | الرسوم</p>                      <p className="font-bold text-teal-900 text-sm">200 EGP (incl. certificate)</p>
+                      <p className="text-teal-700 text-xs" dir="rtl">200 جنيه مصري (شاملة الشهادة)</p>
                     </div>
                   </div>
 
@@ -1282,8 +1297,8 @@ export default function Home() {
                     </div>
                     <div className="p-3 bg-white rounded-xl border border-purple-200">
                       <p className="text-xs text-muted-foreground">💰 Fee | الرسوم</p>
-                      <p className="font-bold text-purple-900 text-sm">100 EGP</p>
-                      <p className="text-purple-700 text-xs" dir="rtl">100 جنيه مصري</p>
+                      <p className="font-bold text-purple-900 text-sm">100 EGP (incl. certificate)</p>
+                      <p className="text-purple-700 text-xs" dir="rtl">100 جنيه مصري (شاملة الشهادة)</p>
                     </div>
                   </div>
 
@@ -1372,8 +1387,8 @@ export default function Home() {
                     </div>
                     <div className="p-3 bg-white rounded-xl border border-blue-200">
                       <p className="text-xs text-muted-foreground">💰 Fee | الرسوم</p>
-                      <p className="font-bold text-blue-900 text-sm">200 EGP</p>
-                      <p className="text-blue-700 text-xs" dir="rtl">200 جنيه مصري</p>
+                      <p className="font-bold text-blue-900 text-sm">200 EGP (incl. certificate)</p>
+                      <p className="text-blue-700 text-xs" dir="rtl">200 جنيه مصري (شاملة الشهادة)</p>
                     </div>
                     <div className="p-3 bg-white rounded-xl border border-blue-200">
                       <p className="text-xs text-muted-foreground">👥 Capacity | السعة</p>
@@ -1475,8 +1490,8 @@ export default function Home() {
                   <div className="grid grid-cols-2 gap-3">
                     <div className="p-3 bg-white rounded-xl border border-indigo-200">
                       <p className="text-xs text-muted-foreground">💰 Fee | الرسوم</p>
-                      <p className="font-bold text-indigo-900 text-sm">200 EGP</p>
-                      <p className="text-indigo-700 text-xs" dir="rtl">200 جنيه مصري</p>
+                      <p className="font-bold text-indigo-900 text-sm">200 EGP (incl. certificate)</p>
+                      <p className="text-indigo-700 text-xs" dir="rtl">200 جنيه مصري (شاملة الشهادة)</p>
                     </div>
                     <div className="p-3 bg-white rounded-xl border border-indigo-200">
                       <p className="text-xs text-muted-foreground">👥 Capacity | السعة</p>
@@ -1554,7 +1569,8 @@ export default function Home() {
                     <p className="text-sm text-muted-foreground"><strong>Duration:</strong> 3 hours hands-on training</p>
                     <p className="text-sm text-muted-foreground"><strong>Target:</strong> 2nd &amp; 3rd year students</p>
                     <p className="text-sm text-muted-foreground"><strong>Capacity:</strong> Maximum 30 students</p>
-                    <p className="text-sm text-muted-foreground"><strong>Certificate fee:</strong> 100 EGP</p>
+                    <p className="text-sm font-bold text-amber-700"><strong>Fee:</strong> 100 EGP (incl. certificate)</p>
+                    <p className="text-xs text-amber-600" dir="rtl">100 جنيه مصري (شاملة الشهادة)</p>
                   </div>
 
                   <div>

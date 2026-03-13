@@ -454,9 +454,9 @@ export default function Attendance() {
                     />
                     <div className="space-y-1">
                       <Label htmlFor="wantsWorkshop" className="font-semibold cursor-pointer text-amber-900">
-                        I want to register for a workshop — 100 EGP (incl. certificate)
+                        I want to register for a workshop (incl. certificate)
                       </Label>
-                      <p className="text-sm text-amber-700" dir="rtl">أرغب في التسجيل في ورشة عمل — 100 جنيه مصري (شاملة الشهادة)</p>
+                      <p className="text-sm text-amber-700" dir="rtl">أرغب في التسجيل في ورشة عمل (شاملة الشهادة)</p>
                     </div>
                   </div>
                   <Badge className="bg-red-100 text-red-700 border-red-200 text-xs shrink-0">First 30 only | أول 30 مشارك</Badge>
@@ -483,9 +483,9 @@ export default function Attendance() {
                       <p className="text-xs text-muted-foreground" dir="rtl">اختر ورشة العمل المفضلة لديك</p>
                       <div className="grid gap-3">
                         {[
-                          { value: "nawah", label: "NAWAH Scientific", desc: "Research to Business — Translating Science into Industry", descAr: "من البحث إلى الأعمال — تحويل العلوم إلى صناعة" },
-                          { value: "marc", label: "MARC", desc: "Good Clinical Practice (GCP) Workshop", descAr: "ورشة الممارسة السريرية الجيدة" },
-                          { value: "medsol", label: "Medsol Corporation", desc: "From DNA to Proteins: Advanced Sequencing Technologies", descAr: "من الحمض النووي إلى البروتينات: تقنيات التسلسل المتقدمة" },
+                          { value: "nawah", label: "NAWAH Scientific", desc: "Research to Business — Translating Science into Industry | 200 EGP (incl. certificate)", descAr: "من البحث إلى الأعمال — تحويل العلوم إلى صناعة | 200 جنيه (شاملة الشهادة)" },
+                          { value: "marc", label: "MARC", desc: "Good Clinical Practice (GCP) Workshop | 200 EGP (incl. certificate)", descAr: "ورشة الممارسة السريرية الجيدة | 200 جنيه (شاملة الشهادة)" },
+                          { value: "medsol", label: "Medsol Corporation", desc: "From DNA to Proteins: Advanced Sequencing Technologies | 200 EGP (incl. certificate)", descAr: "من الحمض النووي إلى البروتينات: تقنيات التسلسل المتقدمة | 200 جنيه (شاملة الشهادة)" },
                           { value: "agitech", label: "Agitech — NGS & ddPCR in Targeted Therapy", desc: "From Basic Research to Precision Medicine: Applications of NGS and ddPCR in Targeted Therapy. April 6, 12:00–14:00 | 20 spots only", descAr: "من البحث الأساسي إلى الطب الدقيق: تطبيقات NGS و ddPCR في العلاج الموجه. ٦ أبريل، ١٢:٠٠–٢:٠٠ م | ٢٠ مكاناً فقط", logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/qtvBAZFSrMqYBKkE.png" },
                         ].map((ws) => (
                           <div
@@ -530,10 +530,10 @@ export default function Attendance() {
                         <AlertCircle className="w-4 h-4" /> Workshop Payment Instructions | تعليمات دفع ورشة العمل
                       </p>
                       <p className="text-xs text-amber-800">
-                        Transfer <strong>100 EGP</strong> to the same bank account below, then upload a photo of the transfer receipt. <strong>Uploading the invoice is mandatory to confirm your workshop spot.</strong>
+                        Transfer the workshop fee (100 or 200 EGP depending on the workshop — see fee shown on each workshop above) to the same bank account below, then upload a photo of the transfer receipt. <strong>Uploading the invoice is mandatory to confirm your workshop spot.</strong>
                       </p>
                       <p className="text-xs text-amber-800" dir="rtl">
-                        حوّل <strong>100 جنيه مصري</strong> إلى نفس الحساب البنكي أدناه، ثم ارفع صورة إيصال التحويل. <strong>رفع الإيصال إلزامي لتأكيد مكانك في ورشة العمل.</strong>
+                        حوّل رسوم ورشة العمل (100 أو 200 جنيه حسب الورشة — انظر الرسوم الموضحة على كل ورشة أعلاه) إلى نفس الحساب البنكي أدناه، ثم ارفع صورة إيصال التحويل. <strong>رفع الإيصال إلزامي لتأكيد مكانك في ورشة العمل.</strong>
                       </p>
                       {bankDetails}
                     </div>
@@ -570,9 +570,9 @@ export default function Attendance() {
                   />
                   <div className="space-y-1">
                     <Label htmlFor="wantsExtWorkshop" className="font-semibold cursor-pointer text-purple-900">
-                      I want to register for a Pre/Post Conference Workshop — 100 EGP (incl. certificate)
+                      I want to register for a Pre/Post Conference Workshop (incl. certificate)
                     </Label>
-                    <p className="text-sm text-purple-700" dir="rtl">أرغب في التسجيل في ورشة عمل ما قبل/بعد المؤتمر — 100 جنيه مصري (شاملة الشهادة)</p>
+                    <p className="text-sm text-purple-700" dir="rtl">أرغب في التسجيل في ورشة عمل ما قبل/بعد المؤتمر (شاملة الشهادة)</p>
                     <p className="text-xs text-purple-600">April 6 (Pre-Conference) or April 9 (Post-Conference), 2026</p>
                     <p className="text-xs text-purple-600" dir="rtl">٦ أبريل (قبل المؤتمر) أو ٩ أبريل (بعد المؤتمر) ٢٠٢٦</p>
                   </div>
@@ -608,7 +608,7 @@ export default function Attendance() {
                             dateAr: "٦ أبريل ٢٠٢٦ | ٩:٠٠ ص – ١٢:٠٠ ظ",
                             by: "Chitosan",
                             logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/GXxzRnTYsggXAHMu.png",
-                            eligibility: "3rd & 4th year undergrads + graduates | 30 spots only",
+                            eligibility: "3rd & 4th year undergrads + graduates | 30 spots only | 100 EGP (incl. certificate)",
                           },
                           {
                             value: "scrna_seq",
@@ -632,6 +632,7 @@ export default function Attendance() {
                             dateAr: "٩ أبريل ٢٠٢٦ | ١:٠٠ – ٣:٠٠ م",
                             by: "AI بالعربي",
                             logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/QvdupTbEZQQzfgEz.jpeg",
+                            eligibility: "100 EGP (incl. certificate)",
                           },
                           {
                             value: "hvd_genomics",
@@ -665,7 +666,7 @@ export default function Attendance() {
                             date: "Date & Time — To Be Announced",
                             dateAr: "سيتم الإعلان عن التاريخ والوقت قريباً",
                             by: "Dr. Dina Amr — Lecturer, Biotechnology Dept., Faculty of Science, Cairo University",
-                            eligibility: "2nd & 3rd year students only | Max 30 students | Certificate: 100 EGP",
+                            eligibility: "2nd & 3rd year students only | Max 30 students | 100 EGP (incl. certificate)",
                           },
                           {
                             value: "colors_metagenomics",
@@ -729,10 +730,10 @@ export default function Attendance() {
                         <AlertCircle className="w-4 h-4" /> Payment Instructions | تعليمات الدفع
                       </p>
                       <p className="text-xs text-purple-800">
-                        Transfer <strong>100 EGP</strong> to the bank account below, then upload a photo of the transfer receipt. <strong>Uploading the invoice is mandatory to confirm your spot.</strong>
+                        Transfer the workshop fee (100 or 200 EGP depending on the workshop — see fee shown on each workshop above) to the bank account below, then upload a photo of the transfer receipt. <strong>Uploading the invoice is mandatory to confirm your spot.</strong>
                       </p>
                       <p className="text-xs text-purple-800" dir="rtl">
-                        حوّل <strong>100 جنيه مصري</strong> إلى الحساب البنكي أدناه، ثم ارفع صورة إيصال التحويل. <strong>رفع الإيصال إلزامي لتأكيد مكانك.</strong>
+                        حوّل رسوم ورشة العمل (100 أو 200 جنيه حسب الورشة — انظر الرسوم الموضحة على كل ورشة أعلاه) إلى الحساب البنكي أدناه، ثم ارفع صورة إيصال التحويل. <strong>رفع الإيصال إلزامي لتأكيد مكانك.</strong>
                       </p>
                       {bankDetails}
                     </div>
