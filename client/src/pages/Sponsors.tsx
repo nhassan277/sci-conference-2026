@@ -555,9 +555,9 @@ export default function Sponsors() {
               </CardHeader>
               <CardContent>
                 <CardDescription className="text-sm space-y-2">
-                  <p className="font-semibold text-emerald-700">🧪 2 Free Professional Sample Kits</p>
-                  <p>مجموعتا عينات احترافية مجانية</p>
-                  <p className="text-xs text-muted-foreground">2 free professional sample kits for 2 prize winners — direct access to cutting-edge scientific tools.</p>
+                  <p className="font-semibold text-emerald-700">🎁 4 Gift Bags Containing Free Sample Kits</p>
+                  <p dir="rtl">٤ حقائب هدايا تحتوي على مجموعات عينات مجانية</p>
+                  <p className="text-xs text-muted-foreground">4 gift bags containing free professional sample kits for 4 prize winners — direct access to cutting-edge scientific tools.</p>
                 </CardDescription>
               </CardContent>
             </Card>

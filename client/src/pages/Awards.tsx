@@ -138,15 +138,15 @@ export default function Awards() {
       sponsorEn: "Agitech",
       logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/VgPdbFhKiVTOdmtC.png",
       icon: Gift,
-      prize: "2 Free Sample Kits",
-      prizeAr: "مجموعتا عينات مجانية",
-      description: "Agitech will award 2 free professional sample kits to 2 prize winners at the conference — giving researchers direct access to cutting-edge scientific tools.",
-      descriptionAr: "ستمنح Agitech مجموعتَي عينات احترافية مجانية لاثنين من الفائزين في المؤتمر — مما يتيح للباحثين الوصول المباشر إلى أحدث الأدوات العلمية.",
+      prize: "4 Gift Bags Containing Free Sample Kits",
+      prizeAr: "٤ حقائب هدايا تحتوي على مجموعات عينات مجانية",
+      description: "Agitech will award 4 gift bags containing free professional sample kits to 4 prize winners at the conference — giving researchers direct access to cutting-edge scientific tools.",
+      descriptionAr: "ستمنح Agitech ٤ حقائب هدايا تحتوي على مجموعات عينات احترافية مجانية لأربعة من الفائزين في المؤتمر — مما يتيح للباحثين الوصول المباشر إلى أحدث الأدوات العلمية.",
       badgeColor: "bg-emerald-100 text-emerald-800 border-emerald-200",
       cardBorder: "border-emerald-200 hover:border-emerald-400",
       iconBg: "bg-emerald-100 text-emerald-700",
-      tag: "2 Prizes",
-      tagAr: "جائزتان"
+      tag: "4 Prizes",
+      tagAr: "٤ جوائز"
     },
     {
       sponsor: "Medsol Corporation",
