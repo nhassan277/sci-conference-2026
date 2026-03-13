@@ -1517,6 +1517,7 @@ export default function Home() {
               </div>
 
               {/* Dr. Dina Amr — Introduction to Bioinformatics Workshop */}
+              <div className="max-w-2xl mx-auto">
               <div className="bg-white rounded-2xl border-2 border-teal-200 overflow-hidden shadow-sm">
                 <div className="bg-gradient-to-r from-teal-700 to-teal-600 p-4 text-white">
                   <div className="flex items-center justify-between">
@@ -1575,7 +1576,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-
+              </div>
             </div>
           </div>
         </div>
