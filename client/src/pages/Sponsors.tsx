@@ -734,6 +734,44 @@ export default function Sponsors() {
               </CardContent>
             </Card>
 
+            {/* Plasma */}
+            <Card className="border-2 border-blue-200 shadow-md hover:shadow-lg transition-shadow">
+              <CardHeader className="text-center">
+                <div className="flex justify-center mb-4 h-44 items-center">
+                  <img
+                    src="https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/logo-2_953b35eb.jpeg"
+                    alt="Plasma"
+                    className="h-40 object-contain"
+                  />
+                </div>
+                <CardTitle className="text-xl text-blue-700">Plasma</CardTitle>
+                <CardDescription className="text-xs font-medium text-muted-foreground">Award Sponsor · راعي الجوائز</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-sm space-y-2">
+                  <p className="font-semibold text-blue-700">🏆 Internship + Full Research Funding + Lab Support</p>
+                  <p dir="rtl">إنترنشيب + تمويل بحثي كامل + دعم معملي</p>
+                  <div className="bg-blue-50 border border-blue-200 rounded p-2 mt-2 space-y-2">
+                    <div>
+                      <p className="text-xs font-semibold text-blue-700">👤 1. Internship Opportunities</p>
+                      <p className="text-xs text-muted-foreground mt-1">Plasma will provide internship opportunities for selected graduation project students, with hands-on training delivered by Plasma's specialized team.</p>
+                      <p className="text-xs text-muted-foreground mt-1" dir="rtl">ستوفر Plasma فرص إنترنشيب لطلاب مشاريع التخرج المختارين، مع تدريب عملي متخصص من فريق Plasma.</p>
+                    </div>
+                    <div>
+                      <p className="text-xs font-semibold text-blue-700">💰 2. Full Research Funding</p>
+                      <p className="text-xs text-muted-foreground mt-1">Plasma will select one outstanding applied research project and provide full financial support from A to Z — covering all research needs from start to finish.</p>
+                      <p className="text-xs text-muted-foreground mt-1" dir="rtl">ستختار Plasma مشروعًا بحثيًا تطبيقيًا واحدًا متميزًا وتوفر له دعمًا ماليًا كاملاً من الألف للياء — يغطي جميع احتياجات البحث من البداية حتى النهاية.</p>
+                    </div>
+                    <div>
+                      <p className="text-xs font-semibold text-blue-700">🧪 3. Lab Contribution & Resources</p>
+                      <p className="text-xs text-muted-foreground mt-1">For projects that require experimental work, Plasma will contribute lab resources and support through what is available in their laboratories.</p>
+                      <p className="text-xs text-muted-foreground mt-1" dir="rtl">للمشاريع التي تحتاج إلى عمل تجريبي، ستساهم Plasma بموارد ودعم معملي من خلال ما هو متاح في معاملها.</p>
+                    </div>
+                  </div>
+                </CardDescription>
+              </CardContent>
+            </Card>
+
           </div>
         </div>
       </section>
