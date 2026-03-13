@@ -11,7 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
-import { CheckCircle2, Loader2, Upload, AlertCircle, X, ImageIcon } from "lucide-react";
+import { CheckCircle2, Loader2, Upload, AlertCircle, X, ImageIcon, Calculator } from "lucide-react";
 
 const registrationSchema = z.object({
   fullNameEnglish: z.string().min(1, "English name is required"),
@@ -104,6 +104,32 @@ export default function Attendance() {
   const [workshopInvoiceFile, setWorkshopInvoiceFile] = useState<File | null>(null);
   const [extWorkshopInvoiceFile, setExtWorkshopInvoiceFile] = useState<File | null>(null);
   const [uploadingInvoice, setUploadingInvoice] = useState(false);
+
+  // ─── Fee calculator ───
+  const CERTIFICATE_FEE = 100;
+  // Workshop fees map (conference-day workshops)
+  const WORKSHOP_FEES: Record<string, number> = {
+    nawah: 200,
+    marc: 200,
+    medsol: 200,
+    agitech: 200,
+  };
+  // Pre/post conference workshop fees
+  const EXT_WORKSHOP_FEES: Record<string, number> = {
+    agitech: 200,
+    chitosan: 100,
+    scrna_seq: 200,
+    ai_biotech: 100,
+    hvd_genomics: 200,
+    vaccine_industry: 100,
+    bioinformatics_dina: 100,
+    colors_metagenomics: 200,
+  };
+
+  const certFee = wantsCertificate ? CERTIFICATE_FEE : 0;
+  const workshopFee = wantsWorkshop && workshopChoice ? (WORKSHOP_FEES[workshopChoice] ?? 0) : 0;
+  const extWorkshopFee = wantsExtWorkshop && extWorkshopChoice ? (EXT_WORKSHOP_FEES[extWorkshopChoice] ?? 0) : 0;
+  const totalFee = certFee + workshopFee + extWorkshopFee;
 
   const {
     register,
@@ -654,7 +680,9 @@ export default function Attendance() {
                             descAr: "فهم مسار تطوير اللقاحات والمسارات التنظيمية والمسارات المهنية في صناعة اللقاحات.",
                             date: "April 6, 2026 | 2:00 – 5:00 PM",
                             dateAr: "٦ أبريل ٢٠٢٦ | ٢:٠٠ – ٥:٠٠ م",
-                            by: "Jasmine Mohsen & Dr. Khaled Walid — Vaccine Industry",
+                            by: "Jasmine Mohsen & Dr. Khaled Walid",
+                            byAr: "جاسمين محسن و د. خالد وليد",
+                            photo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/PTtRzbZnNIobKpQd.jpeg",
                             eligibility: "100 EGP (incl. certificate)",
                           },
                           {
@@ -665,10 +693,11 @@ export default function Attendance() {
                             descAr: "تدريب عملي: العمل مع قواعد البيانات الحيوية، استرجاع التسلسلات، تصميم البرايمر، وأدوات المعلوماتية الحيوية العملية.",
                             date: "Date & Time — To Be Announced",
                             dateAr: "سيتم الإعلان عن التاريخ والوقت قريباً",
-                            by: "Dr. Dina Amr — Lecturer, Biotechnology Dept., Faculty of Science, Cairo University",
+                            by: "Dr. Dina Amr",
+                            byAr: "د. دينا عمرو",
+                            photo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_naMOge_image_80a4d111.png",
                             eligibility: "2nd & 3rd year students only | Max 30 students | 100 EGP (incl. certificate)",
-                          },
-                          {
+                          },                          {
                             value: "colors_metagenomics",
                             label: "Metagenomics, Microbiome & 16S rRNA Sequencing",
                             labelAr: "الميتاجينوميكس، الميكروبيوم وتسلسل الـ 16S rRNA",
@@ -694,16 +723,28 @@ export default function Attendance() {
                                 {extWorkshopChoice === ws.value && <div className="w-2 h-2 rounded-full bg-white" />}
                               </div>
                               <div className="flex-1">
-                                <div className="flex items-center gap-2 mb-1">
-                                  <img src={ws.logo} alt={ws.by} className="h-6 object-contain" />
-                                  <p className="font-bold text-sm text-purple-900">{ws.label}</p>
-                                </div>
-                                <p className="text-xs font-medium text-purple-700" dir="rtl">{ws.labelAr}</p>
-                                <p className="text-xs text-muted-foreground mt-1">{ws.desc}</p>
+                                {/* Title first */}
+                                <p className="font-bold text-sm text-purple-900 mb-1">{ws.label}</p>
+                                <p className="text-xs font-medium text-purple-700 mb-2" dir="rtl">{ws.labelAr}</p>
+                                {/* Speaker photo + name OR company logo */}
+                                {'photo' in ws && ws.photo ? (
+                                  <div className="flex items-center gap-2 mb-2">
+                                    <img src={(ws as any).photo} alt={(ws as any).by} className="w-8 h-8 rounded-full object-cover border border-purple-200" />
+                                    <div>
+                                      <p className="text-xs font-semibold text-purple-800">{ws.by}</p>
+                                      {'byAr' in ws && <p className="text-xs text-purple-700" dir="rtl">{(ws as any).byAr}</p>}
+                                    </div>
+                                  </div>
+                                ) : (
+                                  <div className="flex items-center gap-2 mb-2">
+                                    {'logo' in ws && ws.logo && <img src={(ws as any).logo} alt={ws.by} className="h-6 object-contain" />}
+                                    <p className="text-xs text-muted-foreground">{ws.by}</p>
+                                  </div>
+                                )}
+                                <p className="text-xs text-muted-foreground">{ws.desc}</p>
                                 <p className="text-xs text-muted-foreground" dir="rtl">{ws.descAr}</p>
                                 <p className="text-xs font-semibold text-purple-800 mt-1">📅 {ws.date}</p>
                                 <p className="text-xs font-semibold text-purple-800" dir="rtl">📅 {ws.dateAr}</p>
-                                <p className="text-xs text-muted-foreground">By: {ws.by}</p>
                                 {'eligibility' in ws && ws.eligibility && (
                                   <p className="text-xs font-medium text-orange-700 mt-1">🎓 {ws.eligibility}</p>
                                 )}
@@ -754,6 +795,48 @@ export default function Attendance() {
                   </div>
                 )}
               </div>
+
+              {/* ─── Fee Calculator ─── */}
+              {totalFee > 0 && (
+                <div className="p-4 border-2 border-primary/30 rounded-lg bg-primary/5 space-y-3">
+                  <div className="flex items-center gap-2 mb-1">
+                    <Calculator className="w-5 h-5 text-primary" />
+                    <h3 className="font-bold text-primary text-base">Fee Summary | ملخص الرسوم</h3>
+                  </div>
+                  <div className="space-y-2">
+                    {certFee > 0 && (
+                      <div className="flex justify-between items-center text-sm">
+                        <span className="text-muted-foreground">Participation Certificate | شهادة مشاركة</span>
+                        <span className="font-semibold text-blue-700">{certFee} EGP</span>
+                      </div>
+                    )}
+                    {workshopFee > 0 && workshopChoice && (
+                      <div className="flex justify-between items-center text-sm">
+                        <span className="text-muted-foreground">
+                          Workshop ({workshopChoice.toUpperCase()}) | ورشة عمل
+                        </span>
+                        <span className="font-semibold text-amber-700">{workshopFee} EGP</span>
+                      </div>
+                    )}
+                    {extWorkshopFee > 0 && extWorkshopChoice && (
+                      <div className="flex justify-between items-center text-sm">
+                        <span className="text-muted-foreground">Pre/Post Workshop | ورشة ما قبل/بعد المؤتمر</span>
+                        <span className="font-semibold text-purple-700">{extWorkshopFee} EGP</span>
+                      </div>
+                    )}
+                    <div className="border-t pt-2 flex justify-between items-center">
+                      <span className="font-bold text-primary">Total | الإجمالي</span>
+                      <span className="font-bold text-xl text-primary">{totalFee} EGP</span>
+                    </div>
+                  </div>
+                  <p className="text-xs text-muted-foreground" dir="rtl">
+                    يرجى تحويل المبلغ الإجمالي إلى الحساب البنكي المذكور أعلاه ورفع إيصال الدفع.
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    Please transfer the total amount to the bank account mentioned above and upload the payment receipt.
+                  </p>
+                </div>
+              )}
 
               {/* Submit Button */}
               <Button
