@@ -162,23 +162,6 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Deadline Alert Banner */}
-      <div className="bg-red-600 text-white py-3 px-4">
-        <div className="container flex flex-col sm:flex-row items-center justify-center gap-2 text-center">
-          <span className="text-lg font-bold animate-pulse">⚠️</span>
-          <p className="font-semibold text-sm sm:text-base">
-            Abstract Submission Deadline: <span className="font-extrabold underline">March 9, 2026</span> — Deadline Extended! Submit your abstract now.
-          </p>
-          <span className="hidden sm:inline text-red-200">|</span>
-          <p className="font-semibold text-sm sm:text-base" dir="rtl">
-            الموعد النهائي لتقديم الملخصات: <span className="font-extrabold underline">9 مارس 2026</span> — تم تمديد الموعد!
-          </p>
-          <a href="#registration" className="ml-2 bg-white text-red-600 font-bold text-xs px-3 py-1 rounded-full hover:bg-red-50 transition-colors whitespace-nowrap">
-            Register Now →
-          </a>
-        </div>
-      </div>
-
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/10">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNnoiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLW9wYWNpdHk9Ii4wNSIvPjwvZz48L3N2Zz4=')] opacity-40"></div>
