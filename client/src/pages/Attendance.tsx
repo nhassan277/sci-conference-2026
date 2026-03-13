@@ -623,6 +623,8 @@ export default function Attendance() {
                             by: "Agitech",
                             logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/qtvBAZFSrMqYBKkE.png",
                             eligibility: "20 spots only | 200 EGP (incl. certificate)",
+                            venue: "قاعة ابن سينا — قسم النبات القديم — كلية العلوم — جامعة القاهرة",
+                            venueEn: "Ibn Sina Hall — Botany Dept. — Faculty of Science, Cairo University",
                           },
                           {
                             value: "chitosan",
@@ -635,6 +637,8 @@ export default function Attendance() {
                             by: "Chitosan",
                             logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/GXxzRnTYsggXAHMu.png",
                             eligibility: "3rd & 4th year undergrads + graduates | 30 spots only | 100 EGP (incl. certificate)",
+                            venue: "قاعة ابن سينا — قسم النبات القديم — كلية العلوم — جامعة القاهرة",
+                            venueEn: "Ibn Sina Hall — Botany Dept. — Faculty of Science, Cairo University",
                           },
                           {
                             value: "scrna_seq",
@@ -647,6 +651,8 @@ export default function Attendance() {
                             by: "EgcompBio",
                             logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/VSqePLOAbshMxznI.png",
                             eligibility: "Intermediate to advanced level · 30 spots only | 200 EGP (incl. certificate)",
+                            venue: "قاعة ابن سينا — قسم النبات القديم — كلية العلوم — جامعة القاهرة",
+                            venueEn: "Ibn Sina Hall — Botany Dept. — Faculty of Science, Cairo University",
                           },
                           {
                             value: "ai_biotech",
@@ -659,6 +665,8 @@ export default function Attendance() {
                             by: "AI بالعربي",
                             logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/QvdupTbEZQQzfgEz.jpeg",
                             eligibility: "100 EGP (incl. certificate)",
+                            venue: "قاعة ابن سينا — قسم النبات القديم — كلية العلوم — جامعة القاهرة",
+                            venueEn: "Ibn Sina Hall — Botany Dept. — Faculty of Science, Cairo University",
                           },
                           {
                             value: "hvd_genomics",
@@ -684,6 +692,8 @@ export default function Attendance() {
                             byAr: "جاسمين محسن و د. خالد وليد",
                             photo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/PTtRzbZnNIobKpQd.jpeg",
                             eligibility: "100 EGP (incl. certificate)",
+                            venue: "قاعة ابن سينا — قسم النبات القديم — كلية العلوم — جامعة القاهرة",
+                            venueEn: "Ibn Sina Hall — Botany Dept. — Faculty of Science, Cairo University",
                           },
                           {
                             value: "bioinformatics_dina",
@@ -697,6 +707,8 @@ export default function Attendance() {
                             byAr: "د. دينا عمرو",
                             photo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_naMOge_image_80a4d111.png",
                             eligibility: "Suitable for anyone with no prior bioinformatics knowledge | Max 30 students | 100 EGP (incl. certificate)",
+                            venue: "قاعة ابن سينا — قسم النبات القديم — كلية العلوم — جامعة القاهرة",
+                            venueEn: "Ibn Sina Hall — Botany Dept. — Faculty of Science, Cairo University",
                           },                          {
                             value: "colors_metagenomics",
                             label: "Metagenomics, Microbiome & 16S rRNA Sequencing",
@@ -747,6 +759,12 @@ export default function Attendance() {
                                 <p className="text-xs font-semibold text-purple-800" dir="rtl">📅 {ws.dateAr}</p>
                                 {'eligibility' in ws && ws.eligibility && (
                                   <p className="text-xs font-medium text-orange-700 mt-1">🎓 {ws.eligibility}</p>
+                                )}
+                                {'venue' in ws && ws.venue && (
+                                  <p className="text-xs font-medium text-blue-700 mt-1">📍 {ws.venue}</p>
+                                )}
+                                {'venueEn' in ws && ws.venueEn && (
+                                  <p className="text-xs text-blue-600">{ws.venueEn}</p>
                                 )}
                               </div>
                             </div>

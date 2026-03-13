@@ -964,6 +964,16 @@ export default function Home() {
                     </div>
                   </div>
 
+                  {/* Location */}
+                  <div className="p-3 bg-white rounded-xl border border-orange-200 flex items-start gap-2">
+                    <span className="text-orange-600 text-base mt-0.5">📍</span>
+                    <div>
+                      <p className="text-xs text-muted-foreground font-semibold">Location | المكان</p>
+                      <p className="font-bold text-orange-900 text-sm">قاعة ابن سينا — قسم النبات القديم — كلية العلوم — جامعة القاهرة</p>
+                      <p className="text-orange-700 text-xs">Ibn Sina Hall — Botany Dept. — Faculty of Science, Cairo University</p>
+                    </div>
+                  </div>
+
                   {/* Certificate Note */}
                   <div className="p-3 bg-green-50 border border-green-200 rounded-lg flex items-start gap-2">
                     <span className="text-green-600 text-sm mt-0.5">🎓</span>
@@ -1043,6 +1053,16 @@ export default function Home() {
                       <p className="text-xs text-muted-foreground">💰 Fee | الرسوم</p>
                       <p className="font-bold text-gray-900 text-sm">200 EGP (incl. certificate)</p>
                       <p className="text-gray-700 text-xs" dir="rtl">200 جنيه مصري (شاملة الشهادة)</p>
+                    </div>
+                  </div>
+
+                  {/* Location */}
+                  <div className="p-3 bg-white rounded-xl border border-gray-200 flex items-start gap-2">
+                    <span className="text-gray-600 text-base mt-0.5">📍</span>
+                    <div>
+                      <p className="text-xs text-muted-foreground font-semibold">Location | المكان</p>
+                      <p className="font-bold text-gray-900 text-sm">قاعة ابن سينا — قسم النبات القديم — كلية العلوم — جامعة القاهرة</p>
+                      <p className="text-gray-700 text-xs">Ibn Sina Hall — Botany Dept. — Faculty of Science, Cairo University</p>
                     </div>
                   </div>
 
@@ -1131,6 +1151,16 @@ export default function Home() {
                       <p className="text-amber-600 text-xs" dir="rtl">100 جنيه مصري (شاملة الشهادة)</p>
                     </div>
                   </div>
+                  {/* Location */}
+                  <div className="p-3 bg-white rounded-xl border border-blue-200 flex items-start gap-2">
+                    <span className="text-blue-600 text-base mt-0.5">📍</span>
+                    <div>
+                      <p className="text-xs text-muted-foreground font-semibold">Location | المكان</p>
+                      <p className="font-bold text-blue-900 text-sm">قاعة ابن سينا — قسم النبات القديم — كلية العلوم — جامعة القاهرة</p>
+                      <p className="text-blue-700 text-xs">Ibn Sina Hall — Botany Dept. — Faculty of Science, Cairo University</p>
+                    </div>
+                  </div>
+
                   {/* Register button */}
                   <div className="flex items-center justify-end">
                     <Button
@@ -1211,6 +1241,16 @@ export default function Home() {
                     </div>
                   </div>
 
+                  {/* Location */}
+                  <div className="p-3 bg-white rounded-xl border border-teal-200 flex items-start gap-2">
+                    <span className="text-teal-600 text-base mt-0.5">📍</span>
+                    <div>
+                      <p className="text-xs text-muted-foreground font-semibold">Location | المكان</p>
+                      <p className="font-bold text-teal-900 text-sm">قاعة ابن سينا — قسم النبات القديم — كلية العلوم — جامعة القاهرة</p>
+                      <p className="text-teal-700 text-xs">Ibn Sina Hall — Botany Dept. — Faculty of Science, Cairo University</p>
+                    </div>
+                  </div>
+
                   {/* Certificate Note */}
                   <div className="p-3 bg-green-50 border border-green-200 rounded-lg flex items-start gap-2">
                     <span className="text-green-600 text-sm mt-0.5">🎓</span>
@@ -1282,6 +1322,16 @@ export default function Home() {
                       <p className="text-xs text-muted-foreground">💰 Fee | الرسوم</p>
                       <p className="font-bold text-purple-900 text-sm">100 EGP (incl. certificate)</p>
                       <p className="text-purple-700 text-xs" dir="rtl">100 جنيه مصري (شاملة الشهادة)</p>
+                    </div>
+                  </div>
+
+                  {/* Location */}
+                  <div className="p-3 bg-white rounded-xl border border-purple-200 flex items-start gap-2">
+                    <span className="text-purple-600 text-base mt-0.5">📍</span>
+                    <div>
+                      <p className="text-xs text-muted-foreground font-semibold">Location | المكان</p>
+                      <p className="font-bold text-purple-900 text-sm">قاعة ابن سينا — قسم النبات القديم — كلية العلوم — جامعة القاهرة</p>
+                      <p className="text-purple-700 text-xs">Ibn Sina Hall — Botany Dept. — Faculty of Science, Cairo University</p>
                     </div>
                   </div>
 
@@ -1389,6 +1439,16 @@ export default function Home() {
                       <li>Locate consensus sequences and construct phylogenetic trees based on biological sequence data</li>
                       <li>Assessment will be based upon performance by practical assignments at the end of each training session</li>
                     </ul>
+                  </div>
+
+                  {/* Location */}
+                  <div className="p-3 bg-white rounded-xl border border-teal-200 flex items-start gap-2">
+                    <span className="text-teal-600 text-base mt-0.5">📍</span>
+                    <div>
+                      <p className="text-xs text-muted-foreground font-semibold">Location | المكان</p>
+                      <p className="font-bold text-teal-900 text-sm">قاعة ابن سينا — قسم النبات القديم — كلية العلوم — جامعة القاهرة</p>
+                      <p className="text-teal-700 text-xs">Ibn Sina Hall — Botany Dept. — Faculty of Science, Cairo University</p>
+                    </div>
                   </div>
 
                   <p className="text-xs text-green-700">Certificate co-signed by <strong>Dr. Dina Amr</strong> &amp; <strong>Faculty of Science, Cairo University</strong> | شهادة معتمدة من د. دينا عمر وكلية العلوم، جامعة القاهرة</p>
