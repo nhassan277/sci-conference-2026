@@ -655,7 +655,7 @@ export default function Home() {
               {/* Pricing Banner */}
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-4">
                 <Badge className="bg-amber-500 text-white px-4 py-2 text-base font-bold">
-                  200 EGP per workshop
+                  100 EGP per workshop (incl. certificate)
                 </Badge>
                 <Badge className="bg-red-600 text-white px-4 py-2 text-base font-bold">
                   🔥 First 30 participants only | أول 30 مشارك فقط
@@ -896,7 +896,7 @@ export default function Home() {
 
                 <div className="flex items-center justify-center gap-3 flex-wrap">
                   <Badge className="bg-primary text-white px-4 py-2 text-base font-bold">
-                    200 EGP per workshop
+                    100 EGP per workshop (incl. certificate)
                   </Badge>
                   <Badge className="bg-muted text-muted-foreground px-4 py-2 text-sm">
                     Companies will be announced soon | الشركات ستُعلن قريباً
@@ -1203,8 +1203,8 @@ export default function Home() {
                     </div>
                     <div className="p-3 bg-white rounded-xl border border-teal-200">
                       <p className="text-xs text-muted-foreground">💰 Fee | الرسوم</p>
-                      <p className="font-bold text-teal-900 text-sm">200 EGP</p>
-                      <p className="text-teal-700 text-xs" dir="rtl">200 جنيه مصري</p>
+                      <p className="font-bold text-teal-900 text-sm">100 EGP</p>
+                      <p className="text-teal-700 text-xs" dir="rtl">100 جنيه مصري</p>
                     </div>
                   </div>
 
@@ -1277,8 +1277,8 @@ export default function Home() {
                     </div>
                     <div className="p-3 bg-white rounded-xl border border-purple-200">
                       <p className="text-xs text-muted-foreground">💰 Fee | الرسوم</p>
-                      <p className="font-bold text-purple-900 text-sm">200 EGP</p>
-                      <p className="text-purple-700 text-xs" dir="rtl">200 جنيه مصري</p>
+                      <p className="font-bold text-purple-900 text-sm">100 EGP</p>
+                      <p className="text-purple-700 text-xs" dir="rtl">100 جنيه مصري</p>
                     </div>
                   </div>
 
@@ -1367,8 +1367,8 @@ export default function Home() {
                     </div>
                     <div className="p-3 bg-white rounded-xl border border-blue-200">
                       <p className="text-xs text-muted-foreground">💰 Fee | الرسوم</p>
-                      <p className="font-bold text-blue-900 text-sm">200 EGP</p>
-                      <p className="text-blue-700 text-xs" dir="rtl">200 جنيه مصري</p>
+                      <p className="font-bold text-blue-900 text-sm">100 EGP</p>
+                      <p className="text-blue-700 text-xs" dir="rtl">100 جنيه مصري</p>
                     </div>
                     <div className="p-3 bg-white rounded-xl border border-blue-200">
                       <p className="text-xs text-muted-foreground">👥 Capacity | السعة</p>
@@ -1470,8 +1470,8 @@ export default function Home() {
                   <div className="grid grid-cols-2 gap-3">
                     <div className="p-3 bg-white rounded-xl border border-indigo-200">
                       <p className="text-xs text-muted-foreground">💰 Fee | الرسوم</p>
-                      <p className="font-bold text-indigo-900 text-sm">200 EGP</p>
-                      <p className="text-indigo-700 text-xs" dir="rtl">200 جنيه مصري</p>
+                      <p className="font-bold text-indigo-900 text-sm">100 EGP</p>
+                      <p className="text-indigo-700 text-xs" dir="rtl">100 جنيه مصري</p>
                     </div>
                     <div className="p-3 bg-white rounded-xl border border-indigo-200">
                       <p className="text-xs text-muted-foreground">👥 Capacity | السعة</p>

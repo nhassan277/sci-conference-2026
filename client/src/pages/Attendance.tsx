@@ -454,9 +454,9 @@ export default function Attendance() {
                     />
                     <div className="space-y-1">
                       <Label htmlFor="wantsWorkshop" className="font-semibold cursor-pointer text-amber-900">
-                        I want to register for a workshop — 200 EGP
+                        I want to register for a workshop — 100 EGP (incl. certificate)
                       </Label>
-                      <p className="text-sm text-amber-700" dir="rtl">أرغب في التسجيل في ورشة عمل — 200 جنيه مصري</p>
+                      <p className="text-sm text-amber-700" dir="rtl">أرغب في التسجيل في ورشة عمل — 100 جنيه مصري (شاملة الشهادة)</p>
                     </div>
                   </div>
                   <Badge className="bg-red-100 text-red-700 border-red-200 text-xs shrink-0">First 30 only | أول 30 مشارك</Badge>
@@ -530,10 +530,10 @@ export default function Attendance() {
                         <AlertCircle className="w-4 h-4" /> Workshop Payment Instructions | تعليمات دفع ورشة العمل
                       </p>
                       <p className="text-xs text-amber-800">
-                        Transfer <strong>200 EGP</strong> to the same bank account below, then upload a photo of the transfer receipt. <strong>Uploading the invoice is mandatory to confirm your workshop spot.</strong>
+                        Transfer <strong>100 EGP</strong> to the same bank account below, then upload a photo of the transfer receipt. <strong>Uploading the invoice is mandatory to confirm your workshop spot.</strong>
                       </p>
                       <p className="text-xs text-amber-800" dir="rtl">
-                        حوّل <strong>200 جنيه مصري</strong> إلى نفس الحساب البنكي أدناه، ثم ارفع صورة إيصال التحويل. <strong>رفع الإيصال إلزامي لتأكيد مكانك في ورشة العمل.</strong>
+                        حوّل <strong>100 جنيه مصري</strong> إلى نفس الحساب البنكي أدناه، ثم ارفع صورة إيصال التحويل. <strong>رفع الإيصال إلزامي لتأكيد مكانك في ورشة العمل.</strong>
                       </p>
                       {bankDetails}
                     </div>
@@ -570,9 +570,9 @@ export default function Attendance() {
                   />
                   <div className="space-y-1">
                     <Label htmlFor="wantsExtWorkshop" className="font-semibold cursor-pointer text-purple-900">
-                      I want to register for a Pre/Post Conference Workshop — 200 EGP
+                      I want to register for a Pre/Post Conference Workshop — 100 EGP (incl. certificate)
                     </Label>
-                    <p className="text-sm text-purple-700" dir="rtl">أرغب في التسجيل في ورشة عمل ما قبل/بعد المؤتمر — 200 جنيه مصري</p>
+                    <p className="text-sm text-purple-700" dir="rtl">أرغب في التسجيل في ورشة عمل ما قبل/بعد المؤتمر — 100 جنيه مصري (شاملة الشهادة)</p>
                     <p className="text-xs text-purple-600">April 6 (Pre-Conference) or April 9 (Post-Conference), 2026</p>
                     <p className="text-xs text-purple-600" dir="rtl">٦ أبريل (قبل المؤتمر) أو ٩ أبريل (بعد المؤتمر) ٢٠٢٦</p>
                   </div>
@@ -646,6 +646,17 @@ export default function Attendance() {
                             eligibility: "20 spots only | Certificate provided by HVD",
                           },
                           {
+                            value: "vaccine_industry",
+                            label: "The Vaccine Industry Race: Ready to Play the Viruses' Game?",
+                            labelAr: "سباق صناعة اللقاحات: هل أنت مستعد للعب لعبة الفيروسات؟",
+                            desc: "Understanding the vaccine development pipeline, regulatory pathways, and careers in the vaccine industry.",
+                            descAr: "فهم مسار تطوير اللقاحات والمسارات التنظيمية والمسارات المهنية في صناعة اللقاحات.",
+                            date: "Date & Time — To Be Announced",
+                            dateAr: "سيتم الإعلان عن التاريخ والوقت قريباً",
+                            by: "Jasmine Mohsen & Dr. Khaled Walid — Vaccine Industry",
+                            eligibility: "100 EGP (incl. certificate)",
+                          },
+                          {
                             value: "bioinformatics_dina",
                             label: "Introduction to Bioinformatics",
                             labelAr: "مقدمة في المعلوماتية الحيوية",
@@ -666,7 +677,7 @@ export default function Attendance() {
                             dateAr: "سيتم الإعلان عن التاريخ والوقت قريباً",
                             by: "Colors Educational Hub — Maadi, Cairo (4 شارع 160، برج رهام، المعادي 11431)",
                             logo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/logo_colors_52f6762b.png",
-                            eligibility: "25 spots only | 200 EGP",
+                            eligibility: "25 spots only | 100 EGP (incl. certificate)",
                           },
                         ].map((ws) => (
                           <div
@@ -718,10 +729,10 @@ export default function Attendance() {
                         <AlertCircle className="w-4 h-4" /> Payment Instructions | تعليمات الدفع
                       </p>
                       <p className="text-xs text-purple-800">
-                        Transfer <strong>200 EGP</strong> to the bank account below, then upload a photo of the transfer receipt. <strong>Uploading the invoice is mandatory to confirm your spot.</strong>
+                        Transfer <strong>100 EGP</strong> to the bank account below, then upload a photo of the transfer receipt. <strong>Uploading the invoice is mandatory to confirm your spot.</strong>
                       </p>
                       <p className="text-xs text-purple-800" dir="rtl">
-                        حوّل <strong>200 جنيه مصري</strong> إلى الحساب البنكي أدناه، ثم ارفع صورة إيصال التحويل. <strong>رفع الإيصال إلزامي لتأكيد مكانك.</strong>
+                        حوّل <strong>100 جنيه مصري</strong> إلى الحساب البنكي أدناه، ثم ارفع صورة إيصال التحويل. <strong>رفع الإيصال إلزامي لتأكيد مكانك.</strong>
                       </p>
                       {bankDetails}
                     </div>
