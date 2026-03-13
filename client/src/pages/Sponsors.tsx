@@ -697,12 +697,12 @@ export default function Sponsors() {
               </CardHeader>
               <CardContent>
                 <CardDescription className="text-sm space-y-2">
-                  <p className="font-semibold text-violet-700">🧬 7 Molecular Biology Prize Kits</p>
-                  <p dir="rtl">٧ كيتات للبيولوجيا الجزيئية كجوائز</p>
+                  <p className="font-semibold text-violet-700">🧬 7 Molecular Biology Prize Bags</p>
+                  <p dir="rtl">٧ حقائب للبيولوجيا الجزيئية كجوائز</p>
                   <div className="bg-violet-50 border border-violet-200 rounded p-2 mt-2">
-                    <p className="text-xs font-semibold text-violet-700">🏆 4 DNA Kits + 3 RNA/qPCR Kits</p>
-                    <p className="text-xs text-muted-foreground mt-1">4 kits: DNA Isolation Kit + PCR Master Mix. 3 kits: RNA Extraction + cDNA Synthesis + qPCR reagents.</p>
-                    <p className="text-xs text-muted-foreground mt-1" dir="rtl">٤ كيتات: عزل DNA + خليط PCR. ٣ كيتات: استخلاص RNA + تخليق cDNA + كواشف qPCR.</p>
+                    <p className="text-xs font-semibold text-violet-700">🏆 4 DNA/PCR Bags + 3 RNA/cDNA/qPCR Bags</p>
+                    <p className="text-xs text-muted-foreground mt-1">4 bags: DNA Extraction Kit + PCR Master Mix. 3 bags: RNA Extraction Kit + cDNA Synthesis Kit + qPCR Master Mix.</p>
+                    <p className="text-xs text-muted-foreground mt-1" dir="rtl">٤ حقائب: كيت استخلاص DNA + خليط PCR الجاهز. ٣ حقائب: كيت استخلاص RNA + كيت تخليق cDNA + خليط qPCR الجاهز.</p>
                   </div>
                 </CardDescription>
               </CardContent>

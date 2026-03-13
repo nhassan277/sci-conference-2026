@@ -213,15 +213,15 @@ export default function Awards() {
       sponsorEn: "GEnoEra Technology",
       logo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/ge_logo-1_c2bdf8df.png",
       icon: Dna,
-      prize: "7 Molecular Biology Kits (4 DNA Kits + 3 RNA/qPCR Kits)",
-      prizeAr: "٧ كيتات للبيولوجيا الجزيئية (٤ كيتات DNA + ٣ كيتات RNA/qPCR)",
-      description: "GEnoEra Technology is sponsoring 7 molecular biology prize kits. Four kits each contain a DNA Isolation Kit and PCR Master Mix. Three additional kits each contain an RNA Extraction Kit, cDNA Synthesis Kit, and qPCR reagents — providing complete workflows for gene expression analysis.",
-      descriptionAr: "تتبرع شركة GEnoEra Technology بـ٧ كيتات للبيولوجيا الجزيئية كجوائز للمشاريع المتميزة. تحتوي أربع كيتات على كيت عزل الـDNA وخليط PCR الجاهز. وتحتوي ثلاث كيتات إضافية على كيت استخلاص الـRNA وتخليق الـcDNA وكواشف الـqPCR — لتوفير سير عمل متكامل لتحليل التعبير الجيني.",
+      prize: "7 Molecular Biology Kits (4 DNA/PCR Bags + 3 RNA/cDNA/qPCR Bags)",
+      prizeAr: "٧ حقائب للبيولوجيا الجزيئية (٤ حقائب DNA/PCR + ٣ حقائب RNA/cDNA/qPCR)",
+      description: "GEnoEra Technology is sponsoring 7 molecular biology prize bags. Four bags each contain a DNA Extraction Kit and PCR Master Mix. Three bags each contain an RNA Extraction Kit, cDNA Synthesis Kit, and qPCR Master Mix — providing complete workflows for gene expression analysis.",
+      descriptionAr: "تتبرع شركة GEnoEra Technology بـ٧ حقائب للبيولوجيا الجزيئية كجوائز للمشاريع المتميزة. تحتوي أربع حقائب على كيت استخلاص الـDNA وخليط PCR الجاهز. وتحتوي ثلاث حقائب على كيت استخلاص الـRNA وكيت تخليق الـcDNA وخليط qPCR الجاهز — لتوفير سير عمل متكامل لتحليل التعبير الجيني.",
       badgeColor: "bg-violet-100 text-violet-800 border-violet-200",
       cardBorder: "border-violet-200 hover:border-violet-400",
       iconBg: "bg-violet-100 text-violet-700",
-      tag: "7 Prize Kits",
-      tagAr: "٧ كيتات كجوائز"
+      tag: "7 Prize Bags",
+      tagAr: "٧ حقائب كجوائز"
     }
   ];
 
