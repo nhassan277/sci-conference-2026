@@ -906,7 +906,7 @@ export default function Schedule() {
                     </div>
                     <div>
                       <p className="font-semibold">Introduction to Bioinformatics</p>
-                      <p className="text-xs text-muted-foreground">By Dr. Dina Amr · Wednesday, April 9, 2026 · 03:00 – 06:00 PM · 3 hours · 30 seats · 100 EGP · Suitable for anyone with no prior bioinformatics knowledge</p>
+                      <p className="text-xs text-muted-foreground">By Dr. Dina Amr · Saturday, April 11, 2026 · 10:00 AM – 01:00 PM · 3 hours · 30 seats · 100 EGP · Suitable for anyone with no prior bioinformatics knowledge</p>
                     </div>
                   </div>
                 </div>

@@ -1438,7 +1438,7 @@ export default function Home() {
                       <BookOpen className="w-6 h-6" />
                       <div>
                         <p className="font-bold text-sm">Post-Conference | بعد المؤتمر</p>
-                        <p className="text-teal-200 text-xs">Wednesday, April 9, 2026 | 03:00 – 06:00 PM</p>
+                        <p className="text-teal-200 text-xs">Saturday, April 11, 2026 | 10:00 AM – 01:00 PM</p>
                       </div>
                     </div>
                     <Badge className="bg-teal-500 text-white text-xs">Max 30 Students</Badge>
