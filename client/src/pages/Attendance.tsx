@@ -596,7 +596,7 @@ export default function Attendance() {
                             dateAr: "٦ أبريل ٢٠٢٦ | ١٢:٠٠ – ٢:٠٠ م",
                             by: "Agitech",
                             logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/qtvBAZFSrMqYBKkE.png",
-                            eligibility: "20 spots only",
+                            eligibility: "20 spots only | 200 EGP (incl. certificate)",
                           },
                           {
                             value: "chitosan",
@@ -620,7 +620,7 @@ export default function Attendance() {
                             dateAr: "٩ أبريل ٢٠٢٦ | ١٠:٠٠ ص – ١:٠٠ م",
                             by: "EgcompBio",
                             logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/VSqePLOAbshMxznI.png",
-                            eligibility: "Intermediate to advanced level · 30 spots only",
+                            eligibility: "Intermediate to advanced level · 30 spots only | 200 EGP (incl. certificate)",
                           },
                           {
                             value: "ai_biotech",
@@ -643,7 +643,7 @@ export default function Attendance() {
                             dateAr: "سيتم الإعلان عن التاريخ والوقت قريباً",
                             by: "HVD Life Sciences — New Cairo (2C53+JCC, Cairo Governorate 4720113)",
                             logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/NlYUUYlTeGQwRRXp.png",
-                            eligibility: "20 spots only | Certificate provided by HVD",
+                            eligibility: "20 spots only | 200 EGP (incl. certificate)",
                           },
                           {
                             value: "vaccine_industry",
@@ -677,7 +677,7 @@ export default function Attendance() {
                             dateAr: "سيتم الإعلان عن التاريخ والوقت قريباً",
                             by: "Colors Educational Hub — Maadi, Cairo (4 شارع 160، برج رهام، المعادي 11431)",
                             logo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/logo_colors_52f6762b.png",
-                            eligibility: "25 spots only | 100 EGP (incl. certificate)",
+                            eligibility: "25 spots only | 200 EGP (incl. certificate)",
                           },
                         ].map((ws) => (
                           <div

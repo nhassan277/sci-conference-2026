@@ -896,7 +896,7 @@ export default function Home() {
 
                 <div className="flex items-center justify-center gap-3 flex-wrap">
                   <Badge className="bg-primary text-white px-4 py-2 text-base font-bold">
-                    100 EGP per workshop (incl. certificate)
+                    100–200 EGP per workshop (incl. certificate)
                   </Badge>
                   <Badge className="bg-muted text-muted-foreground px-4 py-2 text-sm">
                     Companies will be announced soon | الشركات ستُعلن قريباً
@@ -1044,6 +1044,11 @@ export default function Home() {
                       <p className="text-xs text-muted-foreground">🔬 Focus | المحور</p>
                       <p className="font-bold text-gray-900 text-sm">Precision Oncology</p>
                       <p className="text-gray-700 text-xs" dir="rtl">الأورام الدقيقة</p>
+                    </div>
+                    <div className="p-3 bg-white rounded-xl border border-gray-200 col-span-2">
+                      <p className="text-xs text-muted-foreground">💰 Fee | الرسوم</p>
+                      <p className="font-bold text-gray-900 text-sm">200 EGP (incl. certificate)</p>
+                      <p className="text-gray-700 text-xs" dir="rtl">200 جنيه مصري (شاملة الشهادة)</p>
                     </div>
                   </div>
 
@@ -1203,8 +1208,8 @@ export default function Home() {
                     </div>
                     <div className="p-3 bg-white rounded-xl border border-teal-200">
                       <p className="text-xs text-muted-foreground">💰 Fee | الرسوم</p>
-                      <p className="font-bold text-teal-900 text-sm">100 EGP</p>
-                      <p className="text-teal-700 text-xs" dir="rtl">100 جنيه مصري</p>
+                      <p className="font-bold text-teal-900 text-sm">200 EGP</p>
+                      <p className="text-teal-700 text-xs" dir="rtl">200 جنيه مصري</p>
                     </div>
                   </div>
 
@@ -1367,8 +1372,8 @@ export default function Home() {
                     </div>
                     <div className="p-3 bg-white rounded-xl border border-blue-200">
                       <p className="text-xs text-muted-foreground">💰 Fee | الرسوم</p>
-                      <p className="font-bold text-blue-900 text-sm">100 EGP</p>
-                      <p className="text-blue-700 text-xs" dir="rtl">100 جنيه مصري</p>
+                      <p className="font-bold text-blue-900 text-sm">200 EGP</p>
+                      <p className="text-blue-700 text-xs" dir="rtl">200 جنيه مصري</p>
                     </div>
                     <div className="p-3 bg-white rounded-xl border border-blue-200">
                       <p className="text-xs text-muted-foreground">👥 Capacity | السعة</p>
@@ -1470,8 +1475,8 @@ export default function Home() {
                   <div className="grid grid-cols-2 gap-3">
                     <div className="p-3 bg-white rounded-xl border border-indigo-200">
                       <p className="text-xs text-muted-foreground">💰 Fee | الرسوم</p>
-                      <p className="font-bold text-indigo-900 text-sm">100 EGP</p>
-                      <p className="text-indigo-700 text-xs" dir="rtl">100 جنيه مصري</p>
+                      <p className="font-bold text-indigo-900 text-sm">200 EGP</p>
+                      <p className="text-indigo-700 text-xs" dir="rtl">200 جنيه مصري</p>
                     </div>
                     <div className="p-3 bg-white rounded-xl border border-indigo-200">
                       <p className="text-xs text-muted-foreground">👥 Capacity | السعة</p>
