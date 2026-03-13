@@ -1,0 +1,22 @@
+{
+  "query": "SELECT id, full_name, title, affiliation, presentation_title, bio FROM keynote_speakers WHERE id = 29;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name, title, affiliation, presentation_title, bio FROM keynote_speakers WHERE id = 29;",
+  "rows": [
+    {
+      "id": "29",
+      "full_name": "Abdelfattah Kamal",
+      "title": "Dr.",
+      "affiliation": "Operations Director at BioGeneric pharma (BGP)",
+      "presentation_title": "Achieving Quality and Sustainable Local Vaccine Production in Africa to Improve Access",
+      "bio": "Dr. Abdelfattah Kamal With over 24 years of leadership in the pharmaceutical and biopharmaceutical sectors, Dr. Abdel Fatah currently serves as the Operations Director at BioGeneric pharma (BGP)."
+    }
+  ],
+  "messages": [
+    "He specializes in transforming complex scientific research into scalable, commercial realities, successfully spearheading the readiness of new bio-similar and sterile vial filling lines.",
+    "His professional mission is to build self-sustaining, cGMP-compliant manufacturing hubs that bridge the gap between innovation and patient access in emerging markets.",
+    "An expert in startup environments, he excels at implementing Lean and Six Sigma practices, reducing production costs, and integrating automation while maintaining the highest quality standards."
+  ],
+  "stdout": "id\tfull_name\ttitle\taffiliation\tpresentation_title\tbio\n29\tAbdelfattah Kamal\tDr.\tOperations Director at BioGeneric pharma (BGP)\tAchieving Quality and Sustainable Local Vaccine Production in Africa to Improve Access\tDr. Abdelfattah Kamal With over 24 years of leadership in the pharmaceutical and biopharmaceutical sectors, Dr. Abdel Fatah currently serves as the Operations Director at BioGeneric pharma (BGP).\nHe specializes in transforming complex scientific research into scalable, commercial realities, successfully spearheading the readiness of new bio-similar and sterile vial filling lines.\nHis professional mission is to build self-sustaining, cGMP-compliant manufacturing hubs that bridge the gap between innovation and patient access in emerging markets.\nAn expert in startup environments, he excels at implementing Lean and Six Sigma practices, reducing production costs, and integrating automation while maintaining the highest quality standards.\n",
+  "stderr": "",
+  "execution_time_ms": 1494
+}

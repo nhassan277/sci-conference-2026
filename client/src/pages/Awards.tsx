@@ -207,6 +207,21 @@ export default function Awards() {
       iconBg: "bg-teal-100 text-teal-700",
       tag: "1 Project Sponsored",
       tagAr: "مشروع واحد مدعوم"
+    },
+    {
+      sponsor: "Genomic Expression (GE)",
+      sponsorEn: "Genomic Expression (GE)",
+      logo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/ge_logo-1_c2bdf8df.png",
+      icon: Dna,
+      prize: "7 Molecular Biology Kits (4 DNA Kits + 3 RNA/qPCR Kits)",
+      prizeAr: "٧ كيتات للبيولوجيا الجزيئية (٤ كيتات DNA + ٣ كيتات RNA/qPCR)",
+      description: "Genomic Expression (GE) is sponsoring 7 molecular biology prize kits. Four kits each contain a DNA Isolation Kit and PCR Master Mix. Three additional kits each contain an RNA Extraction Kit, cDNA Synthesis Kit, and qPCR reagents — providing complete workflows for gene expression analysis.",
+      descriptionAr: "تتبرع شركة Genomic Expression (GE) بـ٧ كيتات للبيولوجيا الجزيئية كجوائز للمشاريع المتميزة. تحتوي أربع كيتات على كيت عزل الـDNA وخليط PCR الجاهز. وتحتوي ثلاث كيتات إضافية على كيت استخلاص الـRNA وتخليق الـcDNA وكواشف الـqPCR — لتوفير سير عمل متكامل لتحليل التعبير الجيني.",
+      badgeColor: "bg-violet-100 text-violet-800 border-violet-200",
+      cardBorder: "border-violet-200 hover:border-violet-400",
+      iconBg: "bg-violet-100 text-violet-700",
+      tag: "7 Prize Kits",
+      tagAr: "٧ كيتات كجوائز"
     }
   ];
 

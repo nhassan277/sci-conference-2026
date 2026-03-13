@@ -682,6 +682,32 @@ export default function Sponsors() {
               </CardContent>
             </Card>
 
+            {/* Genomic Expression (GE) */}
+            <Card className="border-2 border-violet-200 shadow-md hover:shadow-lg transition-shadow">
+              <CardHeader className="text-center">
+                <div className="flex justify-center mb-4 h-32 items-center">
+                  <img
+                    src="https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/ge_logo-1_c2bdf8df.png"
+                    alt="Genomic Expression"
+                    className="h-28 object-contain"
+                  />
+                </div>
+                <CardTitle className="text-xl text-violet-700">Genomic Expression (GE)</CardTitle>
+                <CardDescription className="text-xs font-medium text-muted-foreground">In-Kind Sponsor · راعي عيني</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-sm space-y-2">
+                  <p className="font-semibold text-violet-700">🧬 7 Molecular Biology Prize Kits</p>
+                  <p dir="rtl">٧ كيتات للبيولوجيا الجزيئية كجوائز</p>
+                  <div className="bg-violet-50 border border-violet-200 rounded p-2 mt-2">
+                    <p className="text-xs font-semibold text-violet-700">🏆 4 DNA Kits + 3 RNA/qPCR Kits</p>
+                    <p className="text-xs text-muted-foreground mt-1">4 kits: DNA Isolation Kit + PCR Master Mix. 3 kits: RNA Extraction + cDNA Synthesis + qPCR reagents.</p>
+                    <p className="text-xs text-muted-foreground mt-1" dir="rtl">٤ كيتات: عزل DNA + خليط PCR. ٣ كيتات: استخلاص RNA + تخليق cDNA + كواشف qPCR.</p>
+                  </div>
+                </CardDescription>
+              </CardContent>
+            </Card>
+
           </div>
         </div>
       </section>
