@@ -1077,6 +1077,71 @@ export default function Home() {
                 </div>
               </div>
 
+              {/* Vaccine Industry Workshop Card */}
+              <div className="max-w-2xl mx-auto mb-6">
+                <div className="p-6 bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-300 rounded-2xl space-y-4">
+                  {/* Header */}
+                  <div className="flex items-center justify-between flex-wrap gap-3">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center text-white text-2xl font-bold">💉</div>
+                      <div>
+                        <Badge className="bg-blue-100 text-blue-800 text-xs">Pre-Conference Workshop | ورشة عمل قبل المؤتمر</Badge>
+                      </div>
+                    </div>
+                    <Badge className="bg-indigo-100 text-indigo-800 text-xs">Unlimited Participants | مفتوح للجميع</Badge>
+                  </div>
+                  {/* Title */}
+                  <div>
+                    <h4 className="text-2xl font-bold text-gray-900">The Vaccine Industry Race: Ready to Play the Viruses' Game?</h4>
+                    <p className="text-sm text-gray-700 italic mt-1">By <strong>Jasmine Mohsen</strong> — Virology Specialist, Vaccine Valley &amp; <strong>Dr. Khaled Walid</strong> — Vaccine Industry</p>
+                  </div>
+                  {/* Description */}
+                  <p className="text-sm text-foreground leading-relaxed text-justify">
+                    An immersive workshop exploring the full lifecycle of vaccine development — from pathogen discovery to large-scale manufacturing — and the career opportunities available in the global and Egyptian vaccine industry.
+                  </p>
+                  {/* Points of Discussion */}
+                  <ul className="list-disc list-inside space-y-1 text-sm text-foreground">
+                    <li>Vaccine Discovery and Development Pipeline (Pathogen identification, Antigen discovery, Vaccine design &amp; platform selection, Preclinical &amp; Clinical trials, QC, Regulatory Approval, Manufacturing &amp; Distribution)</li>
+                    <li>Types of Vaccines and Their Design (R&amp;D Stage)</li>
+                    <li>Large Scale Production</li>
+                    <li>Careers in the Vaccine Industry (Egypt &amp; Worldwide)</li>
+                  </ul>
+                  {/* Details grid */}
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="p-3 bg-white rounded-xl border border-gray-200">
+                      <p className="text-xs text-muted-foreground">📅 Date | التاريخ</p>
+                      <p className="font-bold text-gray-900 text-sm">April 6, 2026</p>
+                      <p className="text-gray-700 text-xs" dir="rtl">٦ أبريل ٢٠٢٦</p>
+                    </div>
+                    <div className="p-3 bg-white rounded-xl border border-gray-200">
+                      <p className="text-xs text-muted-foreground">⏰ Time | الوقت</p>
+                      <p className="font-bold text-gray-900 text-sm">2:00 PM – 5:00 PM</p>
+                      <p className="text-gray-700 text-xs" dir="rtl">٢:٠٠ م – ٥:٠٠ م</p>
+                    </div>
+                    <div className="p-3 bg-white rounded-xl border border-gray-200">
+                      <p className="text-xs text-muted-foreground">⏳ Duration | المدة</p>
+                      <p className="font-bold text-gray-900 text-sm">2.5 – 3 Hours</p>
+                      <p className="text-gray-700 text-xs" dir="rtl">٢.٥ – ٣ ساعات</p>
+                    </div>
+                    <div className="p-3 bg-white rounded-xl border border-gray-200">
+                      <p className="text-xs text-muted-foreground">👥 Capacity | السعة</p>
+                      <p className="font-bold text-gray-900 text-sm">Unlimited</p>
+                      <p className="text-gray-700 text-xs" dir="rtl">غير محدود</p>
+                    </div>
+                  </div>
+                  {/* Register button */}
+                  <div className="flex items-center justify-end">
+                    <Button
+                      size="sm"
+                      className="bg-blue-700 hover:bg-blue-800 text-white text-xs px-3"
+                      onClick={() => { window.location.href = '/attendance'; }}
+                    >
+                      Register | سجّل الآن
+                    </Button>
+                  </div>
+                </div>
+              </div>
+
               {/* EgcompBio scRNA-seq Workshop Card */}
               <div className="max-w-2xl mx-auto mb-6">
                 <div className="p-6 bg-gradient-to-r from-teal-50 to-cyan-50 border-2 border-teal-300 rounded-2xl space-y-4">

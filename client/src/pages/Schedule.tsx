@@ -852,6 +852,10 @@ export default function Schedule() {
                       <p className="font-semibold">Biotech Product Development 101</p>
                       <p className="text-xs text-muted-foreground">By Chitosan · 9:00 AM – 12:00 PM · 30 seats</p>
                     </div>
+                    <div>
+                      <p className="font-semibold">The Vaccine Industry Race: Ready to Play the Viruses' Game?</p>
+                      <p className="text-xs text-muted-foreground">By Jasmine Mohsen &amp; Dr. Khaled Walid · 2:00 PM – 5:00 PM · 2.5–3 hours · Unlimited seats</p>
+                    </div>
                   </div>
                 </div>
                 <div className="bg-indigo-50 p-4 rounded-lg border border-indigo-200">
