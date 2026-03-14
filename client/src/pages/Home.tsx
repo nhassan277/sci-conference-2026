@@ -1360,6 +1360,88 @@ export default function Home() {
 
 
 
+              {/* GESR Workshop Card */}
+              <div className="max-w-2xl mx-auto">
+                <div className="p-6 bg-gradient-to-r from-slate-50 to-gray-50 border-2 border-slate-300 rounded-2xl space-y-4">
+                  {/* Header with logo */}
+                  <div className="flex items-center justify-between flex-wrap gap-3">
+                    <img
+                      src="https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/GESR-logo_7866e6d3.jpg"
+                      alt="GESR"
+                      className="h-16 object-contain"
+                    />
+                    <Badge className="bg-green-100 text-green-800 border-green-300 text-xs">
+                      Post-Conference | بعد المؤتمر
+                    </Badge>
+                  </div>
+
+                  {/* Workshop Title */}
+                  <div>
+                    <h4 className="text-xl font-bold text-slate-900">From Lab to Global Opportunities: How to Prepare for Scholarships and Research Abroad</h4>
+                    <p className="text-base font-semibold text-slate-700 mt-1" dir="rtl">من المختبر إلى الفرص العالمية: كيف تستعد للمنح الدراسية والبحث في الخارج</p>
+                    <p className="text-sm italic text-slate-500 mt-1">MASAR — Nextgen Researchers Initiative Launch</p>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-sm text-slate-700 leading-relaxed">
+                    This workshop helps students and early-career researchers understand how to prepare for international research opportunities and scholarships — covering academic CV writing, motivation letters, scholarship identification, and strategic planning for studying abroad.
+                  </p>
+
+                  {/* Workshop Parts */}
+                  <div className="grid sm:grid-cols-2 gap-2">
+                    <div className="bg-white/80 rounded-lg p-2 border border-slate-200">
+                      <p className="text-xs font-bold text-slate-800">Part 1 — Global Research Opportunities (30 min)</p>
+                      <p className="text-xs text-slate-600">Scholarships, fellowships, internships, DAAD, Erasmus, Marie Curie</p>
+                    </div>
+                    <div className="bg-white/80 rounded-lg p-2 border border-slate-200">
+                      <p className="text-xs font-bold text-slate-800">Part 2 — Building a Strong Academic CV (45 min)</p>
+                      <p className="text-xs text-slate-600">Structure, research highlights, common mistakes, example review</p>
+                    </div>
+                    <div className="bg-white/80 rounded-lg p-2 border border-slate-200">
+                      <p className="text-xs font-bold text-slate-800">Part 3 — Writing a Winning Motivation Letter (45 min)</p>
+                      <p className="text-xs text-slate-600">Structure, storytelling, linking interests, real examples analysis</p>
+                    </div>
+                    <div className="bg-white/80 rounded-lg p-2 border border-slate-200">
+                      <p className="text-xs font-bold text-slate-800">Part 4 — Preparing for Research Abroad (30 min)</p>
+                      <p className="text-xs text-slate-600">Supervisor selection, networking, building a research profile</p>
+                    </div>
+                  </div>
+
+                  {/* Special Selections */}
+                  <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 space-y-1">
+                    <p className="text-xs font-bold text-amber-800">🏆 Special Selections from SCI 2026 Projects:</p>
+                    <p className="text-xs text-amber-700">• 5 students selected to join the <strong>GESR Mentorship Program</strong></p>
+                    <p className="text-xs text-amber-700">• 5 students invited to attend the <strong>next GESR Summer Conference</strong> (date TBA)</p>
+                  </div>
+
+                  {/* Meta info */}
+                  <div className="space-y-1">
+                    <p className="text-xs font-bold text-slate-800">📅 Thursday, April 9, 2026 &nbsp;|&nbsp; 🕒 3:00 PM – 6:00 PM &nbsp;|&nbsp; ⏱ 3 Hours &nbsp;|&nbsp; 🆓 Free</p>
+                    <p className="text-xs text-slate-600">🎤 Presented by <strong>Dr. Nourhan Hassan</strong> &amp; <strong>Dr. Hazem Badawy</strong> (Board of GESR)</p>
+                    <p className="text-xs text-slate-600">🎯 Target: Undergraduates, Master's &amp; PhD students, Early-career researchers</p>
+                  </div>
+
+                  {/* Certificate */}
+                  <div className="bg-green-50 border border-green-200 rounded-xl p-3">
+                    <p className="text-xs text-green-700">🎓 <strong>FREE Workshop</strong> — No fees, no invoice required. Register to secure your spot.</p>
+                  </div>
+
+                  {/* CTA */}
+                  <div className="flex items-center justify-between flex-wrap gap-3">
+                    <Badge className="bg-green-100 text-green-800 text-xs">Free — Open to all registered participants 🟢</Badge>
+                    <Button
+                      size="sm"
+                      className="bg-slate-700 hover:bg-slate-800 text-white text-xs px-3"
+                      onClick={() => { window.location.href = '/attendance'; }}
+                    >
+                      Register Now | سجّل الآن
+                    </Button>
+                  </div>
+                </div>
+              </div>
+
+
+
               {/* HVD Life Sciences Workshop Card */}
               <div className="max-w-2xl mx-auto">
                 <div className="p-6 bg-gradient-to-r from-blue-50 to-slate-50 border-2 border-blue-300 rounded-2xl space-y-4">
