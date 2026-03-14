@@ -939,20 +939,24 @@ export default function Schedule() {
                   <Badge className="bg-indigo-100 text-indigo-800 mb-2">During Conference | April 7–8</Badge>
                   <div className="space-y-2 text-sm">
                     <div>
-                      <p className="font-semibold">MARC Workshop</p>
-                      <p className="text-xs text-muted-foreground">By MARC · Day 1 (April 7) · Workshop Rooms 1 &amp; 2</p>
+                      <p className="font-semibold">Nawah Scientific Workshop</p>
+                      <p className="text-xs text-muted-foreground">By Nawah Scientific · Day 1 (April 7) · Workshop Rooms 1 &amp; 2</p>
                     </div>
                     <div>
                       <p className="font-semibold">From DNA to Proteins: Advanced Sequencing Technologies</p>
-                      <p className="text-xs text-muted-foreground">By Nawah Scientific · Day 1 (April 7) · Workshop Room 2</p>
+                      <p className="text-xs text-muted-foreground">By Medsol · Day 2 (April 8) · Workshop Room</p>
                     </div>
                     <div>
-                      <p className="font-semibold">Nawah Scientific Workshop</p>
-                      <p className="text-xs text-muted-foreground">By Nawah Scientific · Day 2 (April 8) · Workshop Rooms 1 & 2</p>
+                      <p className="font-semibold">MARC Workshop</p>
+                      <p className="text-xs text-muted-foreground">By MARC · Day 2 (April 8) · Workshop Rooms 1 &amp; 2</p>
                     </div>
                     <div>
                       <p className="font-semibold">From Basic Research to Precision Medicine: Applications of NGS and ddPCR in Targeted Therapy</p>
-                      <p className="text-xs text-muted-foreground">By Agitech · During Conference · Workshop Room</p>
+                      <p className="text-xs text-muted-foreground">By Agitech · April 6 (Pre-Conference) · Workshop Room</p>
+                    </div>
+                    <div>
+                      <p className="font-semibold">Vaccine Workshop</p>
+                      <p className="text-xs text-muted-foreground">April 6 (Pre-Conference)</p>
                     </div>
                     <div>
                       <p className="font-semibold">Environmental Geochemical Data Analysis (Session 1)</p>
@@ -969,19 +973,24 @@ export default function Schedule() {
                   <div className="space-y-2 text-sm">
                     <div>
                       <p className="font-semibold">Introduction to Single Cell Genomics</p>
-                      <p className="text-xs text-muted-foreground">By EG-CompBio & GARN · 10:00 AM – 1:00 PM · 3 hours · 30 seats</p>
-                    </div>
-                    <div>
-                      <p className="font-semibold">Integrating Genomics & Proteomics in Biopharmaceutical R&D</p>
-                      <p className="text-xs text-muted-foreground">By HVD Life Sciences · Sunday, April 12, 2026 · Full Day ~5 Hours · HVD Company, New Cairo · 30 seats</p>
+                      <p className="text-xs text-muted-foreground">By EgCompBio &amp; GARN · April 9 · 10:00 AM – 1:00 PM · 3 hours · 30 seats</p>
                     </div>
                     <div>
                       <p className="font-semibold">AI Meets Biotech</p>
-                      <p className="text-xs text-muted-foreground">How to leverage AI in Biotechnology · 3 hours</p>
+                      <p className="text-xs text-muted-foreground">By AI بالعربي · April 9 · 1:00 PM – 3:00 PM · 2 hours · 100 EGP (incl. certificate)</p>
                     </div>
                     <div>
                       <p className="font-semibold">From Lab to Global Opportunities: How to Prepare for Scholarships and Research Abroad</p>
-                      <p className="text-xs text-muted-foreground">By GESR (Dr. Nourhan Hassan &amp; Dr. Hazem Badawy) · Thursday, April 9, 2026 · 3:00 PM – 6:00 PM · 3 hours · Initiative: MASAR — Nextgen Researchers (launch event)</p>
+                      <p className="text-xs text-muted-foreground">By GESR (Dr. Nourhan Hassan &amp; Dr. Hazem Badawy) · April 9 · 3:00 PM – 6:00 PM · 3 hours · Free</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-orange-50 p-4 rounded-lg border border-orange-200">
+                  <Badge className="bg-orange-100 text-orange-800 mb-2">Post-Conference | April 12</Badge>
+                  <div className="space-y-2 text-sm">
+                    <div>
+                      <p className="font-semibold">Integrating Genomics &amp; Proteomics in Biopharmaceutical R&amp;D</p>
+                      <p className="text-xs text-muted-foreground">By HVD Life Sciences · Sunday, April 12, 2026 · Full Day ~5 Hours · HVD Company, New Cairo · 30 seats</p>
                     </div>
                   </div>
                 </div>
