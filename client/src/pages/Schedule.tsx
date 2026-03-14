@@ -1059,7 +1059,7 @@ export default function Schedule() {
                 <FlaskConical className="w-5 h-5 text-amber-600" />
                 Workshop Program | برنامج ورش العمل
               </CardTitle>
-              <CardDescription>8 workshops across 4 days (April 6–9, 2026)</CardDescription>
+              <CardDescription>10 workshops across 4 days (April 6–9, 2026)</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-3 gap-4">
@@ -1071,8 +1071,12 @@ export default function Schedule() {
                       <p className="text-xs text-muted-foreground">By Chitosan · 9:00 AM – 12:00 PM · 30 seats</p>
                     </div>
                     <div>
+                      <p className="font-semibold">From Basic Research to Precision Medicine: Applications of NGS and ddPCR in Targeted Therapy</p>
+                      <p className="text-xs text-muted-foreground">By Agitech · 12:00 PM – 2:00 PM · 2 hours · 30 seats</p>
+                    </div>
+                    <div>
                       <p className="font-semibold">The Vaccine Industry Race: Ready to Play the Viruses' Game?</p>
-                      <p className="text-xs text-muted-foreground">By Jasmine Mohsen &amp; Dr. Khaled Walid — Vaccine Industry · April 6, 2:00–5:00 PM · 2.5–3 hours · Unlimited seats</p>
+                      <p className="text-xs text-muted-foreground">By Jasmine Mohsen &amp; Dr. Khaled Walid — Vaccine Industry · 2:00–5:00 PM · 2.5–3 hours · Unlimited seats</p>
                     </div>
                   </div>
                 </div>
@@ -1080,24 +1084,16 @@ export default function Schedule() {
                   <Badge className="bg-indigo-100 text-indigo-800 mb-2">During Conference | April 7–8</Badge>
                   <div className="space-y-2 text-sm">
                     <div>
-                      <p className="font-semibold">Nawah Scientific Workshop</p>
-                      <p className="text-xs text-muted-foreground">By Nawah Scientific · Day 1 (April 7) · Workshop Rooms 1 &amp; 2</p>
+                      <p className="font-semibold">How to Convert Research Findings into Business Ideas</p>
+                      <p className="text-xs text-muted-foreground">By NAWAH Scientific · Day 1 (April 7) · 4 hours · 200 EGP</p>
                     </div>
                     <div>
                       <p className="font-semibold">From DNA to Proteins: Advanced Sequencing Technologies</p>
-                      <p className="text-xs text-muted-foreground">By Medsol · Day 2 (April 8) · Workshop Room</p>
+                      <p className="text-xs text-muted-foreground">By Medsol · Day 2 (April 8) · 3 hours · 200 EGP</p>
                     </div>
                     <div>
-                      <p className="font-semibold">MARC Workshop</p>
-                      <p className="text-xs text-muted-foreground">By MARC · Day 2 (April 8) · Workshop Rooms 1 &amp; 2</p>
-                    </div>
-                    <div>
-                      <p className="font-semibold">From Basic Research to Precision Medicine: Applications of NGS and ddPCR in Targeted Therapy</p>
-                      <p className="text-xs text-muted-foreground">By Agitech · April 6 (Pre-Conference) · Workshop Room</p>
-                    </div>
-                    <div>
-                      <p className="font-semibold">Vaccine Workshop</p>
-                      <p className="text-xs text-muted-foreground">April 6 (Pre-Conference)</p>
+                      <p className="font-semibold">Good Clinical Practice (GCP) Workshop</p>
+                      <p className="text-xs text-muted-foreground">By MARC · Day 2 (April 8) · 3 hours · 200 EGP</p>
                     </div>
                     <div>
                       <p className="font-semibold">Environmental Geochemical Data Analysis (Session 1)</p>
