@@ -413,7 +413,19 @@ export default function Sponsors() {
                       They will deliver a hands-on technical workshop on <strong>AI Project Development</strong>, guiding participants through building and deploying AI solutions — from research idea to working prototype.
                     </p>
                     <p className="text-sm text-muted-foreground font-medium">
-                      📅 Date &amp; Time TBA &nbsp;|&nbsp; 🎓 Certificate co-signed by AI بالعربي &amp; Faculty of Science, Cairo University
+                      📅 April 9, 2026 &nbsp;|&nbsp; ⏰ 1:00 – 3:00 PM &nbsp;|&nbsp; ⏳ 2 Hours &nbsp;|&nbsp; 💰 100 EGP (incl. certificate)
+                    </p>
+                    <p className="text-sm text-muted-foreground font-medium" dir="rtl">
+                      ٩ أبريل ٢٠٢٦ &nbsp;|&nbsp; ١:٠٠ – ٣:٠٠ م &nbsp;|&nbsp; ٢ ساعتان &nbsp;|&nbsp; ١٠٠ جنيه مصري
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      📍 Ibn Sina Hall — Botany Dept. — Faculty of Science, Cairo University
+                    </p>
+                    <p className="text-sm text-muted-foreground" dir="rtl">
+                      قاعة ابن سينا — قسم النبات القديم — كلية العلوم — جامعة القاهرة
+                    </p>
+                    <p className="text-sm text-muted-foreground font-medium">
+                      🎓 Certificate co-signed by AI بالعربي &amp; Faculty of Science, Cairo University
                     </p>
                   </CardDescription>
                 </CardContent>
