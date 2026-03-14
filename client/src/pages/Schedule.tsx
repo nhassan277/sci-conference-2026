@@ -519,6 +519,23 @@ const sessions = {
   day3: [
     {
       id: 1,
+      time: "10:00 AM – 1:00 PM",
+      timeAr: "١٠:٠٠ – ١:٠٠ م",
+      type: "workshop",
+      title: "Introduction to Single Cell Genomics",
+      titleAr: "مقدمة في جينوميكس الخلية المفردة",
+      location: "Ibn Sina Hall — Botany Dept. — Faculty of Science, Cairo University",
+      locationAr: "قاعة ابن سينا — قسم النبات القديم — كلية العلوم — جامعة القاهرة",
+      description: "A hands-on workshop covering single-cell RNA sequencing (scRNA-seq) analysis, exploring cellular heterogeneity, cell type identification, and downstream bioinformatics workflows.",
+      descriptionAr: "ورشة عمل تطبيقية تغطي تحليل تسلسل الحمض النووي للخلية المفردة، واستكشاف تنوع الخلايا وتحديد أنواعها وسير عمل المعلوماتية الحيوية.",
+      presenter: "EgCompBio & GARN",
+      fee: "200 EGP",
+      feeAr: "٢٠٠ جنيه مصري",
+      duration: "3 Hours | ٣ ساعات",
+      spots: "30 seats"
+    },
+    {
+      id: 2,
       time: "1:00 PM – 3:00 PM",
       timeAr: "١:٠٠ – ٣:٠٠ م",
       type: "workshop",
