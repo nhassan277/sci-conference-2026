@@ -1741,6 +1741,7 @@ export default function Home() {
                 { name: "Agitech", logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/VgPdbFhKiVTOdmtC.png", linkedin: "https://www.linkedin.com/company/agitech-egypt/posts/?feedView=all" },
                 { name: "Medsol Corporation", logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/suhdZISVxwwlvpPk.png", linkedin: "https://www.linkedin.com/company/medsolme/posts/?feedView=all" },
                 { name: "Chitosan Egypt", logo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_t1mp8m_image_bbedca70.png", linkedin: "https://www.linkedin.com/in/chitosan-egypt/" },
+                { name: "AI بالعربي", logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/KlrhKxhzNQOHAlor.jpeg", linkedin: "https://www.linkedin.com/company/ai-بالعربي/" },
               ].map((s) => (
                 <a key={s.name} href={s.linkedin} target="_blank" rel="noopener noreferrer"
                   className="bg-white border border-border rounded-xl p-4 flex flex-col items-center gap-3 shadow-sm hover:shadow-md hover:border-amber-400 transition-all group">
