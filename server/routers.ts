@@ -2887,11 +2887,8 @@ export const appRouter = router({
         let sent = 0;
         let failed = 0;
 
-        // Send in batches of 10 to avoid rate limits
-        const BATCH_SIZE = 10;
-        for (let i = 0; i < uniqueEmails.length; i += BATCH_SIZE) {
-          const batch = uniqueEmails.slice(i, i + BATCH_SIZE);
-          await Promise.all(batch.map(async (registrant) => {
+        // Send one at a time to respect Resend's 2 req/sec rate limit
+        for (const registrant of uniqueEmails) {
             const htmlBody = `
 <!DOCTYPE html>
 <html>
@@ -2944,11 +2941,8 @@ export const appRouter = router({
               console.error(`[Announcement Email] Error sending to ${registrant.email}:`, err);
               failed++;
             }
-          }));
-          // Small delay between batches
-          if (i + BATCH_SIZE < uniqueEmails.length) {
-            await new Promise(resolve => setTimeout(resolve, 500));
-          }
+          // 600ms delay between sends to stay within 2 req/sec limit
+          await new Promise(resolve => setTimeout(resolve, 600));
         }
 
         // Log the send action
@@ -2997,10 +2991,8 @@ export const appRouter = router({
         let sent = 0;
         let failed = 0;
 
-        const BATCH_SIZE = 10;
-        for (let i = 0; i < uniqueRegistrants.length; i += BATCH_SIZE) {
-          const batch = uniqueRegistrants.slice(i, i + BATCH_SIZE);
-          await Promise.all(batch.map(async (reg) => {
+        // Send one at a time to respect Resend's 2 req/sec rate limit
+        for (const reg of uniqueRegistrants) {
             const firstName = reg.nameEn?.split(" ")[0] || "Participant";
 
             const htmlBody = `
@@ -3146,10 +3138,8 @@ export const appRouter = router({
               console.error(`[Confirmation Email] Error sending to ${reg.email}:`, err);
               failed++;
             }
-          }));
-          if (i + BATCH_SIZE < uniqueRegistrants.length) {
-            await new Promise(resolve => setTimeout(resolve, 500));
-          }
+          // 600ms delay between sends to stay within 2 req/sec limit
+          await new Promise(resolve => setTimeout(resolve, 600));
         }
 
         // Log the action
