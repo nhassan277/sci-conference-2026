@@ -1706,7 +1706,6 @@ export default function Home() {
                 { name: "AI بالعربي", logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/KlrhKxhzNQOHAlor.jpeg", linkedin: "https://www.linkedin.com/company/ai-بالعربي/" },
                 { name: "GESR", logo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/GESR-logo_7866e6d3.jpg", linkedin: "https://www.linkedin.com/company/102566987/" },
                 { name: "HVD Life Sciences", logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/NlYUUYlTeGQwRRXp.png", linkedin: "https://www.linkedin.com/company/hvdegypt/posts/?feedView=all" },
-                { name: "GEnoEra Technology", logo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/ge_logo-1_c2bdf8df.png", linkedin: "https://www.linkedin.com/company/geno-era-technology/" },
               ].map((s) => (
                 <a key={s.name} href={s.linkedin} target="_blank" rel="noopener noreferrer"
                   className="bg-white border border-border rounded-xl p-4 flex flex-col items-center gap-3 shadow-sm hover:shadow-md hover:border-primary/40 transition-all group">
@@ -1732,6 +1731,8 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 max-w-5xl mx-auto">
               {[
+                { name: "NAWAH Scientific", logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/ndKRwnmyKdJLbGXC.png", linkedin: "https://www.linkedin.com/company/nawah-scientific/?originalSubdomain=eg" },
+                { name: "MARC", logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/VulsiXaRGfrttVQf.png", linkedin: "https://www.linkedin.com/company/marcresearch/posts/?feedView=all" },
                 { name: "Mina Pharm", logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/VSYnJUbvoViFDJRE.png", linkedin: "https://www.linkedin.com/company/minapharm-pharmaceuticals/posts/?feedView=all" },
                 { name: "Startup Grind", logo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/download(2)_577d8ace.png", linkedin: "https://www.linkedin.com/company/startup-grind/posts/?feedView=all" },
                 { name: "Plasma", logo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/logo-2_953b35eb.jpeg", linkedin: "https://www.linkedin.com/company/plasma-company/?originalSubdomain=eg" },
@@ -1742,6 +1743,7 @@ export default function Home() {
                 { name: "Medsol Corporation", logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/suhdZISVxwwlvpPk.png", linkedin: "https://www.linkedin.com/company/medsolme/posts/?feedView=all" },
                 { name: "Chitosan Egypt", logo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_t1mp8m_image_bbedca70.png", linkedin: "https://www.linkedin.com/in/chitosan-egypt/" },
                 { name: "AI بالعربي", logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/KlrhKxhzNQOHAlor.jpeg", linkedin: "https://www.linkedin.com/company/ai-بالعربي/" },
+                { name: "Colors Educational Hub", logo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/logo_colors_52f6762b.png", linkedin: "https://www.linkedin.com/company/colors-educational-hub/posts/?feedView=all" },
               ].map((s) => (
                 <a key={s.name} href={s.linkedin} target="_blank" rel="noopener noreferrer"
                   className="bg-white border border-border rounded-xl p-4 flex flex-col items-center gap-3 shadow-sm hover:shadow-md hover:border-amber-400 transition-all group">
