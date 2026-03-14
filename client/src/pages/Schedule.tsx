@@ -51,9 +51,10 @@ const keynoteSpeakers = [
   }
 ];
 
-// ─── INVITED SPEAKERS (22 total) ──────────────────────────────────────────────
+// ─── INVITED SPEAKERS (29 total) ──────────────────────────────────────────────
 // Biological & Chemical Sciences track (Hall A) — Day 1
 const invitedBioDay1 = [
+  { name: "Prof. Dr. Fathy Khodair", affiliation: "Former Dean, Faculty of Medicine (Kasr Al-Ainy), Cairo University; Advisor to the President of Cairo University; Consultant Plastic & Reconstructive Surgeon", talk: "Clinical Application of Adipose Derived Stem Cells in Plastic Surgery" },
   { name: "Prof. Dr. Sohair Ramadan Fahmy", affiliation: "Dean of Faculty of Science, Cairo University", talk: "Practical Aspects of Experimental Design in Laboratory Animal Science" },
   { name: "Prof. Dr. Nagwa El-Badri", affiliation: "Director of Biomedical Sciences Program & Center of Excellence for Stem Cells", talk: "Biomimetic Scaffolds and the Human Amniotic Membrane" },
   { name: "Prof. Dr. Ibrahim M. El-Sherbiny", affiliation: "Professor of Nanotechnology & Nanomedicine, Founding Chairman", talk: "Basic Sciences As the Foundation of Innovation: Some Success Stories for Disease Treatment and Advanced Biomedical Applications" },
@@ -77,7 +78,7 @@ const invitedBioDay2 = [
   { name: "Prof. Dr. Naglaa A. Abdallah", affiliation: "Professor of Genetics, Faculty of Agriculture, Cairo University", talk: "Novel Genome Editing Approaches for a Sustainable Future" },
   { name: "Prof. em. Tarek Kapiel", affiliation: "Assistant Professor of Plant Biotechnology", talk: "Integrative Bio-Nanotechnologies for Industrial Symbiosis: Scaling the Circular Bioeconomy in Egypt" },
   { name: "Dr. Ahmed Fikry El-Sayed", affiliation: "Assistant Professor, King Salman International University", talk: "Computer-Aided Drug Design: From Code to Cure" },
-  { name: "Mr. Ahmed Youssef", affiliation: "Production Deputy Manager and Vaccine Line Head at BioGenerics", talk: "Advanced Vaccine Bioprocessing: From Strain Selection to Market Release" },
+  { name: "Dr. Ahmed Youssef", affiliation: "Production Deputy Manager and Vaccine Line Head at BioGeneric Pharma (BGP); Instructor at Africa CDC biomanufacturing training programs", talk: "Advanced Vaccine Bioprocessing: From Strain Selection to Market Release" },
   { name: "Assoc. Prof. Dr. Mohamed Hamed", affiliation: "Associate Professor of Biomedical Informatics and Computational Biology", talk: "Computational Transformation in Drug Discovery: Bioinformatics and AI Innovations in Pharmaceutical Science" },
   { name: "Prof. Dr. Rashika El Ridi", affiliation: "Professor of Immunology, Zoology Department, Faculty of Science, Cairo University", talk: "The Impact of Misleading Concepts in Science on Efforts to Control Schistosomiasis and Cancer" },
   { name: "Prof. Dr. Ahmed Galal", affiliation: "Chemistry Department, Faculty of Science, Cairo University", talk: "Photo-assisted Electrocatalysis: An Effective Tool for Green Chemical Conversion" },
@@ -87,7 +88,11 @@ const invitedBioDay2 = [
 // Math, Physics, Astronomy & other sciences track (Hall B) — Day 2
 const invitedGeoDay2 = [
   { name: "Prof. Dr. Osama Shalabiea", affiliation: "Professor of Astrophysics and Space Physics, Head of Department", talk: "Space Science and Technology (SSAT): Exploration, Utilization and Commercialization" },
+  { name: "Prof. Dr. Mohamed Shaker Salem", affiliation: "Professor of Physics, Faculty of Science, Cairo University", talk: "Silicon Nanophotonics for On-Chip Integrated Circuit Technology" },
   { name: "Dr. Areeg Abdalla", affiliation: "Associate Professor, Mathematics Department, Faculty of Science", talk: "Scientific Principles and Medical Applications of Artificial Intelligence" },
+  { name: "Eng. Mostafa Nasser", affiliation: "Chapter Director, Startup Grind Cairo", talk: "AI in Biotechnology" },
+  { name: "Dr. Mohamed Anwar Abdelwahab", affiliation: "Flavor House — Organic Chemistry & Flavor Manufacturing", talk: "From Molecules to Taste: The Role of Organic Chemistry in Flavor Manufacturing" },
+  { name: "Dr. Abdelfattah Kamal", affiliation: "Operations Director, BioGeneric Pharma (BGP)", talk: "Achieving Quality and Sustainable Local Vaccine Production in Africa to Improve Access" },
 ];
 
 // ─── CONFERENCE PROGRAM DATA ──────────────────────────────────────────────────
@@ -264,9 +269,26 @@ const sessions = {
       ]
     },
     {
-      id: 13,
+      id: 12.5,
       time: "14:30 - 14:50",
       timeAr: "١٤:٣٠ - ١٤:٥٠",
+      type: "parallel",
+      title: "Parallel Sessions — Invited Speakers (Round 6)",
+      titleAr: "جلسات متوازية — المتحدثون المدعوون (الجولة ٦)",
+      tracks: [
+        { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences", topicAr: "العلوم البيولوجية والكيميائية", speaker: invitedBioDay1[5].name, speakerTalk: invitedBioDay1[5].talk },
+        { hall: "Hall B", hallAr: "القاعة ب", topic: "Geology, Physics & other sciences", topicAr: "الجيولوجيا، الفيزياء والعلوم الأخرى", speaker: "Participant Presentations", speakerTalk: "" },
+        { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" },
+        { hall: "Hall D", hallAr: "القاعة د", topic: "Geology, Physics & other sciences (Participants)", topicAr: "الجيولوجيا، الفيزياء والعلوم الأخرى (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" }
+      ],
+      workshops: [
+        { room: "Workshop Room 2", roomAr: "غرفة ورشة العمل ٢", name: "MARC Workshop (Cont.)", nameAr: "ورشة عمل MARC (تابع)" }
+      ]
+    },
+    {
+      id: 13,
+      time: "14:50 - 15:10",
+      timeAr: "١٤:٥٠ - ١٥:١٠",
       type: "panel",
       title: "Discussion Panels",
       titleAr: "حلقات نقاش",
@@ -413,7 +435,7 @@ const sessions = {
       titleAr: "جلسات متوازية — المتحدثون المدعوون (الجولة ٣)",
       tracks: [
         { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences", topicAr: "العلوم البيولوجية والكيميائية", speaker: invitedBioDay2[2].name, speakerTalk: invitedBioDay2[2].talk },
-        { hall: "Hall B", hallAr: "القاعة ب", topic: "Other Sciences", topicAr: "العلوم الأخرى", speaker: "Participant Presentations", speakerTalk: "" },
+        { hall: "Hall B", hallAr: "القاعة ب", topic: "Physics, AI & Industry", topicAr: "الفيزياء والذكاء الاصطناعي والصناعة", speaker: invitedGeoDay2[2].name, speakerTalk: invitedGeoDay2[2].talk },
         { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" },
         { hall: "Hall D", hallAr: "القاعة د", topic: "Other Sciences (Participants)", topicAr: "العلوم الأخرى (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" }
       ],
@@ -430,7 +452,7 @@ const sessions = {
       titleAr: "جلسات متوازية — المتحدثون المدعوون (الجولة ٤)",
       tracks: [
         { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences", topicAr: "العلوم البيولوجية والكيميائية", speaker: invitedBioDay2[3].name, speakerTalk: invitedBioDay2[3].talk },
-        { hall: "Hall B", hallAr: "القاعة ب", topic: "Other Sciences", topicAr: "العلوم الأخرى", speaker: "Participant Presentations", speakerTalk: "" },
+        { hall: "Hall B", hallAr: "القاعة ب", topic: "Industry & Innovation", topicAr: "الصناعة والابتكار", speaker: invitedGeoDay2[3].name, speakerTalk: invitedGeoDay2[3].talk },
         { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" },
         { hall: "Hall D", hallAr: "القاعة د", topic: "Other Sciences (Participants)", topicAr: "العلوم الأخرى (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" }
       ],
@@ -471,7 +493,7 @@ const sessions = {
       titleAr: "جلسات متوازية — المتحدثون المدعوون (الجولة ٥)",
       tracks: [
         { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences", topicAr: "العلوم البيولوجية والكيميائية", speaker: invitedBioDay2[4].name, speakerTalk: invitedBioDay2[4].talk },
-        { hall: "Hall B", hallAr: "القاعة ب", topic: "Other Sciences", topicAr: "العلوم الأخرى", speaker: "Participant Presentations", speakerTalk: "" },
+        { hall: "Hall B", hallAr: "القاعة ب", topic: "Industry & Vaccine Production", topicAr: "الصناعة وإنتاج اللقاحات", speaker: invitedGeoDay2[4].name, speakerTalk: invitedGeoDay2[4].talk },
         { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" },
         { hall: "Hall D", hallAr: "القاعة د", topic: "Other Sciences (Participants)", topicAr: "العلوم الأخرى (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" }
       ],
@@ -488,7 +510,7 @@ const sessions = {
       titleAr: "جلسات متوازية — المتحدثون المدعوون (الجولة ٦)",
       tracks: [
         { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences", topicAr: "العلوم البيولوجية والكيميائية", speaker: invitedBioDay2[5].name, speakerTalk: invitedBioDay2[5].talk },
-        { hall: "Hall B", hallAr: "القاعة ب", topic: "Other Sciences", topicAr: "العلوم الأخرى", speaker: "Participant Presentations", speakerTalk: "" },
+        { hall: "Hall B", hallAr: "القاعة ب", topic: "Industry & Vaccine Production", topicAr: "الصناعة وإنتاج اللقاحات", speaker: invitedGeoDay2[5].name, speakerTalk: invitedGeoDay2[5].talk },
         { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" },
         { hall: "Hall D", hallAr: "القاعة د", topic: "Other Sciences (Participants)", topicAr: "العلوم الأخرى (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" }
       ],
@@ -514,9 +536,60 @@ const sessions = {
       ]
     },
     {
+      id: 27.3,
+      time: "13:50 - 14:10",
+      timeAr: "١٣:٥٠ - ١٤:١٠",
+      type: "parallel",
+      title: "Parallel Sessions — Invited Speakers (Round 8)",
+      titleAr: "جلسات متوازية — المتحدثون المدعوون (الجولة ٨)",
+      tracks: [
+        { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences", topicAr: "العلوم البيولوجية والكيميائية", speaker: invitedBioDay2[7].name, speakerTalk: invitedBioDay2[7].talk },
+        { hall: "Hall B", hallAr: "القاعة ب", topic: "Other Sciences", topicAr: "العلوم الأخرى", speaker: "Participant Presentations", speakerTalk: "" },
+        { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" },
+        { hall: "Hall D", hallAr: "القاعة د", topic: "Other Sciences (Participants)", topicAr: "العلوم الأخرى (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" }
+      ],
+      workshops: [
+        { room: "Workshop Rooms 1 & 2", roomAr: "غرف ورشة العمل ١ و ٢", name: "Nawah Scientific Workshop (Cont.)", nameAr: "ورشة عمل نواة للعلوم (تابع)" }
+      ]
+    },
+    {
+      id: 27.6,
+      time: "14:10 - 14:30",
+      timeAr: "١٤:١٠ - ١٤:٣٠",
+      type: "parallel",
+      title: "Parallel Sessions — Invited Speakers (Round 9)",
+      titleAr: "جلسات متوازية — المتحدثون المدعوون (الجولة ٩)",
+      tracks: [
+        { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences", topicAr: "العلوم البيولوجية والكيميائية", speaker: invitedBioDay2[8].name, speakerTalk: invitedBioDay2[8].talk },
+        { hall: "Hall B", hallAr: "القاعة ب", topic: "Other Sciences", topicAr: "العلوم الأخرى", speaker: "Participant Presentations", speakerTalk: "" },
+        { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" },
+        { hall: "Hall D", hallAr: "القاعة د", topic: "Other Sciences (Participants)", topicAr: "العلوم الأخرى (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" }
+      ],
+      workshops: [
+        { room: "Workshop Rooms 1 & 2", roomAr: "غرف ورشة العمل ١ و ٢", name: "Nawah Scientific Workshop (Cont.)", nameAr: "ورشة عمل نواة للعلوم (تابع)" }
+      ]
+    },
+    {
+      id: 27.9,
+      time: "14:30 - 14:50",
+      timeAr: "١٤:٣٠ - ١٤:٥٠",
+      type: "parallel",
+      title: "Parallel Sessions — Invited Speakers (Round 10)",
+      titleAr: "جلسات متوازية — المتحدثون المدعوون (الجولة ١٠)",
+      tracks: [
+        { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences", topicAr: "العلوم البيولوجية والكيميائية", speaker: invitedBioDay2[9].name, speakerTalk: invitedBioDay2[9].talk },
+        { hall: "Hall B", hallAr: "القاعة ب", topic: "Other Sciences", topicAr: "العلوم الأخرى", speaker: "Participant Presentations", speakerTalk: "" },
+        { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" },
+        { hall: "Hall D", hallAr: "القاعة د", topic: "Other Sciences (Participants)", topicAr: "العلوم الأخرى (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" }
+      ],
+      workshops: [
+        { room: "Workshop Rooms 1 & 2", roomAr: "غرف ورشة العمل ١ و ٢", name: "Nawah Scientific Workshop (Cont.)", nameAr: "ورشة عمل نواة للعلوم (تابع)" }
+      ]
+    },
+    {
       id: 28,
-      time: "13:50 - 14:05",
-      timeAr: "١٣:٥٠ - ١٤:٠٥",
+      time: "14:50 - 15:05",
+      timeAr: "١٤:٥٠ - ١٥:٠٥",
       type: "panel",
       title: "Discussion Panels",
       titleAr: "حلقات نقاش",
