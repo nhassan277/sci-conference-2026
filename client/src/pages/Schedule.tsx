@@ -519,8 +519,25 @@ const sessions = {
   day4: [
     {
       id: 1,
-      time: "April 6, 2026",
-      timeAr: "٦ أبريل ٢٠٢٦",
+      time: "9:00 AM – 12:00 PM",
+      timeAr: "٩:٠٠ ص – ١٢:٠٠ ظ",
+      type: "workshop",
+      title: "Biotech Product Development 101",
+      titleAr: "تطوير المنتجات التقنية الحيوية ١٠١",
+      location: "Ibn Sina Hall — Botany Dept. — Faculty of Science, Cairo University",
+      locationAr: "قاعة ابن سينا — قسم النبات القديم — كلية العلوم — جامعة القاهرة",
+      description: "A practical workshop introducing a roadmap for biotech product development and potential startup building. Topics include identifying opportunities, screening existing solutions, idea generation, MVP development, and building a value proposition. Open to 3rd & 4th year undergraduates and graduate/postgraduate students.",
+      descriptionAr: "ورشة عمل تطبيقية تقدم خارطة طريق عملية لتطوير منتجات التقنية الحيوية وبناء الشركات الناشئة.",
+      presenter: "Chitosan",
+      fee: "100 EGP (incl. certificate)",
+      feeAr: "١٠٠ جنيه مصري (شاملة الشهادة)",
+      duration: "3 Hours | ٣ ساعات",
+      spots: "30 seats"
+    },
+    {
+      id: 2,
+      time: "TBA",
+      timeAr: "TBA",
       type: "workshop",
       title: "From Basic Research to Precision Medicine: Applications of NGS and ddPCR in Targeted Therapy",
       titleAr: "من البحث الأساسي إلى الطب الدقيق: تطبيقات NGS و ddPCR في العلاج الموجه",
@@ -535,19 +552,21 @@ const sessions = {
       spots: "30 seats"
     },
     {
-      id: 2,
-      time: "April 6, 2026",
-      timeAr: "٦ أبريل ٢٠٢٦",
+      id: 3,
+      time: "2:00 PM – 5:00 PM",
+      timeAr: "٢:٠٠ م – ٥:٠٠ م",
       type: "workshop",
-      title: "Vaccine Workshop",
-      titleAr: "ورشة عمل اللقاحات",
-      location: "TBA",
-      locationAr: "سيتم الإعلان لاحقاً",
-      description: "Details to be announced soon.",
-      descriptionAr: "سيتم الإعلان عن التفاصيل قريباً.",
-      presenter: "TBA",
-      fee: "TBA",
-      duration: "TBA"
+      title: "The Vaccine Industry Race: Ready to Play the Viruses' Game?",
+      titleAr: "سباق صناعة اللقاحات: هل أنت مستعد للعب لعبة الفيروسات؟",
+      location: "Ibn Sina Hall — Botany Dept. — Faculty of Science, Cairo University",
+      locationAr: "قاعة ابن سينا — قسم النبات القديم — كلية العلوم — جامعة القاهرة",
+      description: "An immersive workshop exploring the full lifecycle of vaccine development — from pathogen discovery to large-scale manufacturing — and career opportunities in the global and Egyptian vaccine industry. Topics: Discovery & Development Pipeline, Types of Vaccines, Large Scale Production, Careers in the Vaccine Industry.",
+      descriptionAr: "ورشة عمل تفاعلية تستعرض دورة حياة تطوير اللقاحات كاملة، من اكتشاف مسبب المرض حتى التصنيع الضخم.",
+      presenter: "Jasmine Mohsen & Dr. Khaled Walid — Vaccine Industry",
+      fee: "100 EGP (incl. certificate)",
+      feeAr: "١٠٠ جنيه مصري (شاملة الشهادة)",
+      duration: "2.5 – 3 Hours | ٢.٥ – ٣ ساعات",
+      spots: "Unlimited"
     }
   ],
   day3: [
