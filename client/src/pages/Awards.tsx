@@ -276,6 +276,23 @@ export default function Awards() {
       tagAr: "٤ مساهمات",
       website: "https://www.linkedin.com/company/plasma-company/?originalSubdomain=eg",
       websiteLabel: "Follow Plasma on LinkedIn"
+    },
+    {
+      sponsor: "GESR",
+      sponsorEn: "GESR",
+      logo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/GESR-logo_7866e6d3.jpg",
+      icon: Rocket,
+      prize: "GESR Mentorship Program + GESR Summer Conference Invitations",
+      prizeAr: "برنامج الإرشاد من GESR + دعوات مؤتمر GESR الصيفي",
+      description: "GESR (German Egyptian Social & Scientific Relationships) will select 5 outstanding students from SCI 2026 projects to join the GESR Mentorship Program, and invite 5 students to attend the next GESR Summer Conference — providing international networking, research guidance, and global academic exposure.",
+      descriptionAr: "ستختار GESR (العلاقات الاجتماعية والعلمية المصرية الألمانية) ٥ طلاب متميزين من مشاريع SCI 2026 للانضمام إلى برنامج الإرشاد الخاص بها، وتدعو ٥ طلاب لحضور مؤتمر GESR الصيفي القادم — مما يوفر شبكة تواصل دولية وإرشاداً بحثياً وانكشافاً أكاديمياً عالمياً.",
+      badgeColor: "bg-slate-100 text-slate-800 border-slate-200",
+      cardBorder: "border-slate-200 hover:border-slate-400",
+      iconBg: "bg-slate-100 text-slate-700",
+      tag: "10 Selections",
+      tagAr: "١٠ اختيارات",
+      website: "https://www.linkedin.com/company/102566987/",
+      websiteLabel: "Follow GESR on LinkedIn"
     }
   ];
 
