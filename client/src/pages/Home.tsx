@@ -1379,7 +1379,7 @@ export default function Home() {
                   <div>
                     <h4 className="text-xl font-bold text-slate-900">From Lab to Global Opportunities: How to Prepare for Scholarships and Research Abroad</h4>
                     <p className="text-base font-semibold text-slate-700 mt-1" dir="rtl">من المختبر إلى الفرص العالمية: كيف تستعد للمنح الدراسية والبحث في الخارج</p>
-                    <p className="text-sm italic text-slate-500 mt-1">MASAR — Nextgen Researchers Initiative Launch</p>
+
                   </div>
 
                   {/* Description */}
@@ -1407,18 +1407,13 @@ export default function Home() {
                     </div>
                   </div>
 
-                  {/* Special Selections */}
-                  <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 space-y-1">
-                    <p className="text-xs font-bold text-amber-800">🏆 Special Selections from SCI 2026 Projects:</p>
-                    <p className="text-xs text-amber-700">• 5 students selected to join the <strong>GESR Mentorship Program</strong></p>
-                    <p className="text-xs text-amber-700">• 5 students invited to attend the <strong>next GESR Summer Conference</strong> (date TBA)</p>
-                  </div>
-
                   {/* Meta info */}
                   <div className="space-y-1">
                     <p className="text-xs font-bold text-slate-800">📅 Thursday, April 9, 2026 &nbsp;|&nbsp; 🕒 3:00 PM – 6:00 PM &nbsp;|&nbsp; ⏱ 3 Hours &nbsp;|&nbsp; 🆓 Free</p>
                     <p className="text-xs text-slate-600">🎤 Presented by <strong>Dr. Nourhan Hassan</strong> &amp; <strong>Dr. Hazem Badawy</strong> (Board of GESR)</p>
                     <p className="text-xs text-slate-600">🎯 Target: Undergraduates, Master's &amp; PhD students, Early-career researchers</p>
+                    <p className="text-xs text-slate-600">📍 <strong>قاعة ابن سينا — قسم النبات القديم — كلية العلوم — جامعة القاهرة</strong></p>
+                    <p className="text-xs text-slate-600">Ibn Sina Hall — Botany Dept. — Faculty of Science, Cairo University</p>
                   </div>
 
                   {/* Certificate */}
