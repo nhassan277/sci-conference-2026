@@ -385,6 +385,24 @@ export default function Home() {
                   <div className="flex justify-center mb-4">
                     <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-primary/20 shadow-lg">
                       <img 
+                        src="https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/dina_amr_photo_c47be1c9.png" 
+                        alt="Dr. Dina Amr" 
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
+                  <CardTitle className="text-lg">Dr. Dina Amr</CardTitle>
+                  <CardDescription dir="rtl">
+                    د. دينا عمرو
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+
+              <Card className="hover:shadow-lg transition-shadow border-2 hover:border-primary/50">
+                <CardHeader className="text-center">
+                  <div className="flex justify-center mb-4">
+                    <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-primary/20 shadow-lg">
+                      <img 
                         src="https://files.manuscdn.com/user_upload_by_module/session_file/118031311/PTtRzbZnNIobKpQd.jpeg" 
                         alt="Dr. Nahla Osama" 
                         className="w-full h-full object-cover"
