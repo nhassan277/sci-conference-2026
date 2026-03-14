@@ -674,7 +674,7 @@ export default function Attendance() {
                             labelAr: "دمج الجينوميكس والبروتيوميكس في أبحاث وتطوير الأدوية الحيوية",
                             desc: "Bridging Omics Technologies for Drug Discovery — Hands-on workshop on genomics & proteomics integration in biopharma.",
                             descAr: "تقنيات الأوميكس لاكتشاف الأدوية — ورشة عملية على دمج الجينوميكس والبروتيوميكس في صناعة الأدوية الحيوية.",
-                            date: "Sunday, April 12, 2026 (Post-Conference) — Time TBA",
+                            date: "Sunday, April 12, 2026 (Post-Conference) — Full Day ~5 Hours",
                             dateAr: "الأحد ١٢ أبريل ٢٠٢٦ (بعد المؤتمر) — الوقت سيُعلن قريباً",
                             by: "HVD Life Sciences — New Cairo (2C53+JCC, Cairo Governorate 4720113)",
                             logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/NlYUUYlTeGQwRRXp.png",

@@ -305,7 +305,7 @@ export default function Sponsors() {
                       expression analysis for translational research applications.
                     </p>
                     <p className="text-sm text-muted-foreground font-medium">
-                      📅 Sunday, April 12, 2026 (Post-Conference) · Time TBA &nbsp;|&nbsp; 📍 HVD Company, New Cairo &nbsp;|&nbsp; 👥 30 spots
+                      📅 Sunday, April 12, 2026 (Post-Conference) · Full Day ~5 Hours &nbsp;|&nbsp; 📍 HVD Company, New Cairo &nbsp;|&nbsp; 👥 30 spots
                     </p>
                   </CardDescription>
                 </CardContent>

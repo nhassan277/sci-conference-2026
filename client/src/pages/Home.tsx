@@ -1472,7 +1472,7 @@ export default function Home() {
                     <span className="text-blue-600 text-lg">📅</span>
                     <div>
                       <p className="text-xs font-bold text-blue-800">Sunday, April 12, 2026 (Post-Conference) | الأحد ١٢ أبريل ٢٠٢٦ (بعد المؤتمر)</p>
-                      <p className="text-xs text-blue-700 mt-0.5">Time — To Be Announced | سيتم الإعلان عن الوقت قريباً</p>
+                      <p className="text-xs text-blue-700 mt-0.5">Full Day — ~5 Hours | يوم كامل — حوالي ٥ ساعات</p>
                     </div>
                   </div>
 
@@ -1497,8 +1497,8 @@ export default function Home() {
                   <div className="grid grid-cols-2 gap-3">
                     <div className="p-3 bg-white rounded-xl border border-blue-200">
                       <p className="text-xs text-muted-foreground">⏳ Duration | المدة</p>
-                      <p className="font-bold text-blue-900 text-sm">3 Hours</p>
-                      <p className="text-blue-700 text-xs" dir="rtl">٣ ساعات</p>
+                      <p className="font-bold text-blue-900 text-sm">~5 Hours (Full Day)</p>
+                      <p className="text-blue-700 text-xs" dir="rtl">حوالي ٥ ساعات (يوم كامل)</p>
                     </div>
                     <div className="p-3 bg-white rounded-xl border border-blue-200">
                       <p className="text-xs text-muted-foreground">💰 Fee | الرسوم</p>
