@@ -1,0 +1,9 @@
+{
+  "query": "UPDATE announcements SET \n  message = '🚀 Supercharge Your Skills: Limited Seats Left in Our Expert-Led Workshops! Boost your skills with hands-on workshops led by industry experts—all for a very low fee (100–200 EGP) and including an official certificate. 🎓 NEW & FREE: Join the GESR MASAR — Nextgen Researchers workshop (April 9, 3–6 PM) — No fees, no invoice needed. Register now!',\n  message_ar = '🚀 طور مهاراتك إلى أقصى حد: أماكن محدودة متبقية في ورش العمل المقدمة من خبرائنا! عزز مهاراتك من خلال ورش عمل تطبيقية يقدمها خبراء من المجال الصناعي—بأقل رسوم (100–200 جنيه مصري فقط) وشهادة معتمدة. 🎓 جديد ومجاني: انضم إلى ورشة GESR — مسار: باحثو الجيل القادم (٩ أبريل، ٣–٦ م) — مجانية تماماً، سجّل الآن!'\nWHERE id = 30001;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute UPDATE announcements SET \n  message = '🚀 Supercharge Your Skills: Limited Seats Left in Our Expert-Led Workshops! Boost your skills with hands-on workshops led by industry experts—all for a very low fee (100–200 EGP) and including an official certificate. 🎓 NEW & FREE: Join the GESR MASAR — Nextgen Researchers workshop (April 9, 3–6 PM) — No fees, no invoice needed. Register now!',\n  message_ar = '🚀 طور مهاراتك إلى أقصى حد: أماكن محدودة متبقية في ورش العمل المقدمة من خبرائنا! عزز مهاراتك من خلال ورش عمل تطبيقية يقدمها خبراء من المجال الصناعي—بأقل رسوم (100–200 جنيه مصري فقط) وشهادة معتمدة. 🎓 جديد ومجاني: انضم إلى ورشة GESR — مسار: باحثو الجيل القادم (٩ أبريل، ٣–٦ م) — مجانية تماماً، سجّل الآن!'\nWHERE id = 30001;",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 1518
+}
