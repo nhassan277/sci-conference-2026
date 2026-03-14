@@ -296,7 +296,9 @@ export const appRouter = router({
       const hvd_genomics = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'hvd_genomics' && r.extWorkshopPaymentStatus !== 'rejected').length;
       const agitech = allRegs.filter(r => r.wantsWorkshop && r.workshopChoice === 'agitech' && r.workshopPaymentStatus !== 'rejected').length;
       const colors_metagenomics = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'colors_metagenomics' && r.extWorkshopPaymentStatus !== 'rejected').length;
-      return { nawah, marc, medsol, geochemistry, agitech, ai_biotech, chitosan, scrna_seq, hvd_genomics, colors_metagenomics };
+      const vaccine_industry = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'vaccine_industry' && r.extWorkshopPaymentStatus !== 'rejected').length;
+      const gesr_scholarships = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'gesr_scholarships').length;
+      return { nawah, marc, medsol, geochemistry, agitech, ai_biotech, chitosan, scrna_seq, hvd_genomics, colors_metagenomics, vaccine_industry, gesr_scholarships };
     }),
 
     confirmWorkshopPayment: adminProcedure

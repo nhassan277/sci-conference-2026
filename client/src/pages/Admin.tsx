@@ -704,7 +704,7 @@ export default function Admin() {
               <FlaskConical className="w-5 h-5 text-amber-600" />
               Workshop Registration Statistics
             </CardTitle>
-            <CardDescription>Live registration counts and capacity for all 8 workshops</CardDescription>
+            <CardDescription>Live registration counts and capacity for all 10 workshops</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
@@ -744,9 +744,12 @@ export default function Admin() {
                   {[
                     { key: "chitosan", label: "Biotech Product Dev 101 (Chitosan)", capacity: 30, date: "Apr 6, 9:00–12:00" },
                     { key: "agitech", label: "NGS & ddPCR in Targeted Therapy (Agitech)", capacity: 20, date: "Apr 6, 12:00–14:00" },
+                    { key: "vaccine_industry", label: "The Vaccine Industry Race (Jasmine Mohsen)", capacity: 999, date: "Apr 6, 2:00–5:00 PM" },
                     { key: "scrna_seq", label: "Single Cell Genomics (EG-CompBio)", capacity: 30, date: "Apr 9, 10:00–13:00" },
+                    { key: "ai_biotech", label: "AI Meets Biotech (AI بالعربي)", capacity: 30, date: "Apr 9, 1:00–3:00 PM" },
+                    { key: "gesr_scholarships", label: "GESR — From Lab to Global Opportunities", capacity: 999, date: "Apr 9, 3:00–6:00 PM" },
                     { key: "hvd_genomics", label: "Genomics & Proteomics (HVD)", capacity: 30, date: "Apr 12, 2026 — New Cairo" },
-                    { key: "ai_biotech", label: "AI Meets Biotech", capacity: 30, date: "Apr 9" },
+                    { key: "colors_metagenomics", label: "Metagenomics & Microbiome (Colors)", capacity: 25, date: "TBA" },
                   ].map(({ key, label, capacity, date }) => {
                     const count = (workshopCounts as any)?.[key] ?? 0;
                     const remaining = capacity - count;
@@ -852,6 +855,9 @@ export default function Admin() {
                       <SelectItem value="scrna_seq">🔭 Single Cell Genomics</SelectItem>
                       <SelectItem value="ai_biotech">🤖 AI Meets Biotech</SelectItem>
                       <SelectItem value="hvd_genomics">🧫 Genomics & Proteomics (HVD)</SelectItem>
+                      <SelectItem value="vaccine_industry">💉 Vaccine Industry Race</SelectItem>
+                      <SelectItem value="gesr_scholarships">🌍 GESR Scholarships</SelectItem>
+                      <SelectItem value="colors_metagenomics">🌿 Metagenomics & Microbiome (Colors)</SelectItem>
                     </SelectContent>
                   </Select>
                   <Button onClick={handleExportRegistrations} variant="outline">
@@ -957,7 +963,13 @@ export default function Admin() {
                                   {reg.wantsWorkshop ? (
                                     <>
                                       <Badge className="bg-amber-100 text-amber-800 block w-fit">
-                                        {reg.workshopChoice?.toUpperCase() || "Workshop"}
+                                        {({
+                          nawah: 'NAWAH Scientific',
+                          marc: 'MARC (GCP)',
+                          medsol: 'Medsol (Sequencing)',
+                          geochemistry: 'Geochemistry',
+                          agitech: 'Agitech (NGS & ddPCR)',
+                        } as Record<string, string>)[reg.workshopChoice ?? ''] || reg.workshopChoice?.toUpperCase() || 'Workshop'}
                                       </Badge>
                                       {(reg as any).workshopPaymentStatus === "confirmed" ? (
                                         <Badge className="bg-green-100 text-green-800 block w-fit text-xs">✅ Confirmed</Badge>
@@ -1011,7 +1023,15 @@ export default function Admin() {
                                   {(reg as any).wantsExtWorkshop ? (
                                     <>
                                       <Badge className="bg-purple-100 text-purple-800 block w-fit text-xs">
-                                        {(reg as any).extWorkshopChoice === 'ai_biotech' ? 'AI Meets Biotech' : ((reg as any).extWorkshopChoice?.toUpperCase() || 'Pre/Post WS')}
+                                        {({
+                          ai_biotech: 'AI Meets Biotech',
+                          chitosan: 'Biotech Dev 101 (Chitosan)',
+                          scrna_seq: 'Single Cell Genomics',
+                          hvd_genomics: 'Genomics & Proteomics (HVD)',
+                          vaccine_industry: 'Vaccine Industry Race',
+                          gesr_scholarships: 'GESR Scholarships',
+                          colors_metagenomics: 'Metagenomics (Colors)',
+                        } as Record<string, string>)[(reg as any).extWorkshopChoice ?? ''] || (reg as any).extWorkshopChoice?.toUpperCase() || 'Pre/Post WS'}
                                       </Badge>
                                       {(reg as any).extWorkshopPaymentStatus === "confirmed" ? (
                                         <Badge className="bg-green-100 text-green-800 block w-fit text-xs">✅ Confirmed</Badge>
