@@ -2926,8 +2926,9 @@ export const appRouter = router({
                   "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                  from: "SCI 2026 <onboarding@resend.dev>",
+                  from: "SCI 2026 <noreply@sciconf26.website>",
                   to: [registrant.email],
+                  reply_to: "sci.conf.2026@gmail.com",
                   subject: `[SCI 2026] ${announcement.message.slice(0, 80)}${announcement.message.length > 80 ? "..." : ""}`,
                   html: htmlBody,
                 }),
@@ -3127,7 +3128,7 @@ export const appRouter = router({
                   "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                  from: "SCI 2026 Organizing Committee <onboarding@resend.dev>",
+                  from: "SCI 2026 Organizing Committee <noreply@sciconf26.website>",
                   to: [reg.email],
                   reply_to: "sci.conf.2026@gmail.com",
                   subject: "[SCI 2026] Attendance Confirmation & Certificate Invoice Request | تأكيد الحضور وطلب إيصال الشهادة",
