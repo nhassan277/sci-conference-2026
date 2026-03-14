@@ -516,6 +516,40 @@ const sessions = {
       descriptionAr: "حفل الختام مع التقدير والإعلان عن جوائز أفضل مشروع وملصق وعرض تقديمي"
     }
   ],
+  day4: [
+    {
+      id: 1,
+      time: "April 6, 2026",
+      timeAr: "٦ أبريل ٢٠٢٦",
+      type: "workshop",
+      title: "From Basic Research to Precision Medicine: Applications of NGS and ddPCR in Targeted Therapy",
+      titleAr: "من البحث الأساسي إلى الطب الدقيق: تطبيقات NGS و ddPCR في العلاج الموجه",
+      location: "TBA",
+      locationAr: "سيتم الإعلان لاحقاً",
+      description: "A hands-on workshop covering next-generation sequencing (NGS) and digital droplet PCR (ddPCR) techniques and their applications in precision medicine and targeted cancer therapy.",
+      descriptionAr: "ورشة عمل تطبيقية تغطي تقنيات تسلسل الجيل التالي (NGS) والـ ddPCR وتطبيقاتها في الطب الدقيق وعلاج السرطان الموجه.",
+      presenter: "Agitech",
+      fee: "200 EGP",
+      feeAr: "٢٠٠ جنيه مصري",
+      duration: "TBA",
+      spots: "30 seats"
+    },
+    {
+      id: 2,
+      time: "April 6, 2026",
+      timeAr: "٦ أبريل ٢٠٢٦",
+      type: "workshop",
+      title: "Vaccine Workshop",
+      titleAr: "ورشة عمل اللقاحات",
+      location: "TBA",
+      locationAr: "سيتم الإعلان لاحقاً",
+      description: "Details to be announced soon.",
+      descriptionAr: "سيتم الإعلان عن التفاصيل قريباً.",
+      presenter: "TBA",
+      fee: "TBA",
+      duration: "TBA"
+    }
+  ],
   day3: [
     {
       id: 1,
@@ -637,7 +671,7 @@ export default function Schedule() {
     }
   };
 
-  const currentSessions = selectedDay === "day1" ? sessions.day1 : selectedDay === "day2" ? sessions.day2 : sessions.day3;
+  const currentSessions = selectedDay === "day1" ? sessions.day1 : selectedDay === "day2" ? sessions.day2 : selectedDay === "day3" ? sessions.day3 : sessions.day4;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
@@ -701,14 +735,17 @@ export default function Schedule() {
       <section className="py-12">
         <div className="container">
           <Tabs value={selectedDay} onValueChange={setSelectedDay} className="space-y-8">
-            <TabsList className="grid w-full max-w-2xl mx-auto grid-cols-3">
-              <TabsTrigger value="day1" className="text-base">
+            <TabsList className="grid w-full max-w-3xl mx-auto grid-cols-4">
+              <TabsTrigger value="day4" className="text-sm">
+                April 6 | ٦ أبريل
+              </TabsTrigger>
+              <TabsTrigger value="day1" className="text-sm">
                 Day 1 — April 7 | ٧ أبريل
               </TabsTrigger>
-              <TabsTrigger value="day2" className="text-base">
+              <TabsTrigger value="day2" className="text-sm">
                 Day 2 — April 8 | ٨ أبريل
               </TabsTrigger>
-              <TabsTrigger value="day3" className="text-base">
+              <TabsTrigger value="day3" className="text-sm">
                 April 9 | ٩ أبريل
               </TabsTrigger>
             </TabsList>
