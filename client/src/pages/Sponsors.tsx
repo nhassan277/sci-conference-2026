@@ -457,13 +457,6 @@ export default function Sponsors() {
                         <li><strong>Part 5 (30 min):</strong> Interactive Q&amp;A</li>
                       </ul>
                     </div>
-                    <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-3 space-y-1">
-                      <p className="text-sm font-semibold text-indigo-800">🎓 Special Selections from Conference Projects</p>
-                      <ul className="list-disc list-inside text-sm text-indigo-700 space-y-1">
-                        <li>5 students selected to join the <strong>GESR Mentorship Program</strong></li>
-                        <li>5 students invited to attend the <strong>next GESR Summer Conference</strong> (date TBA)</li>
-                      </ul>
-                    </div>
                     <p className="text-sm text-muted-foreground font-medium">
                       📅 Thursday, April 9, 2026 &nbsp;|&nbsp; 🕒 3:00 PM – 6:00 PM &nbsp;|&nbsp; 🎤 Dr. Nourhan Hassan &amp; Dr. Hazem Badawy (Board of GESR) &nbsp;|&nbsp; 🆓 Free
                     </p>
