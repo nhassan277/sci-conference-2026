@@ -647,12 +647,7 @@ export default function Home() {
                   🔥 First 30 participants only | أول 30 مشارك فقط
                 </Badge>
               </div>
-              {/* Notice */}
-              <div className="max-w-2xl mx-auto p-4 bg-amber-50 border-2 border-amber-300 rounded-xl text-sm text-amber-900 space-y-1">
-                <p className="font-bold flex items-center justify-center gap-2">⚠️ Important Notice | تنبيه هام</p>
-                <p>Each participant may register for <strong>ONE workshop only</strong>. Priority is given to the first 30 participants who pay and upload their payment invoice. Register early to secure your spot!</p>
-                <p dir="rtl" className="text-amber-800">يمكن لكل مشارك التسجيل في <strong>ورشة عمل واحدة فقط</strong>. الأولوية لأول 30 مشاركاً يدفعون ويرفعون إيصال الدفع. سجّل مبكراً لضمان مكانك!</p>
-              </div>
+
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">

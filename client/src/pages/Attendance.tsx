@@ -490,19 +490,6 @@ export default function Attendance() {
 
                 {wantsWorkshop && (
                   <div className="space-y-4 mt-2">
-                    {/* Notice */}
-                    <div className="p-3 bg-amber-100 border border-amber-300 rounded-lg">
-                      <p className="text-xs font-semibold text-amber-900 flex items-center gap-1 mb-1">
-                        <AlertCircle className="w-3 h-3" /> Important Notice | تنبيه هام
-                      </p>
-                      <p className="text-xs text-amber-800">
-                        You may register for <strong>ONE workshop only</strong>. Priority is given to the first 30 participants who pay and upload their invoice. Places are limited — register early!
-                      </p>
-                      <p className="text-xs text-amber-800 mt-1" dir="rtl">
-                        يمكنك التسجيل في <strong>ورشة عمل واحدة فقط</strong>. الأولوية لأول 30 مشاركاً يدفعون ويرفعون الإيصال. الأماكن محدودة — سجّل مبكراً!
-                      </p>
-                    </div>
-
                     {/* Workshop Choice */}
                     <div className="space-y-2">
                       <Label>Choose Your Workshop <span className="text-red-500">*</span></Label>
