@@ -183,8 +183,8 @@ export default function Attendance() {
           });
         }
 
-        // Upload ext workshop invoice if needed
-        if (wantsExtWorkshop && extWorkshopInvoiceFile) {
+        // Upload ext workshop invoice if needed (skip for free workshops like GESR)
+        if (wantsExtWorkshop && extWorkshopInvoiceFile && extWorkshopChoice !== "gesr_scholarships") {
           const extBase64 = await fileToBase64(extWorkshopInvoiceFile);
           await uploadInvoice.mutateAsync({
             registrationId: data.id,
@@ -229,7 +229,7 @@ export default function Attendance() {
       toast.error("Please select a pre/post conference workshop.");
       return;
     }
-    if (wantsExtWorkshop && !extWorkshopInvoiceFile) {
+    if (wantsExtWorkshop && extWorkshopChoice !== "gesr_scholarships" && !extWorkshopInvoiceFile) {
       toast.error("Please upload the pre/post conference workshop payment invoice before submitting.");
       return;
     }
@@ -789,32 +789,50 @@ export default function Attendance() {
                       </div>
                     </div>
 
-                    {/* Payment Instructions */}
-                    <div className="p-4 bg-purple-50 border border-purple-200 rounded-lg space-y-2">
-                      <p className="text-sm font-semibold text-purple-900 flex items-center gap-2">
-                        <AlertCircle className="w-4 h-4" /> Payment Instructions | تعليمات الدفع
-                      </p>
-                      <p className="text-xs text-purple-800">
-                        Transfer the workshop fee (100 or 200 EGP depending on the workshop — see fee shown on each workshop above) to the bank account below, then upload a photo of the transfer receipt. <strong>Uploading the invoice is mandatory to confirm your spot.</strong>
-                      </p>
-                      <p className="text-xs text-purple-800" dir="rtl">
-                        حوّل رسوم ورشة العمل (100 أو 200 جنيه حسب الورشة — انظر الرسوم الموضحة على كل ورشة أعلاه) إلى الحساب البنكي أدناه، ثم ارفع صورة إيصال التحويل. <strong>رفع الإيصال إلزامي لتأكيد مكانك.</strong>
-                      </p>
-                      {bankDetails}
-                    </div>
+                    {/* Payment Instructions — only show for paid workshops */}
+                    {extWorkshopChoice && extWorkshopChoice !== "gesr_scholarships" && (
+                      <div className="p-4 bg-purple-50 border border-purple-200 rounded-lg space-y-2">
+                        <p className="text-sm font-semibold text-purple-900 flex items-center gap-2">
+                          <AlertCircle className="w-4 h-4" /> Payment Instructions | تعليمات الدفع
+                        </p>
+                        <p className="text-xs text-purple-800">
+                          Transfer the workshop fee (100 or 200 EGP depending on the workshop — see fee shown on each workshop above) to the bank account below, then upload a photo of the transfer receipt. <strong>Uploading the invoice is mandatory to confirm your spot.</strong>
+                        </p>
+                        <p className="text-xs text-purple-800" dir="rtl">
+                          حوّل رسوم ورشة العمل (100 أو 200 جنيه حسب الورشة — انظر الرسوم الموضحة على كل ورشة أعلاه) إلى الحساب البنكي أدناه، ثم ارفع صورة إيصال التحويل. <strong>رفع الإيصال إلزامي لتأكيد مكانك.</strong>
+                        </p>
+                        {bankDetails}
+                      </div>
+                    )}
 
-                    {/* Invoice Upload */}
-                    <InvoiceUpload
-                      label="Upload Pre/Post Workshop Payment Invoice (Required)"
-                      labelAr="ارفع صورة إيصال دفع ورشة ما قبل/بعد المؤتمر (إلزامي)"
-                      file={extWorkshopInvoiceFile}
-                      onFileChange={setExtWorkshopInvoiceFile}
-                      required
-                    />
-                    {wantsExtWorkshop && !extWorkshopInvoiceFile && (
-                      <p className="text-xs text-red-500 flex items-center gap-1">
-                        <AlertCircle className="w-3 h-3" /> Invoice upload is required to confirm your workshop spot.
-                      </p>
+                    {/* Free workshop note for GESR */}
+                    {extWorkshopChoice === "gesr_scholarships" && (
+                      <div className="p-4 bg-green-50 border border-green-200 rounded-lg flex items-start gap-2">
+                        <span className="text-green-600 text-base mt-0.5">✅</span>
+                        <div>
+                          <p className="text-xs font-bold text-green-800">This workshop is FREE — No payment required | هذه الورشة مجانية — لا يلزم الدفع</p>
+                          <p className="text-xs text-green-700 mt-0.5">Your registration will be confirmed automatically. No invoice upload needed.</p>
+                          <p className="text-xs text-green-700 mt-0.5" dir="rtl">سيتم تأكيد تسجيلك تلقائياً. لا حاجة لرفع إيصال.</p>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Invoice Upload — only for paid workshops */}
+                    {extWorkshopChoice && extWorkshopChoice !== "gesr_scholarships" && (
+                      <>
+                        <InvoiceUpload
+                          label="Upload Pre/Post Workshop Payment Invoice (Required)"
+                          labelAr="ارفع صورة إيصال دفع ورشة ما قبل/بعد المؤتمر (إلزامي)"
+                          file={extWorkshopInvoiceFile}
+                          onFileChange={setExtWorkshopInvoiceFile}
+                          required
+                        />
+                        {wantsExtWorkshop && !extWorkshopInvoiceFile && (
+                          <p className="text-xs text-red-500 flex items-center gap-1">
+                            <AlertCircle className="w-3 h-3" /> Invoice upload is required to confirm your workshop spot.
+                          </p>
+                        )}
+                      </>
                     )}
                   </div>
                 )}
