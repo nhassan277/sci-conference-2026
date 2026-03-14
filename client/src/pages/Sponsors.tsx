@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Footer from "@/components/Footer";
 import { Badge } from "@/components/ui/badge";
-import { Award, Heart, Handshake, Building2, Globe } from "lucide-react";
+import { Award, Heart, Handshake, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function Sponsors() {
@@ -476,72 +476,6 @@ export default function Sponsors() {
         </div>
       </section>
 
-      {/* Community & Innovation Partners */}
-      <section className="py-16">
-        <div className="container">
-          <div className="text-center space-y-4 mb-12">
-            <Building2 className="w-16 h-16 text-red-600 mx-auto" />
-            <h2 className="text-4xl font-bold text-primary">Community & Innovation Partners</h2>
-            <p className="text-2xl font-semibold text-secondary" dir="rtl">شركاء المجتمع والابتكار</p>
-            <p className="text-lg text-muted-foreground">
-              Supporting Entrepreneurship and Student Innovation
-            </p>
-          </div>
-
-          <div className="max-w-3xl mx-auto">
-            <Card className="border-4 border-red-200 shadow-2xl hover:shadow-3xl transition-shadow">
-              <CardHeader className="text-center pb-4">
-                <div className="flex justify-center mb-6">
-                  <img
-                    src="https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/download(2)_577d8ace.png"
-                    alt="Startup Grind"
-                    className="h-32 object-contain"
-                  />
-                </div>
-                <CardTitle className="text-3xl">Startup Grind</CardTitle>
-                <CardDescription className="text-lg text-muted-foreground mt-2">
-                  Global Entrepreneurship Community — Cairo Chapter
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="prose prose-lg max-w-none">
-                  <p className="text-center text-lg leading-relaxed">
-                    Startup Grind is the world's largest startup community, educating, inspiring, and connecting
-                    entrepreneurs. The Cairo chapter brings together innovators, founders, and industry leaders
-                    to foster a thriving entrepreneurship ecosystem in Egypt.
-                  </p>
-                </div>
-
-                <div className="bg-red-50 border border-red-200 rounded-xl p-6">
-                  <p className="text-lg font-bold text-red-700 mb-3">🚀 Student Project Support Initiative</p>
-                  <p className="text-base leading-relaxed text-muted-foreground">
-                    Startup Grind will review and select outstanding undergraduate and postgraduate
-                    student projects in <strong>Artificial Intelligence, Machine Learning, and Bioinformatics</strong>.
-                    Selected teams will receive mentorship, networking opportunities, and entrepreneurial
-                    support to help transform their research ideas into real-world solutions.
-                  </p>
-                  <p className="text-base leading-relaxed text-muted-foreground mt-3" dir="rtl">
-                    ستقوم Startup Grind بمراجعة واختيار مشاريع الطلاب المتميزة في مجالات الذكاء الاصطناعي
-                    والتعلم الآلي والمعلوماتية الحيوية، وتقديم الدعم والإرشاد اللازمين لتحويل الأفكار البحثية إلى حلول حقيقية.
-                  </p>
-                </div>
-
-                <div className="text-center">
-                  <Button
-                    variant="outline"
-                    className="border-red-300 text-red-700 hover:bg-red-50"
-                    onClick={() => window.open('https://www.facebook.com/StartupgrindCAI/', '_blank')}
-                  >
-                    <Globe className="w-4 h-4 mr-2" />
-                    Follow Startup Grind
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
       {/* Award Sponsors */}
       <section className="py-16">
         <div className="container">
@@ -769,14 +703,21 @@ export default function Sponsors() {
                   />
                 </div>
                 <CardTitle className="text-xl text-red-700">Startup Grind</CardTitle>
-                <CardDescription className="text-xs font-medium text-muted-foreground">Community Partner · شريك مجتمعي</CardDescription>
+                <CardDescription className="text-sm font-medium text-muted-foreground">Global Entrepreneurship Community — Cairo Chapter</CardDescription>
               </CardHeader>
-              <CardContent>
-                <CardDescription className="text-sm space-y-2">
-                  <p className="font-semibold text-red-700">🚀 Student Project Selection & Support</p>
-                  <p>اختيار ودعم مشاريع الطلاب في الذكاء الاصطناعي والمعلوماتية الحيوية</p>
-                  <p className="text-xs text-muted-foreground">Startup Grind will select outstanding student projects in AI, Machine Learning & Bioinformatics and provide mentorship, networking, and entrepreneurial support.</p>
-                </CardDescription>
+              <CardContent className="space-y-4">
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  Startup Grind is the world's largest startup community, educating, inspiring, and connecting entrepreneurs. The Cairo chapter brings together innovators, founders, and industry leaders to foster a thriving entrepreneurship ecosystem in Egypt.
+                </p>
+                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                  <p className="text-sm font-bold text-red-700 mb-2">🚀 Student Project Selection & Support</p>
+                  <p className="text-xs leading-relaxed text-muted-foreground">
+                    Startup Grind will review and select outstanding undergraduate and postgraduate student projects in <strong>Artificial Intelligence, Machine Learning, and Bioinformatics</strong>. Selected teams will receive mentorship, networking opportunities, and entrepreneurial support to help transform their research ideas into real-world solutions.
+                  </p>
+                  <p className="text-xs leading-relaxed text-muted-foreground mt-2" dir="rtl">
+                    ستقوم Startup Grind بمراجعة واختيار مشاريع الطلاب المتميزة في مجالات الذكاء الاصطناعي والتعلم الآلي والمعلوماتية الحيوية، وتقديم الدعم والإرشاد اللازمين لتحويل الأفكار البحثية إلى حلول حقيقية.
+                  </p>
+                </div>
               </CardContent>
               <CardContent className="pt-0">
                 <a href="https://www.linkedin.com/company/startup-grind/posts/?feedView=all" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-red-600 hover:text-red-800 font-medium">
