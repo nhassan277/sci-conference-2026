@@ -905,8 +905,8 @@ export default function Schedule() {
                       <p className="text-xs text-muted-foreground">How to leverage AI in Biotechnology · 3 hours</p>
                     </div>
                     <div>
-                      <p className="font-semibold">Introduction to Bioinformatics</p>
-                      <p className="text-xs text-muted-foreground">By Dr. Dina Amr · Saturday, April 11, 2026 · 10:00 AM – 01:00 PM · 3 hours · 30 seats · 100 EGP · Suitable for anyone with no prior bioinformatics knowledge</p>
+                      <p className="font-semibold">From Lab to Global Opportunities: How to Prepare for Scholarships and Research Abroad</p>
+                      <p className="text-xs text-muted-foreground">By GESR (Dr. Nourhan Hassan &amp; Dr. Hazem Badawy) · Thursday, April 9, 2026 · 3:00 PM – 6:00 PM · 3 hours · Initiative: MASAR — Nextgen Researchers (launch event)</p>
                     </div>
                   </div>
                 </div>

@@ -379,23 +379,7 @@ export default function Home() {
                   </CardDescription>
                 </CardHeader>
               </Card>
-              <Card className="hover:shadow-lg transition-shadow border-2 hover:border-primary/50">
-                <CardHeader className="text-center">
-                  <div className="flex justify-center mb-4">
-                    <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-primary/20 shadow-lg">
-                      <img 
-                        src="https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_naMOge_image_80a4d111.png" 
-                        alt="Dr. Dina Amr" 
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  </div>
-                  <CardTitle className="text-lg">Dr. Dina Amr</CardTitle>
-                  <CardDescription dir="rtl">
-                    د. دينا عمرو
-                  </CardDescription>
-                </CardHeader>
-              </Card>
+
               <Card className="hover:shadow-lg transition-shadow border-2 hover:border-primary/50">
                 <CardHeader className="text-center">
                   <div className="flex justify-center mb-4">
@@ -1429,99 +1413,7 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Dr. Dina Amr — Introduction to Bioinformatics Workshop */}
-              <div className="max-w-2xl mx-auto">
-              <div className="bg-white rounded-2xl border-2 border-teal-200 overflow-hidden shadow-sm">
-                <div className="bg-gradient-to-r from-teal-700 to-teal-600 p-4 text-white">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <BookOpen className="w-6 h-6" />
-                      <div>
-                        <p className="font-bold text-sm">Post-Conference | بعد المؤتمر</p>
-                        <p className="text-teal-200 text-xs">Saturday, April 11, 2026 | 10:00 AM – 01:00 PM</p>
-                      </div>
-                    </div>
-                    <Badge className="bg-teal-500 text-white text-xs">Max 30 Students</Badge>
-                  </div>
-                </div>
-                <div className="p-6 space-y-4">
-                  <div className="flex items-start gap-4">
-                    <div className="shrink-0">
-                      <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-teal-300">
-                        <img src="https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_naMOge_image_80a4d111.png" alt="Dr. Dina Amr" className="w-full h-full object-cover" />
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-foreground">Introduction to Bioinformatics</h3>
-                      <p className="text-teal-700 font-semibold text-sm mt-1">By <strong>Dr. Dina Amr</strong></p>
-                      <p className="text-muted-foreground text-xs">Lecturer, Biotechnology Department, Faculty of Science, Cairo University</p>
-                    </div>
-                  </div>
 
-                  <div className="bg-teal-50 p-4 rounded-lg space-y-1">
-                    <p className="text-sm text-muted-foreground"><strong>Duration:</strong> 3 hours hands-on training</p>
-                    <p className="text-sm text-muted-foreground"><strong>Suitable for:</strong> Anyone with no previous knowledge in bioinformatics</p>
-                    <p className="text-sm text-muted-foreground"><strong>Capacity:</strong> Maximum 30 students</p>
-                    <p className="text-sm font-bold text-amber-700"><strong>Fee:</strong> 100 EGP (incl. certificate)</p>
-                    <p className="text-xs text-amber-600" dir="rtl">100 جنيه مصري (شاملة الشهادة)</p>
-                  </div>
-
-                  {/* Overview */}
-                  <div className="bg-teal-50 border border-teal-200 rounded-lg p-3">
-                    <p className="text-xs text-teal-800 leading-relaxed">
-                      A 3-hour hands-on workshop covering practical bioinformatics techniques and online repositories. Suitable for anyone with no previous knowledge in bioinformatics.
-                    </p>
-                  </div>
-
-                  {/* Objectives */}
-                  <div>
-                    <p className="text-sm font-bold text-teal-700 mb-1">Workshop Objectives</p>
-                    <p className="text-xs text-muted-foreground leading-relaxed">The aim of this training is to equip participants with the basic knowledge and skills of bioinformatics.</p>
-                  </div>
-
-                  {/* Workshop Outline */}
-                  <div>
-                    <p className="text-sm font-bold text-teal-700 mb-2">Workshop Outline</p>
-                    <ul className="list-disc list-inside space-y-1 text-xs text-muted-foreground">
-                      <li>Introduction to Bioinformatics</li>
-                      <li>Bioinformatics Databases</li>
-                      <li>Sequence File Formats</li>
-                      <li>Sequence Retrieval from DNA and Protein databases</li>
-                      <li>Identification of sequence features and functional sites in Genes and Proteins</li>
-                      <li>Introduction to principles of Primer design</li>
-                      <li>Similarity Search using BLAST</li>
-                      <li>Pairwise &amp; Multiple Sequence Alignment</li>
-                      <li>Introduction to Phylogenetic Analysis</li>
-                    </ul>
-                  </div>
-
-
-
-                  {/* Location */}
-                  <div className="p-3 bg-white rounded-xl border border-teal-200 flex items-start gap-2">
-                    <span className="text-teal-600 text-base mt-0.5">📍</span>
-                    <div>
-                      <p className="text-xs text-muted-foreground font-semibold">Location | المكان</p>
-                      <p className="font-bold text-teal-900 text-sm">قاعة ابن سينا — قسم النبات القديم — كلية العلوم — جامعة القاهرة</p>
-                      <p className="text-teal-700 text-xs">Ibn Sina Hall — Botany Dept. — Faculty of Science, Cairo University</p>
-                    </div>
-                  </div>
-
-                  <p className="text-xs text-green-700">Certificate co-signed by <strong>Dr. Dina Amr</strong> &amp; <strong>Faculty of Science, Cairo University</strong> | شهادة معتمدة من د. دينا عمر وكلية العلوم، جامعة القاهرة</p>
-
-                  <div className="flex items-center justify-between">
-                    <Badge className="bg-green-100 text-green-800 text-xs">30/30 spots left 🟢</Badge>
-                    <Button
-                      size="sm"
-                      className="bg-teal-700 hover:bg-teal-800 text-white text-xs px-3"
-                      onClick={() => { window.location.href = '/attendance'; }}
-                    >
-                      Register &amp; Upload Invoice | سجّل وارفع الإيصال
-                    </Button>
-                  </div>
-                </div>
-              </div>
-              </div>
 
               {/* HVD Life Sciences Workshop Card */}
               <div className="max-w-2xl mx-auto">
@@ -1792,6 +1684,7 @@ export default function Home() {
                 { name: "EgCompBio", logo: "/images/logo_egcompbio.png", linkedin: "https://www.linkedin.com/company/egcompbio/posts/?feedView=all" },
                 { name: "AI بالعربي", logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/KlrhKxhzNQOHAlor.jpeg", linkedin: "https://www.linkedin.com/company/ai-بالعربي/" },
                 { name: "GEnoEra Technology", logo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/ge_logo-1_c2bdf8df.png", linkedin: "https://www.linkedin.com/company/geno-era-technology/" },
+                { name: "GESR", logo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/GESR-logo_7866e6d3.jpg", linkedin: "https://www.linkedin.com/company/102566987/" },
               ].map((s) => (
                 <a key={s.name} href={s.linkedin} target="_blank" rel="noopener noreferrer"
                   className="bg-white border border-border rounded-xl p-4 flex flex-col items-center gap-3 shadow-sm hover:shadow-md hover:border-primary/40 transition-all group">
