@@ -1683,7 +1683,7 @@ export default function Home() {
                 { name: "EgCompBio", logo: "/images/logo_egcompbio.png", linkedin: "https://www.linkedin.com/company/egcompbio/posts/?feedView=all" },
                 { name: "AI بالعربي", logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/KlrhKxhzNQOHAlor.jpeg", linkedin: "https://www.linkedin.com/company/ai-بالعربي/" },
                 { name: "GESR", logo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/GESR-logo_7866e6d3.jpg", linkedin: "https://www.linkedin.com/company/102566987/" },
-                { name: "HVD Life Sciences", logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/HVDLogo.png", linkedin: "https://www.linkedin.com/company/hvdegypt/posts/?feedView=all" },
+                { name: "HVD Life Sciences", logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/NlYUUYlTeGQwRRXp.png", linkedin: "https://www.linkedin.com/company/hvdegypt/posts/?feedView=all" },
                 { name: "GEnoEra Technology", logo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/ge_logo-1_c2bdf8df.png", linkedin: "https://www.linkedin.com/company/geno-era-technology/" },
               ].map((s) => (
                 <a key={s.name} href={s.linkedin} target="_blank" rel="noopener noreferrer"
