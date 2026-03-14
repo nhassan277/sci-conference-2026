@@ -1,0 +1,67 @@
+{
+  "query": "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'keynote_speakers' ORDER BY ORDINAL_POSITION;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'keynote_speakers' ORDER BY ORDINAL_POSITION;",
+  "rows": [
+    {
+      "COLUMN_NAME": "id"
+    },
+    {
+      "COLUMN_NAME": "full_name"
+    },
+    {
+      "COLUMN_NAME": "title"
+    },
+    {
+      "COLUMN_NAME": "affiliation"
+    },
+    {
+      "COLUMN_NAME": "presentation_title"
+    },
+    {
+      "COLUMN_NAME": "presentation_title_ar"
+    },
+    {
+      "COLUMN_NAME": "presentation_abstract"
+    },
+    {
+      "COLUMN_NAME": "bio"
+    },
+    {
+      "COLUMN_NAME": "bio_ar"
+    },
+    {
+      "COLUMN_NAME": "photo_url"
+    },
+    {
+      "COLUMN_NAME": "linkedin_url"
+    },
+    {
+      "COLUMN_NAME": "twitter_url"
+    },
+    {
+      "COLUMN_NAME": "website_url"
+    },
+    {
+      "COLUMN_NAME": "display_order"
+    },
+    {
+      "COLUMN_NAME": "is_visible"
+    },
+    {
+      "COLUMN_NAME": "created_at"
+    },
+    {
+      "COLUMN_NAME": "updated_at"
+    },
+    {
+      "COLUMN_NAME": "speaker_type"
+    },
+    {
+      "COLUMN_NAME": "speaker_sector"
+    }
+  ],
+  "messages": [],
+  "stdout": "COLUMN_NAME\nid\nfull_name\ntitle\naffiliation\npresentation_title\npresentation_title_ar\npresentation_abstract\nbio\nbio_ar\nphoto_url\nlinkedin_url\ntwitter_url\nwebsite_url\ndisplay_order\nis_visible\ncreated_at\nupdated_at\nspeaker_type\nspeaker_sector\n",
+  "stderr": "",
+  "execution_time_ms": 1565
+}

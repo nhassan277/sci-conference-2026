@@ -1,0 +1,313 @@
+{
+  "query": "SELECT id, full_name, title, affiliation, speaker_type, speaker_sector, presentation_title, is_visible FROM keynote_speakers ORDER BY speaker_type, speaker_sector, display_order;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name, title, affiliation, speaker_type, speaker_sector, presentation_title, is_visible FROM keynote_speakers ORDER BY speaker_type, speaker_sector, display_order;",
+  "rows": [
+    {
+      "id": "31",
+      "full_name": "Fathy Khodair",
+      "title": "Prof. Dr.",
+      "affiliation": "Former Dean, Faculty of Medicine (Kasr Al-Ainy), Cairo University - Advisor to the President of Cairo University - Consultant Plastic and Reconstructive Surgeon",
+      "speaker_type": "invited",
+      "speaker_sector": "academia",
+      "presentation_title": "Clinical application of adipose derived stem cells in plastic surgery",
+      "is_visible": "1"
+    },
+    {
+      "id": "12",
+      "full_name": "Sohair Ramadan Fahmy",
+      "title": "Prof. Dr.",
+      "affiliation": "Dean of Faculty of Science, Cairo University; General Coordinator of the Sustainability Office; Professor of Physiology, Zoology Department, Faculty of Science, Cairo University",
+      "speaker_type": "invited",
+      "speaker_sector": "academia",
+      "presentation_title": "Practical Aspects of Experimental Design in Laboratory Animal Science",
+      "is_visible": "1"
+    },
+    {
+      "id": "5",
+      "full_name": "Nagwa El-Badri",
+      "title": "Prof. Dr.",
+      "affiliation": "Director of Biomedical Sciences Program, Director of Center of Excellence for Stem Cells and Regenerative Medicine, Professor, Biomedical Sciences Program, Zewail City of Science, Technology and Innovation",
+      "speaker_type": "invited",
+      "speaker_sector": "academia",
+      "presentation_title": "Biomimetic Scaffolds and the Human Amniotic Membrane",
+      "is_visible": "1"
+    },
+    {
+      "id": "2",
+      "full_name": "Ibrahim M. El-Sherbiny",
+      "title": "Prof. Dr.",
+      "affiliation": "Professor of Nanotechnology & Nanomedicine, Founding Chairman of Nanoscience Program, Founding Director of Center of Materials Science, Acting President of the University of Science and Technology at Zewail City",
+      "speaker_type": "invited",
+      "speaker_sector": "academia",
+      "presentation_title": "Basic Sciences As the Foundation of Innovation: Some Success Stories for Disease Treatment and Advanced Biomedical Applications (From Lab to Society)",
+      "is_visible": "1"
+    },
+    {
+      "id": "9",
+      "full_name": "Mahmoud Ibrahim Nasr",
+      "title": "Prof. Dr.",
+      "affiliation": "Professor of Ore Beneficiation and Manufacturing, Egyptian Central Metallurgical Research & Development Institute (CMRDI)",
+      "speaker_type": "invited",
+      "speaker_sector": "academia",
+      "presentation_title": "Egyptian Iron Ore as a Feedstock to the Iron and Steel Industry",
+      "is_visible": "1"
+    },
+    {
+      "id": "7",
+      "full_name": "Khalid Muhammad Taalab",
+      "title": "Prof. Dr.",
+      "affiliation": "Nuclear Medicine Professor at Military Medical Academy, Egypt Centre of Research and Regenerative Medicine (ECRRM)",
+      "speaker_type": "invited",
+      "speaker_sector": "academia",
+      "presentation_title": "Radiopharmaceuticals and Precision Medicine",
+      "is_visible": "1"
+    },
+    {
+      "id": "8",
+      "full_name": "Mohamed Ibrahim El-Anbawy",
+      "title": "Prof. Dr.",
+      "affiliation": "Professor of Environmental Geology, Geology Department, Faculty of Science, Cairo University",
+      "speaker_type": "invited",
+      "speaker_sector": "academia",
+      "presentation_title": "Economic Utilization of Shale in Desert Land Reclamation and Cement Industry",
+      "is_visible": "1"
+    },
+    {
+      "id": "6",
+      "full_name": "Osama Azmy",
+      "title": "Prof. Dr.",
+      "affiliation": "Consultant to the President of the National Research Centre for medical clinical trials, Head of the Regenerative Medicine Unit at NRC, Fellow of the Royal College of Obstetricians and Gynecologists (FRCOG)",
+      "speaker_type": "invited",
+      "speaker_sector": "academia",
+      "presentation_title": "Management of the Rosy Years of Life",
+      "is_visible": "1"
+    },
+    {
+      "id": "3",
+      "full_name": "Ashraf Abdou Tabll",
+      "title": "Prof. Dr.",
+      "affiliation": "Professor of Medical Biotechnology, Egypt Center for Research and Regenerative Medicine (ECRRM)",
+      "speaker_type": "invited",
+      "speaker_sector": "academia",
+      "presentation_title": "Current Status and Future Prospects of Medical Biotechnology in Egypt: Lessons from Monoclonal and IgY Antibodies",
+      "is_visible": "1"
+    },
+    {
+      "id": "14",
+      "full_name": "Ayman El-Shibiny",
+      "title": "Prof. Dr. ",
+      "affiliation": "Professor of Biomedical Sciences, and Director of CMP, Zewail City of Science and Technology",
+      "speaker_type": "invited",
+      "speaker_sector": "academia",
+      "presentation_title": "Phage Innovation: Targeted Solutions for Regional Antimicrobial Challenges",
+      "is_visible": "1"
+    },
+    {
+      "id": "17",
+      "full_name": "Naglaa A. Abdallah",
+      "title": "Prof. Dr. ",
+      "affiliation": "Professor of Genetics, Faculty of Agriculture, Cairo University",
+      "speaker_type": "invited",
+      "speaker_sector": "academia",
+      "presentation_title": "Novel Genome Editing Approaches for a Sustainable Future",
+      "is_visible": "1"
+    },
+    {
+      "id": "19",
+      "full_name": "Osama Shalabiea",
+      "title": "Prof. Dr.",
+      "affiliation": "Professor of Astrophysics and Space Physics, and Head of the Department, Faculty of Science, Cairo University",
+      "speaker_type": "invited",
+      "speaker_sector": "academia",
+      "presentation_title": "Space Science and Technology (SSAT): Exploration, Utilization and Commercialization",
+      "is_visible": "1"
+    },
+    {
+      "id": "18",
+      "full_name": "Tarek Kapiel",
+      "title": "Prof. em.",
+      "affiliation": "Assistant Professor of Plant Biotechnology at Department of Biotechnology, Faculty of Science, Cairo University",
+      "speaker_type": "invited",
+      "speaker_sector": "academia",
+      "presentation_title": "Integrative Bio-Nanotechnologies for Industrial Symbiosis: Scaling the Circular Bioeconomy in Egypt",
+      "is_visible": "1"
+    },
+    {
+      "id": "15",
+      "full_name": "Ahmed Fikry El-Sayed",
+      "title": "Dr.",
+      "affiliation": "Assistant Professor, King Salman International University",
+      "speaker_type": "invited",
+      "speaker_sector": "academia",
+      "presentation_title": "Computer-Aided Drug Design: From Code to Cure",
+      "is_visible": "1"
+    },
+    {
+      "id": "20",
+      "full_name": "Areeg Abdalla",
+      "title": "Dr. ",
+      "affiliation": "Associate Professor, Mathematics Department, Faculty of Science, Cairo University",
+      "speaker_type": "invited",
+      "speaker_sector": "academia",
+      "presentation_title": "Scientific Principles and Medical Applications of Artificial Intelligence",
+      "is_visible": "1"
+    },
+    {
+      "id": "30",
+      "full_name": "Mohamed Shaker Salem",
+      "title": "Prof. Dr. ",
+      "affiliation": "Physics Department, Faculty of Science, Cairo University ",
+      "speaker_type": "invited",
+      "speaker_sector": "academia",
+      "presentation_title": "Silicon Nanophotonics for On-Chip Integrated Circuit Technology",
+      "is_visible": "1"
+    },
+    {
+      "id": "22",
+      "full_name": "Mohamed Hamed",
+      "title": "Assoc. Prof. Dr. ",
+      "affiliation": "Associate professor of biomedical informatics and computational biology at the German University of Cairo (GUC).",
+      "speaker_type": "invited",
+      "speaker_sector": "academia",
+      "presentation_title": "Computational Transformation in Drug Discovery: Bioinformatics and AI Innovations in Pharmaceutical Science",
+      "is_visible": "1"
+    },
+    {
+      "id": "23",
+      "full_name": "Rashika El Ridi",
+      "title": "Prof. Dr.",
+      "affiliation": "Professor of Immunology, Zoology Department, Faculty of Science, Cairo University",
+      "speaker_type": "invited",
+      "speaker_sector": "academia",
+      "presentation_title": "The Impact of Misleading Concepts in Science on the Faculty of Science-Cairo University Efforts to Control Schistosomiasis and Cancer.  A Hope Remains: Arachidonic Acid",
+      "is_visible": "1"
+    },
+    {
+      "id": "25",
+      "full_name": "Ahmed Galal",
+      "title": "Prof. Dr.",
+      "affiliation": "Chemistry Department, Faculty of Science, Cairo University",
+      "speaker_type": "invited",
+      "speaker_sector": "academia",
+      "presentation_title": "Photo-assisted electrocatalysis: An effective tool for green chemical conversion",
+      "is_visible": "1"
+    },
+    {
+      "id": "26",
+      "full_name": "Refaat Gabre",
+      "title": "Prof. Dr. ",
+      "affiliation": "Head of Biotechnology Department, Faculty of Science, Cairo University",
+      "speaker_type": "invited",
+      "speaker_sector": "academia",
+      "presentation_title": "Transfer, localization, and reproduction of biotechnology in Egypt",
+      "is_visible": "1"
+    },
+    {
+      "id": "11",
+      "full_name": "Sahar Hassan",
+      "title": "Dr.",
+      "affiliation": "Senior Geologist and Sedimentologist, Digital Subsurface Solutions, SLB",
+      "speaker_type": "invited",
+      "speaker_sector": "industry",
+      "presentation_title": "Revolutionizing Subsurface Understanding: AI-Driven Logging-While-Drilling Technologies",
+      "is_visible": "1"
+    },
+    {
+      "id": "21",
+      "full_name": "Ahmed Youssef ",
+      "title": "Dr.",
+      "affiliation": "Production Deputy Manager and Vaccine Line Head at BioGeneric Pharma (BGP), and Instructor at Africa CDC biomanufacturing training programs",
+      "speaker_type": "invited",
+      "speaker_sector": "industry",
+      "presentation_title": "Advanced Vaccine Bioprocessing: From Strain Selection to Market Release",
+      "is_visible": "1"
+    },
+    {
+      "id": "24",
+      "full_name": "Ahmad Wafik Al Shareif",
+      "title": "Dr. ",
+      "affiliation": "Senior Petrophysicist, Assistant General Manager for Development, El Wastani Petroleum Company (WASCO), Dana Gas JV   ",
+      "speaker_type": "invited",
+      "speaker_sector": "industry",
+      "presentation_title": "Detection of Low Contrast, Low Resistivity Pay (lclr) Challenge in Shaly Sand Gas Reservoir Through Acoustic Data in the on Shore Nile Delta, Egypt ",
+      "is_visible": "1"
+    },
+    {
+      "id": "27",
+      "full_name": "Mostafa Nasser ",
+      "title": "Eng.",
+      "affiliation": "Startup Grind Chapter Director",
+      "speaker_type": "invited",
+      "speaker_sector": "industry",
+      "presentation_title": "AI in Biotechnology",
+      "is_visible": "1"
+    },
+    {
+      "id": "28",
+      "full_name": "Mohamed Anwar Abdelwahab",
+      "title": "Dr.",
+      "affiliation": "R&D Manager, Techno Taste (Flavor House)",
+      "speaker_type": "invited",
+      "speaker_sector": "industry",
+      "presentation_title": "From Molecules to Taste: The Role of Organic Chemistry in Flavor Manufacturing and Food Innovation",
+      "is_visible": "1"
+    },
+    {
+      "id": "29",
+      "full_name": "Abdelfattah Kamal",
+      "title": "Dr.",
+      "affiliation": "Operations Director at BioGeneric pharma (BGP)",
+      "speaker_type": "invited",
+      "speaker_sector": "industry",
+      "presentation_title": "Achieving Quality and Sustainable Local Vaccine Production in Africa to Improve Access",
+      "is_visible": "1"
+    },
+    {
+      "id": "1",
+      "full_name": "Khaled Amer",
+      "title": "Major General Dr.",
+      "affiliation": "Principal Investigator of Human Genome project, Egypt Centre for Research and Regenerative Medicine (ECRRM)",
+      "speaker_type": "keynote",
+      "speaker_sector": "academia",
+      "presentation_title": "Egypt Genome; From Dream to Reality",
+      "is_visible": "1"
+    },
+    {
+      "id": "16",
+      "full_name": "Ehab El-Dabaa",
+      "title": "Prof. Dr. ",
+      "affiliation": "Deputy Director of the Biochemistry & Molecular Biology and Medicinal Chemistry Division and head of Center of Excellence in Recombinant Biopharmaceutical Proteins (CERBioP), Theodor Bilharz Research Institute, Egypt",
+      "speaker_type": "keynote",
+      "speaker_sector": "academia",
+      "presentation_title": "Center of Excellence in Recombinant Biopharmaceutical Proteins (CERBioP) in TBRI;  From Scientific Innovation to The Egyptian Biopharmaceutical Industry",
+      "is_visible": "1"
+    },
+    {
+      "id": "4",
+      "full_name": "Mortada Mourad Taha El Aref",
+      "title": "Prof. Dr.",
+      "affiliation": "Professor of Ore Geology, Geology Department, Faculty of Science, Cairo University",
+      "speaker_type": "keynote",
+      "speaker_sector": "academia",
+      "presentation_title": "Karstology (Science of Unlimited Multi-Discipline Approaches), Promising Setting for Industrial Raw Materials",
+      "is_visible": "1"
+    },
+    {
+      "id": "13",
+      "full_name": "Hamed A. Ead",
+      "title": "Prof. Dr. ",
+      "affiliation": "Professor of Chemistry, Faculty of Science, Cairo University",
+      "speaker_type": "keynote",
+      "speaker_sector": "academia",
+      "presentation_title": "Science at the Core of Innovation: Reimagining the University–Industry Nexus for Transformative Impact",
+      "is_visible": "1"
+    }
+  ],
+  "messages": [
+    "10\tMortada Mourad El Aref\tProf. Dr.\tProfessor of Ore Geology, Geology Department, Faculty of Science, Cairo University",
+    "\tinvited\tacademia\tEgyptian Iron Ore for Supporting National Economy - Opportunities and Challenges\t1"
+  ],
+  "stdout": "id\tfull_name\ttitle\taffiliation\tspeaker_type\tspeaker_sector\tpresentation_title\tis_visible\n31\tFathy Khodair\tProf. Dr.\tFormer Dean, Faculty of Medicine (Kasr Al-Ainy), Cairo University - Advisor to the President of Cairo University - Consultant Plastic and Reconstructive Surgeon\tinvited\tacademia\tClinical application of adipose derived stem cells in plastic surgery\t1\n12\tSohair Ramadan Fahmy\tProf. Dr.\tDean of Faculty of Science, Cairo University; General Coordinator of the Sustainability Office; Professor of Physiology, Zoology Department, Faculty of Science, Cairo University\tinvited\tacademia\tPractical Aspects of Experimental Design in Laboratory Animal Science\t1\n5\tNagwa El-Badri\tProf. Dr.\tDirector of Biomedical Sciences Program, Director of Center of Excellence for Stem Cells and Regenerative Medicine, Professor, Biomedical Sciences Program, Zewail City of Science, Technology and Innovation\tinvited\tacademia\tBiomimetic Scaffolds and the Human Amniotic Membrane\t1\n10\tMortada Mourad El Aref\tProf. Dr.\tProfessor of Ore Geology, Geology Department, Faculty of Science, Cairo University\n\tinvited\tacademia\tEgyptian Iron Ore for Supporting National Economy - Opportunities and Challenges\t1\n2\tIbrahim M. El-Sherbiny\tProf. Dr.\tProfessor of Nanotechnology & Nanomedicine, Founding Chairman of Nanoscience Program, Founding Director of Center of Materials Science, Acting President of the University of Science and Technology at Zewail City\tinvited\tacademia\tBasic Sciences As the Foundation of Innovation: Some Success Stories for Disease Treatment and Advanced Biomedical Applications (From Lab to Society)\t1\n9\tMahmoud Ibrahim Nasr\tProf. Dr.\tProfessor of Ore Beneficiation and Manufacturing, Egyptian Central Metallurgical Research & Development Institute (CMRDI)\tinvited\tacademia\tEgyptian Iron Ore as a Feedstock to the Iron and Steel Industry\t1\n7\tKhalid Muhammad Taalab\tProf. Dr.\tNuclear Medicine Professor at Military Medical Academy, Egypt Centre of Research and Regenerative Medicine (ECRRM)\tinvited\tacademia\tRadiopharmaceuticals and Precision Medicine\t1\n8\tMohamed Ibrahim El-Anbawy\tProf. Dr.\tProfessor of Environmental Geology, Geology Department, Faculty of Science, Cairo University\tinvited\tacademia\tEconomic Utilization of Shale in Desert Land Reclamation and Cement Industry\t1\n6\tOsama Azmy\tProf. Dr.\tConsultant to the President of the National Research Centre for medical clinical trials, Head of the Regenerative Medicine Unit at NRC, Fellow of the Royal College of Obstetricians and Gynecologists (FRCOG)\tinvited\tacademia\tManagement of the Rosy Years of Life\t1\n3\tAshraf Abdou Tabll\tProf. Dr.\tProfessor of Medical Biotechnology, Egypt Center for Research and Regenerative Medicine (ECRRM)\tinvited\tacademia\tCurrent Status and Future Prospects of Medical Biotechnology in Egypt: Lessons from Monoclonal and IgY Antibodies\t1\n14\tAyman El-Shibiny\tProf. Dr. \tProfessor of Biomedical Sciences, and Director of CMP, Zewail City of Science and Technology\tinvited\tacademia\tPhage Innovation: Targeted Solutions for Regional Antimicrobial Challenges\t1\n17\tNaglaa A. Abdallah\tProf. Dr. \tProfessor of Genetics, Faculty of Agriculture, Cairo University\tinvited\tacademia\tNovel Genome Editing Approaches for a Sustainable Future\t1\n19\tOsama Shalabiea\tProf. Dr.\tProfessor of Astrophysics and Space Physics, and Head of the Department, Faculty of Science, Cairo University\tinvited\tacademia\tSpace Science and Technology (SSAT): Exploration, Utilization and Commercialization\t1\n18\tTarek Kapiel\tProf. em.\tAssistant Professor of Plant Biotechnology at Department of Biotechnology, Faculty of Science, Cairo University\tinvited\tacademia\tIntegrative Bio-Nanotechnologies for Industrial Symbiosis: Scaling the Circular Bioeconomy in Egypt\t1\n15\tAhmed Fikry El-Sayed\tDr.\tAssistant Professor, King Salman International University\tinvited\tacademia\tComputer-Aided Drug Design: From Code to Cure\t1\n20\tAreeg Abdalla\tDr. \tAssociate Professor, Mathematics Department, Faculty of Science, Cairo University\tinvited\tacademia\tScientific Principles and Medical Applications of Artificial Intelligence\t1\n30\tMohamed Shaker Salem\tProf. Dr. \tPhysics Department, Faculty of Science, Cairo University \tinvited\tacademia\tSilicon Nanophotonics for On-Chip Integrated Circuit Technology\t1\n22\tMohamed Hamed\tAssoc. Prof. Dr. \tAssociate professor of biomedical informatics and computational biology at the German University of Cairo (GUC).\tinvited\tacademia\tComputational Transformation in Drug Discovery: Bioinformatics and AI Innovations in Pharmaceutical Science\t1\n23\tRashika El Ridi\tProf. Dr.\tProfessor of Immunology, Zoology Department, Faculty of Science, Cairo University\tinvited\tacademia\tThe Impact of Misleading Concepts in Science on the Faculty of Science-Cairo University Efforts to Control Schistosomiasis and Cancer.  A Hope Remains: Arachidonic Acid\t1\n25\tAhmed Galal\tProf. Dr.\tChemistry Department, Faculty of Science, Cairo University\tinvited\tacademia\tPhoto-assisted electrocatalysis: An effective tool for green chemical conversion\t1\n26\tRefaat Gabre\tProf. Dr. \tHead of Biotechnology Department, Faculty of Science, Cairo University\tinvited\tacademia\tTransfer, localization, and reproduction of biotechnology in Egypt\t1\n11\tSahar Hassan\tDr.\tSenior Geologist and Sedimentologist, Digital Subsurface Solutions, SLB\tinvited\tindustry\tRevolutionizing Subsurface Understanding: AI-Driven Logging-While-Drilling Technologies\t1\n21\tAhmed Youssef \tDr.\tProduction Deputy Manager and Vaccine Line Head at BioGeneric Pharma (BGP), and Instructor at Africa CDC biomanufacturing training programs\tinvited\tindustry\tAdvanced Vaccine Bioprocessing: From Strain Selection to Market Release\t1\n24\tAhmad Wafik Al Shareif\tDr. \tSenior Petrophysicist, Assistant General Manager for Development, El Wastani Petroleum Company (WASCO), Dana Gas JV   \tinvited\tindustry\tDetection of Low Contrast, Low Resistivity Pay (lclr) Challenge in Shaly Sand Gas Reservoir Through Acoustic Data in the on Shore Nile Delta, Egypt \t1\n27\tMostafa Nasser \tEng.\tStartup Grind Chapter Director\tinvited\tindustry\tAI in Biotechnology\t1\n28\tMohamed Anwar Abdelwahab\tDr.\tR&D Manager, Techno Taste (Flavor House)\tinvited\tindustry\tFrom Molecules to Taste: The Role of Organic Chemistry in Flavor Manufacturing and Food Innovation\t1\n29\tAbdelfattah Kamal\tDr.\tOperations Director at BioGeneric pharma (BGP)\tinvited\tindustry\tAchieving Quality and Sustainable Local Vaccine Production in Africa to Improve Access\t1\n1\tKhaled Amer\tMajor General Dr.\tPrincipal Investigator of Human Genome project, Egypt Centre for Research and Regenerative Medicine (ECRRM)\tkeynote\tacademia\tEgypt Genome; From Dream to Reality\t1\n16\tEhab El-Dabaa\tProf. Dr. \tDeputy Director of the Biochemistry & Molecular Biology and Medicinal Chemistry Division and head of Center of Excellence in Recombinant Biopharmaceutical Proteins (CERBioP), Theodor Bilharz Research Institute, Egypt\tkeynote\tacademia\tCenter of Excellence in Recombinant Biopharmaceutical Proteins (CERBioP) in TBRI;  From Scientific Innovation to The Egyptian Biopharmaceutical Industry\t1\n4\tMortada Mourad Taha El Aref\tProf. Dr.\tProfessor of Ore Geology, Geology Department, Faculty of Science, Cairo University\tkeynote\tacademia\tKarstology (Science of Unlimited Multi-Discipline Approaches), Promising Setting for Industrial Raw Materials\t1\n13\tHamed A. Ead\tProf. Dr. \tProfessor of Chemistry, Faculty of Science, Cairo University\tkeynote\tacademia\tScience at the Core of Innovation: Reimagining the University–Industry Nexus for Transformative Impact\t1\n",
+  "stderr": "",
+  "execution_time_ms": 1636
+}

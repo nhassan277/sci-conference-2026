@@ -2,7 +2,7 @@ import { trpc } from "@/lib/trpc";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { User, Loader2, Linkedin, Twitter, Globe, GraduationCap, Building2 } from "lucide-react";
+import { User, Loader2, Linkedin, Twitter, Globe, GraduationCap, Building2, Megaphone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 function SpeakerCard({ speaker }: { speaker: any }) {
@@ -121,6 +121,57 @@ function SpeakerCard({ speaker }: { speaker: any }) {
   );
 }
 
+const commercialSponsors = [
+  {
+    name: "Startup Grind",
+    nameAr: "ستارتب جرايند",
+    desc: "Global Entrepreneurship Community — Cairo Chapter. Supporting student innovation in AI, ML & Bioinformatics.",
+    descAr: "مجتمع ريادة الأعمال العالمي — فرع القاهرة. دعم مشاريع الطلاب في الذكاء الاصطناعي والمعلوماتية الحيوية.",
+  },
+  {
+    name: "Colors Educational Hub",
+    nameAr: "كولورز للتعليم",
+    desc: "Advanced training in Metagenomics & Microbiome Analysis.",
+    descAr: "تدريب متقدم في علم الميتاجينوميكس وتحليل الميكروبيوم.",
+  },
+  {
+    name: "Agitech",
+    nameAr: "أجيتك",
+    desc: "Precision Medicine solutions using NGS and ddPCR technologies.",
+    descAr: "حلول الطب الدقيق باستخدام تقنيات NGS وddPCR.",
+  },
+  {
+    name: "AI بالعربي",
+    nameAr: "AI بالعربي",
+    desc: "AI Meets Biotech — Bridging artificial intelligence and biotechnology.",
+    descAr: "الذكاء الاصطناعي يلتقي بالتكنولوجيا الحيوية.",
+  },
+  {
+    name: "Chitosan",
+    nameAr: "كيتوسان",
+    desc: "Biotech Product Development and startup building roadmap.",
+    descAr: "تطوير المنتجات التقنية الحيوية وبناء الشركات الناشئة.",
+  },
+  {
+    name: "Sami Abd Company",
+    nameAr: "شركة سامي عبد",
+    desc: "Industry partner presenting innovations and solutions.",
+    descAr: "شريك صناعي يقدم الابتكارات والحلول.",
+  },
+  {
+    name: "EgCompBio",
+    nameAr: "إيجكومبيو",
+    desc: "Computational Biology & Single Cell Genomics solutions.",
+    descAr: "حلول علم الأحياء الحسابي وجينوميكس الخلية الواحدة.",
+  },
+  {
+    name: "Plasma",
+    nameAr: "بلازما",
+    desc: "Industry partner presenting innovations and solutions.",
+    descAr: "شريك صناعي يقدم الابتكارات والحلول.",
+  },
+];
+
 export default function KeynoteSpeakers() {
   const { data: speakers, isLoading } = trpc.keynoteSpeakers.list.useQuery();
 
@@ -178,63 +229,83 @@ export default function KeynoteSpeakers() {
       {/* Speakers Section */}
       <section className="py-20">
         <div className="container">
-          {speakers && speakers.length > 0 ? (
-            <div className="space-y-16 max-w-5xl mx-auto">
+          <div className="space-y-16 max-w-5xl mx-auto">
 
-              {/* Keynote Speakers */}
-              {keynoteSpeakersList.length > 0 && (
-                <div>
-                  <h2 className="text-3xl font-bold text-primary mb-2">Keynote Speakers</h2>
-                  <p className="text-xl text-secondary font-semibold mb-8" dir="rtl">المتحدثون الرئيسيون</p>
-                  <div className="grid gap-8">
-                    {keynoteSpeakersList.map((speaker) => (
-                      <SpeakerCard key={speaker.id} speaker={speaker} />
-                    ))}
-                  </div>
+            {/* Keynote Speakers */}
+            {keynoteSpeakersList.length > 0 && (
+              <div>
+                <h2 className="text-3xl font-bold text-primary mb-2">Keynote Speakers</h2>
+                <p className="text-xl text-secondary font-semibold mb-6" dir="rtl">المتحدثون الرئيسيون</p>
+                <div className="grid gap-8">
+                  {keynoteSpeakersList.map((speaker) => (
+                    <SpeakerCard key={speaker.id} speaker={speaker} />
+                  ))}
                 </div>
-              )}
+              </div>
+            )}
 
-              {/* Invited Speakers — Academia & Research */}
-              {invitedAcademia.length > 0 && (
-                <div>
-                  <div className="flex items-center gap-3 mb-2">
-                    <GraduationCap className="w-8 h-8 text-primary" />
-                    <h2 className="text-3xl font-bold text-primary">Invited Speakers — Academia & Research</h2>
-                  </div>
-                  <p className="text-xl text-secondary font-semibold mb-8" dir="rtl">المتحدثون المدعوون — الأكاديميون والباحثون</p>
-                  <div className="grid gap-8">
-                    {invitedAcademia.map((speaker) => (
-                      <SpeakerCard key={speaker.id} speaker={speaker} />
-                    ))}
-                  </div>
+            {/* Invited Speakers — Academia */}
+            {invitedAcademia.length > 0 && (
+              <div>
+                <div className="flex items-center gap-3 mb-2">
+                  <GraduationCap className="w-8 h-8 text-primary" />
+                  <h2 className="text-3xl font-bold text-primary">Invited Speakers — Academia</h2>
                 </div>
-              )}
-
-              {/* Invited Speakers — Industry */}
-              {invitedIndustry.length > 0 && (
-                <div>
-                  <div className="flex items-center gap-3 mb-2">
-                    <Building2 className="w-8 h-8 text-primary" />
-                    <h2 className="text-3xl font-bold text-primary">Invited Speakers — Industry</h2>
-                  </div>
-                  <p className="text-xl text-secondary font-semibold mb-8" dir="rtl">المتحدثون المدعوون — القطاع الصناعي والريادي</p>
-
-                  {/* Startup Grind special highlight */}
-
-                  <div className="grid gap-8">
-                    {invitedIndustry.map((speaker) => (
-                      <SpeakerCard key={speaker.id} speaker={speaker} />
-                    ))}
-                  </div>
+                <p className="text-xl text-secondary font-semibold mb-2" dir="rtl">المتحدثون المدعوون — الأكاديميون والباحثون</p>
+                <Badge className="bg-blue-100 text-blue-800 mb-6">20-Minute Talk | محاضرة ٢٠ دقيقة</Badge>
+                <div className="grid gap-8">
+                  {invitedAcademia.map((speaker) => (
+                    <SpeakerCard key={speaker.id} speaker={speaker} />
+                  ))}
                 </div>
-              )}
+              </div>
+            )}
 
+            {/* Invited Speakers — Industry */}
+            {invitedIndustry.length > 0 && (
+              <div>
+                <div className="flex items-center gap-3 mb-2">
+                  <Building2 className="w-8 h-8 text-primary" />
+                  <h2 className="text-3xl font-bold text-primary">Invited Speakers — Industry</h2>
+                </div>
+                <p className="text-xl text-secondary font-semibold mb-2" dir="rtl">المتحدثون المدعوون — القطاع الصناعي والريادي</p>
+                <Badge className="bg-blue-100 text-blue-800 mb-6">20-Minute Talk | محاضرة ٢٠ دقيقة</Badge>
+                <div className="grid gap-8">
+                  {invitedIndustry.map((speaker) => (
+                    <SpeakerCard key={speaker.id} speaker={speaker} />
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Commercial Sponsor Talks */}
+            <div>
+              <div className="flex items-center gap-3 mb-2">
+                <Megaphone className="w-8 h-8 text-amber-600" />
+                <h2 className="text-3xl font-bold text-primary">Sponsor Commercial Talks</h2>
+              </div>
+              <p className="text-xl text-secondary font-semibold mb-2" dir="rtl">المحادثات التجارية للرعاة</p>
+              <div className="flex flex-wrap gap-2 mb-6">
+                <Badge className="bg-amber-100 text-amber-800">10-Minute Talk | محادثة ١٠ دقائق</Badge>
+                <Badge variant="outline" className="text-muted-foreground">Small Hall | القاعة الصغيرة</Badge>
+              </div>
+              <div className="grid md:grid-cols-2 gap-4">
+                {commercialSponsors.map((sponsor, i) => (
+                  <Card key={i} className="border border-amber-200 bg-amber-50/30 hover:shadow-md transition-shadow">
+                    <CardHeader className="pb-2">
+                      <CardTitle className="text-lg text-primary">{sponsor.name}</CardTitle>
+                      <p className="text-sm font-medium text-secondary" dir="rtl">{sponsor.nameAr}</p>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm text-muted-foreground">{sponsor.desc}</p>
+                      <p className="text-sm text-muted-foreground mt-1" dir="rtl">{sponsor.descAr}</p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
             </div>
-          ) : (
-            <div className="text-center py-12">
-              <p className="text-muted-foreground">No keynote speakers announced yet.</p>
-            </div>
-          )}
+
+          </div>
         </div>
       </section>
 
