@@ -1738,6 +1738,7 @@ export default function Home() {
                 { name: "Plasma", logo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/logo-2_953b35eb.jpeg", linkedin: "https://www.linkedin.com/company/plasma-company/?originalSubdomain=eg" },
                 { name: "EgCompBio", logo: "/images/logo_egcompbio.png", linkedin: "https://www.linkedin.com/company/egcompbio/posts/?feedView=all" },
                 { name: "GESR", logo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/GESR-logo_7866e6d3.jpg", linkedin: "https://www.linkedin.com/company/102566987/" },
+                { name: "GEnoEra Technology", logo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/ge_logo-1_c2bdf8df.png", linkedin: "https://www.linkedin.com/company/geno-era-technology/" },
                 { name: "Agitech", logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/VgPdbFhKiVTOdmtC.png", linkedin: "https://www.linkedin.com/company/agitech-egypt/posts/?feedView=all" },
                 { name: "Medsol Corporation", logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/suhdZISVxwwlvpPk.png", linkedin: "https://www.linkedin.com/company/medsolme/posts/?feedView=all" },
                 { name: "Chitosan Egypt", logo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_t1mp8m_image_bbedca70.png", linkedin: "https://www.linkedin.com/in/chitosan-egypt/" },
