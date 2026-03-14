@@ -515,6 +515,40 @@ const sessions = {
       description: "Closing ceremony with appreciation and announcement of Best Project, Poster and Presentation Awards",
       descriptionAr: "حفل الختام مع التقدير والإعلان عن جوائز أفضل مشروع وملصق وعرض تقديمي"
     }
+  ],
+  day3: [
+    {
+      id: 1,
+      time: "1:00 PM – 3:00 PM",
+      timeAr: "١:٠٠ – ٣:٠٠ م",
+      type: "workshop",
+      title: "AI Meets Biotech",
+      titleAr: "الذكاء الاصطناعي يلتقي بالتكنولوجيا الحيوية",
+      location: "Ibn Sina Hall — Botany Dept. — Faculty of Science, Cairo University",
+      locationAr: "قاعة ابن سينا — قسم النبات القديم — كلية العلوم — جامعة القاهرة",
+      description: "How to leverage AI in Biotechnology — A practical workshop bridging science and technology, from research hypothesis to hands-on experience with AI tools that predict 3D structures of proteins, genes, and enzymes.",
+      descriptionAr: "ورشة عمل تطبيقية تجسر الهوة بين العلم والتكنولوجيا — من فرضية البحث حتى التجربة العملية بأدوات الذكاء الاصطناعي لتوقع البنى ثلاثية الأبعاد للبروتينات والجينات والإنزيمات.",
+      presenter: "AI بالعربي",
+      fee: "100 EGP (incl. certificate)",
+      feeAr: "١٠٠ جنيه مصري (شاملة الشهادة)",
+      duration: "2 Hours | ساعتان"
+    },
+    {
+      id: 2,
+      time: "3:00 PM – 6:00 PM",
+      timeAr: "٣:٠٠ – ٦:٠٠ م",
+      type: "workshop",
+      title: "From Lab to Global Opportunities: How to Prepare for Scholarships and Research Abroad",
+      titleAr: "من المختبر إلى الفرص العالمية: كيف تستعد للمنح الدراسية والبحث في الخارج",
+      location: "Ibn Sina Hall — Botany Dept. — Faculty of Science, Cairo University",
+      locationAr: "قاعة ابن سينا — قسم النبات القديم — كلية العلوم — جامعة القاهرة",
+      description: "A free workshop by GESR (Dr. Nourhan Hassan & Dr. Hazem Badawy) guiding researchers on how to prepare for international scholarships and research opportunities abroad.",
+      descriptionAr: "ورشة عمل مجانية تقدمها GESR (د. نورهان حسن ود. حازم بدوي) لإرشاد الباحثين حول كيفية الاستعداد للمنح الدراسية الدولية وفرص البحث في الخارج.",
+      presenter: "GESR — Dr. Nourhan Hassan & Dr. Hazem Badawy",
+      fee: "Free | مجاناً",
+      feeAr: "مجاناً",
+      duration: "3 Hours | ٣ ساعات"
+    }
   ]
 };
 
@@ -586,7 +620,7 @@ export default function Schedule() {
     }
   };
 
-  const currentSessions = selectedDay === "day1" ? sessions.day1 : sessions.day2;
+  const currentSessions = selectedDay === "day1" ? sessions.day1 : selectedDay === "day2" ? sessions.day2 : sessions.day3;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
@@ -650,12 +684,15 @@ export default function Schedule() {
       <section className="py-12">
         <div className="container">
           <Tabs value={selectedDay} onValueChange={setSelectedDay} className="space-y-8">
-            <TabsList className="grid w-full max-w-md mx-auto grid-cols-2">
+            <TabsList className="grid w-full max-w-2xl mx-auto grid-cols-3">
               <TabsTrigger value="day1" className="text-base">
                 Day 1 — April 7 | ٧ أبريل
               </TabsTrigger>
               <TabsTrigger value="day2" className="text-base">
                 Day 2 — April 8 | ٨ أبريل
+              </TabsTrigger>
+              <TabsTrigger value="day3" className="text-base">
+                April 9 | ٩ أبريل
               </TabsTrigger>
             </TabsList>
 
@@ -700,7 +737,28 @@ export default function Schedule() {
                         <p className="text-sm text-muted-foreground" dir="rtl">{session.descriptionAr}</p>
                       </div>
                     )}
-
+                    {/* Presenter / Fee / Duration for post-conference workshops */}
+                    {(session.presenter || session.fee || session.duration) && (
+                      <div className="flex flex-wrap gap-3">
+                        {session.presenter && (
+                          <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
+                            <User className="w-4 h-4 flex-shrink-0" />
+                            <span>{session.presenter}</span>
+                          </div>
+                        )}
+                        {session.duration && (
+                          <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
+                            <Clock className="w-4 h-4 flex-shrink-0" />
+                            <span>{session.duration}</span>
+                          </div>
+                        )}
+                        {session.fee && (
+                          <div className="inline-flex items-center gap-1.5 text-sm font-medium text-green-700 bg-green-50 border border-green-200 rounded-md px-2 py-0.5">
+                            <span>💰 {session.fee}</span>
+                          </div>
+                        )}
+                      </div>
+                    )}
                     {/* Keynote Speaker Card */}
                     {session.speaker && (
                       <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 space-y-2">
