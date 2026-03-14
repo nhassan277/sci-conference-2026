@@ -1679,12 +1679,12 @@ export default function Home() {
                 { name: "Medsol Corporation", logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/suhdZISVxwwlvpPk.png", linkedin: "https://www.linkedin.com/company/medsolme/posts/?feedView=all" },
                 { name: "Agitech", logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/VgPdbFhKiVTOdmtC.png", linkedin: "https://www.linkedin.com/company/agitech-egypt/posts/?feedView=all" },
                 { name: "Colors Educational Hub", logo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/logo_colors_52f6762b.png", linkedin: "https://www.linkedin.com/company/colors-educational-hub/posts/?feedView=all" },
-                { name: "HVD Life Sciences", logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/HVDLogo.png", linkedin: "https://www.linkedin.com/company/hvdegypt/posts/?feedView=all" },
                 { name: "Chitosan Egypt", logo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_t1mp8m_image_bbedca70.png", linkedin: "https://www.linkedin.com/in/chitosan-egypt/" },
                 { name: "EgCompBio", logo: "/images/logo_egcompbio.png", linkedin: "https://www.linkedin.com/company/egcompbio/posts/?feedView=all" },
                 { name: "AI بالعربي", logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/KlrhKxhzNQOHAlor.jpeg", linkedin: "https://www.linkedin.com/company/ai-بالعربي/" },
-                { name: "GEnoEra Technology", logo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/ge_logo-1_c2bdf8df.png", linkedin: "https://www.linkedin.com/company/geno-era-technology/" },
                 { name: "GESR", logo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/GESR-logo_7866e6d3.jpg", linkedin: "https://www.linkedin.com/company/102566987/" },
+                { name: "HVD Life Sciences", logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/HVDLogo.png", linkedin: "https://www.linkedin.com/company/hvdegypt/posts/?feedView=all" },
+                { name: "GEnoEra Technology", logo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/ge_logo-1_c2bdf8df.png", linkedin: "https://www.linkedin.com/company/geno-era-technology/" },
               ].map((s) => (
                 <a key={s.name} href={s.linkedin} target="_blank" rel="noopener noreferrer"
                   className="bg-white border border-border rounded-xl p-4 flex flex-col items-center gap-3 shadow-sm hover:shadow-md hover:border-primary/40 transition-all group">
