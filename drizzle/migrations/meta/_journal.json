@@ -162,6 +162,13 @@
       "when": 1773176999601,
       "tag": "0022_outgoing_dazzler",
       "breakpoints": true
+    },
+    {
+      "idx": 23,
+      "version": "5",
+      "when": 1773604498729,
+      "tag": "0023_huge_talon",
+      "breakpoints": true
     }
   ]
 }

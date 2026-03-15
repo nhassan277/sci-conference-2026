@@ -103,13 +103,35 @@ export const appRouter = router({
           wantsExtWorkshop: z.boolean().default(false),
           extWorkshopChoice: z.string().optional(),
           extWorkshopInvoiceUrl: z.string().optional(),
+          // Multi-workshop selection
+          selectedWorkshops: z.array(z.string()).optional(),
+          workshopInvoicesJson: z.record(z.string(), z.string()).optional(),
+          workshopPaymentsJson: z.record(z.string(), z.string()).optional(),
         })
       )
       .mutation(async ({ input }) => {
+        // Derive wantsWorkshop / wantsExtWorkshop from selectedWorkshops if provided
+        const DURING_CONF_KEYS = ["nawah", "marc", "medsol", "geochemistry", "agitech"];
+        const FREE_WORKSHOPS = ["gesr_scholarships"];
+        const selected = input.selectedWorkshops ?? [];
+        const hasDuring = selected.some(k => DURING_CONF_KEYS.includes(k));
+        const hasExt = selected.some(k => !DURING_CONF_KEYS.includes(k));
+        // Build initial payment statuses for multi-workshop
+        const initPayments: Record<string, string> = {};
+        for (const key of selected) {
+          const invoiceUploaded = input.workshopInvoicesJson?.[key];
+          const isFree = FREE_WORKSHOPS.includes(key);
+          initPayments[key] = isFree ? "confirmed" : (invoiceUploaded ? "pending" : "unpaid");
+        }
         const [result] = await db.insert(registrations).values({
           ...input,
+          wantsWorkshop: selected.length > 0 ? hasDuring : input.wantsWorkshop,
+          wantsExtWorkshop: selected.length > 0 ? hasExt : input.wantsExtWorkshop,
           workshopPaymentStatus: input.wantsWorkshop && input.workshopInvoiceUrl ? "pending" : "unpaid",
           extWorkshopPaymentStatus: input.wantsExtWorkshop && input.extWorkshopInvoiceUrl ? "pending" : "unpaid",
+          selectedWorkshops: selected.length > 0 ? selected : null,
+          workshopInvoicesJson: input.workshopInvoicesJson ?? null,
+          workshopPaymentsJson: selected.length > 0 ? initPayments : null,
         });
         const registrationId = result.insertId;
         
@@ -284,21 +306,74 @@ export const appRouter = router({
         return { success: true, url: result.url };
       }),
 
+    uploadWorkshopInvoice: publicProcedure
+      .input(
+        z.object({
+          registrationId: z.number(),
+          workshopKey: z.string(),
+          file: z.object({
+            data: z.string(), // base64
+            name: z.string(),
+            type: z.string(),
+          }),
+        })
+      )
+      .mutation(async ({ input }) => {
+        const [registration] = await db
+          .select()
+          .from(registrations)
+          .where(eq(registrations.id, input.registrationId));
+
+        if (!registration) {
+          throw new TRPCError({ code: "NOT_FOUND", message: "Registration not found" });
+        }
+
+        const { storagePut } = await import("../storage/index.js");
+        const base64Data = input.file.data.split(",")[1];
+        const buffer = Buffer.from(base64Data, "base64");
+        const timestamp = Date.now();
+        const randomSuffix = Math.random().toString(36).substring(7);
+        const extension = input.file.name.split(".").pop();
+        const key = `invoices/workshop/${input.registrationId}-${input.workshopKey}-${timestamp}-${randomSuffix}.${extension}`;
+        const result = await storagePut(key, buffer, input.file.type);
+
+        // Update workshopInvoicesJson and workshopPaymentsJson
+        const currentInvoices = (registration.workshopInvoicesJson as Record<string, string> | null) ?? {};
+        const currentPayments = (registration.workshopPaymentsJson as Record<string, string> | null) ?? {};
+        currentInvoices[input.workshopKey] = result.url;
+        currentPayments[input.workshopKey] = "pending";
+
+        await db.update(registrations)
+          .set({
+            workshopInvoicesJson: currentInvoices,
+            workshopPaymentsJson: currentPayments,
+            updatedAt: new Date(),
+          })
+          .where(eq(registrations.id, input.registrationId));
+
+        return { success: true, url: result.url };
+      }),
+
     getWorkshopCounts: publicProcedure.query(async () => {
       const allRegs = await db.select().from(registrations);
-      const nawah = allRegs.filter(r => r.wantsWorkshop && r.workshopChoice === 'nawah' && r.workshopPaymentStatus !== 'rejected').length;
-      const marc = allRegs.filter(r => r.wantsWorkshop && r.workshopChoice === 'marc' && r.workshopPaymentStatus !== 'rejected').length;
-      const medsol = allRegs.filter(r => r.wantsWorkshop && r.workshopChoice === 'medsol' && r.workshopPaymentStatus !== 'rejected').length;
-      const geochemistry = allRegs.filter(r => r.wantsWorkshop && r.workshopChoice === 'geochemistry' && r.workshopPaymentStatus !== 'rejected').length;
-      const ai_biotech = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'ai_biotech' && r.extWorkshopPaymentStatus !== 'rejected').length;
-      const chitosan = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'chitosan' && r.extWorkshopPaymentStatus !== 'rejected').length;
-      const scrna_seq = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'scrna_seq' && r.extWorkshopPaymentStatus !== 'rejected').length;
-      const hvd_genomics = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'hvd_genomics' && r.extWorkshopPaymentStatus !== 'rejected').length;
-      const agitech = allRegs.filter(r => r.wantsWorkshop && r.workshopChoice === 'agitech' && r.workshopPaymentStatus !== 'rejected').length;
-      const colors_metagenomics = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'colors_metagenomics' && r.extWorkshopPaymentStatus !== 'rejected').length;
-      const vaccine_industry = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'vaccine_industry' && r.extWorkshopPaymentStatus !== 'rejected').length;
-      const gesr_scholarships = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'gesr_scholarships').length;
-      return { nawah, marc, medsol, geochemistry, agitech, ai_biotech, chitosan, scrna_seq, hvd_genomics, colors_metagenomics, vaccine_industry, gesr_scholarships };
+      const ALL_KEYS = ['nawah','marc','medsol','geochemistry','agitech','ai_biotech','chitosan','scrna_seq','hvd_genomics','colors_metagenomics','vaccine_industry','gesr_scholarships'];
+      const counts: Record<string, number> = {};
+      for (const key of ALL_KEYS) {
+        counts[key] = allRegs.filter(r => {
+          // Count from new multi-workshop field
+          const selected = r.selectedWorkshops as string[] | null;
+          const payments = r.workshopPaymentsJson as Record<string, string> | null;
+          if (selected && selected.includes(key)) {
+            return payments?.[key] !== 'rejected';
+          }
+          // Fallback: legacy single-choice fields
+          const isDuring = ['nawah','marc','medsol','geochemistry','agitech'].includes(key);
+          if (isDuring) return r.wantsWorkshop && r.workshopChoice === key && r.workshopPaymentStatus !== 'rejected';
+          if (key === 'gesr_scholarships') return r.wantsExtWorkshop && r.extWorkshopChoice === key;
+          return r.wantsExtWorkshop && r.extWorkshopChoice === key && r.extWorkshopPaymentStatus !== 'rejected';
+        }).length;
+      }
+      return counts as { nawah: number; marc: number; medsol: number; geochemistry: number; agitech: number; ai_biotech: number; chitosan: number; scrna_seq: number; hvd_genomics: number; colors_metagenomics: number; vaccine_industry: number; gesr_scholarships: number };
     }),
 
     confirmWorkshopPayment: adminProcedure
