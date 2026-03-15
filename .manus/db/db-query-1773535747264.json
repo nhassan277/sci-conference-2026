@@ -1,0 +1,28 @@
+{
+  "query": "SELECT full_name_english, email, workshop_payment_status, workshop_invoice_url FROM registrations WHERE wants_workshop = 1 AND workshop_choice = 'nawah' ORDER BY created_at ASC LIMIT 5;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT full_name_english, email, workshop_payment_status, workshop_invoice_url FROM registrations WHERE wants_workshop = 1 AND workshop_choice = 'nawah' ORDER BY created_at ASC LIMIT 5;",
+  "rows": [
+    {
+      "full_name_english": "Donia Malek Ahmed Mardn",
+      "email": "s-donia.mardn@zewailcity.edu.eg",
+      "workshop_payment_status": "unpaid",
+      "workshop_invoice_url": "NULL"
+    },
+    {
+      "full_name_english": "Mona Magdy Fathy Mohammed",
+      "email": "mmfathy@sci.cu.edu.eg",
+      "workshop_payment_status": "unpaid",
+      "workshop_invoice_url": "NULL"
+    },
+    {
+      "full_name_english": "Shimaa Muhammed Emam ",
+      "email": "shimaamohamed982002@gmail.com",
+      "workshop_payment_status": "unpaid",
+      "workshop_invoice_url": "NULL"
+    }
+  ],
+  "messages": [],
+  "stdout": "full_name_english\temail\tworkshop_payment_status\tworkshop_invoice_url\nDonia Malek Ahmed Mardn\ts-donia.mardn@zewailcity.edu.eg\tunpaid\tNULL\nMona Magdy Fathy Mohammed\tmmfathy@sci.cu.edu.eg\tunpaid\tNULL\nShimaa Muhammed Emam \tshimaamohamed982002@gmail.com\tunpaid\tNULL\n",
+  "stderr": "",
+  "execution_time_ms": 1550
+}

@@ -62,6 +62,54 @@ function ConfirmationEmailCard() {
   );
 }
 
+function NawahPaymentReminderCard() {
+  const [sent, setSent] = useState(false);
+  const sendReminder = trpc.announcements.sendNawahPaymentReminder.useMutation({
+    onSuccess: (data) => {
+      toast.success(`✅ ${data.message}`);
+      setSent(true);
+    },
+    onError: (err) => {
+      toast.error(`Failed to send: ${err.message}`);
+    },
+  });
+
+  const handleSend = () => {
+    if (!window.confirm(
+      `This will send a payment confirmation request to ALL participants registered for the NAWAH Scientific Workshop.\n\nAre you sure?`
+    )) return;
+    sendReminder.mutate();
+  };
+
+  return (
+    <Card className="hover:shadow-md transition-shadow border-emerald-200">
+      <CardContent className="flex items-center justify-between gap-4 p-6">
+        <div className="flex items-center gap-4">
+          <div className="p-3 bg-emerald-100 rounded-lg">
+            {sent ? (
+              <CheckCircle2 className="w-6 h-6 text-emerald-600" />
+            ) : (
+              <FlaskConical className="w-6 h-6 text-emerald-600" />
+            )}
+          </div>
+          <div>
+            <h3 className="font-semibold">NAWAH Workshop — Payment Reminder</h3>
+            <p className="text-sm text-muted-foreground">Email NAWAH registrants: confirm spot by paying 200 EGP + uploading invoice</p>
+          </div>
+        </div>
+        <Button
+          onClick={handleSend}
+          disabled={sendReminder.isPending}
+          className="bg-emerald-600 hover:bg-emerald-700 text-white shrink-0"
+          size="sm"
+        >
+          {sendReminder.isPending ? "Sending..." : "Send Reminder"}
+        </Button>
+      </CardContent>
+    </Card>
+  );
+}
+
 export default function Admin() {
   const { user, loading: authLoading, logout, login, isAuthenticated, isAdmin } = useUser();
   const [searchTerm, setSearchTerm] = useState("");
@@ -648,6 +696,9 @@ export default function Admin() {
 
           {/* Send Attendance Confirmation Email */}
           <ConfirmationEmailCard />
+
+          {/* NAWAH Workshop Payment Reminder */}
+          <NawahPaymentReminderCard />
         </div>
 
         {/* Statistics Cards */}

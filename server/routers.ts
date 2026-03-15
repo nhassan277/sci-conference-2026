@@ -3159,6 +3159,210 @@ export const appRouter = router({
           message: `Confirmation email sent to ${sent} of ${uniqueRegistrants.length} registrants${failed > 0 ? ` (${failed} failed)` : ""}`,
         };
       }),
+
+    // Admin: Send NAWAH workshop payment reminder
+    sendNawahPaymentReminder: adminProcedure
+      .mutation(async () => {
+        // Get all NAWAH workshop registrants who haven't paid yet
+        const nawahRegistrants = await db
+          .select({
+            email: registrations.email,
+            nameEn: registrations.fullNameEnglish,
+            nameAr: registrations.fullNameArabic,
+            paymentStatus: registrations.workshopPaymentStatus,
+          })
+          .from(registrations)
+          .where(and(
+            eq(registrations.wantsWorkshop, true),
+            eq(registrations.workshopChoice, 'nawah')
+          ));
+
+        const uniqueRegistrants = Array.from(
+          new Map(nawahRegistrants.filter(r => r.email).map(r => [r.email, r])).values()
+        );
+
+        if (uniqueRegistrants.length === 0) {
+          return { success: true, sent: 0, failed: 0, message: "No NAWAH registrants found" };
+        }
+
+        const RESEND_API_KEY = process.env.RESEND_API_KEY;
+        if (!RESEND_API_KEY) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Email service not configured" });
+
+        let sent = 0;
+        let failed = 0;
+
+        for (const reg of uniqueRegistrants) {
+          const firstName = reg.nameEn?.split(" ")[0] || "Participant";
+          const isPaid = reg.paymentStatus === "confirmed" || reg.paymentStatus === "paid";
+          const statusNote = isPaid
+            ? `<p style="margin:0 0 16px;color:#16a34a;font-size:14px;font-weight:600">✅ Your payment has already been confirmed. No further action is needed.</p>`
+            : ``;
+
+          const htmlBody = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SCI 2026 — NAWAH Workshop Payment Confirmation</title>
+</head>
+<body style="margin:0;padding:0;background:#f0f4f8;font-family:Arial,Helvetica,sans-serif">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f0f4f8;padding:32px 16px">
+    <tr><td align="center">
+      <table width="620" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.10)">
+
+        <!-- Header -->
+        <tr>
+          <td style="background:linear-gradient(135deg,#14532d 0%,#16a34a 100%);padding:28px 36px">
+            <table width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td>
+                  <h1 style="margin:0;color:#ffffff;font-size:22px;font-weight:700">SCI 2026 — NAWAH Scientific Workshop</h1>
+                  <p style="margin:6px 0 0;color:rgba(255,255,255,.85);font-size:13px">Research to Business: Translating Science into Industry</p>
+                  <p style="margin:4px 0 0;color:rgba(255,255,255,.70);font-size:12px">April 7–8, 2026 · Faculty of Science, Cairo University</p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Body -->
+        <tr>
+          <td style="padding:32px 36px">
+
+            <!-- English -->
+            <p style="margin:0 0 12px;color:#14532d;font-size:16px;font-weight:600">Dear ${firstName},</p>
+            <p style="margin:0 0 16px;color:#374151;font-size:15px;line-height:1.7">
+              Thank you for registering for the <strong>NAWAH Scientific Workshop</strong> at SCI 2026 — <em>Research to Business: Translating Science into Industry</em>.
+            </p>
+            ${statusNote}
+            ${!isPaid ? `
+            <p style="margin:0 0 16px;color:#374151;font-size:15px;line-height:1.7">
+              To <strong>confirm your spot</strong>, please complete your workshop payment of <strong>200 EGP</strong> (includes certificate) using one of the methods below, then upload your receipt on the registration page or email it to us.
+            </p>
+
+            <!-- Payment box -->
+            <table width="100%" cellpadding="0" cellspacing="0" style="background:#f0fdf4;border:1px solid #86efac;border-radius:8px;margin:0 0 20px">
+              <tr>
+                <td style="padding:18px 24px">
+                  <p style="margin:0 0 12px;color:#14532d;font-size:14px;font-weight:700">💳 Payment Methods (choose one):</p>
+                  <p style="margin:0 0 2px;color:#374151;font-size:13px;font-weight:600">Option 1 — InstaPay Transfer:</p>
+                  <p style="margin:0 0 12px;color:#15803d;font-size:18px;font-weight:700">9450882167 (CBE)</p>
+                  <p style="margin:0 0 2px;color:#374151;font-size:13px;font-weight:600">Option 2 — Email your receipt to:</p>
+                  <p style="margin:0 0 4px;color:#15803d;font-size:15px;font-weight:700">sci.conf.2026@gmail.com</p>
+                  <p style="margin:0 0 12px;color:#6b7280;font-size:12px">Subject: Workshop Invoice – [Your Full Name] – NAWAH – SCI 2026</p>
+                  <p style="margin:0;color:#dc2626;font-size:13px;font-weight:600">⏰ Deadline: April 1, 2026 — Seats are limited to 30 participants</p>
+                </td>
+              </tr>
+            </table>
+
+            <p style="margin:0 0 16px;color:#374151;font-size:14px;line-height:1.6">
+              You can also upload your receipt directly on the registration page at <a href="https://sciconf26.website/registration" style="color:#16a34a;font-weight:600">sciconf26.website/registration</a>.
+            </p>
+            ` : ``}
+
+            <p style="margin:0 0 8px;color:#374151;font-size:14px;line-height:1.6">
+              For any questions, reply to this email or contact us at <a href="mailto:sci.conf.2026@gmail.com" style="color:#16a34a">sci.conf.2026@gmail.com</a>.
+            </p>
+
+            <hr style="border:none;border-top:1px solid #e5e7eb;margin:24px 0">
+
+            <!-- Arabic -->
+            <div dir="rtl" style="text-align:right">
+              <p style="margin:0 0 12px;color:#14532d;font-size:16px;font-weight:600">عزيزي/عزيزتي ${firstName}،</p>
+              <p style="margin:0 0 16px;color:#374151;font-size:15px;line-height:1.8">
+                شكراً لتسجيلك في <strong>ورشة عمل NAWAH Scientific</strong> ضمن فعاليات SCI 2026 — <em>من البحث إلى الأعمال: تحويل العلوم إلى صناعة</em>.
+              </p>
+              ${isPaid
+                ? `<p style="margin:0 0 16px;color:#16a34a;font-size:14px;font-weight:600">✅ تم تأكيد دفعتك بالفعل. لا يلزمك اتخاذ أي إجراء إضافي.</p>`
+                : `
+              <p style="margin:0 0 16px;color:#374151;font-size:15px;line-height:1.8">
+                لـ<strong>تأكيد مقعدك</strong> في الورشة، يُرجى سداد رسوم الاشتراك البالغة <strong>200 جنيه مصري</strong> (تشمل الشهادة) بإحدى الطريقتين التاليتين، ثم رفع الإيصال على صفحة التسجيل أو إرساله إلينا.
+              </p>
+              <table width="100%" cellpadding="0" cellspacing="0" style="background:#f0fdf4;border:1px solid #86efac;border-radius:8px;margin:0 0 20px">
+                <tr>
+                  <td style="padding:18px 24px">
+                    <p style="margin:0 0 12px;color:#14532d;font-size:14px;font-weight:700">💳 طرق الدفع (اختر إحداهما):</p>
+                    <p style="margin:0 0 2px;color:#374151;font-size:13px;font-weight:600">الطريقة الأولى — التحويل عبر InstaPay:</p>
+                    <p style="margin:0 0 12px;color:#15803d;font-size:18px;font-weight:700">9450882167 (البنك المركزي)</p>
+                    <p style="margin:0 0 2px;color:#374151;font-size:13px;font-weight:600">الطريقة الثانية — إرسال الإيصال بالبريد:</p>
+                    <p style="margin:0 0 4px;color:#15803d;font-size:15px;font-weight:700">sci.conf.2026@gmail.com</p>
+                    <p style="margin:0 0 12px;color:#6b7280;font-size:12px">الموضوع: إيصال ورشة – [اسمك الكامل] – NAWAH – SCI 2026</p>
+                    <p style="margin:0;color:#dc2626;font-size:13px;font-weight:600">⏰ الموعد النهائي: 1 أبريل 2026 — المقاعد محدودة (30 مشاركاً فقط)</p>
+                  </td>
+                </tr>
+              </table>
+              <p style="margin:0 0 16px;color:#374151;font-size:14px;line-height:1.6">
+                يمكنك أيضاً رفع الإيصال مباشرةً عبر صفحة التسجيل على <a href="https://sciconf26.website/registration" style="color:#16a34a;font-weight:600">sciconf26.website/registration</a>.
+              </p>
+              `}
+              <p style="margin:0;color:#374151;font-size:14px;line-height:1.6">
+                لأي استفسار، يُرجى الرد على هذا البريد أو التواصل معنا على <a href="mailto:sci.conf.2026@gmail.com" style="color:#16a34a">sci.conf.2026@gmail.com</a>.
+              </p>
+            </div>
+
+          </td>
+        </tr>
+
+        <!-- Footer -->
+        <tr>
+          <td style="background:#14532d;padding:20px 36px;text-align:center">
+            <p style="margin:0;color:#ffffff;font-size:13px;font-weight:600">Science at the Core of Innovation — SCI 2026</p>
+            <p style="margin:4px 0 0;color:rgba(255,255,255,.75);font-size:12px">Faculty of Science · Cairo University · April 7–8, 2026</p>
+            <p style="margin:6px 0 0;color:rgba(255,255,255,.60);font-size:11px">sciconf26.website · sci.conf.2026@gmail.com</p>
+          </td>
+        </tr>
+
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>`;
+
+          try {
+            const res = await fetch("https://api.resend.com/emails", {
+              method: "POST",
+              headers: {
+                "Authorization": `Bearer ${RESEND_API_KEY}`,
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                from: "SCI 2026 Organizing Committee <noreply@sciconf26.website>",
+                to: [reg.email],
+                reply_to: "sci.conf.2026@gmail.com",
+                subject: "[SCI 2026] NAWAH Workshop — Please Confirm Your Spot by Paying | ورشة NAWAH — أكّد مشاركتك بالدفع",
+                html: htmlBody,
+              }),
+            });
+            const data = await res.json() as { id?: string; statusCode?: number; message?: string };
+            if (data.id) {
+              sent++;
+            } else {
+              console.error(`[NAWAH Email] Failed to send to ${reg.email}:`, data);
+              failed++;
+            }
+          } catch (err) {
+            console.error(`[NAWAH Email] Error sending to ${reg.email}:`, err);
+            failed++;
+          }
+          await new Promise(resolve => setTimeout(resolve, 600));
+        }
+
+        await db.insert(auditLogs).values({
+          adminEmail: "system",
+          action: "nawah_payment_reminder_sent",
+          resourceType: "registration",
+          resourceId: 0,
+          details: `NAWAH payment reminder sent to ${sent} registrants (${failed} failed) out of ${uniqueRegistrants.length} total`
+        });
+
+        return {
+          success: true,
+          sent,
+          failed,
+          total: uniqueRegistrants.length,
+          message: `NAWAH payment reminder sent to ${sent} of ${uniqueRegistrants.length} registrants${failed > 0 ? ` (${failed} failed)` : ""}`,
+        };
+      }),
   }),
 });
 export type AppRouter = typeof appRouter;

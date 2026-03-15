@@ -1,0 +1,9 @@
+{
+  "query": "\nSELECT id, email, full_name_english \nFROM registrations \nWHERE email IS NOT NULL \n  AND (\n    email NOT REGEXP '^[a-zA-Z0-9._%+\\\\-]+@[a-zA-Z0-9.\\\\-]+\\\\.[a-zA-Z]{2,}$'\n    OR email LIKE '% %'\n    OR email LIKE '%,,%'\n    OR email = ''\n    OR LENGTH(email) < 5\n  )\nORDER BY id\nLIMIT 50;\n",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute \nSELECT id, email, full_name_english \nFROM registrations \nWHERE email IS NOT NULL \n  AND (\n    email NOT REGEXP '^[a-zA-Z0-9._%+\\\\-]+@[a-zA-Z0-9.\\\\-]+\\\\.[a-zA-Z]{2,}$'\n    OR email LIKE '% %'\n    OR email LIKE '%,,%'\n    OR email = ''\n    OR LENGTH(email) < 5\n  )\nORDER BY id\nLIMIT 50;\n",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 1666
+}

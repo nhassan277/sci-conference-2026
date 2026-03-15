@@ -1,0 +1,14 @@
+{
+  "query": "SELECT workshop_payment_status, COUNT(*) as count FROM registrations WHERE wants_workshop = 1 AND workshop_choice = 'nawah' GROUP BY workshop_payment_status;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT workshop_payment_status, COUNT(*) as count FROM registrations WHERE wants_workshop = 1 AND workshop_choice = 'nawah' GROUP BY workshop_payment_status;",
+  "rows": [
+    {
+      "workshop_payment_status": "unpaid",
+      "count": "3"
+    }
+  ],
+  "messages": [],
+  "stdout": "workshop_payment_status\tcount\nunpaid\t3\n",
+  "stderr": "",
+  "execution_time_ms": 1572
+}
