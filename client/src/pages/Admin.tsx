@@ -14,6 +14,72 @@ import { LogOut, Download, Users, Building2, TrendingUp, Search, Plus, Edit, Tra
 import { toast } from "sonner";
 import { useNotifications } from "@/hooks/useNotifications";
 
+function AcceptanceEmailCard() {
+  const [result, setResult] = useState<{ sent: number; failed: number; total: number } | null>(null);
+  const [filter, setFilter] = useState<"all" | "unpaid" | "paid">("all");
+  const sendAcceptance = trpc.acceptance.sendAcceptanceEmails.useMutation({
+    onSuccess: (data) => {
+      toast.success(`\u2705 ${data.message}`);
+      setResult({ sent: data.sent, failed: data.failed, total: data.total });
+    },
+    onError: (err) => {
+      toast.error(`Failed to send acceptance emails: ${err.message}`);
+    },
+  });
+  const handleSend = () => {
+    const filterLabel = filter === "all" ? "ALL" : filter === "unpaid" ? "UNPAID" : "PAID";
+    if (!window.confirm(
+      `This will send a personalized acceptance email to ${filterLabel} registrants.\n\nEach email lists their selected workshops, fees, and payment instructions (bilingual EN/AR).\n\nProceed?`
+    )) return;
+    sendAcceptance.mutate({ filter });
+  };
+  return (
+    <Card className="hover:shadow-md transition-shadow border-blue-200">
+      <CardContent className="p-6">
+        <div className="flex items-center justify-between gap-4 flex-wrap">
+          <div className="flex items-center gap-4">
+            <div className="p-3 bg-blue-100 rounded-lg">
+              {result ? (
+                <CheckCircle2 className="w-6 h-6 text-blue-600" />
+              ) : (
+                <Mail className="w-6 h-6 text-blue-600" />
+              )}
+            </div>
+            <div>
+              <h3 className="font-semibold">Send Acceptance Emails</h3>
+              <p className="text-sm text-muted-foreground">Personalized bilingual email: workshop list, fees &amp; payment instructions</p>
+              {result && (
+                <p className="text-xs text-blue-700 mt-1 font-medium">
+                  \u2713 Sent: {result.sent} | Failed: {result.failed} | Total: {result.total}
+                </p>
+              )}
+            </div>
+          </div>
+          <div className="flex items-center gap-2 shrink-0">
+            <select
+              value={filter}
+              onChange={(e) => setFilter(e.target.value as "all" | "unpaid" | "paid")}
+              className="text-sm border border-input rounded-md px-2 py-1.5 bg-background"
+            >
+              <option value="all">All Registrants</option>
+              <option value="unpaid">Unpaid Only</option>
+              <option value="paid">Paid Only</option>
+            </select>
+            <Button
+              onClick={handleSend}
+              disabled={sendAcceptance.isPending}
+              className="bg-blue-600 hover:bg-blue-700 text-white"
+              size="sm"
+            >
+              {sendAcceptance.isPending ? "Sending..." : "Send Emails"}
+            </Button>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+
 function ConfirmationEmailCard() {
   const [confirmed, setConfirmed] = useState(false);
   const sendConfirmation = trpc.announcements.sendAttendanceConfirmation.useMutation({
@@ -695,8 +761,9 @@ export default function Admin() {
           </Card>
 
           {/* Send Attendance Confirmation Email */}
+          {/* Acceptance / Workshop Confirmation Emails */}
+          <AcceptanceEmailCard />
           <ConfirmationEmailCard />
-
           {/* NAWAH Workshop Payment Reminder */}
           <NawahPaymentReminderCard />
         </div>

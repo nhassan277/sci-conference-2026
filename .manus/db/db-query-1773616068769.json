@@ -1,0 +1,298 @@
+{
+  "query": "DESCRIBE registrations;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute DESCRIBE registrations;",
+  "rows": [
+    {
+      "Field": "id",
+      "Type": "int",
+      "Null": "NO",
+      "Key": "PRI",
+      "Default": "NULL",
+      "Extra": "auto_increment"
+    },
+    {
+      "Field": "full_name_english",
+      "Type": "varchar(255)",
+      "Null": "NO",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "full_name_arabic",
+      "Type": "varchar(255)",
+      "Null": "NO",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "email",
+      "Type": "varchar(255)",
+      "Null": "NO",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "phone",
+      "Type": "varchar(50)",
+      "Null": "NO",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "affiliation",
+      "Type": "varchar(255)",
+      "Null": "NO",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "attendee_category",
+      "Type": "varchar(50)",
+      "Null": "NO",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "participation_type",
+      "Type": "varchar(50)",
+      "Null": "NO",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "research_title",
+      "Type": "text",
+      "Null": "YES",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "research_abstract",
+      "Type": "text",
+      "Null": "YES",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "created_at",
+      "Type": "timestamp",
+      "Null": "NO",
+      "Key": "",
+      "Default": "CURRENT_TIMESTAMP",
+      "Extra": ""
+    },
+    {
+      "Field": "wants_certificate",
+      "Type": "tinyint(1)",
+      "Null": "NO",
+      "Key": "",
+      "Default": "0",
+      "Extra": ""
+    },
+    {
+      "Field": "payment_status",
+      "Type": "varchar(20)",
+      "Null": "NO",
+      "Key": "",
+      "Default": "unpaid",
+      "Extra": ""
+    },
+    {
+      "Field": "stripe_payment_intent_id",
+      "Type": "varchar(255)",
+      "Null": "YES",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "stripe_checkout_session_id",
+      "Type": "varchar(255)",
+      "Null": "YES",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "paid_at",
+      "Type": "timestamp",
+      "Null": "YES",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "checked_in",
+      "Type": "tinyint(1)",
+      "Null": "NO",
+      "Key": "",
+      "Default": "0",
+      "Extra": ""
+    },
+    {
+      "Field": "checked_in_at",
+      "Type": "timestamp",
+      "Null": "YES",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "checked_in_by",
+      "Type": "varchar(255)",
+      "Null": "YES",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "is_vip",
+      "Type": "tinyint(1)",
+      "Null": "NO",
+      "Key": "",
+      "Default": "0",
+      "Extra": ""
+    },
+    {
+      "Field": "source_sheet_id",
+      "Type": "varchar(255)",
+      "Null": "YES",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "source_row_index",
+      "Type": "int",
+      "Null": "YES",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "raw_form_data",
+      "Type": "json",
+      "Null": "YES",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "updated_at",
+      "Type": "timestamp",
+      "Null": "NO",
+      "Key": "",
+      "Default": "CURRENT_TIMESTAMP",
+      "Extra": ""
+    },
+    {
+      "Field": "certificate_invoice_url",
+      "Type": "varchar(500)",
+      "Null": "YES",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "wants_workshop",
+      "Type": "tinyint(1)",
+      "Null": "NO",
+      "Key": "",
+      "Default": "0",
+      "Extra": ""
+    },
+    {
+      "Field": "workshop_choice",
+      "Type": "varchar(50)",
+      "Null": "YES",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "workshop_invoice_url",
+      "Type": "varchar(500)",
+      "Null": "YES",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "workshop_payment_status",
+      "Type": "varchar(20)",
+      "Null": "NO",
+      "Key": "",
+      "Default": "unpaid",
+      "Extra": ""
+    },
+    {
+      "Field": "wants_ext_workshop",
+      "Type": "tinyint(1)",
+      "Null": "NO",
+      "Key": "",
+      "Default": "0",
+      "Extra": ""
+    },
+    {
+      "Field": "ext_workshop_choice",
+      "Type": "varchar(100)",
+      "Null": "YES",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "ext_workshop_invoice_url",
+      "Type": "varchar(500)",
+      "Null": "YES",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "ext_workshop_payment_status",
+      "Type": "varchar(20)",
+      "Null": "NO",
+      "Key": "",
+      "Default": "unpaid",
+      "Extra": ""
+    },
+    {
+      "Field": "selected_workshops",
+      "Type": "json",
+      "Null": "YES",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "workshop_invoices_json",
+      "Type": "json",
+      "Null": "YES",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "workshop_payments_json",
+      "Type": "json",
+      "Null": "YES",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    }
+  ],
+  "messages": [],
+  "stdout": "Field\tType\tNull\tKey\tDefault\tExtra\nid\tint\tNO\tPRI\tNULL\tauto_increment\nfull_name_english\tvarchar(255)\tNO\t\tNULL\t\nfull_name_arabic\tvarchar(255)\tNO\t\tNULL\t\nemail\tvarchar(255)\tNO\t\tNULL\t\nphone\tvarchar(50)\tNO\t\tNULL\t\naffiliation\tvarchar(255)\tNO\t\tNULL\t\nattendee_category\tvarchar(50)\tNO\t\tNULL\t\nparticipation_type\tvarchar(50)\tNO\t\tNULL\t\nresearch_title\ttext\tYES\t\tNULL\t\nresearch_abstract\ttext\tYES\t\tNULL\t\ncreated_at\ttimestamp\tNO\t\tCURRENT_TIMESTAMP\t\nwants_certificate\ttinyint(1)\tNO\t\t0\t\npayment_status\tvarchar(20)\tNO\t\tunpaid\t\nstripe_payment_intent_id\tvarchar(255)\tYES\t\tNULL\t\nstripe_checkout_session_id\tvarchar(255)\tYES\t\tNULL\t\npaid_at\ttimestamp\tYES\t\tNULL\t\nchecked_in\ttinyint(1)\tNO\t\t0\t\nchecked_in_at\ttimestamp\tYES\t\tNULL\t\nchecked_in_by\tvarchar(255)\tYES\t\tNULL\t\nis_vip\ttinyint(1)\tNO\t\t0\t\nsource_sheet_id\tvarchar(255)\tYES\t\tNULL\t\nsource_row_index\tint\tYES\t\tNULL\t\nraw_form_data\tjson\tYES\t\tNULL\t\nupdated_at\ttimestamp\tNO\t\tCURRENT_TIMESTAMP\t\ncertificate_invoice_url\tvarchar(500)\tYES\t\tNULL\t\nwants_workshop\ttinyint(1)\tNO\t\t0\t\nworkshop_choice\tvarchar(50)\tYES\t\tNULL\t\nworkshop_invoice_url\tvarchar(500)\tYES\t\tNULL\t\nworkshop_payment_status\tvarchar(20)\tNO\t\tunpaid\t\nwants_ext_workshop\ttinyint(1)\tNO\t\t0\t\next_workshop_choice\tvarchar(100)\tYES\t\tNULL\t\next_workshop_invoice_url\tvarchar(500)\tYES\t\tNULL\t\next_workshop_payment_status\tvarchar(20)\tNO\t\tunpaid\t\nselected_workshops\tjson\tYES\t\tNULL\t\nworkshop_invoices_json\tjson\tYES\t\tNULL\t\nworkshop_payments_json\tjson\tYES\t\tNULL\t\n",
+  "stderr": "",
+  "execution_time_ms": 1664
+}

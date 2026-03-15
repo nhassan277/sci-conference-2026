@@ -1,0 +1,54 @@
+{
+  "query": "SELECT COLUMN_NAME, DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'registrations' AND COLUMN_NAME LIKE '%workshop%' OR COLUMN_NAME LIKE '%selected%';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT COLUMN_NAME, DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'registrations' AND COLUMN_NAME LIKE '%workshop%' OR COLUMN_NAME LIKE '%selected%';",
+  "rows": [
+    {
+      "COLUMN_NAME": "wants_workshop",
+      "DATA_TYPE": "tinyint"
+    },
+    {
+      "COLUMN_NAME": "workshop_choice",
+      "DATA_TYPE": "varchar"
+    },
+    {
+      "COLUMN_NAME": "workshop_invoice_url",
+      "DATA_TYPE": "varchar"
+    },
+    {
+      "COLUMN_NAME": "workshop_payment_status",
+      "DATA_TYPE": "varchar"
+    },
+    {
+      "COLUMN_NAME": "wants_ext_workshop",
+      "DATA_TYPE": "tinyint"
+    },
+    {
+      "COLUMN_NAME": "ext_workshop_choice",
+      "DATA_TYPE": "varchar"
+    },
+    {
+      "COLUMN_NAME": "ext_workshop_invoice_url",
+      "DATA_TYPE": "varchar"
+    },
+    {
+      "COLUMN_NAME": "ext_workshop_payment_status",
+      "DATA_TYPE": "varchar"
+    },
+    {
+      "COLUMN_NAME": "selected_workshops",
+      "DATA_TYPE": "json"
+    },
+    {
+      "COLUMN_NAME": "workshop_invoices_json",
+      "DATA_TYPE": "json"
+    },
+    {
+      "COLUMN_NAME": "workshop_payments_json",
+      "DATA_TYPE": "json"
+    }
+  ],
+  "messages": [],
+  "stdout": "COLUMN_NAME\tDATA_TYPE\nwants_workshop\ttinyint\nworkshop_choice\tvarchar\nworkshop_invoice_url\tvarchar\nworkshop_payment_status\tvarchar\nwants_ext_workshop\ttinyint\next_workshop_choice\tvarchar\next_workshop_invoice_url\tvarchar\next_workshop_payment_status\tvarchar\nselected_workshops\tjson\nworkshop_invoices_json\tjson\nworkshop_payments_json\tjson\n",
+  "stderr": "",
+  "execution_time_ms": 1632
+}

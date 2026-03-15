@@ -103,35 +103,13 @@ export const appRouter = router({
           wantsExtWorkshop: z.boolean().default(false),
           extWorkshopChoice: z.string().optional(),
           extWorkshopInvoiceUrl: z.string().optional(),
-          // Multi-workshop selection
-          selectedWorkshops: z.array(z.string()).optional(),
-          workshopInvoicesJson: z.record(z.string(), z.string()).optional(),
-          workshopPaymentsJson: z.record(z.string(), z.string()).optional(),
         })
       )
       .mutation(async ({ input }) => {
-        // Derive wantsWorkshop / wantsExtWorkshop from selectedWorkshops if provided
-        const DURING_CONF_KEYS = ["nawah", "marc", "medsol", "geochemistry", "agitech"];
-        const FREE_WORKSHOPS = ["gesr_scholarships"];
-        const selected = input.selectedWorkshops ?? [];
-        const hasDuring = selected.some(k => DURING_CONF_KEYS.includes(k));
-        const hasExt = selected.some(k => !DURING_CONF_KEYS.includes(k));
-        // Build initial payment statuses for multi-workshop
-        const initPayments: Record<string, string> = {};
-        for (const key of selected) {
-          const invoiceUploaded = input.workshopInvoicesJson?.[key];
-          const isFree = FREE_WORKSHOPS.includes(key);
-          initPayments[key] = isFree ? "confirmed" : (invoiceUploaded ? "pending" : "unpaid");
-        }
         const [result] = await db.insert(registrations).values({
           ...input,
-          wantsWorkshop: selected.length > 0 ? hasDuring : input.wantsWorkshop,
-          wantsExtWorkshop: selected.length > 0 ? hasExt : input.wantsExtWorkshop,
           workshopPaymentStatus: input.wantsWorkshop && input.workshopInvoiceUrl ? "pending" : "unpaid",
           extWorkshopPaymentStatus: input.wantsExtWorkshop && input.extWorkshopInvoiceUrl ? "pending" : "unpaid",
-          selectedWorkshops: selected.length > 0 ? selected : null,
-          workshopInvoicesJson: input.workshopInvoicesJson ?? null,
-          workshopPaymentsJson: selected.length > 0 ? initPayments : null,
         });
         const registrationId = result.insertId;
         
@@ -306,74 +284,21 @@ export const appRouter = router({
         return { success: true, url: result.url };
       }),
 
-    uploadWorkshopInvoice: publicProcedure
-      .input(
-        z.object({
-          registrationId: z.number(),
-          workshopKey: z.string(),
-          file: z.object({
-            data: z.string(), // base64
-            name: z.string(),
-            type: z.string(),
-          }),
-        })
-      )
-      .mutation(async ({ input }) => {
-        const [registration] = await db
-          .select()
-          .from(registrations)
-          .where(eq(registrations.id, input.registrationId));
-
-        if (!registration) {
-          throw new TRPCError({ code: "NOT_FOUND", message: "Registration not found" });
-        }
-
-        const { storagePut } = await import("../storage/index.js");
-        const base64Data = input.file.data.split(",")[1];
-        const buffer = Buffer.from(base64Data, "base64");
-        const timestamp = Date.now();
-        const randomSuffix = Math.random().toString(36).substring(7);
-        const extension = input.file.name.split(".").pop();
-        const key = `invoices/workshop/${input.registrationId}-${input.workshopKey}-${timestamp}-${randomSuffix}.${extension}`;
-        const result = await storagePut(key, buffer, input.file.type);
-
-        // Update workshopInvoicesJson and workshopPaymentsJson
-        const currentInvoices = (registration.workshopInvoicesJson as Record<string, string> | null) ?? {};
-        const currentPayments = (registration.workshopPaymentsJson as Record<string, string> | null) ?? {};
-        currentInvoices[input.workshopKey] = result.url;
-        currentPayments[input.workshopKey] = "pending";
-
-        await db.update(registrations)
-          .set({
-            workshopInvoicesJson: currentInvoices,
-            workshopPaymentsJson: currentPayments,
-            updatedAt: new Date(),
-          })
-          .where(eq(registrations.id, input.registrationId));
-
-        return { success: true, url: result.url };
-      }),
-
     getWorkshopCounts: publicProcedure.query(async () => {
       const allRegs = await db.select().from(registrations);
-      const ALL_KEYS = ['nawah','marc','medsol','geochemistry','agitech','ai_biotech','chitosan','scrna_seq','hvd_genomics','colors_metagenomics','vaccine_industry','gesr_scholarships'];
-      const counts: Record<string, number> = {};
-      for (const key of ALL_KEYS) {
-        counts[key] = allRegs.filter(r => {
-          // Count from new multi-workshop field
-          const selected = r.selectedWorkshops as string[] | null;
-          const payments = r.workshopPaymentsJson as Record<string, string> | null;
-          if (selected && selected.includes(key)) {
-            return payments?.[key] !== 'rejected';
-          }
-          // Fallback: legacy single-choice fields
-          const isDuring = ['nawah','marc','medsol','geochemistry','agitech'].includes(key);
-          if (isDuring) return r.wantsWorkshop && r.workshopChoice === key && r.workshopPaymentStatus !== 'rejected';
-          if (key === 'gesr_scholarships') return r.wantsExtWorkshop && r.extWorkshopChoice === key;
-          return r.wantsExtWorkshop && r.extWorkshopChoice === key && r.extWorkshopPaymentStatus !== 'rejected';
-        }).length;
-      }
-      return counts as { nawah: number; marc: number; medsol: number; geochemistry: number; agitech: number; ai_biotech: number; chitosan: number; scrna_seq: number; hvd_genomics: number; colors_metagenomics: number; vaccine_industry: number; gesr_scholarships: number };
+      const nawah = allRegs.filter(r => r.wantsWorkshop && r.workshopChoice === 'nawah' && r.workshopPaymentStatus !== 'rejected').length;
+      const marc = allRegs.filter(r => r.wantsWorkshop && r.workshopChoice === 'marc' && r.workshopPaymentStatus !== 'rejected').length;
+      const medsol = allRegs.filter(r => r.wantsWorkshop && r.workshopChoice === 'medsol' && r.workshopPaymentStatus !== 'rejected').length;
+      const geochemistry = allRegs.filter(r => r.wantsWorkshop && r.workshopChoice === 'geochemistry' && r.workshopPaymentStatus !== 'rejected').length;
+      const ai_biotech = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'ai_biotech' && r.extWorkshopPaymentStatus !== 'rejected').length;
+      const chitosan = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'chitosan' && r.extWorkshopPaymentStatus !== 'rejected').length;
+      const scrna_seq = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'scrna_seq' && r.extWorkshopPaymentStatus !== 'rejected').length;
+      const hvd_genomics = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'hvd_genomics' && r.extWorkshopPaymentStatus !== 'rejected').length;
+      const agitech = allRegs.filter(r => r.wantsWorkshop && r.workshopChoice === 'agitech' && r.workshopPaymentStatus !== 'rejected').length;
+      const colors_metagenomics = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'colors_metagenomics' && r.extWorkshopPaymentStatus !== 'rejected').length;
+      const vaccine_industry = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'vaccine_industry' && r.extWorkshopPaymentStatus !== 'rejected').length;
+      const gesr_scholarships = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'gesr_scholarships').length;
+      return { nawah, marc, medsol, geochemistry, agitech, ai_biotech, chitosan, scrna_seq, hvd_genomics, colors_metagenomics, vaccine_industry, gesr_scholarships };
     }),
 
     confirmWorkshopPayment: adminProcedure
@@ -3436,6 +3361,225 @@ export const appRouter = router({
           failed,
           total: uniqueRegistrants.length,
           message: `NAWAH payment reminder sent to ${sent} of ${uniqueRegistrants.length} registrants${failed > 0 ? ` (${failed} failed)` : ""}`,
+        };
+      }),
+  }),
+
+  // ─── Acceptance Emails ───────────────────────────────────────────────────────
+  acceptance: router({
+    /**
+     * Send a personalized acceptance/confirmation email to registrants.
+     * Lists their selected workshops, fees, and payment instructions.
+     * Supports optional filter: 'all' | 'unpaid' | 'paid'
+     * Or pass specific registrationIds to send to a subset.
+     */
+    sendAcceptanceEmails: adminProcedure
+      .input(z.object({
+        filter: z.enum(["all", "unpaid", "paid"]).default("all"),
+        registrationIds: z.array(z.number()).optional(),
+      }))
+      .mutation(async ({ input }) => {
+        const RESEND_API_KEY = process.env.RESEND_API_KEY;
+        if (!RESEND_API_KEY) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Email service not configured" });
+
+        // Workshop metadata
+        const WORKSHOP_META: Record<string, { nameEn: string; nameAr: string; fee: number; date: string }> = {
+          nawah:               { nameEn: "NAWAH Scientific Workshop",         nameAr: "\u0648\u0631\u0634\u0629 \u0639\u0645\u0644 \u0646\u0648\u0627\u0629 \u0644\u0644\u0639\u0644\u0648\u0645",               fee: 200, date: "April 7\u20138, 2026" },
+          marc:                { nameEn: "Good Clinical Practice (MARC)",     nameAr: "\u0627\u0644\u0645\u0645\u0627\u0631\u0633\u0629 \u0627\u0644\u0633\u0631\u064a\u0631\u064a\u0629 \u0627\u0644\u062c\u064a\u062f\u0629 (MARC)",    fee: 200, date: "April 8, 2026" },
+          medsol:              { nameEn: "Nanopore & Protein Sequencing",     nameAr: "\u062a\u0633\u0644\u0633\u0644 \u0627\u0644\u0646\u0627\u0646\u0648\u0628\u0648\u0631 \u0648\u0627\u0644\u0628\u0631\u0648\u062a\u064a\u0646",          fee: 200, date: "April 7\u20138, 2026" },
+          agitech:             { nameEn: "NGS & ddPCR Therapy",               nameAr: "\u0627\u0644\u062a\u0633\u0644\u0633\u0644 \u0627\u0644\u062c\u064a\u0646\u064a \u0648ddPCR",             fee: 200, date: "April 6, 2026" },
+          geochemistry:        { nameEn: "Geochemistry Workshop",             nameAr: "\u0648\u0631\u0634\u0629 \u0639\u0645\u0644 \u0627\u0644\u062c\u064a\u0648\u0643\u064a\u0645\u064a\u0627\u0621",              fee: 0,   date: "April 7\u20138, 2026" },
+          chitosan:            { nameEn: "Biotech Product Dev 101",           nameAr: "\u062a\u0637\u0648\u064a\u0631 \u0627\u0644\u0645\u0646\u062a\u062c\u0627\u062a \u0627\u0644\u0628\u064a\u0648\u062a\u0643\u0646\u0648\u0644\u0648\u062c\u064a\u0629",       fee: 100, date: "April 6, 2026" },
+          scrna_seq:           { nameEn: "Intro to Single Cell Genomics",     nameAr: "\u0645\u0642\u062f\u0645\u0629 \u0641\u064a \u062c\u064a\u0646\u0648\u0645\u064a\u0627\u062a \u0627\u0644\u062e\u0644\u064a\u0629 \u0627\u0644\u0648\u0627\u062d\u062f\u0629",  fee: 200, date: "April 9, 2026" },
+          ai_biotech:          { nameEn: "AI Meets Biotech",                  nameAr: "\u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064a \u064a\u0644\u062a\u0642\u064a \u0627\u0644\u0628\u064a\u0648\u062a\u0643",    fee: 100, date: "April 9, 2026" },
+          hvd_genomics:        { nameEn: "Genomics & Proteomics (HVD)",       nameAr: "\u0627\u0644\u062c\u064a\u0646\u0648\u0645\u064a\u0627\u062a \u0648\u0627\u0644\u0628\u0631\u0648\u062a\u064a\u0648\u0645\u064a\u0627\u062a (HVD)",      fee: 200, date: "April 12, 2026" },
+          vaccine_industry:    { nameEn: "The Vaccine Industry Race",         nameAr: "\u0633\u0628\u0627\u0642 \u0635\u0646\u0627\u0639\u0629 \u0627\u0644\u0644\u0642\u0627\u062d\u0627\u062a",              fee: 100, date: "April 6, 2026" },
+          gesr_scholarships:   { nameEn: "From Lab to Global Opportunities", nameAr: "\u0645\u0646 \u0627\u0644\u0645\u062e\u062a\u0628\u0631 \u0625\u0644\u0649 \u0627\u0644\u0641\u0631\u0635 \u0627\u0644\u0639\u0627\u0644\u0645\u064a\u0629",     fee: 0,   date: "April 9, 2026" },
+          colors_metagenomics: { nameEn: "Metagenomics & Microbiome",         nameAr: "\u0627\u0644\u0645\u064a\u062a\u0627\u062c\u064a\u0646\u0648\u0645\u064a\u0643\u0633 \u0648\u0627\u0644\u0645\u064a\u0643\u0631\u0648\u0628\u064a\u0648\u0645",       fee: 200, date: "TBA" },
+        };
+
+        // Fetch all registrants
+        const allRegs = await db.select({
+          id: registrations.id,
+          email: registrations.email,
+          nameEn: registrations.fullNameEnglish,
+          nameAr: registrations.fullNameArabic,
+          wantsCertificate: registrations.wantsCertificate,
+          wantsWorkshop: registrations.wantsWorkshop,
+          workshopChoice: registrations.workshopChoice,
+          workshopPaymentStatus: registrations.workshopPaymentStatus,
+          wantsExtWorkshop: registrations.wantsExtWorkshop,
+          extWorkshopChoice: registrations.extWorkshopChoice,
+          extWorkshopPaymentStatus: registrations.extWorkshopPaymentStatus,
+          paymentStatus: registrations.paymentStatus,
+        }).from(registrations);
+
+        // Apply filter
+        let filtered = allRegs;
+        if (input.registrationIds && input.registrationIds.length > 0) {
+          filtered = allRegs.filter(r => input.registrationIds!.includes(r.id));
+        } else if (input.filter === "unpaid") {
+          filtered = allRegs.filter(r => r.paymentStatus !== "paid" && r.paymentStatus !== "confirmed");
+        } else if (input.filter === "paid") {
+          filtered = allRegs.filter(r => r.paymentStatus === "paid" || r.paymentStatus === "confirmed");
+        }
+
+        // Deduplicate by email
+        const uniqueRegs = Array.from(new Map(filtered.filter(r => r.email).map(r => [r.email, r])).values());
+        if (uniqueRegs.length === 0) {
+          return { success: true, sent: 0, failed: 0, total: 0, message: "No registrants found matching the filter" };
+        }
+
+        let sent = 0;
+        let failed = 0;
+
+        for (const reg of uniqueRegs) {
+          const firstName = reg.nameEn?.split(" ")[0] || "Participant";
+          const firstNameAr = reg.nameAr?.split(" ")[0] || "\u0627\u0644\u0645\u0634\u0627\u0631\u0643";
+
+          // Collect selected workshop keys
+          const selectedKeys: string[] = [];
+          if (reg.wantsWorkshop && reg.workshopChoice) selectedKeys.push(reg.workshopChoice);
+          if (reg.wantsExtWorkshop && reg.extWorkshopChoice) selectedKeys.push(reg.extWorkshopChoice);
+
+          // Build workshop table rows
+          let totalWorkshopFee = 0;
+          let wsRowsEn = "";
+          let wsRowsAr = "";
+
+          if (selectedKeys.length === 0) {
+            wsRowsEn = `<tr><td colspan="3" style="padding:10px 12px;color:#6b7280;font-size:13px;text-align:center">No workshops selected</td></tr>`;
+            wsRowsAr = `<tr><td colspan="3" style="padding:10px 12px;color:#6b7280;font-size:13px;text-align:center">\u0644\u0645 \u064a\u062a\u0645 \u0627\u062e\u062a\u064a\u0627\u0631 \u0648\u0631\u0634 \u0639\u0645\u0644</td></tr>`;
+          } else {
+            for (const key of selectedKeys) {
+              const ws = WORKSHOP_META[key];
+              if (!ws) continue;
+              totalWorkshopFee += ws.fee;
+              const feeEn = ws.fee === 0 ? `<span style="color:#16a34a;font-weight:700">FREE</span>` : `<strong>${ws.fee} EGP</strong>`;
+              const feeAr = ws.fee === 0 ? `<span style="color:#16a34a;font-weight:700">\u0645\u062c\u0627\u0646\u064a</span>` : `<strong>${ws.fee} \u062c.\u0645</strong>`;
+              wsRowsEn += `<tr style="border-bottom:1px solid #f3f4f6"><td style="padding:10px 12px;font-size:13px;color:#111827;font-weight:600">${ws.nameEn}</td><td style="padding:10px 12px;font-size:12px;color:#6b7280">${ws.date}</td><td style="padding:10px 12px;font-size:13px;text-align:right">${feeEn}</td></tr>`;
+              wsRowsAr += `<tr style="border-bottom:1px solid #f3f4f6"><td style="padding:10px 12px;font-size:13px;color:#111827;font-weight:600;text-align:right">${ws.nameAr}</td><td style="padding:10px 12px;font-size:12px;color:#6b7280;text-align:right">${ws.date}</td><td style="padding:10px 12px;font-size:13px;text-align:left">${feeAr}</td></tr>`;
+            }
+          }
+
+          const certFee = reg.wantsCertificate ? 100 : 0;
+          const grandTotal = certFee + totalWorkshopFee;
+          const isPaid = reg.paymentStatus === "paid" || reg.paymentStatus === "confirmed";
+
+          const paymentBlock = isPaid
+            ? `<div style="background:#f0fdf4;border:1px solid #86efac;border-radius:8px;padding:16px 20px;margin:0 0 20px">
+                <p style="margin:0;color:#15803d;font-size:14px;font-weight:700">\u2705 Your payment has been received and confirmed. No further action needed.</p>
+                <p style="margin:6px 0 0;color:#15803d;font-size:13px" dir="rtl">\u2705 \u062a\u0645 \u0627\u0633\u062a\u0644\u0627\u0645 \u062f\u0641\u0639\u062a\u0643 \u0648\u062a\u0623\u0643\u064a\u062f\u0647\u0627. \u0644\u0627 \u064a\u0644\u0632\u0645 \u0627\u062a\u062e\u0627\u0630 \u0623\u064a \u0625\u062c\u0631\u0627\u0621 \u0625\u0636\u0627\u0641\u064a.</p>
+               </div>`
+            : `<div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:18px 24px;margin:0 0 20px">
+                <p style="margin:0 0 10px;color:#1e40af;font-size:14px;font-weight:700">\ud83d\udcb3 Payment Instructions | \u062a\u0639\u0644\u064a\u0645\u0627\u062a \u0627\u0644\u062f\u0641\u0639</p>
+                <p style="margin:0 0 4px;color:#374151;font-size:13px;font-weight:600">Option 1 \u2014 InstaPay:</p>
+                <p style="margin:0 0 12px;color:#1d4ed8;font-size:17px;font-weight:700">9450882167 (CBE)</p>
+                <p style="margin:0 0 4px;color:#374151;font-size:13px;font-weight:600">Option 2 \u2014 Bank Transfer:</p>
+                <p style="margin:0 0 2px;color:#374151;font-size:13px">\u062d/ \u0635\u0646\u062f\u0648\u0642 \u0627\u0644\u062e\u062f\u0645\u0627\u062a \u0627\u0644\u062a\u0639\u0644\u064a\u0645\u064a\u0629 \u2014 \u0643\u0644\u064a\u0629 \u0627\u0644\u0639\u0644\u0648\u0645\u060c \u062c\u0627\u0645\u0639\u0629 \u0627\u0644\u0642\u0627\u0647\u0631\u0629</p>
+                <p style="margin:0 0 12px;color:#1d4ed8;font-size:14px;font-weight:700">Account: 9/450/88216/7 (CBE)</p>
+                <p style="margin:0 0 4px;color:#374151;font-size:13px;font-weight:600">After payment, email your receipt to:</p>
+                <p style="margin:0 0 4px;color:#1d4ed8;font-size:14px;font-weight:700">sci.conf.2026@gmail.com</p>
+                <p style="margin:4px 0 0;color:#374151;font-size:12px">Subject: <em>Invoice \u2013 ${reg.nameEn} \u2013 SCI 2026</em></p>
+                <p style="margin:4px 0 0;color:#dc2626;font-size:12px;font-weight:600">\u23f0 Deadline: April 1, 2026</p>
+               </div>`;
+
+          const certRowEn = reg.wantsCertificate ? `<tr style="border-bottom:1px solid #f3f4f6"><td style="padding:10px 12px;font-size:13px;color:#111827;font-weight:600">Conference Certificate</td><td style="padding:10px 12px;font-size:12px;color:#6b7280">April 7\u20138, 2026</td><td style="padding:10px 12px;font-size:13px;text-align:right"><strong>100 EGP</strong></td></tr>` : "";
+          const certRowAr = reg.wantsCertificate ? `<tr style="border-bottom:1px solid #f3f4f6"><td style="padding:10px 12px;font-size:13px;color:#111827;font-weight:600;text-align:right">\u0634\u0647\u0627\u062f\u0629 \u0627\u0644\u0645\u0624\u062a\u0645\u0631</td><td style="padding:10px 12px;font-size:12px;color:#6b7280;text-align:right">\u0667\u2013\u0668 \u0623\u0628\u0631\u064a\u0644 2026</td><td style="padding:10px 12px;font-size:13px;text-align:left"><strong>100 \u062c.\u0645</strong></td></tr>` : "";
+
+          const htmlBody = `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#f0f4f8;font-family:Arial,Helvetica,sans-serif">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#f0f4f8;padding:32px 16px"><tr><td align="center">
+<table width="620" cellpadding="0" cellspacing="0" style="background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.10)">
+  <tr><td style="background:linear-gradient(135deg,#1e3a5f 0%,#2563eb 100%);padding:28px 36px">
+    <h1 style="margin:0;color:#fff;font-size:22px;font-weight:700">SCI 2026 \u2014 Registration Confirmed</h1>
+    <p style="margin:6px 0 0;color:rgba(255,255,255,.85);font-size:13px">Science at the Core of Innovation</p>
+    <p style="margin:4px 0 0;color:rgba(255,255,255,.70);font-size:12px">April 7\u20138, 2026 \u00b7 Faculty of Science, Cairo University</p>
+  </td></tr>
+  <tr><td style="padding:32px 36px">
+    <p style="margin:0 0 12px;color:#1e3a5f;font-size:16px;font-weight:600">Dear ${firstName},</p>
+    <p style="margin:0 0 20px;color:#374151;font-size:15px;line-height:1.7">We are delighted to confirm your registration for the <strong>1st Annual Conference of the Faculty of Science, Cairo University \u2014 SCI 2026</strong>. Below is a summary of your selected workshops and fees.</p>
+    <table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;margin:0 0 24px">
+      <thead><tr style="background:#f8fafc">
+        <th style="padding:10px 12px;font-size:12px;color:#6b7280;text-align:left;font-weight:600;text-transform:uppercase">Workshop</th>
+        <th style="padding:10px 12px;font-size:12px;color:#6b7280;text-align:left;font-weight:600;text-transform:uppercase">Date</th>
+        <th style="padding:10px 12px;font-size:12px;color:#6b7280;text-align:right;font-weight:600;text-transform:uppercase">Fee</th>
+      </tr></thead>
+      <tbody>${wsRowsEn}${certRowEn}</tbody>
+      <tfoot><tr style="background:#f8fafc">
+        <td colspan="2" style="padding:12px;font-size:14px;font-weight:700;color:#1e3a5f">Total Amount Due</td>
+        <td style="padding:12px;font-size:16px;font-weight:700;color:#1e3a5f;text-align:right">${grandTotal} EGP</td>
+      </tr></tfoot>
+    </table>
+    ${paymentBlock}
+    <p style="margin:0 0 8px;color:#374151;font-size:14px;line-height:1.6">For any questions, reply to this email or contact us at <a href="mailto:sci.conf.2026@gmail.com" style="color:#2563eb">sci.conf.2026@gmail.com</a>.</p>
+    <hr style="border:none;border-top:1px solid #e5e7eb;margin:24px 0">
+    <div dir="rtl" style="text-align:right">
+      <p style="margin:0 0 12px;color:#1e3a5f;font-size:16px;font-weight:600">\u0639\u0632\u064a\u0632\u064a/\u0639\u0632\u064a\u0632\u062a\u064a ${firstNameAr}\u060c</p>
+      <p style="margin:0 0 20px;color:#374151;font-size:15px;line-height:1.8">\u064a\u0633\u0639\u062f\u0646\u0627 \u062a\u0623\u0643\u064a\u062f \u062a\u0633\u062c\u064a\u0644\u0643 \u0641\u064a <strong>\u0627\u0644\u0645\u0624\u062a\u0645\u0631 \u0627\u0644\u0633\u0646\u0648\u064a \u0627\u0644\u0623\u0648\u0644 \u0644\u0643\u0644\u064a\u0629 \u0627\u0644\u0639\u0644\u0648\u0645\u060c \u062c\u0627\u0645\u0639\u0629 \u0627\u0644\u0642\u0627\u0647\u0631\u0629 \u2014 SCI 2026</strong>. \u0641\u064a\u0645\u0627 \u064a\u0644\u064a \u0645\u0644\u062e\u0635 \u0648\u0631\u0634 \u0627\u0644\u0639\u0645\u0644 \u0648\u0627\u0644\u0631\u0633\u0648\u0645 \u0627\u0644\u0645\u062e\u062a\u0627\u0631\u0629.</p>
+      <table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;margin:0 0 24px">
+        <thead><tr style="background:#f8fafc">
+          <th style="padding:10px 12px;font-size:12px;color:#6b7280;text-align:right;font-weight:600">\u0648\u0631\u0634\u0629 \u0627\u0644\u0639\u0645\u0644</th>
+          <th style="padding:10px 12px;font-size:12px;color:#6b7280;text-align:right;font-weight:600">\u0627\u0644\u062a\u0627\u0631\u064a\u062e</th>
+          <th style="padding:10px 12px;font-size:12px;color:#6b7280;text-align:left;font-weight:600">\u0627\u0644\u0631\u0633\u0648\u0645</th>
+        </tr></thead>
+        <tbody>${wsRowsAr}${certRowAr}</tbody>
+        <tfoot><tr style="background:#f8fafc">
+          <td colspan="2" style="padding:12px;font-size:14px;font-weight:700;color:#1e3a5f;text-align:right">\u0627\u0644\u0625\u062c\u0645\u0627\u0644\u064a \u0627\u0644\u0645\u0633\u062a\u062d\u0642</td>
+          <td style="padding:12px;font-size:16px;font-weight:700;color:#1e3a5f;text-align:left">${grandTotal} \u062c.\u0645</td>
+        </tr></tfoot>
+      </table>
+      <p style="margin:0;color:#374151;font-size:14px;line-height:1.6">\u0644\u0623\u064a \u0627\u0633\u062a\u0641\u0633\u0627\u0631\u060c \u064a\u064f\u0631\u062c\u0649 \u0627\u0644\u0631\u062f \u0639\u0644\u0649 \u0647\u0630\u0627 \u0627\u0644\u0628\u0631\u064a\u062f \u0623\u0648 \u0627\u0644\u062a\u0648\u0627\u0635\u0644 \u0639\u0644\u0649 <a href="mailto:sci.conf.2026@gmail.com" style="color:#2563eb">sci.conf.2026@gmail.com</a>.</p>
+    </div>
+  </td></tr>
+  <tr><td style="background:#f1f5f9;padding:20px 36px;border-top:1px solid #e2e8f0">
+    <p style="margin:0;color:#64748b;font-size:12px;text-align:center">SCI 2026 \u00b7 Faculty of Science, Cairo University \u00b7 April 7\u20138, 2026</p>
+    <p style="margin:4px 0 0;color:#64748b;font-size:11px;text-align:center">You are receiving this email because you registered for SCI 2026.</p>
+  </td></tr>
+</table>
+</td></tr></table>
+</body></html>`;
+
+          try {
+            const res = await fetch("https://api.resend.com/emails", {
+              method: "POST",
+              headers: { "Authorization": `Bearer ${RESEND_API_KEY}`, "Content-Type": "application/json" },
+              body: JSON.stringify({
+                from: "SCI 2026 <sci2026@sciconf26.website>",
+                to: [reg.email],
+                reply_to: "sci.conf.2026@gmail.com",
+                subject: `[SCI 2026] Registration Confirmed \u2014 ${reg.nameEn}`,
+                html: htmlBody,
+              }),
+            });
+            const data = await res.json() as { id?: string; statusCode?: number; message?: string };
+            if (data.id) {
+              sent++;
+            } else {
+              console.error(`[Acceptance Email] Failed for ${reg.email}:`, data);
+              failed++;
+            }
+          } catch (err) {
+            console.error(`[Acceptance Email] Error for ${reg.email}:`, err);
+            failed++;
+          }
+          await new Promise(resolve => setTimeout(resolve, 600));
+        }
+
+        await db.insert(auditLogs).values({
+          adminEmail: "system",
+          action: "acceptance_emails_sent",
+          resourceType: "registration",
+          resourceId: 0,
+          details: `Acceptance emails sent to ${sent} registrants (${failed} failed) \u2014 filter: ${input.filter}`,
+        });
+
+        return {
+          success: true,
+          sent,
+          failed,
+          total: uniqueRegs.length,
+          message: `Acceptance emails sent to ${sent} of ${uniqueRegs.length} registrants${failed > 0 ? ` (${failed} failed)` : ""}`,
         };
       }),
   }),

@@ -14,18 +14,14 @@ export const registrations = mysqlTable("registrations", {
   wantsCertificate: boolean("wants_certificate").default(false).notNull(),
   certificateInvoiceUrl: varchar("certificate_invoice_url", { length: 500 }), // uploaded payment receipt for certificate
   wantsWorkshop: boolean("wants_workshop").default(false).notNull(),
-  workshopChoice: varchar("workshop_choice", { length: 50 }), // nawah, marc, medsol, geochemistry (legacy)
+  workshopChoice: varchar("workshop_choice", { length: 50 }), // nawah, marc, medsol, geochemistry
   workshopInvoiceUrl: varchar("workshop_invoice_url", { length: 500 }), // uploaded payment receipt for workshop
   workshopPaymentStatus: varchar("workshop_payment_status", { length: 20 }).default("unpaid").notNull(),
-  // Pre/Post conference workshops
+  // Pre/Post conference workshops (350 EGP)
   wantsExtWorkshop: boolean("wants_ext_workshop").default(false).notNull(),
-  extWorkshopChoice: varchar("ext_workshop_choice", { length: 100 }), // legacy single choice
+  extWorkshopChoice: varchar("ext_workshop_choice", { length: 100 }), // ai_biotech, etc.
   extWorkshopInvoiceUrl: varchar("ext_workshop_invoice_url", { length: 500 }),
   extWorkshopPaymentStatus: varchar("ext_workshop_payment_status", { length: 20 }).default("unpaid").notNull(),
-  // Multi-workshop selection (new): stores array of selected workshop keys
-  selectedWorkshops: json("selected_workshops"), // string[] e.g. ["nawah","chitosan","gesr_scholarships"]
-  workshopInvoicesJson: json("workshop_invoices_json"), // Record<string, string> key->invoiceUrl
-  workshopPaymentsJson: json("workshop_payments_json"), // Record<string, 'unpaid'|'pending'|'confirmed'|'rejected'>
   paymentStatus: varchar("payment_status", { length: 20 }).default("unpaid").notNull(), // unpaid, pending, paid
   stripePaymentIntentId: varchar("stripe_payment_intent_id", { length: 255 }),
   stripeCheckoutSessionId: varchar("stripe_checkout_session_id", { length: 255 }),

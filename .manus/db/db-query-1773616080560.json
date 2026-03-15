@@ -1,0 +1,190 @@
+{
+  "query": "SELECT COLUMN_NAME, DATA_TYPE, COLUMN_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'registrations' AND TABLE_SCHEMA = DATABASE() ORDER BY ORDINAL_POSITION;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT COLUMN_NAME, DATA_TYPE, COLUMN_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'registrations' AND TABLE_SCHEMA = DATABASE() ORDER BY ORDINAL_POSITION;",
+  "rows": [
+    {
+      "COLUMN_NAME": "id",
+      "DATA_TYPE": "int",
+      "COLUMN_TYPE": "int"
+    },
+    {
+      "COLUMN_NAME": "full_name_english",
+      "DATA_TYPE": "varchar",
+      "COLUMN_TYPE": "varchar(255)"
+    },
+    {
+      "COLUMN_NAME": "full_name_arabic",
+      "DATA_TYPE": "varchar",
+      "COLUMN_TYPE": "varchar(255)"
+    },
+    {
+      "COLUMN_NAME": "email",
+      "DATA_TYPE": "varchar",
+      "COLUMN_TYPE": "varchar(255)"
+    },
+    {
+      "COLUMN_NAME": "phone",
+      "DATA_TYPE": "varchar",
+      "COLUMN_TYPE": "varchar(50)"
+    },
+    {
+      "COLUMN_NAME": "affiliation",
+      "DATA_TYPE": "varchar",
+      "COLUMN_TYPE": "varchar(255)"
+    },
+    {
+      "COLUMN_NAME": "attendee_category",
+      "DATA_TYPE": "varchar",
+      "COLUMN_TYPE": "varchar(50)"
+    },
+    {
+      "COLUMN_NAME": "participation_type",
+      "DATA_TYPE": "varchar",
+      "COLUMN_TYPE": "varchar(50)"
+    },
+    {
+      "COLUMN_NAME": "research_title",
+      "DATA_TYPE": "text",
+      "COLUMN_TYPE": "text"
+    },
+    {
+      "COLUMN_NAME": "research_abstract",
+      "DATA_TYPE": "text",
+      "COLUMN_TYPE": "text"
+    },
+    {
+      "COLUMN_NAME": "created_at",
+      "DATA_TYPE": "timestamp",
+      "COLUMN_TYPE": "timestamp"
+    },
+    {
+      "COLUMN_NAME": "wants_certificate",
+      "DATA_TYPE": "tinyint",
+      "COLUMN_TYPE": "tinyint(1)"
+    },
+    {
+      "COLUMN_NAME": "payment_status",
+      "DATA_TYPE": "varchar",
+      "COLUMN_TYPE": "varchar(20)"
+    },
+    {
+      "COLUMN_NAME": "stripe_payment_intent_id",
+      "DATA_TYPE": "varchar",
+      "COLUMN_TYPE": "varchar(255)"
+    },
+    {
+      "COLUMN_NAME": "stripe_checkout_session_id",
+      "DATA_TYPE": "varchar",
+      "COLUMN_TYPE": "varchar(255)"
+    },
+    {
+      "COLUMN_NAME": "paid_at",
+      "DATA_TYPE": "timestamp",
+      "COLUMN_TYPE": "timestamp"
+    },
+    {
+      "COLUMN_NAME": "checked_in",
+      "DATA_TYPE": "tinyint",
+      "COLUMN_TYPE": "tinyint(1)"
+    },
+    {
+      "COLUMN_NAME": "checked_in_at",
+      "DATA_TYPE": "timestamp",
+      "COLUMN_TYPE": "timestamp"
+    },
+    {
+      "COLUMN_NAME": "checked_in_by",
+      "DATA_TYPE": "varchar",
+      "COLUMN_TYPE": "varchar(255)"
+    },
+    {
+      "COLUMN_NAME": "is_vip",
+      "DATA_TYPE": "tinyint",
+      "COLUMN_TYPE": "tinyint(1)"
+    },
+    {
+      "COLUMN_NAME": "source_sheet_id",
+      "DATA_TYPE": "varchar",
+      "COLUMN_TYPE": "varchar(255)"
+    },
+    {
+      "COLUMN_NAME": "source_row_index",
+      "DATA_TYPE": "int",
+      "COLUMN_TYPE": "int"
+    },
+    {
+      "COLUMN_NAME": "raw_form_data",
+      "DATA_TYPE": "json",
+      "COLUMN_TYPE": "json"
+    },
+    {
+      "COLUMN_NAME": "updated_at",
+      "DATA_TYPE": "timestamp",
+      "COLUMN_TYPE": "timestamp"
+    },
+    {
+      "COLUMN_NAME": "certificate_invoice_url",
+      "DATA_TYPE": "varchar",
+      "COLUMN_TYPE": "varchar(500)"
+    },
+    {
+      "COLUMN_NAME": "wants_workshop",
+      "DATA_TYPE": "tinyint",
+      "COLUMN_TYPE": "tinyint(1)"
+    },
+    {
+      "COLUMN_NAME": "workshop_choice",
+      "DATA_TYPE": "varchar",
+      "COLUMN_TYPE": "varchar(50)"
+    },
+    {
+      "COLUMN_NAME": "workshop_invoice_url",
+      "DATA_TYPE": "varchar",
+      "COLUMN_TYPE": "varchar(500)"
+    },
+    {
+      "COLUMN_NAME": "workshop_payment_status",
+      "DATA_TYPE": "varchar",
+      "COLUMN_TYPE": "varchar(20)"
+    },
+    {
+      "COLUMN_NAME": "wants_ext_workshop",
+      "DATA_TYPE": "tinyint",
+      "COLUMN_TYPE": "tinyint(1)"
+    },
+    {
+      "COLUMN_NAME": "ext_workshop_choice",
+      "DATA_TYPE": "varchar",
+      "COLUMN_TYPE": "varchar(100)"
+    },
+    {
+      "COLUMN_NAME": "ext_workshop_invoice_url",
+      "DATA_TYPE": "varchar",
+      "COLUMN_TYPE": "varchar(500)"
+    },
+    {
+      "COLUMN_NAME": "ext_workshop_payment_status",
+      "DATA_TYPE": "varchar",
+      "COLUMN_TYPE": "varchar(20)"
+    },
+    {
+      "COLUMN_NAME": "selected_workshops",
+      "DATA_TYPE": "json",
+      "COLUMN_TYPE": "json"
+    },
+    {
+      "COLUMN_NAME": "workshop_invoices_json",
+      "DATA_TYPE": "json",
+      "COLUMN_TYPE": "json"
+    },
+    {
+      "COLUMN_NAME": "workshop_payments_json",
+      "DATA_TYPE": "json",
+      "COLUMN_TYPE": "json"
+    }
+  ],
+  "messages": [],
+  "stdout": "COLUMN_NAME\tDATA_TYPE\tCOLUMN_TYPE\nid\tint\tint\nfull_name_english\tvarchar\tvarchar(255)\nfull_name_arabic\tvarchar\tvarchar(255)\nemail\tvarchar\tvarchar(255)\nphone\tvarchar\tvarchar(50)\naffiliation\tvarchar\tvarchar(255)\nattendee_category\tvarchar\tvarchar(50)\nparticipation_type\tvarchar\tvarchar(50)\nresearch_title\ttext\ttext\nresearch_abstract\ttext\ttext\ncreated_at\ttimestamp\ttimestamp\nwants_certificate\ttinyint\ttinyint(1)\npayment_status\tvarchar\tvarchar(20)\nstripe_payment_intent_id\tvarchar\tvarchar(255)\nstripe_checkout_session_id\tvarchar\tvarchar(255)\npaid_at\ttimestamp\ttimestamp\nchecked_in\ttinyint\ttinyint(1)\nchecked_in_at\ttimestamp\ttimestamp\nchecked_in_by\tvarchar\tvarchar(255)\nis_vip\ttinyint\ttinyint(1)\nsource_sheet_id\tvarchar\tvarchar(255)\nsource_row_index\tint\tint\nraw_form_data\tjson\tjson\nupdated_at\ttimestamp\ttimestamp\ncertificate_invoice_url\tvarchar\tvarchar(500)\nwants_workshop\ttinyint\ttinyint(1)\nworkshop_choice\tvarchar\tvarchar(50)\nworkshop_invoice_url\tvarchar\tvarchar(500)\nworkshop_payment_status\tvarchar\tvarchar(20)\nwants_ext_workshop\ttinyint\ttinyint(1)\next_workshop_choice\tvarchar\tvarchar(100)\next_workshop_invoice_url\tvarchar\tvarchar(500)\next_workshop_payment_status\tvarchar\tvarchar(20)\nselected_workshops\tjson\tjson\nworkshop_invoices_json\tjson\tjson\nworkshop_payments_json\tjson\tjson\n",
+  "stderr": "",
+  "execution_time_ms": 1576
+}
