@@ -462,8 +462,12 @@ export default function Admin() {
         if (workshopFilter === "none") return !reg.wantsWorkshop && !reg.wantsExtWorkshop;
         if (workshopFilter === "any") return reg.wantsWorkshop || reg.wantsExtWorkshop;
         // During-conference workshops
-        if (["nawah", "bioinformatics", "marc", "medsol", "geochemistry", "agitech"].includes(workshopFilter))
-          return reg.wantsWorkshop && reg.workshopChoice === workshopFilter;
+        if (["nawah", "bioinformatics", "marc", "medsol", "geochemistry", "agitech"].includes(workshopFilter)) {
+          if (!reg.wantsWorkshop) return false;
+          const choices = (reg as any).workshopChoices as string[] | null;
+          if (choices && choices.length > 0) return choices.includes(workshopFilter);
+          return reg.workshopChoice === workshopFilter;
+        }
         // Pre/Post workshops
         return reg.wantsExtWorkshop && reg.extWorkshopChoice === workshopFilter;
       })();
@@ -1082,16 +1086,23 @@ export default function Admin() {
                                 <div className="space-y-1 min-w-[140px]">
                                   {reg.wantsWorkshop ? (
                                     <>
-                                      <Badge className="bg-amber-100 text-amber-800 block w-fit">
-                                        {({
-                          nawah: 'NAWAH Scientific',
-                          bioinformatics: 'Bioinformatics (Dr. Dina Amr)',
-                          marc: 'MARC (GCP)',
-                          medsol: 'Medsol (Sequencing)',
-                          geochemistry: 'Geochemistry',
-                          agitech: 'Agitech (NGS & ddPCR)',
-                        } as Record<string, string>)[reg.workshopChoice ?? ''] || reg.workshopChoice?.toUpperCase() || 'Workshop'}
-                                      </Badge>
+                                      {(() => {
+                                        const LABELS: Record<string, string> = {
+                                          nawah: 'NAWAH Scientific',
+                                          bioinformatics: 'Bioinformatics (Dr. Dina Amr)',
+                                          marc: 'MARC (GCP)',
+                                          medsol: 'Medsol (Sequencing)',
+                                          geochemistry: 'Geochemistry',
+                                          agitech: 'Agitech (NGS & ddPCR)',
+                                        };
+                                        const choices = ((reg as any).workshopChoices as string[] | null);
+                                        const displayKeys = (choices && choices.length > 0) ? choices : (reg.workshopChoice ? [reg.workshopChoice] : []);
+                                        return displayKeys.map(key => (
+                                          <Badge key={key} className="bg-amber-100 text-amber-800 block w-fit">
+                                            {LABELS[key] || key.toUpperCase()}
+                                          </Badge>
+                                        ));
+                                      })()}
                                       {(reg as any).workshopPaymentStatus === "confirmed" ? (
                                         <Badge className="bg-green-100 text-green-800 block w-fit text-xs">✅ Confirmed</Badge>
                                       ) : (reg as any).workshopPaymentStatus === "rejected" ? (

@@ -1,0 +1,1 @@
+ALTER TABLE `registrations` ADD `workshop_choices` json;

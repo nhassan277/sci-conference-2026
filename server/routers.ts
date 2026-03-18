@@ -98,7 +98,8 @@ export const appRouter = router({
           wantsCertificate: z.boolean().default(false),
           certificateInvoiceUrl: z.string().optional(),
           wantsWorkshop: z.boolean().default(false),
-          workshopChoice: z.enum(["nawah", "bioinformatics", "marc", "medsol", "geochemistry", "agitech"]).optional(),
+          workshopChoice: z.enum(["nawah", "bioinformatics", "marc", "medsol", "geochemistry", "agitech"]).optional(), // legacy single
+          workshopChoices: z.array(z.enum(["nawah", "bioinformatics", "marc", "medsol", "geochemistry", "agitech"])).optional(), // multi-select
           workshopInvoiceUrl: z.string().optional(),
           wantsExtWorkshop: z.boolean().default(false),
           extWorkshopChoice: z.string().optional(),
@@ -106,8 +107,13 @@ export const appRouter = router({
         })
       )
       .mutation(async ({ input }) => {
+        // Derive legacy workshopChoice from multi-select for backwards compat
+        const resolvedChoices = input.workshopChoices && input.workshopChoices.length > 0 ? input.workshopChoices : (input.workshopChoice ? [input.workshopChoice] : []);
+        const resolvedSingleChoice = resolvedChoices[0] ?? input.workshopChoice;
         const [result] = await db.insert(registrations).values({
           ...input,
+          workshopChoice: resolvedSingleChoice,
+          workshopChoices: resolvedChoices.length > 0 ? resolvedChoices : undefined,
           workshopPaymentStatus: input.wantsWorkshop && input.workshopInvoiceUrl ? "pending" : "unpaid",
           extWorkshopPaymentStatus: input.wantsExtWorkshop && input.extWorkshopInvoiceUrl ? "pending" : "unpaid",
         });
@@ -286,16 +292,24 @@ export const appRouter = router({
 
     getWorkshopCounts: publicProcedure.query(async () => {
       const allRegs = await db.select().from(registrations);
-      const nawah = allRegs.filter(r => r.wantsWorkshop && r.workshopChoice === 'nawah' && r.workshopPaymentStatus !== 'rejected').length;
-      const bioinformatics = allRegs.filter(r => r.wantsWorkshop && r.workshopChoice === 'bioinformatics' && r.workshopPaymentStatus !== 'rejected').length;
-      const marc = allRegs.filter(r => r.wantsWorkshop && r.workshopChoice === 'marc' && r.workshopPaymentStatus !== 'rejected').length;
-      const medsol = allRegs.filter(r => r.wantsWorkshop && r.workshopChoice === 'medsol' && r.workshopPaymentStatus !== 'rejected').length;
-      const geochemistry = allRegs.filter(r => r.wantsWorkshop && r.workshopChoice === 'geochemistry' && r.workshopPaymentStatus !== 'rejected').length;
+      // Helper: check if a registrant selected a given during-conference workshop (supports both multi and legacy single)
+      const hasDuringWorkshop = (r: typeof allRegs[0], key: string) => {
+        if (r.workshopPaymentStatus === 'rejected') return false;
+        if (!r.wantsWorkshop) return false;
+        const choices = r.workshopChoices as string[] | null;
+        if (choices && choices.length > 0) return choices.includes(key);
+        return r.workshopChoice === key;
+      };
+      const nawah = allRegs.filter(r => hasDuringWorkshop(r, 'nawah')).length;
+      const bioinformatics = allRegs.filter(r => hasDuringWorkshop(r, 'bioinformatics')).length;
+      const marc = allRegs.filter(r => hasDuringWorkshop(r, 'marc')).length;
+      const medsol = allRegs.filter(r => hasDuringWorkshop(r, 'medsol')).length;
+      const geochemistry = allRegs.filter(r => hasDuringWorkshop(r, 'geochemistry')).length;
+      const agitech = allRegs.filter(r => hasDuringWorkshop(r, 'agitech')).length;
       const ai_biotech = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'ai_biotech' && r.extWorkshopPaymentStatus !== 'rejected').length;
       const chitosan = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'chitosan' && r.extWorkshopPaymentStatus !== 'rejected').length;
       const scrna_seq = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'scrna_seq' && r.extWorkshopPaymentStatus !== 'rejected').length;
       const hvd_genomics = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'hvd_genomics' && r.extWorkshopPaymentStatus !== 'rejected').length;
-      const agitech = allRegs.filter(r => r.wantsWorkshop && r.workshopChoice === 'agitech' && r.workshopPaymentStatus !== 'rejected').length;
       const colors_metagenomics = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'colors_metagenomics' && r.extWorkshopPaymentStatus !== 'rejected').length;
       const vaccine_industry = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'vaccine_industry' && r.extWorkshopPaymentStatus !== 'rejected').length;
       const gesr_scholarships = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'gesr_scholarships').length;

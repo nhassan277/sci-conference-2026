@@ -23,7 +23,7 @@ const registrationSchema = z.object({
   participationType: z.literal("attendee"),
   wantsCertificate: z.boolean(),
   wantsWorkshop: z.boolean(),
-  workshopChoice: z.enum(["nawah", "bioinformatics", "marc", "medsol", "agitech"]).optional(),
+  workshopChoices: z.array(z.enum(["nawah", "bioinformatics", "marc", "medsol", "agitech"])).optional(),
   wantsExtWorkshop: z.boolean(),
   extWorkshopChoice: z.string().optional(),
 });
@@ -97,7 +97,7 @@ export default function Attendance() {
   const [registrationId, setRegistrationId] = useState<number | null>(null);
   const [wantsCertificate, setWantsCertificate] = useState(false);
   const [wantsWorkshop, setWantsWorkshop] = useState(false);
-  const [workshopChoice, setWorkshopChoice] = useState<"nawah" | "bioinformatics" | "marc" | "medsol" | "agitech" | "">("")
+  const [workshopChoices, setWorkshopChoices] = useState<string[]>([])
   const [wantsExtWorkshop, setWantsExtWorkshop] = useState(false);
   const [extWorkshopChoice, setExtWorkshopChoice] = useState("");
   const [certInvoiceFile, setCertInvoiceFile] = useState<File | null>(null);
@@ -128,7 +128,7 @@ export default function Attendance() {
   };
 
   const certFee = wantsCertificate ? CERTIFICATE_FEE : 0;
-  const workshopFee = wantsWorkshop && workshopChoice ? (WORKSHOP_FEES[workshopChoice] ?? 0) : 0;
+  const workshopFee = wantsWorkshop ? workshopChoices.reduce((sum, key) => sum + (WORKSHOP_FEES[key] ?? 0), 0) : 0;
   const extWorkshopFee = wantsExtWorkshop && extWorkshopChoice ? (EXT_WORKSHOP_FEES[extWorkshopChoice] ?? 0) : 0;
   const totalFee = certFee + workshopFee + extWorkshopFee;
 
@@ -221,8 +221,8 @@ export default function Attendance() {
       toast.error("Please upload the workshop payment invoice before submitting.");
       return;
     }
-    if (wantsWorkshop && !workshopChoice) {
-      toast.error("Please select a workshop.");
+    if (wantsWorkshop && workshopChoices.length === 0) {
+      toast.error("Please select at least one workshop.");
       return;
     }
     // Validate ext workshop
@@ -239,7 +239,8 @@ export default function Attendance() {
       ...data,
       wantsCertificate,
       wantsWorkshop,
-      workshopChoice: workshopChoice || undefined,
+      workshopChoices: workshopChoices.length > 0 ? (workshopChoices as any) : undefined,
+      workshopChoice: (workshopChoices[0] as any) || undefined,
       wantsExtWorkshop,
       extWorkshopChoice: extWorkshopChoice || undefined,
     });
@@ -323,7 +324,7 @@ export default function Attendance() {
               setShowSuccess(false);
               setWantsCertificate(false);
               setWantsWorkshop(false);
-              setWorkshopChoice("");
+              setWorkshopChoices([]);
               setWantsExtWorkshop(false);
               setExtWorkshopChoice("");
               setCertInvoiceFile(null);
@@ -476,7 +477,7 @@ export default function Attendance() {
                         const value = checked === true;
                         setWantsWorkshop(value);
                         setValue("wantsWorkshop", value);
-                        if (!value) setWorkshopChoice("");
+                        if (!value) setWorkshopChoices([]);
                       }}
                     />
                     <div className="space-y-1">
@@ -493,39 +494,46 @@ export default function Attendance() {
                   <div className="space-y-4 mt-2">
                     {/* Workshop Choice */}
                     <div className="space-y-2">
-                      <Label>Choose Your Workshop <span className="text-red-500">*</span></Label>
-                      <p className="text-xs text-muted-foreground" dir="rtl">اختر ورشة العمل المفضلة لديك</p>
+                      <Label>Choose Your Workshop(s) <span className="text-red-500">*</span></Label>
+                      <p className="text-xs text-muted-foreground" dir="rtl">يمكنك اختيار أكثر من ورشة عمل</p>
                       <div className="grid gap-3">
                         {[
                           { value: "nawah", label: "NAWAH Scientific", desc: "Research to Business — Translating Science into Industry | 200 EGP (incl. certificate)", descAr: "من البحث إلى الأعمال — تحويل العلوم إلى صناعة | 200 جنيه (شاملة الشهادة)" },
-          { value: "bioinformatics", label: "Bioinformatics Workshop — Dr. Dina Amr", desc: "Introduction to Bioinformatics — Day 1 of conference (April 7) | 100 EGP (incl. certificate) | Max 50 participants", descAr: "مقدمة في المعلوماتية الحيوية — اليوم الأول من المؤتمر (٧ أبريل) | ١٠٠ جنيه (شاملة الشهادة) | الحد الأقصى ٥٠ مشاركاً" },
+                          { value: "bioinformatics", label: "Bioinformatics Workshop — Dr. Dina Amr", desc: "Introduction to Bioinformatics — Day 1 of conference (April 7) | 100 EGP (incl. certificate) | Max 50 participants", descAr: "مقدمة في المعلوماتية الحيوية — اليوم الأول من المؤتمر (٧ أبريل) | ١٠٠ جنيه (شاملة الشهادة) | الحد الأقصى ٥٠ مشاركاً" },
                           { value: "marc", label: "MARC", desc: "Good Clinical Practice (GCP) Workshop | 200 EGP (incl. certificate)", descAr: "ورشة الممارسة السريرية الجيدة | 200 جنيه (شاملة الشهادة)" },
                           { value: "medsol", label: "Medsol Corporation", desc: "From DNA to Proteins: Advanced Sequencing Technologies | 200 EGP (incl. certificate)", descAr: "من الحمض النووي إلى البروتينات: تقنيات التسلسل المتقدمة | 200 جنيه (شاملة الشهادة)" },
                           { value: "agitech", label: "Agitech — NGS & ddPCR in Targeted Therapy", desc: "From Basic Research to Precision Medicine: Applications of NGS and ddPCR in Targeted Therapy. April 6, 12:00–14:00 | 20 spots only", descAr: "من البحث الأساسي إلى الطب الدقيق: تطبيقات NGS و ddPCR في العلاج الموجه. ٦ أبريل، ١٢:٠٠–٢:٠٠ م | ٢٠ مكاناً فقط", logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/qtvBAZFSrMqYBKkE.png" },
-                        ].map((ws) => (
+                        ].map((ws) => {
+                          const isSelected = workshopChoices.includes(ws.value);
+                          const toggleChoice = () => {
+                            const updated = isSelected
+                              ? workshopChoices.filter(c => c !== ws.value)
+                              : [...workshopChoices, ws.value];
+                            setWorkshopChoices(updated);
+                            setValue("workshopChoices", updated as any);
+                          };
+                          return (
                           <div
                             key={ws.value}
-                            onClick={() => {
-                              setWorkshopChoice(ws.value as any);
-                              setValue("workshopChoice", ws.value as any);
-                            }}
-                            className={`p-3 border-2 rounded-lg cursor-pointer transition-all ${workshopChoice === ws.value ? "border-amber-500 bg-amber-50" : "border-muted hover:border-amber-300"}`}
+                            onClick={toggleChoice}
+                            className={`p-3 border-2 rounded-lg cursor-pointer transition-all ${isSelected ? "border-amber-500 bg-amber-50" : "border-muted hover:border-amber-300"}`}
                           >
                             <div className="flex items-center gap-2">
-                              <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center shrink-0 ${workshopChoice === ws.value ? "border-amber-500 bg-amber-500" : "border-muted-foreground"}`}>
-                                {workshopChoice === ws.value && <div className="w-2 h-2 rounded-full bg-white" />}
+                              <div className={`w-4 h-4 rounded border-2 flex items-center justify-center shrink-0 ${isSelected ? "border-amber-500 bg-amber-500" : "border-muted-foreground"}`}>
+                                {isSelected && <div className="w-2 h-2 bg-white rounded-sm" />}
                               </div>
                               <div className="flex-1">
                                 <div className="flex items-center gap-2 mb-0.5">
                                   {(ws as any).logo && <img src={(ws as any).logo} alt={ws.label} className="h-5 object-contain" />}
                                   <p className="font-semibold text-sm">{ws.label}</p>
+                                  <span className="ml-auto text-xs font-bold text-amber-700">{WORKSHOP_FEES[ws.value] ?? 0} EGP</span>
                                 </div>
                                 <p className="text-xs text-muted-foreground">{ws.desc}</p>
                                 <p className="text-xs text-muted-foreground" dir="rtl">{ws.descAr}</p>
                               </div>
                             </div>
                           </div>
-                        ))}
+                        )})}
                       </div>
                     </div>
 
@@ -841,14 +849,14 @@ export default function Attendance() {
                         <span className="font-semibold text-blue-700">{certFee} EGP</span>
                       </div>
                     )}
-                    {workshopFee > 0 && workshopChoice && (
-                      <div className="flex justify-between items-center text-sm">
+                    {wantsWorkshop && workshopChoices.map(key => (
+                      <div key={key} className="flex justify-between items-center text-sm">
                         <span className="text-muted-foreground">
-                          Workshop ({workshopChoice.toUpperCase()}) | ورشة عمل
+                          Workshop ({key.toUpperCase()}) | ورشة عمل
                         </span>
-                        <span className="font-semibold text-amber-700">{workshopFee} EGP</span>
+                        <span className="font-semibold text-amber-700">{WORKSHOP_FEES[key] ?? 0} EGP</span>
                       </div>
-                    )}
+                    ))}
                     {extWorkshopFee > 0 && extWorkshopChoice && (
                       <div className="flex justify-between items-center text-sm">
                         <span className="text-muted-foreground">Pre/Post Workshop | ورشة ما قبل/بعد المؤتمر</span>
