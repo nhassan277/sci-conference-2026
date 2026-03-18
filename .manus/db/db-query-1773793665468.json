@@ -1,0 +1,146 @@
+{
+  "query": "SELECT full_name, title, affiliation, photo_url, speaker_type FROM keynote_speakers WHERE speaker_type = 'invited' ORDER BY display_order ASC LIMIT 20;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT full_name, title, affiliation, photo_url, speaker_type FROM keynote_speakers WHERE speaker_type = 'invited' ORDER BY display_order ASC LIMIT 20;",
+  "rows": [
+    {
+      "full_name": "Sohair Ramadan Fahmy",
+      "title": "Prof. Dr.",
+      "affiliation": "Dean of Faculty of Science, Cairo University; General Coordinator of the Sustainability Office; Professor of Physiology, Zoology Department, Faculty of Science, Cairo University",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/hqCqvqYZLfAAyYbb.png",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Fathy Khodair",
+      "title": "Prof. Dr.",
+      "affiliation": "Former Dean, Faculty of Medicine (Kasr Al-Ainy), Cairo University - Advisor to the President of Cairo University - Consultant Plastic and Reconstructive Surgeon",
+      "photo_url": "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/Gemini_Generated_Image_llarqrllarqrllar_3b6e03be.png",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Nagwa El-Badri",
+      "title": "Prof. Dr.",
+      "affiliation": "Director of Biomedical Sciences Program, Director of Center of Excellence for Stem Cells and Regenerative Medicine, Professor, Biomedical Sciences Program, Zewail City of Science, Technology and Innovation",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/XhCVtcmaxCborVYI.png",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Ibrahim M. El-Sherbiny",
+      "title": "Prof. Dr.",
+      "affiliation": "Professor of Nanotechnology & Nanomedicine, Founding Chairman of Nanoscience Program, Founding Director of Center of Materials Science, Acting President of the University of Science and Technology at Zewail City",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/CzEOiUuHXNdycLQK.jpeg",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Mahmoud Ibrahim Nasr",
+      "title": "Prof. Dr.",
+      "affiliation": "Professor of Ore Beneficiation and Manufacturing, Egyptian Central Metallurgical Research & Development Institute (CMRDI)",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/zBUqJnTzJbTTCvpq.jpg",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Khalid Muhammad Taalab",
+      "title": "Prof. Dr.",
+      "affiliation": "Nuclear Medicine Professor at Military Medical Academy, Egypt Centre of Research and Regenerative Medicine (ECRRM)",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/yopjWqQNqSdHnLgX.png",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Mohamed Ibrahim El-Anbawy",
+      "title": "Prof. Dr.",
+      "affiliation": "Professor of Environmental Geology, Geology Department, Faculty of Science, Cairo University",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/fEpxsoPAkLpFAtDV.jpg",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Osama Azmy",
+      "title": "Prof. Dr.",
+      "affiliation": "Consultant to the President of the National Research Centre for medical clinical trials, Head of the Regenerative Medicine Unit at NRC, Fellow of the Royal College of Obstetricians and Gynecologists (FRCOG)",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/QRaHoRvWllHeUlfD.png",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Ashraf Abdou Tabll",
+      "title": "Prof. Dr.",
+      "affiliation": "Professor of Medical Biotechnology, Egypt Center for Research and Regenerative Medicine (ECRRM)",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/JmdTRNcwzCEaJjrU.jpeg",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Ayman El-Shibiny",
+      "title": "Prof. Dr. ",
+      "affiliation": "Professor of Biomedical Sciences, and Director of CMP, Zewail City of Science and Technology",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/wWlOEHhvidephepp.png",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Naglaa A. Abdallah",
+      "title": "Prof. Dr. ",
+      "affiliation": "Professor of Genetics, Faculty of Agriculture, Cairo University",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/SiZQEfsvJgBfqrHD.png",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Osama Shalabiea",
+      "title": "Prof. Dr.",
+      "affiliation": "Professor of Astrophysics and Space Physics, and Head of the Department, Faculty of Science, Cairo University",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/XuXUgGyzMuvjEFhM.jpeg",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Tarek Kapiel",
+      "title": "Prof. em.",
+      "affiliation": "Assistant Professor of Plant Biotechnology at Department of Biotechnology, Faculty of Science, Cairo University",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/ASFgJyOIuZIbQQTd.png",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Ahmed Fikry El-Sayed",
+      "title": "Dr.",
+      "affiliation": "Assistant Professor, King Salman International University",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/TbmaCrtrtyaJjSsm.png",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Sahar Hassan",
+      "title": "Dr.",
+      "affiliation": "Senior Geologist and Sedimentologist, Digital Subsurface Solutions, SLB",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/TAxrmfwYatNFofbJ.jpg",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Areeg Abdalla",
+      "title": "Dr. ",
+      "affiliation": "Associate Professor, Mathematics Department, Faculty of Science, Cairo University",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/rLwMVUiTPMbedEmY.png",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Ahmed Youssef ",
+      "title": "Dr.",
+      "affiliation": "Production Deputy Manager and Vaccine Line Head at BioGeneric Pharma (BGP), and Instructor at Africa CDC biomanufacturing training programs",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/NKfXBKqJcSQePjbF.jpeg",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Mohamed Hamed",
+      "title": "Assoc. Prof. Dr. ",
+      "affiliation": "Associate professor of biomedical informatics and computational biology at the German University of Cairo (GUC).",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/RYEfletAfTWjKCac.png",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Mohamed Shaker Salem",
+      "title": "Prof. Dr. ",
+      "affiliation": "Physics Department, Faculty of Science, Cairo University ",
+      "photo_url": "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/WhatsAppImage2026-03-12at18.49.43_23590640.jpeg",
+      "speaker_type": "invited"
+    }
+  ],
+  "messages": [
+    "Mortada Mourad El Aref\tProf. Dr.\tProfessor of Ore Geology, Geology Department, Faculty of Science, Cairo University",
+    "\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/XcXczPQWMszNbalu.png\tinvited"
+  ],
+  "stdout": "full_name\ttitle\taffiliation\tphoto_url\tspeaker_type\nSohair Ramadan Fahmy\tProf. Dr.\tDean of Faculty of Science, Cairo University; General Coordinator of the Sustainability Office; Professor of Physiology, Zoology Department, Faculty of Science, Cairo University\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/hqCqvqYZLfAAyYbb.png\tinvited\nFathy Khodair\tProf. Dr.\tFormer Dean, Faculty of Medicine (Kasr Al-Ainy), Cairo University - Advisor to the President of Cairo University - Consultant Plastic and Reconstructive Surgeon\thttps://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/Gemini_Generated_Image_llarqrllarqrllar_3b6e03be.png\tinvited\nNagwa El-Badri\tProf. Dr.\tDirector of Biomedical Sciences Program, Director of Center of Excellence for Stem Cells and Regenerative Medicine, Professor, Biomedical Sciences Program, Zewail City of Science, Technology and Innovation\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/XhCVtcmaxCborVYI.png\tinvited\nMortada Mourad El Aref\tProf. Dr.\tProfessor of Ore Geology, Geology Department, Faculty of Science, Cairo University\n\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/XcXczPQWMszNbalu.png\tinvited\nIbrahim M. El-Sherbiny\tProf. Dr.\tProfessor of Nanotechnology & Nanomedicine, Founding Chairman of Nanoscience Program, Founding Director of Center of Materials Science, Acting President of the University of Science and Technology at Zewail City\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/CzEOiUuHXNdycLQK.jpeg\tinvited\nMahmoud Ibrahim Nasr\tProf. Dr.\tProfessor of Ore Beneficiation and Manufacturing, Egyptian Central Metallurgical Research & Development Institute (CMRDI)\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/zBUqJnTzJbTTCvpq.jpg\tinvited\nKhalid Muhammad Taalab\tProf. Dr.\tNuclear Medicine Professor at Military Medical Academy, Egypt Centre of Research and Regenerative Medicine (ECRRM)\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/yopjWqQNqSdHnLgX.png\tinvited\nMohamed Ibrahim El-Anbawy\tProf. Dr.\tProfessor of Environmental Geology, Geology Department, Faculty of Science, Cairo University\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/fEpxsoPAkLpFAtDV.jpg\tinvited\nOsama Azmy\tProf. Dr.\tConsultant to the President of the National Research Centre for medical clinical trials, Head of the Regenerative Medicine Unit at NRC, Fellow of the Royal College of Obstetricians and Gynecologists (FRCOG)\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/QRaHoRvWllHeUlfD.png\tinvited\nAshraf Abdou Tabll\tProf. Dr.\tProfessor of Medical Biotechnology, Egypt Center for Research and Regenerative Medicine (ECRRM)\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/JmdTRNcwzCEaJjrU.jpeg\tinvited\nAyman El-Shibiny\tProf. Dr. \tProfessor of Biomedical Sciences, and Director of CMP, Zewail City of Science and Technology\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/wWlOEHhvidephepp.png\tinvited\nNaglaa A. Abdallah\tProf. Dr. \tProfessor of Genetics, Faculty of Agriculture, Cairo University\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/SiZQEfsvJgBfqrHD.png\tinvited\nOsama Shalabiea\tProf. Dr.\tProfessor of Astrophysics and Space Physics, and Head of the Department, Faculty of Science, Cairo University\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/XuXUgGyzMuvjEFhM.jpeg\tinvited\nTarek Kapiel\tProf. em.\tAssistant Professor of Plant Biotechnology at Department of Biotechnology, Faculty of Science, Cairo University\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/ASFgJyOIuZIbQQTd.png\tinvited\nAhmed Fikry El-Sayed\tDr.\tAssistant Professor, King Salman International University\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/TbmaCrtrtyaJjSsm.png\tinvited\nSahar Hassan\tDr.\tSenior Geologist and Sedimentologist, Digital Subsurface Solutions, SLB\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/TAxrmfwYatNFofbJ.jpg\tinvited\nAreeg Abdalla\tDr. \tAssociate Professor, Mathematics Department, Faculty of Science, Cairo University\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/rLwMVUiTPMbedEmY.png\tinvited\nAhmed Youssef \tDr.\tProduction Deputy Manager and Vaccine Line Head at BioGeneric Pharma (BGP), and Instructor at Africa CDC biomanufacturing training programs\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/NKfXBKqJcSQePjbF.jpeg\tinvited\nMohamed Hamed\tAssoc. Prof. Dr. \tAssociate professor of biomedical informatics and computational biology at the German University of Cairo (GUC).\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/RYEfletAfTWjKCac.png\tinvited\nMohamed Shaker Salem\tProf. Dr. \tPhysics Department, Faculty of Science, Cairo University \thttps://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/WhatsAppImage2026-03-12at18.49.43_23590640.jpeg\tinvited\n",
+  "stderr": "",
+  "execution_time_ms": 1621
+}

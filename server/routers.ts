@@ -98,7 +98,7 @@ export const appRouter = router({
           wantsCertificate: z.boolean().default(false),
           certificateInvoiceUrl: z.string().optional(),
           wantsWorkshop: z.boolean().default(false),
-          workshopChoice: z.enum(["nawah", "marc", "medsol", "geochemistry", "agitech"]).optional(),
+          workshopChoice: z.enum(["nawah", "bioinformatics", "marc", "medsol", "geochemistry", "agitech"]).optional(),
           workshopInvoiceUrl: z.string().optional(),
           wantsExtWorkshop: z.boolean().default(false),
           extWorkshopChoice: z.string().optional(),
@@ -131,11 +131,11 @@ export const appRouter = router({
         try {
           const allRegs = await db.select().from(registrations);
           const WORKSHOP_CAPACITIES: Record<string, number> = {
-            nawah: 30, marc: 30, medsol: 30, geochemistry: 30, agitech: 20,
+            nawah: 30, bioinformatics: 50, marc: 30, medsol: 30, geochemistry: 30, agitech: 20,
             chitosan: 30, scrna_seq: 30, hvd_genomics: 20, ai_biotech: 30, colors_metagenomics: 25,
           };
           const workshopLabels: Record<string, string> = {
-            nawah: "NAWAH Scientific", marc: "MARC", medsol: "Medsol Corporation",
+            nawah: "NAWAH Scientific", bioinformatics: "Bioinformatics (Dr. Dina Amr)", marc: "MARC", medsol: "Medsol Corporation",
             geochemistry: "Geochemistry", agitech: "Agitech (NGS & ddPCR)",
             chitosan: "Biotech Product Dev 101 (Chitosan)",
             scrna_seq: "Single Cell Genomics (EG-CompBio)",
@@ -145,7 +145,7 @@ export const appRouter = router({
           };
           // Check during-conference workshops
           for (const [key, capacity] of Object.entries(WORKSHOP_CAPACITIES)) {
-            const isDuring = ["nawah", "marc", "medsol", "geochemistry", "agitech"].includes(key);
+            const isDuring = ["nawah", "bioinformatics", "marc", "medsol", "geochemistry", "agitech"].includes(key);
             const count = isDuring
               ? allRegs.filter(r => r.wantsWorkshop && r.workshopChoice === key && r.workshopPaymentStatus !== "rejected").length
               : allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === key && r.extWorkshopPaymentStatus !== "rejected").length;
@@ -287,6 +287,7 @@ export const appRouter = router({
     getWorkshopCounts: publicProcedure.query(async () => {
       const allRegs = await db.select().from(registrations);
       const nawah = allRegs.filter(r => r.wantsWorkshop && r.workshopChoice === 'nawah' && r.workshopPaymentStatus !== 'rejected').length;
+      const bioinformatics = allRegs.filter(r => r.wantsWorkshop && r.workshopChoice === 'bioinformatics' && r.workshopPaymentStatus !== 'rejected').length;
       const marc = allRegs.filter(r => r.wantsWorkshop && r.workshopChoice === 'marc' && r.workshopPaymentStatus !== 'rejected').length;
       const medsol = allRegs.filter(r => r.wantsWorkshop && r.workshopChoice === 'medsol' && r.workshopPaymentStatus !== 'rejected').length;
       const geochemistry = allRegs.filter(r => r.wantsWorkshop && r.workshopChoice === 'geochemistry' && r.workshopPaymentStatus !== 'rejected').length;
@@ -298,7 +299,7 @@ export const appRouter = router({
       const colors_metagenomics = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'colors_metagenomics' && r.extWorkshopPaymentStatus !== 'rejected').length;
       const vaccine_industry = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'vaccine_industry' && r.extWorkshopPaymentStatus !== 'rejected').length;
       const gesr_scholarships = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'gesr_scholarships').length;
-      return { nawah, marc, medsol, geochemistry, agitech, ai_biotech, chitosan, scrna_seq, hvd_genomics, colors_metagenomics, vaccine_industry, gesr_scholarships };
+      return { nawah, bioinformatics, marc, medsol, geochemistry, agitech, ai_biotech, chitosan, scrna_seq, hvd_genomics, colors_metagenomics, vaccine_industry, gesr_scholarships };
     }),
 
     confirmWorkshopPayment: adminProcedure

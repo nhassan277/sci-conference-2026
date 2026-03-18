@@ -462,7 +462,7 @@ export default function Admin() {
         if (workshopFilter === "none") return !reg.wantsWorkshop && !reg.wantsExtWorkshop;
         if (workshopFilter === "any") return reg.wantsWorkshop || reg.wantsExtWorkshop;
         // During-conference workshops
-        if (["nawah", "marc", "medsol", "geochemistry", "agitech"].includes(workshopFilter))
+        if (["nawah", "bioinformatics", "marc", "medsol", "geochemistry", "agitech"].includes(workshopFilter))
           return reg.wantsWorkshop && reg.workshopChoice === workshopFilter;
         // Pre/Post workshops
         return reg.wantsExtWorkshop && reg.extWorkshopChoice === workshopFilter;
@@ -822,7 +822,7 @@ export default function Admin() {
               <FlaskConical className="w-5 h-5 text-amber-600" />
               Workshop Registration Statistics
             </CardTitle>
-            <CardDescription>Live registration counts and capacity for all 10 workshops</CardDescription>
+                <CardDescription>Live registration counts and capacity for all 11 workshops</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
@@ -832,6 +832,7 @@ export default function Admin() {
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                   {[
                     { key: "nawah", label: "Nawah Scientific", capacity: 30 },
+                    { key: "bioinformatics", label: "Bioinformatics (Dr. Dina Amr)", capacity: 50 },
                     { key: "marc", label: "MARC", capacity: 30 },
                     { key: "medsol", label: "Medsol Corporation", capacity: 30 },
                     { key: "geochemistry", label: "Geochemistry", capacity: 30 },
@@ -965,6 +966,7 @@ export default function Admin() {
                       <SelectItem value="any">Any Workshop</SelectItem>
                       <SelectItem value="none">No Workshop</SelectItem>
                       <SelectItem value="nawah">🔬 NAWAH Scientific</SelectItem>
+                      <SelectItem value="bioinformatics">🧬 Bioinformatics (Dr. Dina Amr)</SelectItem>
                       <SelectItem value="marc">🏥 MARC (GCP)</SelectItem>
                       <SelectItem value="medsol">🧬 Medsol Corporation (Sequencing)</SelectItem>
                       <SelectItem value="geochemistry">🌍 Geochemistry</SelectItem>
@@ -1083,6 +1085,7 @@ export default function Admin() {
                                       <Badge className="bg-amber-100 text-amber-800 block w-fit">
                                         {({
                           nawah: 'NAWAH Scientific',
+                          bioinformatics: 'Bioinformatics (Dr. Dina Amr)',
                           marc: 'MARC (GCP)',
                           medsol: 'Medsol (Sequencing)',
                           geochemistry: 'Geochemistry',

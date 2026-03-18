@@ -1,0 +1,28 @@
+{
+  "query": "SELECT full_name, title, affiliation, photo_url FROM keynote_speakers WHERE speaker_type = 'invited' ORDER BY display_order ASC LIMIT 5 OFFSET 24;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT full_name, title, affiliation, photo_url FROM keynote_speakers WHERE speaker_type = 'invited' ORDER BY display_order ASC LIMIT 5 OFFSET 24;",
+  "rows": [
+    {
+      "full_name": "Mostafa Nasser ",
+      "title": "Eng.",
+      "affiliation": "Startup Grind Chapter Director",
+      "photo_url": "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/IMG_20231205_150442_744_46ccd42e.jpg"
+    },
+    {
+      "full_name": "Abdelfattah Kamal",
+      "title": "Dr.",
+      "affiliation": "Operations Director at BioGeneric pharma (BGP)",
+      "photo_url": "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_TRiV0W_image_c2f3f56c.png"
+    },
+    {
+      "full_name": "Mohamed Anwar Abdelwahab",
+      "title": "Dr.",
+      "affiliation": "R&D Manager, Techno Taste (Flavor House)",
+      "photo_url": "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_FsUHjJ_image_364cded7.png"
+    }
+  ],
+  "messages": [],
+  "stdout": "full_name\ttitle\taffiliation\tphoto_url\nMostafa Nasser \tEng.\tStartup Grind Chapter Director\thttps://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/IMG_20231205_150442_744_46ccd42e.jpg\nAbdelfattah Kamal\tDr.\tOperations Director at BioGeneric pharma (BGP)\thttps://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_TRiV0W_image_c2f3f56c.png\nMohamed Anwar Abdelwahab\tDr.\tR&D Manager, Techno Taste (Flavor House)\thttps://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_FsUHjJ_image_364cded7.png\n",
+  "stderr": "",
+  "execution_time_ms": 1551
+}

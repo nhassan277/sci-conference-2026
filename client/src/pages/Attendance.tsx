@@ -23,7 +23,7 @@ const registrationSchema = z.object({
   participationType: z.literal("attendee"),
   wantsCertificate: z.boolean(),
   wantsWorkshop: z.boolean(),
-  workshopChoice: z.enum(["nawah", "marc", "medsol", "agitech"]).optional(),
+  workshopChoice: z.enum(["nawah", "bioinformatics", "marc", "medsol", "agitech"]).optional(),
   wantsExtWorkshop: z.boolean(),
   extWorkshopChoice: z.string().optional(),
 });
@@ -97,7 +97,7 @@ export default function Attendance() {
   const [registrationId, setRegistrationId] = useState<number | null>(null);
   const [wantsCertificate, setWantsCertificate] = useState(false);
   const [wantsWorkshop, setWantsWorkshop] = useState(false);
-  const [workshopChoice, setWorkshopChoice] = useState<"nawah" | "marc" | "medsol" | "agitech" | "">("")
+  const [workshopChoice, setWorkshopChoice] = useState<"nawah" | "bioinformatics" | "marc" | "medsol" | "agitech" | "">("")
   const [wantsExtWorkshop, setWantsExtWorkshop] = useState(false);
   const [extWorkshopChoice, setExtWorkshopChoice] = useState("");
   const [certInvoiceFile, setCertInvoiceFile] = useState<File | null>(null);
@@ -110,6 +110,7 @@ export default function Attendance() {
   // Workshop fees map (conference-day workshops)
   const WORKSHOP_FEES: Record<string, number> = {
     nawah: 200,
+    bioinformatics: 100,
     marc: 200,
     medsol: 200,
     agitech: 200,
@@ -497,6 +498,7 @@ export default function Attendance() {
                       <div className="grid gap-3">
                         {[
                           { value: "nawah", label: "NAWAH Scientific", desc: "Research to Business — Translating Science into Industry | 200 EGP (incl. certificate)", descAr: "من البحث إلى الأعمال — تحويل العلوم إلى صناعة | 200 جنيه (شاملة الشهادة)" },
+          { value: "bioinformatics", label: "Bioinformatics Workshop — Dr. Dina Amr", desc: "Introduction to Bioinformatics — Day 1 of conference (April 7) | 100 EGP (incl. certificate) | Max 50 participants", descAr: "مقدمة في المعلوماتية الحيوية — اليوم الأول من المؤتمر (٧ أبريل) | ١٠٠ جنيه (شاملة الشهادة) | الحد الأقصى ٥٠ مشاركاً" },
                           { value: "marc", label: "MARC", desc: "Good Clinical Practice (GCP) Workshop | 200 EGP (incl. certificate)", descAr: "ورشة الممارسة السريرية الجيدة | 200 جنيه (شاملة الشهادة)" },
                           { value: "medsol", label: "Medsol Corporation", desc: "From DNA to Proteins: Advanced Sequencing Technologies | 200 EGP (incl. certificate)", descAr: "من الحمض النووي إلى البروتينات: تقنيات التسلسل المتقدمة | 200 جنيه (شاملة الشهادة)" },
                           { value: "agitech", label: "Agitech — NGS & ddPCR in Targeted Therapy", desc: "From Basic Research to Precision Medicine: Applications of NGS and ddPCR in Targeted Therapy. April 6, 12:00–14:00 | 20 spots only", descAr: "من البحث الأساسي إلى الطب الدقيق: تطبيقات NGS و ddPCR في العلاج الموجه. ٦ أبريل، ١٢:٠٠–٢:٠٠ م | ٢٠ مكاناً فقط", logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/qtvBAZFSrMqYBKkE.png" },

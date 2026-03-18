@@ -1,0 +1,150 @@
+{
+  "query": "SELECT id, full_name, title, department, role FROM committees WHERE committee_type = 'scientific' ORDER BY display_order ASC LIMIT 20 OFFSET 12;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name, title, department, role FROM committees WHERE committee_type = 'scientific' ORDER BY display_order ASC LIMIT 20 OFFSET 12;",
+  "rows": [
+    {
+      "id": "13",
+      "full_name": "Tarek Abdel-Mawgoud",
+      "title": "Prof. Dr.",
+      "department": "Department of Botany and Microbiology",
+      "role": "Chair"
+    },
+    {
+      "id": "14",
+      "full_name": "Maimoona Kord",
+      "title": "Prof. Dr.",
+      "department": "Department of Botany and Microbiology",
+      "role": "Member"
+    },
+    {
+      "id": "15",
+      "full_name": "Walid Abo-ElSooad",
+      "title": "Prof. Dr.",
+      "department": "Department of Botany and Microbiology",
+      "role": "Member"
+    },
+    {
+      "id": "16",
+      "full_name": "Tayseer Abdel-Khaleq Abdullah",
+      "title": "Prof. Dr.",
+      "department": "Department of Chemistry",
+      "role": "Chair"
+    },
+    {
+      "id": "17",
+      "full_name": "Ahmed Helmy Elwahy",
+      "title": "Prof. Dr.",
+      "department": "Department of Chemistry",
+      "role": "Member"
+    },
+    {
+      "id": "18",
+      "full_name": "Aly Younes",
+      "title": "Prof. Dr.",
+      "department": "Department of Entomology",
+      "role": "Chair"
+    },
+    {
+      "id": "19",
+      "full_name": "Nagwa Rashdan",
+      "title": "Prof. Dr.",
+      "department": "Department of Entomology",
+      "role": "Member"
+    },
+    {
+      "id": "20",
+      "full_name": "Youssef El-Demerdash",
+      "title": "Prof. Dr.",
+      "department": "Department of Entomology",
+      "role": "Member"
+    },
+    {
+      "id": "21",
+      "full_name": "Sameh Tahoun",
+      "title": "Prof. Dr.",
+      "department": "Department of Geology",
+      "role": "Chair"
+    },
+    {
+      "id": "22",
+      "full_name": "Abdel-Hameed Wagdy El Manawy",
+      "title": "Prof. Dr.",
+      "department": "Department of Geology",
+      "role": "Member"
+    },
+    {
+      "id": "23",
+      "full_name": "Mortada Mourad El Aref",
+      "title": "Prof. Dr.",
+      "department": "Department of Geology",
+      "role": "Member"
+    },
+    {
+      "id": "24",
+      "full_name": "Waleed Mabrouk",
+      "title": "Prof. Dr.",
+      "department": "Department of Geophysics",
+      "role": "Chair"
+    },
+    {
+      "id": "26",
+      "full_name": "Mohamed Hassan",
+      "title": "Prof. Dr.",
+      "department": "Department of Geophysics",
+      "role": "Member"
+    },
+    {
+      "id": "25",
+      "full_name": "Ahmed Mohsen",
+      "title": "Dr.",
+      "department": "Department of Geophysics",
+      "role": "Member"
+    },
+    {
+      "id": "27",
+      "full_name": "Nasser El-Azab",
+      "title": "Prof. Dr.",
+      "department": "Department of Mathematics",
+      "role": "Chair"
+    },
+    {
+      "id": "28",
+      "full_name": "Ahmed El-Gendy",
+      "title": "Prof. Dr.",
+      "department": "Department of Mathematics",
+      "role": "Member"
+    },
+    {
+      "id": "29",
+      "full_name": "Mohamed Ramadan",
+      "title": "Prof. Dr.",
+      "department": "Department of Mathematics",
+      "role": "Member"
+    },
+    {
+      "id": "30",
+      "full_name": "Mohamed El-Zawawi",
+      "title": "Prof. Dr.",
+      "department": "Department of Mathematics",
+      "role": "Member"
+    },
+    {
+      "id": "36",
+      "full_name": "Walid Abdullah",
+      "title": "Dr.",
+      "department": "Department of Mathematics",
+      "role": "Member"
+    },
+    {
+      "id": "37",
+      "full_name": "Mohamed Hassanein Gaber",
+      "title": "Prof. Dr.",
+      "department": "Department of Physics",
+      "role": "Chair"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tfull_name\ttitle\tdepartment\trole\n13\tTarek Abdel-Mawgoud\tProf. Dr.\tDepartment of Botany and Microbiology\tChair\n14\tMaimoona Kord\tProf. Dr.\tDepartment of Botany and Microbiology\tMember\n15\tWalid Abo-ElSooad\tProf. Dr.\tDepartment of Botany and Microbiology\tMember\n16\tTayseer Abdel-Khaleq Abdullah\tProf. Dr.\tDepartment of Chemistry\tChair\n17\tAhmed Helmy Elwahy\tProf. Dr.\tDepartment of Chemistry\tMember\n18\tAly Younes\tProf. Dr.\tDepartment of Entomology\tChair\n19\tNagwa Rashdan\tProf. Dr.\tDepartment of Entomology\tMember\n20\tYoussef El-Demerdash\tProf. Dr.\tDepartment of Entomology\tMember\n21\tSameh Tahoun\tProf. Dr.\tDepartment of Geology\tChair\n22\tAbdel-Hameed Wagdy El Manawy\tProf. Dr.\tDepartment of Geology\tMember\n23\tMortada Mourad El Aref\tProf. Dr.\tDepartment of Geology\tMember\n24\tWaleed Mabrouk\tProf. Dr.\tDepartment of Geophysics\tChair\n26\tMohamed Hassan\tProf. Dr.\tDepartment of Geophysics\tMember\n25\tAhmed Mohsen\tDr.\tDepartment of Geophysics\tMember\n27\tNasser El-Azab\tProf. Dr.\tDepartment of Mathematics\tChair\n28\tAhmed El-Gendy\tProf. Dr.\tDepartment of Mathematics\tMember\n29\tMohamed Ramadan\tProf. Dr.\tDepartment of Mathematics\tMember\n30\tMohamed El-Zawawi\tProf. Dr.\tDepartment of Mathematics\tMember\n36\tWalid Abdullah\tDr.\tDepartment of Mathematics\tMember\n37\tMohamed Hassanein Gaber\tProf. Dr.\tDepartment of Physics\tChair\n",
+  "stderr": "",
+  "execution_time_ms": 1475
+}

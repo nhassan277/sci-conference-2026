@@ -1,0 +1,94 @@
+{
+  "query": "SELECT id, full_name, title, department, role FROM committees WHERE committee_type = 'scientific' ORDER BY display_order ASC LIMIT 12 OFFSET 0;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name, title, department, role FROM committees WHERE committee_type = 'scientific' ORDER BY display_order ASC LIMIT 12 OFFSET 0;",
+  "rows": [
+    {
+      "id": "1",
+      "full_name": "Fawzy Ahmed Abdel-Salam",
+      "title": "Prof. Dr.",
+      "department": "Department of Astronomy, Space Science and Meteorology",
+      "role": "Chair"
+    },
+    {
+      "id": "2",
+      "full_name": "Mohamed Magdy Abdel-Wahab",
+      "title": "Prof. Dr.",
+      "department": "Department of Astronomy, Space Science and Meteorology",
+      "role": "Member"
+    },
+    {
+      "id": "3",
+      "full_name": "Osama Shalabya",
+      "title": "Prof. Dr.",
+      "department": "Department of Astronomy, Space Science and Meteorology",
+      "role": "Member"
+    },
+    {
+      "id": "4",
+      "full_name": "Alaa El-Din Mohamed Fouad",
+      "title": "Prof. Dr.",
+      "department": "Department of Astronomy, Space Science and Meteorology",
+      "role": "Member"
+    },
+    {
+      "id": "5",
+      "full_name": "Hussein Mohamed Farid",
+      "title": "Dr.",
+      "department": "Department of Astronomy, Space Science and Meteorology",
+      "role": "Member"
+    },
+    {
+      "id": "6",
+      "full_name": "Mohamed Hassanein Gaber",
+      "title": "Dr.",
+      "department": "Department of Biophysics",
+      "role": "Chair"
+    },
+    {
+      "id": "7",
+      "full_name": "Haitham Sharaf El-Din",
+      "title": "Prof. Dr.",
+      "department": "Department of Biophysics",
+      "role": "Member"
+    },
+    {
+      "id": "8",
+      "full_name": "Refaat Gabre",
+      "title": "Prof. Dr.",
+      "department": "Department of Biotechnology",
+      "role": "Chair"
+    },
+    {
+      "id": "9",
+      "full_name": "Tarek Kabil",
+      "title": "Prof. em.",
+      "department": "Department of Biotechnology",
+      "role": "Member"
+    },
+    {
+      "id": "10",
+      "full_name": "Ahmed Fouad",
+      "title": "Prof. Dr.",
+      "department": "Department of Biotechnology",
+      "role": "Member"
+    },
+    {
+      "id": "11",
+      "full_name": "Dina Amr",
+      "title": "Dr.",
+      "department": "Department of Biotechnology",
+      "role": "Member"
+    },
+    {
+      "id": "12",
+      "full_name": "Nahla Osama",
+      "title": "Dr.",
+      "department": "Department of Biotechnology",
+      "role": "Member"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tfull_name\ttitle\tdepartment\trole\n1\tFawzy Ahmed Abdel-Salam\tProf. Dr.\tDepartment of Astronomy, Space Science and Meteorology\tChair\n2\tMohamed Magdy Abdel-Wahab\tProf. Dr.\tDepartment of Astronomy, Space Science and Meteorology\tMember\n3\tOsama Shalabya\tProf. Dr.\tDepartment of Astronomy, Space Science and Meteorology\tMember\n4\tAlaa El-Din Mohamed Fouad\tProf. Dr.\tDepartment of Astronomy, Space Science and Meteorology\tMember\n5\tHussein Mohamed Farid\tDr.\tDepartment of Astronomy, Space Science and Meteorology\tMember\n6\tMohamed Hassanein Gaber\tDr.\tDepartment of Biophysics\tChair\n7\tHaitham Sharaf El-Din\tProf. Dr.\tDepartment of Biophysics\tMember\n8\tRefaat Gabre\tProf. Dr.\tDepartment of Biotechnology\tChair\n9\tTarek Kabil\tProf. em.\tDepartment of Biotechnology\tMember\n10\tAhmed Fouad\tProf. Dr.\tDepartment of Biotechnology\tMember\n11\tDina Amr\tDr.\tDepartment of Biotechnology\tMember\n12\tNahla Osama\tDr.\tDepartment of Biotechnology\tMember\n",
+  "stderr": "",
+  "execution_time_ms": 1494
+}

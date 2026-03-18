@@ -636,7 +636,7 @@ export default function Home() {
               <h2 className="text-4xl md:text-5xl font-bold text-primary">Professional Workshops</h2>
               <p className="text-2xl font-semibold text-secondary" dir="rtl">ورش العمل المهنية</p>
               <p className="text-xl text-muted-foreground">
-                In collaboration with NAWAH Scientific, MARC, Medsol Corporation, and Palacký University Olomouc
+                In collaboration with NAWAH Scientific, Dr. Dina Amr, MARC, Medsol Corporation, and Palacký University Olomouc
               </p>
               {/* Pricing Banner */}
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-4">
@@ -650,7 +650,7 @@ export default function Home() {
 
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 items-stretch">
               {/* NAWAH Workshop */}
               <Card className="border-2 border-primary/20 flex flex-col">
                 <CardHeader className="flex-1">
@@ -690,6 +690,56 @@ export default function Home() {
                 <CardContent className="pt-0">
                   <Button 
                     className="w-full bg-amber-600 hover:bg-amber-700 text-sm h-auto py-2 px-3 whitespace-normal leading-snug text-center" 
+                    onClick={() => { window.location.href = '/attendance'; }}
+                  >
+                    Register & Upload Invoice | سجّل وارفع الإيصال
+                  </Button>
+                </CardContent>
+              </Card>
+
+              {/* Bioinformatics Workshop — Dr. Dina Amr */}
+              <Card className="border-2 border-blue-200 flex flex-col">
+                <CardHeader className="flex-1">
+                  <div className="flex flex-col items-center text-center mb-3 gap-3">
+                    <img
+                      src="https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_KE7pNQ_image_92d74388.png"
+                      alt="Dr. Dina Amr"
+                      className="h-24 w-24 object-cover rounded-full border-2 border-blue-300 shrink-0"
+                    />
+                    <div className="w-full px-2">
+                      <CardTitle className="text-xl mb-2 leading-snug">Introduction to Bioinformatics</CardTitle>
+                      {workshopCounts && <div className="mb-2">{(() => { const count = workshopCounts.bioinformatics; const cap = 50; const rem = cap - count; if (rem <= 0) return <Badge className="bg-red-100 text-red-800 text-xs">Full 🔴</Badge>; if (rem <= 5) return <Badge className="bg-red-100 text-red-800 text-xs">{rem} spots left 🔴</Badge>; if (rem <= 15) return <Badge className="bg-amber-100 text-amber-800 text-xs">{rem}/{cap} spots left 🟡</Badge>; return <Badge className="bg-green-100 text-green-800 text-xs">{rem}/{cap} spots left 🟢</Badge>; })()}</div>}
+                    </div>
+                  </div>
+                  <CardDescription className="text-base space-y-3 pt-2">
+                    <p className="text-foreground font-medium">
+                      By <strong>Dr. Dina Amr</strong>
+                    </p>
+                    <p className="text-sm text-muted-foreground italic">Faculty of Science, Cairo University</p>
+
+                    <div className="bg-blue-50 p-4 rounded-lg">
+                      <p className="text-sm text-muted-foreground mb-2"><strong>Date:</strong> April 7, 2026 (Day 1)</p>
+                      <p className="font-bold text-amber-700 text-sm mt-1">100 EGP (incl. certificate)</p>
+                      <p className="text-amber-600 text-xs" dir="rtl">100 جنيه مصري (شاملة الشهادة)</p>
+                      <p className="text-blue-700 text-xs font-semibold mt-1">Max 50 participants | الحد الأقصى 50 مشاركاً</p>
+                    </div>
+
+                    <p className="text-sm text-justify">
+                      A hands-on introduction to bioinformatics tools and workflows, covering sequence analysis, biological databases, and computational approaches for life sciences research.
+                    </p>
+
+                    <div className="border-t pt-4 mt-4">
+                      <ul className="list-disc list-inside space-y-1 text-left text-sm">
+                        <li>During the conference — Day 1 (April 7)</li>
+                        <li>Certificate co-signed by Faculty of Science, Cairo University</li>
+                        <li>Limited to 50 participants</li>
+                      </ul>
+                    </div>
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="pt-0">
+                  <Button
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-sm h-auto py-2 px-3 whitespace-normal leading-snug text-center"
                     onClick={() => { window.location.href = '/attendance'; }}
                   >
                     Register & Upload Invoice | سجّل وارفع الإيصال

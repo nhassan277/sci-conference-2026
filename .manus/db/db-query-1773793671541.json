@@ -1,0 +1,122 @@
+{
+  "query": "SELECT full_name, title, affiliation, photo_url, speaker_type FROM keynote_speakers WHERE speaker_type = 'invited' ORDER BY display_order ASC LIMIT 20 OFFSET 11;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT full_name, title, affiliation, photo_url, speaker_type FROM keynote_speakers WHERE speaker_type = 'invited' ORDER BY display_order ASC LIMIT 20 OFFSET 11;",
+  "rows": [
+    {
+      "full_name": "Naglaa A. Abdallah",
+      "title": "Prof. Dr. ",
+      "affiliation": "Professor of Genetics, Faculty of Agriculture, Cairo University",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/SiZQEfsvJgBfqrHD.png",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Osama Shalabiea",
+      "title": "Prof. Dr.",
+      "affiliation": "Professor of Astrophysics and Space Physics, and Head of the Department, Faculty of Science, Cairo University",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/XuXUgGyzMuvjEFhM.jpeg",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Tarek Kapiel",
+      "title": "Prof. em.",
+      "affiliation": "Assistant Professor of Plant Biotechnology at Department of Biotechnology, Faculty of Science, Cairo University",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/ASFgJyOIuZIbQQTd.png",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Ahmed Fikry El-Sayed",
+      "title": "Dr.",
+      "affiliation": "Assistant Professor, King Salman International University",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/TbmaCrtrtyaJjSsm.png",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Sahar Hassan",
+      "title": "Dr.",
+      "affiliation": "Senior Geologist and Sedimentologist, Digital Subsurface Solutions, SLB",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/TAxrmfwYatNFofbJ.jpg",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Areeg Abdalla",
+      "title": "Dr. ",
+      "affiliation": "Associate Professor, Mathematics Department, Faculty of Science, Cairo University",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/rLwMVUiTPMbedEmY.png",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Ahmed Youssef ",
+      "title": "Dr.",
+      "affiliation": "Production Deputy Manager and Vaccine Line Head at BioGeneric Pharma (BGP), and Instructor at Africa CDC biomanufacturing training programs",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/NKfXBKqJcSQePjbF.jpeg",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Mohamed Hamed",
+      "title": "Assoc. Prof. Dr. ",
+      "affiliation": "Associate professor of biomedical informatics and computational biology at the German University of Cairo (GUC).",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/RYEfletAfTWjKCac.png",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Mohamed Shaker Salem",
+      "title": "Prof. Dr. ",
+      "affiliation": "Physics Department, Faculty of Science, Cairo University ",
+      "photo_url": "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/WhatsAppImage2026-03-12at18.49.43_23590640.jpeg",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Rashika El Ridi",
+      "title": "Prof. Dr.",
+      "affiliation": "Professor of Immunology, Zoology Department, Faculty of Science, Cairo University",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/NNrbfYQKaAYXPFdI.png",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Ahmad Wafik Al Shareif",
+      "title": "Dr. ",
+      "affiliation": "Senior Petrophysicist, Assistant General Manager for Development, El Wastani Petroleum Company (WASCO), Dana Gas JV   ",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/QQVlSCCSsDGYbpzD.png",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Ahmed Galal",
+      "title": "Prof. Dr.",
+      "affiliation": "Chemistry Department, Faculty of Science, Cairo University",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/CKymLjGwFZnPadSI.png",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Refaat Gabre",
+      "title": "Prof. Dr. ",
+      "affiliation": "Head of Biotechnology Department, Faculty of Science, Cairo University",
+      "photo_url": "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_47sAul_image_09cbad67.png",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Mostafa Nasser ",
+      "title": "Eng.",
+      "affiliation": "Startup Grind Chapter Director",
+      "photo_url": "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/IMG_20231205_150442_744_46ccd42e.jpg",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Abdelfattah Kamal",
+      "title": "Dr.",
+      "affiliation": "Operations Director at BioGeneric pharma (BGP)",
+      "photo_url": "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_TRiV0W_image_c2f3f56c.png",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Mohamed Anwar Abdelwahab",
+      "title": "Dr.",
+      "affiliation": "R&D Manager, Techno Taste (Flavor House)",
+      "photo_url": "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_FsUHjJ_image_364cded7.png",
+      "speaker_type": "invited"
+    }
+  ],
+  "messages": [],
+  "stdout": "full_name\ttitle\taffiliation\tphoto_url\tspeaker_type\nNaglaa A. Abdallah\tProf. Dr. \tProfessor of Genetics, Faculty of Agriculture, Cairo University\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/SiZQEfsvJgBfqrHD.png\tinvited\nOsama Shalabiea\tProf. Dr.\tProfessor of Astrophysics and Space Physics, and Head of the Department, Faculty of Science, Cairo University\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/XuXUgGyzMuvjEFhM.jpeg\tinvited\nTarek Kapiel\tProf. em.\tAssistant Professor of Plant Biotechnology at Department of Biotechnology, Faculty of Science, Cairo University\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/ASFgJyOIuZIbQQTd.png\tinvited\nAhmed Fikry El-Sayed\tDr.\tAssistant Professor, King Salman International University\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/TbmaCrtrtyaJjSsm.png\tinvited\nSahar Hassan\tDr.\tSenior Geologist and Sedimentologist, Digital Subsurface Solutions, SLB\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/TAxrmfwYatNFofbJ.jpg\tinvited\nAreeg Abdalla\tDr. \tAssociate Professor, Mathematics Department, Faculty of Science, Cairo University\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/rLwMVUiTPMbedEmY.png\tinvited\nAhmed Youssef \tDr.\tProduction Deputy Manager and Vaccine Line Head at BioGeneric Pharma (BGP), and Instructor at Africa CDC biomanufacturing training programs\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/NKfXBKqJcSQePjbF.jpeg\tinvited\nMohamed Hamed\tAssoc. Prof. Dr. \tAssociate professor of biomedical informatics and computational biology at the German University of Cairo (GUC).\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/RYEfletAfTWjKCac.png\tinvited\nMohamed Shaker Salem\tProf. Dr. \tPhysics Department, Faculty of Science, Cairo University \thttps://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/WhatsAppImage2026-03-12at18.49.43_23590640.jpeg\tinvited\nRashika El Ridi\tProf. Dr.\tProfessor of Immunology, Zoology Department, Faculty of Science, Cairo University\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/NNrbfYQKaAYXPFdI.png\tinvited\nAhmad Wafik Al Shareif\tDr. \tSenior Petrophysicist, Assistant General Manager for Development, El Wastani Petroleum Company (WASCO), Dana Gas JV   \thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/QQVlSCCSsDGYbpzD.png\tinvited\nAhmed Galal\tProf. Dr.\tChemistry Department, Faculty of Science, Cairo University\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/CKymLjGwFZnPadSI.png\tinvited\nRefaat Gabre\tProf. Dr. \tHead of Biotechnology Department, Faculty of Science, Cairo University\thttps://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_47sAul_image_09cbad67.png\tinvited\nMostafa Nasser \tEng.\tStartup Grind Chapter Director\thttps://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/IMG_20231205_150442_744_46ccd42e.jpg\tinvited\nAbdelfattah Kamal\tDr.\tOperations Director at BioGeneric pharma (BGP)\thttps://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_TRiV0W_image_c2f3f56c.png\tinvited\nMohamed Anwar Abdelwahab\tDr.\tR&D Manager, Techno Taste (Flavor House)\thttps://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_FsUHjJ_image_364cded7.png\tinvited\n",
+  "stderr": "",
+  "execution_time_ms": 1589
+}

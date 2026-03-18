@@ -1,0 +1,59 @@
+{
+  "query": "SELECT id, full_name, title, department, role FROM committees WHERE committee_type = 'scientific' ORDER BY display_order ASC LIMIT 20 OFFSET 32;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name, title, department, role FROM committees WHERE committee_type = 'scientific' ORDER BY display_order ASC LIMIT 20 OFFSET 32;",
+  "rows": [
+    {
+      "id": "37",
+      "full_name": "Mohamed Hassanein Gaber",
+      "title": "Prof. Dr.",
+      "department": "Department of Physics",
+      "role": "Chair"
+    },
+    {
+      "id": "38",
+      "full_name": "Gamal Abdel-Nasser",
+      "title": "Prof. Dr.",
+      "department": "Department of Physics",
+      "role": "Member"
+    },
+    {
+      "id": "39",
+      "full_name": "Abeer Abdullah",
+      "title": "Prof. Dr.",
+      "department": "Department of Physics",
+      "role": "Member"
+    },
+    {
+      "id": "40",
+      "full_name": "Mohamed Mostafa Arman",
+      "title": "Dr.",
+      "department": "Department of Physics",
+      "role": "Member"
+    },
+    {
+      "id": "42",
+      "full_name": "Salwa Abdelhamid Hamdi",
+      "title": "Prof. Dr.",
+      "department": "Department of Zoology",
+      "role": "Chair"
+    },
+    {
+      "id": "43",
+      "full_name": "Salwa Thabet",
+      "title": "Prof. Dr.",
+      "department": "Department of Zoology",
+      "role": "Member"
+    },
+    {
+      "id": "44",
+      "full_name": "Hala Ali Abdel Salam",
+      "title": "Prof. Dr.",
+      "department": "Department of Zoology",
+      "role": "Member"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tfull_name\ttitle\tdepartment\trole\n37\tMohamed Hassanein Gaber\tProf. Dr.\tDepartment of Physics\tChair\n38\tGamal Abdel-Nasser\tProf. Dr.\tDepartment of Physics\tMember\n39\tAbeer Abdullah\tProf. Dr.\tDepartment of Physics\tMember\n40\tMohamed Mostafa Arman\tDr.\tDepartment of Physics\tMember\n42\tSalwa Abdelhamid Hamdi\tProf. Dr.\tDepartment of Zoology\tChair\n43\tSalwa Thabet\tProf. Dr.\tDepartment of Zoology\tMember\n44\tHala Ali Abdel Salam\tProf. Dr.\tDepartment of Zoology\tMember\n",
+  "stderr": "",
+  "execution_time_ms": 1564
+}

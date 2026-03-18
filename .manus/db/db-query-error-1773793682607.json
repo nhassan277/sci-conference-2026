@@ -1,0 +1,8 @@
+{
+  "query": "SELECT full_name, title, role, photo_url FROM committees WHERE committee_type = 'organizing' ORDER BY display_order ASC LIMIT 20;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT full_name, title, role, photo_url FROM committees WHERE committee_type = 'organizing' ORDER BY display_order ASC LIMIT 20;",
+  "returncode": 1,
+  "logs": [
+    "ERROR 1054 (42S22) at line 1: Unknown column 'photo_url' in 'field list'"
+  ]
+}
