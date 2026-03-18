@@ -702,7 +702,7 @@ export default function Home() {
                 <CardHeader className="flex-1">
                   <div className="flex flex-col items-center text-center mb-3 gap-3">
                     <img
-                      src="https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_KE7pNQ_image_92d74388.png"
+                      src="https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/dr_dina_amr_5a3be589.jpeg"
                       alt="Dr. Dina Amr"
                       className="h-24 w-24 object-cover rounded-full border-2 border-blue-300 shrink-0"
                     />
