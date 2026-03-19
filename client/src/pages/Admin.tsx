@@ -176,6 +176,54 @@ function NawahPaymentReminderCard() {
   );
 }
 
+function PaymentReminderAllCard() {
+  const [sent, setSent] = useState(false);
+  const sendReminder = trpc.announcements.sendPaymentReminder.useMutation({
+    onSuccess: (data) => {
+      toast.success(`✅ ${data.message}`);
+      setSent(true);
+    },
+    onError: (err) => {
+      toast.error(`Failed to send: ${err.message}`);
+    },
+  });
+
+  const handleSend = () => {
+    if (!window.confirm(
+      `This will send a payment reminder email to ALL 700+ registered attendees.\n\nThe email will include:\n• Certificate payment details (100 EGP via InstaPay)\n• Their personal fee breakdown\n• Available workshops list\n• April 1, 2026 deadline\n\nAre you sure you want to send?`
+    )) return;
+    sendReminder.mutate();
+  };
+
+  return (
+    <Card className="hover:shadow-md transition-shadow border-blue-200">
+      <CardContent className="flex items-center justify-between gap-4 p-6">
+        <div className="flex items-center gap-4">
+          <div className="p-3 bg-blue-100 rounded-lg">
+            {sent ? (
+              <CheckCircle2 className="w-6 h-6 text-blue-600" />
+            ) : (
+              <Mail className="w-6 h-6 text-blue-600" />
+            )}
+          </div>
+          <div>
+            <h3 className="font-semibold">Payment Reminder — All Attendees</h3>
+            <p className="text-sm text-muted-foreground">Email all 700+ registrants: certificate (100 EGP), workshops, InstaPay details & April 1 deadline</p>
+          </div>
+        </div>
+        <Button
+          onClick={handleSend}
+          disabled={sendReminder.isPending}
+          className="bg-blue-600 hover:bg-blue-700 text-white shrink-0"
+          size="sm"
+        >
+          {sendReminder.isPending ? "Sending..." : sent ? "Sent ✓" : "Send to All"}
+        </Button>
+      </CardContent>
+    </Card>
+  );
+}
+
 export default function Admin() {
   const { user, loading: authLoading, logout, login, isAuthenticated, isAdmin } = useUser();
   const [searchTerm, setSearchTerm] = useState("");
@@ -770,6 +818,8 @@ export default function Admin() {
           <ConfirmationEmailCard />
           {/* NAWAH Workshop Payment Reminder */}
           <NawahPaymentReminderCard />
+          {/* Payment Reminder to All Attendees */}
+          <PaymentReminderAllCard />
         </div>
 
         {/* Statistics Cards */}

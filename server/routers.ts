@@ -3378,6 +3378,230 @@ export const appRouter = router({
           message: `NAWAH payment reminder sent to ${sent} of ${uniqueRegistrants.length} registrants${failed > 0 ? ` (${failed} failed)` : ""}`,
         };
       }),
+
+    // Admin: Send payment reminder email to all registrants
+    sendPaymentReminder: adminProcedure
+      .mutation(async ({ ctx }) => {
+        // Fetch all registrants with emails
+        const allRegs = await db.select({
+          id: registrations.id,
+          nameEn: registrations.fullNameEnglish,
+          nameAr: registrations.fullNameArabic,
+          email: registrations.email,
+          wantsCertificate: registrations.wantsCertificate,
+          wantsWorkshop: registrations.wantsWorkshop,
+          workshopChoice: registrations.workshopChoice,
+          workshopChoices: registrations.workshopChoices,
+          wantsExtWorkshop: registrations.wantsExtWorkshop,
+          extWorkshopChoice: registrations.extWorkshopChoice,
+        }).from(registrations);
+
+        const uniqueRegs = Array.from(
+          new Map(allRegs.filter(r => r.email).map(r => [r.email, r])).values()
+        );
+
+        if (uniqueRegs.length === 0) {
+          return { success: true, sent: 0, failed: 0, message: "No registrants found" };
+        }
+
+        const RESEND_API_KEY = process.env.RESEND_API_KEY;
+        if (!RESEND_API_KEY) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Email service not configured" });
+
+        const WORKSHOP_LABELS: Record<string, string> = {
+          nawah: "NAWAH Scientific — Research to Business (200 EGP)",
+          bioinformatics: "Bioinformatics Workshop — Dr. Dina Amr (100 EGP)",
+          marc: "MARC — Good Clinical Practice GCP (200 EGP)",
+          medsol: "Medsol — From DNA to Proteins: Advanced Sequencing (200 EGP)",
+          agitech: "Agitech — NGS & ddPCR in Targeted Therapy (200 EGP)",
+          geochemistry: "Geochemistry Workshop (200 EGP)",
+        };
+        const EXT_WORKSHOP_LABELS: Record<string, string> = {
+          chitosan: "Chitosan Workshop — April 6 (100 EGP)",
+          agitech: "Agitech — NGS & ddPCR (200 EGP)",
+          vaccine: "Vaccine Industry Race — April 6 (100 EGP)",
+          biotech: "Biotech Product Dev 101 — April 6 (100 EGP)",
+        };
+
+        let sent = 0;
+        let failed = 0;
+
+        for (const reg of uniqueRegs) {
+          const firstName = reg.nameEn?.split(" ")[0] || "Participant";
+
+          // Build workshop lines
+          const workshopKeys: string[] = [];
+          if (reg.wantsWorkshop) {
+            const choices = reg.workshopChoices ? JSON.parse(reg.workshopChoices as unknown as string) : null;
+            if (Array.isArray(choices) && choices.length > 0) {
+              workshopKeys.push(...choices);
+            } else if (reg.workshopChoice) {
+              workshopKeys.push(reg.workshopChoice);
+            }
+          }
+          if (reg.wantsExtWorkshop && reg.extWorkshopChoice) {
+            workshopKeys.push(reg.extWorkshopChoice);
+          }
+
+          const hasWorkshop = workshopKeys.length > 0;
+          const hasCert = reg.wantsCertificate;
+
+          // Build fee breakdown
+          const WORKSHOP_FEES: Record<string, number> = {
+            nawah: 200, bioinformatics: 100, marc: 200, medsol: 200, agitech: 200,
+            geochemistry: 200, chitosan: 100, vaccine: 100, biotech: 100,
+          };
+          let totalFee = 0;
+          if (hasCert) totalFee += 100;
+          for (const k of workshopKeys) totalFee += (WORKSHOP_FEES[k] ?? 0);
+
+          const certRow = hasCert ? `
+            <tr>
+              <td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;color:#374151">Conference Certificate of Attendance | شهادة حضور المؤتمر</td>
+              <td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;color:#1e40af;font-weight:600;text-align:right">100 EGP</td>
+            </tr>` : "";
+
+          const workshopRows = workshopKeys.map(k => {
+            const label = WORKSHOP_LABELS[k] || EXT_WORKSHOP_LABELS[k] || k.toUpperCase();
+            const fee = WORKSHOP_FEES[k] ?? 0;
+            return `
+            <tr>
+              <td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;color:#374151">${label}</td>
+              <td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;color:#92400e;font-weight:600;text-align:right">${fee} EGP</td>
+            </tr>`;
+          }).join("");
+
+          const totalRow = totalFee > 0 ? `
+            <tr style="background:#f0fdf4">
+              <td style="padding:10px 12px;color:#15803d;font-weight:700">Total Amount | الإجمالي</td>
+              <td style="padding:10px 12px;color:#15803d;font-weight:700;text-align:right">${totalFee} EGP</td>
+            </tr>` : "";
+
+          const feeTable = (hasCert || hasWorkshop) ? `
+          <table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;margin:16px 0">
+            <thead><tr style="background:#1e3a5f">
+              <th style="padding:10px 12px;color:#fff;text-align:left;font-size:13px">Item</th>
+              <th style="padding:10px 12px;color:#fff;text-align:right;font-size:13px">Amount</th>
+            </tr></thead>
+            <tbody>${certRow}${workshopRows}${totalRow}</tbody>
+          </table>` : `<p style="color:#64748b;font-size:14px;margin:12px 0">You have not registered for a certificate or workshop yet. You can still add them by visiting the registration page before April 1, 2026.</p>`;
+
+          const htmlBody = `<!DOCTYPE html>
+<html dir="ltr">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#f1f5f9;font-family:Arial,sans-serif">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#f1f5f9;padding:32px 0">
+  <tr><td align="center">
+    <table width="600" cellpadding="0" cellspacing="0" style="background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.1)">
+
+      <!-- Header -->
+      <tr><td style="background:linear-gradient(135deg,#1e3a5f,#2563eb);padding:28px 32px">
+        <h1 style="margin:0;color:#fff;font-size:22px;font-weight:700">SCI 2026 — Payment Reminder</h1>
+        <p style="margin:6px 0 0;color:rgba(255,255,255,.85);font-size:14px">Science at the Core of Innovation | Faculty of Science, Cairo University</p>
+        <p style="margin:4px 0 0;color:rgba(255,255,255,.75);font-size:13px;direction:rtl;text-align:right">العلوم في قلب الإبتكار | كلية العلوم — جامعة القاهرة</p>
+      </td></tr>
+
+      <!-- Body -->
+      <tr><td style="padding:32px">
+        <p style="margin:0 0 8px;color:#1e3a5f;font-size:18px;font-weight:700">Dear ${firstName},</p>
+        <p style="margin:0 0 16px;color:#374151;font-size:15px;line-height:1.7">We hope you are excited about <strong>SCI 2026 — April 7–8, 2026</strong> at Cairo University, Faculty of Science. This is a friendly reminder about your upcoming payment deadline.</p>
+
+        <!-- Deadline Banner -->
+        <div style="background:#fef2f2;border:2px solid #dc2626;border-radius:8px;padding:14px 18px;margin:0 0 20px">
+          <p style="margin:0;color:#dc2626;font-size:16px;font-weight:700">⏰ Payment Deadline: April 1, 2026</p>
+          <p style="margin:4px 0 0;color:#dc2626;font-size:14px;direction:rtl;text-align:right">آخر موعد للدفع: ١ أبريل ٢٠٢٦</p>
+        </div>
+
+        <!-- Fee Breakdown -->
+        <h3 style="margin:0 0 8px;color:#1e3a5f;font-size:15px">Your Registration Summary | ملخص تسجيلك</h3>
+        ${feeTable}
+
+        <!-- Payment Instructions -->
+        <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:18px;margin:20px 0">
+          <h3 style="margin:0 0 12px;color:#1e40af;font-size:15px">💳 How to Pay | طريقة الدفع</h3>
+          <p style="margin:0 0 10px;color:#374151;font-size:14px;line-height:1.7">Please transfer the total amount via <strong>InstaPay</strong> to the following account:</p>
+          <table cellpadding="0" cellspacing="0" style="width:100%;background:#fff;border:1px solid #bfdbfe;border-radius:6px;overflow:hidden">
+            <tr style="background:#1e3a5f"><td colspan="2" style="padding:8px 14px;color:#fff;font-size:13px;font-weight:600">Account Details | بيانات الحساب</td></tr>
+            <tr><td style="padding:8px 14px;color:#64748b;font-size:13px;border-bottom:1px solid #e2e8f0">Account Name | اسم الحساب</td><td style="padding:8px 14px;color:#1e3a5f;font-weight:600;font-size:13px;border-bottom:1px solid #e2e8f0">ح/ صندوق الخدمات التعليمية — كلية العلوم، جامعة القاهرة</td></tr>
+            <tr><td style="padding:8px 14px;color:#64748b;font-size:13px;border-bottom:1px solid #e2e8f0">Bank | البنك</td><td style="padding:8px 14px;color:#1e3a5f;font-weight:600;font-size:13px;border-bottom:1px solid #e2e8f0">البنك المركزي المصري</td></tr>
+            <tr><td style="padding:8px 14px;color:#64748b;font-size:13px">Account Number | رقم الحساب</td><td style="padding:8px 14px;color:#1e3a5f;font-weight:700;font-size:15px;letter-spacing:1px">9450882167</td></tr>
+          </table>
+          <p style="margin:12px 0 0;color:#374151;font-size:13px;line-height:1.6">After payment, please upload your payment receipt through the registration portal at <a href="https://sciconf26.website/attendance" style="color:#2563eb">sciconf26.website/attendance</a> using your registration ID: <strong>#${reg.id}</strong>.</p>
+          <p style="margin:8px 0 0;color:#374151;font-size:13px;line-height:1.6;direction:rtl;text-align:right">بعد الدفع، يرجى رفع إيصال الدفع عبر بوابة التسجيل على <a href="https://sciconf26.website/attendance" style="color:#2563eb">sciconf26.website/attendance</a> باستخدام رقم تسجيلك: <strong>#${reg.id}</strong></p>
+        </div>
+
+        <!-- Available Workshops -->
+        <div style="background:#fffbeb;border:1px solid #fcd34d;border-radius:8px;padding:18px;margin:20px 0">
+          <h3 style="margin:0 0 12px;color:#92400e;font-size:15px">🔬 Available Workshops | ورش العمل المتاحة</h3>
+          <p style="margin:0 0 10px;color:#374151;font-size:13px">You can still register for workshops before the deadline. Each workshop includes a certificate of completion.</p>
+          <ul style="margin:0;padding:0 0 0 18px;color:#374151;font-size:13px;line-height:2">
+            <li><strong>NAWAH Scientific</strong> — Research to Business: Translating Science into Industry | 200 EGP</li>
+            <li><strong>Bioinformatics Workshop</strong> — Dr. Dina Amr | Introduction to Bioinformatics (Day 1, April 7) | 100 EGP | Max 50 participants</li>
+            <li><strong>MARC</strong> — Good Clinical Practice (GCP) Workshop | 200 EGP</li>
+            <li><strong>Medsol Corporation</strong> — From DNA to Proteins: Advanced Sequencing Technologies | 200 EGP</li>
+            <li><strong>Agitech</strong> — NGS & ddPCR in Targeted Therapy (April 6, 12:00–14:00) | 200 EGP | 20 spots only</li>
+          </ul>
+          <p style="margin:12px 0 0;color:#92400e;font-size:13px">Register at: <a href="https://sciconf26.website/attendance" style="color:#2563eb">sciconf26.website/attendance</a></p>
+          <p style="margin:4px 0 0;color:#92400e;font-size:13px;direction:rtl;text-align:right">سجّل عبر: <a href="https://sciconf26.website/attendance" style="color:#2563eb">sciconf26.website/attendance</a></p>
+        </div>
+
+        <p style="margin:20px 0 0;color:#374151;font-size:14px;line-height:1.7">We look forward to seeing you at SCI 2026. For any questions, please contact us at <a href="mailto:sci.conf.2026@gmail.com" style="color:#2563eb">sci.conf.2026@gmail.com</a>.</p>
+        <p style="margin:6px 0 0;color:#374151;font-size:14px;direction:rtl;text-align:right">نتطلع إلى رؤيتكم في SCI 2026. لأي استفسار، تواصلوا معنا على <a href="mailto:sci.conf.2026@gmail.com" style="color:#2563eb">sci.conf.2026@gmail.com</a></p>
+      </td></tr>
+
+      <!-- Footer -->
+      <tr><td style="background:#1e3a5f;padding:20px 32px">
+        <p style="margin:0;color:rgba(255,255,255,.8);font-size:12px;text-align:center">SCI 2026 · Faculty of Science, Cairo University · April 7–8, 2026</p>
+        <p style="margin:4px 0 0;color:rgba(255,255,255,.6);font-size:11px;text-align:center">You are receiving this email because you registered for SCI 2026.</p>
+      </td></tr>
+
+    </table>
+  </td></tr>
+</table>
+</body></html>`;
+
+          try {
+            const res = await fetch("https://api.resend.com/emails", {
+              method: "POST",
+              headers: { "Authorization": `Bearer ${RESEND_API_KEY}`, "Content-Type": "application/json" },
+              body: JSON.stringify({
+                from: "SCI 2026 <sci2026@sciconf26.website>",
+                to: [reg.email],
+                reply_to: "sci.conf.2026@gmail.com",
+                subject: "[SCI 2026] Payment Reminder — Deadline April 1, 2026 | تذكير بالدفع",
+                html: htmlBody,
+              }),
+            });
+            const data = await res.json() as { id?: string; statusCode?: number; message?: string };
+            if (data.id) {
+              sent++;
+            } else {
+              console.error(`[Payment Reminder] Failed for ${reg.email}:`, data);
+              failed++;
+            }
+          } catch (err) {
+            console.error(`[Payment Reminder] Error for ${reg.email}:`, err);
+            failed++;
+          }
+          // 600ms delay to respect Resend rate limit
+          await new Promise(resolve => setTimeout(resolve, 600));
+        }
+
+        await db.insert(auditLogs).values({
+          adminEmail: ctx.user?.email || "admin",
+          action: "payment_reminder_sent",
+          resourceType: "registration",
+          resourceId: 0,
+          details: `Payment reminder sent to ${sent} registrants (${failed} failed)`,
+        });
+
+        return {
+          success: true,
+          sent,
+          failed,
+          total: uniqueRegs.length,
+          message: `Payment reminder sent to ${sent} of ${uniqueRegs.length} registrants${failed > 0 ? ` (${failed} failed)` : ""}`,
+        };
+      }),
   }),
 
   // ─── Acceptance Emails ───────────────────────────────────────────────────────

@@ -1,0 +1,61 @@
+{
+  "query": "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'registrations' AND ORDINAL_POSITION > 20 ORDER BY ORDINAL_POSITION;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'registrations' AND ORDINAL_POSITION > 20 ORDER BY ORDINAL_POSITION;",
+  "rows": [
+    {
+      "COLUMN_NAME": "source_sheet_id"
+    },
+    {
+      "COLUMN_NAME": "source_row_index"
+    },
+    {
+      "COLUMN_NAME": "raw_form_data"
+    },
+    {
+      "COLUMN_NAME": "updated_at"
+    },
+    {
+      "COLUMN_NAME": "certificate_invoice_url"
+    },
+    {
+      "COLUMN_NAME": "wants_workshop"
+    },
+    {
+      "COLUMN_NAME": "workshop_choice"
+    },
+    {
+      "COLUMN_NAME": "workshop_choices"
+    },
+    {
+      "COLUMN_NAME": "workshop_invoice_url"
+    },
+    {
+      "COLUMN_NAME": "workshop_payment_status"
+    },
+    {
+      "COLUMN_NAME": "wants_ext_workshop"
+    },
+    {
+      "COLUMN_NAME": "ext_workshop_choice"
+    },
+    {
+      "COLUMN_NAME": "ext_workshop_invoice_url"
+    },
+    {
+      "COLUMN_NAME": "ext_workshop_payment_status"
+    },
+    {
+      "COLUMN_NAME": "selected_workshops"
+    },
+    {
+      "COLUMN_NAME": "workshop_invoices_json"
+    },
+    {
+      "COLUMN_NAME": "workshop_payments_json"
+    }
+  ],
+  "messages": [],
+  "stdout": "COLUMN_NAME\nsource_sheet_id\nsource_row_index\nraw_form_data\nupdated_at\ncertificate_invoice_url\nwants_workshop\nworkshop_choice\nworkshop_choices\nworkshop_invoice_url\nworkshop_payment_status\nwants_ext_workshop\next_workshop_choice\next_workshop_invoice_url\next_workshop_payment_status\nselected_workshops\nworkshop_invoices_json\nworkshop_payments_json\n",
+  "stderr": "",
+  "execution_time_ms": 1582
+}
