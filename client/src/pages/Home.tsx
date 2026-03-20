@@ -669,9 +669,11 @@ export default function Home() {
                     </p>
                     
                     <div className="bg-primary/5 p-4 rounded-lg">
+                      <p className="text-sm text-muted-foreground mb-2"><strong>Date:</strong> April 8, 2026 (Day 2)</p>
                       <p className="text-sm text-muted-foreground mb-2"><strong>Duration:</strong> 4 hours</p>
                       <p className="font-bold text-amber-700 text-sm mt-1">200 EGP (incl. certificate)</p>
                       <p className="text-amber-600 text-xs" dir="rtl">200 جنيه مصري (شاملة الشهادة)</p>
+                      <p className="text-xs text-blue-700 font-semibold mt-1">⚡ Runs in parallel with Bioinformatics Workshop</p>
                     </div>
 
                     <p className="text-sm text-justify">
@@ -718,10 +720,11 @@ export default function Home() {
                     <p className="text-sm text-muted-foreground italic">Faculty of Science, Cairo University</p>
 
                     <div className="bg-blue-50 p-4 rounded-lg">
-                      <p className="text-sm text-muted-foreground mb-2"><strong>Date:</strong> April 7, 2026 (Day 1)</p>
+                      <p className="text-sm text-muted-foreground mb-2"><strong>Date:</strong> April 8, 2026 (Day 2)</p>
                       <p className="font-bold text-amber-700 text-sm mt-1">100 EGP (incl. certificate)</p>
                       <p className="text-amber-600 text-xs" dir="rtl">100 جنيه مصري (شاملة الشهادة)</p>
                       <p className="text-blue-700 text-xs font-semibold mt-1">Max 50 participants | الحد الأقصى 50 مشاركاً</p>
+                      <p className="text-xs text-blue-700 font-semibold mt-1">⚡ Runs in parallel with NAWAH Workshop</p>
                     </div>
 
                     <p className="text-sm text-justify">
@@ -730,7 +733,7 @@ export default function Home() {
 
                     <div className="border-t pt-4 mt-4">
                       <ul className="list-disc list-inside space-y-1 text-left text-sm">
-                        <li>During the conference — Day 1 (April 7)</li>
+                        <li>During the conference — Day 2 (April 8)</li>
                         <li>Certificate co-signed by Faculty of Science, Cairo University</li>
                         <li>Limited to 50 participants</li>
                       </ul>
@@ -765,9 +768,11 @@ export default function Home() {
                     </p>
                     
                     <div className="bg-secondary/5 p-4 rounded-lg">
+                      <p className="text-sm text-muted-foreground mb-2"><strong>Date:</strong> April 7, 2026 (Day 1)</p>
                       <p className="text-sm text-muted-foreground mb-2"><strong>Duration:</strong> 3 hours</p>
                       <p className="font-bold text-amber-700 text-sm mt-1">200 EGP (incl. certificate)</p>
                       <p className="text-amber-600 text-xs" dir="rtl">200 جنيه مصري (شاملة الشهادة)</p>
+                      <p className="text-xs text-orange-700 font-semibold mt-1">⚡ Runs in parallel with Medsol Workshop</p>
                     </div>
 
                     <p className="text-sm text-justify">
@@ -812,9 +817,11 @@ export default function Home() {
                     </p>
                     
                     <div className="bg-accent/5 p-4 rounded-lg">
+                      <p className="text-sm text-muted-foreground mb-2"><strong>Date:</strong> April 7, 2026 (Day 1)</p>
                       <p className="text-sm text-muted-foreground mb-2"><strong>Duration:</strong> 3 hours</p>
                       <p className="font-bold text-amber-700 text-sm mt-1">200 EGP (incl. certificate)</p>
                       <p className="text-amber-600 text-xs" dir="rtl">200 جنيه مصري (شاملة الشهادة)</p>
+                      <p className="text-xs text-orange-700 font-semibold mt-1">⚡ Runs in parallel with MARC Workshop</p>
                     </div>
 
                     <p className="text-sm text-justify">
