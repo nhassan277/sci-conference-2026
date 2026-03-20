@@ -1,0 +1,67 @@
+{
+  "query": "SELECT full_name, title, affiliation, presentation_title, presentation_abstract, speaker_type, speaker_sector FROM keynote_speakers WHERE full_name LIKE '%Amer%' OR full_name LIKE '%Mortada%' OR full_name LIKE '%Galal%' OR full_name LIKE '%Khodair%' OR full_name LIKE '%Azmy%' OR full_name LIKE '%Fikry%';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT full_name, title, affiliation, presentation_title, presentation_abstract, speaker_type, speaker_sector FROM keynote_speakers WHERE full_name LIKE '%Amer%' OR full_name LIKE '%Mortada%' OR full_name LIKE '%Galal%' OR full_name LIKE '%Khodair%' OR full_name LIKE '%Azmy%' OR full_name LIKE '%Fikry%';",
+  "rows": [
+    {
+      "full_name": "Khaled Amer",
+      "title": "Major General Dr.",
+      "affiliation": "Principal Investigator of Human Genome project, Egypt Centre for Research and Regenerative Medicine (ECRRM)",
+      "presentation_title": "Egypt Genome; From Dream to Reality",
+      "presentation_abstract": "NULL",
+      "speaker_type": "keynote",
+      "speaker_sector": "academia"
+    },
+    {
+      "full_name": "Mortada Mourad Taha El Aref",
+      "title": "Prof. Dr.",
+      "affiliation": "Professor of Ore Geology, Geology Department, Faculty of Science, Cairo University",
+      "presentation_title": "Karstology (Science of Unlimited Multi-Discipline Approaches), Promising Setting for Industrial Raw Materials",
+      "presentation_abstract": "NULL",
+      "speaker_type": "keynote",
+      "speaker_sector": "academia"
+    },
+    {
+      "full_name": "Osama Azmy",
+      "title": "Prof. Dr.",
+      "affiliation": "Consultant to the President of the National Research Centre for medical clinical trials, Head of the Regenerative Medicine Unit at NRC, Fellow of the Royal College of Obstetricians and Gynecologists (FRCOG)",
+      "presentation_title": "Management of the Rosy Years of Life",
+      "presentation_abstract": "NULL",
+      "speaker_type": "invited",
+      "speaker_sector": "academia"
+    },
+    {
+      "full_name": "Ahmed Fikry El-Sayed",
+      "title": "Dr.",
+      "affiliation": "Assistant Professor, King Salman International University",
+      "presentation_title": "Computer-Aided Drug Design: From Code to Cure",
+      "presentation_abstract": "NULL",
+      "speaker_type": "invited",
+      "speaker_sector": "academia"
+    },
+    {
+      "full_name": "Ahmed Galal",
+      "title": "Prof. Dr.",
+      "affiliation": "Chemistry Department, Faculty of Science, Cairo University",
+      "presentation_title": "Photo-assisted electrocatalysis: An effective tool for green chemical conversion",
+      "presentation_abstract": "NULL",
+      "speaker_type": "invited",
+      "speaker_sector": "academia"
+    },
+    {
+      "full_name": "Fathy Khodair",
+      "title": "Prof. Dr.",
+      "affiliation": "Former Dean, Faculty of Medicine (Kasr Al-Ainy), Cairo University - Advisor to the President of Cairo University - Consultant Plastic and Reconstructive Surgeon",
+      "presentation_title": "Clinical application of adipose derived stem cells in plastic surgery",
+      "presentation_abstract": "NULL",
+      "speaker_type": "invited",
+      "speaker_sector": "academia"
+    }
+  ],
+  "messages": [
+    "Mortada Mourad El Aref\tProf. Dr.\tProfessor of Ore Geology, Geology Department, Faculty of Science, Cairo University",
+    "\tEgyptian Iron Ore for Supporting National Economy - Opportunities and Challenges\tNULL\tinvited\tacademia"
+  ],
+  "stdout": "full_name\ttitle\taffiliation\tpresentation_title\tpresentation_abstract\tspeaker_type\tspeaker_sector\nKhaled Amer\tMajor General Dr.\tPrincipal Investigator of Human Genome project, Egypt Centre for Research and Regenerative Medicine (ECRRM)\tEgypt Genome; From Dream to Reality\tNULL\tkeynote\tacademia\nMortada Mourad Taha El Aref\tProf. Dr.\tProfessor of Ore Geology, Geology Department, Faculty of Science, Cairo University\tKarstology (Science of Unlimited Multi-Discipline Approaches), Promising Setting for Industrial Raw Materials\tNULL\tkeynote\tacademia\nOsama Azmy\tProf. Dr.\tConsultant to the President of the National Research Centre for medical clinical trials, Head of the Regenerative Medicine Unit at NRC, Fellow of the Royal College of Obstetricians and Gynecologists (FRCOG)\tManagement of the Rosy Years of Life\tNULL\tinvited\tacademia\nMortada Mourad El Aref\tProf. Dr.\tProfessor of Ore Geology, Geology Department, Faculty of Science, Cairo University\n\tEgyptian Iron Ore for Supporting National Economy - Opportunities and Challenges\tNULL\tinvited\tacademia\nAhmed Fikry El-Sayed\tDr.\tAssistant Professor, King Salman International University\tComputer-Aided Drug Design: From Code to Cure\tNULL\tinvited\tacademia\nAhmed Galal\tProf. Dr.\tChemistry Department, Faculty of Science, Cairo University\tPhoto-assisted electrocatalysis: An effective tool for green chemical conversion\tNULL\tinvited\tacademia\nFathy Khodair\tProf. Dr.\tFormer Dean, Faculty of Medicine (Kasr Al-Ainy), Cairo University - Advisor to the President of Cairo University - Consultant Plastic and Reconstructive Surgeon\tClinical application of adipose derived stem cells in plastic surgery\tNULL\tinvited\tacademia\n",
+  "stderr": "",
+  "execution_time_ms": 1553
+}

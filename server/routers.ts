@@ -102,7 +102,8 @@ export const appRouter = router({
           workshopChoices: z.array(z.enum(["nawah", "bioinformatics", "marc", "medsol", "geochemistry", "agitech"])).optional(), // multi-select
           workshopInvoiceUrl: z.string().optional(),
           wantsExtWorkshop: z.boolean().default(false),
-          extWorkshopChoice: z.string().optional(),
+          extWorkshopChoice: z.string().optional(), // legacy single
+          extWorkshopChoices: z.array(z.string()).optional(), // multi-select
           extWorkshopInvoiceUrl: z.string().optional(),
         })
       )
@@ -110,10 +111,17 @@ export const appRouter = router({
         // Derive legacy workshopChoice from multi-select for backwards compat
         const resolvedChoices = input.workshopChoices && input.workshopChoices.length > 0 ? input.workshopChoices : (input.workshopChoice ? [input.workshopChoice] : []);
         const resolvedSingleChoice = resolvedChoices[0] ?? input.workshopChoice;
+        // Resolve ext workshop choices
+        const resolvedExtChoices = input.extWorkshopChoices && input.extWorkshopChoices.length > 0
+          ? input.extWorkshopChoices
+          : (input.extWorkshopChoice ? [input.extWorkshopChoice] : []);
+        const resolvedExtSingleChoice = resolvedExtChoices[0] ?? input.extWorkshopChoice;
         const [result] = await db.insert(registrations).values({
           ...input,
           workshopChoice: resolvedSingleChoice,
           workshopChoices: resolvedChoices.length > 0 ? resolvedChoices : undefined,
+          extWorkshopChoice: resolvedExtSingleChoice,
+          extWorkshopChoices: resolvedExtChoices.length > 0 ? resolvedExtChoices : undefined,
           workshopPaymentStatus: input.wantsWorkshop && input.workshopInvoiceUrl ? "pending" : "unpaid",
           extWorkshopPaymentStatus: input.wantsExtWorkshop && input.extWorkshopInvoiceUrl ? "pending" : "unpaid",
         });
@@ -153,8 +161,8 @@ export const appRouter = router({
           for (const [key, capacity] of Object.entries(WORKSHOP_CAPACITIES)) {
             const isDuring = ["nawah", "bioinformatics", "marc", "medsol", "geochemistry", "agitech"].includes(key);
             const count = isDuring
-              ? allRegs.filter(r => r.wantsWorkshop && r.workshopChoice === key && r.workshopPaymentStatus !== "rejected").length
-              : allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === key && r.extWorkshopPaymentStatus !== "rejected").length;
+              ? allRegs.filter(r => r.wantsWorkshop && (r.workshopChoice === key || (Array.isArray(r.workshopChoices) && r.workshopChoices.includes(key))) && r.workshopPaymentStatus !== "rejected").length
+              : allRegs.filter(r => r.wantsExtWorkshop && (r.extWorkshopChoice === key || (Array.isArray(r.extWorkshopChoices) && r.extWorkshopChoices.includes(key))) && r.extWorkshopPaymentStatus !== "rejected").length;
             const pct = (count / capacity) * 100;
             const threshold80 = Math.floor(capacity * 0.8);
             // Alert exactly when crossing 80% (i.e., count just hit the threshold)
@@ -306,13 +314,14 @@ export const appRouter = router({
       const medsol = allRegs.filter(r => hasDuringWorkshop(r, 'medsol')).length;
       const geochemistry = allRegs.filter(r => hasDuringWorkshop(r, 'geochemistry')).length;
       const agitech = allRegs.filter(r => hasDuringWorkshop(r, 'agitech')).length;
-      const ai_biotech = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'ai_biotech' && r.extWorkshopPaymentStatus !== 'rejected').length;
-      const chitosan = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'chitosan' && r.extWorkshopPaymentStatus !== 'rejected').length;
-      const scrna_seq = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'scrna_seq' && r.extWorkshopPaymentStatus !== 'rejected').length;
-      const hvd_genomics = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'hvd_genomics' && r.extWorkshopPaymentStatus !== 'rejected').length;
-      const colors_metagenomics = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'colors_metagenomics' && r.extWorkshopPaymentStatus !== 'rejected').length;
-      const vaccine_industry = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'vaccine_industry' && r.extWorkshopPaymentStatus !== 'rejected').length;
-      const gesr_scholarships = allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopChoice === 'gesr_scholarships').length;
+      const countExt = (key: string) => allRegs.filter(r => r.wantsExtWorkshop && r.extWorkshopPaymentStatus !== 'rejected' && (r.extWorkshopChoice === key || (Array.isArray(r.extWorkshopChoices) && r.extWorkshopChoices.includes(key)))).length;
+      const ai_biotech = countExt('ai_biotech');
+      const chitosan = countExt('chitosan');
+      const scrna_seq = countExt('scrna_seq');
+      const hvd_genomics = countExt('hvd_genomics');
+      const colors_metagenomics = countExt('colors_metagenomics');
+      const vaccine_industry = countExt('vaccine_industry');
+      const gesr_scholarships = allRegs.filter(r => r.wantsExtWorkshop && (r.extWorkshopChoice === 'gesr_scholarships' || (Array.isArray(r.extWorkshopChoices) && r.extWorkshopChoices.includes('gesr_scholarships')))).length;
       return { nawah, bioinformatics, marc, medsol, geochemistry, agitech, ai_biotech, chitosan, scrna_seq, hvd_genomics, colors_metagenomics, vaccine_industry, gesr_scholarships };
     }),
 

@@ -516,8 +516,11 @@ export default function Admin() {
           if (choices && choices.length > 0) return choices.includes(workshopFilter);
           return reg.workshopChoice === workshopFilter;
         }
-        // Pre/Post workshops
-        return reg.wantsExtWorkshop && reg.extWorkshopChoice === workshopFilter;
+        // Pre/Post workshops — support both legacy single and new multi-select
+        if (!reg.wantsExtWorkshop) return false;
+        const extChoices = (reg as any).extWorkshopChoices as string[] | null;
+        if (extChoices && extChoices.length > 0) return extChoices.includes(workshopFilter);
+        return reg.extWorkshopChoice === workshopFilter;
       })();
 
       return matchesSearch && matchesCategory && matchesVIP && matchesWorkshop;
@@ -1204,17 +1207,24 @@ export default function Admin() {
                                 <div className="space-y-1 min-w-[140px]">
                                   {(reg as any).wantsExtWorkshop ? (
                                     <>
-                                      <Badge className="bg-purple-100 text-purple-800 block w-fit text-xs">
-                                        {({
-                          ai_biotech: 'AI Meets Biotech',
-                          chitosan: 'Biotech Dev 101 (Chitosan)',
-                          scrna_seq: 'Single Cell Genomics',
-                          hvd_genomics: 'Genomics & Proteomics (HVD)',
-                          vaccine_industry: 'Vaccine Industry Race',
-                          gesr_scholarships: 'GESR Scholarships',
-                          colors_metagenomics: 'Metagenomics (Colors)',
-                        } as Record<string, string>)[(reg as any).extWorkshopChoice ?? ''] || (reg as any).extWorkshopChoice?.toUpperCase() || 'Pre/Post WS'}
-                                      </Badge>
+                                      {(() => {
+                                        const extLabels: Record<string, string> = {
+                                          ai_biotech: 'AI Meets Biotech',
+                                          chitosan: 'Biotech Dev 101 (Chitosan)',
+                                          scrna_seq: 'Single Cell Genomics',
+                                          hvd_genomics: 'Genomics & Proteomics (HVD)',
+                                          vaccine_industry: 'Vaccine Industry Race',
+                                          gesr_scholarships: 'GESR Scholarships',
+                                          colors_metagenomics: 'Metagenomics (Colors)',
+                                        };
+                                        const extChoices = (reg as any).extWorkshopChoices as string[] | null;
+                                        const keys = extChoices && extChoices.length > 0 ? extChoices : ((reg as any).extWorkshopChoice ? [(reg as any).extWorkshopChoice] : []);
+                                        return keys.map((k: string) => (
+                                          <Badge key={k} className="bg-purple-100 text-purple-800 block w-fit text-xs">
+                                            {extLabels[k] || k.toUpperCase()}
+                                          </Badge>
+                                        ));
+                                      })()}
                                       {(reg as any).extWorkshopPaymentStatus === "confirmed" ? (
                                         <Badge className="bg-green-100 text-green-800 block w-fit text-xs">✅ Confirmed</Badge>
                                       ) : (reg as any).extWorkshopPaymentStatus === "rejected" ? (

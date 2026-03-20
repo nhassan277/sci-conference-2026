@@ -20,7 +20,8 @@ export const registrations = mysqlTable("registrations", {
   workshopPaymentStatus: varchar("workshop_payment_status", { length: 20 }).default("unpaid").notNull(),
   // Pre/Post conference workshops (350 EGP)
   wantsExtWorkshop: boolean("wants_ext_workshop").default(false).notNull(),
-  extWorkshopChoice: varchar("ext_workshop_choice", { length: 100 }), // ai_biotech, etc.
+  extWorkshopChoice: varchar("ext_workshop_choice", { length: 100 }), // ai_biotech, etc. (legacy single)
+  extWorkshopChoices: json("ext_workshop_choices").$type<string[]>(), // multi-select array
   extWorkshopInvoiceUrl: varchar("ext_workshop_invoice_url", { length: 500 }),
   extWorkshopPaymentStatus: varchar("ext_workshop_payment_status", { length: 20 }).default("unpaid").notNull(),
   paymentStatus: varchar("payment_status", { length: 20 }).default("unpaid").notNull(), // unpaid, pending, paid

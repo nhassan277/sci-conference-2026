@@ -99,7 +99,7 @@ export default function Attendance() {
   const [wantsWorkshop, setWantsWorkshop] = useState(false);
   const [workshopChoices, setWorkshopChoices] = useState<string[]>([])
   const [wantsExtWorkshop, setWantsExtWorkshop] = useState(false);
-  const [extWorkshopChoice, setExtWorkshopChoice] = useState("");
+  const [extWorkshopChoices, setExtWorkshopChoices] = useState<string[]>([]);
   const [certInvoiceFile, setCertInvoiceFile] = useState<File | null>(null);
   const [workshopInvoiceFile, setWorkshopInvoiceFile] = useState<File | null>(null);
   const [extWorkshopInvoiceFile, setExtWorkshopInvoiceFile] = useState<File | null>(null);
@@ -129,7 +129,7 @@ export default function Attendance() {
 
   const certFee = wantsCertificate ? CERTIFICATE_FEE : 0;
   const workshopFee = wantsWorkshop ? workshopChoices.reduce((sum, key) => sum + (WORKSHOP_FEES[key] ?? 0), 0) : 0;
-  const extWorkshopFee = wantsExtWorkshop && extWorkshopChoice ? (EXT_WORKSHOP_FEES[extWorkshopChoice] ?? 0) : 0;
+  const extWorkshopFee = wantsExtWorkshop ? extWorkshopChoices.reduce((sum, key) => sum + (EXT_WORKSHOP_FEES[key] ?? 0), 0) : 0;
   const totalFee = certFee + workshopFee + extWorkshopFee;
 
   const {
@@ -185,7 +185,7 @@ export default function Attendance() {
         }
 
         // Upload ext workshop invoice if needed (skip for free workshops like GESR)
-        if (wantsExtWorkshop && extWorkshopInvoiceFile && extWorkshopChoice !== "gesr_scholarships") {
+        if (wantsExtWorkshop && extWorkshopInvoiceFile && extWorkshopChoices.some(c => c !== "gesr_scholarships")) {
           const extBase64 = await fileToBase64(extWorkshopInvoiceFile);
           await uploadInvoice.mutateAsync({
             registrationId: data.id,
@@ -226,11 +226,12 @@ export default function Attendance() {
       return;
     }
     // Validate ext workshop
-    if (wantsExtWorkshop && !extWorkshopChoice) {
-      toast.error("Please select a pre/post conference workshop.");
+    if (wantsExtWorkshop && extWorkshopChoices.length === 0) {
+      toast.error("Please select at least one pre/post conference workshop.");
       return;
     }
-    if (wantsExtWorkshop && extWorkshopChoice !== "gesr_scholarships" && !extWorkshopInvoiceFile) {
+    const hasPaidExtWorkshop = extWorkshopChoices.some(c => c !== "gesr_scholarships");
+    if (wantsExtWorkshop && hasPaidExtWorkshop && !extWorkshopInvoiceFile) {
       toast.error("Please upload the pre/post conference workshop payment invoice before submitting.");
       return;
     }
@@ -242,7 +243,7 @@ export default function Attendance() {
       workshopChoices: workshopChoices.length > 0 ? (workshopChoices as any) : undefined,
       workshopChoice: (workshopChoices[0] as any) || undefined,
       wantsExtWorkshop,
-      extWorkshopChoice: extWorkshopChoice || undefined,
+      extWorkshopChoice: (extWorkshopChoices[0] as any) || undefined,
     });
   });
 
@@ -326,7 +327,7 @@ export default function Attendance() {
               setWantsWorkshop(false);
               setWorkshopChoices([]);
               setWantsExtWorkshop(false);
-              setExtWorkshopChoice("");
+              setExtWorkshopChoices([]);
               setCertInvoiceFile(null);
               setWorkshopInvoiceFile(null);
               setExtWorkshopInvoiceFile(null);
@@ -588,7 +589,7 @@ export default function Attendance() {
                       const value = checked === true;
                       setWantsExtWorkshop(value);
                       setValue("wantsExtWorkshop", value);
-                      if (!value) setExtWorkshopChoice("");
+                      if (!value) setExtWorkshopChoices([]);
                     }}
                   />
                   <div className="space-y-1">
@@ -720,14 +721,17 @@ export default function Attendance() {
                           <div
                             key={ws.value}
                             onClick={() => {
-                              setExtWorkshopChoice(ws.value);
-                              setValue("extWorkshopChoice", ws.value);
+                              setExtWorkshopChoices(prev =>
+                                prev.includes(ws.value)
+                                  ? prev.filter(v => v !== ws.value)
+                                  : [...prev, ws.value]
+                              );
                             }}
-                            className={`p-3 border-2 rounded-lg cursor-pointer transition-all ${extWorkshopChoice === ws.value ? "border-purple-500 bg-purple-50" : "border-muted hover:border-purple-300"}`}
+                            className={`p-3 border-2 rounded-lg cursor-pointer transition-all ${extWorkshopChoices.includes(ws.value) ? "border-purple-500 bg-purple-50" : "border-muted hover:border-purple-300"}`}
                           >
                             <div className="flex items-start gap-3">
-                              <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center shrink-0 mt-1 ${extWorkshopChoice === ws.value ? "border-purple-500 bg-purple-500" : "border-muted-foreground"}`}>
-                                {extWorkshopChoice === ws.value && <div className="w-2 h-2 rounded-full bg-white" />}
+                              <div className={`w-4 h-4 rounded-sm border-2 flex items-center justify-center shrink-0 mt-1 ${extWorkshopChoices.includes(ws.value) ? "border-purple-500 bg-purple-500" : "border-muted-foreground"}`}>
+                                {extWorkshopChoices.includes(ws.value) && <div className="w-2 h-2 bg-white" />}
                               </div>
                               <div className="flex-1">
                                 {/* Title first */}
@@ -786,8 +790,8 @@ export default function Attendance() {
                       </div>
                     </div>
 
-                    {/* Payment Instructions — only show for paid workshops */}
-                    {extWorkshopChoice && extWorkshopChoice !== "gesr_scholarships" && (
+                    {/* Payment Instructions — only show when at least one paid workshop is selected */}
+                    {extWorkshopChoices.some(c => c !== "gesr_scholarships") && (
                       <div className="p-4 bg-purple-50 border border-purple-200 rounded-lg space-y-2">
                         <p className="text-sm font-semibold text-purple-900 flex items-center gap-2">
                           <AlertCircle className="w-4 h-4" /> Payment Instructions | تعليمات الدفع
@@ -803,7 +807,7 @@ export default function Attendance() {
                     )}
 
                     {/* Free workshop note for GESR */}
-                    {extWorkshopChoice === "gesr_scholarships" && (
+                    {extWorkshopChoices.includes("gesr_scholarships") && extWorkshopChoices.every(c => c === "gesr_scholarships") && (
                       <div className="p-4 bg-green-50 border border-green-200 rounded-lg flex items-start gap-2">
                         <span className="text-green-600 text-base mt-0.5">✅</span>
                         <div>
@@ -815,7 +819,7 @@ export default function Attendance() {
                     )}
 
                     {/* Invoice Upload — only for paid workshops */}
-                    {extWorkshopChoice && extWorkshopChoice !== "gesr_scholarships" && (
+                    {extWorkshopChoices.some(c => c !== "gesr_scholarships") && (
                       <>
                         <InvoiceUpload
                           label="Upload Pre/Post Workshop Payment Invoice (Required)"
@@ -857,12 +861,14 @@ export default function Attendance() {
                         <span className="font-semibold text-amber-700">{WORKSHOP_FEES[key] ?? 0} EGP</span>
                       </div>
                     ))}
-                    {extWorkshopFee > 0 && extWorkshopChoice && (
-                      <div className="flex justify-between items-center text-sm">
-                        <span className="text-muted-foreground">Pre/Post Workshop | ورشة ما قبل/بعد المؤتمر</span>
-                        <span className="font-semibold text-purple-700">{extWorkshopFee} EGP</span>
+                    {wantsExtWorkshop && extWorkshopChoices.map(key => (
+                      <div key={key} className="flex justify-between items-center text-sm">
+                        <span className="text-muted-foreground">
+                          Pre/Post Workshop ({key.replace(/_/g, ' ').toUpperCase()}) | ورشة ما قبل/بعد المؤتمر
+                        </span>
+                        <span className="font-semibold text-purple-700">{EXT_WORKSHOP_FEES[key] ?? 0} EGP</span>
                       </div>
-                    )}
+                    ))}
                     <div className="border-t pt-2 flex justify-between items-center">
                       <span className="font-bold text-primary">Total | الإجمالي</span>
                       <span className="font-bold text-xl text-primary">{totalFee} EGP</span>

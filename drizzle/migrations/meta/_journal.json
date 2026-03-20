@@ -169,6 +169,13 @@
       "when": 1773839153990,
       "tag": "0023_furry_nekra",
       "breakpoints": true
+    },
+    {
+      "idx": 24,
+      "version": "5",
+      "when": 1774043056635,
+      "tag": "0024_unusual_ezekiel",
+      "breakpoints": true
     }
   ]
 }

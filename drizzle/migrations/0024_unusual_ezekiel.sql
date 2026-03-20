@@ -1,0 +1,1 @@
+ALTER TABLE `registrations` ADD `ext_workshop_choices` json;
