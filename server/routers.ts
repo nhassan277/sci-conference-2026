@@ -108,13 +108,16 @@ export const appRouter = router({
         })
       )
       .mutation(async ({ input }) => {
+        // Workshops that are closed for new registrations
+        const CLOSED_WORKSHOPS = ['hvd_genomics'];
         // Derive legacy workshopChoice from multi-select for backwards compat
         const resolvedChoices = input.workshopChoices && input.workshopChoices.length > 0 ? input.workshopChoices : (input.workshopChoice ? [input.workshopChoice] : []);
         const resolvedSingleChoice = resolvedChoices[0] ?? input.workshopChoice;
         // Resolve ext workshop choices
-        const resolvedExtChoices = input.extWorkshopChoices && input.extWorkshopChoices.length > 0
+        const resolvedExtChoices = (input.extWorkshopChoices && input.extWorkshopChoices.length > 0
           ? input.extWorkshopChoices
-          : (input.extWorkshopChoice ? [input.extWorkshopChoice] : []);
+          : (input.extWorkshopChoice ? [input.extWorkshopChoice] : []))
+          .filter(w => !CLOSED_WORKSHOPS.includes(w)); // Remove closed workshops silently
         const resolvedExtSingleChoice = resolvedExtChoices[0] ?? input.extWorkshopChoice;
         const [result] = await db.insert(registrations).values({
           ...input,

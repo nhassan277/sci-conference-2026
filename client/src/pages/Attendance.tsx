@@ -721,13 +721,20 @@ export default function Attendance() {
                           <div
                             key={ws.value}
                             onClick={() => {
+                              if (ws.value === 'hvd_genomics') return; // Registration closed
                               setExtWorkshopChoices(prev =>
                                 prev.includes(ws.value)
                                   ? prev.filter(v => v !== ws.value)
                                   : [...prev, ws.value]
                               );
                             }}
-                            className={`p-3 border-2 rounded-lg cursor-pointer transition-all ${extWorkshopChoices.includes(ws.value) ? "border-purple-500 bg-purple-50" : "border-muted hover:border-purple-300"}`}
+                            className={`p-3 border-2 rounded-lg transition-all ${
+                              ws.value === 'hvd_genomics'
+                                ? 'border-red-200 bg-red-50 opacity-60 cursor-not-allowed'
+                                : extWorkshopChoices.includes(ws.value)
+                                  ? 'border-purple-500 bg-purple-50 cursor-pointer'
+                                  : 'border-muted hover:border-purple-300 cursor-pointer'
+                            }`}
                           >
                             <div className="flex items-start gap-3">
                               <div className={`w-4 h-4 rounded-sm border-2 flex items-center justify-center shrink-0 mt-1 ${extWorkshopChoices.includes(ws.value) ? "border-purple-500 bg-purple-500" : "border-muted-foreground"}`}>
@@ -735,7 +742,12 @@ export default function Attendance() {
                               </div>
                               <div className="flex-1">
                                 {/* Title first */}
-                                <p className="font-bold text-sm text-purple-900 mb-1">{ws.label}</p>
+                                <div className="flex items-center gap-2 flex-wrap mb-1">
+                                  <p className="font-bold text-sm text-purple-900">{ws.label}</p>
+                                  {ws.value === 'hvd_genomics' && (
+                                    <span className="text-xs font-bold text-red-700 bg-red-100 px-2 py-0.5 rounded-full">Registration Closed 🔴 | التسجيل مغلق</span>
+                                  )}
+                                </div>
                                 <p className="text-xs font-medium text-purple-700 mb-2" dir="rtl">{ws.labelAr}</p>
                                 {/* Speaker photo/icon + name OR company logo */}
                                 {'photo' in ws && ws.photo ? (
