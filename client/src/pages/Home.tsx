@@ -1608,7 +1608,7 @@ export default function Home() {
                   <div>
                     <h4 className="text-xl font-bold text-indigo-900">Metagenomics, Microbiome & 16S rRNA Sequencing</h4>
                     <p className="text-base font-semibold text-indigo-700 mt-1" dir="rtl">الميتاجينوميكس، الميكروبيوم وتسلسل الـ 16S rRNA</p>
-                    <p className="text-sm text-indigo-600 italic mt-1">&ldquo;Title to be announced soon&rdquo;</p>
+
                   </div>
 
                   {/* Description */}
@@ -1619,12 +1619,13 @@ export default function Home() {
                     ورشة عمل تطبيقية تغطي أساليب الميتاجينوميكس وتحليل الميكروبيوم وتقنيات تسلسل الـ 16S rRNA، مع تدريب على سير عمل المعلوماتية الحيوية.
                   </p>
 
-                  {/* TBA Notice */}
-                  <div className="p-3 bg-amber-50 border border-amber-300 rounded-lg flex items-start gap-2">
-                    <span className="text-amber-600 text-lg">📂</span>
+                  {/* Date & Time */}
+                  <div className="p-3 bg-indigo-50 border border-indigo-300 rounded-lg flex items-start gap-2">
+                    <span className="text-indigo-600 text-lg">📅</span>
                     <div>
-                      <p className="text-xs font-bold text-amber-800">Title, Date &amp; Time — To Be Announced | سيتم الإعلان عن العنوان والتاريخ والوقت قريباً</p>
-                      <p className="text-xs text-amber-700 mt-0.5">Stay tuned for the confirmed schedule.</p>
+                      <p className="text-xs font-bold text-indigo-800">Date &amp; Time | التاريخ والوقت</p>
+                      <p className="text-sm font-bold text-indigo-900 mt-0.5">Sunday, April 12, 2026 — Starting 10:00 AM</p>
+                      <p className="text-sm font-bold text-indigo-700" dir="rtl">الأحد ١٢ أبريل ٢٠٢٦ — من الساعة ١٠:٠٠ صباحاً</p>
                     </div>
                   </div>
 
