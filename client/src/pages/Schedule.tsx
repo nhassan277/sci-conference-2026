@@ -20,6 +20,8 @@ import {
 } from "lucide-react";
 
 // ─── KEYNOTE SPEAKERS (4 total) ───────────────────────────────────────────────
+// Day 1: Khaled Amer (10:30-10:50), Ehab El Dabaa (10:50-11:10)
+// Day 2: Hamed A. Ead (9:15-9:35), Mortada Mourad (9:35-9:55)
 const keynoteSpeakers = [
   {
     name: "Major General Dr. Khaled Amer",
@@ -36,18 +38,18 @@ const keynoteSpeakers = [
     track: "bio"
   },
   {
+    name: "Prof. Dr. Hamed A. Ead",
+    affiliation: "Professor of Chemistry, Faculty of Science, Cairo University",
+    talk: "Science at the Core of Innovation: Reimagining the University\u2013Industry Nexus for Transformative Impact",
+    day: 2,
+    track: "bio"
+  },
+  {
     name: "Prof. Dr. Mortada Mourad Taha El Aref",
     affiliation: "Professor of Ore Geology, Faculty of Science, Cairo University",
     talk: "Karstology (Science of Unlimited Multi-Discipline Approaches), Promising Setting for Industrial Raw Materials",
     day: 2,
     track: "geo"
-  },
-  {
-    name: "Prof. Dr. Hamed A. Ead",
-    affiliation: "Professor of Chemistry, Faculty of Science, Cairo University",
-    talk: "Science at the Core of Innovation: Reimagining the University–Industry Nexus for Transformative Impact",
-    day: 2,
-    track: "bio"
   }
 ];
 
@@ -100,8 +102,8 @@ const sessions = {
   day1: [
     {
       id: 1,
-      time: "09:00 - 10:00",
-      timeAr: "٩:٠٠ - ١٠:٠٠",
+      time: "08:30 - 09:30",
+      timeAr: "٨:٣٠ - ٩:٣٠",
       type: "registration",
       title: "Arrival & Registration",
       titleAr: "الوصول والتسجيل",
@@ -112,8 +114,8 @@ const sessions = {
     },
     {
       id: 2,
-      time: "10:00 - 10:45",
-      timeAr: "١٠:٠٠ - ١٠:٤٥",
+      time: "09:30 - 10:00",
+      timeAr: "٩:٣٠ - ١٠:٠٠",
       type: "opening",
       title: "Welcome Talk",
       titleAr: "كلمة الترحيب",
@@ -124,8 +126,8 @@ const sessions = {
     },
     {
       id: 3,
-      time: "10:45 - 11:10",
-      timeAr: "١٠:٤٥ - ١١:١٠",
+      time: "10:30 - 10:50",
+      timeAr: "١٠:٣٠ - ١٠:٥٠",
       type: "keynote",
       title: "Keynote Speaker 1",
       titleAr: "المتحدث الرئيسي ١",
@@ -135,8 +137,8 @@ const sessions = {
     },
     {
       id: 4,
-      time: "11:10 - 11:35",
-      timeAr: "١١:١٠ - ١١:٣٥",
+      time: "10:50 - 11:10",
+      timeAr: "١٠:٥٠ - ١١:١٠",
       type: "keynote",
       title: "Keynote Speaker 2",
       titleAr: "المتحدث الرئيسي ٢",
@@ -146,8 +148,8 @@ const sessions = {
     },
     {
       id: 5,
-      time: "11:35 - 11:50",
-      timeAr: "١١:٣٥ - ١١:٥٠",
+      time: "11:10 - 11:40",
+      timeAr: "١١:١٠ - ١١:٤٠",
       type: "panel",
       title: "Discussion Panel",
       titleAr: "حلقة نقاش",
@@ -158,8 +160,8 @@ const sessions = {
     },
     {
       id: 6,
-      time: "11:50 - 12:10",
-      timeAr: "١١:٥٠ - ١٢:١٠",
+      time: "11:45 - 12:05",
+      timeAr: "١١:٤٥ - ١٢:٠٥",
       type: "parallel",
       title: "Parallel Sessions — Invited Speakers (Round 1)",
       titleAr: "جلسات متوازية — المتحدثون المدعوون (الجولة ١)",
@@ -177,8 +179,8 @@ const sessions = {
     },
     {
       id: 7,
-      time: "12:10 - 12:30",
-      timeAr: "١٢:١٠ - ١٢:٣٠",
+      time: "12:05 - 12:25",
+      timeAr: "١٢:٠٥ - ١٢:٢٥",
       type: "parallel",
       title: "Parallel Sessions — Invited Speakers (Round 2)",
       titleAr: "جلسات متوازية — المتحدثون المدعوون (الجولة ٢)",
@@ -195,8 +197,8 @@ const sessions = {
     },
     {
       id: 8,
-      time: "12:30 - 12:45",
-      timeAr: "١٢:٣٠ - ١٢:٤٥",
+      time: "12:25 - 12:45",
+      timeAr: "١٢:٢٥ - ١٢:٤٥",
       type: "panel",
       title: "Discussion Panels",
       titleAr: "حلقات نقاش",
@@ -210,12 +212,12 @@ const sessions = {
       time: "12:45 - 13:30",
       timeAr: "١٢:٤٥ - ١٣:٣٠",
       type: "break",
-      title: "Coffee Break",
-      titleAr: "استراحة قهوة",
+      title: "Lunch Break",
+      titleAr: "استراحة غداء",
       location: "Conference Foyer",
       locationAr: "ردهة المؤتمر",
-      description: "Refreshments and networking opportunity",
-      descriptionAr: "المرطبات وفرصة للتواصل"
+      description: "Lunch break and networking opportunity",
+      descriptionAr: "استراحة الغداء وفرصة للتواصل"
     },
     {
       id: 10,
@@ -299,8 +301,8 @@ const sessions = {
     },
     {
       id: 14,
-      time: "14:50 - 15:30",
-      timeAr: "١٤:٥٠ - ١٥:٣٠",
+      time: "15:10 - 15:50",
+      timeAr: "١٥:١٠ - ١٥:٥٠",
       type: "poster",
       title: "Poster Session",
       titleAr: "جلسة الملصقات",
@@ -308,6 +310,18 @@ const sessions = {
       locationAr: "ردهة المؤتمر",
       description: "Poster presentations and networking",
       descriptionAr: "عروض الملصقات والتواصل"
+    },
+    {
+      id: 14.5,
+      time: "16:00 - 16:15",
+      timeAr: "٤:٠٠ - ٤:١٥ م",
+      type: "closing",
+      title: "Issuing Certificates — Day 1",
+      titleAr: "تسليم الشهادات — اليوم الأول",
+      location: "Main Hall",
+      locationAr: "القاعة الرئيسية",
+      description: "Distribution of participation certificates for Day 1 attendees",
+      descriptionAr: "توزيع شهادات المشاركة لحضور اليوم الأول"
     },
     {
       id: 15,
@@ -347,8 +361,8 @@ const sessions = {
   day2: [
     {
       id: 15,
-      time: "09:00 - 09:30",
-      timeAr: "٩:٠٠ - ٩:٣٠",
+      time: "08:30 - 09:15",
+      timeAr: "٨:٣٠ - ٩:١٥",
       type: "registration",
       title: "Arrival & Registration",
       titleAr: "الوصول والتسجيل",
@@ -359,8 +373,8 @@ const sessions = {
     },
     {
       id: 16,
-      time: "09:30 - 09:55",
-      timeAr: "٩:٣٠ - ٩:٥٥",
+      time: "09:15 - 09:35",
+      timeAr: "٩:١٥ - ٩:٣٥",
       type: "keynote",
       title: "Keynote Speaker 3",
       titleAr: "المتحدث الرئيسي ٣",
@@ -370,8 +384,8 @@ const sessions = {
     },
     {
       id: 17,
-      time: "09:55 - 10:20",
-      timeAr: "٩:٥٥ - ١٠:٢٠",
+      time: "09:35 - 09:55",
+      timeAr: "٩:٣٥ - ٩:٥٥",
       type: "keynote",
       title: "Keynote Speaker 4",
       titleAr: "المتحدث الرئيسي ٤",
@@ -381,20 +395,20 @@ const sessions = {
     },
     {
       id: 18,
-      time: "10:20 - 10:35",
-      timeAr: "١٠:٢٠ - ١٠:٣٥",
+      time: "09:55 - 10:25",
+      timeAr: "٩:٥٥ - ١٠:٢٥",
       type: "panel",
-      title: "Discussion Panel & Workshop Start",
-      titleAr: "حلقة نقاش وبداية ورشة العمل",
-      location: "All Halls + Workshop Rooms",
-      locationAr: "جميع القاعات + غرف ورش العمل",
-      description: "Discussion panel and beginning of workshops",
-      descriptionAr: "حلقة نقاش وبداية ورش العمل"
+      title: "Discussion Panel",
+      titleAr: "حلقة نقاش",
+      location: "All Halls",
+      locationAr: "جميع القاعات",
+      description: "Interactive discussion following keynote presentations",
+      descriptionAr: "نقاش تفاعلي بعد العروض الرئيسية"
     },
     {
       id: 19,
-      time: "10:35 - 10:55",
-      timeAr: "١٠:٣٥ - ١٠:٥٥",
+      time: "10:30 - 10:50",
+      timeAr: "١٠:٣٠ - ١٠:٥٠",
       type: "parallel",
       title: "Parallel Sessions — Invited Speakers (Round 1)",
       titleAr: "جلسات متوازية — المتحدثون المدعوون (الجولة ١)",
@@ -411,8 +425,8 @@ const sessions = {
     },
     {
       id: 20,
-      time: "10:55 - 11:15",
-      timeAr: "١٠:٥٥ - ١١:١٥",
+      time: "10:50 - 11:10",
+      timeAr: "١٠:٥٠ - ١١:١٠",
       type: "parallel",
       title: "Parallel Sessions — Invited Speakers (Round 2)",
       titleAr: "جلسات متوازية — المتحدثون المدعوون (الجولة ٢)",
@@ -428,8 +442,8 @@ const sessions = {
     },
     {
       id: 21,
-      time: "11:15 - 11:35",
-      timeAr: "١١:١٥ - ١١:٣٥",
+      time: "11:10 - 11:30",
+      timeAr: "١١:١٠ - ١١:٣٠",
       type: "parallel",
       title: "Parallel Sessions — Invited Speakers (Round 3)",
       titleAr: "جلسات متوازية — المتحدثون المدعوون (الجولة ٣)",
@@ -445,8 +459,8 @@ const sessions = {
     },
     {
       id: 22,
-      time: "11:35 - 11:55",
-      timeAr: "١١:٣٥ - ١١:٥٥",
+      time: "11:30 - 11:50",
+      timeAr: "١١:٣٠ - ١١:٥٠",
       type: "parallel",
       title: "Parallel Sessions — Invited Speakers (Round 4)",
       titleAr: "جلسات متوازية — المتحدثون المدعوون (الجولة ٤)",
@@ -462,8 +476,8 @@ const sessions = {
     },
     {
       id: 23,
-      time: "11:55 - 12:15",
-      timeAr: "١١:٥٥ - ١٢:١٥",
+      time: "11:50 - 12:20",
+      timeAr: "١١:٥٠ - ١٢:٢٠",
       type: "panel",
       title: "Discussion Panels",
       titleAr: "حلقات نقاش",
@@ -474,20 +488,20 @@ const sessions = {
     },
     {
       id: 24,
-      time: "12:15 - 12:50",
-      timeAr: "١٢:١٥ - ١٢:٥٠",
+      time: "12:20 - 13:00",
+      timeAr: "١٢:٢٠ - ١٣:٠٠",
       type: "break",
-      title: "Coffee Break",
-      titleAr: "استراحة قهوة",
+      title: "Lunch Break",
+      titleAr: "استراحة غداء",
       location: "Conference Foyer",
       locationAr: "ردهة المؤتمر",
-      description: "Refreshments and networking opportunity",
-      descriptionAr: "المرطبات وفرصة للتواصل"
+      description: "Lunch break and networking opportunity",
+      descriptionAr: "استراحة الغداء وفرصة للتواصل"
     },
     {
       id: 25,
-      time: "12:50 - 13:10",
-      timeAr: "١٢:٥٠ - ١٣:١٠",
+      time: "13:00 - 13:20",
+      timeAr: "١٣:٠٠ - ١٣:٢٠",
       type: "parallel",
       title: "Parallel Sessions — Invited Speakers (Round 5)",
       titleAr: "جلسات متوازية — المتحدثون المدعوون (الجولة ٥)",
@@ -503,8 +517,8 @@ const sessions = {
     },
     {
       id: 26,
-      time: "13:10 - 13:30",
-      timeAr: "١٣:١٠ - ١٣:٣٠",
+      time: "13:20 - 13:40",
+      timeAr: "١٣:٢٠ - ١٣:٤٠",
       type: "parallel",
       title: "Parallel Sessions — Invited Speakers (Round 6)",
       titleAr: "جلسات متوازية — المتحدثون المدعوون (الجولة ٦)",
@@ -520,8 +534,8 @@ const sessions = {
     },
     {
       id: 27,
-      time: "13:30 - 13:50",
-      timeAr: "١٣:٣٠ - ١٣:٥٠",
+      time: "13:40 - 14:00",
+      timeAr: "١٣:٤٠ - ١٤:٠٠",
       type: "parallel",
       title: "Parallel Sessions — Invited Speakers (Round 7)",
       titleAr: "جلسات متوازية — المتحدثون المدعوون (الجولة ٧)",
@@ -537,8 +551,8 @@ const sessions = {
     },
     {
       id: 27.3,
-      time: "13:50 - 14:10",
-      timeAr: "١٣:٥٠ - ١٤:١٠",
+      time: "14:00 - 14:20",
+      timeAr: "١٤:٠٠ - ١٤:٢٠",
       type: "parallel",
       title: "Parallel Sessions — Invited Speakers (Round 8)",
       titleAr: "جلسات متوازية — المتحدثون المدعوون (الجولة ٨)",
@@ -554,8 +568,8 @@ const sessions = {
     },
     {
       id: 27.6,
-      time: "14:10 - 14:30",
-      timeAr: "١٤:١٠ - ١٤:٣٠",
+      time: "14:20 - 14:40",
+      timeAr: "١٤:٢٠ - ١٤:٤٠",
       type: "parallel",
       title: "Parallel Sessions — Invited Speakers (Round 9)",
       titleAr: "جلسات متوازية — المتحدثون المدعوون (الجولة ٩)",
@@ -571,8 +585,8 @@ const sessions = {
     },
     {
       id: 27.9,
-      time: "14:30 - 14:50",
-      timeAr: "١٤:٣٠ - ١٤:٥٠",
+      time: "14:40 - 15:00",
+      timeAr: "١٤:٤٠ - ١٥:٠٠",
       type: "parallel",
       title: "Parallel Sessions — Invited Speakers (Round 10)",
       titleAr: "جلسات متوازية — المتحدثون المدعوون (الجولة ١٠)",
@@ -588,8 +602,8 @@ const sessions = {
     },
     {
       id: 28,
-      time: "14:50 - 15:05",
-      timeAr: "١٤:٥٠ - ١٥:٠٥",
+      time: "15:00 - 15:20",
+      timeAr: "١٥:٠٠ - ١٥:٢٠",
       type: "panel",
       title: "Discussion Panels",
       titleAr: "حلقات نقاش",
@@ -600,8 +614,8 @@ const sessions = {
     },
     {
       id: 29,
-      time: "14:05 - 14:50",
-      timeAr: "١٤:٠٥ - ١٤:٥٠",
+      time: "15:20 - 16:00",
+      timeAr: "١٥:٢٠ - ١٦:٠٠",
       type: "poster",
       title: "Poster Session",
       titleAr: "جلسة الملصقات",
@@ -612,8 +626,8 @@ const sessions = {
     },
     {
       id: 30,
-      time: "14:50 - 15:30",
-      timeAr: "١٤:٥٠ - ١٥:٣٠",
+      time: "16:00 - 17:30",
+      timeAr: "٤:٠٠ - ٥:٣٠ م",
       type: "closing",
       title: "Conference Closure & Awards Ceremony",
       titleAr: "حفل الختام وتوزيع الجوائز",
