@@ -53,48 +53,94 @@ const keynoteSpeakers = [
   }
 ];
 
-// ─── INVITED SPEAKERS (29 total) ──────────────────────────────────────────────
-// Biological & Chemical Sciences track (Hall A) — Day 1
+// ─── INVITED SPEAKERS ──────────────────────────────────────────────────────────
+// Hall A: Biological & Chemical Sciences — Day 1 (Invited)
 const invitedBioDay1 = [
   { name: "Prof. Dr. Fathy Khodair", affiliation: "Former Dean, Faculty of Medicine (Kasr Al-Ainy), Cairo University; Advisor to the President of Cairo University; Consultant Plastic & Reconstructive Surgeon", talk: "Clinical Application of Adipose Derived Stem Cells in Plastic Surgery" },
-  { name: "Prof. Dr. Sohair Ramadan Fahmy", affiliation: "Dean of Faculty of Science, Cairo University", talk: "Practical Aspects of Experimental Design in Laboratory Animal Science" },
-  { name: "Prof. Dr. Nagwa El-Badri", affiliation: "Director of Biomedical Sciences Program & Center of Excellence for Stem Cells", talk: "Biomimetic Scaffolds and the Human Amniotic Membrane" },
-  { name: "Prof. Dr. Ibrahim M. El-Sherbiny", affiliation: "Professor of Nanotechnology & Nanomedicine, Founding Chairman", talk: "Basic Sciences As the Foundation of Innovation: Some Success Stories for Disease Treatment and Advanced Biomedical Applications" },
-  { name: "Prof. Dr. Khalid Muhammad Taalab", affiliation: "Nuclear Medicine Professor, Military Medical Academy", talk: "Radiopharmaceuticals and Precision Medicine" },
-  { name: "Prof. Dr. Osama Azmy", affiliation: "Consultant to the President of the National Research Centre", talk: "Management of the Rosy Years of Life" },
-];
-
-// Geology, Physics, Math & other sciences track (Hall B) — Day 1
-const invitedGeoDay1 = [
-  { name: "Prof. Dr. Mortada Mourad El Aref", affiliation: "Professor of Ore Geology, Geology Dept, Faculty of Science, Cairo University", talk: "Egyptian Iron Ore for Supporting National Economy - Opportunities and Challenges" },
-  { name: "Prof. Dr. Mahmoud Ibrahim Nasr", affiliation: "Professor of Ore Beneficiation and Manufacturing, Egyptian Copper Works", talk: "Egyptian Iron Ore as a Feedstock to the Iron and Steel Industry" },
-  { name: "Prof. Dr. Mohamed Ibrahim El-Anbawy", affiliation: "Professor of Environmental Geology, Faculty of Science, Cairo University", talk: "Economic Utilization of Shale in Desert Land Reclamation and Cement Industry" },
-  { name: "Dr. Sahar Hassan", affiliation: "Senior Geologist and Sedimentologist, Digital Subsurface Solutions", talk: "Revolutionizing Subsurface Understanding: AI-Driven Logging-While-Drilling Technologies" },
-  { name: "Dr. Ahmad Wafik Al Shareif", affiliation: "Senior Petrophysicist, Assistant General Manager for Development", talk: "Detection of Low Contrast, Low Resistivity Pay (LCLR) Challenge in Shaly Sand Gas Reservoir" },
-];
-
-// Biological & Chemical Sciences track (Hall A) — Day 2
-const invitedBioDay2 = [
-  { name: "Prof. Dr. Ashraf Abdou Tabll", affiliation: "Professor of Medical Biotechnology, Egypt Center for Research and Regenerative Medicine", talk: "Current Status and Future Prospects of Medical Biotechnology in Egypt: Lessons from Monoclonal and IgY Antibodies" },
-  { name: "Prof. Dr. Ayman El-Shibiny", affiliation: "Professor of Biomedical Sciences, Director of CMP, Zewail City", talk: "Phage Innovation: Targeted Solutions for Regional Antimicrobial Challenges" },
-  { name: "Prof. Dr. Naglaa A. Abdallah", affiliation: "Professor of Genetics, Faculty of Agriculture, Cairo University", talk: "Novel Genome Editing Approaches for a Sustainable Future" },
-  { name: "Prof. em. Tarek Kapiel", affiliation: "Assistant Professor of Plant Biotechnology", talk: "Integrative Bio-Nanotechnologies for Industrial Symbiosis: Scaling the Circular Bioeconomy in Egypt" },
-  { name: "Dr. Ahmed Fikry El-Sayed", affiliation: "Assistant Professor, King Salman International University", talk: "Computer-Aided Drug Design: From Code to Cure" },
-  { name: "Dr. Ahmed Youssef", affiliation: "Production Deputy Manager and Vaccine Line Head at BioGeneric Pharma (BGP); Instructor at Africa CDC biomanufacturing training programs", talk: "Advanced Vaccine Bioprocessing: From Strain Selection to Market Release" },
-  { name: "Assoc. Prof. Dr. Mohamed Hamed", affiliation: "Associate Professor of Biomedical Informatics and Computational Biology", talk: "Computational Transformation in Drug Discovery: Bioinformatics and AI Innovations in Pharmaceutical Science" },
-  { name: "Prof. Dr. Rashika El Ridi", affiliation: "Professor of Immunology, Zoology Department, Faculty of Science, Cairo University", talk: "The Impact of Misleading Concepts in Science on Efforts to Control Schistosomiasis and Cancer" },
+  { name: "Prof. Dr. Ibrahim El-Sherbiny", affiliation: "Professor of Nanotechnology & Nanomedicine, Founding Chairman", talk: "Basic Sciences As the Foundation of Innovation: Some Success Stories for Disease Treatment and Advanced Biomedical Applications" },
+  { name: "Prof. Dr. Khalid Taalab", affiliation: "Nuclear Medicine Professor, Military Medical Academy", talk: "Radiopharmaceuticals and Precision Medicine" },
   { name: "Prof. Dr. Ahmed Galal", affiliation: "Chemistry Department, Faculty of Science, Cairo University", talk: "Photo-assisted Electrocatalysis: An Effective Tool for Green Chemical Conversion" },
   { name: "Prof. Dr. Refaat Gabre", affiliation: "Head of Biotechnology Department, Faculty of Science, Cairo University", talk: "Transfer, Localization, and Reproduction of Biotechnology in Egypt" },
+  { name: "Prof. Dr. Tarek Kapiel", affiliation: "Assistant Professor of Plant Biotechnology", talk: "Integrative Bio-Nanotechnologies for Industrial Symbiosis: Scaling the Circular Bioeconomy in Egypt" },
+  { name: "Prof. Dr. Naglaa Abdallah", affiliation: "Professor of Genetics, Faculty of Agriculture, Cairo University", talk: "Novel Genome Editing Approaches for a Sustainable Future" },
 ];
 
-// Math, Physics, Astronomy & other sciences track (Hall B) — Day 2
-const invitedGeoDay2 = [
+// Hall C: Biological & Chemical Sciences — Day 1 (Participants)
+const participantBioDay1 = [
+  { name: "Prof. Dr Ahmed Abdellatif", affiliation: "Participant", talk: "" },
+  { name: "Ms. Narguess Hossam", affiliation: "Participant", talk: "" },
+  { name: "Prof. Dr Amr Ali", affiliation: "Participant", talk: "" },
+  { name: "Prof. Dr Rasha Mohmed", affiliation: "Participant", talk: "" },
+  { name: "Dr Mohamed Mousa", affiliation: "Participant", talk: "" },
+  { name: "Dr Toka Osman", affiliation: "Participant", talk: "" },
+  { name: "Prof. Dr Islam Shehata", affiliation: "Participant", talk: "" },
+  { name: "Dr Karim Barakat", affiliation: "Participant", talk: "" },
+  { name: "Prof. Dr Ahmed El Fiqi", affiliation: "Participant", talk: "" },
+];
+
+// Hall B: Mathematics, Physics, Geology, Astronomy & other sciences — Day 1 (Invited)
+const invitedGeoDay1 = [
   { name: "Prof. Dr. Osama Shalabiea", affiliation: "Professor of Astrophysics and Space Physics, Head of Department", talk: "Space Science and Technology (SSAT): Exploration, Utilization and Commercialization" },
-  { name: "Prof. Dr. Mohamed Shaker Salem", affiliation: "Professor of Physics, Faculty of Science, Cairo University", talk: "Silicon Nanophotonics for On-Chip Integrated Circuit Technology" },
   { name: "Dr. Areeg Abdalla", affiliation: "Associate Professor, Mathematics Department, Faculty of Science", talk: "Scientific Principles and Medical Applications of Artificial Intelligence" },
+  { name: "Prof. Dr. Mohamed Shaker", affiliation: "Professor of Physics, Faculty of Science, Cairo University", talk: "Silicon Nanophotonics for On-Chip Integrated Circuit Technology" },
+  { name: "Dr. Ahmed Wafik", affiliation: "Senior Petrophysicist, Assistant General Manager for Development", talk: "Detection of Low Contrast, Low Resistivity Pay (LCLR) Challenge in Shaly Sand Gas Reservoir" },
   { name: "Eng. Mostafa Nasser", affiliation: "Chapter Director, Startup Grind Cairo", talk: "AI in Biotechnology" },
-  { name: "Dr. Mohamed Anwar Abdelwahab", affiliation: "Flavor House — Organic Chemistry & Flavor Manufacturing", talk: "From Molecules to Taste: The Role of Organic Chemistry in Flavor Manufacturing" },
-  { name: "Dr. Abdelfattah Kamal", affiliation: "Operations Director, BioGeneric Pharma (BGP)", talk: "Achieving Quality and Sustainable Local Vaccine Production in Africa to Improve Access" },
+  { name: "Dr Abdelfattah Kamal", affiliation: "Operations Director, BioGeneric Pharma (BGP)", talk: "Achieving Quality and Sustainable Local Vaccine Production in Africa to Improve Access" },
+];
+
+// Hall D: Mathematics, Physics, Geology, Astronomy & other sciences — Day 1 (Participants)
+const participantGeoDay1 = [
+  { name: "Prof. Dr Ebtsam H. Taha", affiliation: "Participant", talk: "" },
+  { name: "Prof. Dr Ahmed Sabry", affiliation: "Participant", talk: "" },
+  { name: "Prof. Dr Ahmed Abdelhalim", affiliation: "Participant", talk: "" },
+  { name: "Ms. Hagar Hamedy", affiliation: "Participant", talk: "" },
+  { name: "Sami Abd Company / Startup Grind", affiliation: "Industry", talk: "" },
+  { name: "Chitosan / Agitech", affiliation: "Industry", talk: "" },
+  { name: "Poster & Booth Exhibition", affiliation: "Exhibition", talk: "" },
+];
+
+// Hall A: Biological & Chemical Sciences — Day 2 (Invited)
+const invitedBioDay2 = [
+  { name: "Prof. Dr. Sohair Ramadan", affiliation: "Dean of Faculty of Science, Cairo University", talk: "Practical Aspects of Experimental Design in Laboratory Animal Science" },
+  { name: "Prof. Dr. Rashika El Ridi", affiliation: "Professor of Immunology, Zoology Department, Faculty of Science, Cairo University", talk: "The Impact of Misleading Concepts in Science on Efforts to Control Schistosomiasis and Cancer" },
+  { name: "Prof. Dr. Ahmed Hegazy", affiliation: "Professor of Plant Ecology, Faculty of Science, Cairo University", talk: "" },
+  { name: "Prof. Dr. Mohamed Hamed", affiliation: "Associate Professor of Biomedical Informatics and Computational Biology", talk: "Computational Transformation in Drug Discovery: Bioinformatics and AI Innovations in Pharmaceutical Science" },
+  { name: "Prof. Dr. Mohamed Abdel Gawad", affiliation: "Faculty of Science, Cairo University", talk: "" },
+  { name: "Dr. Ahmed Fikry", affiliation: "Assistant Professor, King Salman International University", talk: "Computer-Aided Drug Design: From Code to Cure" },
+];
+
+// Hall B: Mathematics, Physics, Geology, Astronomy & other disciplines — Day 2 (Invited)
+const invitedGeoDay2 = [
+  { name: "Prof. Dr. Mohamed El-Anbawy", affiliation: "Professor of Environmental Geology, Faculty of Science, Cairo University", talk: "Economic Utilization of Shale in Desert Land Reclamation and Cement Industry" },
+  { name: "Prof. Dr. Mortada Mourad", affiliation: "Professor of Ore Geology, Faculty of Science, Cairo University", talk: "Karstology (Science of Unlimited Multi-Discipline Approaches), Promising Setting for Industrial Raw Materials" },
+  { name: "Prof. Dr. Mahmoud Ibrahim Nasr", affiliation: "Professor of Ore Beneficiation and Manufacturing, Egyptian Copper Works", talk: "Egyptian Iron Ore as a Feedstock to the Iron and Steel Industry" },
+  { name: "Dr. Sahar Hassan", affiliation: "Senior Geologist and Sedimentologist, Digital Subsurface Solutions", talk: "Revolutionizing Subsurface Understanding: AI-Driven Logging-While-Drilling Technologies" },
+  { name: "Dr. Mohamed Anwar", affiliation: "Flavor House — Organic Chemistry & Flavor Manufacturing", talk: "From Molecules to Taste: The Role of Organic Chemistry in Flavor Manufacturing" },
+  { name: "Prof. Dr. Ashraf Abduo Tabll", affiliation: "Professor of Medical Biotechnology, Egypt Center for Research and Regenerative Medicine", talk: "Current Status and Future Prospects of Medical Biotechnology in Egypt: Lessons from Monoclonal and IgY Antibodies" },
+  { name: "Prof. Dr. Nagwa El-Badri", affiliation: "Director of Biomedical Sciences Program & Center of Excellence for Stem Cells", talk: "Biomimetic Scaffolds and the Human Amniotic Membrane" },
+  { name: "Prof. Dr. Ayman El-Shibiny", affiliation: "Professor of Biomedical Sciences, Director of CMP, Zewail City", talk: "Phage Innovation: Targeted Solutions for Regional Antimicrobial Challenges" },
+];
+
+// Hall C: Biological & Chemical Sciences — Day 2 (Participants)
+const participantBioDay2 = [
+  { name: "Prof. Dr. Emad Elzayat", affiliation: "Participant", talk: "" },
+  { name: "Prof. Dr Fathy Abdel Ghaffar", affiliation: "Participant", talk: "" },
+  { name: "Dr Sara Ali", affiliation: "Participant", talk: "" },
+  { name: "Plasma / Colors", affiliation: "Industry", talk: "" },
+  { name: "Al elAraby / EgCompBio", affiliation: "Industry", talk: "" },
+  { name: "Dr. Rania Samy", affiliation: "Participant", talk: "" },
+  { name: "Dr Manar Mamdou Ahmed", affiliation: "Participant", talk: "" },
+  { name: "Dr Shiama Mohamed", affiliation: "Participant", talk: "" },
+  { name: "Prof. Dr Salwa Abdel Hameed", affiliation: "Graduation Project Group", talk: "" },
+];
+
+// Hall D: Mathematics, Physics, Geology, Astronomy & other disciplines — Day 2 (Participants)
+const participantGeoDay2 = [
+  { name: "Special Session for Astronomy Department", affiliation: "Astronomy Dept.", talk: "" },
+  { name: "Dr Alyaa Aly", affiliation: "Participant", talk: "" },
+  { name: "Dr. Reham Eid", affiliation: "Participant", talk: "" },
+  { name: "Ms Basma Islam", affiliation: "Participant", talk: "" },
+  { name: "Mr Ahmed Abdel Twab", affiliation: "Participant", talk: "" },
 ];
 
 // ─── CONFERENCE PROGRAM DATA ──────────────────────────────────────────────────
@@ -163,18 +209,18 @@ const sessions = {
       time: "11:45 - 12:05",
       timeAr: "١١:٤٥ - ١٢:٠٥",
       type: "parallel",
-      title: "Parallel Sessions — Invited Speakers (Round 1)",
-      titleAr: "جلسات متوازية — المتحدثون المدعوون (الجولة ١)",
+      title: "Parallel Sessions — Round 1",
+      titleAr: "جلسات متوازية — الجولة ١",
       tracks: [
-        { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences", topicAr: "العلوم البيولوجية والكيميائية", speaker: invitedBioDay1[0].name, speakerTalk: invitedBioDay1[0].talk },
-        { hall: "Hall B", hallAr: "القاعة ب", topic: "Geology, Physics & other sciences", topicAr: "الجيولوجيا، الفيزياء والعلوم الأخرى", speaker: invitedGeoDay1[0].name, speakerTalk: invitedGeoDay1[0].talk },
-        { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" },
-        { hall: "Hall D", hallAr: "القاعة د", topic: "Geology, Physics & other sciences (Participants)", topicAr: "الجيولوجيا، الفيزياء والعلوم الأخرى (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" }
+        { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences (Invited)", topicAr: "العلوم البيولوجية والكيميائية (مدعوون)", speaker: invitedBioDay1[0].name, speakerTalk: invitedBioDay1[0].talk },
+        { hall: "Hall B", hallAr: "القاعة ب", topic: "Math, Physics, Geology, Astronomy (Invited)", topicAr: "الرياضيات، الفيزياء، الجيولوجيا (مدعوون)", speaker: invitedGeoDay1[0].name, speakerTalk: invitedGeoDay1[0].talk },
+        { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (مشاركون)", speaker: participantBioDay1[0].name, speakerTalk: participantBioDay1[0].talk },
+        { hall: "Hall D", hallAr: "القاعة د", topic: "Math, Physics, Geology, Astronomy (Participants)", topicAr: "الرياضيات، الفيزياء، الجيولوجيا (مشاركون)", speaker: participantGeoDay1[0].name, speakerTalk: participantGeoDay1[0].talk }
       ],
       workshops: [
         { room: "Workshop Room 1", roomAr: "غرفة ورشة العمل ١", name: "MARC Workshop", nameAr: "ورشة عمل MARC" },
-        { room: "Workshop Room 2", roomAr: "غرفة ورشة العمل ٢", name: "From DNA to Proteins: Advanced Sequencing Technologies", nameAr: "من الحمض النووي إلى البروتينات: تقنيات التسلسل المتقدمة" },
-        { room: "Workshop Room 3", roomAr: "غرفة ورشة العمل ٣", name: "Environmental Geochemical Data Analysis — Session 1 (Dr. Jan Sedláček, Czech Geological Survey)", nameAr: "تحليل البيانات الجيوكيميائية البيئية — الجلسة الأولى" }
+        { room: "Workshop Room 2", roomAr: "غرفة ورشة العمل ٢", name: "Medsiol: From DNA to Proteins — Advanced Sequencing Technologies", nameAr: "ميدسول: من الحمض النووي إلى البروتينات" },
+        { room: "Workshop Room 3", roomAr: "غرفة ورشة العمل ٣", name: "Geology Workshop (Geochemical Data Analysis — Dr. Jan Sedláček)", nameAr: "ورشة الجيولوجيا (تحليل البيانات الجيوكيميائية)" }
       ]
     },
     {
@@ -182,17 +228,17 @@ const sessions = {
       time: "12:05 - 12:25",
       timeAr: "١٢:٠٥ - ١٢:٢٥",
       type: "parallel",
-      title: "Parallel Sessions — Invited Speakers (Round 2)",
-      titleAr: "جلسات متوازية — المتحدثون المدعوون (الجولة ٢)",
+      title: "Parallel Sessions — Round 2",
+      titleAr: "جلسات متوازية — الجولة ٢",
       tracks: [
-        { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences", topicAr: "العلوم البيولوجية والكيميائية", speaker: invitedBioDay1[1].name, speakerTalk: invitedBioDay1[1].talk },
-        { hall: "Hall B", hallAr: "القاعة ب", topic: "Geology, Physics & other sciences", topicAr: "الجيولوجيا، الفيزياء والعلوم الأخرى", speaker: invitedGeoDay1[1].name, speakerTalk: invitedGeoDay1[1].talk },
-        { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" },
-        { hall: "Hall D", hallAr: "القاعة د", topic: "Geology, Physics & other sciences (Participants)", topicAr: "الجيولوجيا، الفيزياء والعلوم الأخرى (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" }
+        { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences (Invited)", topicAr: "العلوم البيولوجية والكيميائية (مدعوون)", speaker: invitedBioDay1[1].name, speakerTalk: invitedBioDay1[1].talk },
+        { hall: "Hall B", hallAr: "القاعة ب", topic: "Math, Physics, Geology, Astronomy (Invited)", topicAr: "الرياضيات، الفيزياء، الجيولوجيا (مدعوون)", speaker: invitedGeoDay1[1].name, speakerTalk: invitedGeoDay1[1].talk },
+        { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (مشاركون)", speaker: participantBioDay1[1].name, speakerTalk: participantBioDay1[1].talk },
+        { hall: "Hall D", hallAr: "القاعة د", topic: "Math, Physics, Geology, Astronomy (Participants)", topicAr: "الرياضيات، الفيزياء، الجيولوجيا (مشاركون)", speaker: participantGeoDay1[1].name, speakerTalk: participantGeoDay1[1].talk }
       ],
       workshops: [
         { room: "Workshop Room 1", roomAr: "غرفة ورشة العمل ١", name: "MARC Workshop (Cont.)", nameAr: "ورشة عمل MARC (تابع)" },
-        { room: "Workshop Room 2", roomAr: "غرفة ورشة العمل ٢", name: "Advanced Sequencing Technologies (Cont.)", nameAr: "تقنيات التسلسل المتقدمة (تابع)" }
+        { room: "Workshop Room 2", roomAr: "غرفة ورشة العمل ٢", name: "Medsiol: Advanced Sequencing Technologies (Cont.)", nameAr: "ميدسول: تقنيات التسلسل المتقدمة (تابع)" }
       ]
     },
     {
@@ -221,70 +267,73 @@ const sessions = {
     },
     {
       id: 10,
-      time: "13:30 - 13:50",
-      timeAr: "١٣:٣٠ - ١٣:٥٠",
+      time: "14:00 - 14:20",
+      timeAr: "٢:00 - ٢:٢٠ م",
       type: "parallel",
-      title: "Parallel Sessions — Invited Speakers (Round 3)",
-      titleAr: "جلسات متوازية — المتحدثون المدعوون (الجولة ٣)",
+      title: "Parallel Sessions — Round 3",
+      titleAr: "جلسات متوازية — الجولة ٣",
       tracks: [
-        { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences", topicAr: "العلوم البيولوجية والكيميائية", speaker: invitedBioDay1[2].name, speakerTalk: invitedBioDay1[2].talk },
-        { hall: "Hall B", hallAr: "القاعة ب", topic: "Geology, Physics & other sciences", topicAr: "الجيولوجيا، الفيزياء والعلوم الأخرى", speaker: invitedGeoDay1[2].name, speakerTalk: invitedGeoDay1[2].talk },
-        { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" },
-        { hall: "Hall D", hallAr: "القاعة د", topic: "Geology, Physics & other sciences (Participants)", topicAr: "الجيولوجيا، الفيزياء والعلوم الأخرى (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" }
+        { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences (Invited)", topicAr: "العلوم البيولوجية والكيميائية (مدعوون)", speaker: invitedBioDay1[2].name, speakerTalk: invitedBioDay1[2].talk },
+        { hall: "Hall B", hallAr: "القاعة ب", topic: "Math, Physics, Geology, Astronomy (Invited)", topicAr: "الرياضيات، الفيزياء، الجيولوجيا (مدعوون)", speaker: invitedGeoDay1[2].name, speakerTalk: invitedGeoDay1[2].talk },
+        { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (مشاركون)", speaker: participantBioDay1[2].name, speakerTalk: participantBioDay1[2].talk },
+        { hall: "Hall D", hallAr: "القاعة د", topic: "Math, Physics, Geology, Astronomy (Participants)", topicAr: "الرياضيات، الفيزياء، الجيولوجيا (مشاركون)", speaker: participantGeoDay1[2].name, speakerTalk: participantGeoDay1[2].talk }
       ],
       workshops: [
-        { room: "Workshop Room 2", roomAr: "غرفة ورشة العمل ٢", name: "MARC Workshop (Cont.)", nameAr: "ورشة عمل MARC (تابع)" }
+        { room: "Workshop Room 1", roomAr: "غرفة ورشة العمل ١", name: "MARC Workshop (Cont.)", nameAr: "ورشة عمل MARC (تابع)" },
+        { room: "Workshop Room 2", roomAr: "غرفة ورشة العمل ٢", name: "Medsiol Workshop (Cont.)", nameAr: "ورشة ميدسول (تابع)" }
       ]
     },
     {
       id: 11,
-      time: "13:50 - 14:10",
-      timeAr: "١٣:٥٠ - ١٤:١٠",
+      time: "14:20 - 14:40",
+      timeAr: "٢:٢٠ - ٢:٤٠ م",
       type: "parallel",
-      title: "Parallel Sessions — Invited Speakers (Round 4)",
-      titleAr: "جلسات متوازية — المتحدثون المدعوون (الجولة ٤)",
+      title: "Parallel Sessions — Round 4",
+      titleAr: "جلسات متوازية — الجولة ٤",
       tracks: [
-        { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences", topicAr: "العلوم البيولوجية والكيميائية", speaker: invitedBioDay1[3].name, speakerTalk: invitedBioDay1[3].talk },
-        { hall: "Hall B", hallAr: "القاعة ب", topic: "Geology, Physics & other sciences", topicAr: "الجيولوجيا، الفيزياء والعلوم الأخرى", speaker: invitedGeoDay1[3].name, speakerTalk: invitedGeoDay1[3].talk },
-        { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" },
-        { hall: "Hall D", hallAr: "القاعة د", topic: "Geology, Physics & other sciences (Participants)", topicAr: "الجيولوجيا، الفيزياء والعلوم الأخرى (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" }
+        { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences (Invited)", topicAr: "العلوم البيولوجية والكيميائية (مدعوون)", speaker: invitedBioDay1[3].name, speakerTalk: invitedBioDay1[3].talk },
+        { hall: "Hall B", hallAr: "القاعة ب", topic: "Math, Physics, Geology, Astronomy (Invited)", topicAr: "الرياضيات، الفيزياء، الجيولوجيا (مدعوون)", speaker: invitedGeoDay1[3].name, speakerTalk: invitedGeoDay1[3].talk },
+        { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (مشاركون)", speaker: participantBioDay1[3].name, speakerTalk: participantBioDay1[3].talk },
+        { hall: "Hall D", hallAr: "القاعة د", topic: "Math, Physics, Geology, Astronomy (Participants)", topicAr: "الرياضيات، الفيزياء، الجيولوجيا (مشاركون)", speaker: participantGeoDay1[3].name, speakerTalk: participantGeoDay1[3].talk }
       ],
       workshops: [
-        { room: "Workshop Room 2", roomAr: "غرفة ورشة العمل ٢", name: "MARC Workshop (Cont.)", nameAr: "ورشة عمل MARC (تابع)" }
+        { room: "Workshop Room 1", roomAr: "غرفة ورشة العمل ١", name: "MARC Workshop (Cont.)", nameAr: "ورشة عمل MARC (تابع)" },
+        { room: "Workshop Room 2", roomAr: "غرفة ورشة العمل ٢", name: "Medsiol Workshop (Cont.)", nameAr: "ورشة ميدسول (تابع)" }
       ]
     },
     {
       id: 12,
-      time: "14:10 - 14:30",
-      timeAr: "١٤:١٠ - ١٤:٣٠",
+      time: "14:40 - 15:00",
+      timeAr: "٢:٤٠ - ٣:00 م",
       type: "parallel",
-      title: "Parallel Sessions — Invited Speakers (Round 5)",
-      titleAr: "جلسات متوازية — المتحدثون المدعوون (الجولة ٥)",
+      title: "Parallel Sessions — Round 5",
+      titleAr: "جلسات متوازية — الجولة ٥",
       tracks: [
-        { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences", topicAr: "العلوم البيولوجية والكيميائية", speaker: invitedBioDay1[4].name, speakerTalk: invitedBioDay1[4].talk },
-        { hall: "Hall B", hallAr: "القاعة ب", topic: "Geology, Physics & other sciences", topicAr: "الجيولوجيا، الفيزياء والعلوم الأخرى", speaker: invitedGeoDay1[4].name, speakerTalk: invitedGeoDay1[4].talk },
-        { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" },
-        { hall: "Hall D", hallAr: "القاعة د", topic: "Geology, Physics & other sciences (Participants)", topicAr: "الجيولوجيا، الفيزياء والعلوم الأخرى (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" }
+        { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences (Invited)", topicAr: "العلوم البيولوجية والكيميائية (مدعوون)", speaker: invitedBioDay1[4].name, speakerTalk: invitedBioDay1[4].talk },
+        { hall: "Hall B", hallAr: "القاعة ب", topic: "Math, Physics, Geology, Astronomy (Invited)", topicAr: "الرياضيات، الفيزياء، الجيولوجيا (مدعوون)", speaker: invitedGeoDay1[4].name, speakerTalk: invitedGeoDay1[4].talk },
+        { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (مشاركون)", speaker: participantBioDay1[4].name, speakerTalk: participantBioDay1[4].talk },
+        { hall: "Hall D", hallAr: "القاعة د", topic: "Math, Physics, Geology, Astronomy (Participants)", topicAr: "الرياضيات، الفيزياء، الجيولوجيا (مشاركون)", speaker: participantGeoDay1[4].name, speakerTalk: participantGeoDay1[4].talk }
       ],
       workshops: [
-        { room: "Workshop Room 2", roomAr: "غرفة ورشة العمل ٢", name: "MARC Workshop (Cont.)", nameAr: "ورشة عمل MARC (تابع)" }
+        { room: "Workshop Room 1", roomAr: "غرفة ورشة العمل ١", name: "MARC Workshop (Cont.)", nameAr: "ورشة عمل MARC (تابع)" },
+        { room: "Workshop Room 2", roomAr: "غرفة ورشة العمل ٢", name: "Medsiol Workshop (Cont.)", nameAr: "ورشة ميدسول (تابع)" }
       ]
     },
     {
       id: 12.5,
-      time: "14:30 - 14:50",
-      timeAr: "١٤:٣٠ - ١٤:٥٠",
+      time: "15:00 - 15:20",
+      timeAr: "٣:00 - ٣:٢٠ م",
       type: "parallel",
-      title: "Parallel Sessions — Invited Speakers (Round 6)",
-      titleAr: "جلسات متوازية — المتحدثون المدعوون (الجولة ٦)",
+      title: "Parallel Sessions — Round 6",
+      titleAr: "جلسات متوازية — الجولة ٦",
       tracks: [
-        { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences", topicAr: "العلوم البيولوجية والكيميائية", speaker: invitedBioDay1[5].name, speakerTalk: invitedBioDay1[5].talk },
-        { hall: "Hall B", hallAr: "القاعة ب", topic: "Geology, Physics & other sciences", topicAr: "الجيولوجيا، الفيزياء والعلوم الأخرى", speaker: "Participant Presentations", speakerTalk: "" },
-        { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" },
-        { hall: "Hall D", hallAr: "القاعة د", topic: "Geology, Physics & other sciences (Participants)", topicAr: "الجيولوجيا، الفيزياء والعلوم الأخرى (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" }
+        { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences (Invited)", topicAr: "العلوم البيولوجية والكيميائية (مدعوون)", speaker: invitedBioDay1[5].name, speakerTalk: invitedBioDay1[5].talk },
+        { hall: "Hall B", hallAr: "القاعة ب", topic: "Math, Physics, Geology, Astronomy (Invited)", topicAr: "الرياضيات، الفيزياء، الجيولوجيا (مدعوون)", speaker: invitedGeoDay1[5].name, speakerTalk: invitedGeoDay1[5].talk },
+        { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (مشاركون)", speaker: participantBioDay1[5].name, speakerTalk: participantBioDay1[5].talk },
+        { hall: "Hall D", hallAr: "القاعة د", topic: "Math, Physics, Geology, Astronomy (Participants)", topicAr: "الرياضيات، الفيزياء، الجيولوجيا (مشاركون)", speaker: participantGeoDay1[5].name, speakerTalk: participantGeoDay1[5].talk }
       ],
       workshops: [
-        { room: "Workshop Room 2", roomAr: "غرفة ورشة العمل ٢", name: "MARC Workshop (Cont.)", nameAr: "ورشة عمل MARC (تابع)" }
+        { room: "Workshop Room 1", roomAr: "غرفة ورشة العمل ١", name: "MARC Workshop (Cont.)", nameAr: "ورشة عمل MARC (تابع)" }
       ]
     },
     {
@@ -415,8 +464,8 @@ const sessions = {
       tracks: [
         { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences", topicAr: "العلوم البيولوجية والكيميائية", speaker: invitedBioDay2[0].name, speakerTalk: invitedBioDay2[0].talk },
         { hall: "Hall B", hallAr: "القاعة ب", topic: "Astrophysics, Mathematics & other disciplines", topicAr: "الفيزياء الفلكية، الرياضيات والتخصصات الأخرى", speaker: invitedGeoDay2[0].name, speakerTalk: invitedGeoDay2[0].talk },
-        { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" },
-        { hall: "Hall D", hallAr: "القاعة د", topic: "Other Sciences (Participants)", topicAr: "العلوم الأخرى (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" }
+        { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (مشاركون)", speaker: participantBioDay2[0].name, speakerTalk: participantBioDay2[0].talk },
+        { hall: "Hall D", hallAr: "القاعة د", topic: "Math, Physics, Geology, Astronomy (Participants)", topicAr: "الرياضيات، الفيزياء، الجيولوجيا (مشاركون)", speaker: participantGeoDay2[0].name, speakerTalk: participantGeoDay2[0].talk }
       ],
       workshops: [
         { room: "Workshop Rooms 1 & 2", roomAr: "غرف ورشة العمل ١ و ٢", name: "Nawah Scientific Workshop", nameAr: "ورشة عمل نواة للعلوم" },
@@ -428,13 +477,13 @@ const sessions = {
       time: "10:50 - 11:10",
       timeAr: "١٠:٥٠ - ١١:١٠",
       type: "parallel",
-      title: "Parallel Sessions — Invited Speakers (Round 2)",
-      titleAr: "جلسات متوازية — المتحدثون المدعوون (الجولة ٢)",
+      title: "Parallel Sessions — Round 2",
+      titleAr: "جلسات متوازية — الجولة ٢",
       tracks: [
-        { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences", topicAr: "العلوم البيولوجية والكيميائية", speaker: invitedBioDay2[1].name, speakerTalk: invitedBioDay2[1].talk },
-        { hall: "Hall B", hallAr: "القاعة ب", topic: "Mathematics & AI Applications", topicAr: "الرياضيات وتطبيقات الذكاء الاصطناعي", speaker: invitedGeoDay2[1].name, speakerTalk: invitedGeoDay2[1].talk },
-        { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" },
-        { hall: "Hall D", hallAr: "القاعة د", topic: "Other Sciences (Participants)", topicAr: "العلوم الأخرى (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" }
+        { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences (Invited)", topicAr: "العلوم البيولوجية والكيميائية (مدعوون)", speaker: invitedBioDay2[1].name, speakerTalk: invitedBioDay2[1].talk },
+        { hall: "Hall B", hallAr: "القاعة ب", topic: "Math, Physics, Geology, Astronomy (Invited)", topicAr: "الرياضيات، الفيزياء، الجيولوجيا (مدعوون)", speaker: invitedGeoDay2[1].name, speakerTalk: invitedGeoDay2[1].talk },
+        { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (مشاركون)", speaker: participantBioDay2[1].name, speakerTalk: participantBioDay2[1].talk },
+        { hall: "Hall D", hallAr: "القاعة د", topic: "Math, Physics, Geology, Astronomy (Participants)", topicAr: "الرياضيات، الفيزياء، الجيولوجيا (مشاركون)", speaker: participantGeoDay2[1].name, speakerTalk: participantGeoDay2[1].talk }
       ],
       workshops: [
         { room: "Workshop Rooms 1 & 2", roomAr: "غرف ورشة العمل ١ و ٢", name: "Nawah Scientific Workshop (Cont.)", nameAr: "ورشة عمل نواة للعلوم (تابع)" }
@@ -445,13 +494,13 @@ const sessions = {
       time: "11:10 - 11:30",
       timeAr: "١١:١٠ - ١١:٣٠",
       type: "parallel",
-      title: "Parallel Sessions — Invited Speakers (Round 3)",
-      titleAr: "جلسات متوازية — المتحدثون المدعوون (الجولة ٣)",
+      title: "Parallel Sessions — Round 3",
+      titleAr: "جلسات متوازية — الجولة ٣",
       tracks: [
-        { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences", topicAr: "العلوم البيولوجية والكيميائية", speaker: invitedBioDay2[2].name, speakerTalk: invitedBioDay2[2].talk },
-        { hall: "Hall B", hallAr: "القاعة ب", topic: "Physics, AI & Industry", topicAr: "الفيزياء والذكاء الاصطناعي والصناعة", speaker: invitedGeoDay2[2].name, speakerTalk: invitedGeoDay2[2].talk },
-        { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" },
-        { hall: "Hall D", hallAr: "القاعة د", topic: "Other Sciences (Participants)", topicAr: "العلوم الأخرى (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" }
+        { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences (Invited)", topicAr: "العلوم البيولوجية والكيميائية (مدعوون)", speaker: invitedBioDay2[2].name, speakerTalk: invitedBioDay2[2].talk },
+        { hall: "Hall B", hallAr: "القاعة ب", topic: "Math, Physics, Geology, Astronomy (Invited)", topicAr: "الرياضيات، الفيزياء، الجيولوجيا (مدعوون)", speaker: invitedGeoDay2[2].name, speakerTalk: invitedGeoDay2[2].talk },
+        { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (مشاركون)", speaker: participantBioDay2[2].name, speakerTalk: participantBioDay2[2].talk },
+        { hall: "Hall D", hallAr: "القاعة د", topic: "Math, Physics, Geology, Astronomy (Participants)", topicAr: "الرياضيات، الفيزياء، الجيولوجيا (مشاركون)", speaker: participantGeoDay2[2].name, speakerTalk: participantGeoDay2[2].talk }
       ],
       workshops: [
         { room: "Workshop Rooms 1 & 2", roomAr: "غرف ورشة العمل ١ و ٢", name: "Nawah Scientific Workshop (Cont.)", nameAr: "ورشة عمل نواة للعلوم (تابع)" }
@@ -462,13 +511,13 @@ const sessions = {
       time: "11:30 - 11:50",
       timeAr: "١١:٣٠ - ١١:٥٠",
       type: "parallel",
-      title: "Parallel Sessions — Invited Speakers (Round 4)",
-      titleAr: "جلسات متوازية — المتحدثون المدعوون (الجولة ٤)",
+      title: "Parallel Sessions — Round 4",
+      titleAr: "جلسات متوازية — الجولة ٤",
       tracks: [
-        { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences", topicAr: "العلوم البيولوجية والكيميائية", speaker: invitedBioDay2[3].name, speakerTalk: invitedBioDay2[3].talk },
-        { hall: "Hall B", hallAr: "القاعة ب", topic: "Industry & Innovation", topicAr: "الصناعة والابتكار", speaker: invitedGeoDay2[3].name, speakerTalk: invitedGeoDay2[3].talk },
-        { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" },
-        { hall: "Hall D", hallAr: "القاعة د", topic: "Other Sciences (Participants)", topicAr: "العلوم الأخرى (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" }
+        { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences (Invited)", topicAr: "العلوم البيولوجية والكيميائية (مدعوون)", speaker: invitedBioDay2[3].name, speakerTalk: invitedBioDay2[3].talk },
+        { hall: "Hall B", hallAr: "القاعة ب", topic: "Math, Physics, Geology, Astronomy (Invited)", topicAr: "الرياضيات، الفيزياء، الجيولوجيا (مدعوون)", speaker: invitedGeoDay2[3].name, speakerTalk: invitedGeoDay2[3].talk },
+        { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (مشاركون)", speaker: participantBioDay2[3].name, speakerTalk: participantBioDay2[3].talk },
+        { hall: "Hall D", hallAr: "القاعة د", topic: "Math, Physics, Geology, Astronomy (Participants)", topicAr: "الرياضيات، الفيزياء، الجيولوجيا (مشاركون)", speaker: participantGeoDay2[3].name, speakerTalk: participantGeoDay2[3].talk }
       ],
       workshops: [
         { room: "Workshop Rooms 1 & 2", roomAr: "غرف ورشة العمل ١ و ٢", name: "Nawah Scientific Workshop (Cont.)", nameAr: "ورشة عمل نواة للعلوم (تابع)" }
@@ -501,15 +550,15 @@ const sessions = {
     {
       id: 25,
       time: "13:00 - 13:20",
-      timeAr: "١٣:٠٠ - ١٣:٢٠",
+      timeAr: "١:00 - ١:٢٠ م",
       type: "parallel",
-      title: "Parallel Sessions — Invited Speakers (Round 5)",
-      titleAr: "جلسات متوازية — المتحدثون المدعوون (الجولة ٥)",
+      title: "Parallel Sessions — Round 5",
+      titleAr: "جلسات متوازية — الجولة ٥",
       tracks: [
-        { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences", topicAr: "العلوم البيولوجية والكيميائية", speaker: invitedBioDay2[4].name, speakerTalk: invitedBioDay2[4].talk },
-        { hall: "Hall B", hallAr: "القاعة ب", topic: "Industry & Vaccine Production", topicAr: "الصناعة وإنتاج اللقاحات", speaker: invitedGeoDay2[4].name, speakerTalk: invitedGeoDay2[4].talk },
-        { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" },
-        { hall: "Hall D", hallAr: "القاعة د", topic: "Other Sciences (Participants)", topicAr: "العلوم الأخرى (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" }
+        { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences (Invited)", topicAr: "العلوم البيولوجية والكيميائية (مدعوون)", speaker: invitedBioDay2[4].name, speakerTalk: invitedBioDay2[4].talk },
+        { hall: "Hall B", hallAr: "القاعة ب", topic: "Math, Physics, Geology, Astronomy (Invited)", topicAr: "الرياضيات، الفيزياء، الجيولوجيا (مدعوون)", speaker: invitedGeoDay2[4].name, speakerTalk: invitedGeoDay2[4].talk },
+        { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (مشاركون)", speaker: participantBioDay2[4].name, speakerTalk: participantBioDay2[4].talk },
+        { hall: "Hall D", hallAr: "القاعة د", topic: "Math, Physics, Geology, Astronomy (Participants)", topicAr: "الرياضيات، الفيزياء، الجيولوجيا (مشاركون)", speaker: participantGeoDay2[4].name, speakerTalk: participantGeoDay2[4].talk }
       ],
       workshops: [
         { room: "Workshop Rooms 1 & 2", roomAr: "غرف ورشة العمل ١ و ٢", name: "Nawah Scientific Workshop (Cont.)", nameAr: "ورشة عمل نواة للعلوم (تابع)" }
@@ -518,15 +567,15 @@ const sessions = {
     {
       id: 26,
       time: "13:20 - 13:40",
-      timeAr: "١٣:٢٠ - ١٣:٤٠",
+      timeAr: "١:٢٠ - ١:٤٠ م",
       type: "parallel",
-      title: "Parallel Sessions — Invited Speakers (Round 6)",
-      titleAr: "جلسات متوازية — المتحدثون المدعوون (الجولة ٦)",
+      title: "Parallel Sessions — Round 6",
+      titleAr: "جلسات متوازية — الجولة ٦",
       tracks: [
-        { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences", topicAr: "العلوم البيولوجية والكيميائية", speaker: invitedBioDay2[5].name, speakerTalk: invitedBioDay2[5].talk },
-        { hall: "Hall B", hallAr: "القاعة ب", topic: "Industry & Vaccine Production", topicAr: "الصناعة وإنتاج اللقاحات", speaker: invitedGeoDay2[5].name, speakerTalk: invitedGeoDay2[5].talk },
-        { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" },
-        { hall: "Hall D", hallAr: "القاعة د", topic: "Other Sciences (Participants)", topicAr: "العلوم الأخرى (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" }
+        { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences (Invited)", topicAr: "العلوم البيولوجية والكيميائية (مدعوون)", speaker: invitedBioDay2[5].name, speakerTalk: invitedBioDay2[5].talk },
+        { hall: "Hall B", hallAr: "القاعة ب", topic: "Math, Physics, Geology, Astronomy (Invited)", topicAr: "الرياضيات، الفيزياء، الجيولوجيا (مدعوون)", speaker: invitedGeoDay2[5].name, speakerTalk: invitedGeoDay2[5].talk },
+        { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (مشاركون)", speaker: participantBioDay2[5].name, speakerTalk: participantBioDay2[5].talk },
+        { hall: "Hall D", hallAr: "القاعة د", topic: "Math, Physics, Geology, Astronomy (Participants)", topicAr: "الرياضيات، الفيزياء، الجيولوجيا (مشاركون)", speaker: participantGeoDay2[5].name, speakerTalk: participantGeoDay2[5].talk }
       ],
       workshops: [
         { room: "Workshop Rooms 1 & 2", roomAr: "غرف ورشة العمل ١ و ٢", name: "Nawah Scientific Workshop (Cont.)", nameAr: "ورشة عمل نواة للعلوم (تابع)" }
@@ -535,15 +584,15 @@ const sessions = {
     {
       id: 27,
       time: "13:40 - 14:00",
-      timeAr: "١٣:٤٠ - ١٤:٠٠",
+      timeAr: "١:٤٠ - ٢:00 م",
       type: "parallel",
-      title: "Parallel Sessions — Invited Speakers (Round 7)",
-      titleAr: "جلسات متوازية — المتحدثون المدعوون (الجولة ٧)",
+      title: "Parallel Sessions — Round 7",
+      titleAr: "جلسات متوازية — الجولة ٧",
       tracks: [
-        { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences", topicAr: "العلوم البيولوجية والكيميائية", speaker: invitedBioDay2[6].name, speakerTalk: invitedBioDay2[6].talk },
-        { hall: "Hall B", hallAr: "القاعة ب", topic: "Other Sciences", topicAr: "العلوم الأخرى", speaker: "Participant Presentations", speakerTalk: "" },
-        { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" },
-        { hall: "Hall D", hallAr: "القاعة د", topic: "Other Sciences (Participants)", topicAr: "العلوم الأخرى (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" }
+        { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences (Invited)", topicAr: "العلوم البيولوجية والكيميائية (مدعوون)", speaker: invitedBioDay2[6].name, speakerTalk: invitedBioDay2[6].talk },
+        { hall: "Hall B", hallAr: "القاعة ب", topic: "Math, Physics, Geology, Astronomy (Invited)", topicAr: "الرياضيات، الفيزياء، الجيولوجيا (مدعوون)", speaker: invitedGeoDay2[7].name, speakerTalk: invitedGeoDay2[7].talk },
+        { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (مشاركون)", speaker: participantBioDay2[6].name, speakerTalk: participantBioDay2[6].talk },
+        { hall: "Hall D", hallAr: "القاعة د", topic: "Math, Physics, Geology, Astronomy (Participants)", topicAr: "الرياضيات، الفيزياء، الجيولوجيا (مشاركون)", speaker: participantGeoDay2[7 % participantGeoDay2.length].name, speakerTalk: participantGeoDay2[7 % participantGeoDay2.length].talk }
       ],
       workshops: [
         { room: "Workshop Rooms 1 & 2", roomAr: "غرف ورشة العمل ١ و ٢", name: "Nawah Scientific Workshop (Cont.)", nameAr: "ورشة عمل نواة للعلوم (تابع)" }
@@ -552,15 +601,15 @@ const sessions = {
     {
       id: 27.3,
       time: "14:00 - 14:20",
-      timeAr: "١٤:٠٠ - ١٤:٢٠",
+      timeAr: "٢:00 - ٢:٢٠ م",
       type: "parallel",
-      title: "Parallel Sessions — Invited Speakers (Round 8)",
-      titleAr: "جلسات متوازية — المتحدثون المدعوون (الجولة ٨)",
+      title: "Parallel Sessions — Round 8",
+      titleAr: "جلسات متوازية — الجولة ٨",
       tracks: [
-        { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences", topicAr: "العلوم البيولوجية والكيميائية", speaker: invitedBioDay2[7].name, speakerTalk: invitedBioDay2[7].talk },
-        { hall: "Hall B", hallAr: "القاعة ب", topic: "Other Sciences", topicAr: "العلوم الأخرى", speaker: "Participant Presentations", speakerTalk: "" },
-        { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" },
-        { hall: "Hall D", hallAr: "القاعة د", topic: "Other Sciences (Participants)", topicAr: "العلوم الأخرى (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" }
+        { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences (Invited)", topicAr: "العلوم البيولوجية والكيميائية (مدعوون)", speaker: invitedBioDay2[7 % invitedBioDay2.length].name, speakerTalk: invitedBioDay2[7 % invitedBioDay2.length].talk },
+        { hall: "Hall B", hallAr: "القاعة ب", topic: "Poster & Exhibition Session", topicAr: "جلسة الملصقات والمعرض", speaker: "Poster Presentations & Industry Booths", speakerTalk: "" },
+        { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (مشاركون)", speaker: participantBioDay2[7 % participantBioDay2.length].name, speakerTalk: participantBioDay2[7 % participantBioDay2.length].talk },
+        { hall: "Hall D", hallAr: "القاعة د", topic: "Math, Physics, Geology, Astronomy (Participants)", topicAr: "الرياضيات، الفيزياء، الجيولوجيا (مشاركون)", speaker: participantGeoDay2[3 % participantGeoDay2.length].name, speakerTalk: participantGeoDay2[3 % participantGeoDay2.length].talk }
       ],
       workshops: [
         { room: "Workshop Rooms 1 & 2", roomAr: "غرف ورشة العمل ١ و ٢", name: "Nawah Scientific Workshop (Cont.)", nameAr: "ورشة عمل نواة للعلوم (تابع)" }
@@ -569,15 +618,15 @@ const sessions = {
     {
       id: 27.6,
       time: "14:20 - 14:40",
-      timeAr: "١٤:٢٠ - ١٤:٤٠",
+      timeAr: "٢:٢٠ - ٢:٤٠ م",
       type: "parallel",
-      title: "Parallel Sessions — Invited Speakers (Round 9)",
-      titleAr: "جلسات متوازية — المتحدثون المدعوون (الجولة ٩)",
+      title: "Parallel Sessions — Round 9",
+      titleAr: "جلسات متوازية — الجولة ٩",
       tracks: [
-        { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences", topicAr: "العلوم البيولوجية والكيميائية", speaker: invitedBioDay2[8].name, speakerTalk: invitedBioDay2[8].talk },
-        { hall: "Hall B", hallAr: "القاعة ب", topic: "Other Sciences", topicAr: "العلوم الأخرى", speaker: "Participant Presentations", speakerTalk: "" },
-        { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" },
-        { hall: "Hall D", hallAr: "القاعة د", topic: "Other Sciences (Participants)", topicAr: "العلوم الأخرى (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" }
+        { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences (Invited)", topicAr: "العلوم البيولوجية والكيميائية (مدعوون)", speaker: invitedBioDay2[8 % invitedBioDay2.length].name, speakerTalk: invitedBioDay2[8 % invitedBioDay2.length].talk },
+        { hall: "Hall B", hallAr: "القاعة ب", topic: "Poster & Exhibition Session", topicAr: "جلسة الملصقات والمعرض", speaker: "Poster Presentations & Industry Booths", speakerTalk: "" },
+        { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (مشاركون)", speaker: participantBioDay2[8 % participantBioDay2.length].name, speakerTalk: participantBioDay2[8 % participantBioDay2.length].talk },
+        { hall: "Hall D", hallAr: "القاعة د", topic: "Math, Physics, Geology, Astronomy (Participants)", topicAr: "الرياضيات، الفيزياء، الجيولوجيا (مشاركون)", speaker: participantGeoDay2[4 % participantGeoDay2.length].name, speakerTalk: participantGeoDay2[4 % participantGeoDay2.length].talk }
       ],
       workshops: [
         { room: "Workshop Rooms 1 & 2", roomAr: "غرف ورشة العمل ١ و ٢", name: "Nawah Scientific Workshop (Cont.)", nameAr: "ورشة عمل نواة للعلوم (تابع)" }
@@ -586,15 +635,15 @@ const sessions = {
     {
       id: 27.9,
       time: "14:40 - 15:00",
-      timeAr: "١٤:٤٠ - ١٥:٠٠",
+      timeAr: "٢:٤٠ - ٣:00 م",
       type: "parallel",
-      title: "Parallel Sessions — Invited Speakers (Round 10)",
-      titleAr: "جلسات متوازية — المتحدثون المدعوون (الجولة ١٠)",
+      title: "Parallel Sessions — Round 10",
+      titleAr: "جلسات متوازية — الجولة ١٠",
       tracks: [
-        { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences", topicAr: "العلوم البيولوجية والكيميائية", speaker: invitedBioDay2[9].name, speakerTalk: invitedBioDay2[9].talk },
-        { hall: "Hall B", hallAr: "القاعة ب", topic: "Other Sciences", topicAr: "العلوم الأخرى", speaker: "Participant Presentations", speakerTalk: "" },
-        { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" },
-        { hall: "Hall D", hallAr: "القاعة د", topic: "Other Sciences (Participants)", topicAr: "العلوم الأخرى (المشاركون)", speaker: "Participant Presentations", speakerTalk: "" }
+        { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences (Invited)", topicAr: "العلوم البيولوجية والكيميائية (مدعوون)", speaker: invitedBioDay2[5 % invitedBioDay2.length].name, speakerTalk: invitedBioDay2[5 % invitedBioDay2.length].talk },
+        { hall: "Hall B", hallAr: "القاعة ب", topic: "Poster & Exhibition Session", topicAr: "جلسة الملصقات والمعرض", speaker: "Poster Presentations & Industry Booths", speakerTalk: "" },
+        { hall: "Hall C", hallAr: "القاعة ج", topic: "Graduation Projects", topicAr: "مشاريع التخرج", speaker: participantBioDay2[8].name + " (Graduation Projects Group)", speakerTalk: "" },
+        { hall: "Hall D", hallAr: "القاعة د", topic: "Astronomy Special Session", topicAr: "جلسة خاصة لقسم الفلك", speaker: participantGeoDay2[0].name, speakerTalk: "" }
       ],
       workshops: [
         { room: "Workshop Rooms 1 & 2", roomAr: "غرف ورشة العمل ١ و ٢", name: "Nawah Scientific Workshop (Cont.)", nameAr: "ورشة عمل نواة للعلوم (تابع)" }
