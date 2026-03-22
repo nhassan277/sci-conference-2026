@@ -76,13 +76,13 @@ interface DaySession {
 }
 
 const day1Sessions: DaySession[] = [
-  { time: "09:00 – 10:00", type: "registration", title: "Arrival & Registration", location: "Conference Hall Entrance", description: "Welcome and registration for all conference participants" },
-  { time: "10:00 – 10:45", type: "opening", title: "Welcome Talk", location: "Hall A (Connected to all halls)", description: "Opening ceremony with welcome addresses from university leadership" },
-  { time: "10:45 – 11:10", type: "keynote", title: "Keynote Speaker 1", location: "Hall A (Connected to all halls)", speaker: keynoteSpeakers[0] },
-  { time: "11:10 – 11:35", type: "keynote", title: "Keynote Speaker 2", location: "Hall A (Connected to all halls)", speaker: keynoteSpeakers[1] },
-  { time: "11:35 – 11:50", type: "panel", title: "Discussion Panel", location: "All Halls", description: "Interactive discussion following keynote presentations" },
+  { time: "08:30 – 09:30", type: "registration", title: "Arrival & Registration", location: "Conference Hall Entrance", description: "Welcome and registration for all conference participants" },
+  { time: "09:30 – 10:30", type: "opening", title: "Welcome Talk", location: "Hall A (Connected to all halls)", description: "Opening ceremony with welcome addresses from university leadership" },
+  { time: "10:30 – 10:50", type: "keynote", title: "Keynote Speaker 1", location: "Hall A (Connected to all halls)", speaker: keynoteSpeakers[0] },
+  { time: "10:50 – 11:10", type: "keynote", title: "Keynote Speaker 2", location: "Hall A (Connected to all halls)", speaker: keynoteSpeakers[1] },
+  { time: "11:10 – 11:40", type: "panel", title: "Discussion Panel", location: "All Halls", description: "Interactive discussion following keynote presentations" },
   {
-    time: "11:50 – 12:10", type: "parallel", title: "Parallel Sessions — Invited Speakers (Round 1)",
+    time: "11:45 – 12:05", type: "parallel", title: "Parallel Sessions — Invited Speakers (Round 1)",
     tracks: [
       { hall: "Hall A", speaker: invitedBioDay1[0].name, speakerTalk: invitedBioDay1[0].talk, topic: "Biological & Chemical Sciences" },
       { hall: "Hall B", speaker: invitedGeoDay1[0].name, speakerTalk: invitedGeoDay1[0].talk, topic: "Geology, Physics & other sciences" },
@@ -95,7 +95,7 @@ const day1Sessions: DaySession[] = [
     ],
   },
   {
-    time: "12:10 – 12:30", type: "parallel", title: "Parallel Sessions — Invited Speakers (Round 2)",
+    time: "12:05 – 12:25", type: "parallel", title: "Parallel Sessions — Invited Speakers (Round 2)",
     tracks: [
       { hall: "Hall A", speaker: invitedBioDay1[1].name, speakerTalk: invitedBioDay1[1].talk, topic: "Biological & Chemical Sciences" },
       { hall: "Hall B", speaker: invitedGeoDay1[1].name, speakerTalk: invitedGeoDay1[1].talk, topic: "Geology, Physics & other sciences" },
@@ -107,8 +107,8 @@ const day1Sessions: DaySession[] = [
       { room: "Workshop Room 2", name: "Advanced Sequencing Technologies (Cont.)" },
     ],
   },
-  { time: "12:30 – 12:45", type: "panel", title: "Discussion Panels", location: "All Halls (A, B, C, D)", description: "Parallel discussion panels in all conference halls" },
-  { time: "12:45 – 13:30", type: "break", title: "Coffee Break", location: "Conference Foyer", description: "Refreshments and networking opportunity" },
+  { time: "12:25 – 12:45", type: "panel", title: "Discussion Panels", location: "All Halls (A, B, C, D)", description: "Parallel discussion panels in all conference halls" },
+  { time: "12:45 – 13:30", type: "break", title: "Lunch Break", location: "Conference Foyer", description: "Lunch break and networking opportunity" },
   {
     time: "13:30 – 13:50", type: "parallel", title: "Parallel Sessions — Invited Speakers (Round 3)",
     tracks: [
@@ -139,17 +139,18 @@ const day1Sessions: DaySession[] = [
     ],
     workshops: [{ room: "Workshop Room 2", name: "MARC Workshop (Cont.)" }],
   },
-  { time: "14:30 – 14:50", type: "panel", title: "Discussion Panels", location: "All Halls (A, B, C, D)", description: "Parallel discussion panels in all conference halls" },
-  { time: "14:50 – 15:30", type: "poster", title: "Poster Session", location: "Conference Foyer", description: "Poster presentations and networking" },
+  { time: "14:50 – 15:10", type: "panel", title: "Discussion Panels", location: "All Halls (A, B, C, D)", description: "Parallel discussion panels in all conference halls" },
+  { time: "15:10 – 15:50", type: "poster", title: "Poster Session", location: "Conference Foyer", description: "Poster presentations and networking" },
+  { time: "16:00 – 16:15", type: "closing", title: "Issuing Certificates — Day 1", location: "Main Hall", description: "Distribution of participation certificates for Day 1 attendees" },
 ];
 
 const day2Sessions: DaySession[] = [
-  { time: "09:00 – 09:30", type: "registration", title: "Arrival & Registration", location: "Conference Hall Entrance", description: "Registration for Day 2 participants" },
-  { time: "09:30 – 09:55", type: "keynote", title: "Keynote Speaker 3", location: "Hall A (Connected to all halls)", speaker: keynoteSpeakers[2] },
-  { time: "09:55 – 10:20", type: "keynote", title: "Keynote Speaker 4", location: "Hall A (Connected to all halls)", speaker: keynoteSpeakers[3] },
-  { time: "10:20 – 10:35", type: "panel", title: "Discussion Panel & Workshop Start", location: "All Halls + Workshop Rooms", description: "Discussion panel and beginning of workshops" },
+  { time: "08:30 – 09:15", type: "registration", title: "Arrival & Registration", location: "Conference Hall Entrance", description: "Registration for Day 2 participants" },
+  { time: "09:15 – 09:35", type: "keynote", title: "Keynote Speaker 3", location: "Hall A (Connected to all halls)", speaker: keynoteSpeakers[2] },
+  { time: "09:35 – 09:55", type: "keynote", title: "Keynote Speaker 4", location: "Hall A (Connected to all halls)", speaker: keynoteSpeakers[3] },
+  { time: "09:55 – 10:25", type: "panel", title: "Discussion Panel", location: "All Halls", description: "Interactive discussion following keynote presentations" },
   {
-    time: "10:35 – 10:55", type: "parallel", title: "Parallel Sessions — Invited Speakers (Round 1)",
+    time: "10:30 – 10:50", type: "parallel", title: "Parallel Sessions — Invited Speakers (Round 1)",
     tracks: [
       { hall: "Hall A", speaker: invitedBioDay2[0].name, speakerTalk: invitedBioDay2[0].talk, topic: "Biological & Chemical Sciences" },
       { hall: "Hall B", speaker: invitedGeoDay2[0].name, speakerTalk: invitedGeoDay2[0].talk, topic: "Astrophysics, Mathematics & other disciplines" },
@@ -159,7 +160,7 @@ const day2Sessions: DaySession[] = [
     workshops: [{ room: "Workshop Rooms 1 & 2", name: "Nawah Scientific Workshop" }],
   },
   {
-    time: "10:55 – 11:15", type: "parallel", title: "Parallel Sessions — Invited Speakers (Round 2)",
+    time: "10:50 – 11:10", type: "parallel", title: "Parallel Sessions — Invited Speakers (Round 2)",
     tracks: [
       { hall: "Hall A", speaker: invitedBioDay2[1].name, speakerTalk: invitedBioDay2[1].talk, topic: "Biological & Chemical Sciences" },
       { hall: "Hall B", speaker: invitedGeoDay2[1].name, speakerTalk: invitedGeoDay2[1].talk, topic: "Mathematics & other disciplines" },
@@ -169,7 +170,7 @@ const day2Sessions: DaySession[] = [
     workshops: [{ room: "Workshop Rooms 1 & 2", name: "Nawah Scientific Workshop (Cont.)" }],
   },
   {
-    time: "11:15 – 11:35", type: "parallel", title: "Parallel Sessions — Invited Speakers (Round 3)",
+    time: "11:10 – 11:30", type: "parallel", title: "Parallel Sessions — Invited Speakers (Round 3)",
     tracks: [
       { hall: "Hall A", speaker: invitedBioDay2[2].name, speakerTalk: invitedBioDay2[2].talk, topic: "Biological & Chemical Sciences" },
       { hall: "Hall B", speaker: "Participant Presentations", speakerTalk: "", topic: "Other Sciences (Participants)" },
@@ -178,10 +179,10 @@ const day2Sessions: DaySession[] = [
     ],
     workshops: [{ room: "Workshop Rooms 1 & 2", name: "Nawah Scientific Workshop (Cont.)" }],
   },
-  { time: "11:35 – 11:50", type: "panel", title: "Discussion Panels", location: "All Halls (A, B, C, D)", description: "Parallel discussion panels in all conference halls" },
-  { time: "11:50 – 13:30", type: "break", title: "Lunch Break", location: "Conference Foyer", description: "Lunch and networking opportunity" },
+  { time: "11:30 – 12:20", type: "panel", title: "Discussion Panels", location: "All Halls (A, B, C, D)", description: "Parallel discussion panels in all conference halls" },
+  { time: "12:20 – 13:00", type: "break", title: "Lunch Break", location: "Conference Foyer", description: "Lunch and networking opportunity" },
   {
-    time: "13:30 – 13:50", type: "parallel", title: "Parallel Sessions — Invited Speakers (Round 4)",
+    time: "13:00 – 13:20", type: "parallel", title: "Parallel Sessions — Invited Speakers (Round 4)",
     tracks: [
       { hall: "Hall A", speaker: invitedBioDay2[3].name, speakerTalk: invitedBioDay2[3].talk, topic: "Biological & Chemical Sciences" },
       { hall: "Hall B", speaker: "Participant Presentations", speakerTalk: "", topic: "Other Sciences (Participants)" },
@@ -190,11 +191,9 @@ const day2Sessions: DaySession[] = [
     ],
     workshops: [{ room: "Workshop Rooms 1 & 2", name: "Nawah Scientific Workshop (Cont.)" }],
   },
-  {
-    time: "13:50 – 14:05", type: "panel", title: "Discussion Panels", location: "All Halls (A, B, C, D)", description: "Parallel discussion panels in all conference halls"
-  },
-  { time: "14:05 – 14:50", type: "poster", title: "Poster Session", location: "Conference Foyer", description: "Poster presentations and networking" },
-  { time: "14:50 – 15:30", type: "closing", title: "Conference Closure & Awards Ceremony", location: "Main Hall", description: "Closing ceremony with appreciation and announcement of Best Project, Poster and Presentation Awards" },
+  { time: "15:00 – 15:20", type: "panel", title: "Discussion Panels", location: "All Halls (A, B, C, D)", description: "Parallel discussion panels in all conference halls" },
+  { time: "15:20 – 16:00", type: "poster", title: "Poster Session", location: "Conference Foyer", description: "Poster presentations and networking" },
+  { time: "16:00 – 17:30", type: "closing", title: "Conference Closure & Awards Ceremony", location: "Main Hall", description: "Closing ceremony with appreciation and announcement of Best Project, Poster and Presentation Awards" },
 ];
 
 // ─── HELPERS ─────────────────────────────────────────────────────────────────
@@ -488,8 +487,16 @@ export function generateSchedulePDF(res: Response): void {
       color: COLORS.closing,
       items: [
         { name: "Introduction to Single Cell Genomics", detail: "By EG-CompBio & GARN · April 9, 10:00 AM – 1:00 PM · 3 hours · 30 seats" },
-        { name: "Integrating Genomics & Proteomics in Biopharmaceutical R&D", detail: "By HVD Life Sciences · Date & Time TBA · HVD Company, New Cairo · 30 seats" },
+        { name: "Integrating Genomics & Proteomics in Biopharmaceutical R&D", detail: "By HVD Life Sciences · FULLY BOOKED · HVD Company, New Cairo · 30 seats" },
         { name: "AI Meets Biotech", detail: "How to leverage AI in Biotechnology · 3 hours" },
+        { name: "From Lab to Global Opportunities: Scholarships & Research Abroad", detail: "By GESR (Dr. Nourhan Hassan & Dr. Hazem Badawy) · April 9, 3:00 PM – 6:00 PM · Free" },
+      ],
+    },
+    {
+      label: "Post-Conference — April 12",
+      color: COLORS.keynote,
+      items: [
+        { name: "Metagenomics, Microbiome & 16S rRNA Sequencing", detail: "By Colors Educational Hub · April 12, 10:00 AM · Faculty of Science, Cairo University" },
       ],
     },
   ];

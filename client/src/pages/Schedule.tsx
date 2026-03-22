@@ -114,8 +114,8 @@ const sessions = {
     },
     {
       id: 2,
-      time: "09:30 - 10:00",
-      timeAr: "٩:٣٠ - ١٠:٠٠",
+      time: "09:30 - 10:30",
+      timeAr: "٩:٣٠ - ١٠:٣٠",
       type: "opening",
       title: "Welcome Talk",
       titleAr: "كلمة الترحيب",
@@ -741,6 +741,25 @@ const sessions = {
       spots: "Unlimited"
     }
   ],
+  day5: [
+    {
+      id: 1,
+      time: "10:00 AM – completion",
+      timeAr: "١٠:٠٠ ص – حتى الانتهاء",
+      type: "workshop",
+      title: "Metagenomics, Microbiome & 16S rRNA Sequencing",
+      titleAr: "الميتاجينوميكس، الميكروبيوم وتسلسل الـ 16S rRNA",
+      location: "Faculty of Science, Cairo University",
+      locationAr: "كلية العلوم — جامعة القاهرة",
+      description: "A comprehensive hands-on workshop covering metagenomics principles, microbiome analysis, and 16S rRNA sequencing techniques. Participants will explore microbial community profiling, bioinformatics pipelines for metagenomic data analysis, and applications in environmental, clinical, and agricultural research.",
+      descriptionAr: "ورشة عمل تطبيقية شاملة تغطي مبادئ الميتاجينوميكس وتحليل الميكروبيوم وتقنيات تسلسل الـ 16S rRNA وتطبيقاتها في البحوث البيئية والسريرية والزراعية.",
+      presenter: "Colors Educational Hub",
+      fee: "TBA",
+      feeAr: "يُعلن قريباً",
+      duration: "Full Day | يوم كامل",
+      spots: "Limited"
+    }
+  ],
   day3: [
     {
       id: 1,
@@ -862,7 +881,7 @@ export default function Schedule() {
     }
   };
 
-  const currentSessions = selectedDay === "day1" ? sessions.day1 : selectedDay === "day2" ? sessions.day2 : selectedDay === "day3" ? sessions.day3 : sessions.day4;
+  const currentSessions = selectedDay === "day1" ? sessions.day1 : selectedDay === "day2" ? sessions.day2 : selectedDay === "day3" ? sessions.day3 : selectedDay === "day5" ? sessions.day5 : sessions.day4;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
@@ -926,18 +945,21 @@ export default function Schedule() {
       <section className="py-12">
         <div className="container">
           <Tabs value={selectedDay} onValueChange={setSelectedDay} className="space-y-8">
-            <TabsList className="grid w-full max-w-3xl mx-auto grid-cols-4">
-              <TabsTrigger value="day4" className="text-sm">
+            <TabsList className="grid w-full max-w-4xl mx-auto grid-cols-5">
+              <TabsTrigger value="day4" className="text-xs md:text-sm">
                 April 6 | ٦ أبريل
               </TabsTrigger>
-              <TabsTrigger value="day1" className="text-sm">
+              <TabsTrigger value="day1" className="text-xs md:text-sm">
                 Day 1 — April 7 | ٧ أبريل
               </TabsTrigger>
-              <TabsTrigger value="day2" className="text-sm">
+              <TabsTrigger value="day2" className="text-xs md:text-sm">
                 Day 2 — April 8 | ٨ أبريل
               </TabsTrigger>
-              <TabsTrigger value="day3" className="text-sm">
+              <TabsTrigger value="day3" className="text-xs md:text-sm">
                 April 9 | ٩ أبريل
+              </TabsTrigger>
+              <TabsTrigger value="day5" className="text-xs md:text-sm">
+                April 12 | ١٢ أبريل
               </TabsTrigger>
             </TabsList>
 
