@@ -107,6 +107,7 @@ const invitedBioDay2 = [
   { name: "Prof. Dr. Mohamed Hamed", affiliation: "Associate Professor of Biomedical Informatics and Computational Biology", talk: "Computational Transformation in Drug Discovery: Bioinformatics and AI Innovations in Pharmaceutical Science" },
   { name: "Prof. Dr. Mohamed Abdel Gawad", affiliation: "Faculty of Science, Cairo University", talk: "" },
   { name: "Dr. Ahmed Fikry", affiliation: "Assistant Professor, King Salman International University", talk: "Computer-Aided Drug Design: From Code to Cure" },
+  { name: "Prof. Dr. Mohamed Abdel Gawad", affiliation: "Faculty of Science, Cairo University", talk: "" },
 ];
 
 // Hall B: Mathematics, Physics, Geology, Astronomy & other disciplines — Day 2 (Invited)
@@ -141,6 +142,11 @@ const participantGeoDay2 = [
   { name: "Dr. Reham Eid", affiliation: "Participant", talk: "" },
   { name: "Ms Basma Islam", affiliation: "Participant", talk: "" },
   { name: "Mr Ahmed Abdel Twab", affiliation: "Participant", talk: "" },
+  { name: "Dr. Alyaa Aly", affiliation: "Participant", talk: "" },
+  { name: "Dr. Reham Eid", affiliation: "Participant", talk: "" },
+  { name: "Ms Basma Islam", affiliation: "Participant", talk: "" },
+  { name: "Mr Ahmed Abdel Twab", affiliation: "Participant", talk: "" },
+  { name: "Special Session for Astronomy Department", affiliation: "Astronomy Dept.", talk: "" },
 ];
 
 // ─── CONFERENCE PROGRAM DATA ──────────────────────────────────────────────────
