@@ -175,7 +175,7 @@ const sessions = {
       time: "10:30 - 10:50",
       timeAr: "١٠:٣٠ - ١٠:٥٠",
       type: "keynote",
-      title: "Keynote Speaker 1",
+      title: "Plenary Speaker 1",
       titleAr: "المتحدث الرئيسي ١",
       location: "Hall A (Connected to all halls)",
       locationAr: "القاعة أ (متصلة بجميع القاعات)",
@@ -186,7 +186,7 @@ const sessions = {
       time: "10:50 - 11:10",
       timeAr: "١٠:٥٠ - ١١:١٠",
       type: "keynote",
-      title: "Keynote Speaker 2",
+      title: "Plenary Speaker 2",
       titleAr: "المتحدث الرئيسي ٢",
       location: "Hall A (Connected to all halls)",
       locationAr: "القاعة أ (متصلة بجميع القاعات)",
@@ -425,7 +425,7 @@ const sessions = {
       time: "09:15 - 09:35",
       timeAr: "٩:١٥ - ٩:٣٥",
       type: "keynote",
-      title: "Keynote Speaker 3",
+      title: "Plenary Speaker 3",
       titleAr: "المتحدث الرئيسي ٣",
       location: "Hall A (Connected to all halls)",
       locationAr: "القاعة أ (متصلة بجميع القاعات)",
@@ -436,7 +436,7 @@ const sessions = {
       time: "09:35 - 09:55",
       timeAr: "٩:٣٥ - ٩:٥٥",
       type: "keynote",
-      title: "Keynote Speaker 4",
+      title: "Plenary Speaker 4",
       titleAr: "المتحدث الرئيسي ٤",
       location: "Hall A (Connected to all halls)",
       locationAr: "القاعة أ (متصلة بجميع القاعات)",
@@ -459,8 +459,8 @@ const sessions = {
       time: "10:30 - 10:50",
       timeAr: "١٠:٣٠ - ١٠:٥٠",
       type: "parallel",
-      title: "Parallel Sessions — Invited Speakers (Round 1)",
-      titleAr: "جلسات متوازية — المتحدثون المدعوون (الجولة ١)",
+      title: "Parallel Sessions — Round 1",
+      titleAr: "جلسات متوازية — الجولة ١",
       tracks: [
         { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences", topicAr: "العلوم البيولوجية والكيميائية", speaker: invitedBioDay2[0].name, speakerTalk: invitedBioDay2[0].talk },
         { hall: "Hall B", hallAr: "القاعة ب", topic: "Astrophysics, Mathematics & other disciplines", topicAr: "الفيزياء الفلكية، الرياضيات والتخصصات الأخرى", speaker: invitedGeoDay2[0].name, speakerTalk: invitedGeoDay2[0].talk },
@@ -1080,7 +1080,7 @@ export default function Schedule() {
                       <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 space-y-2">
                         <div className="flex items-center gap-2 text-blue-700">
                           <Mic className="w-4 h-4" />
-                          <span className="text-xs font-semibold uppercase tracking-wide">Keynote Speaker | المتحدث الرئيسي</span>
+                          <span className="text-xs font-semibold uppercase tracking-wide">Plenary Speaker | المتحدث الرئيسي</span>
                         </div>
                         <p className="font-bold text-base text-blue-900">{session.speaker.name}</p>
                         <p className="text-sm text-blue-700">{session.speaker.affiliation}</p>
@@ -1150,10 +1150,10 @@ export default function Schedule() {
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <Users className="w-5 h-5 text-primary" />
-                All Invited Speakers | جميع المتحدثين المدعوين
+                All Plenary Speakers | جميع المتحدثين الرئيسيين
               </CardTitle>
               <CardDescription>
-                22 distinguished invited speakers across both conference days
+                22 distinguished speakers across both conference days
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -1305,8 +1305,8 @@ export default function Schedule() {
               <div>
                 <p className="font-semibold text-primary mb-2">Conference Halls:</p>
                 <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
-                  <li><strong>Hall A:</strong> Biological & Chemical Sciences — Invited Speakers (Connected to all halls for keynotes)</li>
-                  <li><strong>Hall B:</strong> Geology, Physics, Mathematics, Astronomy & other sciences — Invited Speakers</li>
+                  <li><strong>Hall A:</strong> Biological & Chemical Sciences — Plenary Speakers (Connected to all halls for plenary sessions)</li>
+                  <li><strong>Hall B:</strong> Geology, Physics, Mathematics, Astronomy & other sciences — Plenary Speakers</li>
                   <li><strong>Hall C:</strong> Biological & Chemical Sciences — Participant Presentations</li>
                   <li><strong>Hall D:</strong> Geology, Physics, Mathematics, Astronomy & other sciences — Participant Presentations</li>
                 </ul>
@@ -1314,8 +1314,8 @@ export default function Schedule() {
               <div dir="rtl">
                 <p className="font-semibold text-primary mb-2">القاعات:</p>
                 <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
-                  <li><strong>القاعة أ:</strong> العلوم البيولوجية والكيميائية — المتحدثون المدعوون (متصلة بجميع القاعات للعروض الرئيسية)</li>
-                  <li><strong>القاعة ب:</strong> الجيولوجيا، الفيزياء، الرياضيات، الفلك والعلوم الأخرى — المتحدثون المدعوون</li>
+                  <li><strong>القاعة أ:</strong> العلوم البيولوجية والكيميائية — المتحدثون الرئيسيون (متصلة بجميع القاعات للجلسات الرئيسية)</li>
+                  <li><strong>القاعة ب:</strong> الجيولوجيا، الفيزياء، الرياضيات، الفلك والعلوم الأخرى — المتحدثون الرئيسيون</li>
                   <li><strong>القاعة ج:</strong> العلوم البيولوجية والكيميائية — عروض المشاركين</li>
                   <li><strong>القاعة د:</strong> الجيولوجيا، الفيزياء، الرياضيات، الفلك والعلوم الأخرى — عروض المشاركين</li>
                 </ul>

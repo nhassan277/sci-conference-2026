@@ -214,10 +214,10 @@ export default function KeynoteSpeakers() {
               April 7-8, 2026 | ٧-٨ أبريل ٢٠٢٦
             </Badge>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary">
-              Keynote & Invited Speakers
+              Plenary Speakers
             </h1>
             <p className="text-2xl md:text-3xl text-secondary font-semibold" dir="rtl">
-              المتحدثون الرئيسيون والمدعوون
+              المتحدثون الرئيسيون
             </p>
             <p className="text-lg text-muted-foreground">
               Distinguished experts sharing their insights and research
@@ -234,7 +234,7 @@ export default function KeynoteSpeakers() {
             {/* Keynote Speakers */}
             {keynoteSpeakersList.length > 0 && (
               <div>
-                <h2 className="text-3xl font-bold text-primary mb-2">Keynote Speakers</h2>
+                <h2 className="text-3xl font-bold text-primary mb-2">Plenary Speakers</h2>
                 <p className="text-xl text-secondary font-semibold mb-6" dir="rtl">المتحدثون الرئيسيون</p>
                 <div className="grid gap-8">
                   {keynoteSpeakersList.map((speaker) => (
@@ -249,9 +249,9 @@ export default function KeynoteSpeakers() {
               <div>
                 <div className="flex items-center gap-3 mb-2">
                   <GraduationCap className="w-8 h-8 text-primary" />
-                  <h2 className="text-3xl font-bold text-primary">Invited Speakers — Academia</h2>
+                  <h2 className="text-3xl font-bold text-primary">Plenary Speakers — Academia</h2>
                 </div>
-                <p className="text-xl text-secondary font-semibold mb-2" dir="rtl">المتحدثون المدعوون — الأكاديميون والباحثون</p>
+                <p className="text-xl text-secondary font-semibold mb-2" dir="rtl">المتحدثون الرئيسيون — الأكاديميون والباحثون</p>
                 <Badge className="bg-blue-100 text-blue-800 mb-6">20-Minute Talk | محاضرة ٢٠ دقيقة</Badge>
                 <div className="grid gap-8">
                   {invitedAcademia.map((speaker) => (
@@ -266,9 +266,9 @@ export default function KeynoteSpeakers() {
               <div>
                 <div className="flex items-center gap-3 mb-2">
                   <Building2 className="w-8 h-8 text-primary" />
-                  <h2 className="text-3xl font-bold text-primary">Invited Speakers — Industry</h2>
+                  <h2 className="text-3xl font-bold text-primary">Plenary Speakers — Industry</h2>
                 </div>
-                <p className="text-xl text-secondary font-semibold mb-2" dir="rtl">المتحدثون المدعوون — القطاع الصناعي والريادي</p>
+                <p className="text-xl text-secondary font-semibold mb-2" dir="rtl">المتحدثون الرئيسيون — القطاع الصناعي والريادي</p>
                 <Badge className="bg-blue-100 text-blue-800 mb-6">20-Minute Talk | محاضرة ٢٠ دقيقة</Badge>
                 <div className="grid gap-8">
                   {invitedIndustry.map((speaker) => (

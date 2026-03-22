@@ -136,7 +136,7 @@ export default function Home() {
                 Registration
               </a>
               <a href="/speakers" className="text-sm font-medium hover:text-primary transition-colors">
-                Keynote and Invited Speakers
+                Plenary Speakers
               </a>
               <a href="/schedule" className="text-sm font-medium hover:text-primary transition-colors">
                 Schedule
