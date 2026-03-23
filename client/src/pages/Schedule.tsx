@@ -426,8 +426,8 @@ const sessions = {
     },
     {
       id: 15,
-      time: "During Conference",
-      timeAr: "خلال المؤتمر",
+      time: "During Conference — April 8",
+      timeAr: "خلال المؤتمر — ٨ أبريل",
       type: "workshop",
       title: "How to Convert Research Findings into Business Ideas",
       titleAr: "كيف تحوّل نتائج بحثك إلى أفكار تجارية",
@@ -717,8 +717,8 @@ const sessions = {
     },
     {
       id: 31,
-      time: "During Conference",
-      timeAr: "خلال المؤتمر",
+      time: "During Conference — April 7",
+      timeAr: "خلال المؤتمر — ٧ أبريل",
       type: "workshop",
       title: "From DNA to Proteins: Advanced Sequencing Technologies Workshop",
       titleAr: "من الحمض النووي إلى البروتينات: ورشة تقنيات التسلسل المتقدمة",
@@ -734,8 +734,8 @@ const sessions = {
     },
     {
       id: 32,
-      time: "During Conference",
-      timeAr: "خلال المؤتمر",
+      time: "During Conference — April 7",
+      timeAr: "خلال المؤتمر — ٧ أبريل",
       type: "workshop",
       title: "Good Clinical Practice (GCP) Workshop",
       titleAr: "ورشة الممارسة السريرية الجيدة (GCP)",
@@ -1273,15 +1273,15 @@ export default function Schedule() {
                   <div className="space-y-2 text-sm">
                     <div>
                       <p className="font-semibold">How to Convert Research Findings into Business Ideas</p>
-                      <p className="text-xs text-muted-foreground">By NAWAH Scientific · Day 1 (April 7) · 4 hours · 200 EGP</p>
+                      <p className="text-xs text-muted-foreground">By NAWAH Scientific · Day 2 (April 8) · 4 hours · 200 EGP</p>
                     </div>
                     <div>
                       <p className="font-semibold">From DNA to Proteins: Advanced Sequencing Technologies</p>
-                      <p className="text-xs text-muted-foreground">By Medsol · Day 2 (April 8) · 3 hours · 200 EGP</p>
+                      <p className="text-xs text-muted-foreground">By Medsol · Day 1 (April 7) · 3 hours · 200 EGP</p>
                     </div>
                     <div>
                       <p className="font-semibold">Good Clinical Practice (GCP) Workshop</p>
-                      <p className="text-xs text-muted-foreground">By MARC · Day 2 (April 8) · 3 hours · 200 EGP</p>
+                      <p className="text-xs text-muted-foreground">By MARC · Day 1 (April 7) · 3 hours · 200 EGP</p>
                     </div>
                     <div>
                       <p className="font-semibold">Environmental Geochemical Data Analysis (Session 1)</p>
