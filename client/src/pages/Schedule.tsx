@@ -103,7 +103,7 @@ const participantGeoDay1 = [
 const invitedBioDay2 = [
   { name: "Prof. Dr. Sohair Ramadan", affiliation: "Dean of Faculty of Science, Cairo University", talk: "Practical Aspects of Experimental Design in Laboratory Animal Science" },
   { name: "Prof. Dr. Rashika El Ridi", affiliation: "Professor of Immunology, Zoology Department, Faculty of Science, Cairo University", talk: "The Impact of Misleading Concepts in Science on Efforts to Control Schistosomiasis and Cancer" },
-  { name: "Prof. Dr. Ahmed Hegazy", affiliation: "Professor of Plant Ecology, Faculty of Science, Cairo University", talk: "" },
+  { name: "Prof. Dr. Ebtehal El-Demerdash", affiliation: "Professor, Faculty of Science, Cairo University", talk: "" },
   { name: "Prof. Dr. Mohamed Hamed", affiliation: "Associate Professor of Biomedical Informatics and Computational Biology", talk: "Computational Transformation in Drug Discovery: Bioinformatics and AI Innovations in Pharmaceutical Science" },
   { name: "Prof. Dr. Mohamed Abdel Gawad", affiliation: "Faculty of Science, Cairo University", talk: "" },
   { name: "Dr. Ahmed Fikry", affiliation: "Assistant Professor, King Salman International University", talk: "Computer-Aided Drug Design: From Code to Cure" },
@@ -112,7 +112,7 @@ const invitedBioDay2 = [
 
 // Hall B: Mathematics, Physics, Geology, Astronomy & other disciplines — Day 2 (Invited)
 const invitedGeoDay2 = [
-  { name: "Prof. Dr. Mohamed El-Anbawy", affiliation: "Professor of Environmental Geology, Faculty of Science, Cairo University", talk: "Economic Utilization of Shale in Desert Land Reclamation and Cement Industry" },
+  { name: "Prof. Dr. Ahmed Hegazy", affiliation: "Professor of Plant Ecology, Faculty of Science, Cairo University", talk: "" },
   { name: "Prof. Dr. Mortada Mourad", affiliation: "Professor of Ore Geology, Faculty of Science, Cairo University", talk: "Karstology (Science of Unlimited Multi-Discipline Approaches), Promising Setting for Industrial Raw Materials" },
   { name: "Prof. Dr. Mahmoud Ibrahim Nasr", affiliation: "Professor of Ore Beneficiation and Manufacturing, Egyptian Copper Works", talk: "Egyptian Iron Ore as a Feedstock to the Iron and Steel Industry" },
   { name: "Dr. Sahar Hassan", affiliation: "Senior Geologist and Sedimentologist, Digital Subsurface Solutions", talk: "Revolutionizing Subsurface Understanding: AI-Driven Logging-While-Drilling Technologies" },
@@ -381,9 +381,9 @@ const sessions = {
       title: "Parallel Sessions — Round 8",
       titleAr: "جلسات متوازية — الجولة ٨",
       tracks: [
-        { hall: "Hall A", hallAr: "القاعة أ", topic: "Discussion Panel", topicAr: "حلقة نقاش", speaker: "Discussion Panel", speakerTalk: "" },
-        { hall: "Hall B", hallAr: "القاعة ب", topic: "Math, Physics, Geology, Astronomy (Invited)", topicAr: "الرياضيات، الفيزياء، الجيولوجيا (مدعوون)", speaker: "Dr Abdelfattah Kamal", speakerTalk: "" },
-        { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (مشاركون)", speaker: "Dr Karim Barakat", speakerTalk: "" },
+        { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences (Invited)", topicAr: "العلوم البيولوجية والكيميائية (مدعوون)", speaker: "Prof. Dr. Adel Khalil", speakerTalk: "" },
+        { hall: "Hall B", hallAr: "القاعة ب", topic: "Math, Physics, Geology, Astronomy (Invited)", topicAr: "الرياضيات، الفيزياء، الجيولوجيا (مدعوون)", speaker: "Dr. Abdelfattah Kamal", speakerTalk: "" },
+        { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (مشاركون)", speaker: "Dr. Karim Barakat", speakerTalk: "" },
         { hall: "Hall D", hallAr: "القاعة د", topic: "Poster & Booth Exhibition", topicAr: "جلسة الملصقات والمعرض", speaker: "Poster & Booth Exhibition Session", speakerTalk: "" }
       ]
     },
@@ -395,8 +395,9 @@ const sessions = {
       title: "Parallel Sessions — Round 9",
       titleAr: "جلسات متوازية — الجولة ٩",
       tracks: [
+        { hall: "Hall A", hallAr: "القاعة أ", topic: "Biological & Chemical Sciences (Invited)", topicAr: "العلوم البيولوجية والكيميائية (مدعوون)", speaker: "Prof. Dr. Korany A. Ali", speakerTalk: "" },
         { hall: "Hall B", hallAr: "القاعة ب", topic: "Discussion Panel", topicAr: "حلقة نقاش", speaker: "Discussion Panel", speakerTalk: "" },
-        { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (مشاركون)", speaker: "Prof. Dr Ahmed El Fiqi", speakerTalk: "" },
+        { hall: "Hall C", hallAr: "القاعة ج", topic: "Biological & Chemical Sciences (Participants)", topicAr: "العلوم البيولوجية والكيميائية (مشاركون)", speaker: "Prof. Dr. Ahmed El Fiqi", speakerTalk: "" },
         { hall: "Hall D", hallAr: "القاعة د", topic: "Poster & Booth Exhibition", topicAr: "جلسة الملصقات والمعرض", speaker: "Poster & Booth Exhibition Session", speakerTalk: "" }
       ]
     },
@@ -405,12 +406,12 @@ const sessions = {
       time: "15:40 - 16:00",
       timeAr: "٣:٤٠ - ٤:٠٠ م",
       type: "panel",
-      title: "Discussion Panel — Hall C",
-      titleAr: "حلقة نقاش — القاعة ج",
-      location: "Hall C",
-      locationAr: "القاعة ج",
-      description: "Discussion panel in Hall C",
-      descriptionAr: "حلقة نقاش في القاعة ج"
+      title: "Discussion Panels",
+      titleAr: "حلقات نقاش",
+      location: "Hall A, Hall C",
+      locationAr: "القاعة أ، القاعة ج",
+      description: "Discussion panels in Halls A and C",
+      descriptionAr: "حلقات نقاش في القاعتين أ وج"
     },
     {
       id: 14.5,
@@ -560,47 +561,53 @@ const sessions = {
     },
     {
       id: 22,
-      time: "11:30 - 12:00",
-      timeAr: "١١:٣٠ - ١٢:٠٠",
-      type: "panel",
-      title: "Discussion Panels",
-      titleAr: "حلقات نقاش",
-      location: "Halls A, B, C — Hall D: Special Session for Astronomy Dept.",
-      locationAr: "القاعات أ، ب، ج — القاعة د: جلسة خاصة لقسم الفلك",
-      description: "Parallel discussion panels in Halls A, B, C. Hall D: Special Session for Astronomy Department — Differential Geometry and Its Applications in Astronomy and Physics",
-      descriptionAr: "حلقات نقاش متوازية في القاعات أ، ب، ج. القاعة د: جلسة خاصة لقسم الفلك — الهندسة التفاضلية وتطبيقاتها في علم الفلك والفيزياء"
-    },
-    {
-      id: 23,
-      time: "12:00 - 12:20",
-      timeAr: "١٢:٠٠ - ١٢:٢٠",
+      time: "11:30 - 11:50",
+      timeAr: "١١:٣٠ - ١١:٥٠",
       type: "parallel",
       title: "Parallel Sessions — Round 4",
       titleAr: "جلسات متوازية — الجولة ٤",
       tracks: [
-        { hall: "Hall A", hallAr: "القاعة أ", topic: "Poster & Booth Exhibition", topicAr: "جلسة الملصقات والمعرض", speaker: "Poster & Booth Exhibition Session", speakerTalk: "" },
-        { hall: "Hall B", hallAr: "القاعة ب", topic: "Math, Physics, Geology, Astronomy (Invited)", topicAr: "الرياضيات، الفيزياء، الجيولوجيا (مدعوون)", speaker: "Dr. Sahar Hassan", speakerTalk: "" },
-        { hall: "Hall C", hallAr: "القاعة ج", topic: "Industry Presentations", topicAr: "عروض الشركات", speaker: "12:00-12:10 Plasma | 12:10-12:20 Colors", speakerTalk: "" },
+        { hall: "Hall A", hallAr: "القاعة أ", topic: "Discussion Panel", topicAr: "حلقة نقاش", speaker: "Discussion Panel", speakerTalk: "" },
+        { hall: "Hall B", hallAr: "القاعة ب", topic: "Mathematics, Physics, Geology, Astronomy (Invited)", topicAr: "الرياضيات، الفيزياء، الجيولوجيا (مدعوون)", speaker: "Prof. Dr. Mohamed El-Anbawy", speakerTalk: "Economic Utilization of Shale in Desert Land Reclamation and Cement Industry" },
+        { hall: "Hall C", hallAr: "القاعة ج", topic: "Discussion Panel", topicAr: "حلقة نقاش", speaker: "Discussion Panel", speakerTalk: "" },
         { hall: "Hall D", hallAr: "القاعة د", topic: "Special Session for Astronomy Dept.", topicAr: "جلسة خاصة لقسم الفلك", speaker: "Special Session for Astronomy Department", speakerTalk: "Differential Geometry and Its Applications in Astronomy and Physics" }
+      ],
+      workshops: [
+        { room: "Workshop Rooms 1 & 2", roomAr: "غرف ورشة العمل ١ و ٢", name: "Nawah Scientific Workshop (Cont.)", nameAr: "ورشة عمل نواة للعلوم (تابع)" },
+        { room: "Workshop Room 2", roomAr: "غرفة ورشة العمل ٢", name: "Bioinformatics Workshop (Cont.)", nameAr: "ورشة علم المعلوماتية الحيوية (تابع)" }
       ]
     },
     {
-      id: 23.5,
-      time: "12:20 - 12:40",
-      timeAr: "١٢:٢٠ - ١٢:٤٠",
+      id: 22.5,
+      time: "11:50 - 12:10",
+      timeAr: "١١:٥٠ - ١٢:١٠",
       type: "parallel",
       title: "Parallel Sessions — Round 5",
       titleAr: "جلسات متوازية — الجولة ٥",
       tracks: [
         { hall: "Hall A", hallAr: "القاعة أ", topic: "Poster & Booth Exhibition", topicAr: "جلسة الملصقات والمعرض", speaker: "Poster & Booth Exhibition Session", speakerTalk: "" },
-        { hall: "Hall B", hallAr: "القاعة ب", topic: "Math, Physics, Geology, Astronomy (Invited)", topicAr: "الرياضيات، الفيزياء، الجيولوجيا (مدعوون)", speaker: "Dr. Mohamed Anwar", speakerTalk: "" },
+        { hall: "Hall B", hallAr: "القاعة ب", topic: "Mathematics, Physics, Geology, Astronomy (Invited)", topicAr: "الرياضيات، الفيزياء، الجيولوجيا (مدعوون)", speaker: "Dr. Walaa Abbas", speakerTalk: "" },
+        { hall: "Hall C", hallAr: "القاعة ج", topic: "Industry Presentations", topicAr: "عروض الشركات", speaker: "12:00-12:10 Plasma | 12:10-12:20 Colors", speakerTalk: "" },
+        { hall: "Hall D", hallAr: "القاعة د", topic: "Special Session for Astronomy Dept.", topicAr: "جلسة خاصة لقسم الفلك", speaker: "Special Session for Astronomy Department", speakerTalk: "Differential Geometry and Its Applications in Astronomy and Physics" }
+      ]
+    },
+    {
+      id: 23,
+      time: "12:10 - 12:30",
+      timeAr: "١٢:١٠ - ١٢:٣٠",
+      type: "parallel",
+      title: "Parallel Sessions — Round 6",
+      titleAr: "جلسات متوازية — الجولة ٦",
+      tracks: [
+        { hall: "Hall A", hallAr: "القاعة أ", topic: "Poster & Booth Exhibition", topicAr: "جلسة الملصقات والمعرض", speaker: "Poster & Booth Exhibition Session", speakerTalk: "" },
+        { hall: "Hall B", hallAr: "القاعة ب", topic: "Mathematics, Physics, Geology, Astronomy (Invited)", topicAr: "الرياضيات، الفيزياء، الجيولوجيا (مدعوون)", speaker: "Dr. Sahar Hassan", speakerTalk: "" },
         { hall: "Hall C", hallAr: "القاعة ج", topic: "Industry Presentations", topicAr: "عروض الشركات", speaker: "12:20-12:30 Al elAraby | 12:30-12:40 EgCompBio", speakerTalk: "" }
       ]
     },
     {
       id: 23.8,
-      time: "12:40 - 13:00",
-      timeAr: "١٢:٤٠ - ١:٠٠ م",
+      time: "12:30 - 13:00",
+      timeAr: "١٢:٣٠ - ١:٠٠ م",
       type: "panel",
       title: "Discussion Panels",
       titleAr: "حلقات نقاش",
@@ -683,37 +690,37 @@ const sessions = {
       titleAr: "جلسات متوازية — الجولة ٩",
       tracks: [
         { hall: "Hall A", hallAr: "القاعة أ", topic: "Discussion Panel", topicAr: "حلقة نقاش", speaker: "Discussion Panel", speakerTalk: "" },
-        { hall: "Hall B", hallAr: "القاعة ب", topic: "Discussion Panel", topicAr: "حلقة نقاش", speaker: "Discussion Panel", speakerTalk: "" },
-        { hall: "Hall C", hallAr: "القاعة ج", topic: "Graduation Projects", topicAr: "مشاريع التخرج", speaker: "Prof. Dr Salwa Abdel Hameed — Graduation Projects Group", speakerTalk: "" },
-        { hall: "Hall D", hallAr: "القاعة د", topic: "Math, Physics, Geology, Astronomy (Participants)", topicAr: "الرياضيات، الفيزياء، الجيولوجيا (مشاركون)", speaker: "Mr Ahmed Abdel Twab", speakerTalk: "" }
+        { hall: "Hall B", hallAr: "القاعة ب", topic: "Mathematics, Physics, Geology, Astronomy (Invited)", topicAr: "الرياضيات، الفيزياء، الجيولوجيا (مدعوون)", speaker: "Dr. Mohamed Anwar", speakerTalk: "From Molecules to Taste: The Role of Organic Chemistry in Flavor Manufacturing" },
+        { hall: "Hall C", hallAr: "القاعة ج", topic: "Graduation Projects", topicAr: "مشاريع التخرج", speaker: "Prof. Dr. Salwa Abdel Hameed — Graduation Projects Group", speakerTalk: "" },
+        { hall: "Hall D", hallAr: "القاعة د", topic: "Math, Physics, Geology, Astronomy (Participants)", topicAr: "الرياضيات، الفيزياء، الجيولوجيا (مشاركون)", speaker: "Mr. Ahmed Abdel Twab", speakerTalk: "" }
       ],
       workshops: [
-        { room: "Workshop Room 3", roomAr: "غرفة ورشة العمل ٣", name: "Geology Workshop (Cont.)", nameAr: "ورشة الجيولوجيا (تابع)" }
+        { room: "Workshop Room 2", roomAr: "غرفة ورشة العمل ٢", name: "Geology Workshop (Cont.)", nameAr: "ورشة الجيولوجيا (تابع)" }
       ]
     },
     {
       id: 27.8,
-      time: "14:50 - 15:00",
-      timeAr: "٢:٥٠ - ٣:٠٠ م",
+      time: "14:50 - 15:10",
+      timeAr: "٢:٥٠ - ٣:١٠ م",
       type: "panel",
       title: "Discussion Panels",
       titleAr: "حلقات نقاش",
-      location: "Halls C & D",
-      locationAr: "القاعتان ج ود",
-      description: "Discussion panels in Halls C and D",
-      descriptionAr: "حلقات نقاش في القاعتين ج ود"
+      location: "Halls B, C & D",
+      locationAr: "القاعات ب، ج، د",
+      description: "Discussion panels in Halls B, C, and D",
+      descriptionAr: "حلقات نقاش في القاعات ب، ج، د"
     },
     {
       id: 30,
-      time: "16:00 - 17:30",
-      timeAr: "٤:٠٠ - ٥:٣٠ م",
+      time: "15:10 - 16:30",
+      timeAr: "٣:١٠ - ٤:٣٠ م",
       type: "closing",
-      title: "Conference Closure & Awards Ceremony",
-      titleAr: "حفل الختام وتوزيع الجوائز",
+      title: "Conference Closure Appreciation Ceremony & Awards",
+      titleAr: "حفل ختام المؤتمر وتوزيع الجوائز",
       location: "Main Hall",
       locationAr: "القاعة الرئيسية",
-      description: "Closing ceremony with appreciation and announcement of Best Project, Poster and Presentation Awards",
-      descriptionAr: "حفل الختام مع التقدير والإعلان عن جوائز أفضل مشروع وملصق وعرض تقديمي"
+      description: "Conference Closure Appreciation Ceremony & Announcement of Best Project, Poster and Presentation Awards & Issuing attendance certificates",
+      descriptionAr: "حفل ختام المؤتمر والإعلان عن جوائز أفضل مشروع وملصق وعرض تقديمي وتسليم شهادات الحضور"
     },
     {
       id: 31,

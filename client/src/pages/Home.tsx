@@ -710,7 +710,7 @@ export default function Home() {
                     />
                     <div className="w-full px-2">
                       <CardTitle className="text-xl mb-2 leading-snug">Introduction to Bioinformatics</CardTitle>
-                      {workshopCounts && <div className="mb-2">{(() => { const count = workshopCounts.bioinformatics; const cap = 50; const rem = cap - count; if (rem <= 0) return <Badge className="bg-red-100 text-red-800 text-xs">Full 🔴</Badge>; if (rem <= 5) return <Badge className="bg-red-100 text-red-800 text-xs">{rem} spots left 🔴</Badge>; if (rem <= 15) return <Badge className="bg-amber-100 text-amber-800 text-xs">{rem}/{cap} spots left 🟡</Badge>; return <Badge className="bg-green-100 text-green-800 text-xs">{rem}/{cap} spots left 🟢</Badge>; })()}</div>}
+                      <div className="mb-2"><Badge className="bg-red-100 text-red-800 text-xs font-bold">Registration Closed 🔴 | التسجيل مغلق</Badge></div>
                     </div>
                   </div>
                   <CardDescription className="text-base space-y-3 pt-2">
@@ -742,10 +742,10 @@ export default function Home() {
                 </CardHeader>
                 <CardContent className="pt-0">
                   <Button
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-sm h-auto py-2 px-3 whitespace-normal leading-snug text-center"
-                    onClick={() => { window.location.href = '/attendance'; }}
+                    className="w-full bg-gray-400 text-white text-sm h-auto py-2 px-3 whitespace-normal leading-snug text-center cursor-not-allowed"
+                    disabled
                   >
-                    Register & Upload Invoice | سجّل وارفع الإيصال
+                    Registration Closed | التسجيل مغلق
                   </Button>
                 </CardContent>
               </Card>

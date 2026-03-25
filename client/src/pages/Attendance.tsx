@@ -505,8 +505,10 @@ export default function Attendance() {
                           { value: "medsol", label: "Medsol Corporation", desc: "From DNA to Proteins: Advanced Sequencing Technologies | April 7 (Day 1) | 200 EGP (incl. certificate) | ⚡ Parallel with MARC Workshop", descAr: "من الحمض النووي إلى البروتينات: تقنيات التسلسل المتقدمة | ٧ أبريل (اليوم الأول) | 200 جنيه (شاملة الشهادة) | ⚡ يعقد بالتوازي مع ورشة MARC" },
                           { value: "agitech", label: "Agitech — NGS & ddPCR in Targeted Therapy", desc: "From Basic Research to Precision Medicine: Applications of NGS and ddPCR in Targeted Therapy. April 6, 12:00–14:00 | 20 spots only", descAr: "من البحث الأساسي إلى الطب الدقيق: تطبيقات NGS و ddPCR في العلاج الموجه. ٦ أبريل، ١٢:٠٠–٢:٠٠ م | ٢٠ مكاناً فقط", logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/qtvBAZFSrMqYBKkE.png" },
                         ].map((ws) => {
+                          const isClosed = ws.value === 'bioinformatics'; // Registration closed — full
                           const isSelected = workshopChoices.includes(ws.value);
                           const toggleChoice = () => {
+                            if (isClosed) return;
                             const updated = isSelected
                               ? workshopChoices.filter(c => c !== ws.value)
                               : [...workshopChoices, ws.value];
@@ -517,22 +519,32 @@ export default function Attendance() {
                           <div
                             key={ws.value}
                             onClick={toggleChoice}
-                            className={`p-3 border-2 rounded-lg cursor-pointer transition-all ${isSelected ? "border-amber-500 bg-amber-50" : "border-muted hover:border-amber-300"}`}
+                            className={`p-3 border-2 rounded-lg transition-all ${
+                              isClosed
+                                ? 'border-red-200 bg-red-50 opacity-60 cursor-not-allowed'
+                                : isSelected
+                                  ? 'border-amber-500 bg-amber-50 cursor-pointer'
+                                  : 'border-muted hover:border-amber-300 cursor-pointer'
+                            }`}
                           >
                             <div className="flex items-center gap-2">
-                              <div className={`w-4 h-4 rounded border-2 flex items-center justify-center shrink-0 ${isSelected ? "border-amber-500 bg-amber-500" : "border-muted-foreground"}`}>
-                                {isSelected && <div className="w-2 h-2 bg-white rounded-sm" />}
+                              <div className={`w-4 h-4 rounded border-2 flex items-center justify-center shrink-0 ${isSelected && !isClosed ? "border-amber-500 bg-amber-500" : "border-muted-foreground"}`}>
+                                {isSelected && !isClosed && <div className="w-2 h-2 bg-white rounded-sm" />}
                               </div>
                               <div className="flex-1">
-                                <div className="flex items-center gap-2 mb-0.5">
+                                <div className="flex items-center gap-2 mb-0.5 flex-wrap">
                                   {(ws as any).logo && <img src={(ws as any).logo} alt={ws.label} className="h-5 object-contain" />}
                                   <p className="font-semibold text-sm">{ws.label}</p>
-                                  <span className="ml-auto text-xs font-bold text-amber-700">{WORKSHOP_FEES[ws.value] ?? 0} EGP</span>
+                                  {isClosed && (
+                                    <span className="text-xs font-bold text-red-700 bg-red-100 px-2 py-0.5 rounded-full">Registration Closed 🔴 | التسجيل مغلق</span>
+                                  )}
+                                  {!isClosed && <span className="ml-auto text-xs font-bold text-amber-700">{WORKSHOP_FEES[ws.value] ?? 0} EGP</span>}
                                 </div>
                                 <p className="text-xs text-muted-foreground">{ws.desc}</p>
                                 <p className="text-xs text-muted-foreground" dir="rtl">{ws.descAr}</p>
                               </div>
                             </div>
+
                           </div>
                         )})}
                       </div>
