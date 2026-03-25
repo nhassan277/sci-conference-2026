@@ -470,8 +470,11 @@ export default function Sponsors() {
                       </ul>
                     </div>
                     <p className="text-sm text-muted-foreground font-medium">
-                      📅 Thursday, April 9, 2026 &nbsp;|&nbsp; 🕒 3:00 PM – 6:00 PM &nbsp;|&nbsp; 🎤 Dr. Nourhan Hassan &amp; Dr. Hazem Badawy (Board of GESR) &nbsp;|&nbsp; 🆓 Free
+                      📅 Thursday, April 9, 2026 &nbsp;|&nbsp; 🕒 3:00 PM – 6:00 PM &nbsp;|&nbsp; 🎤 Dr. Nourhan Hassan &amp; Dr. Hazem Badawy (Board of GESR) &nbsp;|&nbsp; 🄓 Free
                     </p>
+                    <div className="mt-2">
+                      <span className="inline-block text-xs font-bold text-red-700 bg-red-100 px-3 py-1 rounded-full">🔴 Registration Closed | التسجيل مغلق</span>
+                    </div>
                   </CardDescription>
                 </CardContent>
                 <CardContent className="pt-0">

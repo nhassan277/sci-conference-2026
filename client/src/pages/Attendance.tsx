@@ -733,7 +733,7 @@ export default function Attendance() {
                           <div
                             key={ws.value}
                             onClick={() => {
-                              if (ws.value === 'hvd_genomics') return; // Registration closed
+                              if (ws.value === 'hvd_genomics' || ws.value === 'gesr_scholarships') return; // Registration closed
                               setExtWorkshopChoices(prev =>
                                 prev.includes(ws.value)
                                   ? prev.filter(v => v !== ws.value)
@@ -741,7 +741,7 @@ export default function Attendance() {
                               );
                             }}
                             className={`p-3 border-2 rounded-lg transition-all ${
-                              ws.value === 'hvd_genomics'
+                              (ws.value === 'hvd_genomics' || ws.value === 'gesr_scholarships')
                                 ? 'border-red-200 bg-red-50 opacity-60 cursor-not-allowed'
                                 : extWorkshopChoices.includes(ws.value)
                                   ? 'border-purple-500 bg-purple-50 cursor-pointer'
@@ -756,7 +756,7 @@ export default function Attendance() {
                                 {/* Title first */}
                                 <div className="flex items-center gap-2 flex-wrap mb-1">
                                   <p className="font-bold text-sm text-purple-900">{ws.label}</p>
-                                  {ws.value === 'hvd_genomics' && (
+                                  {(ws.value === 'hvd_genomics' || ws.value === 'gesr_scholarships') && (
                                     <span className="text-xs font-bold text-red-700 bg-red-100 px-2 py-0.5 rounded-full">Registration Closed 🔴 | التسجيل مغلق</span>
                                   )}
                                 </div>

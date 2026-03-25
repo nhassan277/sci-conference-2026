@@ -1475,13 +1475,13 @@ export default function Home() {
 
                   {/* CTA */}
                   <div className="flex items-center justify-between flex-wrap gap-3">
-                    <Badge className="bg-green-100 text-green-800 text-xs">Free — Open to all registered participants 🟢</Badge>
+                    <Badge className="bg-red-100 text-red-800 border-red-300 text-xs">🔴 Registration Closed | التسجيل مغلق</Badge>
                     <Button
                       size="sm"
-                      className="bg-slate-700 hover:bg-slate-800 text-white text-xs px-3"
-                      onClick={() => { window.location.href = '/attendance'; }}
+                      disabled
+                      className="bg-gray-400 text-white text-xs px-3 cursor-not-allowed opacity-60"
                     >
-                      Register Now | سجّل الآن
+                      Full | مكتمل
                     </Button>
                   </div>
                 </div>
