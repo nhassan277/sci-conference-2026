@@ -137,7 +137,7 @@ const participantBioDay2 = [
 
 // Hall D: Mathematics, Physics, Geology, Astronomy & other disciplines — Day 2 (Participants)
 const participantGeoDay2 = [
-  { name: "Special Session for Astronomy Department", affiliation: "Astronomy Dept.", talk: "" },
+  { name: "Special Session for Astronomy Department", affiliation: "Astronomy Dept.", talk: "Differential Geometry and Its Applications in Astronomy and Physics" },
   { name: "Dr Alyaa Aly", affiliation: "Participant", talk: "" },
   { name: "Dr. Reham Eid", affiliation: "Participant", talk: "" },
   { name: "Ms Basma Islam", affiliation: "Participant", talk: "" },
@@ -146,7 +146,7 @@ const participantGeoDay2 = [
   { name: "Dr. Reham Eid", affiliation: "Participant", talk: "" },
   { name: "Ms Basma Islam", affiliation: "Participant", talk: "" },
   { name: "Mr Ahmed Abdel Twab", affiliation: "Participant", talk: "" },
-  { name: "Special Session for Astronomy Department", affiliation: "Astronomy Dept.", talk: "" },
+  { name: "Special Session for Astronomy Department", affiliation: "Astronomy Dept.", talk: "Differential Geometry and Its Applications in Astronomy and Physics" },
 ];
 
 // ─── CONFERENCE PROGRAM DATA ──────────────────────────────────────────────────
@@ -567,8 +567,8 @@ const sessions = {
       titleAr: "حلقات نقاش",
       location: "Halls A, B, C — Hall D: Special Session for Astronomy Dept.",
       locationAr: "القاعات أ، ب، ج — القاعة د: جلسة خاصة لقسم الفلك",
-      description: "Parallel discussion panels in Halls A, B, C. Hall D: Special session for Astronomy Department (continued)",
-      descriptionAr: "حلقات نقاش متوازية في القاعات أ، ب، ج. القاعة د: جلسة خاصة لقسم الفلك (تابع)"
+      description: "Parallel discussion panels in Halls A, B, C. Hall D: Special Session for Astronomy Department — Differential Geometry and Its Applications in Astronomy and Physics",
+      descriptionAr: "حلقات نقاش متوازية في القاعات أ، ب، ج. القاعة د: جلسة خاصة لقسم الفلك — الهندسة التفاضلية وتطبيقاتها في علم الفلك والفيزياء"
     },
     {
       id: 23,
@@ -581,7 +581,7 @@ const sessions = {
         { hall: "Hall A", hallAr: "القاعة أ", topic: "Poster & Booth Exhibition", topicAr: "جلسة الملصقات والمعرض", speaker: "Poster & Booth Exhibition Session", speakerTalk: "" },
         { hall: "Hall B", hallAr: "القاعة ب", topic: "Math, Physics, Geology, Astronomy (Invited)", topicAr: "الرياضيات، الفيزياء، الجيولوجيا (مدعوون)", speaker: "Dr. Sahar Hassan", speakerTalk: "" },
         { hall: "Hall C", hallAr: "القاعة ج", topic: "Industry Presentations", topicAr: "عروض الشركات", speaker: "12:00-12:10 Plasma | 12:10-12:20 Colors", speakerTalk: "" },
-        { hall: "Hall D", hallAr: "القاعة د", topic: "Special Session for Astronomy Dept.", topicAr: "جلسة خاصة لقسم الفلك", speaker: "Special Session for Astronomy Department", speakerTalk: "" }
+        { hall: "Hall D", hallAr: "القاعة د", topic: "Special Session for Astronomy Dept.", topicAr: "جلسة خاصة لقسم الفلك", speaker: "Special Session for Astronomy Department", speakerTalk: "Differential Geometry and Its Applications in Astronomy and Physics" }
       ]
     },
     {
