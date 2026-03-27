@@ -1,0 +1,162 @@
+{
+  "query": "SELECT id, full_name, title, presentation_title, speaker_type FROM keynote_speakers WHERE id > 16 ORDER BY id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name, title, presentation_title, speaker_type FROM keynote_speakers WHERE id > 16 ORDER BY id;",
+  "rows": [
+    {
+      "id": "17",
+      "full_name": "Naglaa A. Abdallah",
+      "title": "Prof. Dr. ",
+      "presentation_title": "Novel Genome Editing Approaches for a Sustainable Future",
+      "speaker_type": "invited"
+    },
+    {
+      "id": "18",
+      "full_name": "Tarek Kapiel",
+      "title": "Prof. em.",
+      "presentation_title": "Integrative Bio-Nanotechnologies for Industrial Symbiosis: Scaling the Circular Bioeconomy in Egypt",
+      "speaker_type": "invited"
+    },
+    {
+      "id": "19",
+      "full_name": "Osama Shalabiea",
+      "title": "Prof. Dr.",
+      "presentation_title": "Space Science and Technology (SSAT): Exploration, Utilization and Commercialization",
+      "speaker_type": "invited"
+    },
+    {
+      "id": "20",
+      "full_name": "Areeg Abdalla",
+      "title": "Dr. ",
+      "presentation_title": "Scientific Principles and Medical Applications of Artificial Intelligence",
+      "speaker_type": "invited"
+    },
+    {
+      "id": "21",
+      "full_name": "Ahmed Youssef ",
+      "title": "Dr.",
+      "presentation_title": "Advanced Vaccine Bioprocessing: From Strain Selection to Market Release",
+      "speaker_type": "invited"
+    },
+    {
+      "id": "22",
+      "full_name": "Mohamed Hamed",
+      "title": "Assoc. Prof. Dr. ",
+      "presentation_title": "Computational Transformation in Drug Discovery: Bioinformatics and AI Innovations in Pharmaceutical Science",
+      "speaker_type": "invited"
+    },
+    {
+      "id": "23",
+      "full_name": "Rashika El Ridi",
+      "title": "Prof. Dr.",
+      "presentation_title": "The Impact of Misleading Concepts in Science on the Faculty of Science-Cairo University Efforts to Control Schistosomiasis and Cancer.  A Hope Remains: Arachidonic Acid",
+      "speaker_type": "invited"
+    },
+    {
+      "id": "24",
+      "full_name": "Ahmad Wafik Al Shareif",
+      "title": "Dr. ",
+      "presentation_title": "Detection of Low Contrast, Low Resistivity Pay (lclr) Challenge in Shaly Sand Gas Reservoir Through Acoustic Data in the on Shore Nile Delta, Egypt ",
+      "speaker_type": "invited"
+    },
+    {
+      "id": "25",
+      "full_name": "Ahmed Galal",
+      "title": "Prof. Dr.",
+      "presentation_title": "Photo-assisted electrocatalysis: An effective tool for green chemical conversion",
+      "speaker_type": "invited"
+    },
+    {
+      "id": "26",
+      "full_name": "Refaat Gabre",
+      "title": "Prof. Dr. ",
+      "presentation_title": "Transfer, localization, and reproduction of biotechnology in Egypt",
+      "speaker_type": "invited"
+    },
+    {
+      "id": "27",
+      "full_name": "Mostafa Nasser ",
+      "title": "Eng.",
+      "presentation_title": "AI in Biotechnology",
+      "speaker_type": "invited"
+    },
+    {
+      "id": "28",
+      "full_name": "Mohamed Anwar Abdelwahab",
+      "title": "Dr.",
+      "presentation_title": "From Molecules to Taste: The Role of Organic Chemistry in Flavor Manufacturing and Food Innovation",
+      "speaker_type": "invited"
+    },
+    {
+      "id": "29",
+      "full_name": "Abdelfattah Kamal",
+      "title": "Dr.",
+      "presentation_title": "Achieving Quality and Sustainable Local Vaccine Production in Africa to Improve Access",
+      "speaker_type": "invited"
+    },
+    {
+      "id": "30",
+      "full_name": "Mohamed Shaker Salem",
+      "title": "Prof. Dr. ",
+      "presentation_title": "Silicon Nanophotonics for On-Chip Integrated Circuit Technology",
+      "speaker_type": "invited"
+    },
+    {
+      "id": "31",
+      "full_name": "Fathy Khodair",
+      "title": "Prof. Dr.",
+      "presentation_title": "Clinical application of adipose derived stem cells in plastic surgery",
+      "speaker_type": "invited"
+    },
+    {
+      "id": "32",
+      "full_name": "Ebtehal El-Demerdash",
+      "title": "Prof. Dr. ",
+      "presentation_title": "When Pharmacometrics meets AI: Shaping the future of therapeutics",
+      "speaker_type": "invited"
+    },
+    {
+      "id": "34",
+      "full_name": "Fathy Abdel Aty",
+      "title": "Prof. Dr. ",
+      "presentation_title": "Nature Helps: from Lab to the Market  ",
+      "speaker_type": "participant"
+    },
+    {
+      "id": "35",
+      "full_name": "Mohamed Abd El Gawad El-Sayed Ahmed",
+      "title": "Assoc. Prof.",
+      "presentation_title": "Metabolic Mastery: Engineering the PETase-MHETase Synergistic Consortium for a Truly Circular Plastic Economy",
+      "speaker_type": "invited"
+    },
+    {
+      "id": "36",
+      "full_name": "Ahmad K. Hegazy",
+      "title": "Prof. Dr. ",
+      "presentation_title": "Policies and Diplomacy of Basic Scientific Research for Societal Development: Basic Research from Laboratory to Society",
+      "speaker_type": "invited"
+    },
+    {
+      "id": "37",
+      "full_name": "Adel Khalil Ibrahim Gohar",
+      "title": "Prof. Dr. ",
+      "presentation_title": "Bridging the Lab-to-Market Gap: Resolving Integration Challenges in Therapeutic and Diagnostic Innovation",
+      "speaker_type": "Invited "
+    },
+    {
+      "id": "38",
+      "full_name": "Reda Salem ",
+      "title": "Prof. Dr.",
+      "presentation_title": "Recombinant Technologies in Poultry Vaccine Development: From Molecular Design to Industrial Application",
+      "speaker_type": "Invited"
+    }
+  ],
+  "messages": [
+    "33\tKorany A. Ali\tProf. Dr. \tThe Role of Research and Development Centers in Promoting Active",
+    "Pharmaceutical Ingredients (APIs): Achievements of the Research and",
+    "Development Center for Chemical and Pharmaceutical Industries, a",
+    "Pioneering Example in Egypt\tinvited"
+  ],
+  "stdout": "id\tfull_name\ttitle\tpresentation_title\tspeaker_type\n17\tNaglaa A. Abdallah\tProf. Dr. \tNovel Genome Editing Approaches for a Sustainable Future\tinvited\n18\tTarek Kapiel\tProf. em.\tIntegrative Bio-Nanotechnologies for Industrial Symbiosis: Scaling the Circular Bioeconomy in Egypt\tinvited\n19\tOsama Shalabiea\tProf. Dr.\tSpace Science and Technology (SSAT): Exploration, Utilization and Commercialization\tinvited\n20\tAreeg Abdalla\tDr. \tScientific Principles and Medical Applications of Artificial Intelligence\tinvited\n21\tAhmed Youssef \tDr.\tAdvanced Vaccine Bioprocessing: From Strain Selection to Market Release\tinvited\n22\tMohamed Hamed\tAssoc. Prof. Dr. \tComputational Transformation in Drug Discovery: Bioinformatics and AI Innovations in Pharmaceutical Science\tinvited\n23\tRashika El Ridi\tProf. Dr.\tThe Impact of Misleading Concepts in Science on the Faculty of Science-Cairo University Efforts to Control Schistosomiasis and Cancer.  A Hope Remains: Arachidonic Acid\tinvited\n24\tAhmad Wafik Al Shareif\tDr. \tDetection of Low Contrast, Low Resistivity Pay (lclr) Challenge in Shaly Sand Gas Reservoir Through Acoustic Data in the on Shore Nile Delta, Egypt \tinvited\n25\tAhmed Galal\tProf. Dr.\tPhoto-assisted electrocatalysis: An effective tool for green chemical conversion\tinvited\n26\tRefaat Gabre\tProf. Dr. \tTransfer, localization, and reproduction of biotechnology in Egypt\tinvited\n27\tMostafa Nasser \tEng.\tAI in Biotechnology\tinvited\n28\tMohamed Anwar Abdelwahab\tDr.\tFrom Molecules to Taste: The Role of Organic Chemistry in Flavor Manufacturing and Food Innovation\tinvited\n29\tAbdelfattah Kamal\tDr.\tAchieving Quality and Sustainable Local Vaccine Production in Africa to Improve Access\tinvited\n30\tMohamed Shaker Salem\tProf. Dr. \tSilicon Nanophotonics for On-Chip Integrated Circuit Technology\tinvited\n31\tFathy Khodair\tProf. Dr.\tClinical application of adipose derived stem cells in plastic surgery\tinvited\n32\tEbtehal El-Demerdash\tProf. Dr. \tWhen Pharmacometrics meets AI: Shaping the future of therapeutics\tinvited\n33\tKorany A. Ali\tProf. Dr. \tThe Role of Research and Development Centers in Promoting Active\nPharmaceutical Ingredients (APIs): Achievements of the Research and\nDevelopment Center for Chemical and Pharmaceutical Industries, a\nPioneering Example in Egypt\tinvited\n34\tFathy Abdel Aty\tProf. Dr. \tNature Helps: from Lab to the Market  \tparticipant\n35\tMohamed Abd El Gawad El-Sayed Ahmed\tAssoc. Prof.\tMetabolic Mastery: Engineering the PETase-MHETase Synergistic Consortium for a Truly Circular Plastic Economy\tinvited\n36\tAhmad K. Hegazy\tProf. Dr. \tPolicies and Diplomacy of Basic Scientific Research for Societal Development: Basic Research from Laboratory to Society\tinvited\n37\tAdel Khalil Ibrahim Gohar\tProf. Dr. \tBridging the Lab-to-Market Gap: Resolving Integration Challenges in Therapeutic and Diagnostic Innovation\tInvited \n38\tReda Salem \tProf. Dr.\tRecombinant Technologies in Poultry Vaccine Development: From Molecular Design to Industrial Application\tInvited\n",
+  "stderr": "",
+  "execution_time_ms": 1635
+}

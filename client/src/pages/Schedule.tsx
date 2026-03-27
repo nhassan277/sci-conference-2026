@@ -47,7 +47,7 @@ const keynoteSpeakers = [
   {
     name: "Prof. Dr. Ahmed Hegazy",
     affiliation: "Professor of Plant Ecology, Faculty of Science, Cairo University",
-    talk: "",
+    talk: "Policies and Diplomacy of Basic Scientific Research for Societal Development: Basic Research from Laboratory to Society",
     day: 2,
     track: "bio"
   }
@@ -59,7 +59,7 @@ const invitedBioDay1 = [
   { name: "Prof. Dr. Fathy Khodair", affiliation: "Former Dean, Faculty of Medicine (Kasr Al-Ainy), Cairo University; Advisor to the President of Cairo University; Consultant Plastic & Reconstructive Surgeon", talk: "Clinical Application of Adipose Derived Stem Cells in Plastic Surgery" },
   { name: "Prof. Dr. Ibrahim El-Sherbiny", affiliation: "Professor of Nanotechnology & Nanomedicine, Founding Chairman", talk: "Basic Sciences As the Foundation of Innovation: Some Success Stories for Disease Treatment and Advanced Biomedical Applications" },
   { name: "Prof. Dr. Ahmed Galal", affiliation: "Chemistry Department, Faculty of Science, Cairo University", talk: "Photo-assisted Electrocatalysis: An Effective Tool for Green Chemical Conversion" },
-  { name: "Prof. Dr. Adel Khalil", affiliation: "Faculty of Science, Cairo University", talk: "" },
+  { name: "Prof. Dr. Adel Khalil", affiliation: "Faculty of Science, Cairo University", talk: "Bridging the Lab-to-Market Gap: Resolving Integration Challenges in Therapeutic and Diagnostic Innovation" },
   { name: "Prof. Dr. Hamed A. Ead", affiliation: "Professor of Chemistry, Faculty of Science, Cairo University", talk: "Science at the Core of Innovation: Reimagining the University–Industry Nexus for Transformative Impact" },
   { name: "Prof. Dr. Refaat Gabre", affiliation: "Head of Biotechnology Department, Faculty of Science, Cairo University", talk: "Transfer, Localization, and Reproduction of Biotechnology in Egypt" },
   { name: "Prof. Dr. Tarek Kapiel", affiliation: "Assistant Professor of Plant Biotechnology", talk: "Integrative Bio-Nanotechnologies for Industrial Symbiosis: Scaling the Circular Bioeconomy in Egypt" },
@@ -73,9 +73,9 @@ const invitedGeoDay1 = [
   { name: "Prof. Dr. Khalid Taalab", affiliation: "Nuclear Medicine Professor, Military Medical Academy", talk: "Radiopharmaceuticals and Precision Medicine" },
   { name: "Prof. Dr. Mohamed Shaker", affiliation: "Professor of Physics, Faculty of Science, Cairo University", talk: "Silicon Nanophotonics for On-Chip Integrated Circuit Technology" },
   { name: "Dr. Areeg Abdalla", affiliation: "Associate Professor, Mathematics Department, Faculty of Science", talk: "Scientific Principles and Medical Applications of Artificial Intelligence" },
-  { name: "Prof. Dr. Osama Azmy", affiliation: "Professor, Egyptian Atomic Energy Authority", talk: "" },
+  { name: "Prof. Dr. Osama Azmy", affiliation: "Professor, Egyptian Atomic Energy Authority", talk: "Management of the Rosy Years of Life" },
   { name: "Prof. Dr. Ashraf Abduo Tabll", affiliation: "Professor of Medical Biotechnology, Egypt Center for Research and Regenerative Medicine", talk: "Current Status and Future Prospects of Medical Biotechnology in Egypt: Lessons from Monoclonal and IgY Antibodies" },
-  { name: "Prof. Dr. Korany A. Ali", affiliation: "Professor of Astronomy, Faculty of Science, Cairo University", talk: "" },
+  { name: "Prof. Dr. Korany A. Ali", affiliation: "Professor of Astronomy, Faculty of Science, Cairo University", talk: "The Role of Research and Development Centers in Promoting Active Pharmaceutical Ingredients (APIs): Achievements of the R&D Center for Chemical and Pharmaceutical Industries" },
   { name: "Dr. Ahmed Youssef", affiliation: "Senior Petrophysicist, Assistant General Manager for Development", talk: "Detection of Low Contrast, Low Resistivity Pay (LCLR) Challenge in Shaly Sand Gas Reservoir" },
   { name: "Eng. Mostafa Nasser", affiliation: "Chapter Director, Startup Grind Cairo", talk: "AI in Biotechnology" },
 ];
@@ -1129,6 +1129,10 @@ export default function Schedule() {
                       <p className="font-semibold">Environmental Geochemical Data Analysis (Session 2)</p>
                       <p className="text-xs text-muted-foreground">By Dr. Jan Sedláček — Czech Geological Survey · April 8, 90 min · Free, No Registration Required</p>
                     </div>
+                    <div>
+                      <p className="font-semibold">Bioinformatics Workshop</p>
+                      <p className="text-xs text-muted-foreground">By Dr. Dina Amr · Day 2 (April 8) · 09:35–12:15 · ~2.5 hours</p>
+                    </div>
                   </div>
                 </div>
                 <div className="bg-green-50 p-4 rounded-lg border border-green-200">
@@ -1164,6 +1168,73 @@ export default function Schedule() {
             </CardContent>
           </Card>
 
+          {/* Sponsor Awards Summary */}
+          <Card className="mt-6 border-2 border-yellow-300">
+            <CardHeader>
+              <CardTitle className="text-xl flex items-center gap-2">
+                <Award className="w-5 h-5 text-yellow-600" />
+                Sponsor Awards & Prizes | جوائز الرعاة
+              </CardTitle>
+              <CardDescription>13 sponsor prizes awarded at the closing ceremony — April 8, 2026</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="grid md:grid-cols-2 gap-3 text-sm">
+                <div className="bg-amber-50 p-3 rounded-lg border border-amber-200 space-y-1">
+                  <p className="font-semibold text-amber-900">🏆 Medsol Corporation</p>
+                  <p className="text-amber-800">Best Innovative Research Idea — Cash prizes: 1st 3,000 EGP · 2nd 2,000 EGP · 3rd 1,000 EGP</p>
+                </div>
+                <div className="bg-amber-50 p-3 rounded-lg border border-amber-200 space-y-1">
+                  <p className="font-semibold text-amber-900">🏆 MARC</p>
+                  <p className="text-amber-800">Best Poster — 1st 2,500 EGP · 2nd 1,500 EGP · 3rd 1,000 EGP + 2 Training Opportunities</p>
+                </div>
+                <div className="bg-blue-50 p-3 rounded-lg border border-blue-200 space-y-1">
+                  <p className="font-semibold text-blue-900">🌱 NAWAH Scientific</p>
+                  <p className="text-blue-800">Scientific Incubators for outstanding Master's & PhD projects (announced July 2026)</p>
+                </div>
+                <div className="bg-red-50 p-3 rounded-lg border border-red-200 space-y-1">
+                  <p className="font-semibold text-red-900">🤖 AI بالعربي</p>
+                  <p className="text-red-800">Full technical support for 1 outstanding AI/ML/Bioinformatics project</p>
+                </div>
+                <div className="bg-pink-50 p-3 rounded-lg border border-pink-200 space-y-1">
+                  <p className="font-semibold text-pink-900">💊 Mina Pharm</p>
+                  <p className="text-pink-800">Health product samples + 2 exclusive surprise gift bags</p>
+                </div>
+                <div className="bg-green-50 p-3 rounded-lg border border-green-200 space-y-1">
+                  <p className="font-semibold text-green-900">🧬 Agitech</p>
+                  <p className="text-green-800">4 gift bags containing free sample kits</p>
+                </div>
+                <div className="bg-purple-50 p-3 rounded-lg border border-purple-200 space-y-1">
+                  <p className="font-semibold text-purple-900">🚀 Startup Grind</p>
+                  <p className="text-purple-800">Project selection & entrepreneurial mentorship for AI/ML/Bioinformatics projects</p>
+                </div>
+                <div className="bg-indigo-50 p-3 rounded-lg border border-indigo-200 space-y-1">
+                  <p className="font-semibold text-indigo-900">🎓 Colors Educational Hub</p>
+                  <p className="text-indigo-800">3 internship training awards: 1 Graduation Project + 2 Master's Projects</p>
+                </div>
+                <div className="bg-lime-50 p-3 rounded-lg border border-lime-200 space-y-1">
+                  <p className="font-semibold text-lime-900">🌿 Chitosan</p>
+                  <p className="text-lime-800">Chitosan supply + technical support for 1 project in biopackaging or bioremediation</p>
+                </div>
+                <div className="bg-violet-50 p-3 rounded-lg border border-violet-200 space-y-1">
+                  <p className="font-semibold text-violet-900">🧪 GEnoEra Technology</p>
+                  <p className="text-violet-800">7 molecular biology kits (4 DNA/PCR bags + 3 RNA/cDNA/qPCR bags)</p>
+                </div>
+                <div className="bg-teal-50 p-3 rounded-lg border border-teal-200 space-y-1">
+                  <p className="font-semibold text-teal-900">💻 EgCompBio</p>
+                  <p className="text-teal-800">1 free computational biology course for 1 outstanding student</p>
+                </div>
+                <div className="bg-sky-50 p-3 rounded-lg border border-sky-200 space-y-1">
+                  <p className="font-semibold text-sky-900">⚡ Plasma</p>
+                  <p className="text-sky-800">Internship + full research funding for 1 project + lab support + conference gifts</p>
+                </div>
+                <div className="bg-slate-50 p-3 rounded-lg border border-slate-200 space-y-1">
+                  <p className="font-semibold text-slate-900">🌍 GESR</p>
+                  <p className="text-slate-800">5 GESR Mentorship Program selections + 5 GESR Summer Conference invitations</p>
+                </div>
+              </div>
+              <p className="text-xs text-muted-foreground mt-3">* All awards announced at the Closing Ceremony — April 8, 2026 · 15:10–16:30 · Main Hall</p>
+            </CardContent>
+          </Card>
           {/* Important Notes */}
           <Card className="mt-6 border-2 border-primary/20">
             <CardHeader>

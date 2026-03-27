@@ -1,0 +1,28 @@
+{
+  "query": "SELECT * FROM sessions WHERE session_type IN ('workshop', 'award') ORDER BY id; SELECT * FROM sessions LIMIT 5;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT * FROM sessions WHERE session_type IN ('workshop', 'award') ORDER BY id; SELECT * FROM sessions LIMIT 5;",
+  "rows": [
+    {
+      "id": "30001",
+      "title": "Test Keynote Session",
+      "title_ar": "جلسة رئيسية تجريبية",
+      "description": "This is a test session for automated testing",
+      "session_type": "keynote",
+      "track": "life-sciences",
+      "day": "1",
+      "start_time": "09:00",
+      "end_time": "10:00",
+      "location": "Main Hall",
+      "speaker_name": "Dr. Test Speaker",
+      "speaker_title": "Professor",
+      "speaker_affiliation": "Test University",
+      "speaker_bio": "Test bio for speaker",
+      "created_at": "2026-01-19 22:54:01",
+      "updated_at": "2026-01-19 22:54:01"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\ttitle_ar\tdescription\tsession_type\ttrack\tday\tstart_time\tend_time\tlocation\tspeaker_name\tspeaker_title\tspeaker_affiliation\tspeaker_bio\tcreated_at\tupdated_at\n30001\tTest Keynote Session\tجلسة رئيسية تجريبية\tThis is a test session for automated testing\tkeynote\tlife-sciences\t1\t09:00\t10:00\tMain Hall\tDr. Test Speaker\tProfessor\tTest University\tTest bio for speaker\t2026-01-19 22:54:01\t2026-01-19 22:54:01\n",
+  "stderr": "",
+  "execution_time_ms": 1818
+}

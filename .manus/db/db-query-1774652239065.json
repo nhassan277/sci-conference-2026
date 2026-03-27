@@ -1,0 +1,76 @@
+{
+  "query": "SHOW TABLES;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SHOW TABLES;",
+  "rows": [
+    {
+      "Tables_in_BK5ELr97meyN2f7P5B76DF": "__drizzle_migrations"
+    },
+    {
+      "Tables_in_BK5ELr97meyN2f7P5B76DF": "admins"
+    },
+    {
+      "Tables_in_BK5ELr97meyN2f7P5B76DF": "announcements"
+    },
+    {
+      "Tables_in_BK5ELr97meyN2f7P5B76DF": "audit_logs"
+    },
+    {
+      "Tables_in_BK5ELr97meyN2f7P5B76DF": "certificate_requests"
+    },
+    {
+      "Tables_in_BK5ELr97meyN2f7P5B76DF": "committees"
+    },
+    {
+      "Tables_in_BK5ELr97meyN2f7P5B76DF": "digest_preferences"
+    },
+    {
+      "Tables_in_BK5ELr97meyN2f7P5B76DF": "gallery_photos"
+    },
+    {
+      "Tables_in_BK5ELr97meyN2f7P5B76DF": "google_sheets_syncs"
+    },
+    {
+      "Tables_in_BK5ELr97meyN2f7P5B76DF": "keynote_speakers"
+    },
+    {
+      "Tables_in_BK5ELr97meyN2f7P5B76DF": "media_registrations"
+    },
+    {
+      "Tables_in_BK5ELr97meyN2f7P5B76DF": "newsletter_subscriptions"
+    },
+    {
+      "Tables_in_BK5ELr97meyN2f7P5B76DF": "payments"
+    },
+    {
+      "Tables_in_BK5ELr97meyN2f7P5B76DF": "registrations"
+    },
+    {
+      "Tables_in_BK5ELr97meyN2f7P5B76DF": "reminder_subscriptions"
+    },
+    {
+      "Tables_in_BK5ELr97meyN2f7P5B76DF": "sessions"
+    },
+    {
+      "Tables_in_BK5ELr97meyN2f7P5B76DF": "sponsorships"
+    },
+    {
+      "Tables_in_BK5ELr97meyN2f7P5B76DF": "support_tickets"
+    },
+    {
+      "Tables_in_BK5ELr97meyN2f7P5B76DF": "survey_responses"
+    },
+    {
+      "Tables_in_BK5ELr97meyN2f7P5B76DF": "surveys"
+    },
+    {
+      "Tables_in_BK5ELr97meyN2f7P5B76DF": "users"
+    },
+    {
+      "Tables_in_BK5ELr97meyN2f7P5B76DF": "volunteers"
+    }
+  ],
+  "messages": [],
+  "stdout": "Tables_in_BK5ELr97meyN2f7P5B76DF\n__drizzle_migrations\nadmins\nannouncements\naudit_logs\ncertificate_requests\ncommittees\ndigest_preferences\ngallery_photos\ngoogle_sheets_syncs\nkeynote_speakers\nmedia_registrations\nnewsletter_subscriptions\npayments\nregistrations\nreminder_subscriptions\nsessions\nsponsorships\nsupport_tickets\nsurvey_responses\nsurveys\nusers\nvolunteers\n",
+  "stderr": "",
+  "execution_time_ms": 1575
+}

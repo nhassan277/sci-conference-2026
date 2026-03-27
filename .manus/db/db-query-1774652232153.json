@@ -1,0 +1,50 @@
+{
+  "query": "SELECT id, full_name, title, presentation_title, speaker_type FROM keynote_speakers WHERE id >= 33 ORDER BY id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name, title, presentation_title, speaker_type FROM keynote_speakers WHERE id >= 33 ORDER BY id;",
+  "rows": [
+    {
+      "id": "34",
+      "full_name": "Fathy Abdel Aty",
+      "title": "Prof. Dr. ",
+      "presentation_title": "Nature Helps: from Lab to the Market  ",
+      "speaker_type": "participant"
+    },
+    {
+      "id": "35",
+      "full_name": "Mohamed Abd El Gawad El-Sayed Ahmed",
+      "title": "Assoc. Prof.",
+      "presentation_title": "Metabolic Mastery: Engineering the PETase-MHETase Synergistic Consortium for a Truly Circular Plastic Economy",
+      "speaker_type": "invited"
+    },
+    {
+      "id": "36",
+      "full_name": "Ahmad K. Hegazy",
+      "title": "Prof. Dr. ",
+      "presentation_title": "Policies and Diplomacy of Basic Scientific Research for Societal Development: Basic Research from Laboratory to Society",
+      "speaker_type": "invited"
+    },
+    {
+      "id": "37",
+      "full_name": "Adel Khalil Ibrahim Gohar",
+      "title": "Prof. Dr. ",
+      "presentation_title": "Bridging the Lab-to-Market Gap: Resolving Integration Challenges in Therapeutic and Diagnostic Innovation",
+      "speaker_type": "Invited "
+    },
+    {
+      "id": "38",
+      "full_name": "Reda Salem ",
+      "title": "Prof. Dr.",
+      "presentation_title": "Recombinant Technologies in Poultry Vaccine Development: From Molecular Design to Industrial Application",
+      "speaker_type": "Invited"
+    }
+  ],
+  "messages": [
+    "33\tKorany A. Ali\tProf. Dr. \tThe Role of Research and Development Centers in Promoting Active",
+    "Pharmaceutical Ingredients (APIs): Achievements of the Research and",
+    "Development Center for Chemical and Pharmaceutical Industries, a",
+    "Pioneering Example in Egypt\tinvited"
+  ],
+  "stdout": "id\tfull_name\ttitle\tpresentation_title\tspeaker_type\n33\tKorany A. Ali\tProf. Dr. \tThe Role of Research and Development Centers in Promoting Active\nPharmaceutical Ingredients (APIs): Achievements of the Research and\nDevelopment Center for Chemical and Pharmaceutical Industries, a\nPioneering Example in Egypt\tinvited\n34\tFathy Abdel Aty\tProf. Dr. \tNature Helps: from Lab to the Market  \tparticipant\n35\tMohamed Abd El Gawad El-Sayed Ahmed\tAssoc. Prof.\tMetabolic Mastery: Engineering the PETase-MHETase Synergistic Consortium for a Truly Circular Plastic Economy\tinvited\n36\tAhmad K. Hegazy\tProf. Dr. \tPolicies and Diplomacy of Basic Scientific Research for Societal Development: Basic Research from Laboratory to Society\tinvited\n37\tAdel Khalil Ibrahim Gohar\tProf. Dr. \tBridging the Lab-to-Market Gap: Resolving Integration Challenges in Therapeutic and Diagnostic Innovation\tInvited \n38\tReda Salem \tProf. Dr.\tRecombinant Technologies in Poultry Vaccine Development: From Molecular Design to Industrial Application\tInvited\n",
+  "stderr": "",
+  "execution_time_ms": 1583
+}
