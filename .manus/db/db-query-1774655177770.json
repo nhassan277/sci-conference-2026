@@ -1,0 +1,64 @@
+{
+  "query": "SELECT id, full_name, is_visible, CASE WHEN presentation_abstract IS NOT NULL AND presentation_abstract != '' THEN 'YES' ELSE 'NO' END as has_abstract FROM keynote_speakers WHERE is_visible = 0 OR (presentation_abstract IS NULL OR presentation_abstract = '') ORDER BY display_order LIMIT 20;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name, is_visible, CASE WHEN presentation_abstract IS NOT NULL AND presentation_abstract != '' THEN 'YES' ELSE 'NO' END as has_abstract FROM keynote_speakers WHERE is_visible = 0 OR (presentation_abstract IS NULL OR presentation_abstract = '') ORDER BY display_order LIMIT 20;",
+  "rows": [
+    {
+      "id": "1",
+      "full_name": "Khaled Amer",
+      "is_visible": "1",
+      "has_abstract": "NO"
+    },
+    {
+      "id": "4",
+      "full_name": "Mortada Mourad Taha El Aref",
+      "is_visible": "1",
+      "has_abstract": "NO"
+    },
+    {
+      "id": "31",
+      "full_name": "Fathy Khodair",
+      "is_visible": "1",
+      "has_abstract": "NO"
+    },
+    {
+      "id": "10",
+      "full_name": "Mortada Mourad El Aref",
+      "is_visible": "1",
+      "has_abstract": "NO"
+    },
+    {
+      "id": "9",
+      "full_name": "Mahmoud Ibrahim Nasr",
+      "is_visible": "1",
+      "has_abstract": "NO"
+    },
+    {
+      "id": "7",
+      "full_name": "Khalid Muhammad Taalab",
+      "is_visible": "1",
+      "has_abstract": "NO"
+    },
+    {
+      "id": "6",
+      "full_name": "Osama Azmy",
+      "is_visible": "1",
+      "has_abstract": "NO"
+    },
+    {
+      "id": "15",
+      "full_name": "Ahmed Fikry El-Sayed",
+      "is_visible": "1",
+      "has_abstract": "NO"
+    },
+    {
+      "id": "25",
+      "full_name": "Ahmed Galal",
+      "is_visible": "1",
+      "has_abstract": "NO"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tfull_name\tis_visible\thas_abstract\n1\tKhaled Amer\t1\tNO\n4\tMortada Mourad Taha El Aref\t1\tNO\n31\tFathy Khodair\t1\tNO\n10\tMortada Mourad El Aref\t1\tNO\n9\tMahmoud Ibrahim Nasr\t1\tNO\n7\tKhalid Muhammad Taalab\t1\tNO\n6\tOsama Azmy\t1\tNO\n15\tAhmed Fikry El-Sayed\t1\tNO\n25\tAhmed Galal\t1\tNO\n",
+  "stderr": "",
+  "execution_time_ms": 1702
+}

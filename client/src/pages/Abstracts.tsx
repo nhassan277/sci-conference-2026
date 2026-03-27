@@ -42,13 +42,14 @@ export default function Abstracts() {
 
   const { data: allSpeakers, isLoading } = trpc.keynoteSpeakers.list.useQuery();
 
-  const withAbstracts: Speaker[] = ((allSpeakers as Speaker[]) || []).filter(
+  const allSpeakersList: Speaker[] = (allSpeakers as Speaker[]) || [];
+  const withAbstracts: Speaker[] = allSpeakersList.filter(
     (s) => s.presentationAbstract && s.presentationAbstract.trim().length > 0
   );
 
-  const sectors = Array.from(new Set(withAbstracts.map((s) => s.speakerSector || "academia")));
+  const sectors = Array.from(new Set(allSpeakersList.map((s) => s.speakerSector || "academia")));
 
-  const filtered = withAbstracts.filter((s) => {
+  const filtered = allSpeakersList.filter((s) => {
     const matchesSector = sectorFilter === "all" || (s.speakerSector || "academia") === sectorFilter;
     const q = search.toLowerCase();
     const matchesSearch =
@@ -98,7 +99,7 @@ export default function Abstracts() {
           </p>
           <div className="mt-6 inline-flex items-center gap-2 bg-[#D4AF37]/20 border border-[#D4AF37]/40 rounded-full px-4 py-1.5 text-[#F0D264] text-sm">
             <BookOpen className="w-4 h-4" />
-            <span>{withAbstracts.length} Abstracts Available</span>
+            <span>{withAbstracts.length} Abstracts Available · {allSpeakersList.length} Total Speakers</span>
           </div>
         </div>
       </section>
@@ -124,7 +125,7 @@ export default function Abstracts() {
               onClick={() => setSectorFilter("all")}
               className={sectorFilter === "all" ? "bg-[#641428] hover:bg-[#41081A] text-white" : ""}
             >
-              All ({withAbstracts.length})
+              All ({allSpeakersList.length})
             </Button>
             {sectors.map((sec) => (
               <Button
@@ -134,7 +135,7 @@ export default function Abstracts() {
                 onClick={() => setSectorFilter(sec)}
                 className={sectorFilter === sec ? "bg-[#641428] hover:bg-[#41081A] text-white" : ""}
               >
-                {SECTOR_LABELS[sec] || sec} ({withAbstracts.filter((s) => (s.speakerSector || "academia") === sec).length})
+                {SECTOR_LABELS[sec] || sec} ({allSpeakersList.filter((s) => (s.speakerSector || "academia") === sec).length})
               </Button>
             ))}
           </div>
@@ -142,7 +143,7 @@ export default function Abstracts() {
 
         {/* Results count */}
         <p className="text-sm text-muted-foreground mt-3">
-          Showing {filtered.length} of {withAbstracts.length} abstracts
+          Showing {filtered.length} of {allSpeakersList.length} speakers
           {search && <span> matching "<strong>{search}</strong>"</span>}
         </p>
       </div>
@@ -170,6 +171,7 @@ export default function Abstracts() {
             {filtered.map((speaker, idx) => {
               const isExpanded = expandedId === speaker.id;
               const sector = speaker.speakerSector || "academia";
+              const hasAbstract = !!(speaker.presentationAbstract && speaker.presentationAbstract.trim().length > 0);
               const abstract = speaker.presentationAbstract || "";
               const preview = abstract.length > 300 ? abstract.slice(0, 300) + "…" : abstract;
 
@@ -222,20 +224,26 @@ export default function Abstracts() {
                         onClick={() => setExpandedId(isExpanded ? null : speaker.id)}
                         className="flex-shrink-0 flex items-center gap-1 text-sm text-[#641428] font-medium hover:text-[#41081A] transition-colors mt-1"
                       >
-                        {isExpanded ? (
+                        {hasAbstract ? (
+                        isExpanded ? (
                           <>Hide <ChevronUp className="w-4 h-4" /></>
                         ) : (
                           <>Read <ChevronDown className="w-4 h-4" /></>
-                        )}
+                        )
+                      ) : null}
                       </button>
                     </div>
 
                     {/* Abstract preview / full */}
                     <div className="mt-3 text-sm text-gray-700 leading-relaxed">
-                      {isExpanded ? (
-                        <p className="whitespace-pre-wrap">{abstract}</p>
+                      {hasAbstract ? (
+                        isExpanded ? (
+                          <p className="whitespace-pre-wrap">{abstract}</p>
+                        ) : (
+                          <p>{preview}</p>
+                        )
                       ) : (
-                        <p>{preview}</p>
+                        <p className="italic text-muted-foreground">Abstract coming soon — الملخص قيد الإعداد</p>
                       )}
                     </div>
                   </div>

@@ -1,0 +1,348 @@
+{
+  "query": "SELECT id, full_name, presentation_title, speaker_sector, speaker_type, is_visible, CASE WHEN presentation_abstract IS NOT NULL AND presentation_abstract != '' THEN 'YES' ELSE 'NO' END as has_abstract FROM keynote_speakers ORDER BY display_order;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name, presentation_title, speaker_sector, speaker_type, is_visible, CASE WHEN presentation_abstract IS NOT NULL AND presentation_abstract != '' THEN 'YES' ELSE 'NO' END as has_abstract FROM keynote_speakers ORDER BY display_order;",
+  "rows": [
+    {
+      "id": "1",
+      "full_name": "Khaled Amer",
+      "presentation_title": "Egypt Genome; From Dream to Reality",
+      "speaker_sector": "academia",
+      "speaker_type": "keynote",
+      "is_visible": "1",
+      "has_abstract": "NO"
+    },
+    {
+      "id": "16",
+      "full_name": "Ehab El-Dabaa",
+      "presentation_title": "Center of Excellence in Recombinant Biopharmaceutical Proteins (CERBioP) in TBRI;  From Scientific Innovation to The Egyptian Biopharmaceutical Industry",
+      "speaker_sector": "academia",
+      "speaker_type": "keynote",
+      "is_visible": "1",
+      "has_abstract": "YES"
+    },
+    {
+      "id": "4",
+      "full_name": "Mortada Mourad Taha El Aref",
+      "presentation_title": "Karstology (Science of Unlimited Multi-Discipline Approaches), Promising Setting for Industrial Raw Materials",
+      "speaker_sector": "academia",
+      "speaker_type": "keynote",
+      "is_visible": "1",
+      "has_abstract": "NO"
+    },
+    {
+      "id": "13",
+      "full_name": "Hamed A. Ead",
+      "presentation_title": "Science at the Core of Innovation: Reimagining the University–Industry Nexus for Transformative Impact",
+      "speaker_sector": "academia",
+      "speaker_type": "keynote",
+      "is_visible": "1",
+      "has_abstract": "YES"
+    },
+    {
+      "id": "31",
+      "full_name": "Fathy Khodair",
+      "presentation_title": "Clinical application of adipose derived stem cells in plastic surgery",
+      "speaker_sector": "academia",
+      "speaker_type": "invited",
+      "is_visible": "1",
+      "has_abstract": "NO"
+    },
+    {
+      "id": "12",
+      "full_name": "Sohair Ramadan Fahmy",
+      "presentation_title": "Practical Aspects of Experimental Design in Laboratory Animal Science",
+      "speaker_sector": "academia",
+      "speaker_type": "invited",
+      "is_visible": "1",
+      "has_abstract": "YES"
+    },
+    {
+      "id": "5",
+      "full_name": "Nagwa El-Badri",
+      "presentation_title": "Biomimetic Scaffolds and the Human Amniotic Membrane",
+      "speaker_sector": "academia",
+      "speaker_type": "invited",
+      "is_visible": "1",
+      "has_abstract": "YES"
+    },
+    {
+      "id": "10",
+      "full_name": "Mortada Mourad El Aref",
+      "presentation_title": "Egyptian Iron Ore for Supporting National Economy - Opportunities and Challenges",
+      "speaker_sector": "academia",
+      "speaker_type": "invited",
+      "is_visible": "1",
+      "has_abstract": "NO"
+    },
+    {
+      "id": "2",
+      "full_name": "Ibrahim M. El-Sherbiny",
+      "presentation_title": "Basic Sciences As the Foundation of Innovation: Some Success Stories for Disease Treatment and Advanced Biomedical Applications (From Lab to Society)",
+      "speaker_sector": "academia",
+      "speaker_type": "invited",
+      "is_visible": "1",
+      "has_abstract": "YES"
+    },
+    {
+      "id": "9",
+      "full_name": "Mahmoud Ibrahim Nasr",
+      "presentation_title": "Egyptian Iron Ore as a Feedstock to the Iron and Steel Industry",
+      "speaker_sector": "academia",
+      "speaker_type": "invited",
+      "is_visible": "1",
+      "has_abstract": "NO"
+    },
+    {
+      "id": "7",
+      "full_name": "Khalid Muhammad Taalab",
+      "presentation_title": "Radiopharmaceuticals and Precision Medicine",
+      "speaker_sector": "academia",
+      "speaker_type": "invited",
+      "is_visible": "1",
+      "has_abstract": "NO"
+    },
+    {
+      "id": "8",
+      "full_name": "Mohamed Ibrahim El-Anbawy",
+      "presentation_title": "Economic Utilization of Shale in Desert Land Reclamation and Cement Industry",
+      "speaker_sector": "academia",
+      "speaker_type": "invited",
+      "is_visible": "1",
+      "has_abstract": "YES"
+    },
+    {
+      "id": "6",
+      "full_name": "Osama Azmy",
+      "presentation_title": "Management of the Rosy Years of Life",
+      "speaker_sector": "academia",
+      "speaker_type": "invited",
+      "is_visible": "1",
+      "has_abstract": "NO"
+    },
+    {
+      "id": "3",
+      "full_name": "Ashraf Abdou Tabll",
+      "presentation_title": "Current Status and Future Prospects of Medical Biotechnology in Egypt: Lessons from Monoclonal and IgY Antibodies",
+      "speaker_sector": "academia",
+      "speaker_type": "invited",
+      "is_visible": "1",
+      "has_abstract": "YES"
+    },
+    {
+      "id": "14",
+      "full_name": "Ayman El-Shibiny",
+      "presentation_title": "Phage Innovation: Targeted Solutions for Regional Antimicrobial Challenges",
+      "speaker_sector": "academia",
+      "speaker_type": "invited",
+      "is_visible": "1",
+      "has_abstract": "YES"
+    },
+    {
+      "id": "17",
+      "full_name": "Naglaa A. Abdallah",
+      "presentation_title": "Novel Genome Editing Approaches for a Sustainable Future",
+      "speaker_sector": "academia",
+      "speaker_type": "invited",
+      "is_visible": "1",
+      "has_abstract": "YES"
+    },
+    {
+      "id": "19",
+      "full_name": "Osama Shalabiea",
+      "presentation_title": "Space Science and Technology (SSAT): Exploration, Utilization and Commercialization",
+      "speaker_sector": "academia",
+      "speaker_type": "invited",
+      "is_visible": "1",
+      "has_abstract": "YES"
+    },
+    {
+      "id": "18",
+      "full_name": "Tarek Kapiel",
+      "presentation_title": "Integrative Bio-Nanotechnologies for Industrial Symbiosis: Scaling the Circular Bioeconomy in Egypt",
+      "speaker_sector": "academia",
+      "speaker_type": "invited",
+      "is_visible": "1",
+      "has_abstract": "YES"
+    },
+    {
+      "id": "15",
+      "full_name": "Ahmed Fikry El-Sayed",
+      "presentation_title": "Computer-Aided Drug Design: From Code to Cure",
+      "speaker_sector": "academia",
+      "speaker_type": "invited",
+      "is_visible": "1",
+      "has_abstract": "NO"
+    },
+    {
+      "id": "11",
+      "full_name": "Sahar Hassan",
+      "presentation_title": "Revolutionizing Subsurface Understanding: AI-Driven Logging-While-Drilling Technologies",
+      "speaker_sector": "industry",
+      "speaker_type": "invited",
+      "is_visible": "1",
+      "has_abstract": "YES"
+    },
+    {
+      "id": "20",
+      "full_name": "Areeg Abdalla",
+      "presentation_title": "Scientific Principles and Medical Applications of Artificial Intelligence",
+      "speaker_sector": "academia",
+      "speaker_type": "invited",
+      "is_visible": "1",
+      "has_abstract": "YES"
+    },
+    {
+      "id": "21",
+      "full_name": "Ahmed Youssef ",
+      "presentation_title": "Advanced Vaccine Bioprocessing: From Strain Selection to Market Release",
+      "speaker_sector": "industry",
+      "speaker_type": "invited",
+      "is_visible": "1",
+      "has_abstract": "YES"
+    },
+    {
+      "id": "30",
+      "full_name": "Mohamed Shaker Salem",
+      "presentation_title": "Silicon Nanophotonics for On-Chip Integrated Circuit Technology",
+      "speaker_sector": "academia",
+      "speaker_type": "invited",
+      "is_visible": "1",
+      "has_abstract": "YES"
+    },
+    {
+      "id": "22",
+      "full_name": "Mohamed Hamed",
+      "presentation_title": "Computational Transformation in Drug Discovery: Bioinformatics and AI Innovations in Pharmaceutical Science",
+      "speaker_sector": "academia",
+      "speaker_type": "invited",
+      "is_visible": "1",
+      "has_abstract": "YES"
+    },
+    {
+      "id": "23",
+      "full_name": "Rashika El Ridi",
+      "presentation_title": "The Impact of Misleading Concepts in Science on the Faculty of Science-Cairo University Efforts to Control Schistosomiasis and Cancer.  A Hope Remains: Arachidonic Acid",
+      "speaker_sector": "academia",
+      "speaker_type": "invited",
+      "is_visible": "1",
+      "has_abstract": "YES"
+    },
+    {
+      "id": "24",
+      "full_name": "Ahmad Wafik Al Shareif",
+      "presentation_title": "Detection of Low Contrast, Low Resistivity Pay (lclr) Challenge in Shaly Sand Gas Reservoir Through Acoustic Data in the on Shore Nile Delta, Egypt ",
+      "speaker_sector": "industry",
+      "speaker_type": "invited",
+      "is_visible": "1",
+      "has_abstract": "YES"
+    },
+    {
+      "id": "25",
+      "full_name": "Ahmed Galal",
+      "presentation_title": "Photo-assisted electrocatalysis: An effective tool for green chemical conversion",
+      "speaker_sector": "academia",
+      "speaker_type": "invited",
+      "is_visible": "1",
+      "has_abstract": "NO"
+    },
+    {
+      "id": "26",
+      "full_name": "Refaat Gabre",
+      "presentation_title": "Transfer, localization, and reproduction of biotechnology in Egypt",
+      "speaker_sector": "academia",
+      "speaker_type": "invited",
+      "is_visible": "1",
+      "has_abstract": "YES"
+    },
+    {
+      "id": "27",
+      "full_name": "Mostafa Nasser ",
+      "presentation_title": "AI in Biotechnology",
+      "speaker_sector": "industry",
+      "speaker_type": "invited",
+      "is_visible": "1",
+      "has_abstract": "YES"
+    },
+    {
+      "id": "28",
+      "full_name": "Mohamed Anwar Abdelwahab",
+      "presentation_title": "From Molecules to Taste: The Role of Organic Chemistry in Flavor Manufacturing and Food Innovation",
+      "speaker_sector": "industry",
+      "speaker_type": "invited",
+      "is_visible": "1",
+      "has_abstract": "YES"
+    },
+    {
+      "id": "29",
+      "full_name": "Abdelfattah Kamal",
+      "presentation_title": "Achieving Quality and Sustainable Local Vaccine Production in Africa to Improve Access",
+      "speaker_sector": "industry",
+      "speaker_type": "invited",
+      "is_visible": "1",
+      "has_abstract": "YES"
+    },
+    {
+      "id": "32",
+      "full_name": "Ebtehal El-Demerdash",
+      "presentation_title": "When Pharmacometrics meets AI: Shaping the future of therapeutics",
+      "speaker_sector": "academia",
+      "speaker_type": "invited",
+      "is_visible": "1",
+      "has_abstract": "YES"
+    },
+    {
+      "id": "34",
+      "full_name": "Fathy Abdel Aty",
+      "presentation_title": "Nature Helps: from Lab to the Market  ",
+      "speaker_sector": "academia",
+      "speaker_type": "participant",
+      "is_visible": "1",
+      "has_abstract": "YES"
+    },
+    {
+      "id": "35",
+      "full_name": "Mohamed Abd El Gawad El-Sayed Ahmed",
+      "presentation_title": "Metabolic Mastery: Engineering the PETase-MHETase Synergistic Consortium for a Truly Circular Plastic Economy",
+      "speaker_sector": "academia",
+      "speaker_type": "invited",
+      "is_visible": "1",
+      "has_abstract": "YES"
+    },
+    {
+      "id": "36",
+      "full_name": "Ahmad K. Hegazy",
+      "presentation_title": "Policies and Diplomacy of Basic Scientific Research for Societal Development: Basic Research from Laboratory to Society",
+      "speaker_sector": "academia",
+      "speaker_type": "invited",
+      "is_visible": "1",
+      "has_abstract": "YES"
+    },
+    {
+      "id": "37",
+      "full_name": "Adel Khalil Ibrahim Gohar",
+      "presentation_title": "Bridging the Lab-to-Market Gap: Resolving Integration Challenges in Therapeutic and Diagnostic Innovation",
+      "speaker_sector": "academia",
+      "speaker_type": "Invited ",
+      "is_visible": "1",
+      "has_abstract": "YES"
+    },
+    {
+      "id": "38",
+      "full_name": "Reda Salem ",
+      "presentation_title": "Recombinant Technologies in Poultry Vaccine Development: From Molecular Design to Industrial Application",
+      "speaker_sector": "academia",
+      "speaker_type": "Invited",
+      "is_visible": "1",
+      "has_abstract": "YES"
+    }
+  ],
+  "messages": [
+    "33\tKorany A. Ali\tThe Role of Research and Development Centers in Promoting Active",
+    "Pharmaceutical Ingredients (APIs): Achievements of the Research and",
+    "Development Center for Chemical and Pharmaceutical Industries, a",
+    "Pioneering Example in Egypt\tacademia\tinvited\t1\tYES"
+  ],
+  "stdout": "id\tfull_name\tpresentation_title\tspeaker_sector\tspeaker_type\tis_visible\thas_abstract\n1\tKhaled Amer\tEgypt Genome; From Dream to Reality\tacademia\tkeynote\t1\tNO\n16\tEhab El-Dabaa\tCenter of Excellence in Recombinant Biopharmaceutical Proteins (CERBioP) in TBRI;  From Scientific Innovation to The Egyptian Biopharmaceutical Industry\tacademia\tkeynote\t1\tYES\n4\tMortada Mourad Taha El Aref\tKarstology (Science of Unlimited Multi-Discipline Approaches), Promising Setting for Industrial Raw Materials\tacademia\tkeynote\t1\tNO\n13\tHamed A. Ead\tScience at the Core of Innovation: Reimagining the University–Industry Nexus for Transformative Impact\tacademia\tkeynote\t1\tYES\n31\tFathy Khodair\tClinical application of adipose derived stem cells in plastic surgery\tacademia\tinvited\t1\tNO\n12\tSohair Ramadan Fahmy\tPractical Aspects of Experimental Design in Laboratory Animal Science\tacademia\tinvited\t1\tYES\n5\tNagwa El-Badri\tBiomimetic Scaffolds and the Human Amniotic Membrane\tacademia\tinvited\t1\tYES\n10\tMortada Mourad El Aref\tEgyptian Iron Ore for Supporting National Economy - Opportunities and Challenges\tacademia\tinvited\t1\tNO\n2\tIbrahim M. El-Sherbiny\tBasic Sciences As the Foundation of Innovation: Some Success Stories for Disease Treatment and Advanced Biomedical Applications (From Lab to Society)\tacademia\tinvited\t1\tYES\n9\tMahmoud Ibrahim Nasr\tEgyptian Iron Ore as a Feedstock to the Iron and Steel Industry\tacademia\tinvited\t1\tNO\n7\tKhalid Muhammad Taalab\tRadiopharmaceuticals and Precision Medicine\tacademia\tinvited\t1\tNO\n8\tMohamed Ibrahim El-Anbawy\tEconomic Utilization of Shale in Desert Land Reclamation and Cement Industry\tacademia\tinvited\t1\tYES\n6\tOsama Azmy\tManagement of the Rosy Years of Life\tacademia\tinvited\t1\tNO\n3\tAshraf Abdou Tabll\tCurrent Status and Future Prospects of Medical Biotechnology in Egypt: Lessons from Monoclonal and IgY Antibodies\tacademia\tinvited\t1\tYES\n14\tAyman El-Shibiny\tPhage Innovation: Targeted Solutions for Regional Antimicrobial Challenges\tacademia\tinvited\t1\tYES\n17\tNaglaa A. Abdallah\tNovel Genome Editing Approaches for a Sustainable Future\tacademia\tinvited\t1\tYES\n19\tOsama Shalabiea\tSpace Science and Technology (SSAT): Exploration, Utilization and Commercialization\tacademia\tinvited\t1\tYES\n18\tTarek Kapiel\tIntegrative Bio-Nanotechnologies for Industrial Symbiosis: Scaling the Circular Bioeconomy in Egypt\tacademia\tinvited\t1\tYES\n15\tAhmed Fikry El-Sayed\tComputer-Aided Drug Design: From Code to Cure\tacademia\tinvited\t1\tNO\n11\tSahar Hassan\tRevolutionizing Subsurface Understanding: AI-Driven Logging-While-Drilling Technologies\tindustry\tinvited\t1\tYES\n20\tAreeg Abdalla\tScientific Principles and Medical Applications of Artificial Intelligence\tacademia\tinvited\t1\tYES\n21\tAhmed Youssef \tAdvanced Vaccine Bioprocessing: From Strain Selection to Market Release\tindustry\tinvited\t1\tYES\n30\tMohamed Shaker Salem\tSilicon Nanophotonics for On-Chip Integrated Circuit Technology\tacademia\tinvited\t1\tYES\n22\tMohamed Hamed\tComputational Transformation in Drug Discovery: Bioinformatics and AI Innovations in Pharmaceutical Science\tacademia\tinvited\t1\tYES\n23\tRashika El Ridi\tThe Impact of Misleading Concepts in Science on the Faculty of Science-Cairo University Efforts to Control Schistosomiasis and Cancer.  A Hope Remains: Arachidonic Acid\tacademia\tinvited\t1\tYES\n24\tAhmad Wafik Al Shareif\tDetection of Low Contrast, Low Resistivity Pay (lclr) Challenge in Shaly Sand Gas Reservoir Through Acoustic Data in the on Shore Nile Delta, Egypt \tindustry\tinvited\t1\tYES\n25\tAhmed Galal\tPhoto-assisted electrocatalysis: An effective tool for green chemical conversion\tacademia\tinvited\t1\tNO\n26\tRefaat Gabre\tTransfer, localization, and reproduction of biotechnology in Egypt\tacademia\tinvited\t1\tYES\n27\tMostafa Nasser \tAI in Biotechnology\tindustry\tinvited\t1\tYES\n28\tMohamed Anwar Abdelwahab\tFrom Molecules to Taste: The Role of Organic Chemistry in Flavor Manufacturing and Food Innovation\tindustry\tinvited\t1\tYES\n29\tAbdelfattah Kamal\tAchieving Quality and Sustainable Local Vaccine Production in Africa to Improve Access\tindustry\tinvited\t1\tYES\n32\tEbtehal El-Demerdash\tWhen Pharmacometrics meets AI: Shaping the future of therapeutics\tacademia\tinvited\t1\tYES\n33\tKorany A. Ali\tThe Role of Research and Development Centers in Promoting Active\nPharmaceutical Ingredients (APIs): Achievements of the Research and\nDevelopment Center for Chemical and Pharmaceutical Industries, a\nPioneering Example in Egypt\tacademia\tinvited\t1\tYES\n34\tFathy Abdel Aty\tNature Helps: from Lab to the Market  \tacademia\tparticipant\t1\tYES\n35\tMohamed Abd El Gawad El-Sayed Ahmed\tMetabolic Mastery: Engineering the PETase-MHETase Synergistic Consortium for a Truly Circular Plastic Economy\tacademia\tinvited\t1\tYES\n36\tAhmad K. Hegazy\tPolicies and Diplomacy of Basic Scientific Research for Societal Development: Basic Research from Laboratory to Society\tacademia\tinvited\t1\tYES\n37\tAdel Khalil Ibrahim Gohar\tBridging the Lab-to-Market Gap: Resolving Integration Challenges in Therapeutic and Diagnostic Innovation\tacademia\tInvited \t1\tYES\n38\tReda Salem \tRecombinant Technologies in Poultry Vaccine Development: From Molecular Design to Industrial Application\tacademia\tInvited\t1\tYES\n",
+  "stderr": "",
+  "execution_time_ms": 1694
+}
