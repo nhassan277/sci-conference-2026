@@ -129,7 +129,7 @@ const invitedGeoDay2 = [
   { name: "Prof. Dr. Nagwa El-Badri", affiliation: "Director of Biomedical Sciences Program & Center of Excellence for Stem Cells", talk: "Biomimetic Scaffolds and the Human Amniotic Membrane" },
   { name: "Prof. Dr. Abdel Rahman Bader", affiliation: "Faculty of Science, Cairo University", talk: "" },
   { name: "Prof. Dr. Reda Salem", affiliation: "Faculty of Science, Cairo University", talk: "Recombinant Technologies in Poultry Vaccine Development: From Molecular Design to Industrial Application" },
-  { name: "Dr. Walaa Abbas", affiliation: "Faculty of Science, Cairo University", talk: "" },
+  { name: "Dr. Walaa Abbas El-Sayed Omar", affiliation: "Assistant Professor of Organic Chemistry & Renewable Energy Applications, Faculty of Petroleum & Mining Engineering, Suez University", talk: "" },
 ];
 
 // Hall C: Day 2 (Participants + Industry)

@@ -24,6 +24,7 @@ import KeynoteSpeakers from "./pages/KeynoteSpeakers";
 import MediaRegistration from "./pages/MediaRegistration";
 import Sponsors from "./pages/Sponsors";
 import Awards from "./pages/Awards";
+import Abstracts from "./pages/Abstracts";
 import SponsorDashboard from "./pages/SponsorDashboard";
 import CommitteeManagement from "./pages/admin/CommitteeManagement";
 import KeynoteSpeakersManagement from "./pages/admin/KeynoteSpeakersManagement";
@@ -57,6 +58,7 @@ function Router() {
       <Route path={"/sponsors"} component={Sponsors} />
       <Route path={"/media-registration"} component={MediaRegistration} />
       <Route path={"/awards"} component={Awards} />
+      <Route path={"/abstracts"} component={Abstracts} />
       <Route path={"/sponsor-dashboard"} component={SponsorDashboard} />
       <Route path={"/admin/committees"} component={CommitteeManagement} />
       <Route path={"/admin/speakers"} component={KeynoteSpeakersManagement} />
