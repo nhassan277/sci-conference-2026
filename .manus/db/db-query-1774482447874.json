@@ -1,0 +1,14 @@
+{
+  "query": "SELECT DISTINCT committee_type, COUNT(*) as count FROM committees GROUP BY committee_type;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT DISTINCT committee_type, COUNT(*) as count FROM committees GROUP BY committee_type;",
+  "rows": [
+    {
+      "committee_type": "scientific",
+      "count": "39"
+    }
+  ],
+  "messages": [],
+  "stdout": "committee_type\tcount\nscientific\t39\n",
+  "stderr": "",
+  "execution_time_ms": 1574
+}

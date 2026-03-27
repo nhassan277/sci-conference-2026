@@ -1,0 +1,149 @@
+{
+  "query": "SELECT id, full_name, title, affiliation, speaker_type, display_order FROM keynote_speakers WHERE display_order > 17 ORDER BY speaker_type, display_order, id LIMIT 20;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name, title, affiliation, speaker_type, display_order FROM keynote_speakers WHERE display_order > 17 ORDER BY speaker_type, display_order, id LIMIT 20;",
+  "rows": [
+    {
+      "id": "15",
+      "full_name": "Ahmed Fikry El-Sayed",
+      "title": "Dr.",
+      "affiliation": "Assistant Professor, King Salman International University",
+      "speaker_type": "invited",
+      "display_order": "18"
+    },
+    {
+      "id": "11",
+      "full_name": "Sahar Hassan",
+      "title": "Dr.",
+      "affiliation": "Senior Geologist and Sedimentologist, Digital Subsurface Solutions, SLB",
+      "speaker_type": "invited",
+      "display_order": "19"
+    },
+    {
+      "id": "20",
+      "full_name": "Areeg Abdalla",
+      "title": "Dr. ",
+      "affiliation": "Associate Professor, Mathematics Department, Faculty of Science, Cairo University",
+      "speaker_type": "invited",
+      "display_order": "20"
+    },
+    {
+      "id": "21",
+      "full_name": "Ahmed Youssef ",
+      "title": "Dr.",
+      "affiliation": "Production Deputy Manager and Vaccine Line Head at BioGeneric Pharma (BGP), and Instructor at Africa CDC biomanufacturing training programs",
+      "speaker_type": "invited",
+      "display_order": "22"
+    },
+    {
+      "id": "22",
+      "full_name": "Mohamed Hamed",
+      "title": "Assoc. Prof. Dr. ",
+      "affiliation": "Associate professor of biomedical informatics and computational biology at the German University of Cairo (GUC).",
+      "speaker_type": "invited",
+      "display_order": "23"
+    },
+    {
+      "id": "30",
+      "full_name": "Mohamed Shaker Salem",
+      "title": "Prof. Dr. ",
+      "affiliation": "Physics Department, Faculty of Science, Cairo University ",
+      "speaker_type": "invited",
+      "display_order": "23"
+    },
+    {
+      "id": "23",
+      "full_name": "Rashika El Ridi",
+      "title": "Prof. Dr.",
+      "affiliation": "Professor of Immunology, Zoology Department, Faculty of Science, Cairo University",
+      "speaker_type": "invited",
+      "display_order": "24"
+    },
+    {
+      "id": "24",
+      "full_name": "Ahmad Wafik Al Shareif",
+      "title": "Dr. ",
+      "affiliation": "Senior Petrophysicist, Assistant General Manager for Development, El Wastani Petroleum Company (WASCO), Dana Gas JV   ",
+      "speaker_type": "invited",
+      "display_order": "25"
+    },
+    {
+      "id": "25",
+      "full_name": "Ahmed Galal",
+      "title": "Prof. Dr.",
+      "affiliation": "Chemistry Department, Faculty of Science, Cairo University",
+      "speaker_type": "invited",
+      "display_order": "26"
+    },
+    {
+      "id": "26",
+      "full_name": "Refaat Gabre",
+      "title": "Prof. Dr. ",
+      "affiliation": "Head of Biotechnology Department, Faculty of Science, Cairo University",
+      "speaker_type": "invited",
+      "display_order": "26"
+    },
+    {
+      "id": "27",
+      "full_name": "Mostafa Nasser ",
+      "title": "Eng.",
+      "affiliation": "Startup Grind Chapter Director",
+      "speaker_type": "invited",
+      "display_order": "27"
+    },
+    {
+      "id": "28",
+      "full_name": "Mohamed Anwar Abdelwahab",
+      "title": "Dr.",
+      "affiliation": "R&D Manager, Techno Taste (Flavor House)",
+      "speaker_type": "invited",
+      "display_order": "28"
+    },
+    {
+      "id": "29",
+      "full_name": "Abdelfattah Kamal",
+      "title": "Dr.",
+      "affiliation": "Operations Director at BioGeneric pharma (BGP)",
+      "speaker_type": "invited",
+      "display_order": "28"
+    },
+    {
+      "id": "32",
+      "full_name": "Ebtehal El-Demerdash",
+      "title": "Prof. Dr. ",
+      "affiliation": "Prof. of Pharmacology & Toxicology, Faculty of Pharmacy, Ain Shams University",
+      "speaker_type": "invited",
+      "display_order": "32"
+    },
+    {
+      "id": "35",
+      "full_name": "Mohamed Abd El Gawad El-Sayed Ahmed",
+      "title": "Assoc. Prof.",
+      "affiliation": "Associate Professor in Department of Microbiology and Immunology, College of Pharmaceutical Sciences and Drug Manufacturing, Misr University for Science and Technology, Giza, Egypt",
+      "speaker_type": "invited",
+      "display_order": "35"
+    },
+    {
+      "id": "36",
+      "full_name": "Ahmad K. Hegazy",
+      "title": "Prof. Dr. ",
+      "affiliation": "Professor of Ecology and Environmental Sciences, Faculty of Science, Cairo University",
+      "speaker_type": "invited",
+      "display_order": "36"
+    },
+    {
+      "id": "34",
+      "full_name": "Fathy Abdel Aty",
+      "title": "Prof. Dr. ",
+      "affiliation": "Professor of Parasitology, Zoology Department, Faculty of Science, Cairo University",
+      "speaker_type": "participant",
+      "display_order": "34"
+    }
+  ],
+  "messages": [
+    "33\tKorany A. Ali\tProf. Dr. \tDirector of the Research and Development Center for Chemical and",
+    "Pharmaceutical Industries (R&D-CPI), National Research Centre\tinvited\t33"
+  ],
+  "stdout": "id\tfull_name\ttitle\taffiliation\tspeaker_type\tdisplay_order\n15\tAhmed Fikry El-Sayed\tDr.\tAssistant Professor, King Salman International University\tinvited\t18\n11\tSahar Hassan\tDr.\tSenior Geologist and Sedimentologist, Digital Subsurface Solutions, SLB\tinvited\t19\n20\tAreeg Abdalla\tDr. \tAssociate Professor, Mathematics Department, Faculty of Science, Cairo University\tinvited\t20\n21\tAhmed Youssef \tDr.\tProduction Deputy Manager and Vaccine Line Head at BioGeneric Pharma (BGP), and Instructor at Africa CDC biomanufacturing training programs\tinvited\t22\n22\tMohamed Hamed\tAssoc. Prof. Dr. \tAssociate professor of biomedical informatics and computational biology at the German University of Cairo (GUC).\tinvited\t23\n30\tMohamed Shaker Salem\tProf. Dr. \tPhysics Department, Faculty of Science, Cairo University \tinvited\t23\n23\tRashika El Ridi\tProf. Dr.\tProfessor of Immunology, Zoology Department, Faculty of Science, Cairo University\tinvited\t24\n24\tAhmad Wafik Al Shareif\tDr. \tSenior Petrophysicist, Assistant General Manager for Development, El Wastani Petroleum Company (WASCO), Dana Gas JV   \tinvited\t25\n25\tAhmed Galal\tProf. Dr.\tChemistry Department, Faculty of Science, Cairo University\tinvited\t26\n26\tRefaat Gabre\tProf. Dr. \tHead of Biotechnology Department, Faculty of Science, Cairo University\tinvited\t26\n27\tMostafa Nasser \tEng.\tStartup Grind Chapter Director\tinvited\t27\n28\tMohamed Anwar Abdelwahab\tDr.\tR&D Manager, Techno Taste (Flavor House)\tinvited\t28\n29\tAbdelfattah Kamal\tDr.\tOperations Director at BioGeneric pharma (BGP)\tinvited\t28\n32\tEbtehal El-Demerdash\tProf. Dr. \tProf. of Pharmacology & Toxicology, Faculty of Pharmacy, Ain Shams University\tinvited\t32\n33\tKorany A. Ali\tProf. Dr. \tDirector of the Research and Development Center for Chemical and\nPharmaceutical Industries (R&D-CPI), National Research Centre\tinvited\t33\n35\tMohamed Abd El Gawad El-Sayed Ahmed\tAssoc. Prof.\tAssociate Professor in Department of Microbiology and Immunology, College of Pharmaceutical Sciences and Drug Manufacturing, Misr University for Science and Technology, Giza, Egypt\tinvited\t35\n36\tAhmad K. Hegazy\tProf. Dr. \tProfessor of Ecology and Environmental Sciences, Faculty of Science, Cairo University\tinvited\t36\n34\tFathy Abdel Aty\tProf. Dr. \tProfessor of Parasitology, Zoology Department, Faculty of Science, Cairo University\tparticipant\t34\n",
+  "stderr": "",
+  "execution_time_ms": 1716
+}

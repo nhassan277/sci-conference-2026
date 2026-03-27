@@ -1,0 +1,28 @@
+{
+  "query": "SELECT id, full_name, title, committee_type, department, role, display_order FROM committees WHERE id BETWEEN 18 AND 19 ORDER BY display_order;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name, title, committee_type, department, role, display_order FROM committees WHERE id BETWEEN 18 AND 19 ORDER BY display_order;",
+  "rows": [
+    {
+      "id": "18",
+      "full_name": "Aly Younes",
+      "title": "Prof. Dr.",
+      "committee_type": "scientific",
+      "department": "Department of Entomology",
+      "role": "Chair",
+      "display_order": "60"
+    },
+    {
+      "id": "19",
+      "full_name": "Nagwa Rashdan",
+      "title": "Prof. Dr.",
+      "committee_type": "scientific",
+      "department": "Department of Entomology",
+      "role": "Member",
+      "display_order": "61"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tfull_name\ttitle\tcommittee_type\tdepartment\trole\tdisplay_order\n18\tAly Younes\tProf. Dr.\tscientific\tDepartment of Entomology\tChair\t60\n19\tNagwa Rashdan\tProf. Dr.\tscientific\tDepartment of Entomology\tMember\t61\n",
+  "stderr": "",
+  "execution_time_ms": 1544
+}

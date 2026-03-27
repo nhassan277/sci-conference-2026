@@ -1,0 +1,170 @@
+{
+  "query": "SELECT id, full_name, title, committee_type, department, role FROM committees WHERE CAST(id AS UNSIGNED) > 19 ORDER BY committee_type, department, full_name;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name, title, committee_type, department, role FROM committees WHERE CAST(id AS UNSIGNED) > 19 ORDER BY committee_type, department, full_name;",
+  "rows": [
+    {
+      "id": "90001",
+      "full_name": "Hamed Eid",
+      "title": "Prof. Dr.",
+      "committee_type": "scientific",
+      "department": "Department of Chemistry",
+      "role": "Member"
+    },
+    {
+      "id": "20",
+      "full_name": "Youssef El-Demerdash",
+      "title": "Prof. Dr.",
+      "committee_type": "scientific",
+      "department": "Department of Entomology",
+      "role": "Member"
+    },
+    {
+      "id": "22",
+      "full_name": "Abdel-Hameed Wagdy El Manawy",
+      "title": "Prof. Dr.",
+      "committee_type": "scientific",
+      "department": "Department of Geology",
+      "role": "Member"
+    },
+    {
+      "id": "23",
+      "full_name": "Mortada Mourad El Aref",
+      "title": "Prof. Dr.",
+      "committee_type": "scientific",
+      "department": "Department of Geology",
+      "role": "Member"
+    },
+    {
+      "id": "21",
+      "full_name": "Sameh Tahoun",
+      "title": "Prof. Dr.",
+      "committee_type": "scientific",
+      "department": "Department of Geology",
+      "role": "Chair"
+    },
+    {
+      "id": "25",
+      "full_name": "Ahmed Mohsen",
+      "title": "Dr.",
+      "committee_type": "scientific",
+      "department": "Department of Geophysics",
+      "role": "Member"
+    },
+    {
+      "id": "26",
+      "full_name": "Mohamed Hassan",
+      "title": "Prof. Dr.",
+      "committee_type": "scientific",
+      "department": "Department of Geophysics",
+      "role": "Member"
+    },
+    {
+      "id": "24",
+      "full_name": "Waleed Mabrouk",
+      "title": "Prof. Dr.",
+      "committee_type": "scientific",
+      "department": "Department of Geophysics",
+      "role": "Chair"
+    },
+    {
+      "id": "28",
+      "full_name": "Ahmed El-Gendy",
+      "title": "Prof. Dr.",
+      "committee_type": "scientific",
+      "department": "Department of Mathematics",
+      "role": "Member"
+    },
+    {
+      "id": "30",
+      "full_name": "Mohamed El-Zawawi",
+      "title": "Prof. Dr.",
+      "committee_type": "scientific",
+      "department": "Department of Mathematics",
+      "role": "Member"
+    },
+    {
+      "id": "29",
+      "full_name": "Mohamed Ramadan",
+      "title": "Prof. Dr.",
+      "committee_type": "scientific",
+      "department": "Department of Mathematics",
+      "role": "Member"
+    },
+    {
+      "id": "27",
+      "full_name": "Nasser El-Azab",
+      "title": "Prof. Dr.",
+      "committee_type": "scientific",
+      "department": "Department of Mathematics",
+      "role": "Chair"
+    },
+    {
+      "id": "36",
+      "full_name": "Walid Abdullah",
+      "title": "Dr.",
+      "committee_type": "scientific",
+      "department": "Department of Mathematics",
+      "role": "Member"
+    },
+    {
+      "id": "39",
+      "full_name": "Abeer Abdullah",
+      "title": "Prof. Dr.",
+      "committee_type": "scientific",
+      "department": "Department of Physics",
+      "role": "Member"
+    },
+    {
+      "id": "38",
+      "full_name": "Gamal Abdel-Nasser",
+      "title": "Prof. Dr.",
+      "committee_type": "scientific",
+      "department": "Department of Physics",
+      "role": "Member"
+    },
+    {
+      "id": "37",
+      "full_name": "Mohamed Hassanein Gaber",
+      "title": "Prof. Dr.",
+      "committee_type": "scientific",
+      "department": "Department of Physics",
+      "role": "Chair"
+    },
+    {
+      "id": "40",
+      "full_name": "Mohamed Mostafa Arman",
+      "title": "Dr.",
+      "committee_type": "scientific",
+      "department": "Department of Physics",
+      "role": "Member"
+    },
+    {
+      "id": "44",
+      "full_name": "Hala Ali Abdel Salam",
+      "title": "Prof. Dr.",
+      "committee_type": "scientific",
+      "department": "Department of Zoology",
+      "role": "Member"
+    },
+    {
+      "id": "42",
+      "full_name": "Salwa Abdelhamid Hamdi",
+      "title": "Prof. Dr.",
+      "committee_type": "scientific",
+      "department": "Department of Zoology",
+      "role": "Chair"
+    },
+    {
+      "id": "43",
+      "full_name": "Salwa Thabet",
+      "title": "Prof. Dr.",
+      "committee_type": "scientific",
+      "department": "Department of Zoology",
+      "role": "Member"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tfull_name\ttitle\tcommittee_type\tdepartment\trole\n90001\tHamed Eid\tProf. Dr.\tscientific\tDepartment of Chemistry\tMember\n20\tYoussef El-Demerdash\tProf. Dr.\tscientific\tDepartment of Entomology\tMember\n22\tAbdel-Hameed Wagdy El Manawy\tProf. Dr.\tscientific\tDepartment of Geology\tMember\n23\tMortada Mourad El Aref\tProf. Dr.\tscientific\tDepartment of Geology\tMember\n21\tSameh Tahoun\tProf. Dr.\tscientific\tDepartment of Geology\tChair\n25\tAhmed Mohsen\tDr.\tscientific\tDepartment of Geophysics\tMember\n26\tMohamed Hassan\tProf. Dr.\tscientific\tDepartment of Geophysics\tMember\n24\tWaleed Mabrouk\tProf. Dr.\tscientific\tDepartment of Geophysics\tChair\n28\tAhmed El-Gendy\tProf. Dr.\tscientific\tDepartment of Mathematics\tMember\n30\tMohamed El-Zawawi\tProf. Dr.\tscientific\tDepartment of Mathematics\tMember\n29\tMohamed Ramadan\tProf. Dr.\tscientific\tDepartment of Mathematics\tMember\n27\tNasser El-Azab\tProf. Dr.\tscientific\tDepartment of Mathematics\tChair\n36\tWalid Abdullah\tDr.\tscientific\tDepartment of Mathematics\tMember\n39\tAbeer Abdullah\tProf. Dr.\tscientific\tDepartment of Physics\tMember\n38\tGamal Abdel-Nasser\tProf. Dr.\tscientific\tDepartment of Physics\tMember\n37\tMohamed Hassanein Gaber\tProf. Dr.\tscientific\tDepartment of Physics\tChair\n40\tMohamed Mostafa Arman\tDr.\tscientific\tDepartment of Physics\tMember\n44\tHala Ali Abdel Salam\tProf. Dr.\tscientific\tDepartment of Zoology\tMember\n42\tSalwa Abdelhamid Hamdi\tProf. Dr.\tscientific\tDepartment of Zoology\tChair\n43\tSalwa Thabet\tProf. Dr.\tscientific\tDepartment of Zoology\tMember\n",
+  "stderr": "",
+  "execution_time_ms": 1566
+}

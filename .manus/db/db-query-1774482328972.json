@@ -1,0 +1,19 @@
+{
+  "query": "SELECT id, company_name, package_type, company_website, company_description, logo_url, status FROM sponsorships WHERE status IN ('approved', 'confirmed', 'active', 'paid') ORDER BY package_type;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, company_name, package_type, company_website, company_description, logo_url, status FROM sponsorships WHERE status IN ('approved', 'confirmed', 'active', 'paid') ORDER BY package_type;",
+  "rows": [
+    {
+      "id": "150001",
+      "company_name": "Startup Grind",
+      "package_type": "partner",
+      "company_website": "https://www.startupgrind.com/cairo",
+      "company_description": "Startup Grind is the world's largest startup community, educating, inspiring, and connecting entrepreneurs. Startup Grind Cairo supports student projects in AI, Machine Learning, and Bioinformatics at SCI 2026.",
+      "logo_url": "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/logo_startup_grind_5a94ca60.png",
+      "status": "approved"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tcompany_name\tpackage_type\tcompany_website\tcompany_description\tlogo_url\tstatus\n150001\tStartup Grind\tpartner\thttps://www.startupgrind.com/cairo\tStartup Grind is the world's largest startup community, educating, inspiring, and connecting entrepreneurs. Startup Grind Cairo supports student projects in AI, Machine Learning, and Bioinformatics at SCI 2026.\thttps://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/logo_startup_grind_5a94ca60.png\tapproved\n",
+  "stderr": "",
+  "execution_time_ms": 1564
+}

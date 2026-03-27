@@ -1,0 +1,136 @@
+{
+  "query": "SELECT id, full_name, title, speaker_type, speaker_sector FROM keynote_speakers WHERE id > 22 OR speaker_type = 'keynote' ORDER BY speaker_type DESC, display_order, id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name, title, speaker_type, speaker_sector FROM keynote_speakers WHERE id > 22 OR speaker_type = 'keynote' ORDER BY speaker_type DESC, display_order, id;",
+  "rows": [
+    {
+      "id": "34",
+      "full_name": "Fathy Abdel Aty",
+      "title": "Prof. Dr. ",
+      "speaker_type": "participant",
+      "speaker_sector": "academia"
+    },
+    {
+      "id": "1",
+      "full_name": "Khaled Amer",
+      "title": "Major General Dr.",
+      "speaker_type": "keynote",
+      "speaker_sector": "academia"
+    },
+    {
+      "id": "4",
+      "full_name": "Mortada Mourad Taha El Aref",
+      "title": "Prof. Dr.",
+      "speaker_type": "keynote",
+      "speaker_sector": "academia"
+    },
+    {
+      "id": "16",
+      "full_name": "Ehab El-Dabaa",
+      "title": "Prof. Dr. ",
+      "speaker_type": "keynote",
+      "speaker_sector": "academia"
+    },
+    {
+      "id": "13",
+      "full_name": "Hamed A. Ead",
+      "title": "Prof. Dr. ",
+      "speaker_type": "keynote",
+      "speaker_sector": "academia"
+    },
+    {
+      "id": "31",
+      "full_name": "Fathy Khodair",
+      "title": "Prof. Dr.",
+      "speaker_type": "invited",
+      "speaker_sector": "academia"
+    },
+    {
+      "id": "30",
+      "full_name": "Mohamed Shaker Salem",
+      "title": "Prof. Dr. ",
+      "speaker_type": "invited",
+      "speaker_sector": "academia"
+    },
+    {
+      "id": "23",
+      "full_name": "Rashika El Ridi",
+      "title": "Prof. Dr.",
+      "speaker_type": "invited",
+      "speaker_sector": "academia"
+    },
+    {
+      "id": "24",
+      "full_name": "Ahmad Wafik Al Shareif",
+      "title": "Dr. ",
+      "speaker_type": "invited",
+      "speaker_sector": "industry"
+    },
+    {
+      "id": "25",
+      "full_name": "Ahmed Galal",
+      "title": "Prof. Dr.",
+      "speaker_type": "invited",
+      "speaker_sector": "academia"
+    },
+    {
+      "id": "26",
+      "full_name": "Refaat Gabre",
+      "title": "Prof. Dr. ",
+      "speaker_type": "invited",
+      "speaker_sector": "academia"
+    },
+    {
+      "id": "27",
+      "full_name": "Mostafa Nasser ",
+      "title": "Eng.",
+      "speaker_type": "invited",
+      "speaker_sector": "industry"
+    },
+    {
+      "id": "28",
+      "full_name": "Mohamed Anwar Abdelwahab",
+      "title": "Dr.",
+      "speaker_type": "invited",
+      "speaker_sector": "industry"
+    },
+    {
+      "id": "29",
+      "full_name": "Abdelfattah Kamal",
+      "title": "Dr.",
+      "speaker_type": "invited",
+      "speaker_sector": "industry"
+    },
+    {
+      "id": "32",
+      "full_name": "Ebtehal El-Demerdash",
+      "title": "Prof. Dr. ",
+      "speaker_type": "invited",
+      "speaker_sector": "academia"
+    },
+    {
+      "id": "33",
+      "full_name": "Korany A. Ali",
+      "title": "Prof. Dr. ",
+      "speaker_type": "invited",
+      "speaker_sector": "academia"
+    },
+    {
+      "id": "35",
+      "full_name": "Mohamed Abd El Gawad El-Sayed Ahmed",
+      "title": "Assoc. Prof.",
+      "speaker_type": "invited",
+      "speaker_sector": "academia"
+    },
+    {
+      "id": "36",
+      "full_name": "Ahmad K. Hegazy",
+      "title": "Prof. Dr. ",
+      "speaker_type": "invited",
+      "speaker_sector": "academia"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tfull_name\ttitle\tspeaker_type\tspeaker_sector\n34\tFathy Abdel Aty\tProf. Dr. \tparticipant\tacademia\n1\tKhaled Amer\tMajor General Dr.\tkeynote\tacademia\n4\tMortada Mourad Taha El Aref\tProf. Dr.\tkeynote\tacademia\n16\tEhab El-Dabaa\tProf. Dr. \tkeynote\tacademia\n13\tHamed A. Ead\tProf. Dr. \tkeynote\tacademia\n31\tFathy Khodair\tProf. Dr.\tinvited\tacademia\n30\tMohamed Shaker Salem\tProf. Dr. \tinvited\tacademia\n23\tRashika El Ridi\tProf. Dr.\tinvited\tacademia\n24\tAhmad Wafik Al Shareif\tDr. \tinvited\tindustry\n25\tAhmed Galal\tProf. Dr.\tinvited\tacademia\n26\tRefaat Gabre\tProf. Dr. \tinvited\tacademia\n27\tMostafa Nasser \tEng.\tinvited\tindustry\n28\tMohamed Anwar Abdelwahab\tDr.\tinvited\tindustry\n29\tAbdelfattah Kamal\tDr.\tinvited\tindustry\n32\tEbtehal El-Demerdash\tProf. Dr. \tinvited\tacademia\n33\tKorany A. Ali\tProf. Dr. \tinvited\tacademia\n35\tMohamed Abd El Gawad El-Sayed Ahmed\tAssoc. Prof.\tinvited\tacademia\n36\tAhmad K. Hegazy\tProf. Dr. \tinvited\tacademia\n",
+  "stderr": "",
+  "execution_time_ms": 1642
+}

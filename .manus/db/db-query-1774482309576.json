@@ -1,0 +1,74 @@
+{
+  "query": "SELECT id, full_name, title, committee_type, department, role FROM committees WHERE committee_type = 'organizing' OR id > 36 ORDER BY committee_type, display_order;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name, title, committee_type, department, role FROM committees WHERE committee_type = 'organizing' OR id > 36 ORDER BY committee_type, display_order;",
+  "rows": [
+    {
+      "id": "37",
+      "full_name": "Mohamed Hassanein Gaber",
+      "title": "Prof. Dr.",
+      "committee_type": "scientific",
+      "department": "Department of Physics",
+      "role": "Chair"
+    },
+    {
+      "id": "90001",
+      "full_name": "Hamed Eid",
+      "title": "Prof. Dr.",
+      "committee_type": "scientific",
+      "department": "Department of Chemistry",
+      "role": "Member"
+    },
+    {
+      "id": "38",
+      "full_name": "Gamal Abdel-Nasser",
+      "title": "Prof. Dr.",
+      "committee_type": "scientific",
+      "department": "Department of Physics",
+      "role": "Member"
+    },
+    {
+      "id": "39",
+      "full_name": "Abeer Abdullah",
+      "title": "Prof. Dr.",
+      "committee_type": "scientific",
+      "department": "Department of Physics",
+      "role": "Member"
+    },
+    {
+      "id": "40",
+      "full_name": "Mohamed Mostafa Arman",
+      "title": "Dr.",
+      "committee_type": "scientific",
+      "department": "Department of Physics",
+      "role": "Member"
+    },
+    {
+      "id": "42",
+      "full_name": "Salwa Abdelhamid Hamdi",
+      "title": "Prof. Dr.",
+      "committee_type": "scientific",
+      "department": "Department of Zoology",
+      "role": "Chair"
+    },
+    {
+      "id": "43",
+      "full_name": "Salwa Thabet",
+      "title": "Prof. Dr.",
+      "committee_type": "scientific",
+      "department": "Department of Zoology",
+      "role": "Member"
+    },
+    {
+      "id": "44",
+      "full_name": "Hala Ali Abdel Salam",
+      "title": "Prof. Dr.",
+      "committee_type": "scientific",
+      "department": "Department of Zoology",
+      "role": "Member"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tfull_name\ttitle\tcommittee_type\tdepartment\trole\n37\tMohamed Hassanein Gaber\tProf. Dr.\tscientific\tDepartment of Physics\tChair\n90001\tHamed Eid\tProf. Dr.\tscientific\tDepartment of Chemistry\tMember\n38\tGamal Abdel-Nasser\tProf. Dr.\tscientific\tDepartment of Physics\tMember\n39\tAbeer Abdullah\tProf. Dr.\tscientific\tDepartment of Physics\tMember\n40\tMohamed Mostafa Arman\tDr.\tscientific\tDepartment of Physics\tMember\n42\tSalwa Abdelhamid Hamdi\tProf. Dr.\tscientific\tDepartment of Zoology\tChair\n43\tSalwa Thabet\tProf. Dr.\tscientific\tDepartment of Zoology\tMember\n44\tHala Ali Abdel Salam\tProf. Dr.\tscientific\tDepartment of Zoology\tMember\n",
+  "stderr": "",
+  "execution_time_ms": 1612
+}
