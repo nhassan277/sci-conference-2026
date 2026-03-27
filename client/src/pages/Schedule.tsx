@@ -109,11 +109,11 @@ const participantGeoDay1 = [
 const invitedBioDay2 = [
   { name: "Prof. Dr. Sohair Ramadan", affiliation: "Dean of Faculty of Science, Cairo University", talk: "Practical Aspects of Experimental Design in Laboratory Animal Science" },
   { name: "Prof. Dr. Rashika El Ridi", affiliation: "Professor of Immunology, Zoology Department, Faculty of Science, Cairo University", talk: "The Impact of Misleading Concepts in Science on Efforts to Control Schistosomiasis and Cancer" },
-  { name: "Prof. Dr. Ebtehal El-Demerdash", affiliation: "Professor, Faculty of Science, Cairo University", talk: "" },
+  { name: "Prof. Dr. Ebtehal El-Demerdash", affiliation: "Professor, Faculty of Science, Cairo University", talk: "When Pharmacometrics meets AI: Shaping the future of therapeutics" },
   { name: "Prof. Dr. Nashwa El-Khazragy", affiliation: "Faculty of Science, Cairo University", talk: "" },
   { name: "Dr. Mohamed Anwar", affiliation: "Flavor House — Organic Chemistry & Flavor Manufacturing", talk: "From Molecules to Taste: The Role of Organic Chemistry in Flavor Manufacturing" },
   { name: "Prof. Dr. Mohamed Hamed", affiliation: "Associate Professor of Biomedical Informatics and Computational Biology", talk: "Computational Transformation in Drug Discovery: Bioinformatics and AI Innovations in Pharmaceutical Science" },
-  { name: "Prof. Dr. Mohamed Abdel Gawad", affiliation: "Faculty of Science, Cairo University", talk: "" },
+  { name: "Prof. Dr. Mohamed Abdel Gawad", affiliation: "Faculty of Science, Cairo University", talk: "Metabolic Mastery: Engineering the PETase-MHETase Synergistic Consortium for a Truly Circular Plastic Economy" },
   { name: "Prof. Dr. Ayman El-Shibiny", affiliation: "Professor of Biomedical Sciences, Director of CMP, Zewail City", talk: "Phage Innovation: Targeted Solutions for Regional Antimicrobial Challenges" },
   { name: "Dr. Ahmed Fikry", affiliation: "Assistant Professor, King Salman International University", talk: "Computer-Aided Drug Design: From Code to Cure" },
 ];
@@ -128,7 +128,7 @@ const invitedGeoDay2 = [
   { name: "Dr. Ahmed Wafik", affiliation: "Senior Petrophysicist, Assistant General Manager for Development", talk: "Detection of Low Contrast, Low Resistivity Pay (LCLR) Challenge in Shaly Sand Gas Reservoir" },
   { name: "Prof. Dr. Nagwa El-Badri", affiliation: "Director of Biomedical Sciences Program & Center of Excellence for Stem Cells", talk: "Biomimetic Scaffolds and the Human Amniotic Membrane" },
   { name: "Prof. Dr. Abdel Rahman Bader", affiliation: "Faculty of Science, Cairo University", talk: "" },
-  { name: "Prof. Dr. Reda Salem", affiliation: "Faculty of Science, Cairo University", talk: "" },
+  { name: "Prof. Dr. Reda Salem", affiliation: "Faculty of Science, Cairo University", talk: "Recombinant Technologies in Poultry Vaccine Development: From Molecular Design to Industrial Application" },
   { name: "Dr. Walaa Abbas", affiliation: "Faculty of Science, Cairo University", talk: "" },
 ];
 
@@ -521,7 +521,8 @@ const sessions = {
       ],
       workshops: [
         { room: "Workshop Rooms 1 & 2", roomAr: "غرف ورشة العمل ١ و ٢", name: "Nawah Scientific Workshop", nameAr: "ورشة عمل نواة للعلوم" },
-        { room: "Workshop Room 3", roomAr: "غرفة ورشة العمل ٣", name: "Environmental Geochemical Data Analysis — Session 2 (Dr. Jan Sedláček, Czech Geological Survey)", nameAr: "تحليل البيانات الجيوكيميائية البيئية — الجلسة الثانية" }
+        { room: "Workshop Room 3", roomAr: "غرفة ورشة العمل ٣", name: "Environmental Geochemical Data Analysis — Session 2 (Dr. Jan Sedláček, Czech Geological Survey)", nameAr: "تحليل البيانات الجيوكيميائية البيئية — الجلسة الثانية" },
+        { room: "Workshop Room 4", roomAr: "غرفة ورشة العمل ٤", name: "Bioinformatics Workshop — Dr. Dina Amr (09:35–12:15)", nameAr: "ورشة المعلوماتية الحيوية — د. دينا عمرو (٩:٣٥–١٢:١٥)" }
       ]
     },
     {
@@ -539,7 +540,8 @@ const sessions = {
       ],
       workshops: [
         { room: "Workshop Rooms 1 & 2", roomAr: "غرف ورشة العمل ١ و ٢", name: "Nawah Scientific Workshop (Cont.)", nameAr: "ورشة عمل نواة للعلوم (تابع)" },
-        { room: "Workshop Room 3", roomAr: "غرفة ورشة العمل ٣", name: "Bioinformatics Workshop (Dr. Dina Amr)", nameAr: "ورشة علم المعلوماتية الحيوية (د. دينا عمرو)" }
+        { room: "Workshop Room 3", roomAr: "غرفة ورشة العمل ٣", name: "Bioinformatics Workshop (Dr. Dina Amr)", nameAr: "ورشة علم المعلوماتية الحيوية (د. دينا عمرو)" },
+        { room: "Workshop Room 4", roomAr: "غرفة ورشة العمل ٤", name: "Bioinformatics Workshop — Dr. Dina Amr (Cont.)", nameAr: "ورشة المعلوماتية الحيوية — د. دينا عمرو (تابع)" }
       ]
     },
     {
@@ -557,7 +559,7 @@ const sessions = {
       ],
       workshops: [
         { room: "Workshop Rooms 1 & 2", roomAr: "غرف ورشة العمل ١ و ٢", name: "Nawah Scientific Workshop (Cont.)", nameAr: "ورشة عمل نواة للعلوم (تابع)" },
-        { room: "Workshop Room 3", roomAr: "غرفة ورشة العمل ٣", name: "Bioinformatics Workshop (Cont.)", nameAr: "ورشة علم المعلوماتية الحيوية (تابع)" }
+        { room: "Workshop Room 3", roomAr: "غرفة ورشة العمل ٣", name: "Bioinformatics Workshop — Dr. Dina Amr (Cont.)", nameAr: "ورشة المعلوماتية الحيوية — د. دينا عمرو (تابع)" }
       ]
     },
     {
@@ -575,7 +577,7 @@ const sessions = {
       ],
       workshops: [
         { room: "Workshop Rooms 1 & 2", roomAr: "غرف ورشة العمل ١ و ٢", name: "Nawah Scientific Workshop (Cont.)", nameAr: "ورشة عمل نواة للعلوم (تابع)" },
-        { room: "Workshop Room 3", roomAr: "غرفة ورشة العمل ٣", name: "Bioinformatics Workshop (Cont.)", nameAr: "ورشة علم المعلوماتية الحيوية (تابع)" }
+        { room: "Workshop Room 3", roomAr: "غرفة ورشة العمل ٣", name: "Bioinformatics Workshop — Dr. Dina Amr (Cont.)", nameAr: "ورشة المعلوماتية الحيوية — د. دينا عمرو (تابع)" }
       ]
     },
     {
@@ -593,7 +595,7 @@ const sessions = {
       ],
       workshops: [
         { room: "Workshop Rooms 1 & 2", roomAr: "غرف ورشة العمل ١ و ٢", name: "Nawah Scientific Workshop (Cont.)", nameAr: "ورشة عمل نواة للعلوم (تابع)" },
-        { room: "Workshop Room 3", roomAr: "غرفة ورشة العمل ٣", name: "Bioinformatics Workshop (Cont.)", nameAr: "ورشة علم المعلوماتية الحيوية (تابع)" }
+        { room: "Workshop Room 3", roomAr: "غرفة ورشة العمل ٣", name: "Bioinformatics Workshop — Dr. Dina Amr (Cont.)", nameAr: "ورشة المعلوماتية الحيوية — د. دينا عمرو (تابع)" }
       ]
     },
     {

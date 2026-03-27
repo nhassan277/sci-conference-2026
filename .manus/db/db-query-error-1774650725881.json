@@ -1,0 +1,31 @@
+{
+  "query": "SHOW TABLES; SELECT * FROM workshops WHERE title LIKE '%Dina%' OR title LIKE '%Bioinformatics%' LIMIT 5;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SHOW TABLES; SELECT * FROM workshops WHERE title LIKE '%Dina%' OR title LIKE '%Bioinformatics%' LIMIT 5;",
+  "returncode": 1,
+  "logs": [
+    "Tables_in_BK5ELr97meyN2f7P5B76DF",
+    "__drizzle_migrations",
+    "admins",
+    "announcements",
+    "audit_logs",
+    "certificate_requests",
+    "committees",
+    "digest_preferences",
+    "gallery_photos",
+    "google_sheets_syncs",
+    "keynote_speakers",
+    "media_registrations",
+    "newsletter_subscriptions",
+    "payments",
+    "registrations",
+    "reminder_subscriptions",
+    "sessions",
+    "sponsorships",
+    "support_tickets",
+    "survey_responses",
+    "surveys",
+    "users",
+    "volunteers",
+    "ERROR 1146 (42S02) at line 1: Table 'bk5elr97meyn2f7p5b76df.workshops' doesn't exist"
+  ]
+}

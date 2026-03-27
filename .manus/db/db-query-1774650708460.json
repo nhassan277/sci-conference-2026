@@ -1,0 +1,20 @@
+{
+  "query": "SELECT full_name, presentation_title, presentation_title_ar FROM keynote_speakers WHERE full_name LIKE '%Ebtehal%' OR full_name LIKE '%Abdel Gawad%' OR full_name LIKE '%Abdelgawad%' OR full_name LIKE '%Reda Salem%' OR full_name LIKE '%Dina Amr%';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT full_name, presentation_title, presentation_title_ar FROM keynote_speakers WHERE full_name LIKE '%Ebtehal%' OR full_name LIKE '%Abdel Gawad%' OR full_name LIKE '%Abdelgawad%' OR full_name LIKE '%Reda Salem%' OR full_name LIKE '%Dina Amr%';",
+  "rows": [
+    {
+      "full_name": "Ebtehal El-Demerdash",
+      "presentation_title": "When Pharmacometrics meets AI: Shaping the future of therapeutics",
+      "presentation_title_ar": "NULL"
+    },
+    {
+      "full_name": "Reda Salem ",
+      "presentation_title": "Recombinant Technologies in Poultry Vaccine Development: From Molecular Design to Industrial Application",
+      "presentation_title_ar": "NULL"
+    }
+  ],
+  "messages": [],
+  "stdout": "full_name\tpresentation_title\tpresentation_title_ar\nEbtehal El-Demerdash\tWhen Pharmacometrics meets AI: Shaping the future of therapeutics\tNULL\nReda Salem \tRecombinant Technologies in Poultry Vaccine Development: From Molecular Design to Industrial Application\tNULL\n",
+  "stderr": "",
+  "execution_time_ms": 1642
+}
