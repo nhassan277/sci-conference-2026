@@ -14,6 +14,7 @@ import { initializeSurveyScheduler } from "./survey-scheduler.js";
 import { initReminderScheduler } from "./reminder-scheduler.js";
 import { setupVite, serveStatic } from "./vite.js";
 import { generateSchedulePDF } from "./schedule-pdf.js";
+import { generateAbstractsPDF } from "./abstracts-pdf.js";
 
 dotenv.config();
 
@@ -142,6 +143,16 @@ async function startServer() {
     } catch (error) {
       console.error("PDF generation error:", error);
       res.status(500).json({ error: "Failed to generate PDF" });
+    }
+  });
+
+  // Abstracts PDF export endpoint (public)
+  app.get("/api/abstracts/export-pdf", async (req, res) => {
+    try {
+      await generateAbstractsPDF(res);
+    } catch (error) {
+      console.error("Abstracts PDF generation error:", error);
+      res.status(500).json({ error: "Failed to generate abstracts PDF" });
     }
   });
 

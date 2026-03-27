@@ -3,7 +3,8 @@ import { trpc } from "@/lib/trpc";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Search, ChevronDown, ChevronUp, BookOpen, User, Building2 } from "lucide-react";
+import { Search, ChevronDown, ChevronUp, BookOpen, User, Building2, Download } from "lucide-react";
+
 
 type Speaker = {
   id: number;
@@ -39,6 +40,28 @@ export default function Abstracts() {
   const [search, setSearch] = useState("");
   const [expandedId, setExpandedId] = useState<number | null>(null);
   const [sectorFilter, setSectorFilter] = useState<string>("all");
+  const [isDownloading, setIsDownloading] = useState(false);
+
+  const handleDownloadPDF = async () => {
+    setIsDownloading(true);
+    try {
+      const response = await fetch("/api/abstracts/export-pdf");
+      if (!response.ok) throw new Error("Failed to generate PDF");
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "SCI2026_Book_of_Abstracts.pdf";
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    } catch (err) {
+      console.error("Download failed:", err);
+    } finally {
+      setIsDownloading(false);
+    }
+  };
 
   const { data: allSpeakers, isLoading } = trpc.keynoteSpeakers.list.useQuery();
 
@@ -97,9 +120,19 @@ export default function Abstracts() {
           <p className="text-white/60 text-sm">
             Science at the Core of Innovation · April 7–8, 2026 · Cairo University
           </p>
-          <div className="mt-6 inline-flex items-center gap-2 bg-[#D4AF37]/20 border border-[#D4AF37]/40 rounded-full px-4 py-1.5 text-[#F0D264] text-sm">
-            <BookOpen className="w-4 h-4" />
-            <span>{withAbstracts.length} Abstracts Available · {allSpeakersList.length} Total Speakers</span>
+          <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <div className="inline-flex items-center gap-2 bg-[#D4AF37]/20 border border-[#D4AF37]/40 rounded-full px-4 py-1.5 text-[#F0D264] text-sm">
+              <BookOpen className="w-4 h-4" />
+              <span>{withAbstracts.length} Abstracts Available · {allSpeakersList.length} Total Speakers</span>
+            </div>
+            <button
+              onClick={handleDownloadPDF}
+              disabled={isDownloading}
+              className="inline-flex items-center gap-2 bg-[#D4AF37] hover:bg-[#c9a227] disabled:opacity-60 disabled:cursor-not-allowed text-[#41081A] font-bold rounded-full px-5 py-2 text-sm transition-colors"
+            >
+              <Download className="w-4 h-4" />
+              {isDownloading ? "Generating PDF…" : "Download Book of Abstracts"}
+            </button>
           </div>
         </div>
       </section>
