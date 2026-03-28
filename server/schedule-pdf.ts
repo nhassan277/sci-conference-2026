@@ -211,8 +211,8 @@ const day1Sessions: DaySession[] = [
   { time: "08:30 - 09:30", type: "registration", title: "Arrival & Registration",           location: "Conference Hall Entrance",        description: "Welcome and registration for all conference participants" },
   { time: "09:30 - 10:00", type: "opening",      title: "Welcome Talk",                     location: "Hall A (Connected to all halls)", description: "Opening ceremony with welcome addresses from university leadership" },
   { time: "10:00 - 10:30", type: "opening",      title: "Opening Remarks (Continued)",      location: "Hall A (Connected to all halls)", description: "Continued opening ceremony" },
-  { time: "10:30 - 10:50", type: "keynote",      title: "Plenary Speaker 1",                location: "Hall A (Connected to all halls)", speaker: keynoteSpeakers[0] },
-  { time: "10:50 - 11:10", type: "keynote",      title: "Plenary Speaker 2",                location: "Hall A (Connected to all halls)", speaker: keynoteSpeakers[1] },
+  { time: "10:30 - 10:50", type: "keynote",      title: keynoteSpeakers[0].name,            location: "Hall A (Connected to all halls)", speaker: keynoteSpeakers[0] },
+  { time: "10:50 - 11:10", type: "keynote",      title: keynoteSpeakers[1].name,            location: "Hall A (Connected to all halls)", speaker: keynoteSpeakers[1] },
   { time: "11:10 - 11:30", type: "panel",        title: "Discussion Panel",                 location: "All Halls",                      description: "Interactive discussion following plenary presentations" },
   {
     time: "11:30 - 11:50", type: "parallel", title: "Parallel Sessions - Round 1",
@@ -321,8 +321,8 @@ const day1Sessions: DaySession[] = [
 // ─── DAY 2 SESSIONS ───────────────────────────────────────────────────────────
 const day2Sessions: DaySession[] = [
   { time: "08:30 - 09:15", type: "registration", title: "Arrival & Registration",    location: "Conference Hall Entrance",       description: "Registration for Day 2 participants" },
-  { time: "09:15 - 09:35", type: "keynote",      title: "Plenary Speaker 3",         location: "Hall A (Connected to all halls)", speaker: keynoteSpeakers[2] },
-  { time: "09:35 - 09:55", type: "keynote",      title: "Plenary Speaker 4",         location: "Hall A (Connected to all halls)", speaker: keynoteSpeakers[3] },
+  { time: "09:15 - 09:35", type: "keynote",      title: keynoteSpeakers[2].name,    location: "Hall A (Connected to all halls)", speaker: keynoteSpeakers[2] },
+  { time: "09:35 - 09:55", type: "keynote",      title: keynoteSpeakers[3].name,    location: "Hall A (Connected to all halls)", speaker: keynoteSpeakers[3] },
   { time: "09:55 - 10:15", type: "panel",        title: "Discussion Panel",          location: "All Halls",                      description: "Interactive discussion following plenary presentations" },
   {
     time: "10:15 - 10:35", type: "parallel", title: "Parallel Sessions - Round 1",
@@ -788,7 +788,7 @@ export async function generateSchedulePDF(res: Response): Promise<void> {
     const colX = margin + col * (colW + 6);
     const affiliation = getAffiliationForSpeaker(spName);
 
-    doc.rect(colX, rowStart, colW, rowH).fill("rgba(255,255,255,0.05)");
+    doc.rect(colX, rowStart, colW, rowH).fill("#0d2540");
     doc.rect(colX, rowStart, 3, rowH).fill(COLORS.secondary);
 
     const photoCx = colX + 3 + photoR + 5;
@@ -797,10 +797,10 @@ export async function generateSchedulePDF(res: Response): Promise<void> {
 
     const textX = photoCx + photoR + 5;
     const textW2 = colW - (textX - colX) - 4;
-    // Strip titles from display name for cleaner look
+    // Strip common leading titles for cleaner display
     const displayName = spName
-      .replace(/^(Major General |Assoc\. Prof\. |Prof\. Dr\. |Prof\. |Dr\. |Eng\. |Mr\. |Ms\. |Mrs\. |Prof em\. )/i, "")
-      .trim();
+      .replace(/^(Major General\s+|Assoc\.\s*Prof\.\s*Dr\.\s*|Prof\.\s*em\.\s*|Prof\.\s*Dr\.\s*|Prof\.\s*|Dr\.\s*|Eng\.\s*|Mr\.\s*|Ms\.\s*|Mrs\.\s*)/i, "")
+      .trim() || spName;
     doc.fontSize(7.5).fillColor(COLORS.white).font("Helvetica-Bold")
       .text(displayName, textX, rowStart + 5, { width: textW2, lineBreak: false, ellipsis: true });
     if (affiliation) {
