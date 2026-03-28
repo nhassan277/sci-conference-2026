@@ -137,9 +137,9 @@ async function startServer() {
   });
 
   // Schedule PDF export endpoint (public)
-  app.get("/api/schedule/export-pdf", (req, res) => {
+  app.get("/api/schedule/export-pdf", async (req, res) => {
     try {
-      generateSchedulePDF(res);
+      await generateSchedulePDF(res);
     } catch (error) {
       console.error("PDF generation error:", error);
       res.status(500).json({ error: "Failed to generate PDF" });

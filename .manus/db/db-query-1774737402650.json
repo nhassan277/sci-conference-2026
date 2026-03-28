@@ -1,0 +1,274 @@
+{
+  "query": "SELECT full_name, title, affiliation, photo_url, speaker_type FROM keynote_speakers WHERE is_visible = 1 ORDER BY speaker_type, display_order LIMIT 50;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT full_name, title, affiliation, photo_url, speaker_type FROM keynote_speakers WHERE is_visible = 1 ORDER BY speaker_type, display_order LIMIT 50;",
+  "rows": [
+    {
+      "full_name": "Ebtehal El-Demerdash",
+      "title": "Prof. Dr. ",
+      "affiliation": "Prof. of Pharmacology & Toxicology, Faculty of Pharmacy, Ain Shams University",
+      "photo_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQATqJ0GJ9l9eBqkiDaumJs50B8L578GQcRgw&s",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Khalid Muhammad Taalab",
+      "title": "Prof. Dr.",
+      "affiliation": "Nuclear Medicine Professor at Military Medical Academy, Egypt Centre of Research and Regenerative Medicine (ECRRM)",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/yopjWqQNqSdHnLgX.png",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Fathy Abdel Aty",
+      "title": "Prof. Dr. ",
+      "affiliation": "Professor of Parasitology, Zoology Department, Faculty of Science, Cairo University",
+      "photo_url": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMQEhMSExISEBUSEBAXEhIVFRAQDxUVFRIWFxUVFRUYHSggGBolGxUVITEhJSkrLi4uFx8zODMtNygtLisBCgoKDg0OFxAQGi0dHR0rLS0rKy0tNy0rLS0rLS0rKy0tKy0tLS0tLS03LSstLTctLS0rLS03LS03Ky0rKystK//AABEIAOEA4QMBIgACEQEDEQH/xAAcAAABBQEBAQAAAAAAAAAAAAAAAQMEBQYCBwj/xABBEAACAQIDBQQHBgMHBQEAAAAAAQIDEQQhMQUSQVFhBhNxgQciMlKRobFicsHR4fBCc7IUJDM1Q4KzIzRjksIV/8QAGQEBAAMBAQAAAAAAAAAAAAAAAAECBAMF/8QAIhEBAQADAAMAAgMBAQAAAAAAAAECAxESITEEQSIyUTMT/9oADAMBAAIRAxEAPwD1PYnZqjhKsqlKK",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Naglaa A. Abdallah",
+      "title": "Prof. Dr. ",
+      "affiliation": "Professor of Genetics, Faculty of Agriculture, Cairo University",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/SiZQEfsvJgBfqrHD.png",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Adel Khalil Ibrahim Gohar",
+      "title": "Prof. Dr. ",
+      "affiliation": "Director of the Molecular Diagnosis Unit (MDU) Professor of Clinical Pathology, Faculty of Veterinary Medicine, Cairo University",
+      "photo_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYoI_REwOvGri3mB-xwIlZ7DPlDVYUMi0i_rQO8ONlGg&s",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Mohamed Shaker Salem",
+      "title": "Prof. Dr. ",
+      "affiliation": "Physics Department, Faculty of Science, Cairo University ",
+      "photo_url": "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/WhatsAppImage2026-03-12at18.49.43_23590640.jpeg",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Osama Shalabiea",
+      "title": "Prof. Dr.",
+      "affiliation": "Professor of Astrophysics and Space Physics, and Dean of the Faculty of Navigation Sciences and Space Technology, Beni Suef University",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/XuXUgGyzMuvjEFhM.jpeg",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Mahmoud Ibrahim Nasr",
+      "title": "Prof. Dr.",
+      "affiliation": "Professor of Ore Beneficiation and Manufacturing, Egyptian Central Metallurgical Research & Development Institute (CMRDI)",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/zBUqJnTzJbTTCvpq.jpg",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Nashwa El-Sayed Nagy El-Khazragy",
+      "title": "Prof. Dr.",
+      "affiliation": "Professor of clinical pathology-hematology and head of the Proteomics and Metabolomics Research Unit",
+      "photo_url": "https://www.asu.edu.eg/staffPortal/storage//uploads/staffimages/BqMb7NL2CDcTAI00.png",
+      "speaker_type": "invited "
+    },
+    {
+      "full_name": "Osama Azmy",
+      "title": "Prof. Dr.",
+      "affiliation": "Consultant to the President of the National Research Centre for medical clinical trials, Head of the Regenerative Medicine Unit at NRC, Fellow of the Royal College of Obstetricians and Gynecologists (FRCOG)",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/QRaHoRvWllHeUlfD.png",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Ahmad K. Hegazy",
+      "title": "Prof. Dr. ",
+      "affiliation": "Professor of Ecology and Environmental Sciences, Faculty of Science, Cairo University",
+      "photo_url": "https://livedna.net/images/scientist/20.10849.jpg",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Reda Salem ",
+      "title": "Prof. Dr.",
+      "affiliation": "Head of molecular biology Dept. AGERI, ARC and Scientific Consultant, Vaccine Valley ",
+      "photo_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCcujK5vZ3QVQQtvmL-PYK6T9ELkr1t4l48B8Sjo7Ipg&s=10",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Fathy Khodair",
+      "title": "Prof. Dr.",
+      "affiliation": "Former Dean, Faculty of Medicine (Kasr Al-Ainy), Cairo University - Advisor to the President of Cairo University - Consultant Plastic and Reconstructive Surgeon",
+      "photo_url": "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/Gemini_Generated_Image_llarqrllarqrllar_3b6e03be.png",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Ashraf Abdou Tabll",
+      "title": "Prof. Dr.",
+      "affiliation": "Professor of Medical Biotechnology, Egypt Center for Research and Regenerative Medicine (ECRRM)",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/JmdTRNcwzCEaJjrU.jpeg",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Ibrahim M. El-Sherbiny",
+      "title": "Prof. Dr.",
+      "affiliation": "Professor of Nanotechnology & Nanomedicine, Founding Chairman of Nanoscience Program, Founding Director of Center of Materials Science, Acting President of the University of Science and Technology at Zewail City",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/CzEOiUuHXNdycLQK.jpeg",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Mohamed Ibrahim El-Anbawy",
+      "title": "Prof. Dr.",
+      "affiliation": "Professor of Environmental Geology, Geology Department, Faculty of Science, Cairo University",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/fEpxsoPAkLpFAtDV.jpg",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Ahmed Galal",
+      "title": "Prof. Dr.",
+      "affiliation": "Chemistry Department, Faculty of Science, Cairo University",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/CKymLjGwFZnPadSI.png",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Rashika El Ridi",
+      "title": "Prof. Dr.",
+      "affiliation": "Professor of Immunology, Zoology Department, Faculty of Science, Cairo University",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/NNrbfYQKaAYXPFdI.png",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Sohair Ramadan Fahmy",
+      "title": "Prof. Dr.",
+      "affiliation": "Dean of Faculty of Science, Cairo University; General Coordinator of the Sustainability Office; Professor of Physiology, Zoology Department, Faculty of Science, Cairo University",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/hqCqvqYZLfAAyYbb.png",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Nagwa El-Badri",
+      "title": "Prof. Dr.",
+      "affiliation": "Director of Biomedical Sciences Program, Director of Center of Excellence for Stem Cells and Regenerative Medicine, Professor, Biomedical Sciences Program, Zewail City of Science, Technology and Innovation",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/XhCVtcmaxCborVYI.png",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Refaat Gabre",
+      "title": "Prof. Dr. ",
+      "affiliation": "Head of Biotechnology Department, Faculty of Science, Cairo University",
+      "photo_url": "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_47sAul_image_09cbad67.png",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Ayman El-Shibiny",
+      "title": "Prof. Dr. ",
+      "affiliation": "Professor of Biomedical Sciences, and Director of CMP, Zewail City of Science and Technology",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/wWlOEHhvidephepp.png",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Mostafa Nasser ",
+      "title": "Eng.",
+      "affiliation": "Startup Grind Chapter Director",
+      "photo_url": "https://res.cloudinary.com/startup-grind/image/upload/c_fill,dpr_2,f_auto,g_center,q_auto:good/v1/gcs/platform-data-startupgrind/avatars/mostafa_nasser.jpeg",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Tarek Kapiel",
+      "title": "Dr. em.",
+      "affiliation": "Assistant Professor of Plant Biotechnology at Department of Biotechnology, Faculty of Science, Cairo University",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/ASFgJyOIuZIbQQTd.png",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Ahmad Wafik Al Shareif",
+      "title": "Dr. ",
+      "affiliation": "Senior Petrophysicist, Assistant General Manager for Development, El Wastani Petroleum Company (WASCO), Dana Gas JV   ",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/QQVlSCCSsDGYbpzD.png",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Ahmed Fikry El-Sayed",
+      "title": "Dr.",
+      "affiliation": "Assistant Professor, King Salman International University",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/TbmaCrtrtyaJjSsm.png",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Mohamed Anwar Abdelwahab",
+      "title": "Dr.",
+      "affiliation": "R&D Manager, Techno Taste (Flavor House)",
+      "photo_url": "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_FsUHjJ_image_364cded7.png",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Abdelfattah Kamal",
+      "title": "Dr.",
+      "affiliation": "Operations Director at BioGeneric pharma (BGP)",
+      "photo_url": "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_TRiV0W_image_c2f3f56c.png",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Areeg Abdalla",
+      "title": "Dr. ",
+      "affiliation": "Associate Professor, Mathematics Department, Faculty of Science, Cairo University",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/rLwMVUiTPMbedEmY.png",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Ahmed Youssef ",
+      "title": "Dr.",
+      "affiliation": "Production Deputy Manager and Vaccine Line Head at BioGeneric Pharma (BGP), and Instructor at Africa CDC biomanufacturing training programs",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/NKfXBKqJcSQePjbF.jpeg",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Sahar Hassan",
+      "title": "Dr.",
+      "affiliation": "Senior Geologist and Sedimentologist, Digital Subsurface Solutions, SLB",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/TAxrmfwYatNFofbJ.jpg",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Mohamed Hamed",
+      "title": "Assoc. Prof. Dr. ",
+      "affiliation": "Associate professor of biomedical informatics and computational biology at the German University of Cairo (GUC).",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/RYEfletAfTWjKCac.png",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Mohamed Abd El Gawad El-Sayed Ahmed",
+      "title": "Assoc. Prof.",
+      "affiliation": "Associate Professor in Department of Microbiology and Immunology, College of Pharmaceutical Sciences and Drug Manufacturing, Misr University for Science and Technology, Giza, Egypt",
+      "photo_url": "https://i1.rgstatic.net/ii/profile.image/11431281222417407-1707234494920_Q512/Mohamed-El-Sayed-Ahmed.jpg",
+      "speaker_type": "invited"
+    },
+    {
+      "full_name": "Khaled Amer",
+      "title": "Major General Dr.",
+      "affiliation": "Principal Investigator of Human Genome project, Egypt Centre for Research and Regenerative Medicine (ECRRM)",
+      "photo_url": "/images/speakers/khalid-amer.jpg",
+      "speaker_type": "keynote"
+    },
+    {
+      "full_name": "Mortada Mourad Taha El Aref",
+      "title": "Prof. Dr.",
+      "affiliation": "Professor of Ore Geology, Geology Department, Faculty of Science, Cairo University",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/XcXczPQWMszNbalu.png",
+      "speaker_type": "keynote"
+    },
+    {
+      "full_name": "Ehab El-Dabaa",
+      "title": "Prof. Dr. ",
+      "affiliation": "Deputy Director of the Biochemistry & Molecular Biology and Medicinal Chemistry Division and head of Center of Excellence in Recombinant Biopharmaceutical Proteins (CERBioP), Theodor Bilharz Research Institute, Egypt",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/FrVXvngjcwapBBSa.png",
+      "speaker_type": "keynote"
+    },
+    {
+      "full_name": "Hamed A. Ead",
+      "title": "Prof. Dr. ",
+      "affiliation": "Professor of Chemistry, Faculty of Science, Cairo University",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/AtNmemNuRnYHUIWu.png",
+      "speaker_type": "keynote"
+    }
+  ],
+  "messages": [
+    "Mortada Mourad El Aref\tProf. Dr.\tProfessor of Ore Geology, Geology Department, Faculty of Science, Cairo University",
+    "\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/XcXczPQWMszNbalu.png\tinvited",
+    "Korany A. Ali\tProf. Dr. \tDirector of the Research and Development Center for Chemical and",
+    "Pharmaceutical Industries (R&D-CPI), National Research Centre\thttps://media.licdn.com/dms/image/v2/D4D03AQEfDnGOMWLFFw/profile-displayphoto-shrink_200_200/B4DZRVYo_ZHcAg-/0/1736599312059?e=2147483647&v=beta&t=oFEVTJMWgxSCMYsFbGgowLiQhwWxDY7Ehn2P4uX5w1U\tinvited"
+  ],
+  "stdout": "full_name\ttitle\taffiliation\tphoto_url\tspeaker_type\nEbtehal El-Demerdash\tProf. Dr. \tProf. of Pharmacology & Toxicology, Faculty of Pharmacy, Ain Shams University\thttps://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQATqJ0GJ9l9eBqkiDaumJs50B8L578GQcRgw&s\tinvited\nKhalid Muhammad Taalab\tProf. Dr.\tNuclear Medicine Professor at Military Medical Academy, Egypt Centre of Research and Regenerative Medicine (ECRRM)\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/yopjWqQNqSdHnLgX.png\tinvited\nMortada Mourad El Aref\tProf. Dr.\tProfessor of Ore Geology, Geology Department, Faculty of Science, Cairo University\n\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/XcXczPQWMszNbalu.png\tinvited\nFathy Abdel Aty\tProf. Dr. \tProfessor of Parasitology, Zoology Department, Faculty of Science, Cairo University\tdata:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMQEhMSExISEBUSEBAXEhIVFRAQDxUVFRIWFxUVFRUYHSggGBolGxUVITEhJSkrLi4uFx8zODMtNygtLisBCgoKDg0OFxAQGi0dHR0rLS0rKy0tNy0rLS0rLS0rKy0tKy0tLS0tLS03LSstLTctLS0rLS03LS03Ky0rKystK//AABEIAOEA4QMBIgACEQEDEQH/xAAcAAABBQEBAQAAAAAAAAAAAAAAAQMEBQYCBwj/xABBEAACAQIDBQQHBgMHBQEAAAAAAQIDEQQhMQUSQVFhBhNxgQciMlKRobFicsHR4fBCc7IUJDM1Q4KzIzRjksIV/8QAGQEBAAMBAQAAAAAAAAAAAAAAAAECBAMF/8QAIhEBAQADAAMAAgMBAQAAAAAAAAECAxESITEEQSIyUTMT/9oADAMBAAIRAxEAPwD1PYnZqjhKsqlKK\tinvited\nNaglaa A. Abdallah\tProf. Dr. \tProfessor of Genetics, Faculty of Agriculture, Cairo University\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/SiZQEfsvJgBfqrHD.png\tinvited\nAdel Khalil Ibrahim Gohar\tProf. Dr. \tDirector of the Molecular Diagnosis Unit (MDU) Professor of Clinical Pathology, Faculty of Veterinary Medicine, Cairo University\thttps://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYoI_REwOvGri3mB-xwIlZ7DPlDVYUMi0i_rQO8ONlGg&s\tinvited\nMohamed Shaker Salem\tProf. Dr. \tPhysics Department, Faculty of Science, Cairo University \thttps://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/WhatsAppImage2026-03-12at18.49.43_23590640.jpeg\tinvited\nOsama Shalabiea\tProf. Dr.\tProfessor of Astrophysics and Space Physics, and Dean of the Faculty of Navigation Sciences and Space Technology, Beni Suef University\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/XuXUgGyzMuvjEFhM.jpeg\tinvited\nMahmoud Ibrahim Nasr\tProf. Dr.\tProfessor of Ore Beneficiation and Manufacturing, Egyptian Central Metallurgical Research & Development Institute (CMRDI)\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/zBUqJnTzJbTTCvpq.jpg\tinvited\nNashwa El-Sayed Nagy El-Khazragy\tProf. Dr.\tProfessor of clinical pathology-hematology and head of the Proteomics and Metabolomics Research Unit\thttps://www.asu.edu.eg/staffPortal/storage//uploads/staffimages/BqMb7NL2CDcTAI00.png\tinvited \nOsama Azmy\tProf. Dr.\tConsultant to the President of the National Research Centre for medical clinical trials, Head of the Regenerative Medicine Unit at NRC, Fellow of the Royal College of Obstetricians and Gynecologists (FRCOG)\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/QRaHoRvWllHeUlfD.png\tinvited\nAhmad K. Hegazy\tProf. Dr. \tProfessor of Ecology and Environmental Sciences, Faculty of Science, Cairo University\thttps://livedna.net/images/scientist/20.10849.jpg\tinvited\nReda Salem \tProf. Dr.\tHead of molecular biology Dept. AGERI, ARC and Scientific Consultant, Vaccine Valley \thttps://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCcujK5vZ3QVQQtvmL-PYK6T9ELkr1t4l48B8Sjo7Ipg&s=10\tinvited\nFathy Khodair\tProf. Dr.\tFormer Dean, Faculty of Medicine (Kasr Al-Ainy), Cairo University - Advisor to the President of Cairo University - Consultant Plastic and Reconstructive Surgeon\thttps://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/Gemini_Generated_Image_llarqrllarqrllar_3b6e03be.png\tinvited\nAshraf Abdou Tabll\tProf. Dr.\tProfessor of Medical Biotechnology, Egypt Center for Research and Regenerative Medicine (ECRRM)\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/JmdTRNcwzCEaJjrU.jpeg\tinvited\nIbrahim M. El-Sherbiny\tProf. Dr.\tProfessor of Nanotechnology & Nanomedicine, Founding Chairman of Nanoscience Program, Founding Director of Center of Materials Science, Acting President of the University of Science and Technology at Zewail City\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/CzEOiUuHXNdycLQK.jpeg\tinvited\nMohamed Ibrahim El-Anbawy\tProf. Dr.\tProfessor of Environmental Geology, Geology Department, Faculty of Science, Cairo University\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/fEpxsoPAkLpFAtDV.jpg\tinvited\nKorany A. Ali\tProf. Dr. \tDirector of the Research and Development Center for Chemical and\nPharmaceutical Industries (R&D-CPI), National Research Centre\thttps://media.licdn.com/dms/image/v2/D4D03AQEfDnGOMWLFFw/profile-displayphoto-shrink_200_200/B4DZRVYo_ZHcAg-/0/1736599312059?e=2147483647&v=beta&t=oFEVTJMWgxSCMYsFbGgowLiQhwWxDY7Ehn2P4uX5w1U\tinvited\nAhmed Galal\tProf. Dr.\tChemistry Department, Faculty of Science, Cairo University\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/CKymLjGwFZnPadSI.png\tinvited\nRashika El Ridi\tProf. Dr.\tProfessor of Immunology, Zoology Department, Faculty of Science, Cairo University\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/NNrbfYQKaAYXPFdI.png\tinvited\nSohair Ramadan Fahmy\tProf. Dr.\tDean of Faculty of Science, Cairo University; General Coordinator of the Sustainability Office; Professor of Physiology, Zoology Department, Faculty of Science, Cairo University\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/hqCqvqYZLfAAyYbb.png\tinvited\nNagwa El-Badri\tProf. Dr.\tDirector of Biomedical Sciences Program, Director of Center of Excellence for Stem Cells and Regenerative Medicine, Professor, Biomedical Sciences Program, Zewail City of Science, Technology and Innovation\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/XhCVtcmaxCborVYI.png\tinvited\nRefaat Gabre\tProf. Dr. \tHead of Biotechnology Department, Faculty of Science, Cairo University\thttps://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_47sAul_image_09cbad67.png\tinvited\nAyman El-Shibiny\tProf. Dr. \tProfessor of Biomedical Sciences, and Director of CMP, Zewail City of Science and Technology\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/wWlOEHhvidephepp.png\tinvited\nMostafa Nasser \tEng.\tStartup Grind Chapter Director\thttps://res.cloudinary.com/startup-grind/image/upload/c_fill,dpr_2,f_auto,g_center,q_auto:good/v1/gcs/platform-data-startupgrind/avatars/mostafa_nasser.jpeg\tinvited\nTarek Kapiel\tDr. em.\tAssistant Professor of Plant Biotechnology at Department of Biotechnology, Faculty of Science, Cairo University\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/ASFgJyOIuZIbQQTd.png\tinvited\nAhmad Wafik Al Shareif\tDr. \tSenior Petrophysicist, Assistant General Manager for Development, El Wastani Petroleum Company (WASCO), Dana Gas JV   \thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/QQVlSCCSsDGYbpzD.png\tinvited\nAhmed Fikry El-Sayed\tDr.\tAssistant Professor, King Salman International University\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/TbmaCrtrtyaJjSsm.png\tinvited\nMohamed Anwar Abdelwahab\tDr.\tR&D Manager, Techno Taste (Flavor House)\thttps://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_FsUHjJ_image_364cded7.png\tinvited\nAbdelfattah Kamal\tDr.\tOperations Director at BioGeneric pharma (BGP)\thttps://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_TRiV0W_image_c2f3f56c.png\tinvited\nAreeg Abdalla\tDr. \tAssociate Professor, Mathematics Department, Faculty of Science, Cairo University\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/rLwMVUiTPMbedEmY.png\tinvited\nAhmed Youssef \tDr.\tProduction Deputy Manager and Vaccine Line Head at BioGeneric Pharma (BGP), and Instructor at Africa CDC biomanufacturing training programs\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/NKfXBKqJcSQePjbF.jpeg\tinvited\nSahar Hassan\tDr.\tSenior Geologist and Sedimentologist, Digital Subsurface Solutions, SLB\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/TAxrmfwYatNFofbJ.jpg\tinvited\nMohamed Hamed\tAssoc. Prof. Dr. \tAssociate professor of biomedical informatics and computational biology at the German University of Cairo (GUC).\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/RYEfletAfTWjKCac.png\tinvited\nMohamed Abd El Gawad El-Sayed Ahmed\tAssoc. Prof.\tAssociate Professor in Department of Microbiology and Immunology, College of Pharmaceutical Sciences and Drug Manufacturing, Misr University for Science and Technology, Giza, Egypt\thttps://i1.rgstatic.net/ii/profile.image/11431281222417407-1707234494920_Q512/Mohamed-El-Sayed-Ahmed.jpg\tinvited\nKhaled Amer\tMajor General Dr.\tPrincipal Investigator of Human Genome project, Egypt Centre for Research and Regenerative Medicine (ECRRM)\t/images/speakers/khalid-amer.jpg\tkeynote\nMortada Mourad Taha El Aref\tProf. Dr.\tProfessor of Ore Geology, Geology Department, Faculty of Science, Cairo University\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/XcXczPQWMszNbalu.png\tkeynote\nEhab El-Dabaa\tProf. Dr. \tDeputy Director of the Biochemistry & Molecular Biology and Medicinal Chemistry Division and head of Center of Excellence in Recombinant Biopharmaceutical Proteins (CERBioP), Theodor Bilharz Research Institute, Egypt\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/FrVXvngjcwapBBSa.png\tkeynote\nHamed A. Ead\tProf. Dr. \tProfessor of Chemistry, Faculty of Science, Cairo University\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/AtNmemNuRnYHUIWu.png\tkeynote\n",
+  "stderr": "",
+  "execution_time_ms": 1633
+}

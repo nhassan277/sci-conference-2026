@@ -1,5 +1,74 @@
 import PDFDocument from "pdfkit";
 import { Response } from "express";
+import { db } from "./db.js";
+import { keynoteSpeakers as keynoteSpeakersTable } from "../drizzle/schema.js";
+import { asc } from "drizzle-orm";
+import https from "https";
+import http from "http";
+import path from "path";
+import { fileURLToPath } from "url";
+import fs from "fs";
+import sharp from "sharp";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+/** Download a remote image URL into a Buffer */
+function fetchImageBuffer(url: string): Promise<Buffer> {
+  return new Promise((resolve, reject) => {
+    const client = url.startsWith("https") ? https : http;
+    client
+      .get(url, (res) => {
+        const chunks: Buffer[] = [];
+        res.on("data", (chunk) => chunks.push(chunk));
+        res.on("end", () => resolve(Buffer.concat(chunks)));
+        res.on("error", reject);
+      })
+      .on("error", reject);
+  });
+}
+
+/** Compress an image buffer to a small JPEG thumbnail (max 60x60 px) for PDF embedding */
+async function compressForPDF(buf: Buffer): Promise<Buffer> {
+  try {
+    return await sharp(buf)
+      .resize(60, 60, { fit: "cover", position: "centre" })
+      .jpeg({ quality: 70 })
+      .toBuffer();
+  } catch {
+    return buf; // return original if compression fails
+  }
+}
+
+/** Resolve a photo URL to a Buffer (handles remote URLs, local paths, and base64 data URIs) */
+async function resolvePhoto(photoUrl: string | null): Promise<Buffer | null> {
+  if (!photoUrl) return null;
+  try {
+    // Handle base64 data URIs
+    if (photoUrl.startsWith("data:")) {
+      const base64Match = photoUrl.match(/^data:[^;]+;base64,(.+)$/);
+      if (base64Match) {
+        return Buffer.from(base64Match[1], "base64");
+      }
+      return null;
+    }
+    if (photoUrl.startsWith("http://") || photoUrl.startsWith("https://")) {
+      return await fetchImageBuffer(photoUrl);
+    }
+    const localPath = path.join(
+      __dirname,
+      "..",
+      "client",
+      "public",
+      photoUrl.startsWith("/") ? photoUrl.slice(1) : photoUrl
+    );
+    if (fs.existsSync(localPath)) {
+      return fs.readFileSync(localPath);
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
 
 // ─── COLORS ──────────────────────────────────────────────────────────────────
 const COLORS = {
@@ -360,12 +429,15 @@ function sessionTypeColor(type: string): string {
   return map[type] ?? COLORS.midGray;
 }
 
+type PhotoDrawer = (doc: PDFKit.PDFDocument, name: string, cx: number, cy: number, r: number, color: string) => void;
+
 function drawSessionBlock(
   doc: PDFKit.PDFDocument,
   session: DaySession,
   y: number,
   pageWidth: number,
-  margin: number
+  margin: number,
+  drawPhoto?: PhotoDrawer
 ): number {
   const contentWidth = pageWidth - margin * 2;
   const typeColor = sessionTypeColor(session.type);
@@ -445,20 +517,28 @@ function drawSessionBlock(
       doc.fontSize(8).fillColor(COLORS.plenaryAccent).font("Helvetica-Bold").text("PLENARY SPEAKERS:", textX, textY);
       textY += 11;
       for (const track of plenaryTracks) {
-        const rowH = track.speakerTalk ? 44 : 24;
+        const rowH = track.speakerTalk ? 50 : 28;
         doc.rect(textX, textY, textMaxWidth - 4, rowH).fill(COLORS.plenaryBg);
         doc.rect(textX, textY, 3, rowH).fill(COLORS.plenaryAccent);
-        doc.fontSize(7).fillColor(COLORS.plenaryAccent).font("Helvetica-Bold").text(track.hall, textX + 7, textY + 5);
+        // Small circular photo (radius 11) at the left
+        const pR = 11;
+        const pCx = textX + 3 + pR + 4;
+        const pCy = textY + rowH / 2;
+        if (drawPhoto) {
+          drawPhoto(doc, track.speaker, pCx, pCy, pR, COLORS.plenaryAccent);
+        }
+        const nameX = pCx + pR + 5;
+        doc.fontSize(7).fillColor(COLORS.plenaryAccent).font("Helvetica-Bold").text(track.hall, nameX, textY + 5);
         const hallW = doc.widthOfString(track.hall);
-        doc.fontSize(9.5).fillColor(COLORS.darkText).font("Helvetica-Bold")
-          .text(track.speaker, textX + 7 + hallW + 5, textY + 4, { width: textMaxWidth - 100 });
+        doc.fontSize(9).fillColor(COLORS.darkText).font("Helvetica-Bold")
+          .text(track.speaker, nameX + hallW + 4, textY + 4, { width: textMaxWidth - (nameX - textX) - 90 });
         const badgeX = textX + textMaxWidth - 88;
         doc.rect(badgeX, textY + 4, 80, 12).fill(COLORS.plenaryAccent);
         doc.fontSize(6.5).fillColor(COLORS.white).font("Helvetica-Bold")
           .text("PLENARY SPEAKER", badgeX + 2, textY + 6, { width: 76, align: "center" });
         if (track.speakerTalk) {
           doc.fontSize(7.5).fillColor(COLORS.primary).font("Helvetica-Oblique")
-            .text(`"${track.speakerTalk}"`, textX + 7, textY + 22, { width: textMaxWidth - 14 });
+            .text(`"${track.speakerTalk}"`, nameX, textY + 22, { width: textMaxWidth - (nameX - textX) - 4 });
         }
         textY += rowH + 4;
       }
@@ -497,7 +577,93 @@ function drawSessionBlock(
 
 // ─── MAIN EXPORT ─────────────────────────────────────────────────────────────
 
-export function generateSchedulePDF(res: Response): void {
+export async function generateSchedulePDF(res: Response): Promise<void> {
+  // ── Fetch speaker photos from DB ─────────────────────────────────────────
+  // Build a name -> photo buffer map for all speakers
+  // Uses fuzzy matching: strip titles and compare last name tokens
+  const speakerPhotoMap = new Map<string, Buffer | null>();
+
+  /** Strip common academic/military titles and normalize a name for comparison */
+  function normalizeName(name: string): string {
+    return name
+      .toLowerCase()
+      .replace(/\b(prof\.?|dr\.?|major\s+general|eng\.?|mr\.?|ms\.?|mrs\.?|assoc\.?|em\.?|prof\s+em\.?|prof\.?\s+dr\.?)\b/gi, "")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  /** Get photo buffer by speaker name with fuzzy matching */
+  function getPhotoForSpeaker(pdfName: string): Buffer | null {
+    // Exact match first
+    const exact = speakerPhotoMap.get(pdfName);
+    if (exact !== undefined) return exact;
+    // Normalized match
+    const normPdf = normalizeName(pdfName);
+    for (const [dbName, buf] of speakerPhotoMap) {
+      const normDb = normalizeName(dbName);
+      if (normDb === normPdf) return buf;
+      // Check if all tokens of the shorter name appear in the longer name
+      const tokPdf = normPdf.split(" ").filter(Boolean);
+      const tokDb = normDb.split(" ").filter(Boolean);
+      const shorter = tokPdf.length <= tokDb.length ? tokPdf : tokDb;
+      const longer = tokPdf.length <= tokDb.length ? tokDb : tokPdf;
+      if (shorter.length >= 2 && shorter.every(t => longer.includes(t))) return buf;
+    }
+    return null;
+  }
+
+  try {
+    const dbSpeakers = await db
+      .select()
+      .from(keynoteSpeakersTable)
+      .orderBy(asc(keynoteSpeakersTable.displayOrder));
+    await Promise.all(
+      dbSpeakers.map(async (spk) => {
+        const key = spk.fullName.trim();
+        try {
+          const rawBuf = await Promise.race([
+            resolvePhoto(spk.photoUrl ?? null),
+            new Promise<null>((r) => setTimeout(() => r(null), 5000)),
+          ]);
+          const buf = rawBuf ? await compressForPDF(rawBuf as Buffer) : null;
+          speakerPhotoMap.set(key, buf);
+        } catch {
+          speakerPhotoMap.set(key, null);
+        }
+      })
+    );
+  } catch {
+    // DB unavailable — proceed without photos
+  }
+
+  /** Draw a small circular photo (or coloured placeholder) next to a speaker name */
+  function drawSpeakerPhoto(
+    doc: PDFKit.PDFDocument,
+    speakerName: string,
+    cx: number,
+    cy: number,
+    radius: number,
+    accentColor: string
+  ) {
+    const buf = getPhotoForSpeaker(speakerName);
+    if (buf) {
+      try {
+        doc.save();
+        doc.circle(cx, cy, radius).clip();
+        doc.image(buf, cx - radius, cy - radius, { width: radius * 2, height: radius * 2 });
+        doc.restore();
+        // Thin ring
+        doc.circle(cx, cy, radius).lineWidth(0.8).stroke(accentColor);
+        return;
+      } catch { /* fall through to placeholder */ }
+    }
+    // Placeholder: filled circle with initial
+    doc.circle(cx, cy, radius).fill(accentColor);
+    const initial = speakerName.charAt(0).toUpperCase();
+    doc.fontSize(radius * 0.9).fillColor("#ffffff").font("Helvetica-Bold")
+      .text(initial, cx - radius, cy - radius * 0.6, { width: radius * 2, align: "center" });
+  }
+
   const doc = new PDFDocument({ size: "A4", margin: 0, bufferPages: true });
 
   res.setHeader("Content-Type", "application/pdf");
@@ -543,15 +709,24 @@ export function generateSchedulePDF(res: Response): void {
   ky += 22;
 
   for (const ks of keynoteSpeakers) {
-    doc.rect(margin, ky, contentWidth, 30).fill("rgba(255,255,255,0.06)");
-    doc.rect(margin, ky, 4, 30).fill(COLORS.secondary);
+    const rowH = 36;
+    doc.rect(margin, ky, contentWidth, rowH).fill("rgba(255,255,255,0.06)");
+    doc.rect(margin, ky, 4, rowH).fill(COLORS.secondary);
+    // Circular photo (radius 14) at left side
+    const photoR = 14;
+    const photoCx = margin + 4 + photoR + 6;
+    const photoCy = ky + rowH / 2;
+    drawSpeakerPhoto(doc, ks.name, photoCx, photoCy, photoR, COLORS.secondary);
+    // Text after photo
+    const textStartX = photoCx + photoR + 8;
+    const textW = contentWidth - (textStartX - margin) - 55;
     doc.fontSize(9).fillColor(COLORS.white).font("Helvetica-Bold")
-      .text(ks.name, margin + 10, ky + 4, { width: contentWidth - 80 });
+      .text(ks.name, textStartX, ky + 5, { width: textW });
     doc.fontSize(7.5).fillColor("#9bb8d4").font("Helvetica")
-      .text(ks.affiliation, margin + 10, ky + 15, { width: contentWidth - 80 });
+      .text(ks.affiliation, textStartX, ky + 17, { width: textW });
     doc.fontSize(7).fillColor(COLORS.secondary).font("Helvetica-Oblique")
-      .text(`Day ${ks.day}`, margin + contentWidth - 50, ky + 10, { width: 46, align: "right" });
-    ky += 34;
+      .text(`Day ${ks.day}`, margin + contentWidth - 50, ky + 12, { width: 46, align: "right" });
+    ky += rowH + 2;
   }
 
   doc.rect(0, pageHeight - 38, pageWidth, 38).fill("#071120");
@@ -570,7 +745,7 @@ export function generateSchedulePDF(res: Response): void {
   y = 48;
 
   for (const session of day1Sessions) {
-    y = drawSessionBlock(doc, session, y, pageWidth, margin);
+    y = drawSessionBlock(doc, session, y, pageWidth, margin, drawSpeakerPhoto);
   }
 
   // ── DAY 2 ─────────────────────────────────────────────────────────────────
@@ -585,7 +760,7 @@ export function generateSchedulePDF(res: Response): void {
   y = 48;
 
   for (const session of day2Sessions) {
-    y = drawSessionBlock(doc, session, y, pageWidth, margin);
+    y = drawSessionBlock(doc, session, y, pageWidth, margin, drawSpeakerPhoto);
   }
 
   // ── WORKSHOPS SECTION ─────────────────────────────────────────────────────
