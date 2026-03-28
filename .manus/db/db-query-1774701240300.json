@@ -1,0 +1,64 @@
+{
+  "query": "SELECT id, full_name, speaker_type, LENGTH(COALESCE(presentation_abstract, '')) as abstract_len FROM keynote_speakers WHERE presentation_abstract IS NULL OR LENGTH(presentation_abstract) < 50 ORDER BY id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name, speaker_type, LENGTH(COALESCE(presentation_abstract, '')) as abstract_len FROM keynote_speakers WHERE presentation_abstract IS NULL OR LENGTH(presentation_abstract) < 50 ORDER BY id;",
+  "rows": [
+    {
+      "id": "1",
+      "full_name": "Khaled Amer",
+      "speaker_type": "keynote",
+      "abstract_len": "0"
+    },
+    {
+      "id": "4",
+      "full_name": "Mortada Mourad Taha El Aref",
+      "speaker_type": "keynote",
+      "abstract_len": "0"
+    },
+    {
+      "id": "6",
+      "full_name": "Osama Azmy",
+      "speaker_type": "invited",
+      "abstract_len": "0"
+    },
+    {
+      "id": "7",
+      "full_name": "Khalid Muhammad Taalab",
+      "speaker_type": "invited",
+      "abstract_len": "0"
+    },
+    {
+      "id": "9",
+      "full_name": "Mahmoud Ibrahim Nasr",
+      "speaker_type": "invited",
+      "abstract_len": "0"
+    },
+    {
+      "id": "10",
+      "full_name": "Mortada Mourad El Aref",
+      "speaker_type": "invited",
+      "abstract_len": "0"
+    },
+    {
+      "id": "15",
+      "full_name": "Ahmed Fikry El-Sayed",
+      "speaker_type": "invited",
+      "abstract_len": "0"
+    },
+    {
+      "id": "25",
+      "full_name": "Ahmed Galal",
+      "speaker_type": "invited",
+      "abstract_len": "0"
+    },
+    {
+      "id": "31",
+      "full_name": "Fathy Khodair",
+      "speaker_type": "invited",
+      "abstract_len": "0"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tfull_name\tspeaker_type\tabstract_len\n1\tKhaled Amer\tkeynote\t0\n4\tMortada Mourad Taha El Aref\tkeynote\t0\n6\tOsama Azmy\tinvited\t0\n7\tKhalid Muhammad Taalab\tinvited\t0\n9\tMahmoud Ibrahim Nasr\tinvited\t0\n10\tMortada Mourad El Aref\tinvited\t0\n15\tAhmed Fikry El-Sayed\tinvited\t0\n25\tAhmed Galal\tinvited\t0\n31\tFathy Khodair\tinvited\t0\n",
+  "stderr": "",
+  "execution_time_ms": 1576
+}
