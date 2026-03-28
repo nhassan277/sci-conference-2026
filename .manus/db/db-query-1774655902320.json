@@ -1,0 +1,15 @@
+{
+  "query": "SELECT \n  COUNT(*) as total,\n  SUM(CASE WHEN photo_url IS NOT NULL AND photo_url != '' THEN 1 ELSE 0 END) as with_photo,\n  SUM(CASE WHEN photo_url IS NULL OR photo_url = '' THEN 1 ELSE 0 END) as without_photo\nFROM keynote_speakers WHERE is_visible = 1;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT \n  COUNT(*) as total,\n  SUM(CASE WHEN photo_url IS NOT NULL AND photo_url != '' THEN 1 ELSE 0 END) as with_photo,\n  SUM(CASE WHEN photo_url IS NULL OR photo_url = '' THEN 1 ELSE 0 END) as without_photo\nFROM keynote_speakers WHERE is_visible = 1;",
+  "rows": [
+    {
+      "total": "38",
+      "with_photo": "38",
+      "without_photo": "0"
+    }
+  ],
+  "messages": [],
+  "stdout": "total\twith_photo\twithout_photo\n38\t38\t0\n",
+  "stderr": "",
+  "execution_time_ms": 1571
+}

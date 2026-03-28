@@ -3,12 +3,20 @@ import { Response } from "express";
 import { db } from "./db.js";
 import { keynoteSpeakers } from "../drizzle/schema.js";
 import { asc } from "drizzle-orm";
+import https from "https";
+import http from "http";
+import path from "path";
+import { fileURLToPath } from "url";
+import fs from "fs";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const COLORS = {
-  primary: "#41081A",       // Deep maroon
-  secondary: "#D4AF37",     // Gold
-  accent: "#8B1A2F",        // Medium maroon
-  lightGold: "#F0D264",     // Light gold
+  primary: "#41081A",
+  secondary: "#D4AF37",
+  accent: "#8B1A2F",
+  lightGold: "#F0D264",
   white: "#FFFFFF",
   cream: "#FCF8EE",
   darkText: "#1a1a1a",
@@ -17,8 +25,46 @@ const COLORS = {
   comingSoon: "#888888",
 };
 
+/** Download a remote image URL into a Buffer */
+function fetchImageBuffer(url: string): Promise<Buffer> {
+  return new Promise((resolve, reject) => {
+    const client = url.startsWith("https") ? https : http;
+    client
+      .get(url, (res) => {
+        const chunks: Buffer[] = [];
+        res.on("data", (chunk) => chunks.push(chunk));
+        res.on("end", () => resolve(Buffer.concat(chunks)));
+        res.on("error", reject);
+      })
+      .on("error", reject);
+  });
+}
+
+/** Resolve a photo URL to a Buffer (handles both remote URLs and local paths) */
+async function resolvePhoto(photoUrl: string | null): Promise<Buffer | null> {
+  if (!photoUrl) return null;
+  try {
+    if (photoUrl.startsWith("http://") || photoUrl.startsWith("https://")) {
+      return await fetchImageBuffer(photoUrl);
+    }
+    // Local path — resolve relative to the project's client/public directory
+    const localPath = path.join(
+      __dirname,
+      "..",
+      "client",
+      "public",
+      photoUrl.startsWith("/") ? photoUrl.slice(1) : photoUrl
+    );
+    if (fs.existsSync(localPath)) {
+      return fs.readFileSync(localPath);
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
+
 export async function generateAbstractsPDF(res: Response) {
-  // Fetch all visible speakers ordered by displayOrder
   const speakers = await db
     .select()
     .from(keynoteSpeakers)
@@ -27,8 +73,23 @@ export async function generateAbstractsPDF(res: Response) {
 
   const visibleSpeakers = speakers.filter((s) => s.isVisible);
 
-  const pageWidth = 595.28;   // A4 width in points
-  const pageHeight = 841.89;  // A4 height in points
+  // Pre-fetch all photos in parallel (with a 5 s timeout per image)
+  const photoBuffers: (Buffer | null)[] = await Promise.all(
+    visibleSpeakers.map(async (spk) => {
+      try {
+        const result = await Promise.race([
+          resolvePhoto(spk.photoUrl),
+          new Promise<null>((res) => setTimeout(() => res(null), 5000)),
+        ]);
+        return result as Buffer | null;
+      } catch {
+        return null;
+      }
+    })
+  );
+
+  const pageWidth = 595.28;
+  const pageHeight = 841.89;
   const margin = 40;
   const contentWidth = pageWidth - margin * 2;
 
@@ -51,23 +112,18 @@ export async function generateAbstractsPDF(res: Response) {
   doc.pipe(res);
 
   // ── COVER PAGE ──────────────────────────────────────────────────────────
-  // Background
   doc.rect(0, 0, pageWidth, pageHeight).fill(COLORS.primary);
-
-  // Gold top bar
   doc.rect(0, 0, pageWidth, 8).fill(COLORS.secondary);
   doc.rect(0, pageHeight - 8, pageWidth, 8).fill(COLORS.secondary);
 
-  // Decorative circle
-  doc.circle(pageWidth / 2, pageHeight / 2, 200)
+  doc
+    .circle(pageWidth / 2, pageHeight / 2, 200)
     .lineWidth(1)
     .strokeColor(COLORS.secondary)
     .fillOpacity(0.05)
     .fillAndStroke(COLORS.secondary, COLORS.secondary);
-
   doc.fillOpacity(1);
 
-  // Conference title
   const titleY = 180;
   doc
     .fontSize(28)
@@ -77,7 +133,6 @@ export async function generateAbstractsPDF(res: Response) {
       width: contentWidth,
       align: "center",
     });
-
   doc
     .fontSize(16)
     .fillColor(COLORS.white)
@@ -86,13 +141,7 @@ export async function generateAbstractsPDF(res: Response) {
       width: contentWidth,
       align: "center",
     });
-
-  // Gold divider
-  doc
-    .rect(margin + 60, titleY + 70, contentWidth - 120, 2)
-    .fill(COLORS.secondary);
-
-  // Book of Abstracts label
+  doc.rect(margin + 60, titleY + 70, contentWidth - 120, 2).fill(COLORS.secondary);
   doc
     .fontSize(36)
     .fillColor(COLORS.white)
@@ -101,7 +150,6 @@ export async function generateAbstractsPDF(res: Response) {
       width: contentWidth,
       align: "center",
     });
-
   doc
     .fontSize(14)
     .fillColor(COLORS.lightGold)
@@ -111,7 +159,6 @@ export async function generateAbstractsPDF(res: Response) {
       align: "center",
     });
 
-  // Conference details box
   const boxY = titleY + 175;
   doc.rect(margin + 40, boxY, contentWidth - 80, 90).fill(COLORS.accent);
   doc
@@ -134,12 +181,10 @@ export async function generateAbstractsPDF(res: Response) {
     .fontSize(10)
     .fillColor(COLORS.white)
     .font("Helvetica")
-    .text(
-      "Faculty of Science, Cairo University",
-      margin + 40,
-      boxY + 52,
-      { width: contentWidth - 80, align: "center" }
-    );
+    .text("Faculty of Science, Cairo University", margin + 40, boxY + 52, {
+      width: contentWidth - 80,
+      align: "center",
+    });
   doc
     .fontSize(9)
     .fillColor(COLORS.lightGold)
@@ -151,7 +196,6 @@ export async function generateAbstractsPDF(res: Response) {
       { width: contentWidth - 80, align: "center" }
     );
 
-  // Speaker count badge
   const withAbstracts = visibleSpeakers.filter(
     (s) => s.presentationAbstract && s.presentationAbstract.trim().length > 0
   );
@@ -165,7 +209,6 @@ export async function generateAbstractsPDF(res: Response) {
       boxY + 110,
       { width: contentWidth, align: "center" }
     );
-
   doc
     .fontSize(9)
     .fillColor(COLORS.white)
@@ -179,7 +222,6 @@ export async function generateAbstractsPDF(res: Response) {
   doc.addPage();
   let y = margin;
 
-  // TOC header
   doc.rect(margin, y, contentWidth, 32).fill(COLORS.primary);
   doc
     .fontSize(16)
@@ -203,67 +245,126 @@ export async function generateAbstractsPDF(res: Response) {
     );
   y += 20;
 
-  // TOC entries
-  let pageCounter = 3; // abstracts start on page 3
   for (let i = 0; i < visibleSpeakers.length; i++) {
     const spk = visibleSpeakers[i];
     if (y > pageHeight - 60) {
       doc.addPage();
       y = margin;
     }
-    // Alternating row background
+    const rowH = 28;
     if (i % 2 === 0) {
-      doc.rect(margin, y - 2, contentWidth, 22).fill("#f5f0e8");
+      doc.rect(margin, y - 2, contentWidth, rowH).fill("#f5f0e8");
     }
-    // Index number
+
+    // Tiny photo thumbnail in TOC
+    const photo = photoBuffers[i];
+    const thumbSize = 22;
+    if (photo) {
+      try {
+        doc.save();
+        doc.circle(margin + 12, y + rowH / 2 - 2, thumbSize / 2).clip();
+        doc.image(photo, margin + 1, y + 1, { width: thumbSize, height: thumbSize });
+        doc.restore();
+      } catch {
+        // fallback: colored circle
+        doc.circle(margin + 12, y + rowH / 2 - 2, thumbSize / 2).fill(COLORS.accent);
+      }
+    } else {
+      doc.circle(margin + 12, y + rowH / 2 - 2, thumbSize / 2).fill(COLORS.accent);
+    }
+
     doc
       .fontSize(8)
       .fillColor(COLORS.secondary)
       .font("Helvetica-Bold")
-      .text(`${String(i + 1).padStart(2, "0")}`, margin + 2, y + 3);
-    // Speaker name
+      .text(`${String(i + 1).padStart(2, "0")}`, margin + 26, y + 3);
     doc
       .fontSize(9)
       .fillColor(COLORS.primary)
       .font("Helvetica-Bold")
-      .text(spk.fullName, margin + 22, y + 3, { width: 200 });
-    // Presentation title (truncated)
+      .text(spk.fullName, margin + 42, y + 3, { width: 185 });
     const ptitle = spk.presentationTitle
-      ? spk.presentationTitle.length > 55
-        ? spk.presentationTitle.slice(0, 55) + "…"
+      ? spk.presentationTitle.length > 52
+        ? spk.presentationTitle.slice(0, 52) + "…"
         : spk.presentationTitle
       : "Title TBA";
     doc
       .fontSize(8)
       .fillColor(COLORS.midGray)
       .font("Helvetica")
-      .text(ptitle, margin + 228, y + 3, { width: 240 });
-    // Has abstract indicator
+      .text(ptitle, margin + 233, y + 3, { width: 230 });
     const hasAbs =
       spk.presentationAbstract && spk.presentationAbstract.trim().length > 0;
     doc
       .fontSize(7)
       .fillColor(hasAbs ? "#16a34a" : COLORS.comingSoon)
       .font("Helvetica")
-      .text(hasAbs ? "✓" : "—", margin + contentWidth - 10, y + 4);
-    y += 22;
-    pageCounter++;
+      .text(hasAbs ? "✓" : "—", margin + contentWidth - 10, y + 6);
+    y += rowH;
   }
 
   // ── ABSTRACTS PAGES ─────────────────────────────────────────────────────
+  const photoSize = 100; // square photo width/height in points
+  const photoX = pageWidth - margin - photoSize; // right-aligned
+
   for (let i = 0; i < visibleSpeakers.length; i++) {
     const spk = visibleSpeakers[i];
     doc.addPage();
     y = margin;
 
-    // Speaker number badge
-    doc.rect(margin, y, 36, 36).fill(COLORS.primary);
+    // ── Speaker header bar ──
+    doc.rect(margin, y, contentWidth, 4).fill(COLORS.secondary);
+    y += 8;
+
+    // ── Photo (right side) ──
+    const photo = photoBuffers[i];
+    const photoTopY = y;
+    if (photo) {
+      try {
+        // Circular clip for photo
+        const cx = photoX + photoSize / 2;
+        const cy = photoTopY + photoSize / 2;
+        const r = photoSize / 2;
+        doc.save();
+        doc.circle(cx, cy, r).clip();
+        doc.image(photo, photoX, photoTopY, { width: photoSize, height: photoSize });
+        doc.restore();
+        // Gold ring around photo
+        doc
+          .circle(cx, cy, r + 2)
+          .lineWidth(2)
+          .strokeColor(COLORS.secondary)
+          .stroke();
+      } catch {
+        // Fallback placeholder
+        doc.circle(photoX + photoSize / 2, photoTopY + photoSize / 2, photoSize / 2)
+          .fill(COLORS.accent);
+        doc
+          .fontSize(8)
+          .fillColor(COLORS.white)
+          .font("Helvetica")
+          .text("Photo", photoX, photoTopY + photoSize / 2 - 5, {
+            width: photoSize,
+            align: "center",
+          });
+      }
+    } else {
+      // Placeholder circle
+      doc.circle(photoX + photoSize / 2, photoTopY + photoSize / 2, photoSize / 2)
+        .fill(COLORS.lightGray);
+    }
+
+    // ── Speaker info (left side, next to photo) ──
+    const infoWidth = contentWidth - photoSize - 16;
+
+    // Number badge
+    doc.rect(margin, y, 32, 32).fill(COLORS.primary);
     doc
-      .fontSize(14)
+      .fontSize(13)
       .fillColor(COLORS.lightGold)
       .font("Helvetica-Bold")
-      .text(`${String(i + 1).padStart(2, "0")}`, margin, y + 11, {
-        width: 36,
+      .text(`${String(i + 1).padStart(2, "0")}`, margin, y + 10, {
+        width: 32,
         align: "center",
       });
 
@@ -275,43 +376,44 @@ export async function generateAbstractsPDF(res: Response) {
       international: "#7c3aed",
     };
     const sector = spk.speakerSector || "academia";
-    const sectorLabel =
-      sector.charAt(0).toUpperCase() + sector.slice(1);
-    doc
-      .rect(margin + 42, y + 2, 70, 16)
-      .fill(sectorColors[sector] || sectorColors.academia);
+    const sectorLabel = sector.charAt(0).toUpperCase() + sector.slice(1);
+    doc.rect(margin + 38, y + 2, 68, 14).fill(sectorColors[sector] || sectorColors.academia);
     doc
       .fontSize(7)
       .fillColor(COLORS.white)
       .font("Helvetica-Bold")
-      .text(sectorLabel, margin + 42, y + 5, { width: 70, align: "center" });
+      .text(sectorLabel, margin + 38, y + 5, { width: 68, align: "center" });
 
     // Speaker name
     doc
-      .fontSize(15)
+      .fontSize(14)
       .fillColor(COLORS.primary)
       .font("Helvetica-Bold")
-      .text(spk.fullName, margin + 42, y + 22, { width: contentWidth - 42 });
+      .text(spk.fullName, margin + 38, y + 20, { width: infoWidth - 38 });
 
-    y += 44;
+    y += 38;
 
-    // Title & affiliation
+    // Title
     if (spk.title) {
       doc
-        .fontSize(9)
+        .fontSize(8.5)
         .fillColor(COLORS.midGray)
         .font("Helvetica")
-        .text(spk.title, margin, y, { width: contentWidth });
-      y += 13;
+        .text(spk.title, margin, y, { width: infoWidth });
+      y += 12;
     }
+    // Affiliation
     if (spk.affiliation) {
       doc
         .fontSize(9)
         .fillColor(COLORS.accent)
         .font("Helvetica-Bold")
-        .text(spk.affiliation, margin, y, { width: contentWidth });
-      y += 14;
+        .text(spk.affiliation, margin, y, { width: infoWidth });
+      y += 13;
     }
+
+    // Ensure y is at least below the photo before continuing
+    y = Math.max(y, photoTopY + photoSize + 10);
 
     // Gold divider
     doc.rect(margin, y, contentWidth, 1.5).fill(COLORS.secondary);
@@ -326,7 +428,7 @@ export async function generateAbstractsPDF(res: Response) {
       .text(presTitle, margin, y, { width: contentWidth });
     y += doc.heightOfString(presTitle, { width: contentWidth }) + 6;
 
-    // Arabic title if available
+    // Arabic title
     if (spk.presentationTitleAr) {
       doc
         .fontSize(10)
@@ -336,7 +438,7 @@ export async function generateAbstractsPDF(res: Response) {
       y += doc.heightOfString(spk.presentationTitleAr, { width: contentWidth }) + 8;
     }
 
-    // Abstract section
+    // Abstract section header
     y += 4;
     doc.rect(margin, y, contentWidth, 20).fill(COLORS.primary);
     doc
@@ -346,10 +448,7 @@ export async function generateAbstractsPDF(res: Response) {
       .text("Abstract", margin + 8, y + 5);
     y += 26;
 
-    if (
-      spk.presentationAbstract &&
-      spk.presentationAbstract.trim().length > 0
-    ) {
+    if (spk.presentationAbstract && spk.presentationAbstract.trim().length > 0) {
       const abstractText = spk.presentationAbstract.trim();
       doc
         .fontSize(9.5)
@@ -360,11 +459,7 @@ export async function generateAbstractsPDF(res: Response) {
           align: "justify",
           lineGap: 2,
         });
-      y +=
-        doc.heightOfString(abstractText, {
-          width: contentWidth,
-          lineGap: 2,
-        }) + 10;
+      y += doc.heightOfString(abstractText, { width: contentWidth, lineGap: 2 }) + 10;
     } else {
       doc
         .fontSize(9.5)
@@ -377,7 +472,7 @@ export async function generateAbstractsPDF(res: Response) {
       y += 20;
     }
 
-    // Bio section (if available)
+    // Bio section
     if (spk.bio && spk.bio.trim().length > 0) {
       y += 6;
       doc.rect(margin, y, contentWidth, 18).fill(COLORS.lightGray);
@@ -404,7 +499,7 @@ export async function generateAbstractsPDF(res: Response) {
   const totalPages = (doc as any).bufferedPageRange().count;
   for (let i = 0; i < totalPages; i++) {
     doc.switchToPage(i);
-    if (i === 0) continue; // Skip cover page footer
+    if (i === 0) continue;
     doc.rect(0, pageHeight - 30, pageWidth, 30).fill(COLORS.primary);
     doc
       .fontSize(7)

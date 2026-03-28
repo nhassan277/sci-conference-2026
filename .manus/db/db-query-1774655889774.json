@@ -1,0 +1,35 @@
+{
+  "query": "SELECT id, full_name, photo_url FROM keynote_speakers WHERE is_visible = 1 AND photo_url IS NOT NULL AND photo_url != '' ORDER BY display_order LIMIT 5;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name, photo_url FROM keynote_speakers WHERE is_visible = 1 AND photo_url IS NOT NULL AND photo_url != '' ORDER BY display_order LIMIT 5;",
+  "rows": [
+    {
+      "id": "1",
+      "full_name": "Khaled Amer",
+      "photo_url": "/images/speakers/khalid-amer.jpg"
+    },
+    {
+      "id": "16",
+      "full_name": "Ehab El-Dabaa",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/FrVXvngjcwapBBSa.png"
+    },
+    {
+      "id": "4",
+      "full_name": "Mortada Mourad Taha El Aref",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/XcXczPQWMszNbalu.png"
+    },
+    {
+      "id": "13",
+      "full_name": "Hamed A. Ead",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/AtNmemNuRnYHUIWu.png"
+    },
+    {
+      "id": "12",
+      "full_name": "Sohair Ramadan Fahmy",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/hqCqvqYZLfAAyYbb.png"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tfull_name\tphoto_url\n1\tKhaled Amer\t/images/speakers/khalid-amer.jpg\n16\tEhab El-Dabaa\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/FrVXvngjcwapBBSa.png\n4\tMortada Mourad Taha El Aref\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/XcXczPQWMszNbalu.png\n13\tHamed A. Ead\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/AtNmemNuRnYHUIWu.png\n12\tSohair Ramadan Fahmy\thttps://files.manuscdn.com/user_upload_by_module/session_file/118031311/hqCqvqYZLfAAyYbb.png\n",
+  "stderr": "",
+  "execution_time_ms": 1567
+}
