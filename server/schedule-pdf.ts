@@ -12,30 +12,51 @@ import sharp from "sharp";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-/** Download a remote image URL into a Buffer */
-function fetchImageBuffer(url: string): Promise<Buffer> {
+/** Download a remote image URL into a Buffer, following redirects */
+function fetchImageBuffer(url: string, redirects = 5): Promise<Buffer> {
   return new Promise((resolve, reject) => {
     const client = url.startsWith("https") ? https : http;
-    client
-      .get(url, (res) => {
+    const req = client.get(
+      url,
+      { headers: { "User-Agent": "Mozilla/5.0", "Accept": "image/*,*/*" } },
+      (res) => {
+        // Follow redirects
+        if ((res.statusCode === 301 || res.statusCode === 302 || res.statusCode === 307 || res.statusCode === 308) && res.headers.location && redirects > 0) {
+          const redirectUrl = res.headers.location.startsWith("http")
+            ? res.headers.location
+            : new URL(res.headers.location, url).toString();
+          res.resume();
+          fetchImageBuffer(redirectUrl, redirects - 1).then(resolve).catch(reject);
+          return;
+        }
+        if (res.statusCode && res.statusCode >= 400) {
+          res.resume();
+          reject(new Error(`HTTP ${res.statusCode}`));
+          return;
+        }
         const chunks: Buffer[] = [];
         res.on("data", (chunk) => chunks.push(chunk));
         res.on("end", () => resolve(Buffer.concat(chunks)));
         res.on("error", reject);
-      })
-      .on("error", reject);
+      }
+    );
+    req.on("error", reject);
+    req.setTimeout(8000, () => { req.destroy(); reject(new Error("timeout")); });
   });
 }
 
-/** Compress an image buffer to a small JPEG thumbnail (max 60x60 px) for PDF embedding */
-async function compressForPDF(buf: Buffer): Promise<Buffer> {
+/** Compress an image buffer to a small JPEG thumbnail (max 60x60 px) for PDF embedding.
+ * Returns null if the buffer is not a valid image. */
+async function compressForPDF(buf: Buffer): Promise<Buffer | null> {
   try {
+    // Validate it's a real image first
+    await sharp(buf).metadata();
     return await sharp(buf)
       .resize(60, 60, { fit: "cover", position: "centre" })
-      .jpeg({ quality: 70 })
+      .jpeg({ quality: 75 })
       .toBuffer();
   } catch {
-    return buf; // return original if compression fails
+    return null; // not a valid image
   }
 }
 
@@ -626,7 +647,7 @@ export async function generateSchedulePDF(res: Response): Promise<void> {
             new Promise<null>((r) => setTimeout(() => r(null), 5000)),
           ]);
           const buf = rawBuf ? await compressForPDF(rawBuf as Buffer) : null;
-          speakerPhotoMap.set(key, buf);
+          speakerPhotoMap.set(key, buf ?? null);
         } catch {
           speakerPhotoMap.set(key, null);
         }
@@ -701,33 +722,104 @@ export async function generateSchedulePDF(res: Response): Promise<void> {
   doc.fontSize(11).fillColor("#c8d8e8").font("Helvetica")
     .text("April 7-8, 2026  |  University Hostel, Cairo University", margin, 232, { width: contentWidth, align: "center" });
 
-  // Plenary speakers on cover
-  let ky = 275;
+  // ── All speakers grid on cover (2-column, all treated equally as plenary) ──
+  let ky = 262;
   doc.fontSize(10).fillColor(COLORS.secondary).font("Helvetica-Bold")
     .text("PLENARY SPEAKERS", margin, ky, { width: contentWidth, align: "center" });
   doc.rect(margin, ky + 14, contentWidth, 1).fill(COLORS.secondary);
   ky += 22;
 
-  for (const ks of keynoteSpeakers) {
-    const rowH = 36;
-    doc.rect(margin, ky, contentWidth, rowH).fill("rgba(255,255,255,0.06)");
-    doc.rect(margin, ky, 4, rowH).fill(COLORS.secondary);
-    // Circular photo (radius 14) at left side
-    const photoR = 14;
-    const photoCx = margin + 4 + photoR + 6;
-    const photoCy = ky + rowH / 2;
-    drawSpeakerPhoto(doc, ks.name, photoCx, photoCy, photoR, COLORS.secondary);
-    // Text after photo
-    const textStartX = photoCx + photoR + 8;
-    const textW = contentWidth - (textStartX - margin) - 55;
-    doc.fontSize(9).fillColor(COLORS.white).font("Helvetica-Bold")
-      .text(ks.name, textStartX, ky + 5, { width: textW });
-    doc.fontSize(7.5).fillColor("#9bb8d4").font("Helvetica")
-      .text(ks.affiliation, textStartX, ky + 17, { width: textW });
-    doc.fontSize(7).fillColor(COLORS.secondary).font("Helvetica-Oblique")
-      .text(`Day ${ks.day}`, margin + contentWidth - 50, ky + 12, { width: 46, align: "right" });
-    ky += rowH + 2;
+  // Build a flat list of all unique speakers from all sessions (DB order)
+  // Use the DB speakers list (already fetched into speakerPhotoMap)
+  // Collect all unique speaker names from the session data
+  const allSpeakerNames: string[] = [];
+  const seenNames = new Set<string>();
+  // Gather from all session arrays in display order
+  const allSessionSpeakers = [
+    ...keynoteSpeakers.map(k => ({ name: k.name, affiliation: k.affiliation })),
+    ...invitedBioDay1.map(s => ({ name: s.name, affiliation: "" })),
+    ...invitedGeoDay1.map(s => ({ name: s.name, affiliation: "" })),
+    ...invitedBioDay2.map(s => ({ name: s.name, affiliation: "" })),
+    ...invitedGeoDay2.map(s => ({ name: s.name, affiliation: "" })),
+  ];
+  // Also pull affiliation from DB map (using fuzzy matching for PDF names)
+  /** Fuzzy lookup of DB affiliation by PDF speaker name */
+  function getAffiliationForSpeaker(pdfName: string): string {
+    const normPdf = normalizeName(pdfName);
+    const tokPdf = normPdf.split(" ").filter(Boolean);
+    let bestMatch = "";
+    for (const sp of dbSpeakerInfoList) {
+      const normDb = normalizeName(sp.fullName);
+      if (normDb === normPdf) return sp.affiliation;
+      const tokDb = normDb.split(" ").filter(Boolean);
+      const shorter = tokPdf.length <= tokDb.length ? tokPdf : tokDb;
+      const longer  = tokPdf.length <= tokDb.length ? tokDb  : tokPdf;
+      if (shorter.length >= 2 && shorter.every(t => longer.includes(t))) {
+        bestMatch = sp.affiliation;
+      }
+    }
+    return bestMatch;
   }
+
+  const dbSpeakerInfoList: { fullName: string; affiliation: string }[] = [];
+  try {
+    const dbList = await db.select().from(keynoteSpeakersTable).orderBy(asc(keynoteSpeakersTable.displayOrder));
+    for (const sp of dbList) {
+      dbSpeakerInfoList.push({ fullName: sp.fullName.trim(), affiliation: sp.affiliation ?? "" });
+    }
+  } catch { /* ignore */ }
+
+  for (const sp of allSessionSpeakers) {
+    const norm = sp.name.trim();
+    if (!seenNames.has(norm)) {
+      seenNames.add(norm);
+      allSpeakerNames.push(norm);
+    }
+  }
+
+  // 2-column layout — each row is 32px tall
+  const colW = (contentWidth - 6) / 2;
+  const rowH = 32;
+  const photoR = 13;
+  let col = 0;
+  let rowStart = ky;
+
+  for (const spName of allSpeakerNames) {
+    const colX = margin + col * (colW + 6);
+    const affiliation = getAffiliationForSpeaker(spName);
+
+    doc.rect(colX, rowStart, colW, rowH).fill("rgba(255,255,255,0.05)");
+    doc.rect(colX, rowStart, 3, rowH).fill(COLORS.secondary);
+
+    const photoCx = colX + 3 + photoR + 5;
+    const photoCy = rowStart + rowH / 2;
+    drawSpeakerPhoto(doc, spName, photoCx, photoCy, photoR, COLORS.secondary);
+
+    const textX = photoCx + photoR + 5;
+    const textW2 = colW - (textX - colX) - 4;
+    // Strip titles from display name for cleaner look
+    const displayName = spName
+      .replace(/^(Major General |Assoc\. Prof\. |Prof\. Dr\. |Prof\. |Dr\. |Eng\. |Mr\. |Ms\. |Mrs\. |Prof em\. )/i, "")
+      .trim();
+    doc.fontSize(7.5).fillColor(COLORS.white).font("Helvetica-Bold")
+      .text(displayName, textX, rowStart + 5, { width: textW2, lineBreak: false, ellipsis: true });
+    if (affiliation) {
+      // Truncate affiliation to first clause for brevity
+      const shortAff = affiliation.split(/[,;]/)[0].trim();
+      doc.fontSize(6).fillColor("#7a9bb8").font("Helvetica")
+        .text(shortAff, textX, rowStart + 17, { width: textW2, lineBreak: false, ellipsis: true });
+    }
+
+    col++;
+    if (col === 2) {
+      col = 0;
+      rowStart += rowH + 2;
+      // If we're running out of space on the cover, stop
+      if (rowStart + rowH > pageHeight - 55) break;
+    }
+  }
+  // If last row had only 1 column, advance rowStart
+  if (col === 1) rowStart += rowH + 2;
 
   doc.rect(0, pageHeight - 38, pageWidth, 38).fill("#071120");
   doc.fontSize(8).fillColor(COLORS.secondary).font("Helvetica-Bold")
