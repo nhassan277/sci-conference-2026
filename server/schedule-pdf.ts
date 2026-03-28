@@ -213,6 +213,10 @@ const COLORS = {
   midGray: "#94a3b8",
   darkText: "#1e293b",
   white: "#ffffff",
+  plenaryBg: "#fdf6e3",     // warm cream for plenary speaker rows
+  plenaryAccent: "#c8a84b", // gold accent for plenary rows
+  participantBg: "#eef2f7", // cool gray for participant rows
+  participantAccent: "#94a3b8", // muted gray for participant rows
 };
 
 function wrapText(doc: PDFKit.PDFDocument, text: string, x: number, y: number, maxWidth: number, lineHeight: number): number {
@@ -257,7 +261,12 @@ function drawSessionBlock(
   if (session.description) estimatedHeight += 10;
   if (session.location) estimatedHeight += 10;
   if (session.speaker) estimatedHeight += 40;
-  if (session.tracks) estimatedHeight += session.tracks.filter(t => t.speaker !== "Participant Presentations").length * 28 + 20;
+  if (session.tracks) {
+    const plenaryCount = session.tracks.filter(t => t.speaker !== "Participant Presentations").length;
+    const participantCount = session.tracks.filter(t => t.speaker === "Participant Presentations").length;
+    estimatedHeight += plenaryCount * 46 + (plenaryCount > 0 ? 18 : 0);
+    estimatedHeight += participantCount * 22 + (participantCount > 0 ? 14 : 0);
+  }
   if (session.workshops) estimatedHeight += session.workshops.length * 14 + 14;
   estimatedHeight += 10; // padding
 
@@ -313,20 +322,51 @@ function drawSessionBlock(
     textY += 12;
   }
 
-  // Parallel tracks (invited speakers only)
+  // Parallel tracks — plenary speakers and participants rendered separately
   if (session.tracks) {
-    const invited = session.tracks.filter(t => t.speaker !== "Participant Presentations");
-    if (invited.length > 0) {
+    const plenaryTracks = session.tracks.filter(t => t.speaker !== "Participant Presentations");
+    const participantTracks = session.tracks.filter(t => t.speaker === "Participant Presentations");
+
+    // Plenary Speaker rows (gold-accented, larger)
+    if (plenaryTracks.length > 0) {
       textY += 4;
-      doc.fontSize(7.5).fillColor(typeColor).font("Helvetica-Bold").text("INVITED SPEAKERS:", textX, textY);
-      textY += 10;
-      for (const track of invited) {
-        doc.fontSize(8).fillColor(COLORS.darkText).font("Helvetica-Bold").text(`${track.hall}: ${track.speaker}`, textX + 4, textY, { width: textMaxWidth - 4 });
-        textY += 10;
+      doc.fontSize(8).fillColor(COLORS.plenaryAccent).font("Helvetica-Bold").text("PLENARY SPEAKERS:", textX, textY);
+      textY += 11;
+      for (const track of plenaryTracks) {
+        const rowH = track.speakerTalk ? 44 : 24;
+        // Cream background box
+        doc.rect(textX, textY, textMaxWidth - 4, rowH).fill(COLORS.plenaryBg);
+        // Gold left accent bar
+        doc.rect(textX, textY, 3, rowH).fill(COLORS.plenaryAccent);
+        // Hall label
+        doc.fontSize(7).fillColor(COLORS.plenaryAccent).font("Helvetica-Bold").text(track.hall, textX + 7, textY + 5);
+        const hallW = doc.widthOfString(track.hall);
+        // Speaker name — larger font
+        doc.fontSize(9.5).fillColor(COLORS.darkText).font("Helvetica-Bold").text(track.speaker, textX + 7 + hallW + 5, textY + 4, { width: textMaxWidth - 100 });
+        // Gold "PLENARY SPEAKER" badge on the right
+        const badgeX = textX + textMaxWidth - 88;
+        doc.rect(badgeX, textY + 4, 80, 12).fill(COLORS.plenaryAccent);
+        doc.fontSize(6.5).fillColor(COLORS.white).font("Helvetica-Bold").text("PLENARY SPEAKER", badgeX + 2, textY + 6, { width: 76, align: "center" });
         if (track.speakerTalk) {
-          doc.fontSize(7.5).fillColor(COLORS.midGray).font("Helvetica-Oblique").text(`"${track.speakerTalk}"`, textX + 10, textY, { width: textMaxWidth - 10 });
-          textY += 10;
+          doc.fontSize(7.5).fillColor(COLORS.primary).font("Helvetica-Oblique").text(`"${track.speakerTalk}"`, textX + 7, textY + 22, { width: textMaxWidth - 14 });
         }
+        textY += rowH + 4;
+      }
+    }
+
+    // Participant rows (muted gray, smaller)
+    if (participantTracks.length > 0) {
+      textY += 3;
+      doc.fontSize(7).fillColor(COLORS.midGray).font("Helvetica-Bold").text("PARTICIPANT PRESENTATIONS:", textX, textY);
+      textY += 9;
+      for (const track of participantTracks) {
+        const rowH = 18;
+        doc.rect(textX, textY, textMaxWidth - 4, rowH).fill(COLORS.participantBg);
+        doc.rect(textX, textY, 3, rowH).fill(COLORS.participantAccent);
+        doc.fontSize(7).fillColor(COLORS.midGray).font("Helvetica-Bold").text(track.hall, textX + 7, textY + 5);
+        const hallW2 = doc.widthOfString(track.hall);
+        doc.fontSize(7.5).fillColor(COLORS.midGray).font("Helvetica").text(track.topic || "Participant Presentations", textX + 7 + hallW2 + 5, textY + 5, { width: textMaxWidth - 30 });
+        textY += rowH + 3;
       }
     }
   }
