@@ -288,7 +288,7 @@ function drawSessionBlock(
 
   // Location
   if (session.location) {
-    doc.fontSize(8).fillColor(COLORS.midGray).font("Helvetica").text(`📍 ${session.location}`, textX, textY, { width: textMaxWidth });
+    doc.fontSize(8).fillColor(COLORS.midGray).font("Helvetica").text(`Location: ${session.location}`, textX, textY, { width: textMaxWidth });
     textY += 11;
   }
 
@@ -530,11 +530,11 @@ export function generateSchedulePDF(res: Response): void {
 
   // Awards categories
   const awardCategories = [
-    { title: "Best Oral Presentation", titleAr: "جائزة أفضل عرض شفهي", description: "Awarded to the most outstanding oral research presentation across all tracks" },
-    { title: "Best Poster Presentation", titleAr: "جائزة أفضل ملصق بحثي", description: "Recognizing the most visually compelling and scientifically rigorous poster" },
-    { title: "Best Graduation Project", titleAr: "جائزة أفضل مشروع تخرج", description: "Honoring the most innovative and impactful undergraduate graduation project" },
-    { title: "Best Paper Award", titleAr: "جائزة أفضل بحث علمي", description: "Celebrating exceptional written research contributions" },
-    { title: "Best Innovative Research Idea Award", titleAr: "جائزة أفضل فكرة بحثية مبتكرة", description: "Sponsored by Medsol Corporation — Cash prizes for the most creative and impactful scientific ideas" },
+    { title: "Best Oral Presentation", titleAr: "", description: "Awarded to the most outstanding oral research presentation across all tracks" },
+    { title: "Best Poster Presentation", titleAr: "", description: "Recognizing the most visually compelling and scientifically rigorous poster" },
+    { title: "Best Graduation Project", titleAr: "", description: "Honoring the most innovative and impactful undergraduate graduation project" },
+    { title: "Best Paper Award", titleAr: "", description: "Celebrating exceptional written research contributions" },
+    { title: "Best Innovative Research Idea Award", titleAr: "", description: "Sponsored by Medsol Corporation — Cash prizes for the most creative and impactful scientific ideas" },
   ];
 
   doc.fontSize(11).fillColor(COLORS.primary).font("Helvetica-Bold").text("Award Categories", margin, y);
@@ -545,8 +545,7 @@ export function generateSchedulePDF(res: Response): void {
     doc.rect(margin, y, 4, 28).fill(COLORS.secondary);
     doc.fontSize(9).fillColor(COLORS.darkText).font("Helvetica-Bold").text(award.title, margin + 10, y);
     y += 11;
-    doc.fontSize(8).fillColor(COLORS.midGray).font("Helvetica").text(award.titleAr, margin + 10, y);
-    y += 10;
+    if (award.titleAr) { y += 0; } // skip Arabic line
     doc.fontSize(7.5).fillColor(COLORS.midGray).font("Helvetica").text(award.description, margin + 10, y, { width: contentWidth - 14 });
     y += 16;
   }
@@ -591,7 +590,7 @@ export function generateSchedulePDF(res: Response): void {
     doc.rect(0, doc.page.height - 42, pageWidth, 42).fill(COLORS.primary);
     doc.fontSize(7).fillColor("#a5f3fc").font("Helvetica-Bold")
       .text(
-        "🎓 All workshops provide a certified certificate of completion, co-signed by the organizing company and the Faculty of Science, Cairo University.",
+        "All workshops provide a certified certificate of completion, co-signed by the organizing company and the Faculty of Science, Cairo University.",
         margin,
         doc.page.height - 38,
         { width: contentWidth, align: "center" }

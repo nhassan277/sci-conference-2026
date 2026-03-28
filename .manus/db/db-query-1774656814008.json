@@ -1,0 +1,9 @@
+{
+  "query": "\nUPDATE keynote_speakers SET speaker_type = 'invited' WHERE TRIM(speaker_type) = 'Invited';\nUPDATE keynote_speakers SET speaker_type = 'invited' WHERE speaker_type = 'participant';\nSELECT speaker_type, full_name FROM keynote_speakers WHERE speaker_type NOT IN ('keynote', 'invited');\n",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute \nUPDATE keynote_speakers SET speaker_type = 'invited' WHERE TRIM(speaker_type) = 'Invited';\nUPDATE keynote_speakers SET speaker_type = 'invited' WHERE speaker_type = 'participant';\nSELECT speaker_type, full_name FROM keynote_speakers WHERE speaker_type NOT IN ('keynote', 'invited');\n",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 2119
+}
