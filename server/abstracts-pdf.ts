@@ -133,14 +133,7 @@ export async function generateAbstractsPDF(res: Response) {
       width: contentWidth,
       align: "center",
     });
-  doc
-    .fontSize(16)
-    .fillColor(COLORS.white)
-    .font("Helvetica")
-    .text("العلوم في قلب الابتكار", margin, titleY + 38, {
-      width: contentWidth,
-      align: "center",
-    });
+  // Arabic subtitle removed (not supported by Helvetica font)
   doc.rect(margin + 60, titleY + 70, contentWidth - 120, 2).fill(COLORS.secondary);
   doc
     .fontSize(36)
@@ -150,14 +143,7 @@ export async function generateAbstractsPDF(res: Response) {
       width: contentWidth,
       align: "center",
     });
-  doc
-    .fontSize(14)
-    .fillColor(COLORS.lightGold)
-    .font("Helvetica")
-    .text("كتاب الملخصات", margin, titleY + 135, {
-      width: contentWidth,
-      align: "center",
-    });
+  // Arabic booklet subtitle removed (not supported by Helvetica font)
 
   const boxY = titleY + 175;
   doc.rect(margin + 40, boxY, contentWidth - 80, 90).fill(COLORS.accent);
@@ -173,7 +159,7 @@ export async function generateAbstractsPDF(res: Response) {
     .fontSize(11)
     .fillColor(COLORS.white)
     .font("Helvetica")
-    .text("April 7–8, 2026  |  7–8 أبريل 2026", margin + 40, boxY + 32, {
+    .text("April 7–8, 2026", margin + 40, boxY + 32, {
       width: contentWidth - 80,
       align: "center",
     });
@@ -465,7 +451,7 @@ export async function generateAbstractsPDF(res: Response) {
         .fontSize(9.5)
         .fillColor(COLORS.comingSoon)
         .font("Helvetica")
-        .text("Abstract coming soon — الملخص قيد الإعداد", margin, y, {
+        .text("Abstract coming soon", margin, y, {
           width: contentWidth,
           align: "center",
         });
