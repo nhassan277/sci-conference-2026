@@ -1,0 +1,16 @@
+{
+  "query": "SELECT id, full_name, speaker_sector, LENGTH(speaker_sector) as len FROM keynote_speakers WHERE speaker_sector LIKE 'academia %' OR speaker_sector LIKE '% academia';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name, speaker_sector, LENGTH(speaker_sector) as len FROM keynote_speakers WHERE speaker_sector LIKE 'academia %' OR speaker_sector LIKE '% academia';",
+  "rows": [
+    {
+      "id": "39",
+      "full_name": "Nashwa El-Sayed Nagy El-Khazragy",
+      "speaker_sector": "academia ",
+      "len": "9"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tfull_name\tspeaker_sector\tlen\n39\tNashwa El-Sayed Nagy El-Khazragy\tacademia \t9\n",
+  "stderr": "",
+  "execution_time_ms": 1568
+}

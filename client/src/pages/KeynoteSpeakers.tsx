@@ -183,9 +183,10 @@ export default function KeynoteSpeakers() {
     );
   }
 
-  // All speakers are now 'Plenary' type — split by sector
-  const plenaryAcademia = speakers?.filter(s => s.speakerSector !== 'industry') ?? [];
-  const plenaryIndustry = speakers?.filter(s => s.speakerSector === 'industry') ?? [];
+  // All speakers are now 'Plenary' type — split by sector (normalize to lowercase+trim for robustness)
+  const normSector = (s: string | null | undefined) => (s || '').trim().toLowerCase();
+  const plenaryAcademia = speakers?.filter(s => normSector(s.speakerSector) !== 'industry') ?? [];
+  const plenaryIndustry = speakers?.filter(s => normSector(s.speakerSector) === 'industry') ?? [];
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-accent/5">

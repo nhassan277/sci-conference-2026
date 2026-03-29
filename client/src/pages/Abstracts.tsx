@@ -71,7 +71,7 @@ export default function Abstracts() {
   );
 
   // Normalize sector to lowercase for consistent grouping (e.g. 'Academia' and 'academia' → 'academia')
-  const normalizeSector = (sec: string | null | undefined) => (sec || "academia").toLowerCase();
+  const normalizeSector = (sec: string | null | undefined) => (sec || "academia").trim().toLowerCase();
   const sectors = Array.from(new Set(allSpeakersList.map((s) => normalizeSector(s.speakerSector))));
 
   const filtered = allSpeakersList.filter((s) => {
