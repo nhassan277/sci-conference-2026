@@ -68,12 +68,10 @@ async function resolvePhoto(photoUrl: string | null): Promise<Buffer | null> {
     if (photoUrl.startsWith("http://") || photoUrl.startsWith("https://")) {
       rawBuffer = await fetchImageBuffer(photoUrl);
     } else if (photoUrl.startsWith("data:")) {
-      // base64 data URI
       const base64Data = photoUrl.split(",")[1];
       if (!base64Data) return null;
       rawBuffer = Buffer.from(base64Data, "base64");
     } else {
-      // Local path — resolve relative to the project's client/public directory
       const localPath = path.join(
         __dirname,
         "..",
@@ -96,6 +94,45 @@ async function resolvePhoto(photoUrl: string | null): Promise<Buffer | null> {
   }
 }
 
+/**
+ * Truncate text so that its rendered height fits within maxHeight points.
+ * Uses binary search on word boundaries for efficiency.
+ * The doc must have the correct font/fontSize set before calling this.
+ */
+function truncateTextToFit(
+  doc: PDFKit.PDFDocument,
+  text: string,
+  width: number,
+  maxHeight: number,
+  lineGap: number = 0
+): string {
+  if (!text) return text;
+  // Quick check: does the full text fit?
+  const fullHeight = doc.heightOfString(text, { width, lineGap });
+  if (fullHeight <= maxHeight) return text;
+
+  // Binary search on character count
+  let lo = 0;
+  let hi = text.length;
+  while (lo < hi - 1) {
+    const mid = Math.floor((lo + hi) / 2);
+    // Find the last word boundary at or before mid
+    const lastSpace = text.lastIndexOf(" ", mid);
+    const cutAt = lastSpace > lo ? lastSpace : mid;
+    const candidate = text.slice(0, cutAt) + "…";
+    const h = doc.heightOfString(candidate, { width, lineGap });
+    if (h <= maxHeight) {
+      lo = cutAt;
+    } else {
+      hi = cutAt;
+    }
+  }
+  // Find last word boundary at or before lo
+  const lastSpace = text.lastIndexOf(" ", lo);
+  const finalCut = lastSpace > 0 ? lastSpace : lo;
+  return text.slice(0, finalCut) + "…";
+}
+
 export async function generateAbstractsPDF(res: Response) {
   const speakers = await db
     .select()
@@ -105,7 +142,7 @@ export async function generateAbstractsPDF(res: Response) {
 
   const visibleSpeakers = speakers.filter((s) => s.isVisible);
 
-  // Pre-fetch all photos in parallel (with a 8 s timeout per image)
+  // Pre-fetch all photos in parallel (with an 8s timeout per image)
   const photoBuffers: (Buffer | null)[] = await Promise.all(
     visibleSpeakers.map(async (spk) => {
       try {
@@ -124,10 +161,13 @@ export async function generateAbstractsPDF(res: Response) {
   const pageHeight = 841.89;
   const margin = 40;
   const contentWidth = pageWidth - margin * 2;
+  // The usable bottom of the page content area (above the footer bar)
+  const footerHeight = 30;
+  const usableBottom = pageHeight - footerHeight - 5; // 5pt gap above footer
 
   const doc = new PDFDocument({
     size: "A4",
-    margins: { top: margin, bottom: margin, left: margin, right: margin },
+    margins: { top: margin, bottom: 0, left: margin, right: margin },
     bufferPages: true,
     info: {
       Title: "SCI 2026 — Book of Abstracts",
@@ -164,6 +204,7 @@ export async function generateAbstractsPDF(res: Response) {
     .text("Science at the Core of Innovation", margin, titleY, {
       width: contentWidth,
       align: "center",
+      lineBreak: false,
     });
   doc.rect(margin + 60, titleY + 70, contentWidth - 120, 2).fill(COLORS.secondary);
   doc
@@ -173,6 +214,7 @@ export async function generateAbstractsPDF(res: Response) {
     .text("Book of Abstracts", margin, titleY + 90, {
       width: contentWidth,
       align: "center",
+      lineBreak: false,
     });
 
   const boxY = titleY + 175;
@@ -184,6 +226,7 @@ export async function generateAbstractsPDF(res: Response) {
     .text("SCI 2026", margin + 40, boxY + 12, {
       width: contentWidth - 80,
       align: "center",
+      lineBreak: false,
     });
   doc
     .fontSize(11)
@@ -192,6 +235,7 @@ export async function generateAbstractsPDF(res: Response) {
     .text("April 7–8, 2026", margin + 40, boxY + 32, {
       width: contentWidth - 80,
       align: "center",
+      lineBreak: false,
     });
   doc
     .fontSize(10)
@@ -200,6 +244,7 @@ export async function generateAbstractsPDF(res: Response) {
     .text("Faculty of Science, Cairo University", margin + 40, boxY + 52, {
       width: contentWidth - 80,
       align: "center",
+      lineBreak: false,
     });
   doc
     .fontSize(9)
@@ -209,7 +254,7 @@ export async function generateAbstractsPDF(res: Response) {
       "Building Effective Partnerships between Universities and Industry",
       margin + 40,
       boxY + 68,
-      { width: contentWidth - 80, align: "center" }
+      { width: contentWidth - 80, align: "center", lineBreak: false }
     );
 
   const withAbstracts = visibleSpeakers.filter(
@@ -223,24 +268,34 @@ export async function generateAbstractsPDF(res: Response) {
       `${visibleSpeakers.length} Invited Speakers  ·  ${withAbstracts.length} Abstracts`,
       margin,
       boxY + 110,
-      { width: contentWidth, align: "center" }
+      { width: contentWidth, align: "center", lineBreak: false }
     );
+  // Website URL — use explicit y position well within the page, lineBreak:false
   doc
     .fontSize(9)
     .fillColor(COLORS.white)
     .font("Helvetica")
-    .text("sciconf26.website", margin, pageHeight - 60, {
+    .text("sciconf26.website", margin, pageHeight - 55, {
       width: contentWidth,
       align: "center",
+      lineBreak: false,
     });
 
   // ── ABSTRACTS PAGES ─────────────────────────────────────────────────────
-  const photoSize = 100; // square photo width/height in points
-  const photoX = pageWidth - margin - photoSize; // right-aligned
+  const photoSize = 100;
+  const photoX = pageWidth - margin - photoSize;
+
+  // Track which pages are real content pages (for footer stamping)
+  const contentPageIndices: number[] = [];
 
   for (let i = 0; i < visibleSpeakers.length; i++) {
     const spk = visibleSpeakers[i];
     doc.addPage();
+
+    // Record this page index (0-based in the buffer)
+    const pageRange = (doc as any).bufferedPageRange();
+    contentPageIndices.push(pageRange.start + pageRange.count - 1);
+
     let y = margin;
 
     // ── Speaker header bar ──
@@ -251,7 +306,6 @@ export async function generateAbstractsPDF(res: Response) {
     const photo = photoBuffers[i];
     const photoTopY = y;
     if (photo) {
-      // Draw photo with circular clip — fully isolated in save/restore
       const cx = photoX + photoSize / 2;
       const cy = photoTopY + photoSize / 2;
       const r = photoSize / 2;
@@ -260,28 +314,20 @@ export async function generateAbstractsPDF(res: Response) {
         doc.circle(cx, cy, r).clip();
         doc.image(photo, photoX, photoTopY, { width: photoSize, height: photoSize });
         doc.restore();
-        // Gold ring around photo
         doc
           .circle(cx, cy, r + 2)
           .lineWidth(2)
           .strokeColor(COLORS.secondary)
           .stroke();
       } catch {
-        // Ensure graphics state is restored even if image() throws
         try { doc.restore(); } catch { /* already restored */ }
-        // Draw fallback placeholder circle
-        doc
-          .circle(cx, cy, r)
-          .fillColor(COLORS.lightGray)
-          .fill();
+        doc.circle(cx, cy, r).fillColor(COLORS.lightGray).fill();
       }
     } else {
-      // No photo — draw a subtle placeholder
       const cx = photoX + photoSize / 2;
       const cy = photoTopY + photoSize / 2;
       const r = photoSize / 2;
       doc.circle(cx, cy, r).fillColor(COLORS.lightGray).fill();
-      // Draw initials
       const initial = spk.fullName ? spk.fullName.charAt(0).toUpperCase() : "?";
       doc
         .fontSize(28)
@@ -294,7 +340,7 @@ export async function generateAbstractsPDF(res: Response) {
         });
     }
 
-    // ── Speaker info (left side, next to photo) ──
+    // ── Speaker info (left side) ──
     const infoWidth = contentWidth - photoSize - 16;
 
     // Number badge
@@ -316,7 +362,7 @@ export async function generateAbstractsPDF(res: Response) {
       government: "#15803d",
       international: "#7c3aed",
     };
-    const sector = (spk.speakerSector || "academia").toLowerCase();
+    const sector = (spk.speakerSector || "academia").toLowerCase().trim();
     const sectorLabel = sector.charAt(0).toUpperCase() + sector.slice(1);
     doc.rect(margin + 38, y + 2, 68, 14).fill(sectorColors[sector] || sectorColors.academia);
     doc
@@ -366,7 +412,7 @@ export async function generateAbstractsPDF(res: Response) {
       .fontSize(12)
       .fillColor(COLORS.primary)
       .font("Helvetica-Bold")
-      .text(presTitle, margin, y, { width: contentWidth });
+      .text(presTitle, margin, y, { width: contentWidth, lineBreak: true });
     y += doc.heightOfString(presTitle, { width: contentWidth }) + 6;
 
     // Abstract section header
@@ -379,18 +425,21 @@ export async function generateAbstractsPDF(res: Response) {
       .text("Abstract", margin + 8, y + 5, { lineBreak: false });
     y += 26;
 
+    // ── Abstract text — truncated to fit on this page ──
+    // Available height = usableBottom - current y - gap before bio section
+    const bioSectionHeight = 60; // reserve space for bio header + a few lines
+    const abstractAvailable = usableBottom - y - bioSectionHeight;
+
     if (spk.presentationAbstract && spk.presentationAbstract.trim().length > 0) {
       const abstractText = spk.presentationAbstract.trim();
-      doc
-        .fontSize(9.5)
-        .fillColor(COLORS.darkText)
-        .font("Helvetica")
-        .text(abstractText, margin, y, {
-          width: contentWidth,
-          align: "justify",
-          lineGap: 2,
-        });
-      y += doc.heightOfString(abstractText, { width: contentWidth, lineGap: 2 }) + 10;
+      doc.fontSize(9.5).fillColor(COLORS.darkText).font("Helvetica");
+      const fittingAbstract = truncateTextToFit(doc, abstractText, contentWidth, Math.max(abstractAvailable, 60), 2);
+      doc.text(fittingAbstract, margin, y, {
+        width: contentWidth,
+        align: "justify",
+        lineGap: 2,
+      });
+      y += doc.heightOfString(fittingAbstract, { width: contentWidth, lineGap: 2 }) + 10;
     } else {
       doc
         .fontSize(9.5)
@@ -399,48 +448,55 @@ export async function generateAbstractsPDF(res: Response) {
         .text("Abstract coming soon", margin, y, {
           width: contentWidth,
           align: "center",
+          lineBreak: false,
         });
       y += 20;
     }
 
-    // Bio section
+    // ── Bio section — only if there's enough space, truncated to fit ──
     if (spk.bio && spk.bio.trim().length > 0) {
-      y += 6;
-      doc.rect(margin, y, contentWidth, 18).fill(COLORS.lightGray);
-      doc
-        .fontSize(9)
-        .fillColor(COLORS.primary)
-        .font("Helvetica-Bold")
-        .text("Speaker Biography", margin + 8, y + 5, { lineBreak: false });
-      y += 24;
-      const bioText = spk.bio.trim();
-      doc
-        .fontSize(8.5)
-        .fillColor(COLORS.midGray)
-        .font("Helvetica")
-        .text(bioText, margin, y, {
+      const bioHeaderH = 30; // 6 gap + 18 header bar + 6 gap
+      const minBioH = 24; // at least 2 lines of bio text
+      const bioSpaceNeeded = bioHeaderH + minBioH;
+
+      if (y + bioSpaceNeeded < usableBottom) {
+        y += 6;
+        doc.rect(margin, y, contentWidth, 18).fill(COLORS.lightGray);
+        doc
+          .fontSize(9)
+          .fillColor(COLORS.primary)
+          .font("Helvetica-Bold")
+          .text("Speaker Biography", margin + 8, y + 5, { lineBreak: false });
+        y += 24;
+
+        const bioText = spk.bio.trim();
+        const bioAvailable = usableBottom - y - 5;
+        doc.fontSize(8.5).fillColor(COLORS.midGray).font("Helvetica");
+        const fittingBio = truncateTextToFit(doc, bioText, contentWidth, Math.max(bioAvailable, 20), 1.5);
+        doc.text(fittingBio, margin, y, {
           width: contentWidth,
           align: "justify",
           lineGap: 1.5,
         });
+      }
     }
   }
 
-  // ── PAGE FOOTERS ────────────────────────────────────────────────────────
-  const totalPages = (doc as any).bufferedPageRange().count;
-  for (let i = 0; i < totalPages; i++) {
-    doc.switchToPage(i);
-    if (i === 0) continue; // skip cover page
-    doc.rect(0, pageHeight - 30, pageWidth, 30).fill(COLORS.primary);
+  // ── PAGE FOOTERS — only stamp real content pages ────────────────────────
+  const totalContentPages = contentPageIndices.length;
+  for (let idx = 0; idx < contentPageIndices.length; idx++) {
+    const pageIdx = contentPageIndices[idx];
+    doc.switchToPage(pageIdx);
+    doc.rect(0, pageHeight - footerHeight, pageWidth, footerHeight).fill(COLORS.primary);
     doc
       .fontSize(7)
       .fillColor(COLORS.white)
       .font("Helvetica")
       .text(
-        `SCI 2026 · Faculty of Science, Cairo University · April 7–8, 2026  |  Page ${i} of ${totalPages - 1}`,
+        `SCI 2026 · Faculty of Science, Cairo University · April 7–8, 2026  |  Page ${idx + 1} of ${totalContentPages}`,
         margin,
-        pageHeight - 18,
-        { width: contentWidth, align: "center" }
+        pageHeight - footerHeight + 11,
+        { width: contentWidth, align: "center", lineBreak: false }
       );
   }
 
