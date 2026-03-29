@@ -156,6 +156,13 @@ export default function Attendance() {
     },
   });
 
+  // Fetch bundle availability — auto-disables when 20 registrants reached
+  const { data: bundleAvailability } = trpc.registration.getBundleAvailability.useQuery(undefined, {
+    refetchInterval: 30000, // refresh every 30 seconds
+  });
+  const bundleAvailable = bundleAvailability?.available ?? true;
+  const bundleRemaining = bundleAvailability?.remaining ?? 20;
+
   const uploadInvoice = trpc.registration.uploadInvoice.useMutation();
 
   const createRegistration = trpc.registration.create.useMutation({
@@ -630,7 +637,8 @@ export default function Attendance() {
 
                 {wantsExtWorkshop && (
                   <div className="space-y-4 mt-2">
-                    {/* ⚡ Flash Bundle Option */}
+                    {/* ⚡ Flash Bundle Option — hidden when sold out */}
+                    {bundleAvailable ? (
                     <div className="p-4 rounded-xl border-2 border-red-400 bg-gradient-to-r from-red-50 to-orange-50">
                       <div className="flex items-start gap-3">
                         <Checkbox
@@ -652,6 +660,9 @@ export default function Attendance() {
                               FLASH OFFER — 24 Hours Only!
                             </Label>
                             <Badge className="bg-yellow-400 text-red-800 font-bold">50% OFF</Badge>
+                            <Badge variant="outline" className="text-red-600 border-red-400 text-xs">
+                              {bundleRemaining} spot{bundleRemaining !== 1 ? 's' : ''} left
+                            </Badge>
                           </div>
                           <p className="text-sm text-red-800 mt-1 font-medium">
                             Register for <strong>MARC (GCP)</strong> + <strong>Chitosan (Biotech)</strong> workshops together
@@ -665,6 +676,18 @@ export default function Attendance() {
                         </div>
                       </div>
                     </div>
+                    ) : (
+                    <div className="p-4 rounded-xl border-2 border-gray-300 bg-gray-50">
+                      <div className="flex items-center gap-3">
+                        <span className="text-2xl">🔒</span>
+                        <div>
+                          <p className="font-bold text-gray-500 line-through">FLASH OFFER — MARC + Chitosan Bundle</p>
+                          <p className="text-sm text-gray-500 mt-0.5">This offer has ended — all 20 spots have been claimed.</p>
+                          <p className="text-xs text-gray-400" dir="rtl">انتهى العرض — تم حجز جميع الـ 20 مكاناً</p>
+                        </div>
+                      </div>
+                    </div>
+                    )}
 
                     {/* Workshop Choice */}
                     <div className="space-y-2">

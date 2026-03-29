@@ -331,7 +331,17 @@ export const appRouter = router({
       const marc_chitosan_bundle = allRegs.filter(r => r.extWorkshopBundle === 'marc_chitosan').length;
       return { nawah, bioinformatics, marc, medsol, geochemistry, agitech, ai_biotech, chitosan, scrna_seq, hvd_genomics, colors_metagenomics, vaccine_industry, gesr_scholarships, marc_chitosan_bundle };
     }),
-
+    getBundleAvailability: publicProcedure.query(async () => {
+      const BUNDLE_MAX = 20;
+      const allRegs = await db.select().from(registrations);
+      const bundleCount = allRegs.filter(r => r.extWorkshopBundle === 'marc_chitosan').length;
+      return {
+        count: bundleCount,
+        max: BUNDLE_MAX,
+        available: bundleCount < BUNDLE_MAX,
+        remaining: Math.max(0, BUNDLE_MAX - bundleCount),
+      };
+    }),
     confirmWorkshopPayment: adminProcedure
       .input(z.object({ registrationId: z.number() }))
       .mutation(async ({ input }) => {
