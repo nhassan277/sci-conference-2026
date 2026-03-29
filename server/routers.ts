@@ -327,7 +327,9 @@ export const appRouter = router({
       const colors_metagenomics = countExt('colors_metagenomics');
       const vaccine_industry = countExt('vaccine_industry');
       const gesr_scholarships = allRegs.filter(r => r.wantsExtWorkshop && (r.extWorkshopChoice === 'gesr_scholarships' || (Array.isArray(r.extWorkshopChoices) && r.extWorkshopChoices.includes('gesr_scholarships')))).length;
-      return { nawah, bioinformatics, marc, medsol, geochemistry, agitech, ai_biotech, chitosan, scrna_seq, hvd_genomics, colors_metagenomics, vaccine_industry, gesr_scholarships };
+      // Flash bundle: MARC + Chitosan together at 150 EGP
+      const marc_chitosan_bundle = allRegs.filter(r => r.extWorkshopBundle === 'marc_chitosan').length;
+      return { nawah, bioinformatics, marc, medsol, geochemistry, agitech, ai_biotech, chitosan, scrna_seq, hvd_genomics, colors_metagenomics, vaccine_industry, gesr_scholarships, marc_chitosan_bundle };
     }),
 
     confirmWorkshopPayment: adminProcedure

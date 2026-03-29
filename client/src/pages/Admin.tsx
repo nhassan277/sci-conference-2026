@@ -946,6 +946,42 @@ export default function Admin() {
                   })}
                 </div>
               </div>
+              {/* ⚡ Flash Bundle Stats */}
+              <div className="mt-4 p-4 rounded-lg border-2 border-red-200 bg-red-50">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="text-lg">⚡</span>
+                  <p className="text-sm font-bold text-red-700 uppercase tracking-wide">Flash Offer — MARC + Chitosan Bundle (150 EGP)</p>
+                  <span className="text-xs bg-red-100 text-red-600 px-2 py-0.5 rounded-full font-medium">First 20 registrants only · 24 hours</span>
+                </div>
+                <div className="flex items-center gap-6">
+                  <div className="text-center">
+                    <p className="text-4xl font-bold text-red-700">{(workshopCounts as any)?.marc_chitosan_bundle ?? 0}</p>
+                    <p className="text-xs text-muted-foreground mt-1">Bundle Registrations</p>
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex justify-between text-xs text-muted-foreground mb-1">
+                      <span>Progress toward 20 spots</span>
+                      <span>{(workshopCounts as any)?.marc_chitosan_bundle ?? 0} / 20</span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-3">
+                      <div
+                        className={`h-3 rounded-full transition-all ${
+                          ((workshopCounts as any)?.marc_chitosan_bundle ?? 0) >= 20 ? 'bg-red-600' :
+                          ((workshopCounts as any)?.marc_chitosan_bundle ?? 0) >= 15 ? 'bg-orange-500' : 'bg-green-500'
+                        }`}
+                        style={{ width: `${Math.min(100, Math.round(((workshopCounts as any)?.marc_chitosan_bundle ?? 0) / 20 * 100))}%` }}
+                      />
+                    </div>
+                    <p className={`text-xs mt-1 font-semibold ${
+                      ((workshopCounts as any)?.marc_chitosan_bundle ?? 0) >= 20 ? 'text-red-600' : 'text-green-600'
+                    }`}>
+                      {((workshopCounts as any)?.marc_chitosan_bundle ?? 0) >= 20
+                        ? '🔴 FULL — 20/20 spots taken'
+                        : `🟢 ${20 - ((workshopCounts as any)?.marc_chitosan_bundle ?? 0)} spots remaining`}
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </CardContent>
         </Card>

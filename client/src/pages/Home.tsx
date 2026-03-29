@@ -180,7 +180,7 @@ export default function Home() {
               <span className="bg-yellow-300 text-red-700 font-bold px-3 py-0.5 rounded text-sm">150 EGP only!</span>
               <span className="text-xs opacity-90">— First 20 registrants only</span>
             </div>
-            <a href="/attend" className="bg-white text-red-600 font-bold px-4 py-1.5 rounded-full text-sm hover:bg-yellow-100 transition-colors shrink-0">
+            <a href="/attendance" className="bg-white text-red-600 font-bold px-4 py-1.5 rounded-full text-sm hover:bg-yellow-100 transition-colors shrink-0">
               Register Now →
             </a>
           </div>
