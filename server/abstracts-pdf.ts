@@ -242,33 +242,48 @@ export async function generateAbstractsPDF(res: Response) {
       doc.rect(margin, y - 2, contentWidth, rowH).fill("#f5f0e8");
     }
 
-    // Tiny photo thumbnail in TOC
+    // Tiny photo thumbnail in TOC — use fillColor after restore to avoid clip state leaking
     const photo = photoBuffers[i];
     const thumbSize = 22;
+    const thumbCx = margin + 12;
+    const thumbCy = y + rowH / 2 - 2;
     if (photo) {
       try {
+        // Draw circular clip mask then image, fully isolated
         doc.save();
-        doc.circle(margin + 12, y + rowH / 2 - 2, thumbSize / 2).clip();
+        doc.circle(thumbCx, thumbCy, thumbSize / 2).clip();
         doc.image(photo, margin + 1, y + 1, { width: thumbSize, height: thumbSize });
         doc.restore();
+        // Draw a thin ring over the photo for polish
+        doc.circle(thumbCx, thumbCy, thumbSize / 2).lineWidth(0.5).stroke(COLORS.accent);
       } catch {
-        // fallback: colored circle
-        doc.circle(margin + 12, y + rowH / 2 - 2, thumbSize / 2).fill(COLORS.accent);
+        doc.circle(thumbCx, thumbCy, thumbSize / 2).fill(COLORS.accent);
       }
     } else {
-      doc.circle(margin + 12, y + rowH / 2 - 2, thumbSize / 2).fill(COLORS.accent);
+      doc.circle(thumbCx, thumbCy, thumbSize / 2).fill(COLORS.accent);
+      // Draw initial letter
+      const initial = spk.fullName ? spk.fullName.charAt(0).toUpperCase() : "?";
+      doc.fontSize(9).fillColor("#ffffff").font("Helvetica-Bold")
+        .text(initial, thumbCx - 5, thumbCy - 5, { width: 10, align: "center", lineBreak: false });
     }
 
+    // All text uses lineBreak:false to prevent PDFKit cursor from advancing
     doc
       .fontSize(8)
       .fillColor(COLORS.secondary)
       .font("Helvetica-Bold")
-      .text(`${String(i + 1).padStart(2, "0")}`, margin + 26, y + 3);
+      .text(`${String(i + 1).padStart(2, "0")}`, margin + 26, y + 8, { lineBreak: false });
+
+    // Truncate name to fit in column
+    const displayName = spk.fullName && spk.fullName.length > 28
+      ? spk.fullName.slice(0, 28) + "…"
+      : (spk.fullName || "Unknown");
     doc
       .fontSize(9)
       .fillColor(COLORS.primary)
       .font("Helvetica-Bold")
-      .text(spk.fullName, margin + 42, y + 3, { width: 185 });
+      .text(displayName, margin + 42, y + 7, { width: 185, lineBreak: false });
+
     const ptitle = spk.presentationTitle
       ? spk.presentationTitle.length > 52
         ? spk.presentationTitle.slice(0, 52) + "…"
@@ -278,14 +293,16 @@ export async function generateAbstractsPDF(res: Response) {
       .fontSize(8)
       .fillColor(COLORS.midGray)
       .font("Helvetica")
-      .text(ptitle, margin + 233, y + 3, { width: 230 });
+      .text(ptitle, margin + 233, y + 8, { width: 230, lineBreak: false });
+
     const hasAbs =
       spk.presentationAbstract && spk.presentationAbstract.trim().length > 0;
     doc
       .fontSize(7)
       .fillColor(hasAbs ? "#16a34a" : COLORS.comingSoon)
       .font("Helvetica")
-      .text(hasAbs ? "✓" : "—", margin + contentWidth - 10, y + 6);
+      .text(hasAbs ? "✓" : "—", margin + contentWidth - 10, y + 9, { lineBreak: false });
+
     y += rowH;
   }
 
