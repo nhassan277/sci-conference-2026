@@ -24,6 +24,8 @@ export const registrations = mysqlTable("registrations", {
   extWorkshopChoices: json("ext_workshop_choices").$type<string[]>(), // multi-select array
   extWorkshopInvoiceUrl: varchar("ext_workshop_invoice_url", { length: 500 }),
   extWorkshopPaymentStatus: varchar("ext_workshop_payment_status", { length: 20 }).default("unpaid").notNull(),
+  // Bundle: MARC + Chitosan flash offer at 150 EGP (instead of 300 EGP)
+  extWorkshopBundle: varchar("ext_workshop_bundle", { length: 50 }), // "marc_chitosan" when bundle is selected
   paymentStatus: varchar("payment_status", { length: 20 }).default("unpaid").notNull(), // unpaid, pending, paid
   stripePaymentIntentId: varchar("stripe_payment_intent_id", { length: 255 }),
   stripeCheckoutSessionId: varchar("stripe_checkout_session_id", { length: 255 }),

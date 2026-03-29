@@ -14,12 +14,12 @@ export default function Home() {
   const WORKSHOP_LIMIT = 30;
   const COLORS_LIMIT = 25;
 
-  const getSpotsBadge = (count: number) => {
-    const remaining = WORKSHOP_LIMIT - count;
+  const getSpotsBadge = (count: number, limit?: number) => {
+    const effectiveLimit = limit ?? WORKSHOP_LIMIT;
+    const remaining = effectiveLimit - count;
     if (remaining <= 0) return <Badge className="bg-red-100 text-red-800 text-xs">Full 🔴</Badge>;
-    if (remaining <= 5) return <Badge className="bg-red-100 text-red-800 text-xs">{remaining} spots left 🔴</Badge>;
-    if (remaining <= 15) return <Badge className="bg-amber-100 text-amber-800 text-xs">{remaining}/{WORKSHOP_LIMIT} spots left 🟡</Badge>;
-    return <Badge className="bg-green-100 text-green-800 text-xs">{remaining}/{WORKSHOP_LIMIT} spots left 🟢</Badge>;
+    // Only show "Available" without revealing exact numbers to the public
+    return <Badge className="bg-green-100 text-green-800 text-xs">Available 🟢</Badge>;
   };
   const tracks = [
     {
@@ -164,6 +164,29 @@ export default function Home() {
           </div>
         </div>
       </header>
+
+      {/* ⚡ Flash Offer Banner */}
+      <div className="bg-gradient-to-r from-red-600 via-red-500 to-orange-500 text-white py-3 px-4">
+        <div className="container">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-2 text-center">
+            <div className="flex items-center gap-2">
+              <span className="text-xl">⚡</span>
+              <span className="font-bold text-base sm:text-lg">FLASH OFFER — 24 Hours Only!</span>
+              <span className="text-xl">⚡</span>
+            </div>
+            <div className="flex items-center gap-2 flex-wrap justify-center">
+              <span className="text-sm sm:text-base">Register for <strong>MARC (GCP) + Chitosan (Biotech)</strong> workshops together</span>
+              <span className="bg-white/20 text-white font-bold px-2 py-0.5 rounded text-sm line-through">300 EGP</span>
+              <span className="bg-yellow-300 text-red-700 font-bold px-3 py-0.5 rounded text-sm">150 EGP only!</span>
+              <span className="text-xs opacity-90">— First 20 registrants only</span>
+            </div>
+            <a href="/attend" className="bg-white text-red-600 font-bold px-4 py-1.5 rounded-full text-sm hover:bg-yellow-100 transition-colors shrink-0">
+              Register Now →
+            </a>
+          </div>
+          <p className="text-center text-xs mt-1 opacity-80" dir="rtl">⚡ عرض خاص لمدة ٢٤ ساعة فقط — سجّل في ورشتَي MARC و Chitosan معاً بـ ١٥٠ جنيه بدلاً من ٣٠٠ — أول ٢٠ مشترك فقط</p>
+        </div>
+      </div>
 
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/10">
@@ -1132,15 +1155,7 @@ export default function Home() {
 
                   {/* Spots counter + Register button */}
                   <div className="flex items-center justify-between">
-                    {workshopCounts && (() => {
-                      const AGITECH_LIMIT = 20;
-                      const count = workshopCounts.agitech ?? 0;
-                      const remaining = AGITECH_LIMIT - count;
-                      if (remaining <= 0) return <Badge className="bg-red-100 text-red-800 text-xs">Full 🔴</Badge>;
-                      if (remaining <= 5) return <Badge className="bg-red-100 text-red-800 text-xs">{remaining} spots left 🔴</Badge>;
-                      if (remaining <= 10) return <Badge className="bg-amber-100 text-amber-800 text-xs">{remaining}/{AGITECH_LIMIT} spots left 🟡</Badge>;
-                      return <Badge className="bg-green-100 text-green-800 text-xs">{remaining}/{AGITECH_LIMIT} spots left 🟢</Badge>;
-                    })()}
+                    {workshopCounts && getSpotsBadge(workshopCounts.agitech ?? 0, 20)}
                     <Button
                       size="sm"
                       className="bg-gray-700 hover:bg-gray-800 text-white text-xs px-3"

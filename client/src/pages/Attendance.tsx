@@ -100,6 +100,7 @@ export default function Attendance() {
   const [workshopChoices, setWorkshopChoices] = useState<string[]>([])
   const [wantsExtWorkshop, setWantsExtWorkshop] = useState(false);
   const [extWorkshopChoices, setExtWorkshopChoices] = useState<string[]>([]);
+  const [useBundle, setUseBundle] = useState(false); // MARC + Chitosan flash bundle at 150 EGP
   const [certInvoiceFile, setCertInvoiceFile] = useState<File | null>(null);
   const [workshopInvoiceFile, setWorkshopInvoiceFile] = useState<File | null>(null);
   const [extWorkshopInvoiceFile, setExtWorkshopInvoiceFile] = useState<File | null>(null);
@@ -129,7 +130,14 @@ export default function Attendance() {
 
   const certFee = wantsCertificate ? CERTIFICATE_FEE : 0;
   const workshopFee = wantsWorkshop ? workshopChoices.reduce((sum, key) => sum + (WORKSHOP_FEES[key] ?? 0), 0) : 0;
-  const extWorkshopFee = wantsExtWorkshop ? extWorkshopChoices.reduce((sum, key) => sum + (EXT_WORKSHOP_FEES[key] ?? 0), 0) : 0;
+  // Bundle: MARC + Chitosan together = 150 EGP (flash offer)
+  const BUNDLE_FEE = 150;
+  const bundleChoices = ['marc', 'chitosan'];
+  const extWorkshopFee = wantsExtWorkshop
+    ? (useBundle
+        ? BUNDLE_FEE + extWorkshopChoices.filter(c => !bundleChoices.includes(c)).reduce((sum, key) => sum + (EXT_WORKSHOP_FEES[key] ?? 0), 0)
+        : extWorkshopChoices.reduce((sum, key) => sum + (EXT_WORKSHOP_FEES[key] ?? 0), 0))
+    : 0;
   const totalFee = certFee + workshopFee + extWorkshopFee;
 
   const {
@@ -236,6 +244,10 @@ export default function Attendance() {
       return;
     }
 
+    // If bundle is selected, ensure both marc and chitosan are in extWorkshopChoices
+    const finalExtChoices = useBundle
+      ? Array.from(new Set([...extWorkshopChoices, 'marc', 'chitosan']))
+      : extWorkshopChoices;
     createRegistration.mutate({
       ...data,
       wantsCertificate,
@@ -243,7 +255,9 @@ export default function Attendance() {
       workshopChoices: workshopChoices.length > 0 ? (workshopChoices as any) : undefined,
       workshopChoice: (workshopChoices[0] as any) || undefined,
       wantsExtWorkshop,
-      extWorkshopChoice: (extWorkshopChoices[0] as any) || undefined,
+      extWorkshopChoice: (finalExtChoices[0] as any) || undefined,
+      extWorkshopChoices: finalExtChoices.length > 0 ? (finalExtChoices as any) : undefined,
+      extWorkshopBundle: useBundle ? 'marc_chitosan' : undefined,
     });
   });
 
@@ -616,6 +630,42 @@ export default function Attendance() {
 
                 {wantsExtWorkshop && (
                   <div className="space-y-4 mt-2">
+                    {/* ⚡ Flash Bundle Option */}
+                    <div className="p-4 rounded-xl border-2 border-red-400 bg-gradient-to-r from-red-50 to-orange-50">
+                      <div className="flex items-start gap-3">
+                        <Checkbox
+                          id="useBundle"
+                          checked={useBundle}
+                          onCheckedChange={(checked) => {
+                            const val = checked === true;
+                            setUseBundle(val);
+                            if (val) {
+                              // Auto-select both marc and chitosan
+                              setExtWorkshopChoices(prev => Array.from(new Set([...prev, 'marc', 'chitosan'])));
+                            }
+                          }}
+                        />
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <span className="text-base">⚡</span>
+                            <Label htmlFor="useBundle" className="font-bold text-red-700 cursor-pointer text-base">
+                              FLASH OFFER — 24 Hours Only!
+                            </Label>
+                            <Badge className="bg-yellow-400 text-red-800 font-bold">50% OFF</Badge>
+                          </div>
+                          <p className="text-sm text-red-800 mt-1 font-medium">
+                            Register for <strong>MARC (GCP)</strong> + <strong>Chitosan (Biotech)</strong> workshops together
+                          </p>
+                          <p className="text-xs text-red-700 mt-0.5" dir="rtl">سجّل في ورشتَي MARC و Chitosan معاً</p>
+                          <div className="flex items-center gap-2 mt-2">
+                            <span className="text-sm text-muted-foreground line-through">300 EGP</span>
+                            <span className="text-lg font-bold text-red-600">150 EGP</span>
+                            <span className="text-xs text-red-500">(First 20 registrants only)</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
                     {/* Workshop Choice */}
                     <div className="space-y-2">
                       <Label>Choose Your Workshop <span className="text-red-500">*</span></Label>
@@ -789,7 +839,7 @@ export default function Attendance() {
                                 <p className="text-xs font-semibold text-purple-800 mt-1">📅 {ws.date}</p>
                                 <p className="text-xs font-semibold text-purple-800" dir="rtl">📅 {ws.dateAr}</p>
                                 {'eligibility' in ws && ws.eligibility && (
-                                  <p className="text-xs font-medium text-orange-700 mt-1">🎓 {ws.eligibility}</p>
+                                  <p className="text-xs font-medium text-orange-700 mt-1">🎓 {ws.eligibility.replace(/\d+ spots only \| /gi, '').replace(/\d+ spots only/gi, '').trim()}</p>
                                 )}
                                 {'venue' in ws && ws.venue && (
                                   <p className="text-xs font-medium text-blue-700 mt-1">📍 {ws.venue}</p>

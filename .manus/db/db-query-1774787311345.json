@@ -1,0 +1,9 @@
+{
+  "query": "ALTER TABLE registrations ADD COLUMN ext_workshop_bundle VARCHAR(50) DEFAULT NULL COMMENT 'marc_chitosan bundle flash offer at 150 EGP';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute ALTER TABLE registrations ADD COLUMN ext_workshop_bundle VARCHAR(50) DEFAULT NULL COMMENT 'marc_chitosan bundle flash offer at 150 EGP';",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 263
+}

@@ -105,6 +105,7 @@ export const appRouter = router({
           extWorkshopChoice: z.string().optional(), // legacy single
           extWorkshopChoices: z.array(z.string()).optional(), // multi-select
           extWorkshopInvoiceUrl: z.string().optional(),
+          extWorkshopBundle: z.string().optional(), // "marc_chitosan" for flash bundle at 150 EGP
         })
       )
       .mutation(async ({ input }) => {
@@ -125,6 +126,7 @@ export const appRouter = router({
           workshopChoices: resolvedChoices.length > 0 ? resolvedChoices : undefined,
           extWorkshopChoice: resolvedExtSingleChoice,
           extWorkshopChoices: resolvedExtChoices.length > 0 ? resolvedExtChoices : undefined,
+          extWorkshopBundle: input.extWorkshopBundle ?? undefined,
           workshopPaymentStatus: input.wantsWorkshop && input.workshopInvoiceUrl ? "pending" : "unpaid",
           extWorkshopPaymentStatus: input.wantsExtWorkshop && input.extWorkshopInvoiceUrl ? "pending" : "unpaid",
         });
