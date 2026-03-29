@@ -514,19 +514,29 @@ function drawSessionBlock(
     textY += 4;
     doc.rect(textX, textY, textMaxWidth - 4, 1).fill(typeColor);
     textY += 5;
-    doc.fontSize(8).fillColor(COLORS.plenaryAccent).font("Helvetica-Bold").text("PLENARY SPEAKER", textX, textY);
-    textY += 11;
-    doc.fontSize(9).fillColor(COLORS.darkText).font("Helvetica-Bold")
-      .text(session.speaker.name, textX, textY, { width: textMaxWidth });
-    textY += 11;
-    doc.fontSize(7.5).fillColor(COLORS.midGray).font("Helvetica")
-      .text(session.speaker.affiliation, textX, textY, { width: textMaxWidth });
-    textY += 11;
-    if (session.speaker.talk) {
-      doc.fontSize(8).fillColor(typeColor).font("Helvetica-Oblique")
-        .text(`"${session.speaker.talk}"`, textX, textY, { width: textMaxWidth });
-      textY += 12;
+    // Speaker block with photo
+    const spBlockH = session.speaker.talk ? 58 : 44;
+    doc.rect(textX, textY, textMaxWidth - 4, spBlockH).fill(COLORS.plenaryBg);
+    doc.rect(textX, textY, 3, spBlockH).fill(COLORS.plenaryAccent);
+    const spR = 18;
+    const spCx = textX + 3 + spR + 6;
+    const spCy = textY + spBlockH / 2;
+    if (drawPhoto) {
+      drawPhoto(doc, session.speaker.name, spCx, spCy, spR, COLORS.plenaryAccent);
     }
+    const spTextX = spCx + spR + 8;
+    const spTextW = textMaxWidth - (spTextX - textX) - 4;
+    doc.fontSize(7).fillColor(COLORS.plenaryAccent).font("Helvetica-Bold")
+      .text("PLENARY SPEAKER", spTextX, textY + 6, { width: spTextW });
+    doc.fontSize(9).fillColor(COLORS.darkText).font("Helvetica-Bold")
+      .text(session.speaker.name, spTextX, textY + 16, { width: spTextW, lineBreak: false, ellipsis: true });
+    doc.fontSize(7.5).fillColor(COLORS.midGray).font("Helvetica")
+      .text(session.speaker.affiliation, spTextX, textY + 28, { width: spTextW, lineBreak: false, ellipsis: true });
+    if (session.speaker.talk) {
+      doc.fontSize(7.5).fillColor(typeColor).font("Helvetica-Oblique")
+        .text(`"${session.speaker.talk}"`, spTextX, textY + 40, { width: spTextW, lineBreak: false, ellipsis: true });
+    }
+    textY += spBlockH + 4;
   }
 
   if (session.tracks) {
@@ -629,6 +639,12 @@ export async function generateSchedulePDF(res: Response): Promise<void> {
       const shorter = tokPdf.length <= tokDb.length ? tokPdf : tokDb;
       const longer = tokPdf.length <= tokDb.length ? tokDb : tokPdf;
       if (shorter.length >= 2 && shorter.every(t => longer.includes(t))) return buf;
+      // Partial match: first token + any other token match (handles middle name differences)
+      if (tokPdf.length >= 2 && tokDb.length >= 2) {
+        const firstMatch = tokPdf[0] === tokDb[0];
+        const secondMatch = tokPdf.slice(1).some(t => tokDb.includes(t));
+        if (firstMatch && secondMatch) return buf;
+      }
     }
     return null;
   }
