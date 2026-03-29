@@ -9,6 +9,22 @@ import path from "path";
 import { fileURLToPath } from "url";
 import fs from "fs";
 import sharp from "sharp";
+// @ts-ignore
+import arabicReshaper from "arabic-reshaper";
+// @ts-ignore
+import bidiFactory from "bidi-js";
+
+/** Reshape and reorder Arabic text for correct visual rendering in PDFKit */
+function shapeArabic(text: string): string {
+  try {
+    const reshaped = arabicReshaper.convertArabic(text);
+    const bidiObj = bidiFactory(reshaped);
+    const levels = bidiObj.getEmbeddingLevels(reshaped);
+    return bidiObj.getReorderedString(reshaped, levels);
+  } catch {
+    return text; // fallback: return original
+  }
+}
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -703,6 +719,21 @@ export async function generateSchedulePDF(res: Response): Promise<void> {
 
   const doc = new PDFDocument({ size: "A4", margin: 0, bufferPages: true });
 
+  // Register Arabic-capable fonts for bilingual text
+  const ARABIC_FONT_REGULAR = "/usr/share/fonts/truetype/noto/NotoSansArabic-Regular.ttf";
+  const ARABIC_FONT_BOLD    = "/usr/share/fonts/truetype/noto/NotoSansArabic-SemiBold.ttf";
+  const ARABIC_FONT_FALLBACK = "/usr/share/fonts/truetype/noto/NotoNaskhArabic-Regular.ttf";
+  try {
+    doc.registerFont("ArabicRegular", ARABIC_FONT_REGULAR);
+  } catch {
+    try { doc.registerFont("ArabicRegular", ARABIC_FONT_FALLBACK); } catch { /* skip */ }
+  }
+  try {
+    doc.registerFont("ArabicBold", "/usr/share/fonts/truetype/noto/NotoSansArabic-Bold.ttf");
+  } catch {
+    try { doc.registerFont("ArabicBold", "/usr/share/fonts/truetype/noto/NotoNaskhArabic-Bold.ttf"); } catch { /* skip */ }
+  }
+
   res.setHeader("Content-Type", "application/pdf");
   res.setHeader("Content-Disposition", 'attachment; filename="SCI2026-Conference-Program.pdf"');
   doc.pipe(res);
@@ -943,88 +974,378 @@ export async function generateSchedulePDF(res: Response): Promise<void> {
   doc.fontSize(7.5).fillColor(COLORS.midGray).font("Helvetica")
     .text("* Workshop fee: 200 EGP per workshop · Payment via InstaPay (CBE account: 9450882167) · Limited to 30 participants each", margin, y + 6, { width: contentWidth });
 
-  // ── AWARDS SECTION ────────────────────────────────────────────────────────
+  // ── AWARD CATEGORIES PAGE ─────────────────────────────────────────────────
   doc.addPage();
   y = 50;
 
-  doc.rect(margin, y, contentWidth, 28).fill(COLORS.primary);
-  doc.fontSize(14).fillColor(COLORS.white).font("Helvetica-Bold")
-    .text("Conference Awards & Sponsor Prizes", margin, y + 8, { width: contentWidth, align: "center" });
-  y += 36;
+  // Page header
+  doc.rect(margin, y, contentWidth, 32).fill(COLORS.primary);
+  doc.fontSize(15).fillColor(COLORS.white).font("Helvetica-Bold")
+    .text("Award Categories", margin, y + 5, { width: contentWidth, align: "center" });
+  doc.fontSize(10).fillColor("#a5f3fc").font("ArabicRegular")
+    .text(shapeArabic("فئات الجوائز"), margin, y + 20, { width: contentWidth, align: "right" });
+  y += 42;
+
+  doc.fontSize(9).fillColor(COLORS.midGray).font("Helvetica")
+    .text("Seven prestigious awards celebrating outstanding contributions across all scientific disciplines", margin, y, { width: contentWidth, align: "center" });
+  y += 20;
 
   const awardCategories = [
-    { title: "Best Oral Presentation",        description: "Awarded to the most outstanding oral research presentation across all tracks" },
-    { title: "Best Poster Presentation",      description: "Recognizing the most visually compelling and scientifically rigorous poster" },
-    { title: "Best Graduation Project",       description: "Honoring the most innovative and impactful undergraduate graduation project" },
-    { title: "Best Paper Award",              description: "Celebrating exceptional written research contributions" },
-    { title: "Best Innovative Research Idea", description: "Sponsored by Medsol Corporation - Cash prizes for the most creative and impactful scientific ideas" },
+    {
+      title: "Best Graduation Project Award",
+      titleAr: "جائزة أفضل مشروع تخرج",
+      description: "Recognizing outstanding undergraduate research and innovation",
+      descriptionAr: "تقديراً للبحث والابتكار المتميز على مستوى البكالوريوس",
+      color: "#3b82f6"
+    },
+    {
+      title: "Best MSc Thesis Award",
+      titleAr: "جائزة أفضل رسالة ماجستير",
+      description: "Honoring exceptional master's level research contributions",
+      descriptionAr: "تكريماً للمساهمات البحثية الاستثنائية على مستوى الماجستير",
+      color: "#8b5cf6"
+    },
+    {
+      title: "Best PhD Thesis Award",
+      titleAr: "جائزة أفضل رسالة دكتوراه",
+      description: "Celebrating groundbreaking doctoral research excellence",
+      descriptionAr: "احتفاءً بالتميز البحثي الرائد على مستوى الدكتوراه",
+      color: "#f59e0b"
+    },
+    {
+      title: "Best Poster Award",
+      titleAr: "جائزة أفضل ملصق علمي",
+      description: "Awarded for outstanding visual research communication",
+      descriptionAr: "تُمنح للتميز في التواصل البحثي المرئي",
+      color: "#22c55e"
+    },
+    {
+      title: "Best Presentation Award",
+      titleAr: "جائزة أفضل عرض تقديمي",
+      description: "Recognizing excellence in oral research presentation",
+      descriptionAr: "تقديراً للتميز في العرض البحثي الشفهي",
+      color: "#ef4444"
+    },
+    {
+      title: "Best Innovative Product Award",
+      titleAr: "جائزة أفضل منتج مبتكر",
+      description: "Honoring practical innovations with real-world impact",
+      descriptionAr: "تكريماً للابتكارات العملية ذات الأثر الواقعي",
+      color: "#f97316"
+    },
+    {
+      title: "Best Paper Award",
+      titleAr: "جائزة أفضل بحث علمي",
+      description: "Celebrating exceptional written research contributions",
+      descriptionAr: "احتفاءً بالمساهمات البحثية المكتوبة الاستثنائية",
+      color: "#6366f1"
+    },
+    {
+      title: "Best Innovative Research Idea Award",
+      titleAr: "جائزة أفضل فكرة بحثية مبتكرة",
+      description: "Sponsored by Medsol Corporation — Cash prizes for the most creative and impactful scientific ideas (3,000 / 2,000 / 1,000 EGP)",
+      descriptionAr: "برعاية Medsol Corporation — جوائز نقدية لأكثر الأفكار العلمية إبداعاً وأثراً (3000 / 2000 / 1000 جنيه)",
+      color: "#0d9488"
+    },
   ];
 
-  doc.fontSize(11).fillColor(COLORS.primary).font("Helvetica-Bold").text("General Award Categories", margin, y);
-  y += 16;
-
-  for (const award of awardCategories) {
-    if (y > pageHeight - 60) { doc.addPage(); y = 50; }
-    doc.rect(margin, y, 4, 26).fill(COLORS.secondary);
-    doc.fontSize(9).fillColor(COLORS.darkText).font("Helvetica-Bold").text(award.title, margin + 10, y + 2, { width: contentWidth - 14 });
-    y += 12;
-    doc.fontSize(7.5).fillColor(COLORS.midGray).font("Helvetica").text(award.description, margin + 10, y, { width: contentWidth - 14 });
-    y += 18;
+  // Draw award categories in 2-column grid
+  const aColW = (contentWidth - 10) / 2;
+  for (let i = 0; i < awardCategories.length; i++) {
+    const col = i % 2;
+    const ax = margin + col * (aColW + 10);
+    if (col === 0 && i > 0) y += 0; // already advanced
+    if (col === 0) {
+      // check if both cards fit
+      if (y > pageHeight - 80) { doc.addPage(); y = 50; }
+    }
+    const aw = awardCategories[i];
+    const cardH = 62;
+    doc.rect(ax, y, aColW, cardH).fill(COLORS.plenaryBg);
+    doc.rect(ax, y, 4, cardH).fill(aw.color);
+    // Number badge
+    doc.circle(ax + aColW - 16, y + 14, 12).fill(aw.color);
+    doc.fontSize(10).fillColor(COLORS.white).font("Helvetica-Bold")
+      .text(`${i + 1}`, ax + aColW - 22, y + 8, { width: 24, align: "center" });
+    // Title EN
+    doc.fontSize(8.5).fillColor(COLORS.darkText).font("Helvetica-Bold")
+      .text(aw.title, ax + 10, y + 6, { width: aColW - 40, lineBreak: false, ellipsis: true });
+    // Title AR
+    doc.fontSize(8).fillColor(aw.color).font("ArabicRegular")
+      .text(shapeArabic(aw.titleAr), ax + 10, y + 18, { width: aColW - 40, align: "right", lineBreak: false, ellipsis: true });
+    // Description EN
+    doc.fontSize(7).fillColor(COLORS.midGray).font("Helvetica")
+      .text(aw.description, ax + 10, y + 30, { width: aColW - 20, lineBreak: true });
+    // Description AR
+    doc.fontSize(7).fillColor(COLORS.midGray).font("ArabicRegular")
+      .text(shapeArabic(aw.descriptionAr), ax + 10, y + 44, { width: aColW - 20, align: "right", lineBreak: false, ellipsis: true });
+    if (col === 1) y += cardH + 8;
   }
-  y += 8;
+  // if odd number, advance y
+  if (awardCategories.length % 2 !== 0) y += 62 + 8;
 
-  // Medsol prize boxes
+  // Medsol cash prize highlight
+  y += 6;
+  if (y > pageHeight - 70) { doc.addPage(); y = 50; }
   doc.rect(margin, y, contentWidth, 24).fill("#0d9488");
-  doc.fontSize(11).fillColor(COLORS.white).font("Helvetica-Bold")
-    .text("Medsol Corporation - Best Innovative Research Idea Award", margin, y + 7, { width: contentWidth, align: "center" });
+  doc.fontSize(10).fillColor(COLORS.white).font("Helvetica-Bold")
+    .text("Medsol Corporation — Best Innovative Research Idea Award", margin, y + 4, { width: contentWidth, align: "center" });
+  doc.fontSize(8).fillColor(COLORS.white).font("ArabicRegular")
+    .text(shapeArabic("جائزة أفضل فكرة بحثية مبتكرة"), margin, y + 16, { width: contentWidth, align: "right" });
   y += 30;
-
   const prizes = [
-    { place: "1st Place", amount: "3,000 EGP", color: "#f59e0b" },
-    { place: "2nd Place", amount: "2,000 EGP", color: "#94a3b8" },
-    { place: "3rd Place", amount: "1,000 EGP", color: "#b45309" },
+    { place: "1st Place", placeAr: "المركز الأول", amount: "3,000 EGP", color: "#f59e0b" },
+    { place: "2nd Place", placeAr: "المركز الثاني", amount: "2,000 EGP", color: "#94a3b8" },
+    { place: "3rd Place", placeAr: "المركز الثالث", amount: "1,000 EGP", color: "#b45309" },
   ];
   const prizeColW = (contentWidth - 20) / 3;
   for (let i = 0; i < prizes.length; i++) {
     const px = margin + i * (prizeColW + 10);
-    doc.rect(px, y, prizeColW, 36).fill(prizes[i].color);
-    doc.fontSize(9).fillColor(COLORS.white).font("Helvetica-Bold").text(prizes[i].place, px, y + 6, { width: prizeColW, align: "center" });
-    doc.fontSize(11).fillColor(COLORS.white).font("Helvetica-Bold").text(prizes[i].amount, px, y + 18, { width: prizeColW, align: "center" });
+    doc.rect(px, y, prizeColW, 44).fill(prizes[i].color);
+    doc.fontSize(9).fillColor(COLORS.white).font("Helvetica-Bold")
+      .text(prizes[i].place, px, y + 5, { width: prizeColW, align: "center" });
+    doc.fontSize(7.5).fillColor(COLORS.white).font("ArabicRegular")
+      .text(shapeArabic(prizes[i].placeAr), px, y + 17, { width: prizeColW, align: "right" });
+    doc.fontSize(13).fillColor(COLORS.white).font("Helvetica-Bold")
+      .text(prizes[i].amount, px, y + 27, { width: prizeColW, align: "center" });
   }
-  y += 46;
+  y += 54;
 
-  // All sponsor awards
-  if (y > pageHeight - 80) { doc.addPage(); y = 50; }
-  doc.fontSize(11).fillColor(COLORS.primary).font("Helvetica-Bold").text("Sponsor Awards & Prizes", margin, y);
-  y += 16;
+  // ── SPONSOR PRIZES PAGE ───────────────────────────────────────────────────
+  doc.addPage();
+  y = 50;
+
+  // Page header
+  doc.rect(margin, y, contentWidth, 32).fill(COLORS.secondary);
+  doc.fontSize(15).fillColor(COLORS.white).font("Helvetica-Bold")
+    .text("Sponsor Prizes", margin, y + 5, { width: contentWidth, align: "center" });
+  doc.fontSize(10).fillColor(COLORS.white).font("ArabicRegular")
+    .text(shapeArabic("جوائز الرعاة"), margin, y + 20, { width: contentWidth, align: "right" });
+  y += 42;
+
+  doc.fontSize(9).fillColor(COLORS.midGray).font("Helvetica")
+    .text("Our generous sponsors are offering exclusive prizes and opportunities to outstanding conference participants", margin, y, { width: contentWidth, align: "center" });
+  y += 8;
+  doc.fontSize(8).fillColor(COLORS.midGray).font("ArabicRegular")
+    .text(shapeArabic("يقدم رعاتنا الكرام جوائز وفرصاً حصرية للمشاركين المتميزين في المؤتمر"), margin, y, { width: contentWidth, align: "right" });
+  y += 20;
 
   const sponsorAwards = [
-    { sponsor: "Medsol Corporation",      prize: "Best Innovative Research Idea Award",                detail: "1st: 3,000 EGP | 2nd: 2,000 EGP | 3rd: 1,000 EGP" },
-    { sponsor: "NAWAH Scientific",        prize: "Best Scientific Research Award",                     detail: "Cash prize for outstanding scientific research" },
-    { sponsor: "MARC",                    prize: "Best Research Presentation Award",                   detail: "Recognizing excellence in research presentation" },
-    { sponsor: "Mina Pharm",              prize: "Best Pharmaceutical Research Award",                 detail: "For outstanding pharmaceutical research" },
-    { sponsor: "Agitech",                 prize: "Best Applied Science Award",                         detail: "For innovative applied science research" },
-    { sponsor: "Startup Grind Cairo",     prize: "Best Startup Idea Award",                            detail: "For the most promising startup concept" },
-    { sponsor: "Colors Educational Hub",  prize: "Best Bioinformatics Research Award",                 detail: "For outstanding bioinformatics research" },
-    { sponsor: "Chitosan",                prize: "Best Biotech Innovation Award",                      detail: "For innovative biotechnology research" },
-    { sponsor: "GEnoEra",                 prize: "Best Genomics Research Award",                       detail: "For outstanding genomics research" },
-    { sponsor: "EgCompBio",               prize: "Best Computational Biology Award",                   detail: "For excellence in computational biology" },
-    { sponsor: "Plasma",                  prize: "Best Physics & Materials Science Award",             detail: "For outstanding physics research" },
-    { sponsor: "GESR",                    prize: "Best Scholarship & Research Abroad Initiative",      detail: "Recognizing global research impact" },
-    { sponsor: "AI by Arabic",            prize: "Best AI Application in Science Award",               detail: "For innovative AI applications in scientific research" },
+    {
+      sponsor: "NAWAH Scientific",
+      tag: "Announced July 2026",
+      tagAr: "الإعلان يوليو ٢٠٢٦",
+      prize: "Scientific Incubators for Master & PhD Projects",
+      prizeAr: "حاضنات علمية لمشاريع الماجستير والدكتوراه",
+      description: "NAWAH Scientific will select outstanding Master's and PhD research projects to receive full scientific incubation support — mentorship, resources, and a pathway to real-world application. Winners will be announced in July 2026.",
+      descriptionAr: "ستختار NAWAH Scientific مشاريع بحثية متميزة على مستوى الماجستير والدكتوراه لتحظى بدعم الحاضنة العلمية الكاملة — إرشاد وموارد ومسار نحو التطبيق الفعلي.",
+      accentColor: "#f59e0b",
+      logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/ndKRwnmyKdJLbGXC.png"
+    },
+    {
+      sponsor: "AI بالعربي",
+      tag: "1 Prize",
+      tagAr: "جائزة واحدة",
+      prize: "Technical AI Project Support",
+      prizeAr: "دعم تقني لمشروع في مجال الذكاء الاصطناعي",
+      description: "AI بالعربي will provide full technical support to one outstanding project in the field of Artificial Intelligence — turning your research idea into a working AI solution.",
+      descriptionAr: "ستقدم AI بالعربي دعماً تقنياً كاملاً لمشروع متميز في مجال الذكاء الاصطناعي — لتحويل فكرتك البحثية إلى حل ذكاء اصطناعي حقيقي.",
+      accentColor: "#ef4444",
+      logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/KlrhKxhzNQOHAlor.jpeg"
+    },
+    {
+      sponsor: "MARC",
+      tag: "3 Prizes",
+      tagAr: "٣ جوائز",
+      prize: "Training Opportunity + Tiered Poster Cash Prizes (2,500 / 1,500 / 1,000 EGP)",
+      prizeAr: "فرصة تدريبية + جوائز نقدية للملصقات: 2500 / 1500 / 1000 جنيه",
+      description: "MARC will select 2 participants for a professional training opportunity, and award cash prizes for the Best Poster competition: 1st Place — 2,500 EGP, 2nd Place — 1,500 EGP, 3rd Place — 1,000 EGP.",
+      descriptionAr: "ستختار MARC مشاركَين للحصول على فرصة تدريبية متخصصة، وستمنح جوائز نقدية لأفضل الملصقات العلمية: المركز الأول — 2500 جنيه، المركز الثاني — 1500 جنيه، المركز الثالث — 1000 جنيه.",
+      accentColor: "#3b82f6",
+      logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/VulsiXaRGfrttVQf.png"
+    },
+    {
+      sponsor: "Mina Pharm",
+      tag: "2 Prizes",
+      tagAr: "جائزتان",
+      prize: "Health Product Samples + 2 Surprise Bags",
+      prizeAr: "عينات منتجات صحية + حقيبتا مفاجآت",
+      description: "Mina Pharm will present iron and vitamin supplement samples for menopause health, along with 2 exclusive surprise gift bags for 2 lucky prize winners at the conference.",
+      descriptionAr: "ستقدم Mina Pharm عينات من مكملات الحديد والفيتامينات لصحة سن اليأس، إلى جانب حقيبتَي هدايا مفاجئة لاثنين من الفائزين في المؤتمر.",
+      accentColor: "#ec4899",
+      logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/VSYnJUbvoViFDJRE.png"
+    },
+    {
+      sponsor: "Agitech",
+      tag: "4 Prizes",
+      tagAr: "٤ جوائز",
+      prize: "4 Gift Bags Containing Free Sample Kits",
+      prizeAr: "٤ حقائب هدايا تحتوي على مجموعات عينات مجانية",
+      description: "Agitech will award 4 gift bags containing free professional sample kits to 4 prize winners at the conference — giving researchers direct access to cutting-edge scientific tools.",
+      descriptionAr: "ستمنح Agitech ٤ حقائب هدايا تحتوي على مجموعات عينات احترافية مجانية لأربعة من الفائزين في المؤتمر.",
+      accentColor: "#10b981",
+      logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/VgPdbFhKiVTOdmtC.png"
+    },
+    {
+      sponsor: "Medsol Corporation",
+      tag: "3 Prizes",
+      tagAr: "٣ جوائز",
+      prize: "Best Innovative Research Idea (3,000 / 2,000 / 1,000 EGP)",
+      prizeAr: "جائزة أفضل فكرة بحثية مبتكرة (3000 / 2000 / 1000 جنيه)",
+      description: "Medsol Corporation will award cash prizes for the Best Innovative Research Idea competition: 1st Place — 3,000 EGP, 2nd Place — 2,000 EGP, 3rd Place — 1,000 EGP. Recognizing researchers who present the most creative and impactful scientific ideas.",
+      descriptionAr: "ستمنح Medsol Corporation جوائز نقدية لأفضل فكرة بحثية مبتكرة: المركز الأول — 3000 جنيه، المركز الثاني — 2000 جنيه، المركز الثالث — 1000 جنيه.",
+      accentColor: "#0d9488",
+      logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/suhdZISVxwwlvpPk.png"
+    },
+    {
+      sponsor: "Startup Grind",
+      tag: "Selected Projects",
+      tagAr: "مشاريع مختارة",
+      prize: "Student Project Selection & Entrepreneurial Support",
+      prizeAr: "اختيار مشاريع الطلاب ودعمها ريادياً",
+      description: "Startup Grind will review and select outstanding undergraduate and postgraduate student projects in AI, Machine Learning, and Bioinformatics. Selected teams receive mentorship, networking opportunities, and entrepreneurial support.",
+      descriptionAr: "ستقوم Startup Grind بمراجعة واختيار مشاريع الطلاب المتميزة في مجالات الذكاء الاصطناعي والتعلم الآلي والمعلوماتية الحيوية، وتقديم الإرشاد وفرص التواصل والدعم الريادي.",
+      accentColor: "#ef4444",
+      logo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/download(2)_577d8ace.png"
+    },
+    {
+      sponsor: "Colors Educational Hub",
+      tag: "3 Opportunities",
+      tagAr: "٣ فرص",
+      prize: "Internship Training Awards (1 Graduation Project + 2 Master's Projects)",
+      prizeAr: "جوائز التدريب المتخصص (أفضل مشروع تخرج + أفضل مشروعَي ماجستير)",
+      description: "Colors Educational Hub will award 3 internship training opportunities: 1 spot for the Best Graduation Project and 2 spots for the Best Master's Projects. Winners are selected by Colors Educational Hub based on their own evaluation criteria.",
+      descriptionAr: "ستمنح Colors Educational Hub ٣ فرص تدريب متخصصة: فرصة لصاحب أفضل مشروع تخرج، وفرصتان لصاحبَي أفضل مشروعَي ماجستير.",
+      accentColor: "#6366f1",
+      logo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/logo_colors_52f6762b.png"
+    },
+    {
+      sponsor: "Chitosan",
+      tag: "1 Project Sponsored",
+      tagAr: "مشروع واحد مدعوم",
+      prize: "Chitosan Supply + Technical Support for 1 Project in Biopackaging or Bioremediation",
+      prizeAr: "توريد كيتوسان ودعم تقني لمشروع واحد في التغليف الحيوي أو المعالجة الحيوية",
+      description: "Chitosan will sponsor one outstanding project in biopackaging or bioremediation by supplying the selected team with chitosan material and providing full technical support. The application will be tested on fruit samples to demonstrate real-world impact.",
+      descriptionAr: "ستدعم شركة كيتوسان مشروعاً متميزاً في مجال التغليف الحيوي أو المعالجة الحيوية، بتزويد الفريق الفائز بكمية من مادة الكيتوسان وتقديم الدعم التقني الكامل.",
+      accentColor: "#0d9488",
+      logo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_t1mp8m_image_bbedca70.png"
+    },
+    {
+      sponsor: "GEnoEra Technology",
+      tag: "7 Prize Bags",
+      tagAr: "٧ حقائب كجوائز",
+      prize: "7 Molecular Biology Kits (4 DNA/PCR Bags + 3 RNA/cDNA/qPCR Bags)",
+      prizeAr: "٧ حقائب للبيولوجيا الجزيئية (٤ حقائب DNA/PCR + ٣ حقائب RNA/cDNA/qPCR)",
+      description: "GEnoEra Technology is sponsoring 7 molecular biology prize bags. Four bags each contain a DNA Extraction Kit and PCR Master Mix. Three bags each contain an RNA Extraction Kit, cDNA Synthesis Kit, and qPCR Master Mix.",
+      descriptionAr: "تتبرع شركة GEnoEra Technology بـ٧ حقائب للبيولوجيا الجزيئية: أربع حقائب تحتوي على كيت استخلاص الـDNA وخليط PCR، وثلاث حقائب تحتوي على كيت استخلاص الـRNA وكيت تخليق الـcDNA وخليط qPCR.",
+      accentColor: "#7c3aed",
+      logo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/ge_logo-1_c2bdf8df.png"
+    },
+    {
+      sponsor: "EgCompBio",
+      tag: "1 Prize",
+      tagAr: "جائزة واحدة",
+      prize: "1 Free Course from EgCompBio for 1 Student",
+      prizeAr: "كورس مجاني من EgCompBio لطالب واحد",
+      description: "EgCompBio — the Egyptian Computational Biology Society — is sponsoring 1 full free course from their training catalog for 1 outstanding student participant at SCI 2026, covering computational biology, bioinformatics, and single-cell genomics.",
+      descriptionAr: "تتبرع الجمعية المصرية للبيولوجيا الحسابية EgCompBio بكورس مجاني كامل لطالب متميز واحد، يغطي أحدث موضوعات البيولوجيا الحسابية والمعلوماتية الحيوية وجينوميات الخلية المفردة.",
+      accentColor: "#0d9488",
+      logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/VSqePLOAbshMxznI.png"
+    },
+    {
+      sponsor: "Plasma",
+      tag: "4 Contributions",
+      tagAr: "٤ مساهمات",
+      prize: "Internship + Full Research Funding + Lab Support + Conference Gifts",
+      prizeAr: "إنترنشيب + تمويل بحثي كامل + دعم معملي + توزيع هدايا يوم المؤتمر",
+      description: "Plasma offers: (1) Internship for graduation project students; (2) Full financial support for 1 outstanding applied research project; (3) Lab resources for experimental projects; (4) Gift distribution to conference attendees on the day of the event.",
+      descriptionAr: "تقدم Plasma: (1) إنترنشيب لطلاب مشاريع التخرج؛ (2) دعم مالي كامل لمشروع بحثي تطبيقي واحد؛ (3) مساهمة معملية للمشاريع التجريبية؛ (4) توزيع هدايا على الحضور يوم المؤتمر.",
+      accentColor: "#3b82f6",
+      logo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/logo-2_953b35eb.jpeg"
+    },
+    {
+      sponsor: "GESR",
+      tag: "10 Selections",
+      tagAr: "١٠ اختيارات",
+      prize: "GESR Mentorship Program + GESR Summer Conference Invitations",
+      prizeAr: "برنامج الإرشاد من GESR + دعوات مؤتمر GESR الصيفي",
+      description: "GESR (German Egyptian Social & Scientific Relationships) will select 5 outstanding students to join the GESR Mentorship Program, and invite 5 students to attend the next GESR Summer Conference — providing international networking, research guidance, and global academic exposure.",
+      descriptionAr: "ستختار GESR ٥ طلاب متميزين للانضمام إلى برنامج الإرشاد الخاص بها، وتدعو ٥ طلاب لحضور مؤتمر GESR الصيفي القادم — مما يوفر شبكة تواصل دولية وإرشاداً بحثياً وانكشافاً أكاديمياً عالمياً.",
+      accentColor: "#64748b",
+      logo: "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/GESR-logo_7866e6d3.jpg"
+    },
   ];
 
+  // Fetch sponsor logos
+  const sponsorLogoMap = new Map<string, Buffer>();
+  await Promise.all(sponsorAwards.map(async (sa) => {
+    try {
+      const buf = await fetchImageBuffer(sa.logo);
+      const compressed = await compressForPDF(buf);
+      if (compressed) sponsorLogoMap.set(sa.sponsor, compressed);
+    } catch { /* skip */ }
+  }));
+
   for (const sa of sponsorAwards) {
-    if (y > pageHeight - 50) { doc.addPage(); y = 50; }
-    doc.rect(margin, y, contentWidth, 32).fill(COLORS.plenaryBg);
-    doc.rect(margin, y, 4, 32).fill(COLORS.secondary);
-    doc.fontSize(9).fillColor(COLORS.primary).font("Helvetica-Bold")
-      .text(sa.prize, margin + 10, y + 3, { width: contentWidth - 120 });
-    doc.fontSize(7.5).fillColor(COLORS.midGray).font("Helvetica")
-      .text(`Sponsored by ${sa.sponsor}`, margin + 10, y + 14, { width: contentWidth - 120 });
-    doc.fontSize(7).fillColor(COLORS.darkText).font("Helvetica")
-      .text(sa.detail, margin + 10, y + 23, { width: contentWidth - 14 });
-    y += 36;
+    const cardH = 88;
+    if (y > pageHeight - cardH - 20) { doc.addPage(); y = 50; }
+
+    // Card background
+    doc.rect(margin, y, contentWidth, cardH).fill(COLORS.plenaryBg);
+    doc.rect(margin, y, 4, cardH).fill(sa.accentColor);
+
+    // Sponsor logo (left column, 50x50)
+    const logoSize = 50;
+    const logoX = margin + 10;
+    const logoY = y + (cardH - logoSize) / 2;
+    const logoBuf = sponsorLogoMap.get(sa.sponsor);
+    if (logoBuf) {
+      try {
+        // Draw white rounded rect behind logo
+        doc.rect(logoX, logoY, logoSize, logoSize).fill("#ffffff");
+        doc.image(logoBuf, logoX, logoY, { width: logoSize, height: logoSize, fit: [logoSize, logoSize], align: "center", valign: "center" });
+      } catch { /* skip */ }
+    } else {
+      // Fallback: colored square with sponsor initial
+      doc.rect(logoX, logoY, logoSize, logoSize).fill(sa.accentColor);
+      doc.fontSize(18).fillColor(COLORS.white).font("Helvetica-Bold")
+        .text(sa.sponsor.charAt(0).toUpperCase(), logoX, logoY + 14, { width: logoSize, align: "center" });
+    }
+
+    // Text area
+    const txtX = logoX + logoSize + 10;
+    const txtW = contentWidth - (txtX - margin) - 10;
+
+    // Tag badge (top right)
+    const tagW = 90;
+    const tagX = margin + contentWidth - tagW - 4;
+    doc.rect(tagX, y + 6, tagW, 14).fill(sa.accentColor);
+    doc.fontSize(7).fillColor(COLORS.white).font("Helvetica-Bold")
+      .text(sa.tag, tagX, y + 9, { width: tagW, align: "center" });
+    doc.fontSize(6.5).fillColor(COLORS.white).font("ArabicRegular")
+      .text(shapeArabic(sa.tagAr), tagX, y + 17, { width: tagW, align: "right" });
+
+    // Sponsor name
+    doc.fontSize(8).fillColor(sa.accentColor).font("Helvetica-Bold")
+      .text(sa.sponsor, txtX, y + 6, { width: txtW - tagW - 6, lineBreak: false, ellipsis: true });
+
+    // Prize EN
+    doc.fontSize(9).fillColor(COLORS.darkText).font("Helvetica-Bold")
+      .text(sa.prize, txtX, y + 17, { width: txtW - tagW - 6, lineBreak: false, ellipsis: true });
+
+    // Prize AR
+    doc.fontSize(8).fillColor(sa.accentColor).font("ArabicRegular")
+      .text(shapeArabic(sa.prizeAr), txtX, y + 29, { width: txtW - tagW - 6, align: "right", lineBreak: false, ellipsis: true });
+
+    // Description EN
+    doc.fontSize(7).fillColor(COLORS.midGray).font("Helvetica")
+      .text(sa.description, txtX, y + 42, { width: txtW, height: 22, lineBreak: true, ellipsis: true });
+
+    // Description AR
+    doc.fontSize(7).fillColor(COLORS.midGray).font("ArabicRegular")
+      .text(shapeArabic(sa.descriptionAr), txtX, y + 66, { width: txtW, align: "right", lineBreak: false, ellipsis: true });
+
+    y += cardH + 8;
   }
 
   // ── FOOTER ON ALL PAGES ───────────────────────────────────────────────────
