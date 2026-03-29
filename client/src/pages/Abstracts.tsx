@@ -70,10 +70,12 @@ export default function Abstracts() {
     (s) => s.presentationAbstract && s.presentationAbstract.trim().length > 0
   );
 
-  const sectors = Array.from(new Set(allSpeakersList.map((s) => s.speakerSector || "academia")));
+  // Normalize sector to lowercase for consistent grouping (e.g. 'Academia' and 'academia' → 'academia')
+  const normalizeSector = (sec: string | null | undefined) => (sec || "academia").toLowerCase();
+  const sectors = Array.from(new Set(allSpeakersList.map((s) => normalizeSector(s.speakerSector))));
 
   const filtered = allSpeakersList.filter((s) => {
-    const matchesSector = sectorFilter === "all" || (s.speakerSector || "academia") === sectorFilter;
+    const matchesSector = sectorFilter === "all" || normalizeSector(s.speakerSector) === sectorFilter;
     const q = search.toLowerCase();
     const matchesSearch =
       !q ||
@@ -168,7 +170,7 @@ export default function Abstracts() {
                 onClick={() => setSectorFilter(sec)}
                 className={sectorFilter === sec ? "bg-[#641428] hover:bg-[#41081A] text-white" : ""}
               >
-                {SECTOR_LABELS[sec] || sec} ({allSpeakersList.filter((s) => (s.speakerSector || "academia") === sec).length})
+                {SECTOR_LABELS[sec] || (sec.charAt(0).toUpperCase() + sec.slice(1))} ({allSpeakersList.filter((s) => normalizeSector(s.speakerSector) === sec).length})
               </Button>
             ))}
           </div>
@@ -203,7 +205,7 @@ export default function Abstracts() {
           <div className="space-y-4">
             {filtered.map((speaker, idx) => {
               const isExpanded = expandedId === speaker.id;
-              const sector = speaker.speakerSector || "academia";
+              const sector = normalizeSector(speaker.speakerSector);
               const hasAbstract = !!(speaker.presentationAbstract && speaker.presentationAbstract.trim().length > 0);
               const abstract = speaker.presentationAbstract || "";
               const preview = abstract.length > 300 ? abstract.slice(0, 300) + "…" : abstract;
