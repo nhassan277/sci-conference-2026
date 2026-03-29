@@ -1,0 +1,20 @@
+{
+  "query": "SELECT speaker_type, speaker_sector, COUNT(*) as count FROM keynote_speakers GROUP BY speaker_type, speaker_sector ORDER BY speaker_type;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT speaker_type, speaker_sector, COUNT(*) as count FROM keynote_speakers GROUP BY speaker_type, speaker_sector ORDER BY speaker_type;",
+  "rows": [
+    {
+      "speaker_type": "Plenary",
+      "speaker_sector": "industry",
+      "count": "6"
+    },
+    {
+      "speaker_type": "Plenary",
+      "speaker_sector": "academia",
+      "count": "33"
+    }
+  ],
+  "messages": [],
+  "stdout": "speaker_type\tspeaker_sector\tcount\nPlenary\tindustry\t6\nPlenary\tacademia\t33\n",
+  "stderr": "",
+  "execution_time_ms": 1558
+}

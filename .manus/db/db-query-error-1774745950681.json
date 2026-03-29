@@ -1,0 +1,8 @@
+{
+  "query": "SELECT id, name, speaker_type, is_visible, photo_url, affiliation FROM keynote_speakers WHERE name LIKE '%ashwa%' OR name LIKE '%hazragy%' OR name LIKE '%agy%' LIMIT 5;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, name, speaker_type, is_visible, photo_url, affiliation FROM keynote_speakers WHERE name LIKE '%ashwa%' OR name LIKE '%hazragy%' OR name LIKE '%agy%' LIMIT 5;",
+  "returncode": 1,
+  "logs": [
+    "ERROR 1054 (42S22) at line 1: Unknown column 'name' in 'where clause'"
+  ]
+}

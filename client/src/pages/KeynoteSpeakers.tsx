@@ -183,9 +183,9 @@ export default function KeynoteSpeakers() {
     );
   }
 
-  const keynoteSpeakersList = speakers?.filter(s => s.speakerType === 'keynote') ?? [];
-  const invitedAcademia = speakers?.filter(s => s.speakerType === 'invited' && s.speakerSector !== 'industry') ?? [];
-  const invitedIndustry = speakers?.filter(s => s.speakerType === 'invited' && s.speakerSector === 'industry') ?? [];
+  // All speakers are now 'Plenary' type — split by sector
+  const plenaryAcademia = speakers?.filter(s => s.speakerSector !== 'industry') ?? [];
+  const plenaryIndustry = speakers?.filter(s => s.speakerSector === 'industry') ?? [];
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-accent/5">
@@ -231,21 +231,8 @@ export default function KeynoteSpeakers() {
         <div className="container">
           <div className="space-y-16 max-w-5xl mx-auto">
 
-            {/* Keynote Speakers */}
-            {keynoteSpeakersList.length > 0 && (
-              <div>
-                <h2 className="text-3xl font-bold text-primary mb-2">Plenary Speakers</h2>
-                <p className="text-xl text-secondary font-semibold mb-6" dir="rtl">المتحدثون الرئيسيون</p>
-                <div className="grid gap-8">
-                  {keynoteSpeakersList.map((speaker) => (
-                    <SpeakerCard key={speaker.id} speaker={speaker} />
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Invited Speakers — Academia */}
-            {invitedAcademia.length > 0 && (
+            {/* Plenary Speakers — Academia */}
+            {plenaryAcademia.length > 0 && (
               <div>
                 <div className="flex items-center gap-3 mb-2">
                   <GraduationCap className="w-8 h-8 text-primary" />
@@ -254,15 +241,15 @@ export default function KeynoteSpeakers() {
                 <p className="text-xl text-secondary font-semibold mb-2" dir="rtl">المتحدثون الرئيسيون — الأكاديميون والباحثون</p>
                 <Badge className="bg-blue-100 text-blue-800 mb-6">20-Minute Talk | محاضرة ٢٠ دقيقة</Badge>
                 <div className="grid gap-8">
-                  {invitedAcademia.map((speaker) => (
+                  {plenaryAcademia.map((speaker) => (
                     <SpeakerCard key={speaker.id} speaker={speaker} />
                   ))}
                 </div>
               </div>
             )}
 
-            {/* Invited Speakers — Industry */}
-            {invitedIndustry.length > 0 && (
+            {/* Plenary Speakers — Industry */}
+            {plenaryIndustry.length > 0 && (
               <div>
                 <div className="flex items-center gap-3 mb-2">
                   <Building2 className="w-8 h-8 text-primary" />
@@ -271,7 +258,7 @@ export default function KeynoteSpeakers() {
                 <p className="text-xl text-secondary font-semibold mb-2" dir="rtl">المتحدثون الرئيسيون — القطاع الصناعي والريادي</p>
                 <Badge className="bg-blue-100 text-blue-800 mb-6">20-Minute Talk | محاضرة ٢٠ دقيقة</Badge>
                 <div className="grid gap-8">
-                  {invitedIndustry.map((speaker) => (
+                  {plenaryIndustry.map((speaker) => (
                     <SpeakerCard key={speaker.id} speaker={speaker} />
                   ))}
                 </div>

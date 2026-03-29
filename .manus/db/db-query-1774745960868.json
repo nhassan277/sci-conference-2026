@@ -1,0 +1,17 @@
+{
+  "query": "SELECT id, full_name, speaker_type, is_visible, photo_url FROM keynote_speakers WHERE full_name LIKE '%ashwa%' OR full_name LIKE '%hazragy%';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT id, full_name, speaker_type, is_visible, photo_url FROM keynote_speakers WHERE full_name LIKE '%ashwa%' OR full_name LIKE '%hazragy%';",
+  "rows": [
+    {
+      "id": "39",
+      "full_name": "Nashwa El-Sayed Nagy El-Khazragy",
+      "speaker_type": "Plenary",
+      "is_visible": "1",
+      "photo_url": "https://www.asu.edu.eg/staffPortal/storage//uploads/staffimages/BqMb7NL2CDcTAI00.png"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tfull_name\tspeaker_type\tis_visible\tphoto_url\n39\tNashwa El-Sayed Nagy El-Khazragy\tPlenary\t1\thttps://www.asu.edu.eg/staffPortal/storage//uploads/staffimages/BqMb7NL2CDcTAI00.png\n",
+  "stderr": "",
+  "execution_time_ms": 1573
+}
