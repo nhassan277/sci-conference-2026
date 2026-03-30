@@ -1,0 +1,23 @@
+CREATE TABLE `workshop_registrations` (
+	`id` int AUTO_INCREMENT NOT NULL,
+	`workshop_key` varchar(100) NOT NULL,
+	`full_name` varchar(255) NOT NULL,
+	`email` varchar(255) NOT NULL,
+	`phone` varchar(50) NOT NULL,
+	`affiliation` varchar(255) NOT NULL,
+	`academic_level` varchar(50) NOT NULL,
+	`faculty` varchar(255),
+	`has_laptop` boolean NOT NULL DEFAULT false,
+	`notes` text,
+	`amount` decimal(10,2) NOT NULL DEFAULT '200.00',
+	`currency` varchar(10) NOT NULL DEFAULT 'EGP',
+	`payment_status` varchar(20) NOT NULL DEFAULT 'unpaid',
+	`stripe_checkout_session_id` varchar(255),
+	`stripe_payment_intent_id` varchar(255),
+	`paid_at` timestamp,
+	`checked_in` boolean NOT NULL DEFAULT false,
+	`checked_in_at` timestamp,
+	`created_at` timestamp NOT NULL DEFAULT (now()),
+	`updated_at` timestamp NOT NULL DEFAULT (now()),
+	CONSTRAINT `workshop_registrations_id` PRIMARY KEY(`id`)
+);

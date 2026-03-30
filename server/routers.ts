@@ -3,7 +3,7 @@ import { z } from "zod";
 import { eq, desc, sql, and } from "drizzle-orm";
 import superjson from "superjson";
 import { db } from "./db.js";
-import { registrations, sponsorships, sessions, supportTickets, admins, auditLogs, reminderSubscriptions, galleryPhotos, newsletterSubscriptions, googleSheetsSyncs, mediaRegistrations, committees, keynoteSpeakers, volunteers, surveys, surveyResponses, announcements } from "../drizzle/schema.js";
+import { registrations, sponsorships, sessions, supportTickets, admins, auditLogs, reminderSubscriptions, galleryPhotos, newsletterSubscriptions, googleSheetsSyncs, mediaRegistrations, committees, keynoteSpeakers, volunteers, surveys, surveyResponses, announcements, workshopRegistrations } from "../drizzle/schema.js";
 import { syncAllSheets, SHEETS_CONFIG, type SheetCategory } from "./googleSheets.js";
 import { verifyToken, isOwner } from "./auth.js";
 import { logAuditAction, getIpAddress, getUserAgent } from "./audit.js";
@@ -3846,6 +3846,128 @@ export const appRouter = router({
           total: uniqueRegs.length,
           message: `Acceptance emails sent to ${sent} of ${uniqueRegs.length} registrants${failed > 0 ? ` (${failed} failed)` : ""}`,
         };
+      }),
+  }),
+
+  // ─── Post-Conference Paid Workshops ───────────────────────────────────────
+  workshopReg: router({
+    // Public: register and initiate payment
+    create: publicProcedure
+      .input(
+        z.object({
+          workshopKey: z.string().default("gee_remote_sensing"),
+          fullName: z.string().min(2, "Full name is required"),
+          email: z.string().email("Invalid email"),
+          phone: z.string().min(7, "Phone is required"),
+          affiliation: z.string().min(2, "Affiliation is required"),
+          academicLevel: z.enum(["undergraduate", "postgraduate", "faculty", "professional"]),
+          faculty: z.string().optional(),
+          hasLaptop: z.boolean().default(false),
+          notes: z.string().optional(),
+        })
+      )
+      .mutation(async ({ input }) => {
+        const [result] = await db.insert(workshopRegistrations).values({
+          workshopKey: input.workshopKey,
+          fullName: input.fullName,
+          email: input.email,
+          phone: input.phone,
+          affiliation: input.affiliation,
+          academicLevel: input.academicLevel,
+          faculty: input.faculty ?? null,
+          hasLaptop: input.hasLaptop,
+          notes: input.notes ?? null,
+          amount: "200.00",
+          currency: "EGP",
+          paymentStatus: "unpaid",
+        });
+        const newId = (result as any).insertId as number;
+        return { success: true, registrationId: newId };
+      }),
+
+    // Create Stripe checkout session for a workshop registration
+    createCheckout: publicProcedure
+      .input(
+        z.object({
+          registrationId: z.number(),
+          email: z.string().email(),
+          fullName: z.string(),
+        })
+      )
+      .mutation(async ({ input, ctx }) => {
+        const Stripe = (await import("stripe")).default;
+        const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+          apiVersion: "2025-12-15.clover",
+        });
+        const origin = ctx.req?.headers?.origin || "https://sciconf26.website";
+        try {
+          const session = await stripe.checkout.sessions.create({
+            payment_method_types: ["card"],
+            line_items: [
+              {
+                price_data: {
+                  currency: "egp",
+                  product_data: {
+                    name: "GEE Remote Sensing Workshop – SCI 2026",
+                    description: "Programming-based Remote Sensing Analysis of Google Earth Engine | April 11, 2026 | Ibn Sina Hall",
+                  },
+                  unit_amount: 20000, // 200 EGP in piastres
+                },
+                quantity: 1,
+              },
+            ],
+            mode: "payment",
+            success_url: `${origin}/workshop/gee-remote-sensing?payment=success&reg_id=${input.registrationId}`,
+            cancel_url: `${origin}/workshop/gee-remote-sensing?payment=cancelled`,
+            customer_email: input.email,
+            client_reference_id: input.registrationId.toString(),
+            metadata: {
+              workshopRegistrationId: input.registrationId.toString(),
+              fullName: input.fullName,
+              productType: "workshop_gee",
+            },
+            allow_promotion_codes: true,
+          });
+
+          await db
+            .update(workshopRegistrations)
+            .set({
+              stripeCheckoutSessionId: session.id,
+              paymentStatus: "pending",
+            })
+            .where(eq(workshopRegistrations.id, input.registrationId));
+
+          return { success: true, checkoutUrl: session.url, sessionId: session.id };
+        } catch (error: any) {
+          console.error("[Stripe Workshop] Checkout creation failed:", error);
+          throw new Error(error.message || "Failed to create checkout session");
+        }
+      }),
+
+    // Check payment status by registration ID
+    getStatus: publicProcedure
+      .input(z.object({ registrationId: z.number() }))
+      .query(async ({ input }) => {
+        const [reg] = await db
+          .select()
+          .from(workshopRegistrations)
+          .where(eq(workshopRegistrations.id, input.registrationId));
+        if (!reg) throw new Error("Registration not found");
+        return { paymentStatus: reg.paymentStatus, paidAt: reg.paidAt };
+      }),
+
+    // Admin: list all workshop registrations
+    listAll: adminProcedure
+      .input(z.object({ workshopKey: z.string().optional() }).optional())
+      .query(async ({ input }) => {
+        const rows = await db
+          .select()
+          .from(workshopRegistrations)
+          .orderBy(desc(workshopRegistrations.createdAt));
+        if (input?.workshopKey) {
+          return rows.filter(r => r.workshopKey === input.workshopKey);
+        }
+        return rows;
       }),
   }),
 });

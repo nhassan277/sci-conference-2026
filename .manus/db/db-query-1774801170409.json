@@ -1,0 +1,48 @@
+{
+  "query": "SELECT * FROM sponsorships ORDER BY id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2BRPn7WGkW9dbFt.root --database BK5ELr97meyN2f7P5B76DF --execute SELECT * FROM sponsorships ORDER BY id;",
+  "rows": [
+    {
+      "id": "120001",
+      "company_name": "مجموعة سامي عايد للاعلاف والدواجن",
+      "contact_person": "zyad samy ayed ",
+      "email": "samyayedgroup@yahoo.com",
+      "phone": "+201007449099",
+      "package_type": "gold",
+      "company_website": "https://samyayedgroup.com/",
+      "message": "",
+      "created_at": "2026-02-05 10:03:38",
+      "status": "pending",
+      "logo_url": "NULL",
+      "banner_url": "NULL",
+      "brochure_url": "NULL",
+      "workshop_materials_url": "NULL",
+      "company_description": "NULL",
+      "materials_uploaded_at": "NULL",
+      "updated_at": "2026-02-11 23:10:42"
+    },
+    {
+      "id": "150001",
+      "company_name": "Startup Grind",
+      "contact_person": "Startup Grind Cairo Team",
+      "email": "cairo@startupgrind.com",
+      "phone": "",
+      "package_type": "partner",
+      "company_website": "https://www.startupgrind.com/cairo",
+      "message": "NULL",
+      "created_at": "2026-03-10 21:11:19",
+      "status": "approved",
+      "logo_url": "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/logo_startup_grind_5a94ca60.png",
+      "banner_url": "NULL",
+      "brochure_url": "NULL",
+      "workshop_materials_url": "NULL",
+      "company_description": "Startup Grind is the world's largest startup community, educating, inspiring, and connecting entrepreneurs. Startup Grind Cairo supports student projects in AI, Machine Learning, and Bioinformatics at SCI 2026.",
+      "materials_uploaded_at": "NULL",
+      "updated_at": "2026-03-10 21:11:19"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tcompany_name\tcontact_person\temail\tphone\tpackage_type\tcompany_website\tmessage\tcreated_at\tstatus\tlogo_url\tbanner_url\tbrochure_url\tworkshop_materials_url\tcompany_description\tmaterials_uploaded_at\tupdated_at\n120001\tمجموعة سامي عايد للاعلاف والدواجن\tzyad samy ayed \tsamyayedgroup@yahoo.com\t+201007449099\tgold\thttps://samyayedgroup.com/\t\t2026-02-05 10:03:38\tpending\tNULL\tNULL\tNULL\tNULL\tNULL\tNULL\t2026-02-11 23:10:42\n150001\tStartup Grind\tStartup Grind Cairo Team\tcairo@startupgrind.com\t\tpartner\thttps://www.startupgrind.com/cairo\tNULL\t2026-03-10 21:11:19\tapproved\thttps://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/logo_startup_grind_5a94ca60.png\tNULL\tNULL\tNULL\tStartup Grind is the world's largest startup community, educating, inspiring, and connecting entrepreneurs. Startup Grind Cairo supports student projects in AI, Machine Learning, and Bioinformatics at SCI 2026.\tNULL\t2026-03-10 21:11:19\n",
+  "stderr": "",
+  "execution_time_ms": 58
+}

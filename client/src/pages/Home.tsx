@@ -1715,6 +1715,54 @@ export default function Home() {
               </div>
 
 
+              {/* GEE Remote Sensing Workshop Card — Sherif Shallal */}
+              <div className="max-w-2xl mx-auto">
+                <div className="p-6 bg-gradient-to-r from-sky-50 to-teal-50 border-2 border-sky-300 rounded-2xl space-y-4">
+                  {/* Header */}
+                  <div className="flex items-start justify-between flex-wrap gap-3">
+                    <div className="space-y-1">
+                      <Badge className="bg-sky-100 text-sky-800 text-xs">Post-Conference Workshop | ورشة عمل بعد المؤتمر</Badge>
+                      <Badge className="bg-teal-100 text-teal-800 text-xs ml-1">Saturday, April 11 · 10AM–2PM</Badge>
+                    </div>
+                  </div>
+                  {/* Title */}
+                  <div>
+                    <h4 className="text-xl font-bold text-sky-900">Programming-based Remote Sensing Analysis of Google Earth Engine (GEE)</h4>
+                    <p className="text-sm text-sky-700 mt-1">By <strong>Eng. Sherif Shallal</strong> — CEO, Lunar Code for Information Systems | MSc Researcher, Suez Canal University</p>
+                  </div>
+                  <p className="text-sm text-foreground leading-relaxed">
+                    A 4-hour hands-on workshop covering cloud-based remote sensing with GEE — from JavaScript basics to machine learning (Random Forest, SVM, k-Means) and real-world projects in climate change monitoring, agriculture, and air quality mapping.
+                  </p>
+                  <div className="grid sm:grid-cols-3 gap-2 text-xs">
+                    <div className="bg-white/80 rounded-lg p-2 border border-sky-200 text-center">
+                      <p className="font-bold text-sky-800">Level 1</p>
+                      <p className="text-muted-foreground">GEE Basics & JavaScript</p>
+                    </div>
+                    <div className="bg-white/80 rounded-lg p-2 border border-sky-200 text-center">
+                      <p className="font-bold text-sky-800">Level 2</p>
+                      <p className="text-muted-foreground">AI & ML in GEE</p>
+                    </div>
+                    <div className="bg-white/80 rounded-lg p-2 border border-sky-200 text-center">
+                      <p className="font-bold text-sky-800">Level 3</p>
+                      <p className="text-muted-foreground">Climate & Environmental Projects</p>
+                    </div>
+                  </div>
+                  <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 text-xs text-yellow-800">
+                    💻 <strong>Laptop Required</strong> — Ibn Sina Hall · Faculty of Science, Cairo University
+                  </div>
+                  <div className="flex flex-wrap items-center gap-3 pt-1">
+                    <Badge className="bg-sky-700 text-white px-3 py-1 text-sm font-bold">200 EGP</Badge>
+                    <Button
+                      size="sm"
+                      className="bg-sky-700 hover:bg-sky-800 text-white text-xs px-4"
+                      onClick={() => { window.location.href = '/workshop/gee-remote-sensing'; }}
+                    >
+                      View Details &amp; Register
+                    </Button>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>

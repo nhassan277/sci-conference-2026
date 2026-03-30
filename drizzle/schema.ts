@@ -431,3 +431,39 @@ export const announcements = mysqlTable("announcements", {
 
 export type Announcement = typeof announcements.$inferSelect;
 export type NewAnnouncement = typeof announcements.$inferInsert;
+
+// Post-Conference Paid Workshops (e.g., Sherif Shallal GEE Workshop)
+export const workshopRegistrations = mysqlTable("workshop_registrations", {
+  id: int("id").primaryKey().autoincrement(),
+
+  // Workshop identifier (slug)
+  workshopKey: varchar("workshop_key", { length: 100 }).notNull(), // e.g. "gee_remote_sensing"
+
+  // Participant Info
+  fullName: varchar("full_name", { length: 255 }).notNull(),
+  email: varchar("email", { length: 255 }).notNull(),
+  phone: varchar("phone", { length: 50 }).notNull(),
+  affiliation: varchar("affiliation", { length: 255 }).notNull(),
+  academicLevel: varchar("academic_level", { length: 50 }).notNull(), // undergraduate, postgraduate, faculty, professional
+  faculty: varchar("faculty", { length: 255 }), // e.g. Science, Agriculture, Engineering
+  hasLaptop: boolean("has_laptop").default(false).notNull(),
+  notes: text("notes"),
+
+  // Payment
+  amount: decimal("amount", { precision: 10, scale: 2 }).notNull().default("200.00"),
+  currency: varchar("currency", { length: 10 }).notNull().default("EGP"),
+  paymentStatus: varchar("payment_status", { length: 20 }).notNull().default("unpaid"), // unpaid, pending, paid, failed
+  stripeCheckoutSessionId: varchar("stripe_checkout_session_id", { length: 255 }),
+  stripePaymentIntentId: varchar("stripe_payment_intent_id", { length: 255 }),
+  paidAt: timestamp("paid_at"),
+
+  // Admin
+  checkedIn: boolean("checked_in").default(false).notNull(),
+  checkedInAt: timestamp("checked_in_at"),
+
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export type WorkshopRegistration = typeof workshopRegistrations.$inferSelect;
+export type NewWorkshopRegistration = typeof workshopRegistrations.$inferInsert;

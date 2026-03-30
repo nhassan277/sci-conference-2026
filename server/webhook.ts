@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
 import Stripe from "stripe";
 import { db } from "./db.js";
-import { registrations } from "../drizzle/schema.js";
+import { registrations, workshopRegistrations } from "../drizzle/schema.js";
 import { eq } from "drizzle-orm";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
@@ -43,7 +43,11 @@ export async function handleStripeWebhook(req: Request, res: Response) {
     switch (event.type) {
       case "checkout.session.completed": {
         const session = event.data.object as Stripe.Checkout.Session;
-        await handleCheckoutCompleted(session);
+        if (session.metadata?.productType === "workshop_gee") {
+          await handleWorkshopCheckoutCompleted(session);
+        } else {
+          await handleCheckoutCompleted(session);
+        }
         break;
       }
 
@@ -152,4 +156,22 @@ async function handlePaymentFailed(paymentIntent: Stripe.PaymentIntent) {
 
     console.log(`[Webhook] Marked registration ${registration.id} as unpaid due to payment failure`);
   }
+}
+
+async function handleWorkshopCheckoutCompleted(session: Stripe.Checkout.Session) {
+  const workshopRegId = session.metadata?.workshopRegistrationId;
+  if (!workshopRegId) {
+    console.error("[Webhook] No workshopRegistrationId in session metadata");
+    return;
+  }
+  console.log(`[Webhook] Workshop checkout completed for registration ${workshopRegId}`);
+  await db
+    .update(workshopRegistrations)
+    .set({
+      paymentStatus: "paid",
+      stripePaymentIntentId: session.payment_intent as string,
+      paidAt: new Date(),
+    })
+    .where(eq(workshopRegistrations.id, parseInt(workshopRegId)));
+  console.log(`[Webhook] Workshop registration ${workshopRegId} marked as paid`);
 }
