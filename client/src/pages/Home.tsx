@@ -1722,7 +1722,7 @@ export default function Home() {
                   <div className="flex items-start justify-between flex-wrap gap-3">
                     <div className="space-y-1">
                       <Badge className="bg-sky-100 text-sky-800 text-xs">Post-Conference Workshop | ورشة عمل بعد المؤتمر</Badge>
-                      <Badge className="bg-teal-100 text-teal-800 text-xs ml-1">Saturday, April 11 · 10AM–2PM</Badge>
+                      <Badge className="bg-teal-100 text-teal-800 text-xs ml-1">Saturday, April 19 · 10AM–2PM</Badge>
                     </div>
                   </div>
                   {/* Title */}
@@ -1748,7 +1748,7 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 text-xs text-yellow-800">
-                    💻 <strong>Laptop Required</strong> — Ibn Sina Hall · Faculty of Science, Cairo University
+                    💻 <strong>Laptop Required</strong> · 200 EGP via InstaPay — Ibn Sina Hall · Faculty of Science, Cairo University
                   </div>
                   <div className="flex flex-wrap items-center gap-3 pt-1">
                     <Badge className="bg-sky-700 text-white px-3 py-1 text-sm font-bold">200 EGP</Badge>

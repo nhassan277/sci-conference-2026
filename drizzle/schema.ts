@@ -455,6 +455,7 @@ export const workshopRegistrations = mysqlTable("workshop_registrations", {
   paymentStatus: varchar("payment_status", { length: 20 }).notNull().default("unpaid"), // unpaid, pending, paid, failed
   stripeCheckoutSessionId: varchar("stripe_checkout_session_id", { length: 255 }),
   stripePaymentIntentId: varchar("stripe_payment_intent_id", { length: 255 }),
+  invoiceUrl: text("invoice_url"), // InstaPay / bank transfer receipt URL
   paidAt: timestamp("paid_at"),
 
   // Admin

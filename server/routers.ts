@@ -3885,63 +3885,39 @@ export const appRouter = router({
         return { success: true, registrationId: newId };
       }),
 
-    // Create Stripe checkout session for a workshop registration
-    createCheckout: publicProcedure
+    // Upload InstaPay / bank transfer receipt for a workshop registration
+    uploadInvoice: publicProcedure
       .input(
         z.object({
           registrationId: z.number(),
-          email: z.string().email(),
-          fullName: z.string(),
+          file: z.object({
+            data: z.string(), // base64
+            name: z.string(),
+            mimeType: z.string().optional(),
+          }),
         })
       )
-      .mutation(async ({ input, ctx }) => {
-        const Stripe = (await import("stripe")).default;
-        const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-          apiVersion: "2025-12-15.clover",
-        });
-        const origin = ctx.req?.headers?.origin || "https://sciconf26.website";
-        try {
-          const session = await stripe.checkout.sessions.create({
-            payment_method_types: ["card"],
-            line_items: [
-              {
-                price_data: {
-                  currency: "egp",
-                  product_data: {
-                    name: "GEE Remote Sensing Workshop – SCI 2026",
-                    description: "Programming-based Remote Sensing Analysis of Google Earth Engine | April 11, 2026 | Ibn Sina Hall",
-                  },
-                  unit_amount: 20000, // 200 EGP in piastres
-                },
-                quantity: 1,
-              },
-            ],
-            mode: "payment",
-            success_url: `${origin}/workshop/gee-remote-sensing?payment=success&reg_id=${input.registrationId}`,
-            cancel_url: `${origin}/workshop/gee-remote-sensing?payment=cancelled`,
-            customer_email: input.email,
-            client_reference_id: input.registrationId.toString(),
-            metadata: {
-              workshopRegistrationId: input.registrationId.toString(),
-              fullName: input.fullName,
-              productType: "workshop_gee",
-            },
-            allow_promotion_codes: true,
-          });
+      .mutation(async ({ input }) => {
+        const [reg] = await db
+          .select()
+          .from(workshopRegistrations)
+          .where(eq(workshopRegistrations.id, input.registrationId));
+        if (!reg) throw new TRPCError({ code: "NOT_FOUND", message: "Registration not found" });
 
-          await db
-            .update(workshopRegistrations)
-            .set({
-              stripeCheckoutSessionId: session.id,
-              paymentStatus: "pending",
-            })
-            .where(eq(workshopRegistrations.id, input.registrationId));
+        const { storagePut } = await import("../storage/index.js");
+        const buffer = Buffer.from(input.file.data, "base64");
+        const extension = input.file.name.split(".").pop() || "jpg";
+        const randomSuffix = Math.random().toString(36).substring(7);
+        const key = `workshop-invoices/gee/${input.registrationId}-${Date.now()}-${randomSuffix}.${extension}`;
+        const mimeType = input.file.mimeType || "image/jpeg";
+        const result = await storagePut(key, buffer, mimeType);
 
-          return { success: true, checkoutUrl: session.url, sessionId: session.id };
-        } catch (error: any) {
-          console.error("[Stripe Workshop] Checkout creation failed:", error);
-          throw new Error(error.message || "Failed to create checkout session");
-        }
+        await db
+          .update(workshopRegistrations)
+          .set({ invoiceUrl: result.url, paymentStatus: "pending" })
+          .where(eq(workshopRegistrations.id, input.registrationId));
+
+        return { success: true, url: result.url };
       }),
 
     // Check payment status by registration ID

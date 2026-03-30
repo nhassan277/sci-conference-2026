@@ -1,0 +1,1 @@
+ALTER TABLE `workshop_registrations` ADD `invoice_url` text;

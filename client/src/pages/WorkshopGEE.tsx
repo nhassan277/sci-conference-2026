@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useLocation } from "wouter";
 import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
@@ -13,7 +13,7 @@ import { toast } from "sonner";
 import {
   Calendar, Clock, MapPin, User, Laptop, BookOpen,
   ChevronDown, ChevronUp, Download, CheckCircle2, ExternalLink,
-  GraduationCap, Cpu, Globe, Leaf
+  GraduationCap, Cpu, Globe, Upload
 } from "lucide-react";
 
 const SYLLABUS = [
@@ -83,22 +83,23 @@ const TARGET_FACULTIES = [
   "Engineering — Geomatics",
 ];
 
+function fileToBase64(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve((reader.result as string).split(",")[1]);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
 export default function WorkshopGEE() {
   const [, setLocation] = useLocation();
   const [openLevel, setOpenLevel] = useState<number | null>(0);
   const [showForm, setShowForm] = useState(false);
-  const [registrationId, setRegistrationId] = useState<number | null>(null);
-  const [paymentSuccess, setPaymentSuccess] = useState(false);
-
-  // Read URL params for payment result
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get("payment") === "success") {
-      setPaymentSuccess(true);
-      const regId = params.get("reg_id");
-      if (regId) setRegistrationId(parseInt(regId));
-    }
-  }, []);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [uploadingInvoice, setUploadingInvoice] = useState(false);
+  const [invoiceFile, setInvoiceFile] = useState<File | null>(null);
+  const invoiceInputRef = useRef<HTMLInputElement>(null);
 
   const [form, setForm] = useState({
     fullName: "",
@@ -112,7 +113,7 @@ export default function WorkshopGEE() {
   });
 
   const createMutation = trpc.workshopReg.create.useMutation();
-  const checkoutMutation = trpc.workshopReg.createCheckout.useMutation();
+  const uploadInvoiceMutation = trpc.workshopReg.uploadInvoice.useMutation();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -120,7 +121,12 @@ export default function WorkshopGEE() {
       toast.error("Please select your academic level");
       return;
     }
+    if (!invoiceFile) {
+      toast.error("Please upload your InstaPay transfer receipt before submitting");
+      return;
+    }
     try {
+      setUploadingInvoice(true);
       const result = await createMutation.mutateAsync({
         workshopKey: "gee_remote_sensing",
         fullName: form.fullName,
@@ -133,36 +139,34 @@ export default function WorkshopGEE() {
         notes: form.notes || undefined,
       });
 
-      toast.success("Registration saved! Redirecting to payment…");
-
-      // Create Stripe checkout
-      const checkout = await checkoutMutation.mutateAsync({
+      // Upload invoice
+      const base64 = await fileToBase64(invoiceFile);
+      await uploadInvoiceMutation.mutateAsync({
         registrationId: result.registrationId,
-        email: form.email,
-        fullName: form.fullName,
+        file: { data: base64, name: invoiceFile.name, mimeType: invoiceFile.type },
       });
 
-      if (checkout.checkoutUrl) {
-        window.open(checkout.checkoutUrl, "_blank");
-      }
+      setShowSuccess(true);
     } catch (err: any) {
-      toast.error(err.message || "An error occurred");
+      toast.error(err.message || "An error occurred. Please try again.");
+    } finally {
+      setUploadingInvoice(false);
     }
   };
 
-  if (paymentSuccess) {
+  if (showSuccess) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-green-50 to-white flex items-center justify-center p-6">
         <Card className="max-w-lg w-full text-center shadow-xl">
           <CardContent className="pt-10 pb-8 space-y-4">
             <CheckCircle2 className="w-20 h-20 text-green-500 mx-auto" />
-            <h2 className="text-2xl font-bold text-green-700">Payment Successful!</h2>
+            <h2 className="text-2xl font-bold text-green-700">Registration Submitted!</h2>
             <p className="text-muted-foreground">
-              You are now registered for the <strong>GEE Remote Sensing Workshop</strong>.<br />
-              A confirmation will be sent to your email.
+              Your registration for the <strong>GEE Remote Sensing Workshop</strong> has been received.<br />
+              Your spot will be confirmed once your payment is verified.
             </p>
-            <div className="bg-green-50 rounded-lg p-4 text-sm text-green-800 space-y-1">
-              <p><strong>Date:</strong> Saturday, April 11, 2026</p>
+            <div className="bg-green-50 rounded-lg p-4 text-sm text-green-800 space-y-1 text-left">
+              <p><strong>Date:</strong> Saturday, April 19, 2026</p>
               <p><strong>Time:</strong> 10:00 AM – 2:00 PM</p>
               <p><strong>Location:</strong> Ibn Sina Hall, Faculty of Science, Cairo University</p>
               <p><strong>Reminder:</strong> Please bring your laptop</p>
@@ -208,7 +212,7 @@ export default function WorkshopGEE() {
             {/* Key info */}
             <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4 pt-4">
               {[
-                { icon: Calendar, label: "Date", value: "Saturday, April 11, 2026" },
+                { icon: Calendar, label: "Date", value: "Saturday, April 19, 2026" },
                 { icon: Clock, label: "Time", value: "10:00 AM – 2:00 PM" },
                 { icon: MapPin, label: "Location", value: "Ibn Sina Hall" },
                 { icon: Laptop, label: "Requirement", value: "Laptop Required" },
@@ -227,7 +231,7 @@ export default function WorkshopGEE() {
               <Button
                 size="lg"
                 className="bg-yellow-400 hover:bg-yellow-300 text-yellow-900 font-bold px-8"
-                onClick={() => setShowForm(true)}
+                onClick={() => { setShowForm(true); setTimeout(() => document.getElementById('register')?.scrollIntoView({ behavior: 'smooth' }), 100); }}
               >
                 Register Now — 200 EGP
               </Button>
@@ -329,25 +333,25 @@ export default function WorkshopGEE() {
                     <div className="flex items-center gap-3">
                       <Icon className={`w-6 h-6 ${level.iconColor}`} />
                       <div>
-                        <span className="text-xs font-bold uppercase tracking-widest opacity-60">{level.level}</span>
-                        <h3 className="text-lg font-bold">{level.title}</h3>
+                        <span className="text-xs font-semibold uppercase tracking-wide opacity-70">{level.level}</span>
+                        <p className="font-bold text-lg">{level.title}</p>
                       </div>
                     </div>
-                    {isOpen ? <ChevronUp className="w-5 h-5 opacity-60" /> : <ChevronDown className="w-5 h-5 opacity-60" />}
+                    {isOpen ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
                   </button>
                   {isOpen && (
                     <div className="px-5 pb-5 space-y-4 bg-white/60">
                       {level.sessions.map((session, si) => (
                         <div key={si}>
-                          <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">{session.hour}</p>
-                          <div className="grid md:grid-cols-2 gap-3">
+                          <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-2">{session.hour}</p>
+                          <div className="grid sm:grid-cols-2 gap-3">
                             {session.items.map((item, ii) => (
-                              <div key={ii} className="bg-white rounded-lg p-4 border">
-                                <p className="font-semibold text-sm mb-2">{item.title}</p>
-                                <ul className="space-y-1">
+                              <div key={ii} className="bg-white rounded-lg p-3 border shadow-sm">
+                                <p className="font-semibold text-sm mb-1">{item.title}</p>
+                                <ul className="space-y-0.5">
                                   {item.points.map((pt, pi) => (
-                                    <li key={pi} className="text-xs text-muted-foreground flex gap-2">
-                                      <span className="text-primary mt-0.5">•</span> {pt}
+                                    <li key={pi} className="text-xs text-muted-foreground flex gap-1.5">
+                                      <span className="text-primary mt-0.5">•</span>{pt}
                                     </li>
                                   ))}
                                 </ul>
@@ -362,24 +366,6 @@ export default function WorkshopGEE() {
               );
             })}
           </div>
-        </div>
-      </section>
-
-      {/* Target Audience */}
-      <section className="py-12 bg-gray-50 border-b">
-        <div className="container max-w-5xl">
-          <h2 className="text-2xl font-bold text-primary mb-6 flex items-center gap-2">
-            <GraduationCap className="w-6 h-6" /> Target Audience
-          </h2>
-          <p className="text-muted-foreground mb-4">Undergraduate & Postgraduate Students from the following faculties:</p>
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
-            {TARGET_FACULTIES.map((f, i) => (
-              <div key={i} className="flex items-start gap-2 bg-white rounded-lg p-3 border">
-                <Leaf className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
-                <span className="text-sm">{f}</span>
-              </div>
-            ))}
-          </div>
           <div className="mt-6 bg-yellow-50 border border-yellow-200 rounded-lg p-4 flex gap-3">
             <Laptop className="w-5 h-5 text-yellow-600 shrink-0 mt-0.5" />
             <p className="text-sm text-yellow-800">
@@ -390,12 +376,27 @@ export default function WorkshopGEE() {
         </div>
       </section>
 
+      {/* Target Audience */}
+      <section className="py-12 bg-gray-50 border-b">
+        <div className="container max-w-5xl">
+          <h2 className="text-2xl font-bold text-primary mb-6">Who Should Attend?</h2>
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
+            {TARGET_FACULTIES.map((f, i) => (
+              <div key={i} className="flex items-start gap-2 bg-white rounded-lg p-3 border">
+                <GraduationCap className="w-4 h-4 text-primary mt-0.5 shrink-0" />
+                <p className="text-sm">{f}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Registration Form */}
       <section id="register" className="py-16">
         <div className="container max-w-2xl">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-primary">Register for the Workshop</h2>
-            <p className="text-muted-foreground mt-2">Registration fee: <strong>200 EGP</strong> — paid securely via Stripe</p>
+            <p className="text-muted-foreground mt-2">Registration fee: <strong>200 EGP</strong> — paid via InstaPay / bank transfer</p>
           </div>
 
           {!showForm ? (
@@ -412,7 +413,7 @@ export default function WorkshopGEE() {
             <Card className="shadow-lg border-2">
               <CardHeader>
                 <CardTitle>Registration Form</CardTitle>
-                <CardDescription>Fill in your details to secure your spot. Payment is processed via Stripe.</CardDescription>
+                <CardDescription>Fill in your details and upload your payment receipt to secure your spot.</CardDescription>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-5">
@@ -518,19 +519,65 @@ export default function WorkshopGEE() {
                     />
                   </div>
 
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 text-sm text-blue-800">
-                    <p className="font-semibold mb-1">Payment Information</p>
-                    <p>After submitting this form, you will be redirected to Stripe's secure checkout to pay <strong>200 EGP</strong>. Your registration is confirmed only after successful payment.</p>
+                  {/* Payment Instructions */}
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 space-y-3 text-sm">
+                    <p className="font-semibold text-blue-900">Payment Instructions</p>
+                    <p className="text-blue-800">
+                      Transfer <strong>200 EGP</strong> to the bank account below, then upload a photo of the transfer receipt.
+                      <strong> Uploading the receipt is mandatory to confirm your spot.</strong>
+                    </p>
+                    <p className="text-blue-800" dir="rtl">
+                      حوّل <strong>٢٠٠ جنيه مصري</strong> إلى الحساب البنكي أدناه، ثم ارفع صورة إيصال التحويل.
+                      <strong> رفع الإيصال إلزامي لتأكيد مكانك في الورشة.</strong>
+                    </p>
+                    <div className="p-3 bg-white border border-blue-300 rounded text-sm space-y-1" dir="rtl">
+                      <p className="font-semibold text-blue-900">ح/ صندوق الخدمات التعليمية</p>
+                      <p className="text-blue-800">كلية العلوم - جامعة القاهرة</p>
+                      <p className="text-blue-800">البنك المركزي المصري</p>
+                      <p className="text-blue-800">رقم الحساب: <span className="font-mono font-bold">9/450/88216/7</span></p>
+                    </div>
+                  </div>
+
+                  {/* Invoice Upload */}
+                  <div className="space-y-2">
+                    <Label>Upload Payment Receipt *</Label>
+                    <div
+                      className="border-2 border-dashed border-blue-300 rounded-lg p-6 text-center cursor-pointer hover:bg-blue-50 transition-colors"
+                      onClick={() => invoiceInputRef.current?.click()}
+                    >
+                      {invoiceFile ? (
+                        <div className="space-y-1">
+                          <CheckCircle2 className="w-8 h-8 text-green-500 mx-auto" />
+                          <p className="text-sm font-medium text-green-700">{invoiceFile.name}</p>
+                          <p className="text-xs text-muted-foreground">Click to change</p>
+                        </div>
+                      ) : (
+                        <div className="space-y-1">
+                          <Upload className="w-8 h-8 text-blue-400 mx-auto" />
+                          <p className="text-sm text-muted-foreground">Click to upload receipt photo (JPG, PNG, PDF)</p>
+                          <p className="text-xs text-muted-foreground" dir="rtl">اضغط لرفع صورة الإيصال</p>
+                        </div>
+                      )}
+                    </div>
+                    <input
+                      ref={invoiceInputRef}
+                      type="file"
+                      accept="image/*,application/pdf"
+                      className="hidden"
+                      onChange={e => setInvoiceFile(e.target.files?.[0] || null)}
+                    />
                   </div>
 
                   <Button
                     type="submit"
                     className="w-full bg-primary hover:bg-primary/90 text-white py-6 text-base font-semibold"
-                    disabled={createMutation.isPending || checkoutMutation.isPending}
+                    disabled={createMutation.isPending || uploadingInvoice}
                   >
-                    {createMutation.isPending || checkoutMutation.isPending
-                      ? "Processing…"
-                      : "Proceed to Payment — 200 EGP"}
+                    {uploadingInvoice
+                      ? "Uploading receipt…"
+                      : createMutation.isPending
+                      ? "Saving registration…"
+                      : "Submit Registration | إرسال التسجيل"}
                   </Button>
                 </form>
               </CardContent>
@@ -543,7 +590,7 @@ export default function WorkshopGEE() {
       <footer className="bg-[#0A1F44] text-white py-8">
         <div className="container text-center space-y-2">
           <p className="font-semibold">SCI 2026 — Science at the Core of Innovation</p>
-          <p className="text-white/60 text-sm">April 7–8, 2026 (Conference) · April 11, 2026 (Workshop)</p>
+          <p className="text-white/60 text-sm">April 7–8, 2026 (Conference) · April 19, 2026 (Workshop)</p>
           <p className="text-white/60 text-sm">Faculty of Science, Cairo University · sciconf26.website</p>
         </div>
       </footer>
