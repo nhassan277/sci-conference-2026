@@ -526,7 +526,7 @@ export default function Attendance() {
                           { value: "medsol", label: "Medsol Corporation", desc: "From DNA to Proteins: Advanced Sequencing Technologies | April 7 (Day 1) | 200 EGP (incl. certificate) | ⚡ Parallel with MARC Workshop", descAr: "من الحمض النووي إلى البروتينات: تقنيات التسلسل المتقدمة | ٧ أبريل (اليوم الأول) | 200 جنيه (شاملة الشهادة) | ⚡ يعقد بالتوازي مع ورشة MARC" },
                           { value: "agitech", label: "Agitech — NGS & ddPCR in Targeted Therapy", desc: "From Basic Research to Precision Medicine: Applications of NGS and ddPCR in Targeted Therapy. April 6, 12:00–14:00 | 20 spots only", descAr: "من البحث الأساسي إلى الطب الدقيق: تطبيقات NGS و ddPCR في العلاج الموجه. ٦ أبريل، ١٢:٠٠–٢:٠٠ م | ٢٠ مكاناً فقط", logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/qtvBAZFSrMqYBKkE.png" },
                         ].map((ws) => {
-                          const isClosed = ws.value === 'bioinformatics'; // Registration closed — full
+                          const isClosed = ws.value === 'bioinformatics' || ws.value === 'medsol'; // Registration closed — full
                           const isSelected = workshopChoices.includes(ws.value);
                           const toggleChoice = () => {
                             if (isClosed) return;

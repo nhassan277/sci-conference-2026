@@ -865,12 +865,10 @@ export default function Home() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="pt-0">
-                  <Button 
-                    className="w-full bg-amber-600 hover:bg-amber-700 text-sm h-auto py-2 px-3 whitespace-normal leading-snug text-center" 
-                    onClick={() => { window.location.href = '/attendance'; }}
-                  >
-                    Register & Upload Invoice | سجّل وارفع الإيصال
-                  </Button>
+                  <div className="w-full bg-red-50 border border-red-200 rounded-lg py-3 px-4 text-center">
+                    <p className="text-red-700 font-bold text-sm">🔴 Registration Closed | التسجيل مغلق</p>
+                    <p className="text-red-600 text-xs mt-1">This workshop is now fully booked</p>
+                  </div>
                 </CardContent>
               </Card>
               {/* Dr. Jan Sedláček Workshop */}
