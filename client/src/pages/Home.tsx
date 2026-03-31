@@ -1328,16 +1328,10 @@ export default function Home() {
                     <p className="text-xs text-green-700">Certificate co-signed by <strong>EG-CompBio</strong> &amp; <strong>Faculty of Science, Cairo University</strong> | شهادة معتمدة من EG-CompBio وكلية العلوم ، جامعة القاهرة</p>
                   </div>
 
-                  {/* Spots counter */}
-                  <div className="flex items-center justify-between">
-                    {workshopCounts && getSpotsBadge(workshopCounts.scrna_seq ?? 0)}
-                    <Button
-                      size="sm"
-                      className="bg-teal-700 hover:bg-teal-800 text-white text-xs px-3"
-                      onClick={() => { window.location.href = '/attendance'; }}
-                    >
-                      Register &amp; Upload Invoice | سجّل وارفع الإيصال
-                    </Button>
+                  {/* Registration Closed */}
+                  <div className="w-full bg-red-50 border border-red-200 rounded-lg py-3 px-4 text-center">
+                    <p className="text-red-700 font-bold text-sm">🔴 Registration Closed | التسجيل مغلق</p>
+                    <p className="text-red-600 text-xs mt-1">This workshop is now fully booked</p>
                   </div>
                 </div>
               </div>
