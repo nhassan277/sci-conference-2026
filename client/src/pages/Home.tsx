@@ -688,7 +688,7 @@ export default function Home() {
                     />
                   </div>
                   <CardTitle className="text-xl mb-2">How to Convert Research Findings into Business Ideas</CardTitle>
-                  {workshopCounts && <div className="mb-2">{getSpotsBadge(workshopCounts.nawah)}</div>}
+                  <div className="mb-2"><Badge className="bg-red-100 text-red-800 text-xs font-bold">Registration Closed 🔴 | التسجيل مغلق</Badge></div>
                   <CardDescription className="text-base space-y-3 pt-2">
                     <p className="text-foreground font-medium">
                       In collaboration with <strong>NAWAH Scientific</strong>
@@ -717,10 +717,10 @@ export default function Home() {
                 </CardHeader>
                 <CardContent className="pt-0">
                   <Button 
-                    className="w-full bg-amber-600 hover:bg-amber-700 text-sm h-auto py-2 px-3 whitespace-normal leading-snug text-center" 
-                    onClick={() => { window.location.href = '/attendance'; }}
+                    className="w-full bg-gray-400 text-white text-sm h-auto py-2 px-3 whitespace-normal leading-snug text-center cursor-not-allowed" 
+                    disabled
                   >
-                    Register & Upload Invoice | سجّل وارفع الإيصال
+                    Registration Closed | التسجيل مغلق
                   </Button>
                 </CardContent>
               </Card>
@@ -1685,22 +1685,15 @@ export default function Home() {
                     <p className="text-xs text-green-700">Certificate co-signed by <strong>Colors Educational Hub</strong> &amp; <strong>Faculty of Science, Cairo University</strong> | شهادة معتمدة من Colors Educational Hub وكلية العلوم، جامعة القاهرة</p>
                   </div>
 
-                  {/* Spots counter */}
+                  {/* Spots counter — REGISTRATION CLOSED */}
                   <div className="flex items-center justify-between">
-                    {workshopCounts && (() => {
-                      const count = workshopCounts.colors_metagenomics ?? 0;
-                      const remaining = COLORS_LIMIT - count;
-                      if (remaining <= 0) return <Badge className="bg-red-100 text-red-800 text-xs">Full 🔴</Badge>;
-                      if (remaining <= 5) return <Badge className="bg-red-100 text-red-800 text-xs">{remaining} spots left 🔴</Badge>;
-                      if (remaining <= 10) return <Badge className="bg-amber-100 text-amber-800 text-xs">{remaining}/{COLORS_LIMIT} spots left 🟡</Badge>;
-                      return <Badge className="bg-green-100 text-green-800 text-xs">{remaining}/{COLORS_LIMIT} spots left 🟢</Badge>;
-                    })()}
+                    <Badge className="bg-red-100 text-red-800 border-red-300 text-xs font-bold">Registration Closed 🔴 | التسجيل مغلق</Badge>
                     <Button
                       size="sm"
-                      className="bg-indigo-700 hover:bg-indigo-800 text-white text-xs px-3"
-                      onClick={() => { window.location.href = '/attendance'; }}
+                      className="bg-gray-400 text-white text-xs px-3 cursor-not-allowed"
+                      disabled
                     >
-                      Register &amp; Upload Invoice | سجّل وارفع الإيصال
+                      Registration Closed | التسجيل مغلق
                     </Button>
                   </div>
                  </div>

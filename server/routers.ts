@@ -110,7 +110,7 @@ export const appRouter = router({
       )
       .mutation(async ({ input }) => {
         // Workshops that are closed for new registrations
-        const CLOSED_WORKSHOPS = ['hvd_genomics'];
+        const CLOSED_WORKSHOPS = ['hvd_genomics', 'nawah', 'colors_metagenomics'];
         // Derive legacy workshopChoice from multi-select for backwards compat
         const resolvedChoices = input.workshopChoices && input.workshopChoices.length > 0 ? input.workshopChoices : (input.workshopChoice ? [input.workshopChoice] : []);
         const resolvedSingleChoice = resolvedChoices[0] ?? input.workshopChoice;
