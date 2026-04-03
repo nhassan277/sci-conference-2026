@@ -241,6 +241,23 @@ export default function Admin() {
   const { data: sessions, isLoading: loadingSessions, refetch: refetchSessions } = trpc.session.list.useQuery(undefined, { enabled: isAuthenticated && isAdmin });
   const { data: supportTickets, isLoading: loadingTickets, refetch: refetchTickets } = trpc.supportTicket.list.useQuery(undefined, { enabled: isAuthenticated && isAdmin });
   const { data: workshopCounts } = trpc.registration.getWorkshopCounts.useQuery(undefined, { enabled: isAuthenticated && isAdmin });
+  const { data: geeRegistrations, isLoading: loadingGee, refetch: refetchGee } = trpc.workshopReg.listAll.useQuery(
+    { workshopKey: 'gee_remote_sensing' },
+    { enabled: isAuthenticated && isAdmin }
+  );
+
+  const confirmGeePayment = trpc.workshopReg.confirmPayment.useMutation({
+    onSuccess: () => { toast.success('Payment confirmed'); refetchGee(); },
+    onError: (e) => toast.error(e.message),
+  });
+  const rejectGeePayment = trpc.workshopReg.rejectPayment.useMutation({
+    onSuccess: () => { toast.success('Payment rejected'); refetchGee(); },
+    onError: (e) => toast.error(e.message),
+  });
+  const toggleGeeCheckIn = trpc.workshopReg.toggleCheckIn.useMutation({
+    onSuccess: () => { toast.success('Check-in updated'); refetchGee(); },
+    onError: (e) => toast.error(e.message),
+  });
 
   const [selectedTicket, setSelectedTicket] = useState<any>(null);
   const [ticketResponse, setTicketResponse] = useState("");
@@ -998,7 +1015,7 @@ export default function Admin() {
           </CardHeader>
           <CardContent>
             <Tabs defaultValue="registrations">
-              <TabsList className="grid w-full grid-cols-4 mb-6">
+              <TabsList className="grid w-full grid-cols-5 mb-6">
                 <TabsTrigger value="registrations">
                   Registrations ({filteredRegistrations.length})
                 </TabsTrigger>
@@ -1010,6 +1027,9 @@ export default function Admin() {
                 </TabsTrigger>
                 <TabsTrigger value="support">
                   Support ({supportTickets?.length || 0})
+                </TabsTrigger>
+                <TabsTrigger value="gee-workshop">
+                  GEE Workshop ({geeRegistrations?.length || 0})
                 </TabsTrigger>
               </TabsList>
 
@@ -1612,6 +1632,135 @@ export default function Admin() {
                                 </TableCell>
                               </TableRow>
                             ))
+                        )}
+                      </TableBody>
+                    </Table>
+                  </div>
+                </div>
+              </TabsContent>
+
+              {/* GEE Workshop Tab */}
+              <TabsContent value="gee-workshop" className="space-y-4">
+                <div className="flex justify-between items-center">
+                  <div>
+                    <h3 className="text-lg font-semibold">GEE Remote Sensing Workshop</h3>
+                    <p className="text-sm text-muted-foreground">Programming-based Remote Sensing Analysis of Google Earth Engine — Eng. Sherif Shallal | April 19, 2026</p>
+                  </div>
+                  <div className="flex gap-2">
+                    <Badge variant="outline" className="text-green-700 border-green-300 bg-green-50">
+                      Paid: {geeRegistrations?.filter(r => r.paymentStatus === 'paid').length || 0}
+                    </Badge>
+                    <Badge variant="outline" className="text-yellow-700 border-yellow-300 bg-yellow-50">
+                      Pending: {geeRegistrations?.filter(r => r.paymentStatus === 'pending').length || 0}
+                    </Badge>
+                    <Badge variant="outline" className="text-gray-600">
+                      Unpaid: {geeRegistrations?.filter(r => r.paymentStatus === 'unpaid').length || 0}
+                    </Badge>
+                    <Badge className="bg-primary">
+                      Checked In: {geeRegistrations?.filter(r => r.checkedIn).length || 0}
+                    </Badge>
+                  </div>
+                </div>
+
+                <div className="border rounded-lg overflow-hidden">
+                  <div className="max-h-[600px] overflow-auto">
+                    <Table>
+                      <TableHeader className="sticky top-0 bg-muted">
+                        <TableRow>
+                          <TableHead>ID</TableHead>
+                          <TableHead>Name</TableHead>
+                          <TableHead>Email</TableHead>
+                          <TableHead>Phone</TableHead>
+                          <TableHead>Affiliation</TableHead>
+                          <TableHead>Level</TableHead>
+                          <TableHead>Laptop</TableHead>
+                          <TableHead>Payment</TableHead>
+                          <TableHead>Receipt</TableHead>
+                          <TableHead>Check-in</TableHead>
+                          <TableHead>Date</TableHead>
+                          <TableHead className="text-right">Actions</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {loadingGee ? (
+                          <TableRow>
+                            <TableCell colSpan={12} className="text-center py-8">Loading...</TableCell>
+                          </TableRow>
+                        ) : !geeRegistrations || geeRegistrations.length === 0 ? (
+                          <TableRow>
+                            <TableCell colSpan={12} className="text-center py-8 text-muted-foreground">No registrations yet.</TableCell>
+                          </TableRow>
+                        ) : (
+                          geeRegistrations.map((reg) => (
+                            <TableRow key={reg.id}>
+                              <TableCell className="font-medium">#{reg.id}</TableCell>
+                              <TableCell className="font-medium">{reg.fullName}</TableCell>
+                              <TableCell className="text-sm">{reg.email}</TableCell>
+                              <TableCell className="text-sm">{reg.phone}</TableCell>
+                              <TableCell className="text-sm max-w-[150px] truncate">{reg.affiliation}</TableCell>
+                              <TableCell>
+                                <Badge variant="outline" className="text-xs">{reg.academicLevel}</Badge>
+                              </TableCell>
+                              <TableCell>
+                                <Badge variant={reg.hasLaptop ? 'default' : 'secondary'} className="text-xs">
+                                  {reg.hasLaptop ? '✓ Yes' : '✗ No'}
+                                </Badge>
+                              </TableCell>
+                              <TableCell>
+                                <Badge
+                                  variant={
+                                    reg.paymentStatus === 'paid' ? 'default' :
+                                    reg.paymentStatus === 'pending' ? 'secondary' : 'outline'
+                                  }
+                                  className={
+                                    reg.paymentStatus === 'paid' ? 'bg-green-600' :
+                                    reg.paymentStatus === 'pending' ? 'bg-yellow-500 text-white' : ''
+                                  }
+                                >
+                                  {reg.paymentStatus}
+                                </Badge>
+                              </TableCell>
+                              <TableCell>
+                                {reg.invoiceUrl ? (
+                                  <a href={reg.invoiceUrl} target="_blank" rel="noopener noreferrer"
+                                    className="text-blue-600 underline text-xs">View Receipt</a>
+                                ) : (
+                                  <span className="text-muted-foreground text-xs">—</span>
+                                )}
+                              </TableCell>
+                              <TableCell>
+                                <Badge variant={reg.checkedIn ? 'default' : 'outline'}
+                                  className={reg.checkedIn ? 'bg-teal-600' : ''}>
+                                  {reg.checkedIn ? '✓ In' : 'Not yet'}
+                                </Badge>
+                              </TableCell>
+                              <TableCell className="text-sm">
+                                {new Date(reg.createdAt).toLocaleDateString()}
+                              </TableCell>
+                              <TableCell className="text-right">
+                                <div className="flex gap-1 justify-end flex-wrap">
+                                  {reg.paymentStatus === 'pending' && (
+                                    <>
+                                      <Button size="sm" variant="default" className="bg-green-600 hover:bg-green-700 text-xs h-7"
+                                        onClick={() => confirmGeePayment.mutate({ registrationId: reg.id })}>
+                                        Confirm
+                                      </Button>
+                                      <Button size="sm" variant="destructive" className="text-xs h-7"
+                                        onClick={() => rejectGeePayment.mutate({ registrationId: reg.id })}>
+                                        Reject
+                                      </Button>
+                                    </>
+                                  )}
+                                  {reg.paymentStatus === 'paid' && (
+                                    <Button size="sm" variant="outline" className="text-xs h-7"
+                                      onClick={() => toggleGeeCheckIn.mutate({ registrationId: reg.id, checkedIn: !reg.checkedIn })}>
+                                      {reg.checkedIn ? 'Undo Check-in' : 'Check In'}
+                                    </Button>
+                                  )}
+                                </div>
+                              </TableCell>
+                            </TableRow>
+                          ))
                         )}
                       </TableBody>
                     </Table>

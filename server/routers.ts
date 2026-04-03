@@ -3945,6 +3945,40 @@ export const appRouter = router({
         }
         return rows;
       }),
+    // Admin: confirm payment
+    confirmPayment: adminProcedure
+      .input(z.object({ registrationId: z.number() }))
+      .mutation(async ({ input }) => {
+        await db
+          .update(workshopRegistrations)
+          .set({ paymentStatus: 'paid', paidAt: new Date(), updatedAt: new Date() })
+          .where(eq(workshopRegistrations.id, input.registrationId));
+        return { success: true };
+      }),
+    // Admin: reject payment
+    rejectPayment: adminProcedure
+      .input(z.object({ registrationId: z.number() }))
+      .mutation(async ({ input }) => {
+        await db
+          .update(workshopRegistrations)
+          .set({ paymentStatus: 'unpaid', invoiceUrl: null, updatedAt: new Date() })
+          .where(eq(workshopRegistrations.id, input.registrationId));
+        return { success: true };
+      }),
+    // Admin: toggle check-in
+    toggleCheckIn: adminProcedure
+      .input(z.object({ registrationId: z.number(), checkedIn: z.boolean() }))
+      .mutation(async ({ input }) => {
+        await db
+          .update(workshopRegistrations)
+          .set({
+            checkedIn: input.checkedIn,
+            checkedInAt: input.checkedIn ? new Date() : null,
+            updatedAt: new Date(),
+          })
+          .where(eq(workshopRegistrations.id, input.registrationId));
+        return { success: true };
+      }),
   }),
 });
 export type AppRouter = typeof appRouter;
