@@ -607,6 +607,31 @@ export default function Admin() {
       ]
     );
   };
+  const handleExportGeeRegistrations = () => {
+    if (!geeRegistrations || geeRegistrations.length === 0) {
+      toast.error("No GEE registrations to export");
+      return;
+    }
+    const rows = geeRegistrations.map((r) => ({
+      id: r.id,
+      fullName: r.fullName,
+      email: r.email,
+      phone: r.phone,
+      affiliation: r.affiliation,
+      academicLevel: r.academicLevel,
+      hasLaptop: r.hasLaptop ? 'Yes' : 'No',
+      paymentStatus: r.paymentStatus,
+      checkedIn: r.checkedIn ? 'Yes' : 'No',
+      invoiceUrl: r.invoiceUrl || '',
+      createdAt: r.createdAt ? new Date(r.createdAt).toLocaleString() : '',
+    }));
+    exportToCSV(
+      rows,
+      "gee-workshop-registrations",
+      ["id", "fullName", "email", "phone", "affiliation", "academicLevel", "hasLaptop", "paymentStatus", "checkedIn", "invoiceUrl", "createdAt"]
+    );
+  };
+
   const handleExportSponsorships = () => {
     if (!filteredSponsorships.length) {
       toast.error("No data to export");
@@ -1641,12 +1666,12 @@ export default function Admin() {
 
               {/* GEE Workshop Tab */}
               <TabsContent value="gee-workshop" className="space-y-4">
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-center flex-wrap gap-3">
                   <div>
                     <h3 className="text-lg font-semibold">GEE Remote Sensing Workshop</h3>
                     <p className="text-sm text-muted-foreground">Programming-based Remote Sensing Analysis of Google Earth Engine — Eng. Sherif Shallal | April 19, 2026</p>
                   </div>
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 flex-wrap items-center">
                     <Badge variant="outline" className="text-green-700 border-green-300 bg-green-50">
                       Paid: {geeRegistrations?.filter(r => r.paymentStatus === 'paid').length || 0}
                     </Badge>
@@ -1659,6 +1684,14 @@ export default function Admin() {
                     <Badge className="bg-primary">
                       Checked In: {geeRegistrations?.filter(r => r.checkedIn).length || 0}
                     </Badge>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={handleExportGeeRegistrations}
+                      className="ml-2"
+                    >
+                      📅 Export CSV
+                    </Button>
                   </div>
                 </div>
 
