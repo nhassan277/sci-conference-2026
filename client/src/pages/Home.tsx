@@ -782,12 +782,7 @@ export default function Home() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="pt-0">
-                  <Button 
-                    className="w-full bg-amber-600 hover:bg-amber-700 text-sm h-auto py-2 px-3 whitespace-normal leading-snug text-center" 
-                    onClick={() => { window.location.href = '/attendance'; }}
-                  >
-                    Register & Upload Invoice | سجّل وارفع الإيصال
-                  </Button>
+                  <Badge className="bg-red-600 text-white px-4 py-2 text-sm font-medium w-full text-center block">🔴 Registration Closed | التسجيل مغلق</Badge>
                 </CardContent>
               </Card>
 
@@ -1028,13 +1023,7 @@ export default function Home() {
                   {/* Spots counter */}
                   <div className="flex items-center justify-between">
                     {workshopCounts && getSpotsBadge(workshopCounts.chitosan ?? 0)}
-                    <Button
-                      size="sm"
-                      className="bg-orange-600 hover:bg-orange-700 text-white text-xs px-3"
-                      onClick={() => { window.location.href = '/attendance'; }}
-                    >
-                      Register & Upload Invoice | سجّل وارفع الإيصال
-                    </Button>
+                    <Badge className="bg-red-600 text-white px-3 py-1 text-xs">🔴 Registration Closed | التسجيل مغلق</Badge>
                   </div>
                 </div>
               </div>
@@ -1120,13 +1109,7 @@ export default function Home() {
                   {/* Spots counter + Register button */}
                   <div className="flex items-center justify-between">
                     {workshopCounts && getSpotsBadge(workshopCounts.agitech ?? 0, 20)}
-                    <Button
-                      size="sm"
-                      className="bg-gray-700 hover:bg-gray-800 text-white text-xs px-3"
-                      onClick={() => { window.location.href = '/attendance'; }}
-                    >
-                      Register & Upload Invoice | سجّل وارفع الإيصال
-                    </Button>
+                    <Badge className="bg-red-600 text-white px-3 py-1 text-xs">🔴 Registration Closed | التسجيل مغلق</Badge>
                   </div>
                 </div>
               </div>
@@ -1200,13 +1183,7 @@ export default function Home() {
 
                   {/* Register button */}
                   <div className="flex items-center justify-end">
-                    <Button
-                      size="sm"
-                      className="bg-blue-700 hover:bg-blue-800 text-white text-xs px-3"
-                      onClick={() => { window.location.href = '/attendance'; }}
-                    >
-                      Register | سجّل الآن
-                    </Button>
+                    <Badge className="bg-red-600 text-white px-3 py-1 text-xs">🔴 Registration Closed | التسجيل مغلق</Badge>
                   </div>
                 </div>
               </div>
@@ -1375,13 +1352,7 @@ export default function Home() {
                   {/* Spots counter */}
                   <div className="flex items-center justify-between">
                     {workshopCounts && getSpotsBadge(workshopCounts.ai_biotech ?? 0)}
-                    <Button
-                      size="sm"
-                      className="bg-purple-700 hover:bg-purple-800 text-white text-xs px-3"
-                      onClick={() => { window.location.href = '/attendance'; }}
-                    >
-                      Register & Upload Invoice | سجّل وارفع الإيصال
-                    </Button>
+                    <Badge className="bg-red-600 text-white px-3 py-1 text-xs">🔴 Registration Closed | التسجيل مغلق</Badge>
                   </div>
                 </div>
               </div>
@@ -1703,13 +1674,7 @@ export default function Home() {
                   </div>
                   <div className="flex flex-wrap items-center gap-3 pt-1">
                     <Badge className="bg-sky-700 text-white px-3 py-1 text-sm font-bold">200 EGP</Badge>
-                    <Button
-                      size="sm"
-                      className="bg-sky-700 hover:bg-sky-800 text-white text-xs px-4"
-                      onClick={() => { window.location.href = '/workshop/gee-remote-sensing'; }}
-                    >
-                      View Details &amp; Register
-                    </Button>
+                    <Badge className="bg-red-600 text-white px-3 py-1 text-sm">🔴 Registration Closed | التسجيل مغلق</Badge>
                   </div>
                 </div>
               </div>
