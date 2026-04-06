@@ -229,17 +229,6 @@ export default function Home() {
                 <div className="inline-flex items-center gap-2 bg-red-100 border-2 border-red-400 text-red-700 font-bold px-6 py-3 rounded-lg text-base">
                   🔴 Registration Closed | التسجيل مغلق
                 </div>
-                <a
-                  href="https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/program_final_226b1f90.pdf"
-                  download="SCI2026-Program.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Button size="lg" variant="outline" className="text-lg px-8 py-6 gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                    Download Program | البرنامج
-                  </Button>
-                </a>
                 <Link href="/schedule">
                   <Button size="lg" variant="outline" className="text-lg px-8 py-6">
                     View Program | البرنامج
