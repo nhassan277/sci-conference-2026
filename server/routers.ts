@@ -109,6 +109,14 @@ export const appRouter = router({
         })
       )
       .mutation(async ({ input }) => {
+        // ── GLOBAL REGISTRATION CLOSED ──────────────────────────────────────────
+        const REGISTRATION_CLOSED = true;
+        if (REGISTRATION_CLOSED) {
+          throw new TRPCError({
+            code: 'FORBIDDEN',
+            message: 'Registration is now closed. Thank you for your interest in SCI 2026!',
+          });
+        }
         // Workshops that are closed for new registrations
         const CLOSED_WORKSHOPS = ['hvd_genomics', 'nawah', 'colors_metagenomics'];
         // Derive legacy workshopChoice from multi-select for backwards compat
@@ -3867,6 +3875,11 @@ export const appRouter = router({
         })
       )
       .mutation(async ({ input }) => {
+        // ── GLOBAL REGISTRATION CLOSED ──────────────────────────────────────────
+        throw new TRPCError({
+          code: 'FORBIDDEN',
+          message: 'Registration is now closed. Thank you for your interest in SCI 2026!',
+        });
         const [result] = await db.insert(workshopRegistrations).values({
           workshopKey: input.workshopKey,
           fullName: input.fullName,

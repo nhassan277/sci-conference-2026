@@ -165,8 +165,8 @@ export default function Home() {
         </div>
       </header>
 
-      {/* ⚡ Flash Offer Banner — hidden when bundle reaches 20 */}
-      {workshopCounts && workshopCounts.marc_chitosan_bundle < 20 && (
+      {/* ⚡ Flash Offer Banner — CLOSED */}
+      {(false as boolean) && (
       <div className="bg-gradient-to-r from-red-600 via-red-500 to-orange-500 text-white py-3 px-4">
         <div className="container">
           <div className="flex flex-col sm:flex-row items-center justify-center gap-2 text-center">
@@ -226,13 +226,9 @@ export default function Home() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 pt-4 flex-wrap">
-                <Button 
-                  size="lg" 
-                  className="text-lg px-8 py-6 bg-primary hover:bg-primary/90"
-                  onClick={() => document.getElementById('registration')?.scrollIntoView({ behavior: 'smooth' })}
-                >
-                  Register Now | سجل الآن
-                </Button>
+                <div className="inline-flex items-center gap-2 bg-red-100 border-2 border-red-400 text-red-700 font-bold px-6 py-3 rounded-lg text-base">
+                  🔴 Registration Closed | التسجيل مغلق
+                </div>
                 <a
                   href="https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/program_final_226b1f90.pdf"
                   download="SCI2026-Program.pdf"
@@ -602,67 +598,24 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Registration Section */}
+      {/* Registration Section — CLOSED */}
       <section id="registration" className="py-20 bg-gradient-to-b from-primary/5 to-white">
         <div className="container">
           <div className="text-center space-y-4 mb-12">
             <h2 className="text-4xl md:text-5xl font-bold text-primary">Registration</h2>
             <p className="text-2xl font-semibold text-secondary" dir="rtl">التسجيل</p>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Choose your category and submit your registration
-            </p>
-            <div className="flex flex-wrap justify-center gap-4 mt-6">
-              <Badge className="bg-green-600 text-white px-6 py-2 text-base font-medium">
-                ✓ Conference Attendance is FREE | الحضور مجاناً
-              </Badge>
-              <Badge className="bg-blue-600 text-white px-6 py-2 text-base font-medium">
-                Conference Certificate: 100 EGP | شهادة المؤتمر: ١٠٠ جنيه
-              </Badge>
+            <div className="max-w-2xl mx-auto mt-6 p-6 bg-red-50 border-2 border-red-300 rounded-xl space-y-3">
+              <p className="text-2xl font-bold text-red-700">🔴 Registration is Now Closed</p>
+              <p className="text-xl font-semibold text-red-600" dir="rtl">التسجيل مغلق الآن</p>
+              <p className="text-muted-foreground">
+                Thank you for your interest in SCI 2026. Registration for the conference and all workshops has been closed.
+              </p>
+              <p className="text-muted-foreground" dir="rtl">
+                شكراً لاهتمامكم بمؤتمر SCI 2026. لقد أُغلق التسجيل في المؤتمر وجميع الورش.
+              </p>
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-            {registrationCategories.map((category, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow border-2 hover:border-primary/50">
-                <CardHeader>
-                  <CardTitle className="text-xl">{category.title}</CardTitle>
-                  <CardDescription className="text-base font-medium" dir="rtl">
-                    {category.titleAr}
-                  </CardDescription>
-                  <CardDescription className="text-sm pt-2">
-                    {category.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <Button 
-                    className="w-full" 
-                    variant="outline"
-                    onClick={() => window.open(category.link, '_blank')}
-                  >
-                    Register | سجل الآن
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          {/* Attendance Only Registration */}
-          <div className="mt-12 text-center">
-            <div className="max-w-2xl mx-auto space-y-4">
-              <div className="border-t pt-8">
-                <h3 className="text-2xl font-bold text-primary mb-2">Attendance Only</h3>
-                <p className="text-lg font-semibold text-secondary mb-3" dir="rtl">الحضور فقط</p>
-                <p className="text-muted-foreground mb-6">
-                  If you only plan to attend the conference without presenting research or participating in workshops, register here.
-                </p>
-                <Link href="/attendance">
-                  <Button size="lg" className="px-8">
-                    Register for Attendance | تسجيل الحضور
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
 
         </div>
       </section>
