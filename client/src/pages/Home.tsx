@@ -165,7 +165,8 @@ export default function Home() {
         </div>
       </header>
 
-      {/* ⚡ Flash Offer Banner */}
+      {/* ⚡ Flash Offer Banner — hidden when bundle reaches 20 */}
+      {workshopCounts && workshopCounts.marc_chitosan_bundle < 20 && (
       <div className="bg-gradient-to-r from-red-600 via-red-500 to-orange-500 text-white py-3 px-4">
         <div className="container">
           <div className="flex flex-col sm:flex-row items-center justify-center gap-2 text-center">
@@ -187,6 +188,7 @@ export default function Home() {
           <p className="text-center text-xs mt-1 opacity-80" dir="rtl">⚡ عرض خاص لمدة ٢٤ ساعة فقط — سجّل في ورشتَي MARC و Chitosan معاً بـ ١٥٠ جنيه بدلاً من ٣٠٠ — أول ٢٠ مشترك فقط</p>
         </div>
       </div>
+      )}
 
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/10">
@@ -223,7 +225,7 @@ export default function Home() {
                 بناء شراكات فاعلة بين الجامعات والصناعة
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <div className="flex flex-col sm:flex-row gap-4 pt-4 flex-wrap">
                 <Button 
                   size="lg" 
                   className="text-lg px-8 py-6 bg-primary hover:bg-primary/90"
@@ -231,6 +233,17 @@ export default function Home() {
                 >
                   Register Now | سجل الآن
                 </Button>
+                <a
+                  href="https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/program_final_226b1f90.pdf"
+                  download="SCI2026-Program.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button size="lg" variant="outline" className="text-lg px-8 py-6 gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Download Program | البرنامج
+                  </Button>
+                </a>
                 <Link href="/schedule">
                   <Button size="lg" variant="outline" className="text-lg px-8 py-6">
                     View Program | البرنامج
