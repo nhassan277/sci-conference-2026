@@ -33,7 +33,7 @@ import VolunteerManagement from "./pages/admin/VolunteerManagement";
 import AnnouncementsManagement from "./pages/admin/AnnouncementsManagement";
 import WorkshopGEE from "./pages/WorkshopGEE";
 import AnnouncementBanner from "./components/AnnouncementBanner";
-// import LiveGallery from "./pages/LiveGallery";
+import LiveGallery from "./pages/LiveGallery";
 // import GalleryUpload from "./pages/GalleryUpload";
 
 
@@ -67,7 +67,7 @@ function Router() {
       <Route path={"/admin/volunteers"} component={VolunteerManagement} />
       <Route path={"/admin/announcements"} component={AnnouncementsManagement} />
       <Route path={"/workshop/gee-remote-sensing"} component={WorkshopGEE} />
-      {/* <Route path={"/ live-gallery"} component={LiveGallery} /> */}
+      <Route path={"/live-gallery"} component={LiveGallery} />
       {/* <Route path={"/gallery-upload"} component={GalleryUpload} /> */}
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
