@@ -1,4 +1,4 @@
-// 287 photos total
+// 292 photos total
 export const GALLERY_PHOTOS = [
   "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/027a06c6-92a7-4dc6-8be0-06b5e00585a5_ea2a43fd.jpg",
   "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/02850bbc-73ec-4e89-996b-2d1d496ece44_a7c2b59e.jpg",
@@ -287,4 +287,9 @@ export const GALLERY_PHOTOS = [
   "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/fc491152-a68b-4b9c-bc3f-24dede4c49d1_ca6375b6.jpg",
   "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/fd06b8f5-1f6c-4ea3-91cb-f5af6ca29a6c_0df5a8f0.jpg",
   "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/ff633d19-5db6-4b29-8be3-63d75fa4d8c1_78a94717.jpg",
+  "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/4a52700d-fefb-4da2-98df-6fce7bc5a998_542ee22f.jpg",
+  "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/f1b91b4d-73bb-42fd-9ad1-e49d079e6ef2_3d214f1e.jpg",
+  "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/1b320d00-0bd6-4691-8d4f-b66a30d682f4_c16569de.jpg",
+  "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/d89ea825-fd3b-4843-b79b-9ab238fb1597_68519980.jpg",
+  "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/2ce7b9ed-37a8-4ae3-a7a2-ba7c89154bf5_269cacdf.jpg",
 ];
