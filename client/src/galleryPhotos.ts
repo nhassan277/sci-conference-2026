@@ -1,4 +1,4 @@
-// 218 photos total
+// 204 photos total
 export const GALLERY_PHOTOS = [
   "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/027a06c6-92a7-4dc6-8be0-06b5e00585a5_ea2a43fd.jpg",
   "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/02850bbc-73ec-4e89-996b-2d1d496ece44_a7c2b59e.jpg",
@@ -190,20 +190,8 @@ export const GALLERY_PHOTOS = [
   "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/fd637b5d-d872-48c1-bbf5-ec52eee67cae_4974b696.jpg",
   "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/fe0020ac-099c-42b7-a7c2-5ef6824a4eca_7828f66e.jpg",
   "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/ff135b5f-4bde-48f5-aa09-61cf2f99a7d2_f77c1a8d.jpg",
-  "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/1461C67D-B212-498A-A33F-F06DF886D9DA-mask_a86c6f3d.jpeg",
-  "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/1E79C2FB-630E-4DD3-912F-1545B9D57DFF-mask_e0bc8f91.jpeg",
   "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/311f6a2e949ef9930ea516e586808e29_e2137cbd.jpeg",
-  "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/59D5B05E-8662-4E44-9C07-AE059527F941-mask_e9b86c42.jpeg",
   "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/5eefaa30a77646be23a5856530cc53c9_9b28f8ae.jpeg",
-  "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/7031D4F5-E503-4494-BD83-8A8F3FFF9A77-mask_8acfe947.jpeg",
-  "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/70E259FA-BE44-4196-A2EB-C2DEB5909E34-mask_99ec4b17.jpeg",
-  "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/828854A8-71B8-45FA-A805-91808088240B-mask_77b1bae6.jpeg",
-  "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/8EBAE07F-E4B3-44F6-AA2E-C6D0C7279CCC-mask_9296715f.jpeg",
-  "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/90267392-8660-4A48-944C-EAFF4792CAC1-mask_0ad3f276.jpeg",
-  "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/A30D63EA-B373-40C7-8939-BD89B1B228D4-mask_18487989.jpeg",
-  "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/AD4F9ED4-4DC0-4DFB-888B-E2E9D1A129DE-mask_9ba3d34d.jpeg",
-  "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/B03DAFF2-5914-4300-AE72-B288616BCD0D-mask_9825cbaa.jpeg",
-  "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/DB43CF67-F5D8-44CD-9BBA-891C6E7D4FA6-mask_c54f5107.jpeg",
   "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/a70f7c7316b92658e57343c4ac3a1e58_a960f5a1.jpeg",
   "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/cf3a473c52250791f530cc1fd02be43c_817c2f4e.jpeg",
   "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/IMG_5227_daa84149.PNG",
@@ -211,11 +199,9 @@ export const GALLERY_PHOTOS = [
   "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/IMG_7454_8305e01a.PNG",
   "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/Camera_1775734984.7918391_08B100E5_97589d5c.png",
   "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/ad_workshops_13_bc5eb942.png",
-  "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/banner_sci2026_05ef1a6c.png",
   "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/combined_sponsors_final_a1962c20.png",
   "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_EJmVMp_image_c85b90e2.png",
   "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_t2P2yU_image_85a076d4.png",
   "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/pasted_file_umNdP3_image_6fc845ac.png",
-  "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/sci2026-logo_c7eee938.png",
   "https://d2xsxph8kpxj0f.cloudfront.net/118031311/BK5ELr97meyN2f7P5B76DF/speaker_sahar_hassan_slb_fde20363.png",
 ];
