@@ -940,3 +940,12 @@
 - [ ] Add to admin dashboard workshop statistics
 - [ ] Update PDF generator to include the new workshop
 - [ ] Add to Sponsors page if organizer info is available
+
+## Certificate Request Feature (April 2026)
+- [x] Add certificateRequests table to database schema
+- [x] Add backend tRPC procedures: submit (public), list/updateStatus/stats (admin)
+- [x] Build CertificateRequest public form page at /certificate-request
+- [x] Add certificate request button (amber) to homepage hero section
+- [x] Build admin CertificateRequests panel with stats, filters, expandable rows, status update dialog
+- [x] Add Certificates tab to Admin.tsx (6-column tab grid)
+- [x] Write and pass vitest tests for certificate feature (6/6 passing)

@@ -468,3 +468,31 @@ export const workshopRegistrations = mysqlTable("workshop_registrations", {
 
 export type WorkshopRegistration = typeof workshopRegistrations.$inferSelect;
 export type NewWorkshopRegistration = typeof workshopRegistrations.$inferInsert;
+
+// Certificate Requests (post-conference)
+export const certificateRequests = mysqlTable("certificate_requests", {
+  id: int("id").primaryKey().autoincrement(),
+  // Personal info
+  nameOnCertificate: varchar("name_on_certificate", { length: 255 }).notNull(),
+  email: varchar("email", { length: 255 }).notNull(),
+  affiliation: varchar("affiliation", { length: 255 }).notNull(),
+  // Certificate type
+  certificateType: varchar("certificate_type", { length: 50 }).notNull(), // "attendance" | "participation"
+  // For participation certificates
+  presentationTitle: text("presentation_title"), // title of poster/oral presentation
+  presentationType: varchar("presentation_type", { length: 50 }), // "poster" | "oral" | "workshop_organizer" | "invited_speaker"
+  // Conference organization role (for organizers)
+  organizationRole: text("organization_role"), // e.g., "Scientific Committee Member", "Session Chair"
+  // Additional notes from requester
+  additionalNotes: text("additional_notes"),
+  // Admin fields
+  status: varchar("status", { length: 30 }).default("pending").notNull(), // pending, processing, issued, rejected
+  adminNotes: text("admin_notes"),
+  processedBy: varchar("processed_by", { length: 255 }), // admin name
+  processedAt: timestamp("processed_at"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export type CertificateRequest = typeof certificateRequests.$inferSelect;
+export type NewCertificateRequest = typeof certificateRequests.$inferInsert;

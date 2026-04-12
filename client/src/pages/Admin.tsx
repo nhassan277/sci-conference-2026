@@ -10,7 +10,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { LogOut, Download, Users, Building2, TrendingUp, Search, Plus, Edit, Trash2, Calendar, Shield, FileText, Mail, Megaphone, SendHorizonal, CheckCircle2, FlaskConical } from "lucide-react";
+import { LogOut, Download, Users, Building2, TrendingUp, Search, Plus, Edit, Trash2, Calendar, Shield, FileText, Mail, Megaphone, SendHorizonal, CheckCircle2, FlaskConical, Award } from "lucide-react";
+import CertificateRequests from "./admin/CertificateRequests";
 import { toast } from "sonner";
 import { useNotifications } from "@/hooks/useNotifications";
 
@@ -1040,7 +1041,7 @@ export default function Admin() {
           </CardHeader>
           <CardContent>
             <Tabs defaultValue="registrations">
-              <TabsList className="grid w-full grid-cols-5 mb-6">
+              <TabsList className="grid w-full grid-cols-6 mb-6">
                 <TabsTrigger value="registrations">
                   Registrations ({filteredRegistrations.length})
                 </TabsTrigger>
@@ -1055,6 +1056,10 @@ export default function Admin() {
                 </TabsTrigger>
                 <TabsTrigger value="gee-workshop">
                   GEE Workshop ({geeRegistrations?.length || 0})
+                </TabsTrigger>
+                <TabsTrigger value="certificates" className="gap-1">
+                  <Award className="w-3.5 h-3.5" />
+                  Certificates
                 </TabsTrigger>
               </TabsList>
 
@@ -1799,6 +1804,11 @@ export default function Admin() {
                     </Table>
                   </div>
                 </div>
+              </TabsContent>
+
+              {/* Certificate Requests Tab */}
+              <TabsContent value="certificates">
+                <CertificateRequests />
               </TabsContent>
             </Tabs>
           </CardContent>

@@ -239,6 +239,12 @@ export default function Home() {
                     Photo Gallery | معرض الصور
                   </Button>
                 </Link>
+                <Link href="/certificate-request">
+                  <Button size="lg" className="text-lg px-8 py-6 bg-amber-600 hover:bg-amber-700 text-white gap-2">
+                    <Award className="w-5 h-5" />
+                    Request Certificate | طلب شهادة
+                  </Button>
+                </Link>
               </div>
 
               <div className="grid sm:grid-cols-3 gap-6 pt-8">

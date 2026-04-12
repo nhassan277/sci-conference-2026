@@ -3,7 +3,7 @@ import { z } from "zod";
 import { eq, desc, sql, and } from "drizzle-orm";
 import superjson from "superjson";
 import { db } from "./db.js";
-import { registrations, sponsorships, sessions, supportTickets, admins, auditLogs, reminderSubscriptions, galleryPhotos, newsletterSubscriptions, googleSheetsSyncs, mediaRegistrations, committees, keynoteSpeakers, volunteers, surveys, surveyResponses, announcements, workshopRegistrations } from "../drizzle/schema.js";
+import { registrations, sponsorships, sessions, supportTickets, admins, auditLogs, reminderSubscriptions, galleryPhotos, newsletterSubscriptions, googleSheetsSyncs, mediaRegistrations, committees, keynoteSpeakers, volunteers, surveys, surveyResponses, announcements, workshopRegistrations, certificateRequests } from "../drizzle/schema.js";
 import { syncAllSheets, SHEETS_CONFIG, type SheetCategory } from "./googleSheets.js";
 import { verifyToken, isOwner } from "./auth.js";
 import { logAuditAction, getIpAddress, getUserAgent } from "./audit.js";
@@ -3992,6 +3992,107 @@ export const appRouter = router({
           .where(eq(workshopRegistrations.id, input.registrationId));
         return { success: true };
       }),
+  }),
+
+  // ─── Certificate Requests ───────────────────────────────────────────────────
+  certificates: router({
+    // Public: submit a certificate request
+    submit: publicProcedure
+      .input(
+        z.object({
+          nameOnCertificate: z.string().min(2, "Name is required"),
+          email: z.string().email("Valid email required"),
+          affiliation: z.string().min(2, "Affiliation is required"),
+          certificateType: z.enum(["attendance", "participation", "organization"]),
+          presentationTitle: z.string().optional(),
+          presentationType: z.enum(["poster", "oral", "workshop_organizer", "invited_speaker"]).optional(),
+          organizationRole: z.string().optional(),
+          additionalNotes: z.string().optional(),
+        })
+      )
+      .mutation(async ({ input }) => {
+        const [result] = await db.insert(certificateRequests).values({
+          nameOnCertificate: input.nameOnCertificate,
+          email: input.email,
+          affiliation: input.affiliation,
+          certificateType: input.certificateType,
+          presentationTitle: input.presentationTitle ?? null,
+          presentationType: input.presentationType ?? null,
+          organizationRole: input.organizationRole ?? null,
+          additionalNotes: input.additionalNotes ?? null,
+          status: "pending",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        });
+        return { success: true, id: (result as any).insertId };
+      }),
+
+    // Admin: list all certificate requests
+    list: adminProcedure
+      .input(
+        z.object({
+          status: z.enum(["all", "pending", "processing", "issued", "rejected"]).default("all"),
+          search: z.string().optional(),
+        }).optional()
+      )
+      .query(async ({ input }) => {
+        const allRequests = await db
+          .select()
+          .from(certificateRequests)
+          .orderBy(desc(certificateRequests.createdAt));
+
+        let filtered = allRequests;
+        if (input?.status && input.status !== "all") {
+          filtered = filtered.filter(r => r.status === input.status);
+        }
+        if (input?.search) {
+          const q = input.search.toLowerCase();
+          filtered = filtered.filter(r =>
+            r.nameOnCertificate.toLowerCase().includes(q) ||
+            r.email.toLowerCase().includes(q) ||
+            r.affiliation.toLowerCase().includes(q)
+          );
+        }
+        return filtered;
+      }),
+
+    // Admin: update status of a request
+    updateStatus: adminProcedure
+      .input(
+        z.object({
+          id: z.number(),
+          status: z.enum(["pending", "processing", "issued", "rejected"]),
+          adminNotes: z.string().optional(),
+        })
+      )
+      .mutation(async ({ input, ctx }) => {
+        await db
+          .update(certificateRequests)
+          .set({
+            status: input.status,
+            adminNotes: input.adminNotes ?? null,
+            processedBy: ctx.user?.name ?? ctx.user?.email ?? "Admin",
+            processedAt: new Date(),
+            updatedAt: new Date(),
+          })
+          .where(eq(certificateRequests.id, input.id));
+        return { success: true };
+      }),
+
+    // Admin: get stats
+    stats: adminProcedure.query(async () => {
+      const all = await db.select().from(certificateRequests);
+      return {
+        total: all.length,
+        pending: all.filter(r => r.status === "pending").length,
+        processing: all.filter(r => r.status === "processing").length,
+        issued: all.filter(r => r.status === "issued").length,
+        rejected: all.filter(r => r.status === "rejected").length,
+        attendance: all.filter(r => r.certificateType === "attendance").length,
+        participation: all.filter(r => r.certificateType === "participation").length,
+        organization: all.filter(r => r.certificateType === "organization").length,
+      };
+    }),
   }),
 });
 export type AppRouter = typeof appRouter;
