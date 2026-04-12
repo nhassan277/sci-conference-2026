@@ -4003,10 +4003,11 @@ export const appRouter = router({
           nameOnCertificate: z.string().min(2, "Name is required"),
           email: z.string().email("Valid email required"),
           affiliation: z.string().min(2, "Affiliation is required"),
-          certificateType: z.enum(["attendance", "participation", "organization"]),
+          certificateType: z.enum(["attendance", "participation", "organization", "workshop"]),
           presentationTitle: z.string().optional(),
           presentationType: z.enum(["poster", "oral", "workshop_organizer", "invited_speaker"]).optional(),
           organizationRole: z.string().optional(),
+          workshopName: z.string().optional(),
           additionalNotes: z.string().optional(),
         })
       )
@@ -4019,6 +4020,7 @@ export const appRouter = router({
           presentationTitle: input.presentationTitle ?? null,
           presentationType: input.presentationType ?? null,
           organizationRole: input.organizationRole ?? null,
+          workshopName: input.workshopName ?? null,
           additionalNotes: input.additionalNotes ?? null,
           status: "pending",
           createdAt: new Date(),
@@ -4050,7 +4052,8 @@ export const appRouter = router({
           filtered = filtered.filter(r =>
             r.nameOnCertificate.toLowerCase().includes(q) ||
             r.email.toLowerCase().includes(q) ||
-            r.affiliation.toLowerCase().includes(q)
+            r.affiliation.toLowerCase().includes(q) ||
+            (r.workshopName ?? "").toLowerCase().includes(q)
           );
         }
         return filtered;
@@ -4126,6 +4129,7 @@ export const appRouter = router({
           "Email",
           "Affiliation",
           "Certificate Type",
+          "Workshop Name",
           "Presentation Title",
           "Presentation Type",
           "Organization Role",
@@ -4143,6 +4147,7 @@ export const appRouter = router({
           escape(r.email),
           escape(r.affiliation),
           escape(r.certificateType),
+          escape(r.workshopName),
           escape(r.presentationTitle),
           escape(r.presentationType),
           escape(r.organizationRole),

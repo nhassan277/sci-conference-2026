@@ -7,9 +7,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Award, CheckCircle2, ArrowLeft, GraduationCap, Users, Presentation } from "lucide-react";
+import { Award, CheckCircle2, ArrowLeft, GraduationCap, Users, Presentation, FlaskConical } from "lucide-react";
 import { toast } from "sonner";
 import { useLocation } from "wouter";
+
+type CertType = "attendance" | "participation" | "organization" | "workshop" | "";
 
 export default function CertificateRequest() {
   const [, setLocation] = useLocation();
@@ -20,10 +22,11 @@ export default function CertificateRequest() {
     nameOnCertificate: "",
     email: "",
     affiliation: "",
-    certificateType: "" as "attendance" | "participation" | "organization" | "",
+    certificateType: "" as CertType,
     presentationTitle: "",
     presentationType: "" as "poster" | "oral" | "workshop_organizer" | "invited_speaker" | "",
     organizationRole: "",
+    workshopName: "",
     additionalNotes: "",
   });
 
@@ -52,14 +55,19 @@ export default function CertificateRequest() {
       toast.error("Please describe your role in the conference organization.");
       return;
     }
+    if (form.certificateType === "workshop" && !form.workshopName) {
+      toast.error("Please enter the workshop name.");
+      return;
+    }
     submit.mutate({
       nameOnCertificate: form.nameOnCertificate,
       email: form.email,
       affiliation: form.affiliation,
-      certificateType: form.certificateType as "attendance" | "participation" | "organization",
+      certificateType: form.certificateType as "attendance" | "participation" | "organization" | "workshop",
       presentationTitle: form.presentationTitle || undefined,
       presentationType: (form.presentationType as any) || undefined,
       organizationRole: form.organizationRole || undefined,
+      workshopName: form.workshopName || undefined,
       additionalNotes: form.additionalNotes || undefined,
     });
   };
@@ -132,16 +140,17 @@ export default function CertificateRequest() {
         </div>
 
         {/* Certificate Type Cards */}
-        <div className="grid grid-cols-3 gap-3 mb-8">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
           {[
             { type: "attendance", icon: Users, label: "Attendance", labelAr: "حضور", desc: "I attended the conference" },
             { type: "participation", icon: Presentation, label: "Participation", labelAr: "مشاركة بحثية", desc: "I presented a poster or talk" },
             { type: "organization", icon: GraduationCap, label: "Organization", labelAr: "تنظيم", desc: "I helped organize the conference" },
+            { type: "workshop", icon: FlaskConical, label: "Workshop", labelAr: "ورشة عمل", desc: "I attended a workshop" },
           ].map(({ type, icon: Icon, label, labelAr, desc }) => (
             <button
               key={type}
               type="button"
-              onClick={() => setForm(f => ({ ...f, certificateType: type as any }))}
+              onClick={() => setForm(f => ({ ...f, certificateType: type as CertType }))}
               className={`p-4 rounded-xl border-2 text-center transition-all cursor-pointer ${
                 form.certificateType === type
                   ? "border-primary bg-primary/5 shadow-md"
@@ -211,6 +220,23 @@ export default function CertificateRequest() {
                   required
                 />
               </div>
+
+              {/* Conditional: Workshop fields */}
+              {form.certificateType === "workshop" && (
+                <div className="space-y-1.5 pt-2 border-t">
+                  <p className="text-sm font-semibold text-primary">Workshop Details | تفاصيل الورشة</p>
+                  <Label htmlFor="workshopName" className="font-medium">
+                    Workshop Name <span className="text-red-500">*</span>
+                    <span className="text-muted-foreground font-normal text-xs ml-2 block" dir="rtl">اسم الورشة كما تريده على الشهادة</span>
+                  </Label>
+                  <Input
+                    id="workshopName"
+                    placeholder="e.g., Advanced Microscopy Techniques Workshop"
+                    value={form.workshopName}
+                    onChange={e => setForm(f => ({ ...f, workshopName: e.target.value }))}
+                  />
+                </div>
+              )}
 
               {/* Conditional: Participation fields */}
               {form.certificateType === "participation" && (

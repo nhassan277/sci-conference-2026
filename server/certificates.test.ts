@@ -78,19 +78,20 @@ describe("Certificate Request Feature", () => {
     expect(escape("Line\nbreak")).toBe('"Line\nbreak"');
   });
 
-  it("CSV export headers include all required fields", () => {
+  it("CSV export headers include all required fields including Workshop Name", () => {
     const headers = [
       "ID", "Name on Certificate", "Email", "Affiliation",
-      "Certificate Type", "Presentation Title", "Presentation Type",
+      "Certificate Type", "Workshop Name", "Presentation Title", "Presentation Type",
       "Organization Role", "Additional Notes", "Status",
       "Admin Notes", "Processed By", "Processed At", "Submitted At",
     ];
     expect(headers).toContain("Name on Certificate");
     expect(headers).toContain("Email");
     expect(headers).toContain("Certificate Type");
+    expect(headers).toContain("Workshop Name");
     expect(headers).toContain("Status");
     expect(headers).toContain("Submitted At");
-    expect(headers.length).toBe(14);
+    expect(headers.length).toBe(15);
   });
 
   it("CSV file name includes date and filter label", () => {

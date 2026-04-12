@@ -955,3 +955,11 @@
 - [x] Add Export CSV/Excel button to admin Certificates tab
 - [x] Include all fields: name, email, affiliation, type, title, role, status, date
 - [x] Write and pass vitest tests for export feature (9/9 passing)
+
+## Workshop Certificate Option (April 2026)
+- [x] Add "workshop" to certificateType enum in DB schema and backend router
+- [x] Add workshopName field to certificateRequests table (free text, nullable)
+- [x] Update backend submit procedure to accept workshopName
+- [x] Update frontend CertificateRequest form: add "Workshop" option + workshopName input
+- [x] Update admin CertificateRequests panel to display workshopName
+- [x] Update CSV export to include workshopName column (15 columns total)

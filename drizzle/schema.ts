@@ -477,12 +477,14 @@ export const certificateRequests = mysqlTable("certificate_requests", {
   email: varchar("email", { length: 255 }).notNull(),
   affiliation: varchar("affiliation", { length: 255 }).notNull(),
   // Certificate type
-  certificateType: varchar("certificate_type", { length: 50 }).notNull(), // "attendance" | "participation"
+  certificateType: varchar("certificate_type", { length: 50 }).notNull(), // "attendance" | "participation" | "organization" | "workshop"
   // For participation certificates
   presentationTitle: text("presentation_title"), // title of poster/oral presentation
   presentationType: varchar("presentation_type", { length: 50 }), // "poster" | "oral" | "workshop_organizer" | "invited_speaker"
   // Conference organization role (for organizers)
   organizationRole: text("organization_role"), // e.g., "Scientific Committee Member", "Session Chair"
+  // For workshop certificates
+  workshopName: text("workshop_name"), // name of the workshop as written by the applicant
   // Additional notes from requester
   additionalNotes: text("additional_notes"),
   // Admin fields

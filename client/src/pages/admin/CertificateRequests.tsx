@@ -21,6 +21,7 @@ type CertRequest = {
   presentationTitle: string | null;
   presentationType: string | null;
   organizationRole: string | null;
+  workshopName: string | null;
   additionalNotes: string | null;
   status: string;
   adminNotes: string | null;
@@ -41,6 +42,7 @@ const CERT_TYPE_LABELS: Record<string, string> = {
   attendance: "Attendance",
   participation: "Participation",
   organization: "Organization",
+  workshop: "Workshop",
 };
 
 const PRES_TYPE_LABELS: Record<string, string> = {
@@ -149,6 +151,13 @@ function RequestDetailRow({ request, onUpdate }: { request: CertRequest; onUpdat
                     <User className="w-4 h-4 text-primary mt-0.5" />
                     <span className="font-medium">Role:</span>
                     <span>{request.organizationRole}</span>
+                  </div>
+                )}
+                {request.workshopName && (
+                  <div className="flex items-start gap-2 text-sm">
+                    <FileText className="w-4 h-4 text-primary mt-0.5" />
+                    <span className="font-medium">Workshop:</span>
+                    <span className="italic">{request.workshopName}</span>
                   </div>
                 )}
               </div>

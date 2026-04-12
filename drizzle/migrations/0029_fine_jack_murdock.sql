@@ -1,0 +1,1 @@
+ALTER TABLE `certificate_requests` ADD `workshop_name` text;
