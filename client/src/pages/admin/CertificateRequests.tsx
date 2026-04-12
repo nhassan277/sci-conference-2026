@@ -9,7 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Award, Search, RefreshCw, CheckCircle2, Clock, XCircle, Loader2, ChevronDown, ChevronUp, Mail, User, Building2, FileText, Presentation } from "lucide-react";
+import { Award, Search, RefreshCw, CheckCircle2, Clock, XCircle, Loader2, ChevronDown, ChevronUp, Mail, User, Building2, FileText, Presentation, Download } from "lucide-react";
 import { toast } from "sonner";
 
 type CertRequest = {
@@ -226,6 +226,7 @@ function RequestDetailRow({ request, onUpdate }: { request: CertRequest; onUpdat
 export default function CertificateRequests() {
   const [statusFilter, setStatusFilter] = useState<"all" | "pending" | "processing" | "issued" | "rejected">("all");
   const [search, setSearch] = useState("");
+  const [exporting, setExporting] = useState(false);
 
   const { data: requests, isLoading, refetch } = trpc.certificates.list.useQuery(
     { status: statusFilter, search: search || undefined },
@@ -233,6 +234,37 @@ export default function CertificateRequests() {
   );
 
   const { data: stats } = trpc.certificates.stats.useQuery(undefined, { refetchInterval: 30000 });
+
+  const utils = trpc.useUtils();
+
+  const handleExport = async () => {
+    setExporting(true);
+    try {
+      const result = await utils.certificates.exportCsv.fetch({ status: statusFilter });
+      if (!result?.csv) {
+        toast.error("No data to export");
+        return;
+      }
+      // Add BOM for Excel UTF-8 compatibility
+      const bom = "\uFEFF";
+      const blob = new Blob([bom + result.csv], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      const filterLabel = statusFilter === "all" ? "all" : statusFilter;
+      const dateStr = new Date().toISOString().slice(0, 10);
+      link.href = url;
+      link.download = `SCI2026_certificate_requests_${filterLabel}_${dateStr}.csv`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+      toast.success(`Exported ${result.count} request${result.count !== 1 ? "s" : ""} to CSV`);
+    } catch (err: any) {
+      toast.error("Export failed: " + (err?.message ?? "Unknown error"));
+    } finally {
+      setExporting(false);
+    }
+  };
 
   return (
     <div className="space-y-6">
@@ -247,10 +279,26 @@ export default function CertificateRequests() {
             <p className="text-sm text-muted-foreground">Manage post-conference certificate requests</p>
           </div>
         </div>
-        <Button variant="outline" size="sm" onClick={() => refetch()} className="gap-2">
-          <RefreshCw className="w-4 h-4" />
-          Refresh
-        </Button>
+        <div className="flex items-center gap-2">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={handleExport}
+            disabled={exporting || isLoading}
+            className="gap-2 border-green-300 text-green-700 hover:bg-green-50"
+          >
+            {exporting ? (
+              <Loader2 className="w-4 h-4 animate-spin" />
+            ) : (
+              <Download className="w-4 h-4" />
+            )}
+            Export CSV
+          </Button>
+          <Button variant="outline" size="sm" onClick={() => refetch()} className="gap-2">
+            <RefreshCw className="w-4 h-4" />
+            Refresh
+          </Button>
+        </div>
       </div>
 
       {/* Stats Cards */}

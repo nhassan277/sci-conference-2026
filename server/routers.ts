@@ -4093,6 +4093,70 @@ export const appRouter = router({
         organization: all.filter(r => r.certificateType === "organization").length,
       };
     }),
+
+    // Admin: export all certificate requests as CSV string
+    exportCsv: adminProcedure
+      .input(
+        z.object({
+          status: z.enum(["all", "pending", "processing", "issued", "rejected"]).default("all"),
+        }).optional()
+      )
+      .query(async ({ input }) => {
+        const all = await db
+          .select()
+          .from(certificateRequests)
+          .orderBy(desc(certificateRequests.createdAt));
+
+        const filtered = input?.status && input.status !== "all"
+          ? all.filter(r => r.status === input!.status)
+          : all;
+
+        const escape = (val: string | null | undefined) => {
+          if (val == null) return "";
+          const s = String(val);
+          if (s.includes(",") || s.includes('"') || s.includes("\n")) {
+            return `"${s.replace(/"/g, '""')}"`;
+          }
+          return s;
+        };
+
+        const headers = [
+          "ID",
+          "Name on Certificate",
+          "Email",
+          "Affiliation",
+          "Certificate Type",
+          "Presentation Title",
+          "Presentation Type",
+          "Organization Role",
+          "Additional Notes",
+          "Status",
+          "Admin Notes",
+          "Processed By",
+          "Processed At",
+          "Submitted At",
+        ];
+
+        const rows = filtered.map(r => [
+          r.id,
+          escape(r.nameOnCertificate),
+          escape(r.email),
+          escape(r.affiliation),
+          escape(r.certificateType),
+          escape(r.presentationTitle),
+          escape(r.presentationType),
+          escape(r.organizationRole),
+          escape(r.additionalNotes),
+          escape(r.status),
+          escape(r.adminNotes),
+          escape(r.processedBy),
+          r.processedAt ? new Date(r.processedAt).toISOString() : "",
+          r.createdAt ? new Date(r.createdAt).toISOString() : "",
+        ].join(","));
+
+        const csv = [headers.join(","), ...rows].join("\n");
+        return { csv, count: filtered.length };
+      }),
   }),
 });
 export type AppRouter = typeof appRouter;

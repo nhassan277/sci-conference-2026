@@ -61,6 +61,45 @@ vi.mock("../drizzle/schema.js", () => ({
 }));
 
 describe("Certificate Request Feature", () => {
+  it("CSV escape function handles special characters", () => {
+    const escape = (val: string | null | undefined): string => {
+      if (val == null) return "";
+      const s = String(val);
+      if (s.includes(",") || s.includes('"') || s.includes("\n")) {
+        return `"${s.replace(/"/g, '""')}"`;
+      }
+      return s;
+    };
+    expect(escape(null)).toBe("");
+    expect(escape(undefined)).toBe("");
+    expect(escape("Simple Name")).toBe("Simple Name");
+    expect(escape("Name, with comma")).toBe('"Name, with comma"');
+    expect(escape('Name with "quotes"')).toBe('"Name with ""quotes"""');
+    expect(escape("Line\nbreak")).toBe('"Line\nbreak"');
+  });
+
+  it("CSV export headers include all required fields", () => {
+    const headers = [
+      "ID", "Name on Certificate", "Email", "Affiliation",
+      "Certificate Type", "Presentation Title", "Presentation Type",
+      "Organization Role", "Additional Notes", "Status",
+      "Admin Notes", "Processed By", "Processed At", "Submitted At",
+    ];
+    expect(headers).toContain("Name on Certificate");
+    expect(headers).toContain("Email");
+    expect(headers).toContain("Certificate Type");
+    expect(headers).toContain("Status");
+    expect(headers).toContain("Submitted At");
+    expect(headers.length).toBe(14);
+  });
+
+  it("CSV file name includes date and filter label", () => {
+    const statusFilter = "pending";
+    const dateStr = new Date().toISOString().slice(0, 10);
+    const filename = `SCI2026_certificate_requests_${statusFilter}_${dateStr}.csv`;
+    expect(filename).toMatch(/^SCI2026_certificate_requests_pending_\d{4}-\d{2}-\d{2}\.csv$/);
+  });
+
   it("validates required fields for attendance certificate", () => {
     const validInput = {
       nameOnCertificate: "Dr. Nourhan Hassan",

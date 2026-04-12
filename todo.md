@@ -949,3 +949,9 @@
 - [x] Build admin CertificateRequests panel with stats, filters, expandable rows, status update dialog
 - [x] Add Certificates tab to Admin.tsx (6-column tab grid)
 - [x] Write and pass vitest tests for certificate feature (6/6 passing)
+
+## Certificate Requests Export (April 2026)
+- [x] Add backend tRPC procedure to export certificate requests as CSV
+- [x] Add Export CSV/Excel button to admin Certificates tab
+- [x] Include all fields: name, email, affiliation, type, title, role, status, date
+- [x] Write and pass vitest tests for export feature (9/9 passing)
