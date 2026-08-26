@@ -12,6 +12,9 @@
 - [x] Regenerate and validate the final official SCI 2026 report and participant workbook
 - [ ] Obtain an organizer-approved attendance or final participant record to reconcile confirmed attendance totals
 - [ ] Update the report if confirmed attendance totals become available; otherwise retain registration records and confirmed contributions as separate metrics
+- [x] Create standalone charts showing SCI 2026 researcher contributions by scientific track and high-level affiliation group without modifying the user-edited workbook
+- [x] Create a supplementary chart showing contributions by top named institutions, with remaining institutions combined as Other
+- [x] Distinguish affiliation-group and named-institution chart definitions in the chart documentation
 - [x] Add conference coordinator information to website patronage section (الأستاذ الدكتور/ امتثال عبد السميع)
 
 ## In Progress
