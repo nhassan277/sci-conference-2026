@@ -3,6 +3,15 @@
 ## Pending Tasks
 - [ ] Implement email notifications for new registrations
 - [ ] Add admin dashboard to view/manage registrations
+- [x] Prepare an interim SCI 2026 conference report with available participant data, research tracks, presentation or poster titles, counts, and event photographs
+- [x] Locate the authoritative abstract or poster catalog and rebuild the participant table from that source (SCI2026 booklet)
+- [x] Reconcile all researcher names, tracks, poster or research titles, and participant counts against official conference records
+- [x] Regenerate the final report and spreadsheet with verified researcher records and accurately captioned event photographs
+- [x] Extract researcher, presentation, and poster records from the SCI2026_Booklet_NHmmmm.pdf source
+- [x] Reconcile the booklet against the final programme and correct any provisional classifications or counts
+- [x] Regenerate and validate the final official SCI 2026 report and participant workbook
+- [ ] Obtain an organizer-approved attendance or final participant record to reconcile confirmed attendance totals
+- [ ] Update the report if confirmed attendance totals become available; otherwise retain registration records and confirmed contributions as separate metrics
 - [x] Add conference coordinator information to website patronage section (الأستاذ الدكتور/ امتثال عبد السميع)
 
 ## In Progress
