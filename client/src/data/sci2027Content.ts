@@ -65,6 +65,56 @@ export const sci2027Content = {
     brochureEnglish: "/sci-2027/documents/SCI2027-Trifold-Brochure-EN.pdf",
     brochureArabic: "/sci-2027/documents/SCI2027-Brochure-AR.pdf",
   },
+  videos: [
+    {
+      id: "discover-create-connect",
+      title: "Experience SCI 2027: Discover, Create, Connect",
+      description:
+        "A glimpse of the SCI 2027 experience, from research exchange and hands-on innovation to the conversations that connect a scientific community.",
+      language: "English",
+      duration: "30 seconds",
+      aspect: "landscape",
+      url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/DIQkCKtyFXKPrYHF.mp4",
+      posterUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/GZrgfLuKnVOoqnLL.jpg",
+      featured: true,
+    },
+    {
+      id: "science-across-scales",
+      title: "SCI 2027: Science at the Core of Innovation",
+      description:
+        "Travel from the cosmos to the molecular world and discover how science, nature and artificial intelligence connect to shape tomorrow’s solutions.",
+      language: "Arabic voice-over",
+      duration: "45 seconds",
+      aspect: "landscape",
+      url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/URpKPRFVVosTYfZu.mp4",
+      posterUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/wTkPulziRhpfIRvh.jpg",
+      featured: false,
+    },
+    {
+      id: "looking-ahead",
+      title: "Looking Ahead to SCI 2027: Building on Innovation",
+      description:
+        "Relive highlights from SCI 2026 and look ahead to the first international SCI 2027 conference at Cairo University.",
+      language: "Instrumental",
+      duration: "47 seconds",
+      aspect: "square",
+      url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/IIEJajMbMuecgVXK.mp4",
+      posterUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/DgmAwNjnjZaNkQQq.jpg",
+      featured: false,
+    },
+    {
+      id: "save-the-date",
+      title: "SCI 2027: Save the Date & Conference Overview",
+      description:
+        "A concise English overview of the conference, its six scientific tracks, international keynotes, workshops and the invitation to share your research.",
+      language: "English",
+      duration: "29 seconds",
+      aspect: "portrait",
+      url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/POXeeKtpozxdoDew.mp4",
+      posterUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/rXVFeXyaDytqzHkI.jpg",
+      featured: false,
+    },
+  ],
   patronage: [
     {
       name: "Prof. Mohamed Sami Abdel-Sadek",

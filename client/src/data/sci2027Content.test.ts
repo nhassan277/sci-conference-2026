@@ -27,6 +27,7 @@ const englishOnlyPublicFiles = [
   "client/src/pages/Sci2027Programme.tsx",
   "client/src/pages/Sci2026Archive.tsx",
   "client/src/pages/Sci2027Sponsorship.tsx",
+  "client/src/pages/Sci2027Videos.tsx",
 ] as const;
 
 describe("SCI 2027 public content", () => {
@@ -71,6 +72,20 @@ describe("SCI 2027 public content", () => {
     expect(sci2027Content.contact.email).toBe(sci2027Content.sponsorship.contactEmail);
   });
 
+  it("provides four hosted SCI 2027 promotional videos with poster frames and verified gallery details", () => {
+    expect(sci2027Content.videos).toHaveLength(4);
+    expect(sci2027Content.videos.every((video) => video.url.startsWith("https://"))).toBe(true);
+    expect(sci2027Content.videos.every((video) => video.posterUrl.startsWith("https://"))).toBe(true);
+    expect(sci2027Content.videos.map((video) => video.title)).toEqual([
+      "Experience SCI 2027: Discover, Create, Connect",
+      "SCI 2027: Science at the Core of Innovation",
+      "Looking Ahead to SCI 2027: Building on Innovation",
+      "SCI 2027: Save the Date & Conference Overview",
+    ]);
+    expect(sci2027Content.videos.find((video) => video.language === "Arabic voice-over")?.duration).toBe("45 seconds");
+    expect(sci2027Content.videos.find((video) => video.aspect === "portrait")?.duration).toBe("29 seconds");
+  });
+
   it("uses hosted public URLs for oversized images and retains the remaining approved assets locally", () => {
     for (const key of hostedAssetKeys) {
       const assetPath = sci2027Content.assets[key];
@@ -98,6 +113,17 @@ describe("SCI 2027 public content", () => {
     expect(source).toContain("sponsorship.benefitMatrix");
     expect(source).toContain("sponsorship.specialOpportunities");
     expect(source).toContain("sponsorship.ctaLabel");
+  });
+
+  it("provides an English-only click-to-play SCI 2027 promotional-video gallery", () => {
+    const videosPage = projectPath("client/src/pages/Sci2027Videos.tsx");
+    const source = existsSync(videosPage) ? readFileSync(videosPage, "utf8") : "";
+
+    expect(existsSync(videosPage)).toBe(true);
+    expect(source).toContain("sci2027Content.videos");
+    expect(source).toContain("playsInline");
+    expect(source).toContain("controls");
+    expect(source).not.toContain("autoPlay");
   });
 
   it("renders the current SCI 2027 public experience in English only", () => {
@@ -128,6 +154,17 @@ describe("SCI 2027 public content", () => {
     expect(footerSource).toContain('href="/sponsorship"');
   });
 
+  it("links the homepage and shared navigation to the SCI 2027 promotional-video gallery", () => {
+    const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
+    const headerSource = readFileSync(projectPath("client/src/components/Sci2027Header.tsx"), "utf8");
+    const footerSource = readFileSync(projectPath("client/src/components/Sci2027Footer.tsx"), "utf8");
+
+    expect(homeSource).toContain('href="/videos"');
+    expect(homeSource).toContain("featuredVideo");
+    expect(headerSource).toContain('label: "Videos"');
+    expect(footerSource).toContain('href="/videos"');
+  });
+
   it("uses the SCI 2027 page for the public root route", () => {
     const homeSource = readFileSync(projectPath("client/src/pages/Home.tsx"), "utf8");
 
@@ -154,5 +191,6 @@ describe("SCI 2027 public content", () => {
     expect(appSource).toContain('path={"/sponsorship"} component={Sci2027Sponsorship}');
     expect(appSource).toContain('path={"/sponsor"} component={Sci2027Sponsorship}');
     expect(appSource).toContain('path={"/sponsors"} component={Sci2027Sponsorship}');
+    expect(appSource).toContain('path={"/videos"} component={Sci2027Videos}');
   });
 });

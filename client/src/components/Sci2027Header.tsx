@@ -7,6 +7,7 @@ const navigation = [
   { href: "/#about", label: "About" },
   { href: "/#tracks", label: "Tracks" },
   { href: "/programme", label: "Programme" },
+  { href: "/videos", label: "Videos" },
   { href: "/sponsorship", label: "Sponsorship" },
   { href: "/#dates", label: "Dates" },
   { href: "/#registration", label: "Register" },
