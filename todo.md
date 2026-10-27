@@ -18,7 +18,7 @@
 - [x] Replace the SCI 2027 public general-contact address with sci.conf.2027@gmail.com and verify it matches the sponsorship contact
 - [x] Prepare and host the four approved SCI 2027 promotional videos and representative poster frames
 - [x] Add an English-only SCI 2027 video gallery page, homepage preview, click-to-play player, and public videos navigation
-- [ ] Save a WebDev checkpoint for the verified SCI 2027 promotional-video experience
+- [x] Save a WebDev checkpoint for the verified SCI 2027 promotional-video experience
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks
