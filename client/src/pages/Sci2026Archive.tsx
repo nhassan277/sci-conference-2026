@@ -7,18 +7,14 @@ const archiveLinks = [
   {
     icon: Images,
     title: "Conference photo gallery",
-    titleAr: "معرض صور المؤتمر",
     description: "Browse the curated photo archive from the SCI 2026 conference.",
-    descriptionAr: "استعرض أرشيف الصور المختار من مؤتمر SCI 2026.",
     href: "/live-gallery",
     action: "Open gallery",
   },
   {
     icon: Award,
     title: "Certificate requests",
-    titleAr: "طلبات الشهادات",
     description: "Past SCI 2026 attendees can submit or follow up on certificate requests here.",
-    descriptionAr: "يمكن لحضور SCI 2026 تقديم طلبات الشهادات أو متابعتها من هنا.",
     href: "/certificate-request",
     action: "Request certificate",
   },
@@ -35,9 +31,7 @@ export default function Sci2026Archive() {
             <Link href="/" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.15em] text-[#063760] transition hover:text-[#ad8618]"><ArrowLeft className="h-4 w-4" /> Back to SCI 2027</Link>
             <p className="mt-10 text-xs font-extrabold uppercase tracking-[0.2em] text-[#ad8618]">Archived conference resources</p>
             <h1 className="mt-4 font-serif text-5xl font-bold leading-[1.02] tracking-[-0.04em] text-[#063760] sm:text-6xl">SCI 2026 archive</h1>
-            <p dir="rtl" className="mt-4 text-right text-2xl font-bold text-[#617986]">أرشيف مؤتمر SCI 2026</p>
             <p className="mt-7 max-w-2xl text-lg leading-8 text-[#456374]">SCI 2026 took place at the Faculty of Science, Cairo University on 7–8 April 2026. Its current content has been preserved here for participants and institutional reference while the public site moves forward as SCI 2027.</p>
-            <p dir="rtl" className="mt-4 max-w-2xl text-right text-base leading-8 text-[#617986]">انعقد SCI 2026 في كلية العلوم، جامعة القاهرة يومي 7–8 أبريل 2026. وقد حُفظت موارده هنا للمشاركين والرجوع المؤسسي، بينما ينتقل الموقع العام إلى SCI 2027.</p>
           </div>
         </section>
 
@@ -50,9 +44,7 @@ export default function Sci2026Archive() {
                   <a key={item.href} href={item.href} className="group border border-[#063760]/15 bg-white p-7 shadow-sm transition-all hover:-translate-y-1 hover:border-[#d3a725] hover:shadow-xl">
                     <Icon className="h-8 w-8 text-[#ad8618]" />
                     <h2 className="mt-7 font-serif text-3xl font-bold text-[#063760]">{item.title}</h2>
-                    <p dir="rtl" className="mt-2 text-right text-base font-bold text-[#617986]">{item.titleAr}</p>
                     <p className="mt-5 text-sm leading-7 text-[#456374]">{item.description}</p>
-                    <p dir="rtl" className="mt-3 text-right text-sm leading-7 text-[#617986]">{item.descriptionAr}</p>
                     <span className="mt-8 inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.14em] text-[#063760]">{item.action} <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></span>
                   </a>
                 );

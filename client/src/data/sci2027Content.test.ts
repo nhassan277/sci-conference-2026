@@ -20,6 +20,14 @@ const localAssetKeys = [
   "brochureArabic",
 ] as const;
 
+const englishOnlyPublicFiles = [
+  "client/src/pages/Sci2027Home.tsx",
+  "client/src/components/Sci2027Header.tsx",
+  "client/src/components/Sci2027Footer.tsx",
+  "client/src/pages/Sci2027Programme.tsx",
+  "client/src/pages/Sci2026Archive.tsx",
+] as const;
+
 describe("SCI 2027 public content", () => {
   it("provides a dedicated source-of-truth content module", () => {
     expect(existsSync(projectPath("client/src/data/sci2027Content.ts"))).toBe(true);
@@ -32,6 +40,13 @@ describe("SCI 2027 public content", () => {
     expect(sci2027Content.registration.general.url).toBe("https://forms.gle/mr2gE9nsbdPrha9r6");
     expect(sci2027Content.registration.speaker.url).toBe("https://forms.gle/FRiza6zpfiQLrgrh8");
     expect(sci2027Content.sourceNote).not.toContain("SCI 2026");
+  });
+
+  it("includes the approved student research, thesis and graduation-project registration form", () => {
+    expect(sci2027Content.registration.studentResearch.url).toBe("https://forms.gle/fmXUzEQ85hbXnLFp8");
+    expect(sci2027Content.registration.studentResearch.name.en).toBe("Student Research, Thesis & Graduation Project Registration");
+    expect(sci2027Content.registration.studentResearch.description.en).toBe("For undergraduate and postgraduate students presenting student research, thesis work, or graduation projects.");
+    expect(sci2027Content.registration.studentResearch.notice.en).toBe("Submission deadline and abstract requirements will be announced.");
   });
 
   it("uses hosted public URLs for oversized images and retains the remaining approved assets locally", () => {
@@ -51,6 +66,24 @@ describe("SCI 2027 public content", () => {
 
   it("provides a dedicated SCI 2027 home page", () => {
     expect(existsSync(projectPath("client/src/pages/Sci2027Home.tsx"))).toBe(true);
+  });
+
+  it("renders the current SCI 2027 public experience in English only", () => {
+    for (const file of englishOnlyPublicFiles) {
+      const source = readFileSync(projectPath(file), "utf8");
+
+      expect(source).not.toMatch(/[\u0600-\u06FF]/u);
+      expect(source).not.toContain('dir="rtl"');
+      expect(source).not.toContain("brochureArabic");
+    }
+  });
+
+  it("renders the student research form as a third responsive registration option", () => {
+    const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
+
+    expect(homeSource).toContain("sci2027Content.registration.studentResearch");
+    expect(homeSource).toContain("lg:grid-cols-3");
+    expect(homeSource).toContain("option.notice.en");
   });
 
   it("uses the SCI 2027 page for the public root route", () => {

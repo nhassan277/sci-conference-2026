@@ -13,11 +13,12 @@ export default function Sci2027Footer() {
               <img src={sci2027Content.assets.sci2027Logo} alt="SCI 2027" className="h-16 w-16 rounded-full object-cover" />
               <div>
                 <p className="font-serif text-3xl font-bold">SCI 2027</p>
-                <p className="mt-1 max-w-sm text-sm leading-6 text-[#d5e0e6]">{sci2027Content.identity.conferenceType.en}</p>
+                <p className="mt-1 max-w-sm text-sm leading-6 text-[#d5e0e6]">
+                  {sci2027Content.identity.conferenceType.en}
+                </p>
               </div>
             </div>
             <p className="mt-6 max-w-xl text-sm leading-7 text-[#b9ccd7]">{sci2027Content.overview.en}</p>
-            <p dir="rtl" className="mt-4 max-w-xl text-right text-sm leading-7 text-[#d5e0e6]">{sci2027Content.overview.ar}</p>
           </div>
 
           <div>
@@ -43,15 +44,14 @@ export default function Sci2027Footer() {
               <li className="flex items-center gap-3"><Facebook className="h-4 w-4 shrink-0 text-[#e5bd4a]" /><a href={`https://${sci2027Content.contact.facebook}`} target="_blank" rel="noreferrer" className="hover:text-[#e5bd4a]">SCI2027</a></li>
             </ul>
             <div className="mt-7 flex gap-3">
-              <a href={sci2027Content.assets.brochureEnglish} target="_blank" rel="noreferrer" className="rounded-full border border-white/20 px-3 py-2 text-xs font-bold transition hover:border-[#e5bd4a] hover:text-[#e5bd4a]">EN brochure</a>
-              <a href={sci2027Content.assets.brochureArabic} target="_blank" rel="noreferrer" className="rounded-full border border-white/20 px-3 py-2 text-xs font-bold transition hover:border-[#e5bd4a] hover:text-[#e5bd4a]">الكتيب العربي</a>
+              <a href={sci2027Content.assets.brochureEnglish} target="_blank" rel="noreferrer" className="rounded-full border border-white/20 px-3 py-2 text-xs font-bold transition hover:border-[#e5bd4a] hover:text-[#e5bd4a]">Download brochure</a>
             </div>
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col justify-between gap-3 border-t border-white/10 pt-6 text-xs text-[#9db5c2] md:flex-row">
+        <div className="mt-14 flex justify-between gap-3 border-t border-white/10 pt-6 text-xs text-[#9db5c2]">
           <p>© 2027 Faculty of Science, Cairo University. All rights reserved.</p>
-          <p dir="rtl">كلية العلوم، جامعة القاهرة. جميع الحقوق محفوظة.</p>
+          <p>Science at the Core of Innovation</p>
         </div>
       </div>
     </footer>

@@ -369,6 +369,21 @@ export const sci2027Content = {
       },
       url: "https://forms.gle/FRiza6zpfiQLrgrh8",
     },
+    studentResearch: {
+      name: {
+        en: "Student Research, Thesis & Graduation Project Registration",
+        ar: "تسجيل أبحاث الطلاب والرسائل ومشروعات التخرج",
+      },
+      description: {
+        en: "For undergraduate and postgraduate students presenting student research, thesis work, or graduation projects.",
+        ar: "لطلاب البكالوريوس والدراسات العليا الذين يقدمون أبحاثًا طلابية أو رسائل علمية أو مشروعات تخرج.",
+      },
+      notice: {
+        en: "Submission deadline and abstract requirements will be announced.",
+        ar: "سيُعلن موعد التقديم ومتطلبات الملخص لاحقًا.",
+      },
+      url: "https://forms.gle/fmXUzEQ85hbXnLFp8",
+    },
   },
   contact: {
     email: "nyehia@sci.cu.edu.eg",

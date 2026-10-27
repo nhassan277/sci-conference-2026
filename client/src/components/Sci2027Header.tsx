@@ -4,16 +4,15 @@ import { Link } from "wouter";
 import { sci2027Content } from "@/data/sci2027Content";
 
 const navigation = [
-  { href: "#about", label: "About", labelAr: "عن المؤتمر" },
-  { href: "#tracks", label: "Tracks", labelAr: "المحاور" },
-  { href: "/programme", label: "Programme", labelAr: "البرنامج" },
-  { href: "#dates", label: "Dates", labelAr: "المواعيد" },
-  { href: "#registration", label: "Register", labelAr: "التسجيل" },
+  { href: "#about", label: "About" },
+  { href: "#tracks", label: "Tracks" },
+  { href: "/programme", label: "Programme" },
+  { href: "#dates", label: "Dates" },
+  { href: "#registration", label: "Register" },
 ];
 
 export default function Sci2027Header() {
   const [isOpen, setIsOpen] = useState(false);
-
   const closeMenu = () => setIsOpen(false);
 
   return (
@@ -26,20 +25,21 @@ export default function Sci2027Header() {
             className="h-11 w-11 shrink-0 rounded-full object-cover"
           />
           <div className="min-w-0 leading-tight">
-            <p className="font-sans text-[10px] font-bold uppercase tracking-[0.18em] text-[#ad8618]">Cairo University · Faculty of Science</p>
+            <p className="font-sans text-[10px] font-bold uppercase tracking-[0.18em] text-[#ad8618]">
+              Cairo University · Faculty of Science
+            </p>
             <p className="font-serif text-lg font-bold text-[#063760] sm:text-xl">SCI 2027</p>
           </div>
         </Link>
 
-        <nav aria-label="Primary navigation" className="hidden items-center gap-5 lg:flex">
+        <nav aria-label="Primary navigation" className="hidden items-center gap-6 lg:flex">
           {navigation.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="group flex flex-col text-center text-xs font-bold tracking-wide text-[#35536a] transition-colors hover:text-[#063760]"
+              className="text-xs font-bold uppercase tracking-[0.1em] text-[#35536a] transition-colors hover:text-[#ad8618]"
             >
-              <span>{item.label}</span>
-              <span dir="rtl" className="mt-0.5 text-[10px] font-medium text-[#8ba0ad] group-hover:text-[#ad8618]">{item.labelAr}</span>
+              {item.label}
             </a>
           ))}
         </nav>
@@ -73,10 +73,9 @@ export default function Sci2027Header() {
                 key={item.href}
                 href={item.href}
                 onClick={closeMenu}
-                className="flex items-center justify-between rounded-xl px-4 py-3 text-sm font-bold text-[#063760] transition-colors hover:bg-[#e9f1f2]"
+                className="rounded-xl px-4 py-3 text-sm font-bold text-[#063760] transition-colors hover:bg-[#e9f1f2]"
               >
-                <span>{item.label}</span>
-                <span dir="rtl" className="font-medium text-[#6e8798]">{item.labelAr}</span>
+                {item.label}
               </a>
             ))}
             <a
@@ -85,7 +84,7 @@ export default function Sci2027Header() {
               rel="noreferrer"
               className="mt-3 rounded-xl bg-[#063760] px-4 py-3 text-center text-sm font-bold text-white"
             >
-              Register now · سجل الآن
+              Register now
             </a>
           </nav>
         </div>

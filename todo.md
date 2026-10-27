@@ -6,7 +6,12 @@
 - [x] Replace the public SCI 2026 home experience with the SCI 2027 international conference landing page
 - [x] Add a SCI 2027 preliminary programme page and a clearly labelled SCI 2026 archive page
 - [x] Validate official registration-form links, replace oversized local assets with hosted public versions, typecheck, build, and review the running preview
-- [ ] Save release checkpoint and confirm the published SCI 2027 site URL
+- [x] Save the verified SCI 2027 release checkpoint
+- [x] Convert all current SCI 2027 public pages and shared navigation to English only, including removal of Arabic brochure actions
+- [x] Add and validate the undergraduate/postgraduate Student Research, Thesis & Graduation Project registration form in the Register section
+- [x] Verify the English-only student-registration update
+- [ ] Save a release checkpoint for the verified English-only student-registration update
+- [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks
 - [ ] Implement email notifications for new registrations
