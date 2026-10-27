@@ -7,10 +7,10 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import { UserProvider } from "./contexts/UserContext";
 import Home from "./pages/Home";
 import Attendance from "./pages/Attendance";
-import Sponsor from "./pages/Sponsor";
 import Admin from "./pages/Admin";
 import Sci2027Programme from "./pages/Sci2027Programme";
 import Sci2026Archive from "./pages/Sci2026Archive";
+import Sci2027Sponsorship from "./pages/Sci2027Sponsorship";
 import Support from "./pages/Support";
 import CheckIn from "./pages/CheckIn";
 import CheckInDashboard from "./pages/CheckInDashboard";
@@ -23,7 +23,6 @@ import TrackDetailPage from "./pages/TrackDetailPage";
 import Committees from "./pages/Committees";
 import KeynoteSpeakers from "./pages/KeynoteSpeakers";
 import MediaRegistration from "./pages/MediaRegistration";
-import Sponsors from "./pages/Sponsors";
 import Awards from "./pages/Awards";
 import Abstracts from "./pages/Abstracts";
 import SponsorDashboard from "./pages/SponsorDashboard";
@@ -43,7 +42,9 @@ function Router() {
     <Switch>
       <Route path={"/"} component={Home} />
       <Route path={"/attendance"} component={Attendance} />
-      <Route path={"/sponsor"} component={Sponsor} />
+      <Route path={"/sponsorship"} component={Sci2027Sponsorship} />
+      <Route path={"/sponsor"} component={Sci2027Sponsorship} />
+      <Route path={"/sponsors"} component={Sci2027Sponsorship} />
       <Route path={"/programme"} component={Sci2027Programme} />
       <Route path={"/schedule"} component={Sci2027Programme} />
       <Route path={"/archive-2026"} component={Sci2026Archive} />
@@ -59,7 +60,6 @@ function Router() {
       <Route path={"/tracks/:trackId"} component={TrackDetailPage} />
       <Route path={"/committees"} component={Committees} />
       <Route path={"/speakers"} component={KeynoteSpeakers} />
-      <Route path={"/sponsors"} component={Sponsors} />
       <Route path={"/media-registration"} component={MediaRegistration} />
       <Route path={"/awards"} component={Awards} />
       <Route path={"/abstracts"} component={Abstracts} />

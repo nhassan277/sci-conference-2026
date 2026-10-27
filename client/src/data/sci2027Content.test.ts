@@ -26,6 +26,7 @@ const englishOnlyPublicFiles = [
   "client/src/components/Sci2027Footer.tsx",
   "client/src/pages/Sci2027Programme.tsx",
   "client/src/pages/Sci2026Archive.tsx",
+  "client/src/pages/Sci2027Sponsorship.tsx",
 ] as const;
 
 describe("SCI 2027 public content", () => {
@@ -49,6 +50,22 @@ describe("SCI 2027 public content", () => {
     expect(sci2027Content.registration.studentResearch.notice.en).toBe("Submission deadline and abstract requirements will be announced.");
   });
 
+  it("provides the approved sponsorship tiers, visibility data and email-only prospectus contact", () => {
+    expect(sci2027Content.sponsorship.contactEmail).toBe("sci.conf.2027@gmail.com");
+    expect(sci2027Content.sponsorship.ctaLabel).toBe("Request the Sponsorship Prospectus by Email");
+    expect(sci2027Content.sponsorship.packages).toHaveLength(4);
+    expect(sci2027Content.sponsorship.packages.map((tier) => tier.investment)).toEqual([
+      "EGP 500,000",
+      "EGP 300,000",
+      "EGP 175,000",
+      "EGP 100,000",
+    ]);
+    expect(sci2027Content.sponsorship.credibility[0].label).toBe("archival registrations recorded");
+    expect(sci2027Content.sponsorship.credibility[0].note).toContain("not confirmed attendance");
+    expect(sci2027Content.sponsorship.benefitMatrix).toHaveLength(13);
+    expect(sci2027Content.sponsorship.specialOpportunities).toHaveLength(10);
+  });
+
   it("uses hosted public URLs for oversized images and retains the remaining approved assets locally", () => {
     for (const key of hostedAssetKeys) {
       const assetPath = sci2027Content.assets[key];
@@ -68,6 +85,16 @@ describe("SCI 2027 public content", () => {
     expect(existsSync(projectPath("client/src/pages/Sci2027Home.tsx"))).toBe(true);
   });
 
+  it("provides an English-only sponsorship page with a full benefits and opportunities offering", () => {
+    const sponsorshipPage = projectPath("client/src/pages/Sci2027Sponsorship.tsx");
+    const source = existsSync(sponsorshipPage) ? readFileSync(sponsorshipPage, "utf8") : "";
+
+    expect(existsSync(sponsorshipPage)).toBe(true);
+    expect(source).toContain("sponsorship.benefitMatrix");
+    expect(source).toContain("sponsorship.specialOpportunities");
+    expect(source).toContain("sponsorship.ctaLabel");
+  });
+
   it("renders the current SCI 2027 public experience in English only", () => {
     for (const file of englishOnlyPublicFiles) {
       const source = readFileSync(projectPath(file), "utf8");
@@ -84,6 +111,16 @@ describe("SCI 2027 public content", () => {
     expect(homeSource).toContain("sci2027Content.registration.studentResearch");
     expect(homeSource).toContain("lg:grid-cols-3");
     expect(homeSource).toContain("option.notice.en");
+  });
+
+  it("links the homepage and shared navigation to the SCI 2027 sponsorship offering", () => {
+    const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
+    const headerSource = readFileSync(projectPath("client/src/components/Sci2027Header.tsx"), "utf8");
+    const footerSource = readFileSync(projectPath("client/src/components/Sci2027Footer.tsx"), "utf8");
+
+    expect(homeSource).toContain('href="/sponsorship"');
+    expect(headerSource).toContain('label: "Sponsorship"');
+    expect(footerSource).toContain('href="/sponsorship"');
   });
 
   it("uses the SCI 2027 page for the public root route", () => {
@@ -109,5 +146,8 @@ describe("SCI 2027 public content", () => {
     expect(appSource).toContain('path={"/programme"}');
     expect(appSource).toContain('path={"/archive-2026"}');
     expect(appSource).toContain('path={"/schedule"} component={Sci2027Programme}');
+    expect(appSource).toContain('path={"/sponsorship"} component={Sci2027Sponsorship}');
+    expect(appSource).toContain('path={"/sponsor"} component={Sci2027Sponsorship}');
+    expect(appSource).toContain('path={"/sponsors"} component={Sci2027Sponsorship}');
   });
 });

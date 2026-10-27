@@ -10,7 +10,11 @@
 - [x] Convert all current SCI 2027 public pages and shared navigation to English only, including removal of Arabic brochure actions
 - [x] Add and validate the undergraduate/postgraduate Student Research, Thesis & Graduation Project registration form in the Register section
 - [x] Verify the English-only student-registration update
-- [ ] Save a release checkpoint for the verified English-only student-registration update
+- [x] Save a release checkpoint for the verified English-only student-registration update
+- [x] Add verified SCI 2027 sponsorship data from the official sponsorship prospectus, including all four tiers and special opportunities
+- [x] Build an English-only homepage sponsorship preview and detailed partnership and sponsorship page with email-only prospectus requests
+- [x] Verify the SCI 2027 sponsorship and partnership update
+- [ ] Save a release checkpoint for the verified SCI 2027 sponsorship and partnership update
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks

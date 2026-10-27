@@ -7,6 +7,7 @@ import {
   ExternalLink,
   FileText,
   GraduationCap,
+  Handshake,
   Landmark,
   Mail,
   MapPin,
@@ -53,7 +54,7 @@ const registrationCardStyles = [
 const registrationAccentStyles = ["text-[#f0ca57]", "text-[#ad8618]", "text-[#0d638b]"] as const;
 
 export default function Sci2027Home() {
-  const { identity, assets } = sci2027Content;
+  const { identity, assets, sponsorship } = sci2027Content;
 
   return (
     <div className="min-h-screen overflow-hidden bg-[#fffdf8] text-[#17374f]">
@@ -169,6 +170,20 @@ export default function Sci2027Home() {
             <div className="grid gap-7 md:grid-cols-[1fr_auto] md:items-end"><div><p className="sci-eyebrow text-[#f0ca57]">Programme & workshops</p><h2 className="mt-4 max-w-3xl font-serif text-4xl font-bold leading-[1.05] tracking-[-0.035em] sm:text-5xl">Three days that move from ideas to action.</h2></div><Link href="/programme" className="inline-flex items-center gap-2 text-sm font-extrabold uppercase tracking-[0.12em] text-[#f0ca57]">Full preliminary programme <ArrowUpRight className="h-4 w-4" /></Link></div>
             <div className="mt-12 grid gap-4 lg:grid-cols-3">{sci2027Content.programme.map((day) => <article key={day.date} className="border border-white/15 bg-white/[0.06] p-6"><p className="text-xs font-bold uppercase tracking-[0.15em] text-[#f0ca57]">{day.date}</p><h3 className="mt-4 font-serif text-2xl font-bold">{day.day.en}</h3><p className="mt-5 border-l-2 border-[#e5bd4a] pl-3 text-sm font-semibold leading-6 text-white">{day.purpose.en}</p><ul className="mt-6 space-y-3 border-t border-white/10 pt-5">{day.sessions.slice(0, 3).map((session) => <li key={session.en} className="flex gap-2 text-sm leading-6 text-[#c1d3dc]"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#e5bd4a]" />{session.en}</li>)}</ul></article>)}</div>
             <div className="mt-6 grid gap-3 md:grid-cols-2 xl:grid-cols-5">{sci2027Content.workshops.map((workshop) => <div key={workshop.en} className="border border-white/10 px-4 py-5"><p className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#f0ca57]">Track {workshop.track}</p><p className="mt-3 text-sm font-bold leading-6">{workshop.en}</p><p className="mt-4 text-[11px] text-[#9db5c2]">{workshop.timing.en}</p></div>)}</div>
+          </div>
+        </section>
+
+        <section className="bg-[#f7f2e7] py-20 md:py-28">
+          <div className="container grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+            <div>
+              <p className="sci-eyebrow">{sponsorship.eyebrow}</p>
+              <h2 className="mt-4 max-w-2xl font-serif text-4xl font-bold leading-[1.04] tracking-[-0.035em] text-[#063760] sm:text-5xl">Help turn scientific discovery into lasting impact.</h2>
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-[#456374]">{sponsorship.description}</p>
+              <Link href="/sponsorship" className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#063760] px-6 py-3.5 text-sm font-extrabold uppercase tracking-[0.1em] text-white transition hover:-translate-y-0.5 hover:bg-[#0a507e]">Explore partnership opportunities <ArrowUpRight className="h-4 w-4" /></Link>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {sponsorship.packages.map((tier) => <div key={tier.tier} className="border border-[#063760]/10 bg-white p-5 shadow-sm"><Handshake className="h-5 w-5 text-[#ad8618]" /><p className="mt-5 text-xs font-bold uppercase tracking-[0.16em] text-[#617986]">{tier.tier}</p><p className="mt-2 font-serif text-2xl font-bold text-[#063760]">{tier.investment}</p><p className="mt-3 text-xs font-bold leading-5 text-[#617986]">{tier.exhibition}</p></div>)}
+            </div>
           </div>
         </section>
 
