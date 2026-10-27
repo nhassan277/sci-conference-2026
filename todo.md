@@ -24,7 +24,7 @@
 - [x] Verify and checkpoint the revised 6–9 April SCI 2027 programme
 - [x] Add English-only Keynote Speakers and Invited Speakers announcement sections to the homepage and programme page
 - [x] Replace unconfirmed speaker counts and schedule wording with To be announced status while retaining Speaker Registration
-- [ ] Verify and checkpoint the SCI 2027 speakers-to-be-announced update
+- [x] Verify and checkpoint the SCI 2027 speakers-to-be-announced update
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks
