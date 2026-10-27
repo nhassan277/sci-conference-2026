@@ -44,6 +44,21 @@ describe("SCI 2027 public content", () => {
     expect(sci2027Content.sourceNote).not.toContain("SCI 2026");
   });
 
+  it("provides ten balanced specialties for every track and renders the full lists directly", () => {
+    const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
+
+    expect(sci2027Content.tracks.every((track) => track.topics.length === 10)).toBe(true);
+    expect(sci2027Content.tracks[0].topics).toContain("Synthetic biology and biodesign");
+    expect(sci2027Content.tracks[1].topics).toContain("Circular economy and resource recovery");
+    expect(sci2027Content.tracks[2].topics).toContain("Chemical sensors, spectroscopy and surface science");
+    expect(sci2027Content.tracks[3].topics).toContain("Quantum science and technology");
+    expect(sci2027Content.tracks[4].topics).toContain("Robotics, automation and intelligent systems");
+    expect(sci2027Content.tracks[5].topics).toContain("Research commercialization and startup development");
+    expect(homeSource).toContain("Specialties");
+    expect(homeSource).toContain("track.topics.map((topic)");
+    expect(homeSource).not.toContain("track.topics.slice(0, 3)");
+  });
+
   it("includes the approved student research, thesis and graduation-project registration form", () => {
     expect(sci2027Content.registration.studentResearch.url).toBe("https://forms.gle/fmXUzEQ85hbXnLFp8");
     expect(sci2027Content.registration.studentResearch.name.en).toBe("Student Research, Thesis & Graduation Project Registration");

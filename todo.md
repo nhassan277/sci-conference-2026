@@ -25,6 +25,9 @@
 - [x] Add English-only Keynote Speakers and Invited Speakers announcement sections to the homepage and programme page
 - [x] Replace unconfirmed speaker counts and schedule wording with To be announced status while retaining Speaker Registration
 - [x] Verify and checkpoint the SCI 2027 speakers-to-be-announced update
+- [x] Expand all six SCI 2027 tracks to ten balanced English-only specialties covering core and applied areas
+- [x] Render every specialty directly in the homepage track cards without truncation or hidden lists
+- [ ] Verify and checkpoint the expanded SCI 2027 track-specialties update
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks
