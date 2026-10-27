@@ -27,7 +27,7 @@
 - [x] Verify and checkpoint the SCI 2027 speakers-to-be-announced update
 - [x] Expand all six SCI 2027 tracks to ten balanced English-only specialties covering core and applied areas
 - [x] Render every specialty directly in the homepage track cards without truncation or hidden lists
-- [ ] Verify and checkpoint the expanded SCI 2027 track-specialties update
+- [x] Verify and checkpoint the expanded SCI 2027 track-specialties update
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks
