@@ -9,7 +9,8 @@ import Home from "./pages/Home";
 import Attendance from "./pages/Attendance";
 import Sponsor from "./pages/Sponsor";
 import Admin from "./pages/Admin";
-import Schedule from "./pages/Schedule";
+import Sci2027Programme from "./pages/Sci2027Programme";
+import Sci2026Archive from "./pages/Sci2026Archive";
 import Support from "./pages/Support";
 import CheckIn from "./pages/CheckIn";
 import CheckInDashboard from "./pages/CheckInDashboard";
@@ -32,7 +33,6 @@ import VolunteerRegistration from "./pages/VolunteerRegistration";
 import VolunteerManagement from "./pages/admin/VolunteerManagement";
 import AnnouncementsManagement from "./pages/admin/AnnouncementsManagement";
 import WorkshopGEE from "./pages/WorkshopGEE";
-import AnnouncementBanner from "./components/AnnouncementBanner";
 import LiveGallery from "./pages/LiveGallery";
 import CertificateRequest from "./pages/CertificateRequest";
 // import GalleryUpload from "./pages/GalleryUpload";
@@ -44,7 +44,9 @@ function Router() {
       <Route path={"/"} component={Home} />
       <Route path={"/attendance"} component={Attendance} />
       <Route path={"/sponsor"} component={Sponsor} />
-      <Route path={"/schedule"} component={Schedule} />
+      <Route path={"/programme"} component={Sci2027Programme} />
+      <Route path={"/schedule"} component={Sci2027Programme} />
+      <Route path={"/archive-2026"} component={Sci2026Archive} />
       <Route path={"/support"} component={Support} />
       <Route path={"/checkin"} component={CheckIn} />
       <Route path={"/checkin-dashboard"} component={CheckInDashboard} />
@@ -93,7 +95,6 @@ function App() {
         <UserProvider>
           <TooltipProvider>
             <Toaster />
-            <AnnouncementBanner />
             <Router />
           </TooltipProvider>
         </UserProvider>

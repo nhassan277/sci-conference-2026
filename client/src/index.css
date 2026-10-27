@@ -120,10 +120,11 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', sans-serif;
+    font-family: "IBM Plex Sans Arabic", "Source Sans 3", sans-serif;
+    text-rendering: optimizeLegibility;
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
+    font-family: "DM Serif Display", "IBM Plex Sans Arabic", serif;
     font-weight: 700;
   }
   button:not(:disabled),
@@ -178,6 +179,37 @@
       padding-left: 2rem; /* 32px - desktop padding */
       padding-right: 2rem;
       max-width: 1280px; /* Standard content width */
+    }
+  }
+
+  .sci-eyebrow {
+    color: #ad8618;
+    font-size: 0.69rem;
+    font-weight: 800;
+    letter-spacing: 0.19em;
+    line-height: 1.3;
+    text-transform: uppercase;
+  }
+
+  .sci-network {
+    background-image:
+      radial-gradient(circle at 12% 23%, rgba(229, 189, 74, 0.84) 0 1px, transparent 1.6px),
+      radial-gradient(circle at 36% 57%, rgba(255, 255, 255, 0.72) 0 1px, transparent 1.7px),
+      radial-gradient(circle at 69% 18%, rgba(229, 189, 74, 0.7) 0 1.25px, transparent 1.85px),
+      radial-gradient(circle at 83% 70%, rgba(255, 255, 255, 0.58) 0 1px, transparent 1.6px),
+      linear-gradient(118deg, transparent 0 47%, rgba(229, 189, 74, 0.2) 47.12% 47.35%, transparent 47.48% 100%),
+      linear-gradient(35deg, transparent 0 53%, rgba(255, 255, 255, 0.12) 53.12% 53.28%, transparent 53.42% 100%);
+    background-size: 270px 230px, 390px 340px, 470px 350px, 580px 420px, 650px 400px, 520px 450px;
+  }
+
+  @keyframes sci-rise {
+    from {
+      opacity: 0;
+      transform: translateY(1.25rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 }

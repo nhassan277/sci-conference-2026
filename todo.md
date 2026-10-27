@@ -1,5 +1,13 @@
 # SCI Conference 2026 Website TODO
 
+## SCI 2027 Conversion (Active)
+- [x] Create verified SCI 2027 public-content data and regression test from supplied Drive assets
+- [x] Add official SCI 2027 posters, logos, and bilingual brochures to the website public assets
+- [x] Replace the public SCI 2026 home experience with the SCI 2027 international conference landing page
+- [x] Add a SCI 2027 preliminary programme page and a clearly labelled SCI 2026 archive page
+- [x] Validate official registration-form links, replace oversized local assets with hosted public versions, typecheck, build, and review the running preview
+- [ ] Save release checkpoint and confirm the published SCI 2027 site URL
+
 ## Pending Tasks
 - [ ] Implement email notifications for new registrations
 - [ ] Add admin dashboard to view/manage registrations
