@@ -21,7 +21,7 @@
 - [x] Save a WebDev checkpoint for the verified SCI 2027 promotional-video experience
 - [x] Add 6 April as a pre-conference workshop day and retain 9 April as a post-conference workshop day with the optional museum visit
 - [x] Remove named SCI 2027 workshops from public content and use a workshop programme-to-be-announced message
-- [ ] Verify and checkpoint the revised 6–9 April SCI 2027 programme
+- [x] Verify and checkpoint the revised 6–9 April SCI 2027 programme
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks
