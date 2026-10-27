@@ -15,9 +15,9 @@ const schedule: Record<string, ProgrammeSession[]> = {
     { time: "08:30–09:00", title: "Registration and networking", tone: "soft" },
     { time: "09:00–09:15", title: "Opening address by the Conference Organizing Committee Chair" },
     { time: "09:15–09:30", title: "Welcome address by the Dean / University representative" },
-    { time: "09:30–10:30", title: "Main session: two international keynote speakers", tone: "gold" },
+    { time: "09:30–10:30", title: "Keynote Speaker Session · To be announced", tone: "gold" },
     { time: "10:30–11:00", title: "Coffee break", tone: "soft" },
-    { time: "11:00–12:00", title: "Public and invited lectures" },
+    { time: "11:00–12:00", title: "Scientific programme and parallel-track sessions" },
     { time: "12:00–13:30", title: "Morning scientific sessions across six parallel tracks", tone: "blue" },
     { time: "13:30–14:30", title: "Lunch and networking", tone: "soft" },
     { time: "14:30–16:00", title: "Afternoon scientific sessions across six parallel tracks", tone: "blue" },
@@ -27,7 +27,7 @@ const schedule: Record<string, ProgrammeSession[]> = {
   "8 April 2027": [
     { time: "08:30–09:00", title: "Registration and networking", tone: "soft" },
     { time: "09:00–09:15", title: "Opening of day two" },
-    { time: "09:15–10:30", title: "Invited-speaker lectures in six parallel halls", tone: "gold" },
+    { time: "09:15–10:30", title: "Invited Speaker Sessions · To be announced", tone: "gold" },
     { time: "10:30–11:00", title: "Coffee break", tone: "soft" },
     { time: "11:00–13:30", title: "Morning scientific sessions in six parallel halls", tone: "blue" },
     { time: "13:30–14:30", title: "Lunch and networking", tone: "soft" },
@@ -49,7 +49,7 @@ const toneClass = {
 };
 
 export default function Sci2027Programme() {
-  const { workshopProgramme } = sci2027Content;
+  const { speakers, workshopProgramme } = sci2027Content;
 
   return (
     <div className="min-h-screen bg-[#fffdf8] text-[#17374f]">
@@ -73,6 +73,18 @@ export default function Sci2027Programme() {
           <div className="container">
             <div className="border-l-4 border-[#d3a725] bg-[#f8f3e7] px-5 py-4 text-sm leading-6 text-[#456374]">
               <strong className="text-[#063760]">Programme status:</strong> the main conference takes place on 7–8 April. {workshopProgramme.status}
+            </div>
+          </div>
+        </section>
+
+        <section className="pb-12 sm:pb-16">
+          <div className="container">
+            <div className="flex flex-col justify-between gap-5 border-b border-[#063760]/12 pb-6 md:flex-row md:items-end">
+              <div><p className="sci-eyebrow">{speakers.eyebrow}</p><h2 className="mt-3 font-serif text-3xl font-bold tracking-[-0.03em] text-[#063760] sm:text-4xl">{speakers.title}</h2></div>
+              <p className="max-w-md text-sm font-semibold leading-6 text-[#617986]">{speakers.status}</p>
+            </div>
+            <div className="mt-6 grid gap-4 md:grid-cols-2">
+              {speakers.groups.map((group) => <article key={group.title} className="border border-[#063760]/12 bg-white p-6 shadow-sm"><p className="text-xs font-extrabold uppercase tracking-[0.16em] text-[#ad8618]">{group.title}</p><p className="mt-5 font-serif text-3xl font-bold text-[#063760]">{group.status}</p><p className="mt-4 max-w-lg text-sm leading-6 text-[#617986]">{group.description}</p></article>)}
             </div>
           </div>
         </section>

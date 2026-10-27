@@ -76,6 +76,26 @@ describe("SCI 2027 public content", () => {
     }
   });
 
+  it("announces keynote and invited speakers without publishing unconfirmed details", () => {
+    const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
+    const programmeSource = readFileSync(projectPath("client/src/pages/Sci2027Programme.tsx"), "utf8");
+
+    expect(sci2027Content.speakers.status).toBe("Keynote and invited speakers will be announced soon.");
+    expect(sci2027Content.speakers.groups.map((group) => group.title)).toEqual([
+      "Keynote Speakers",
+      "Invited Speakers",
+    ]);
+    expect(sci2027Content.speakers.groups.every((group) => group.status === "To be announced")).toBe(true);
+    expect(sci2027Content.impact.some((item) => item.label.en.includes("keynote"))).toBe(false);
+    expect(homeSource).toContain("speakers.groups");
+    expect(programmeSource).toContain("speakers.groups");
+
+    for (const source of [homeSource, programmeSource]) {
+      expect(source).not.toContain("two international keynote speakers");
+      expect(source).not.toContain("Invited-speaker lectures in six parallel halls");
+    }
+  });
+
   it("provides the approved sponsorship tiers, visibility data and email-only prospectus contact", () => {
     expect(sci2027Content.sponsorship.contactEmail).toBe("sci.conf.2027@gmail.com");
     expect(sci2027Content.sponsorship.ctaLabel).toBe("Request the Sponsorship Prospectus by Email");

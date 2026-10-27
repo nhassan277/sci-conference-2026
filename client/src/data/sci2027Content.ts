@@ -158,11 +158,27 @@ export const sci2027Content = {
   ],
   impact: [
     { value: "150", label: { en: "participants", ar: "مشاركًا" } },
-    { value: "15", label: { en: "international keynote speakers", ar: "متحدثًا رئيسيًا دوليًا" } },
     { value: "6", label: { en: "scientific tracks", ar: "محاور علمية" } },
     { value: "6", label: { en: "parallel halls", ar: "قاعات متوازية" } },
     { value: "2", label: { en: "workshop days", ar: "يومان للورش" } },
   ],
+  speakers: {
+    eyebrow: "Featured voices",
+    title: "Keynote and invited speakers",
+    status: "Keynote and invited speakers will be announced soon.",
+    groups: [
+      {
+        title: "Keynote Speakers",
+        status: "To be announced",
+        description: "The confirmed keynote speaker list and session titles will be announced through SCI 2027 channels.",
+      },
+      {
+        title: "Invited Speakers",
+        status: "To be announced",
+        description: "The confirmed invited speaker list and session details will be announced through SCI 2027 channels.",
+      },
+    ],
+  },
   tracks: [
     {
       number: 1,
@@ -341,8 +357,8 @@ export const sci2027Content = {
       purpose: { en: "Opening, keynote dialogue and parallel science", ar: "الافتتاح والجلسة الرئيسية والجلسات العلمية المتوازية" },
       sessions: [
         { en: "Opening and university welcome", ar: "افتتاح وترحيب الجامعة" },
-        { en: "International keynote session", ar: "الجلسة الرئيسية للمتحدثين الدوليين" },
-        { en: "Invited lectures and six parallel scientific tracks", ar: "محاضرات عامة ومدعوة وستة محاور علمية متوازية" },
+        { en: "Keynote Speaker Session · To be announced", ar: "جلسة المتحدثين الرئيسيين · يُعلن لاحقًا" },
+        { en: "Invited Speaker Sessions · To be announced", ar: "جلسات المتحدثين المدعوين · يُعلن لاحقًا" },
         { en: "Scientific poster sessions", ar: "جلسات الملصقات العلمية" },
       ],
     },
@@ -351,7 +367,7 @@ export const sci2027Content = {
       day: { en: "Day 2 · Thursday", ar: "اليوم الثاني · الخميس" },
       purpose: { en: "Research exchange, innovation exhibition and partnership forum", ar: "تبادل علمي ومعرض للابتكار ومنتدى للتعاون البحثي" },
       sessions: [
-        { en: "Invited-speaker lectures", ar: "محاضرات المتحدثين المدعوين" },
+        { en: "Invited Speaker Sessions · To be announced", ar: "جلسات المتحدثين المدعوين · يُعلن لاحقًا" },
         { en: "Scientific sessions across six halls", ar: "جلسات علمية في ست قاعات متوازية" },
         { en: "Poster sessions", ar: "جلسات الملصقات العلمية" },
         { en: "Innovation exhibition and research collaboration forum", ar: "معرض الابتكار ومنتدى التعاون البحثي" },

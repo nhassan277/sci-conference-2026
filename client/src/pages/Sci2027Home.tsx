@@ -55,7 +55,7 @@ const registrationCardStyles = [
 const registrationAccentStyles = ["text-[#f0ca57]", "text-[#ad8618]", "text-[#0d638b]"] as const;
 
 export default function Sci2027Home() {
-  const { identity, assets, sponsorship, workshopProgramme } = sci2027Content;
+  const { identity, assets, speakers, sponsorship, workshopProgramme } = sci2027Content;
   const featuredVideo = sci2027Content.videos.find((video) => video.featured) ?? sci2027Content.videos[0];
 
   return (
@@ -138,9 +138,16 @@ export default function Sci2027Home() {
         <section className="bg-[#073960] py-16 text-white md:py-20">
           <div className="container">
             <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end"><div><p className="sci-eyebrow text-[#f0ca57]">Conference at a glance</p><h2 className="mt-3 font-serif text-3xl font-bold sm:text-4xl">A platform designed for scientific exchange.</h2></div><p className="max-w-lg text-sm leading-6 text-[#b9ccd7]">Figures reflect the official conference brochure and planned programme structure, not confirmed attendance.</p></div>
-            <div className="mt-10 grid gap-px overflow-hidden border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-5">
+            <div className="mt-10 grid gap-px overflow-hidden border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
               {sci2027Content.impact.map((item) => <div key={item.value + item.label.en} className="bg-[#073960] px-5 py-7"><p className="font-serif text-4xl font-bold text-[#f0ca57]">{item.value}</p><p className="mt-2 text-sm font-semibold leading-5 text-white">{item.label.en}</p></div>)}
             </div>
+          </div>
+        </section>
+
+        <section className="py-20 md:py-28">
+          <div className="container grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
+            <div><p className="sci-eyebrow">{speakers.eyebrow}</p><h2 className="mt-4 max-w-lg font-serif text-4xl font-bold leading-[1.04] tracking-[-0.035em] text-[#063760] sm:text-5xl">{speakers.title}</h2><p className="mt-6 max-w-lg text-base leading-7 text-[#617986]">{speakers.status}</p></div>
+            <div className="grid gap-4 sm:grid-cols-2">{speakers.groups.map((group, index) => <article key={group.title} className={`relative overflow-hidden border p-7 ${index === 0 ? "border-[#063760] bg-[#063760] text-white" : "border-[#d3a725]/35 bg-[#f8f3e7] text-[#063760]"}`}><UsersRound className={`h-6 w-6 ${index === 0 ? "text-[#f0ca57]" : "text-[#ad8618]"}`} /><p className={`mt-7 text-xs font-bold uppercase tracking-[0.16em] ${index === 0 ? "text-[#f0ca57]" : "text-[#ad8618]"}`}>{group.title}</p><p className="mt-3 font-serif text-3xl font-bold">{group.status}</p><p className={`mt-5 text-sm leading-6 ${index === 0 ? "text-[#c1d3dc]" : "text-[#617986]"}`}>{group.description}</p><span className="absolute bottom-3 right-5 font-serif text-6xl font-bold opacity-[0.07]">0{index + 1}</span></article>)}</div>
           </div>
         </section>
 
