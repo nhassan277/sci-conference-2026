@@ -15,6 +15,7 @@
 - [x] Build an English-only homepage sponsorship preview and detailed partnership and sponsorship page with email-only prospectus requests
 - [x] Verify the SCI 2027 sponsorship and partnership update
 - [x] Save a release checkpoint for the verified SCI 2027 sponsorship and partnership update
+- [x] Replace the SCI 2027 public general-contact address with sci.conf.2027@gmail.com and verify it matches the sponsorship contact
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks

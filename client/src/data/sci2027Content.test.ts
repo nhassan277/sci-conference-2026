@@ -66,6 +66,11 @@ describe("SCI 2027 public content", () => {
     expect(sci2027Content.sponsorship.specialOpportunities).toHaveLength(10);
   });
 
+  it("uses the approved SCI 2027 inbox for all public conference enquiries", () => {
+    expect(sci2027Content.contact.email).toBe("sci.conf.2027@gmail.com");
+    expect(sci2027Content.contact.email).toBe(sci2027Content.sponsorship.contactEmail);
+  });
+
   it("uses hosted public URLs for oversized images and retains the remaining approved assets locally", () => {
     for (const key of hostedAssetKeys) {
       const assetPath = sci2027Content.assets[key];

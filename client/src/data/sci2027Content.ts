@@ -465,7 +465,7 @@ export const sci2027Content = {
     ],
   },
   contact: {
-    email: "nyehia@sci.cu.edu.eg",
+    email: "sci.conf.2027@gmail.com",
     website: "www.scicu.net",
     facebook: "facebook.com/SCI2027",
   },
