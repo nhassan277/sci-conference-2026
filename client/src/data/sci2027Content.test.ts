@@ -51,6 +51,31 @@ describe("SCI 2027 public content", () => {
     expect(sci2027Content.registration.studentResearch.notice.en).toBe("Submission deadline and abstract requirements will be announced.");
   });
 
+  it("sets 6 and 9 April aside for workshops without publishing workshop topics yet", () => {
+    const publicProgrammeSources = [
+      "client/src/data/sci2027Content.ts",
+      "client/src/pages/Sci2027Home.tsx",
+      "client/src/pages/Sci2027Programme.tsx",
+    ].map((file) => readFileSync(projectPath(file), "utf8"));
+
+    expect(sci2027Content.programme.map((day) => day.date)).toEqual([
+      "6 April 2027",
+      "7 April 2027",
+      "8 April 2027",
+      "9 April 2027",
+    ]);
+    expect(sci2027Content.workshopProgramme.preConference.date).toBe("6 April 2027");
+    expect(sci2027Content.workshopProgramme.postConference.date).toBe("9 April 2027");
+    expect(sci2027Content.workshopProgramme.status).toContain("to be announced");
+    expect(sci2027Content.workshopProgramme.postConference.optionalActivity).toContain("Grand Egyptian Museum");
+
+    for (const source of publicProgrammeSources) {
+      expect(source).not.toContain("Next-Generation Sequencing data analysis and bioinformatics");
+      expect(source).not.toContain("Machine learning for researchers in science");
+      expect(source).not.toContain("GIS and remote sensing for environmental monitoring");
+    }
+  });
+
   it("provides the approved sponsorship tiers, visibility data and email-only prospectus contact", () => {
     expect(sci2027Content.sponsorship.contactEmail).toBe("sci.conf.2027@gmail.com");
     expect(sci2027Content.sponsorship.ctaLabel).toBe("Request the Sponsorship Prospectus by Email");

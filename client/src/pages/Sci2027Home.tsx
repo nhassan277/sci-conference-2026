@@ -55,7 +55,7 @@ const registrationCardStyles = [
 const registrationAccentStyles = ["text-[#f0ca57]", "text-[#ad8618]", "text-[#0d638b]"] as const;
 
 export default function Sci2027Home() {
-  const { identity, assets, sponsorship } = sci2027Content;
+  const { identity, assets, sponsorship, workshopProgramme } = sci2027Content;
   const featuredVideo = sci2027Content.videos.find((video) => video.featured) ?? sci2027Content.videos[0];
 
   return (
@@ -90,7 +90,7 @@ export default function Sci2027Home() {
               <div className="mt-9 grid max-w-2xl gap-3 sm:grid-cols-2">
                 <div className="flex items-center gap-3 border-l-2 border-[#e5bd4a] bg-white/[0.06] px-4 py-3 backdrop-blur-sm">
                   <CalendarDays className="h-5 w-5 shrink-0 text-[#f0ca57]" />
-                  <div><p className="text-sm font-bold">{identity.dates.en}</p><p className="mt-0.5 text-xs text-[#b9ccd7]">A three-day programme including workshops</p></div>
+                  <div><p className="text-sm font-bold">{identity.dates.en}</p><p className="mt-0.5 text-xs text-[#b9ccd7]">Workshop days: 6 and 9 April</p></div>
                 </div>
                 <div className="flex items-center gap-3 border-l-2 border-[#e5bd4a] bg-white/[0.06] px-4 py-3 backdrop-blur-sm">
                   <MapPin className="h-5 w-5 shrink-0 text-[#f0ca57]" />
@@ -115,7 +115,7 @@ export default function Sci2027Home() {
         <section className="border-b border-[#063760]/10 bg-[#f7f2e7]">
           <div className="container grid divide-y divide-[#063760]/10 py-3 sm:grid-cols-2 sm:divide-x sm:divide-y-0 sm:py-0">
             <a href={assets.brochureEnglish} target="_blank" rel="noreferrer" className="group flex items-center justify-between gap-3 py-3 sm:px-5 sm:py-4"><span className="flex items-center gap-3"><FileText className="h-4 w-4 text-[#ad8618]" /><span><b className="block text-xs text-[#063760]">Conference brochure</b><small className="text-[11px] text-[#708795]">Official SCI 2027 guide</small></span></span><Download className="h-4 w-4 text-[#ad8618] transition-transform group-hover:translate-y-0.5" /></a>
-            <Link href="/programme" className="group flex items-center justify-between gap-3 py-3 sm:px-5 sm:py-4"><span className="flex items-center gap-3"><CalendarDays className="h-4 w-4 text-[#ad8618]" /><span><b className="block text-xs text-[#063760]">Preliminary programme</b><small className="text-[11px] text-[#708795]">7–9 April 2027 overview</small></span></span><ArrowUpRight className="h-4 w-4 text-[#ad8618] transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></Link>
+            <Link href="/programme" className="group flex items-center justify-between gap-3 py-3 sm:px-5 sm:py-4"><span className="flex items-center gap-3"><CalendarDays className="h-4 w-4 text-[#ad8618]" /><span><b className="block text-xs text-[#063760]">Preliminary programme</b><small className="text-[11px] text-[#708795]">6–9 April 2027 overview</small></span></span><ArrowUpRight className="h-4 w-4 text-[#ad8618] transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></Link>
           </div>
         </section>
 
@@ -176,9 +176,9 @@ export default function Sci2027Home() {
 
         <section className="bg-[#062f52] py-20 text-white md:py-28">
           <div className="container">
-            <div className="grid gap-7 md:grid-cols-[1fr_auto] md:items-end"><div><p className="sci-eyebrow text-[#f0ca57]">Programme & workshops</p><h2 className="mt-4 max-w-3xl font-serif text-4xl font-bold leading-[1.05] tracking-[-0.035em] sm:text-5xl">Three days that move from ideas to action.</h2></div><Link href="/programme" className="inline-flex items-center gap-2 text-sm font-extrabold uppercase tracking-[0.12em] text-[#f0ca57]">Full preliminary programme <ArrowUpRight className="h-4 w-4" /></Link></div>
-            <div className="mt-12 grid gap-4 lg:grid-cols-3">{sci2027Content.programme.map((day) => <article key={day.date} className="border border-white/15 bg-white/[0.06] p-6"><p className="text-xs font-bold uppercase tracking-[0.15em] text-[#f0ca57]">{day.date}</p><h3 className="mt-4 font-serif text-2xl font-bold">{day.day.en}</h3><p className="mt-5 border-l-2 border-[#e5bd4a] pl-3 text-sm font-semibold leading-6 text-white">{day.purpose.en}</p><ul className="mt-6 space-y-3 border-t border-white/10 pt-5">{day.sessions.slice(0, 3).map((session) => <li key={session.en} className="flex gap-2 text-sm leading-6 text-[#c1d3dc]"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#e5bd4a]" />{session.en}</li>)}</ul></article>)}</div>
-            <div className="mt-6 grid gap-3 md:grid-cols-2 xl:grid-cols-5">{sci2027Content.workshops.map((workshop) => <div key={workshop.en} className="border border-white/10 px-4 py-5"><p className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#f0ca57]">Track {workshop.track}</p><p className="mt-3 text-sm font-bold leading-6">{workshop.en}</p><p className="mt-4 text-[11px] text-[#9db5c2]">{workshop.timing.en}</p></div>)}</div>
+            <div className="grid gap-7 md:grid-cols-[1fr_auto] md:items-end"><div><p className="sci-eyebrow text-[#f0ca57]">Programme & workshops</p><h2 className="mt-4 max-w-3xl font-serif text-4xl font-bold leading-[1.05] tracking-[-0.035em] sm:text-5xl">Four days that move from learning to action.</h2></div><Link href="/programme" className="inline-flex items-center gap-2 text-sm font-extrabold uppercase tracking-[0.12em] text-[#f0ca57]">Full preliminary programme <ArrowUpRight className="h-4 w-4" /></Link></div>
+            <div className="mt-12 grid gap-4 lg:grid-cols-4">{sci2027Content.programme.map((day) => <article key={day.date} className="border border-white/15 bg-white/[0.06] p-6"><p className="text-xs font-bold uppercase tracking-[0.15em] text-[#f0ca57]">{day.date}</p><h3 className="mt-4 font-serif text-2xl font-bold">{day.day.en}</h3><p className="mt-5 border-l-2 border-[#e5bd4a] pl-3 text-sm font-semibold leading-6 text-white">{day.purpose.en}</p><ul className="mt-6 space-y-3 border-t border-white/10 pt-5">{day.sessions.slice(0, 3).map((session) => <li key={session.en} className="flex gap-2 text-sm leading-6 text-[#c1d3dc]"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#e5bd4a]" />{session.en}</li>)}</ul></article>)}</div>
+            <div className="mt-6 grid gap-3 md:grid-cols-2"><div className="border border-white/10 bg-white/[0.05] px-5 py-5"><p className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#f0ca57]">{workshopProgramme.preConference.date}</p><p className="mt-3 text-sm font-bold leading-6">{workshopProgramme.preConference.label}</p><p className="mt-3 text-xs leading-5 text-[#b9ccd7]">{workshopProgramme.status}</p></div><div className="border border-white/10 bg-white/[0.05] px-5 py-5"><p className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#f0ca57]">{workshopProgramme.postConference.date}</p><p className="mt-3 text-sm font-bold leading-6">{workshopProgramme.postConference.label}</p><p className="mt-3 text-xs leading-5 text-[#b9ccd7]">{workshopProgramme.postConference.optionalActivity}</p></div></div>
           </div>
         </section>
 

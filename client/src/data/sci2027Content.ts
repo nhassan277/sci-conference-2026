@@ -21,11 +21,6 @@ export type ProgrammeDay = {
   sessions: BilingualText[];
 };
 
-export type Workshop = BilingualText & {
-  track: string;
-  timing: BilingualText;
-};
-
 export const sci2027Content = {
   sourceNote:
     "Prepared from the official SCI 2027 English and Arabic brochures, logo folder, posters, and published registration forms supplied by the Conference Organization Unit.",
@@ -46,8 +41,8 @@ export const sci2027Content = {
       ar: "7–8 أبريل 2027",
     },
     workshopDate: {
-      en: "Workshops and an optional cultural visit: 9 April 2027",
-      ar: "ورش العمل والزيارة الثقافية الاختيارية: 9 أبريل 2027",
+      en: "Workshop days: 6 and 9 April 2027 · optional cultural visit: 9 April 2027",
+      ar: "أيام الورش: 6 و9 أبريل 2027 · الزيارة الثقافية الاختيارية: 9 أبريل 2027",
     },
     location: {
       en: "Cairo University Conference Center, University City, Cairo, Egypt",
@@ -166,7 +161,7 @@ export const sci2027Content = {
     { value: "15", label: { en: "international keynote speakers", ar: "متحدثًا رئيسيًا دوليًا" } },
     { value: "6", label: { en: "scientific tracks", ar: "محاور علمية" } },
     { value: "6", label: { en: "parallel halls", ar: "قاعات متوازية" } },
-    { value: "2 + 4", label: { en: "training courses and workshops", ar: "دورات تدريبية وورش عمل" } },
+    { value: "2", label: { en: "workshop days", ar: "يومان للورش" } },
   ],
   tracks: [
     {
@@ -332,6 +327,15 @@ export const sci2027Content = {
   },
   programme: [
     {
+      date: "6 April 2027",
+      day: { en: "Pre-conference workshops · Tuesday", ar: "ورش قبل المؤتمر · الثلاثاء" },
+      purpose: { en: "Professional learning before the main conference", ar: "تعلم مهني قبل المؤتمر الرئيسي" },
+      sessions: [
+        { en: "Workshop programme to be announced", ar: "سيُعلن برنامج الورش لاحقًا" },
+        { en: "Detailed timing and registration information to be announced", ar: "سيُعلن التوقيت التفصيلي ومعلومات التسجيل لاحقًا" },
+      ],
+    },
+    {
       date: "7 April 2027",
       day: { en: "Day 1 · Wednesday", ar: "اليوم الأول · الأربعاء" },
       purpose: { en: "Opening, keynote dialogue and parallel science", ar: "الافتتاح والجلسة الرئيسية والجلسات العلمية المتوازية" },
@@ -339,7 +343,7 @@ export const sci2027Content = {
         { en: "Opening and university welcome", ar: "افتتاح وترحيب الجامعة" },
         { en: "International keynote session", ar: "الجلسة الرئيسية للمتحدثين الدوليين" },
         { en: "Invited lectures and six parallel scientific tracks", ar: "محاضرات عامة ومدعوة وستة محاور علمية متوازية" },
-        { en: "Poster sessions and first workshop group", ar: "جلسات ملصقات والمجموعة الأولى لورش العمل" },
+        { en: "Scientific poster sessions", ar: "جلسات الملصقات العلمية" },
       ],
     },
     {
@@ -356,46 +360,26 @@ export const sci2027Content = {
     },
     {
       date: "9 April 2027",
-      day: { en: "Day 3 · Friday", ar: "اليوم الثالث · الجمعة" },
-      purpose: { en: "Professional learning and optional cultural experience", ar: "تعلم مهني وتجربة ثقافية اختيارية" },
+      day: { en: "Post-conference workshops · Friday", ar: "ورش بعد المؤتمر · الجمعة" },
+      purpose: { en: "Professional learning and an optional cultural experience", ar: "تعلم مهني وتجربة ثقافية اختيارية" },
       sessions: [
-        { en: "Second workshop and training group", ar: "المجموعة الثانية لورش العمل والدورات التدريبية" },
+        { en: "Workshop programme to be announced", ar: "سيُعلن برنامج الورش لاحقًا" },
         { en: "Optional visit to the Grand Egyptian Museum", ar: "زيارة اختيارية للمتحف المصري الكبير" },
       ],
     },
   ] satisfies ProgrammeDay[],
-  workshops: [
-    {
-      en: "Next-Generation Sequencing data analysis and bioinformatics",
-      ar: "تحليل بيانات الجيل التالي من التتابع والمعلوماتية الحيوية",
-      track: "1 & 5",
-      timing: { en: "7 April · Group 1", ar: "7 أبريل · المجموعة الأولى" },
+  workshopProgramme: {
+    status: "Workshop programme, detailed timing and registration information to be announced.",
+    preConference: {
+      date: "6 April 2027",
+      label: "Pre-conference workshops",
     },
-    {
-      en: "Machine learning for researchers in science",
-      ar: "تعلم الآلة للباحثين في العلوم",
-      track: "5",
-      timing: { en: "7 April · Group 1", ar: "7 أبريل · المجموعة الأولى" },
+    postConference: {
+      date: "9 April 2027",
+      label: "Post-conference workshops",
+      optionalActivity: "Optional cultural experience: Grand Egyptian Museum visit",
     },
-    {
-      en: "Scientific writing and publishing in high-impact journals",
-      ar: "الكتابة العلمية والنشر في المجلات عالية التأثير",
-      track: "All tracks",
-      timing: { en: "7 April · Group 1", ar: "7 أبريل · المجموعة الأولى" },
-    },
-    {
-      en: "GIS and remote sensing for environmental monitoring",
-      ar: "نظم المعلومات الجغرافية والاستشعار عن بعد للرصد البيئي",
-      track: "2",
-      timing: { en: "9 April · Group 2", ar: "9 أبريل · المجموعة الثانية" },
-    },
-    {
-      en: "Green synthesis and characterization of nanomaterials",
-      ar: "التخليق الأخضر للمواد النانوية وتوصيفها",
-      track: "3",
-      timing: { en: "9 April · Group 2", ar: "9 أبريل · المجموعة الثانية" },
-    },
-  ] satisfies Workshop[],
+  },
   registration: {
     general: {
       name: {
