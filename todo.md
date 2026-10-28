@@ -46,6 +46,9 @@
 - [x] Replace cropping behavior for the SCI 2027 mark in the header, hero and footer with full-logo circular containment
 - [x] Preserve the existing official high-resolution SCI 2027 logo and adjacent header wordmark while adding white safe padding
 - [x] Verify and checkpoint the SCI 2027 full-logo containment update
+- [x] Shorten all nine Conference Organization Unit member display names to the approved titled two-part forms, including Prof. Rania Ali
+- [x] Update the public Unit Head line to Prof. Walid Rahouma while preserving all approved departments, roles and responsibility summaries
+- [ ] Verify and checkpoint the short Unit member display-name update
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks

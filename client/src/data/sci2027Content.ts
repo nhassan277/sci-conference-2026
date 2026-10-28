@@ -130,7 +130,7 @@ export const sci2027Content = {
       ar: "وحدة تنظيم المؤتمرات، كلية العلوم، جامعة القاهرة",
     },
     head: {
-      en: "Unit Head: Prof. Walid Ali Rahouma",
+      en: "Unit Head: Prof. Walid Rahouma",
       ar: "رئيس الوحدة: الأستاذ الدكتور وليد رحومة",
     },
   },
@@ -159,13 +159,13 @@ export const sci2027Content = {
     ],
     members: [
       {
-        name: "Prof. Walid Ali Rahouma",
+        name: "Prof. Walid Rahouma",
         department: "Astronomy & Space Sciences",
         role: "Director of the Unit",
         summary: "Provides overall leadership, sets the Unit’s direction and plan, coordinates with Faculty leadership and stakeholders, and approves final outputs and reports.",
       },
       {
-        name: "Prof. Mohamed Qarny Ismail",
+        name: "Prof. Mohamed Qarny",
         department: "Geology",
         role: "Secretary of the Unit",
         summary: "Prepares meeting agendas and minutes, follows up decisions and assignments, manages official records, and supports administrative coordination across the Unit.",
@@ -177,7 +177,7 @@ export const sci2027Content = {
         summary: "Supports the Unit’s daily administration through official correspondence, records, scheduling and administrative follow-up.",
       },
       {
-        name: "Dr. Nahla Osama Mohamed Moussa",
+        name: "Dr. Nahla Osama",
         department: "Biotechnology",
         role: "Scientific Programme Lead",
         summary: "Coordinates scientific programmes, speakers, abstracts, research papers and review processes to help safeguard the quality of scientific content.",
@@ -195,13 +195,13 @@ export const sci2027Content = {
         summary: "Coordinates on-site operations, venues, equipment, hospitality, accommodation, transport and participant or speaker support needs.",
       },
       {
-        name: "Prof. Rania Ali Hassan",
+        name: "Prof. Rania Ali",
         department: "Botany",
         role: "Media & Marketing Lead",
         summary: "Leads communications and marketing plans, digital content and platforms, promotional materials, and engagement with relevant media partners.",
       },
       {
-        name: "Prof. Rasha Mohamed El-Nashar",
+        name: "Prof. Rasha El-Nashar",
         department: "Chemistry",
         role: "Public Relations Lead",
         summary: "Builds institutional outreach with universities and scientific partners while coordinating guests, speakers, delegations, protocol and reception.",

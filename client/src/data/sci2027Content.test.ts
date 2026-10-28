@@ -166,17 +166,23 @@ describe("SCI 2027 public content", () => {
 
     expect(unit.members).toHaveLength(9);
     expect(unit.members.map((member) => `${member.name} | ${member.role}`)).toEqual([
-      "Prof. Walid Ali Rahouma | Director of the Unit",
-      "Prof. Mohamed Qarny Ismail | Secretary of the Unit",
+      "Prof. Walid Rahouma | Director of the Unit",
+      "Prof. Mohamed Qarny | Secretary of the Unit",
       "Mrs. Manar Mohamed | Administrative Secretary to the Unit",
-      "Dr. Nahla Osama Mohamed Moussa | Scientific Programme Lead",
+      "Dr. Nahla Osama | Scientific Programme Lead",
       "Prof. Azza Shoukry | Registration, Operations & Logistics Co-Lead",
       "Dr. Dina Amr | Registration, Operations & Logistics Co-Lead",
-      "Prof. Rania Ali Hassan | Media & Marketing Lead",
-      "Prof. Rasha Mohamed El-Nashar | Public Relations Lead",
+      "Prof. Rania Ali | Media & Marketing Lead",
+      "Prof. Rasha El-Nashar | Public Relations Lead",
       "Dr. Nourhan Hassan | Sponsorship, Funding & Conference Website Lead",
     ]);
     expect(unit.members).not.toContainEqual(expect.objectContaining({ name: "Prof. Heba Mohamed Fahmy" }));
+    expect(unit.members.map((member) => member.name)).not.toEqual(expect.arrayContaining([
+      "Prof. Walid Ali Rahouma",
+      "Prof. Mohamed Qarny Ismail",
+      "Dr. Nahla Osama Mohamed Moussa",
+      "Prof. Rania Ali Hassan",
+    ]));
     expect(unit.members).toContainEqual(expect.objectContaining({ name: "Prof. Azza Shoukry", department: "Chemistry" }));
     expect(unit.members).toContainEqual(expect.objectContaining({ name: "Dr. Dina Amr", department: "Biotechnology" }));
     expect(unit.members).toContainEqual(expect.objectContaining({ name: "Mrs. Manar Mohamed", department: "Conference Organization Unit" }));
@@ -189,11 +195,11 @@ describe("SCI 2027 public content", () => {
     expect(homeSource).not.toContain("<img src={member");
   });
 
-  it("uses the same approved spelling for the Unit Director in the conference introduction and Unit roster", () => {
+  it("uses the approved short display spelling for the Unit Director in the conference introduction and Unit roster", () => {
     const director = sci2027Content.conferenceOrganizationUnit.members[0];
 
-    expect(director.name).toBe("Prof. Walid Ali Rahouma");
-    expect(sci2027Content.organizer.head.en).toBe("Unit Head: Prof. Walid Ali Rahouma");
+    expect(director.name).toBe("Prof. Walid Rahouma");
+    expect(sci2027Content.organizer.head.en).toBe("Unit Head: Prof. Walid Rahouma");
   });
 
   it("uses the approved circular Conference Organization Unit logo in a larger white rounded container", () => {
