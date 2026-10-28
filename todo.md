@@ -39,7 +39,7 @@
 - [x] Verify and checkpoint the Conference Organization Unit members update
 - [x] Replace the Conference Organization Unit section logo with the approved circular official mark
 - [x] Enlarge the Unit-logo white rounded container without changing SCI 2027 or Cairo University branding
-- [ ] Verify and checkpoint the Conference Organization Unit logo replacement
+- [x] Verify and checkpoint the Conference Organization Unit logo replacement
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks
