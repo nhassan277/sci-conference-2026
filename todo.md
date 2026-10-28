@@ -59,7 +59,7 @@
 - [x] Add six licensed real-world scientific images, one for each SCI 2027 research track, with text-safe card treatments
 - [x] Add licensed professional imagery to the Conference Organization Unit and partnership or sponsorship sections
 - [x] Verify source metadata and responsive readability for the SCI 2027 imagery update
-- [ ] Save a WebDev checkpoint for the verified SCI 2027 imagery update
+- [x] Save a WebDev checkpoint for the verified SCI 2027 imagery update
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks
