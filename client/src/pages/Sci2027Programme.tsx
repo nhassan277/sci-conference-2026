@@ -1,4 +1,4 @@
-import { ArrowLeft, CalendarDays, Clock3, Download, MapPin, Sparkles } from "lucide-react";
+import { ArrowLeft, CalendarDays, Clock3, Download, ExternalLink, MapPin, Sparkles } from "lucide-react";
 import { Link } from "wouter";
 import Sci2027Footer from "@/components/Sci2027Footer";
 import Sci2027Header from "@/components/Sci2027Header";
@@ -49,7 +49,7 @@ const toneClass = {
 };
 
 export default function Sci2027Programme() {
-  const { speakers, workshopProgramme } = sci2027Content;
+  const { identity, speakers, workshopProgramme } = sci2027Content;
 
   return (
     <div className="min-h-screen bg-[#fffdf8] text-[#17374f]">
@@ -64,7 +64,7 @@ export default function Sci2027Programme() {
             <div className="mt-9 grid gap-3 sm:grid-cols-3">
               <div className="flex items-center gap-3 border-l-2 border-[#e5bd4a] bg-white/[0.06] px-4 py-3"><CalendarDays className="h-5 w-5 text-[#f0ca57]" /><span className="text-sm font-bold">6–9 April 2027</span></div>
               <div className="flex items-center gap-3 border-l-2 border-[#e5bd4a] bg-white/[0.06] px-4 py-3"><Sparkles className="h-5 w-5 text-[#f0ca57]" /><span className="text-sm font-bold">Main conference: 7–8 April</span></div>
-              <div className="flex items-center gap-3 border-l-2 border-[#e5bd4a] bg-white/[0.06] px-4 py-3"><MapPin className="h-5 w-5 text-[#f0ca57]" /><span className="text-sm font-bold">Cairo University Conference Center</span></div>
+              <div className="flex items-center gap-3 border-l-2 border-[#e5bd4a] bg-white/[0.06] px-4 py-3"><MapPin className="h-5 w-5 shrink-0 text-[#f0ca57]" /><div><p className="text-sm font-bold leading-5">{identity.location.name}</p><a href={identity.location.mapUrl} target="_blank" rel="noreferrer" className="mt-1 inline-flex items-center gap-1 text-[11px] font-extrabold uppercase tracking-[0.12em] text-[#f0ca57] transition hover:text-white">{identity.location.directionsLabel} <ExternalLink className="h-3 w-3" /></a></div></div>
             </div>
           </div>
         </section>

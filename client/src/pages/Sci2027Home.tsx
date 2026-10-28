@@ -103,7 +103,7 @@ export default function Sci2027Home() {
                 </div>
                 <div className="flex items-center gap-3 border-l-2 border-[#e5bd4a] bg-white/[0.06] px-4 py-3 backdrop-blur-sm">
                   <MapPin className="h-5 w-5 shrink-0 text-[#f0ca57]" />
-                  <div><p className="text-sm font-bold">Cairo University Conference Center</p><p className="mt-0.5 text-xs text-[#b9ccd7]">University City, Cairo, Egypt</p></div>
+                  <div><p className="text-sm font-bold leading-5">{identity.location.name}</p><p className="mt-0.5 text-xs leading-5 text-[#b9ccd7]">{identity.location.shortAddress}</p><a href={identity.location.mapUrl} target="_blank" rel="noreferrer" className="mt-2 inline-flex items-center gap-1 text-[11px] font-extrabold uppercase tracking-[0.12em] text-[#f0ca57] transition hover:text-white">{identity.location.directionsLabel} <ArrowUpRight className="h-3 w-3" /></a></div>
                 </div>
               </div>
 

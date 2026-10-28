@@ -59,8 +59,12 @@ export const sci2027Content = {
       ar: "أيام الورش: 6 و9 أبريل 2027 · الزيارة الثقافية الاختيارية: 9 أبريل 2027",
     },
     location: {
-      en: "Cairo University Conference Center, University City, Cairo, Egypt",
-      ar: "مركز المؤتمرات، جامعة القاهرة، المدينة الجامعية، القاهرة، مصر",
+      en: "Conference Center - Cairo University, Beside Students City, Dr. Mikel Bakhoum Rd, Dokki, Giza, Egypt",
+      ar: "مركز المؤتمرات - جامعة القاهرة، بجوار المدينة الجامعية، شارع د. ميكل بخوم، الدقي، الجيزة، مصر",
+      name: "Conference Center - Cairo University",
+      shortAddress: "Beside Students City, Dr. Mikel Bakhoum Rd, Dokki, Giza",
+      mapUrl: "https://share.google/pJzENeit3jQYXskJq",
+      directionsLabel: "Get directions",
     },
   },
   assets: {

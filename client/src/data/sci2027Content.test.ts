@@ -44,6 +44,27 @@ describe("SCI 2027 public content", () => {
     expect(sci2027Content.sourceNote).not.toContain("SCI 2026");
   });
 
+  it("publishes the verified Conference Center venue with safe Google Maps directions", () => {
+    const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
+    const programmeSource = readFileSync(projectPath("client/src/pages/Sci2027Programme.tsx"), "utf8");
+    const venue = sci2027Content.identity.location;
+
+    expect(venue).toMatchObject({
+      name: "Conference Center - Cairo University",
+      shortAddress: "Beside Students City, Dr. Mikel Bakhoum Rd, Dokki, Giza",
+      mapUrl: "https://share.google/pJzENeit3jQYXskJq",
+      directionsLabel: "Get directions",
+    });
+    expect(venue.en).toContain("Conference Center - Cairo University");
+
+    for (const source of [homeSource, programmeSource]) {
+      expect(source).toContain("identity.location.name");
+      expect(source).toContain("identity.location.mapUrl");
+      expect(source).toContain('target="_blank"');
+      expect(source).toContain('rel="noreferrer"');
+    }
+  });
+
   it("ships a complete navy-and-gold SCI 2027 favicon and mobile icon package", () => {
     const indexSource = readFileSync(projectPath("client/index.html"), "utf8");
     const iconDirectory = projectPath("client/public/sci-2027/icons");

@@ -83,7 +83,10 @@
 - [x] Verify icon dimensions, runtime browser favicon request, Apple Touch/manifest presentation paths, and save a WebDev checkpoint
 - [x] Create six approved original SCI 2027 editorial visuals for the research tracks and host them efficiently
 - [x] Replace the track visuals and Unsplash captions only, preserving Unit and sponsorship photography
-- [ ] Save a WebDev checkpoint for the verified SCI 2027 original track-visual update
+- [x] Save a WebDev checkpoint for the verified SCI 2027 original track-visual update
+- [x] Add the verified Conference Center - Cairo University venue name, address and Google Maps link to the central SCI 2027 content source
+- [x] Add safe Get directions actions to the hero venue card and preliminary programme venue summary
+- [ ] Save a WebDev checkpoint for the verified responsive venue presentation
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks
