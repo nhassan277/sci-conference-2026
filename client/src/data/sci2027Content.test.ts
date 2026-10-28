@@ -65,7 +65,7 @@ describe("SCI 2027 public content", () => {
     }
   });
 
-  it("shows both supplied Conference Center composites in a responsive Venue & Halls section after patronage", () => {
+  it("keeps the Venue & Halls content as one concise section above the eight-photo carousel after patronage", () => {
     const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
     const venue = sci2027Content.identity.location;
     const venueVisuals = (venue as typeof venue & {
@@ -85,10 +85,13 @@ describe("SCI 2027 public content", () => {
     expect(venuePosition).toBeGreaterThan(patronagePosition);
     expect(venuePosition).toBeLessThan(introductionPosition);
     expect(homeSource).toContain("Venue &amp; Halls");
-    expect(homeSource).toContain("identity.location.venueVisuals.map");
-    expect(homeSource).toContain("sm:grid-cols-2");
-    expect(homeSource).toContain('className="block h-auto w-full"');
+    expect(homeSource).toContain("Explore the Conference Center - Cairo University, from its main auditorium and supporting meeting facilities to its entrance, shared spaces, corridors and atrium.");
     expect(homeSource).toContain("identity.location.mapUrl");
+    expect(homeSource).not.toContain("identity.location.venueVisuals.map");
+    expect(homeSource).not.toContain("visual.caption");
+    expect(homeSource).not.toContain("Explore the Venue");
+    expect(homeSource).not.toContain("A closer look at the Conference Center.");
+    expect(homeSource).not.toContain("A visual walk through the venue’s entrance, shared spaces, corridors and atrium.");
   });
 
   it("groups the eight supplied Conference Center photographs into two manual four-photo collage pages", () => {
@@ -97,9 +100,9 @@ describe("SCI 2027 public content", () => {
     const venueGallery = (venue as typeof venue & {
       venueGallery?: Array<{ source: string; url: string; alt: string; caption?: string }>;
     }).venueGallery ?? [];
-    const gallerySectionStart = homeSource.indexOf("Explore the Venue");
-    const gallerySectionEnd = homeSource.indexOf("</section>", gallerySectionStart);
-    const gallerySection = homeSource.slice(gallerySectionStart, gallerySectionEnd);
+    const venueSectionStart = homeSource.indexOf('id="venue"');
+    const venueSectionEnd = homeSource.indexOf("</section>", venueSectionStart);
+    const gallerySection = homeSource.slice(venueSectionStart, venueSectionEnd);
 
     expect(venueGallery).toHaveLength(8);
     expect(venueGallery.every((photo) => photo.source === "SCI 2027 venue photograph")).toBe(true);

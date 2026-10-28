@@ -101,6 +101,9 @@
 - [x] Replace the eight full captioned venue cards with two manual four-photo 2×2 collage pages
 - [x] Add accessible previous/next arrows and two page dots, with no automatic rotation
 - [x] Verify the compact venue gallery on desktop and mobile, then save a WebDev checkpoint
+- [x] Merge the Venue & Halls and Explore the Venue copy into one concise section
+- [x] Remove the two large primary venue figures from the homepage and retain the eight-photo carousel only
+- [x] Verify the unified venue section and manual carousel on desktop and mobile, then save a WebDev checkpoint
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks

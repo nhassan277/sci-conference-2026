@@ -157,33 +157,15 @@ export default function Sci2027Home() {
 
         <section id="venue" className="scroll-mt-24 border-b border-[#063760]/10 bg-white py-20 md:py-24">
           <div className="container">
-            <div className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
-              <div>
-                <p className="sci-eyebrow">Venue &amp; Halls</p>
-                <h2 className="mt-4 max-w-xl font-serif text-4xl font-bold leading-[1.04] tracking-[-0.035em] text-[#063760] sm:text-5xl">A setting designed for scientific exchange.</h2>
-                <p className="mt-6 max-w-xl text-lg leading-8 text-[#456374]">Explore the Conference Center - Cairo University, including its main auditorium and supporting meeting facilities.</p>
-                <div className="mt-8 border-l-4 border-[#d3a725] bg-[#f7f2e7] px-5 py-5">
-                  <div className="flex items-start gap-3"><MapPin className="mt-0.5 h-5 w-5 shrink-0 text-[#ad8618]" /><div><p className="text-sm font-extrabold text-[#063760]">{identity.location.name}</p><p className="mt-1 text-sm leading-6 text-[#617986]">{identity.location.shortAddress}</p></div></div>
-                </div>
-                <a href={identity.location.mapUrl} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#063760] px-5 py-3 text-xs font-extrabold uppercase tracking-[0.1em] text-white transition hover:-translate-y-0.5 hover:bg-[#0a507e]">{identity.location.directionsLabel} <ArrowUpRight className="h-4 w-4" /></a>
+            <div className="mx-auto max-w-4xl">
+              <p className="sci-eyebrow">Venue &amp; Halls</p>
+              <h2 className="mt-4 font-serif text-4xl font-bold leading-[1.04] tracking-[-0.035em] text-[#063760] sm:text-5xl">A setting designed for scientific exchange.</h2>
+              <p className="mt-6 max-w-3xl text-lg leading-8 text-[#456374]">Explore the Conference Center - Cairo University, from its main auditorium and supporting meeting facilities to its entrance, shared spaces, corridors and atrium.</p>
+              <div className="mt-8 max-w-2xl border-l-4 border-[#d3a725] bg-[#f7f2e7] px-5 py-5">
+                <div className="flex items-start gap-3"><MapPin className="mt-0.5 h-5 w-5 shrink-0 text-[#ad8618]" /><div><p className="text-sm font-extrabold text-[#063760]">{identity.location.name}</p><p className="mt-1 text-sm leading-6 text-[#617986]">{identity.location.shortAddress}</p></div></div>
               </div>
-              <div className="grid gap-5 sm:grid-cols-2">
-                {identity.location.venueVisuals.map((visual) => (
-                  <figure key={visual.url} className="self-start overflow-hidden border border-[#063760]/10 bg-[#f7f2e7] shadow-[0_20px_55px_rgba(6,55,96,0.16)]">
-                    <img src={visual.url} alt={visual.alt} loading="lazy" className="block h-auto w-full" />
-                    <figcaption className="border-t border-[#063760]/10 bg-white px-5 py-4 text-xs font-semibold leading-5 text-[#617986]">{visual.caption}</figcaption>
-                  </figure>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-16 border-t border-[#063760]/10 pt-12">
-              <div className="max-w-2xl">
-                <p className="sci-eyebrow">Explore the Venue</p>
-                <h3 className="mt-3 font-serif text-3xl font-bold tracking-[-0.03em] text-[#063760] sm:text-4xl">A closer look at the Conference Center.</h3>
-                <p className="mt-4 text-base leading-7 text-[#617986]">A visual walk through the venue’s entrance, shared spaces, corridors and atrium.</p>
-              </div>
-              <div className="mt-8">
+              <a href={identity.location.mapUrl} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#063760] px-5 py-3 text-xs font-extrabold uppercase tracking-[0.1em] text-white transition hover:-translate-y-0.5 hover:bg-[#0a507e]">{identity.location.directionsLabel} <ArrowUpRight className="h-4 w-4" /></a>
+              <div className="mt-10">
                 <div className="overflow-hidden border border-[#063760]/10 bg-[#f7f2e7] shadow-[0_20px_55px_rgba(6,55,96,0.16)]">
                   <div className="grid grid-cols-2 gap-1 bg-[#fffdf8] p-1">
                     {venueGalleryPages[venueGalleryPage].map((photo) => (
