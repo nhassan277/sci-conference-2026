@@ -3,11 +3,19 @@ export type BilingualText = {
   ar: string;
 };
 
+export type WebsiteVisual = {
+  url: string;
+  alt: string;
+  source: "Unsplash";
+  licenseUrl: "https://unsplash.com/license";
+};
+
 export type ResearchTrack = BilingualText & {
   number: number;
   focus: BilingualText;
   topics: string[];
   color: "emerald" | "cyan" | "rose" | "violet" | "blue" | "amber";
+  visual: WebsiteVisual;
 };
 
 export type Milestone = BilingualText & {
@@ -139,6 +147,12 @@ export const sci2027Content = {
     institution: "Faculty of Science, Cairo University",
     description:
       "The Conference Organization Unit at the Faculty of Science, Cairo University supports the planning, coordination, and professional management of scientific conferences and events, fostering academic and research collaboration locally and internationally.",
+    visual: {
+      url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/pTwOOFPnqxSvPByJ.webp",
+      alt: "Professional planning meeting viewed from above with colleagues reviewing materials around a shared table.",
+      source: "Unsplash",
+      licenseUrl: "https://unsplash.com/license",
+    },
     objectives: [
       {
         title: "Organizational Excellence",
@@ -283,6 +297,12 @@ export const sci2027Content = {
         "Biomedicine, translational biosciences and health technologies",
       ],
       color: "emerald",
+      visual: {
+        url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/IIyWFhzNhKAghqxI.webp",
+        alt: "Researcher using a microscope in a modern life sciences laboratory.",
+        source: "Unsplash",
+        licenseUrl: "https://unsplash.com/license",
+      },
     },
     {
       number: 2,
@@ -305,6 +325,12 @@ export const sci2027Content = {
         "Climate resilience and environmental risk management",
       ],
       color: "cyan",
+      visual: {
+        url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/GxBQRIqhjIsSSUTK.webp",
+        alt: "Researchers collecting field data in a green environment for earth and environmental study.",
+        source: "Unsplash",
+        licenseUrl: "https://unsplash.com/license",
+      },
     },
     {
       number: 3,
@@ -327,6 +353,12 @@ export const sci2027Content = {
         "Industrial chemistry, process intensification and scale-up",
       ],
       color: "rose",
+      visual: {
+        url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/prIyrpSCbanWToHj.webp",
+        alt: "Scientific microscopes and laboratory instruments prepared for materials and chemistry research.",
+        source: "Unsplash",
+        licenseUrl: "https://unsplash.com/license",
+      },
     },
     {
       number: 4,
@@ -349,6 +381,12 @@ export const sci2027Content = {
         "Radiation applications, imaging and detector technologies",
       ],
       color: "violet",
+      visual: {
+        url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/GWtOfWqYgdeJIukx.webp",
+        alt: "Telescope observing a distant horizon at dusk for physics and space science exploration.",
+        source: "Unsplash",
+        licenseUrl: "https://unsplash.com/license",
+      },
     },
     {
       number: 5,
@@ -371,6 +409,12 @@ export const sci2027Content = {
         "Robotics, automation and intelligent systems",
       ],
       color: "blue",
+      visual: {
+        url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/IGnVWkilAOUeWAXC.webp",
+        alt: "Data-analysis dashboard displayed on a research workstation for computational science.",
+        source: "Unsplash",
+        licenseUrl: "https://unsplash.com/license",
+      },
     },
     {
       number: 6,
@@ -393,6 +437,12 @@ export const sci2027Content = {
         "Digital transformation and innovation ecosystems",
       ],
       color: "amber",
+      visual: {
+        url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/CFnMkGYppLXPJkBM.webp",
+        alt: "Students collaborating around a table on an innovation and research project.",
+        source: "Unsplash",
+        licenseUrl: "https://unsplash.com/license",
+      },
     },
   ] satisfies ResearchTrack[],
   importantDates: [
@@ -549,6 +599,12 @@ export const sci2027Content = {
     title: "Move science from insight to impact.",
     description:
       "Partner with SCI 2027 to connect your organisation with researchers, innovators, students and decision-makers shaping science, technology and industry in Egypt and beyond.",
+    visual: {
+      url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/HJojRwlLYsMbRRzK.webp",
+      alt: "Professionals collaborating in a bright meeting room to build a strategic partnership.",
+      source: "Unsplash",
+      licenseUrl: "https://unsplash.com/license",
+    },
     credibility: [
       {
         value: "1,088",

@@ -59,6 +59,29 @@ describe("SCI 2027 public content", () => {
     expect(homeSource).not.toContain("track.topics.slice(0, 3)");
   });
 
+  it("uses real licensed photography for every track, the Unit and partnerships without sacrificing text-safe rendering", () => {
+    const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
+    const sponsorshipSource = readFileSync(projectPath("client/src/pages/Sci2027Sponsorship.tsx"), "utf8");
+    const visuals = [
+      ...sci2027Content.tracks.map((track) => track.visual),
+      sci2027Content.conferenceOrganizationUnit.visual,
+      sci2027Content.sponsorship.visual,
+    ].filter(Boolean);
+
+    expect(visuals).toHaveLength(8);
+    expect(visuals.every((visual) => visual.url.startsWith("https://"))).toBe(true);
+    expect(visuals.every((visual) => visual.alt.length > 20)).toBe(true);
+    expect(visuals.every((visual) => visual.source === "Unsplash")).toBe(true);
+    expect(visuals.every((visual) => visual.licenseUrl === "https://unsplash.com/license")).toBe(true);
+    expect(homeSource).toContain("track.visual.url");
+    expect(homeSource).toContain("track.visual.alt");
+    expect(homeSource).toContain("conferenceOrganizationUnit.visual.url");
+    expect(homeSource).toContain("sponsorship.visual.url");
+    expect(homeSource).toContain("object-cover");
+    expect(sponsorshipSource).toContain("sponsorship.visual.url");
+    expect(sponsorshipSource).toContain("bg-[#062f52]/");
+  });
+
   it("includes the approved student research, thesis and graduation-project registration form", () => {
     expect(sci2027Content.registration.studentResearch.url).toBe("https://forms.gle/fmXUzEQ85hbXnLFp8");
     expect(sci2027Content.registration.studentResearch.name.en).toBe("Student Research, Thesis & Graduation Project Registration");

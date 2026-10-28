@@ -34,6 +34,8 @@ export default function Sci2027Sponsorship() {
       <Sci2027Header />
       <main>
         <section className="relative isolate overflow-hidden bg-[#062f52] text-white">
+          <img src={sponsorship.visual.url} alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover opacity-35" />
+          <div className="absolute inset-0 bg-[#062f52]/80" aria-hidden="true" />
           <div className="absolute inset-0 sci-network opacity-50" aria-hidden="true" />
           <div className="absolute -right-28 top-12 h-96 w-96 rounded-full bg-[#d3a725]/15 blur-3xl" aria-hidden="true" />
           <div className="absolute -left-32 bottom-0 h-72 w-72 rounded-full bg-[#0d638b]/30 blur-3xl" aria-hidden="true" />
@@ -56,6 +58,7 @@ export default function Sci2027Sponsorship() {
                 <div><p className="text-xs font-bold uppercase tracking-[0.15em] text-[#9db5c2]">Conference dates</p><p className="mt-2 text-sm font-bold">7–8 April 2027</p></div>
                 <div><p className="text-xs font-bold uppercase tracking-[0.15em] text-[#9db5c2]">Location</p><p className="mt-2 text-sm font-bold">Cairo University, Giza</p></div>
               </div>
+              <p className="mt-6 text-[9px] font-bold uppercase tracking-[0.16em] text-[#c1d3dc]">Photography via Unsplash</p>
             </div>
           </div>
         </section>

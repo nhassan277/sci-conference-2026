@@ -40,6 +40,15 @@ const trackNumberStyles = {
   amber: "bg-[#ba8618]",
 } as const;
 
+const trackImageOverlayStyles = {
+  emerald: "from-[#075c50]/85 via-[#075c50]/25 to-transparent",
+  cyan: "from-[#0b5875]/85 via-[#0b5875]/25 to-transparent",
+  rose: "from-[#8c2941]/85 via-[#8c2941]/25 to-transparent",
+  violet: "from-[#573982]/85 via-[#573982]/25 to-transparent",
+  blue: "from-[#124674]/85 via-[#124674]/25 to-transparent",
+  amber: "from-[#805d0f]/85 via-[#805d0f]/25 to-transparent",
+} as const;
+
 const registrationOptions = [
   sci2027Content.registration.general,
   sci2027Content.registration.speaker,
@@ -139,13 +148,18 @@ export default function Sci2027Home() {
           <div className="container">
             <div className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
               <div className="lg:sticky lg:top-28">
-                <div className="flex items-center gap-4">
-                  <div className="flex h-20 w-20 items-center justify-center rounded-[1.75rem] border border-[#063760]/10 bg-white p-2 shadow-md">
-                    <img src={assets.conferenceUnitLogo} alt="Conference Organization Unit" className="max-h-full max-w-full object-contain" />
+                  <div className="flex items-center gap-4">
+                    <div className="flex h-20 w-20 items-center justify-center rounded-[1.75rem] border border-[#063760]/10 bg-white p-2 shadow-md">
+                      <img src={assets.conferenceUnitLogo} alt="Conference Organization Unit" className="max-h-full max-w-full object-contain" />
+                    </div>
+                    <div><p className="sci-eyebrow">{conferenceOrganizationUnit.institution}</p><h2 className="mt-2 font-serif text-3xl font-bold leading-tight tracking-[-0.035em] text-[#063760] sm:text-4xl">{conferenceOrganizationUnit.title}</h2></div>
                   </div>
-                  <div><p className="sci-eyebrow">{conferenceOrganizationUnit.institution}</p><h2 className="mt-2 font-serif text-3xl font-bold leading-tight tracking-[-0.035em] text-[#063760] sm:text-4xl">{conferenceOrganizationUnit.title}</h2></div>
-                </div>
-                <p className="mt-7 max-w-xl text-base leading-7 text-[#456374] sm:text-lg">{conferenceOrganizationUnit.description}</p>
+                  <figure className="relative mt-7 aspect-[16/9] overflow-hidden border border-[#063760]/10 bg-[#063760] shadow-md">
+                    <img src={conferenceOrganizationUnit.visual.url} alt={conferenceOrganizationUnit.visual.alt} loading="lazy" className="h-full w-full object-cover" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#062f52]/70 via-transparent to-transparent" aria-hidden="true" />
+                    <figcaption className="absolute bottom-3 left-4 text-[9px] font-bold uppercase tracking-[0.16em] text-white/85">Photography via Unsplash</figcaption>
+                  </figure>
+                  <p className="mt-7 max-w-xl text-base leading-7 text-[#456374] sm:text-lg">{conferenceOrganizationUnit.description}</p>
                 <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                   <a href={conferenceOrganizationUnit.facultyUrl} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#063760] px-5 py-3 text-xs font-extrabold uppercase tracking-[0.1em] text-white transition hover:-translate-y-0.5 hover:bg-[#0a507e]">Visit the Faculty of Science Website <ExternalLink className="h-4 w-4" /></a>
                   <a href={conferenceOrganizationUnit.unitUrl} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full border border-[#063760]/20 bg-white px-5 py-3 text-xs font-extrabold uppercase tracking-[0.1em] text-[#063760] transition hover:-translate-y-0.5 hover:border-[#d3a725]">Learn More About the Unit <ArrowUpRight className="h-4 w-4" /></a>
@@ -213,7 +227,20 @@ export default function Sci2027Home() {
           <div className="container">
             <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-end"><div><p className="sci-eyebrow">Scientific tracks</p><h2 className="mt-4 max-w-2xl font-serif text-4xl font-bold leading-tight tracking-[-0.035em] text-[#063760] sm:text-5xl">Six connected tracks. One shared ambition.</h2></div><p className="max-w-sm text-sm leading-6 text-[#617986]">Each track connects fundamental investigation to applications, partnerships and sustainable impact.</p></div>
             <div className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-              {sci2027Content.tracks.map((track) => <article key={track.number} className={`group relative overflow-hidden border p-6 pb-16 transition-all hover:-translate-y-1 hover:shadow-xl ${trackStyles[track.color]}`}><span className={`inline-flex h-10 w-10 items-center justify-center rounded-full text-sm font-extrabold text-white ${trackNumberStyles[track.color]}`}>{track.number}</span><h3 className="mt-6 font-serif text-2xl font-bold leading-tight">{track.en}</h3><p className="mt-4 text-xs font-bold uppercase tracking-[0.12em] opacity-75">{track.focus.en}</p><div className="mt-6 border-t border-current/15 pt-4"><p className="text-[10px] font-extrabold uppercase tracking-[0.16em] opacity-70">Specialties</p><div className="mt-3 flex flex-wrap gap-2">{track.topics.map((topic) => <span key={topic} className="rounded-full border border-current/15 bg-white/45 px-2.5 py-1 text-[10px] font-semibold leading-4">{topic}</span>)}</div></div><p className="absolute bottom-4 right-6 font-serif text-6xl font-bold opacity-[0.06]">0{track.number}</p></article>)}
+              {sci2027Content.tracks.map((track) => (
+                <article key={track.number} className={`group relative overflow-hidden border p-6 pb-16 transition-all hover:-translate-y-1 hover:shadow-xl ${trackStyles[track.color]}`}>
+                  <figure className="relative -mx-6 -mt-6 mb-6 h-44 overflow-hidden bg-[#062f52]">
+                    <img src={track.visual.url} alt={track.visual.alt} loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]" />
+                    <div className={`absolute inset-0 bg-gradient-to-t ${trackImageOverlayStyles[track.color]}`} aria-hidden="true" />
+                    <figcaption className="absolute bottom-3 left-4 text-[9px] font-bold uppercase tracking-[0.16em] text-white/85">Photography via Unsplash</figcaption>
+                  </figure>
+                  <span className={`inline-flex h-10 w-10 items-center justify-center rounded-full text-sm font-extrabold text-white ${trackNumberStyles[track.color]}`}>{track.number}</span>
+                  <h3 className="mt-6 font-serif text-2xl font-bold leading-tight">{track.en}</h3>
+                  <p className="mt-4 text-xs font-bold uppercase tracking-[0.12em] opacity-75">{track.focus.en}</p>
+                  <div className="mt-6 border-t border-current/15 pt-4"><p className="text-[10px] font-extrabold uppercase tracking-[0.16em] opacity-70">Specialties</p><div className="mt-3 flex flex-wrap gap-2">{track.topics.map((topic) => <span key={topic} className="rounded-full border border-current/15 bg-white/45 px-2.5 py-1 text-[10px] font-semibold leading-4">{topic}</span>)}</div></div>
+                  <p className="absolute bottom-4 right-6 font-serif text-6xl font-bold opacity-[0.06]">0{track.number}</p>
+                </article>
+              ))}
             </div>
           </div>
         </section>
@@ -246,6 +273,11 @@ export default function Sci2027Home() {
               <p className="sci-eyebrow">{sponsorship.eyebrow}</p>
               <h2 className="mt-4 max-w-2xl font-serif text-4xl font-bold leading-[1.04] tracking-[-0.035em] text-[#063760] sm:text-5xl">Help turn scientific discovery into lasting impact.</h2>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-[#456374]">{sponsorship.description}</p>
+              <figure className="relative mt-8 aspect-[16/8] max-w-2xl overflow-hidden border border-[#063760]/10 bg-[#062f52] shadow-md">
+                <img src={sponsorship.visual.url} alt={sponsorship.visual.alt} loading="lazy" className="h-full w-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#062f52]/65 via-[#062f52]/20 to-transparent" aria-hidden="true" />
+                <figcaption className="absolute bottom-3 left-4 text-[9px] font-bold uppercase tracking-[0.16em] text-white/85">Photography via Unsplash</figcaption>
+              </figure>
               <Link href="/sponsorship" className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#063760] px-6 py-3.5 text-sm font-extrabold uppercase tracking-[0.1em] text-white transition hover:-translate-y-0.5 hover:bg-[#0a507e]">Explore partnership opportunities <ArrowUpRight className="h-4 w-4" /></Link>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">

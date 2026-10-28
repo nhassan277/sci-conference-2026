@@ -56,6 +56,10 @@
 - [x] Reorder the nine Conference Organization Unit cards with Prof. Rania Ali before Dr. Nourhan Hassan and Prof. Rasha El-Nashar following Nourhan
 - [x] Set Prof. Azza Shoukry as Registration & Operations Lead and Dr. Dina Amr as Logistics Lead with distinct responsibility summaries
 - [x] Save a checkpoint for the finalized Unit order, revised roles and managed SCI 2027 logo hosting
+- [x] Add six licensed real-world scientific images, one for each SCI 2027 research track, with text-safe card treatments
+- [x] Add licensed professional imagery to the Conference Organization Unit and partnership or sponsorship sections
+- [x] Verify source metadata and responsive readability for the SCI 2027 imagery update
+- [ ] Save a WebDev checkpoint for the verified SCI 2027 imagery update
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks
