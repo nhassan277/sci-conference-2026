@@ -140,7 +140,7 @@ export default function Sci2027Home() {
             <div className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
               <div className="lg:sticky lg:top-28">
                 <div className="flex items-center gap-4">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-[#063760]/10 bg-white p-2 shadow-sm">
+                  <div className="flex h-20 w-20 items-center justify-center rounded-[1.75rem] border border-[#063760]/10 bg-white p-2 shadow-md">
                     <img src={assets.conferenceUnitLogo} alt="Conference Organization Unit" className="max-h-full max-w-full object-contain" />
                   </div>
                   <div><p className="sci-eyebrow">{conferenceOrganizationUnit.institution}</p><h2 className="mt-2 font-serif text-3xl font-bold leading-tight tracking-[-0.035em] text-[#063760] sm:text-4xl">{conferenceOrganizationUnit.title}</h2></div>

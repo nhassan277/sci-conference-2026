@@ -53,7 +53,7 @@ export const sci2027Content = {
     detailedPoster: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/ejMHwlwJltrmxUkG.png",
     simplePoster: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/ZtqHzzjZVdNkxKtx.png",
     cairoUniversityLogo: "/sci-2027/logos/cairo-university.jpg",
-    conferenceUnitLogo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/gtuexwapccjDWTPs.png",
+    conferenceUnitLogo: "/sci-2027/logos/conference-unit-logo.755cd17d.png",
     conferenceUnitMark: "/sci-2027/logos/conference-unit-vertical.png",
     sci2027Logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/uqFRPtUzZKayxyFc.png",
     sciMasterLogo: "/sci-2027/logos/sci-master-logo.jpg",

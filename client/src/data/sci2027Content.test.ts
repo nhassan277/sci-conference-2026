@@ -8,12 +8,12 @@ const projectPath = (...segments: string[]) => resolve(process.cwd(), ...segment
 const hostedAssetKeys = [
   "detailedPoster",
   "simplePoster",
-  "conferenceUnitLogo",
   "sci2027Logo",
 ] as const;
 
 const localAssetKeys = [
   "cairoUniversityLogo",
+  "conferenceUnitLogo",
   "conferenceUnitMark",
   "sciMasterLogo",
   "brochureEnglish",
@@ -187,6 +187,17 @@ describe("SCI 2027 public content", () => {
 
     expect(director.name).toBe("Prof. Walid Ali Rahouma");
     expect(sci2027Content.organizer.head.en).toBe("Unit Head: Prof. Walid Ali Rahouma");
+  });
+
+  it("uses the approved circular Conference Organization Unit logo in a larger white rounded container", () => {
+    const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
+    const unitLogo = sci2027Content.assets.conferenceUnitLogo;
+
+    expect(unitLogo).toMatch(/^\/sci-2027\/logos\/conference-unit-logo\.[a-f0-9]{8}\.png$/);
+    expect(existsSync(projectPath("client/public", unitLogo.slice(1)))).toBe(true);
+    expect(homeSource).toContain("src={assets.conferenceUnitLogo}");
+    expect(homeSource).toContain("h-20 w-20");
+    expect(homeSource).toContain("rounded-[1.75rem]");
   });
 
   it("provides four hosted SCI 2027 promotional videos with poster frames and verified gallery details", () => {
