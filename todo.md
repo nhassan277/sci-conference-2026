@@ -80,7 +80,7 @@
 - [x] Replace all public English-brochure links with the final SCI2027_Trifold_Brochure_EN_3.pdf and retain the Arabic brochure
 - [x] Verify the hosted final brochure, removal of the previous English public asset, and save a WebDev checkpoint
 - [x] Create the approved navy-and-gold SCI 2027 favicon, mobile icon and manifest package
-- [ ] Verify icon dimensions, metadata links, browser/mobile presentation, and save a WebDev checkpoint
+- [x] Verify icon dimensions, runtime browser favicon request, Apple Touch/manifest presentation paths, and save a WebDev checkpoint
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks
