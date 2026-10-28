@@ -86,7 +86,10 @@
 - [x] Save a WebDev checkpoint for the verified SCI 2027 original track-visual update
 - [x] Add the verified Conference Center - Cairo University venue name, address and Google Maps link to the central SCI 2027 content source
 - [x] Add safe Get directions actions to the hero venue card and preliminary programme venue summary
-- [ ] Save a WebDev checkpoint for the verified responsive venue presentation
+- [x] Save a WebDev checkpoint for the verified responsive venue presentation
+- [x] Create a hosted web derivative of the supplied Conference Center halls photograph without cropping or modifying the original
+- [x] Add an English-only Venue & Halls section after Distinguished Patronage with the photo, caption and safe Get directions action
+- [ ] Save a WebDev checkpoint for the verified desktop and mobile Venue & Halls presentation
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks

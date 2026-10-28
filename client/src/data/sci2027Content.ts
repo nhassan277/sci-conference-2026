@@ -65,6 +65,12 @@ export const sci2027Content = {
       shortAddress: "Beside Students City, Dr. Mikel Bakhoum Rd, Dokki, Giza",
       mapUrl: "https://share.google/pJzENeit3jQYXskJq",
       directionsLabel: "Get directions",
+      venueVisual: {
+        url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/pFNFKsusxfqWrAtM.webp",
+        alt: "Conference Center - Cairo University main auditorium, audience seating and meeting lounge facilities.",
+        source: "SCI 2027 venue photograph",
+        caption: "Main auditorium and meeting facilities at the Conference Center - Cairo University.",
+      },
     },
   },
   assets: {

@@ -147,6 +147,24 @@ export default function Sci2027Home() {
           </div>
         </section>
 
+        <section id="venue" className="scroll-mt-24 border-b border-[#063760]/10 bg-white py-20 md:py-24">
+          <div className="container grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
+            <div>
+              <p className="sci-eyebrow">Venue &amp; Halls</p>
+              <h2 className="mt-4 max-w-xl font-serif text-4xl font-bold leading-[1.04] tracking-[-0.035em] text-[#063760] sm:text-5xl">A setting designed for scientific exchange.</h2>
+              <p className="mt-6 max-w-xl text-lg leading-8 text-[#456374]">Explore the Conference Center - Cairo University, including its main auditorium and supporting meeting facilities.</p>
+              <div className="mt-8 border-l-4 border-[#d3a725] bg-[#f7f2e7] px-5 py-5">
+                <div className="flex items-start gap-3"><MapPin className="mt-0.5 h-5 w-5 shrink-0 text-[#ad8618]" /><div><p className="text-sm font-extrabold text-[#063760]">{identity.location.name}</p><p className="mt-1 text-sm leading-6 text-[#617986]">{identity.location.shortAddress}</p></div></div>
+              </div>
+              <a href={identity.location.mapUrl} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#063760] px-5 py-3 text-xs font-extrabold uppercase tracking-[0.1em] text-white transition hover:-translate-y-0.5 hover:bg-[#0a507e]">{identity.location.directionsLabel} <ArrowUpRight className="h-4 w-4" /></a>
+            </div>
+            <figure className="overflow-hidden border border-[#063760]/10 bg-[#f7f2e7] shadow-[0_20px_55px_rgba(6,55,96,0.16)]">
+              <img src={identity.location.venueVisual.url} alt={identity.location.venueVisual.alt} loading="lazy" className="block h-auto w-full" />
+              <figcaption className="border-t border-[#063760]/10 bg-white px-5 py-4 text-xs font-semibold leading-5 text-[#617986]">{identity.location.venueVisual.caption}</figcaption>
+            </figure>
+          </div>
+        </section>
+
         <section className="border-b border-[#063760]/10 bg-[#f7f2e7]">
           <div className="container grid divide-y divide-[#063760]/10 py-3 sm:grid-cols-2 sm:divide-x sm:divide-y-0 sm:py-0">
             <a href={assets.brochureEnglish} target="_blank" rel="noreferrer" className="group flex items-center justify-between gap-3 py-3 sm:px-5 sm:py-4"><span className="flex items-center gap-3"><FileText className="h-4 w-4 text-[#ad8618]" /><span><b className="block text-xs text-[#063760]">Conference brochure</b><small className="text-[11px] text-[#708795]">Official SCI 2027 guide</small></span></span><Download className="h-4 w-4 text-[#ad8618] transition-transform group-hover:translate-y-0.5" /></a>

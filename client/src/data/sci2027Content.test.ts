@@ -65,6 +65,31 @@ describe("SCI 2027 public content", () => {
     }
   });
 
+  it("shows the supplied Conference Center halls photograph in a Venue & Halls section after patronage", () => {
+    const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
+    const venue = sci2027Content.identity.location;
+    const venueVisual = (venue as typeof venue & {
+      venueVisual?: { source: string; caption: string; url: string; alt: string };
+    }).venueVisual;
+    const patronagePosition = homeSource.indexOf("Distinguished patronage");
+    const venuePosition = homeSource.indexOf('id="venue"');
+    const introductionPosition = homeSource.indexOf("Science, partnership and impact");
+
+    expect(venueVisual).toMatchObject({
+      source: "SCI 2027 venue photograph",
+      caption: "Main auditorium and meeting facilities at the Conference Center - Cairo University.",
+    });
+    expect(venueVisual?.url).toMatch(/^https:\/\//);
+    expect(venueVisual?.alt.length).toBeGreaterThan(30);
+    expect(venuePosition).toBeGreaterThan(patronagePosition);
+    expect(venuePosition).toBeLessThan(introductionPosition);
+    expect(homeSource).toContain("Venue &amp; Halls");
+    expect(homeSource).toContain("identity.location.venueVisual.url");
+    expect(homeSource).toContain("identity.location.venueVisual.alt");
+    expect(homeSource).toContain("identity.location.venueVisual.caption");
+    expect(homeSource).toContain("identity.location.mapUrl");
+  });
+
   it("ships a complete navy-and-gold SCI 2027 favicon and mobile icon package", () => {
     const indexSource = readFileSync(projectPath("client/index.html"), "utf8");
     const iconDirectory = projectPath("client/public/sci-2027/icons");
