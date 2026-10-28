@@ -121,6 +121,41 @@ describe("SCI 2027 public content", () => {
     expect(homeSource).not.toContain("createCheckoutSession");
   });
 
+  it("routes the approved English-only call for abstracts through the speaker and student research forms", () => {
+    const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
+    const abstractCall = sci2027Content.abstractCall;
+
+    expect(abstractCall.title.en).toBe("Share your research. Shape the future.");
+    expect(abstractCall.description.en).toBe("Researchers, academics, postgraduate and undergraduate students, and industry professionals are invited to submit original research relevant to the six SCI 2027 tracks.");
+    expect(abstractCall.requirements).toEqual([
+      "Abstracts must be written in English.",
+      "Maximum abstract length: 300 words.",
+      "Include the title, author names, affiliations and corresponding author contact information.",
+      "Provide 3–5 keywords.",
+      "Summarise research background, objectives, methodology, principal results and conclusions.",
+    ]);
+    expect(abstractCall.status.en).toBe("Abstract submissions are accepted through the relevant SCI 2027 form below.");
+    expect(abstractCall.submissionOptions).toEqual([
+      {
+        label: "Submit a Speaker Abstract",
+        audience: "For researchers, academics and industry professionals.",
+        url: sci2027Content.registration.speaker.url,
+      },
+      {
+        label: "Submit Student Research / Thesis / Project",
+        audience: "For undergraduate and postgraduate students.",
+        url: sci2027Content.registration.studentResearch.url,
+      },
+    ]);
+    expect(JSON.stringify(abstractCall)).not.toContain("deadline");
+    expect(sci2027Content.registration.speaker.name.en).toBe("Speaker & Abstract Submission");
+    expect(sci2027Content.registration.speaker.description.en).toBe("For researchers, academics and industry professionals submitting an abstract through the official SCI 2027 form.");
+    expect(homeSource).toContain("abstractCall.submissionOptions.map");
+    expect(homeSource).toContain('href={option.url}');
+    expect(homeSource).toContain('target="_blank"');
+    expect(homeSource).toContain('rel="noreferrer"');
+  });
+
   it("uses real licensed photography for every track, the Unit and partnerships without sacrificing text-safe rendering", () => {
     const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
     const sponsorshipSource = readFileSync(projectPath("client/src/pages/Sci2027Sponsorship.tsx"), "utf8");
@@ -148,7 +183,7 @@ describe("SCI 2027 public content", () => {
     expect(sci2027Content.registration.studentResearch.url).toBe("https://forms.gle/fmXUzEQ85hbXnLFp8");
     expect(sci2027Content.registration.studentResearch.name.en).toBe("Student Research, Thesis & Graduation Project Registration");
     expect(sci2027Content.registration.studentResearch.description.en).toBe("For undergraduate and postgraduate students presenting student research, thesis work, or graduation projects.");
-    expect(sci2027Content.registration.studentResearch.notice.en).toBe("Submission deadline and abstract requirements will be announced.");
+    expect(sci2027Content.registration.studentResearch.notice.en).toBe("Abstract submissions are accepted through this form. A submission deadline has not yet been announced.");
   });
 
   it("sets 6 and 9 April aside for workshops without publishing workshop topics yet", () => {

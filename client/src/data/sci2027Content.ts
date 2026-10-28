@@ -29,6 +29,12 @@ export type ProgrammeDay = {
   sessions: BilingualText[];
 };
 
+const SCI2027_FORM_URLS = {
+  general: "https://forms.gle/mr2gE9nsbdPrha9r6",
+  speaker: "https://forms.gle/FRiza6zpfiQLrgrh8",
+  studentResearch: "https://forms.gle/fmXUzEQ85hbXnLFp8",
+} as const;
+
 export const sci2027Content = {
   sourceNote:
     "Prepared from the official SCI 2027 English and Arabic brochures, logo folder, posters, and published registration forms supplied by the Conference Organization Unit.",
@@ -502,9 +508,21 @@ export const sci2027Content = {
       "Summarise research background, objectives, methodology, principal results and conclusions.",
     ],
     status: {
-      en: "The official abstract-submission link will be announced through SCI 2027 channels.",
-      ar: "سيُعلن رابط التقديم الرسمي للملخصات عبر القنوات الرسمية لمؤتمر SCI 2027.",
+      en: "Abstract submissions are accepted through the relevant SCI 2027 form below.",
+      ar: "تُقبل الملخصات البحثية عبر استمارة SCI 2027 المناسبة أدناه.",
     },
+    submissionOptions: [
+      {
+        label: "Submit a Speaker Abstract",
+        audience: "For researchers, academics and industry professionals.",
+        url: SCI2027_FORM_URLS.speaker,
+      },
+      {
+        label: "Submit Student Research / Thesis / Project",
+        audience: "For undergraduate and postgraduate students.",
+        url: SCI2027_FORM_URLS.studentResearch,
+      },
+    ],
   },
   publicationOpportunity: {
     title: "Publication Opportunity",
@@ -579,18 +597,18 @@ export const sci2027Content = {
         en: "For researchers, academics, students, industry professionals and other attendees.",
         ar: "للباحثين والأكاديميين والطلاب والمهنيين من القطاع الصناعي وباقي الحضور.",
       },
-      url: "https://forms.gle/mr2gE9nsbdPrha9r6",
+      url: SCI2027_FORM_URLS.general,
     },
     speaker: {
       name: {
-        en: "Speaker registration",
+        en: "Speaker & Abstract Submission",
         ar: "تسجيل المتحدثين",
       },
       description: {
-        en: "For confirmed speakers and presenting contributors using the official SCI 2027 form.",
+        en: "For researchers, academics and industry professionals submitting an abstract through the official SCI 2027 form.",
         ar: "للمتحدثين المؤكدين والمساهمين بعروض تقديمية عبر الاستمارة الرسمية لمؤتمر SCI 2027.",
       },
-      url: "https://forms.gle/FRiza6zpfiQLrgrh8",
+      url: SCI2027_FORM_URLS.speaker,
     },
     studentResearch: {
       name: {
@@ -602,10 +620,10 @@ export const sci2027Content = {
         ar: "لطلاب البكالوريوس والدراسات العليا الذين يقدمون أبحاثًا طلابية أو رسائل علمية أو مشروعات تخرج.",
       },
       notice: {
-        en: "Submission deadline and abstract requirements will be announced.",
+        en: "Abstract submissions are accepted through this form. A submission deadline has not yet been announced.",
         ar: "سيُعلن موعد التقديم ومتطلبات الملخص لاحقًا.",
       },
-      url: "https://forms.gle/fmXUzEQ85hbXnLFp8",
+      url: SCI2027_FORM_URLS.studentResearch,
     },
   },
   registrationFees: {

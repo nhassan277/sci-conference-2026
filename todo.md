@@ -70,7 +70,9 @@
 - [x] Add the approved Global Journal of Scientific Research publication-opportunity card after Scientific Tracks
 - [x] Verify the journal link, editorial notice, responsive section order, and save a WebDev checkpoint
 - [x] Add approved SCI 2027 registration fees, conditional publication fee, and CBE/InstaPay payment instructions before registration
-- [ ] Verify payment copy, responsive fee display, confirmation-email action, and save a WebDev checkpoint
+- [x] Verify payment copy, responsive fee display, confirmation-email action, and save a WebDev checkpoint
+- [x] Replace the Call for Abstracts copy and route submissions through the approved Speaker and Student Research forms
+- [ ] Verify the no-deadline abstract call, both submission actions, responsive rendering, and save a WebDev checkpoint
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks
