@@ -188,7 +188,7 @@ export default function Sci2027Home() {
 
               <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
                 {conferenceOrganizationUnit.members.map((member, index) => (
-                  <article key={member.name} className={`relative overflow-hidden border p-6 shadow-sm ${index === 0 ? "md:col-span-2 xl:col-span-2 border-[#063760] bg-[#063760] text-white" : "border-[#063760]/10 bg-white text-[#063760]"}`}>
+                  <article key={member.name} className={`relative overflow-hidden border p-6 shadow-sm ${index === 0 ? "border-[#063760] bg-[#063760] text-white" : "border-[#063760]/10 bg-white text-[#063760]"}`}>
                     <div className="flex items-start justify-between gap-5"><div><p className={`text-[10px] font-extrabold uppercase tracking-[0.16em] ${index === 0 ? "text-[#f0ca57]" : "text-[#ad8618]"}`}>{member.department}</p><h3 className="mt-4 font-serif text-2xl font-bold leading-tight sm:text-3xl">{member.name}</h3></div><UsersRound className={`h-6 w-6 shrink-0 ${index === 0 ? "text-[#f0ca57]" : "text-[#ad8618]"}`} /></div>
                     <p className={`mt-5 text-xs font-extrabold uppercase tracking-[0.13em] ${index === 0 ? "text-[#f0ca57]" : "text-[#0d638b]"}`}>{member.role}</p>
                     <p className={`mt-4 max-w-2xl text-sm leading-6 ${index === 0 ? "text-[#c1d3dc]" : "text-[#617986]"}`}>{member.summary}</p>

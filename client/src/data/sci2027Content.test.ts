@@ -223,6 +223,16 @@ describe("SCI 2027 public content", () => {
     expect(homeSource).not.toContain("<img src={member");
   });
 
+  it("gives the Unit Director the same single-column card width while retaining the navy and gold director treatment", () => {
+    const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
+
+    expect(homeSource).toContain("mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3");
+    expect(homeSource).toContain('index === 0 ? "border-[#063760] bg-[#063760] text-white"');
+    expect(homeSource).toContain('index === 0 ? "text-[#f0ca57]"');
+    expect(homeSource).not.toContain("md:col-span-2");
+    expect(homeSource).not.toContain("xl:col-span-2");
+  });
+
   it("uses the approved short display spelling for the Unit Director in the conference introduction and Unit roster", () => {
     const director = sci2027Content.conferenceOrganizationUnit.members[0];
 

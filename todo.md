@@ -60,6 +60,8 @@
 - [x] Add licensed professional imagery to the Conference Organization Unit and partnership or sponsorship sections
 - [x] Verify source metadata and responsive readability for the SCI 2027 imagery update
 - [x] Save a WebDev checkpoint for the verified SCI 2027 imagery update
+- [x] Resize the Prof. Walid Rahouma Unit card to one grid column while retaining its dark navy and gold director treatment
+- [ ] Save a WebDev checkpoint for the verified Unit Director card update on desktop and mobile
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks
