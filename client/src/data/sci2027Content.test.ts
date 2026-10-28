@@ -9,6 +9,7 @@ const hostedAssetKeys = [
   "detailedPoster",
   "simplePoster",
   "sci2027Logo",
+  "brochureEnglish",
 ] as const;
 
 const localAssetKeys = [
@@ -16,7 +17,6 @@ const localAssetKeys = [
   "conferenceUnitLogo",
   "conferenceUnitMark",
   "sciMasterLogo",
-  "brochureEnglish",
   "brochureArabic",
 ] as const;
 
@@ -42,6 +42,20 @@ describe("SCI 2027 public content", () => {
     expect(sci2027Content.registration.general.url).toBe("https://forms.gle/mr2gE9nsbdPrha9r6");
     expect(sci2027Content.registration.speaker.url).toBe("https://forms.gle/FRiza6zpfiQLrgrh8");
     expect(sci2027Content.sourceNote).not.toContain("SCI 2026");
+  });
+
+  it("uses the final hosted English brochure while retaining the Arabic brochure and removing the retired English asset", () => {
+    const retiredEnglishBrochure = projectPath(
+      "client/public/sci-2027/documents/SCI2027-Trifold-Brochure-EN.pdf",
+    );
+    const arabicBrochure = projectPath(
+      "client/public",
+      sci2027Content.assets.brochureArabic.slice(1),
+    );
+
+    expect(sci2027Content.assets.brochureEnglish).toMatch(/^https:\/\//);
+    expect(existsSync(retiredEnglishBrochure)).toBe(false);
+    expect(existsSync(arabicBrochure)).toBe(true);
   });
 
   it("links the official SCI 2027 YouTube channel from the footer and videos page in a new tab", () => {

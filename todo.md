@@ -76,7 +76,9 @@
 - [x] Link the optional publication fee bidirectionally with the Global Journal of Scientific Research opportunity and payment details
 - [x] Verify the publication-fee anchors, conditional wording, responsive hierarchy, and save a WebDev checkpoint
 - [x] Add the official SCI 2027 YouTube channel as a safe external action in the footer and videos page
-- [ ] Verify the YouTube link, new-tab behavior, responsive presentation, and save a WebDev checkpoint
+- [x] Verify the YouTube link, new-tab behavior, responsive presentation, and save a WebDev checkpoint
+- [x] Replace all public English-brochure links with the final SCI2027_Trifold_Brochure_EN_3.pdf and retain the Arabic brochure
+- [ ] Verify the hosted final brochure, removal of the previous English public asset, and save a WebDev checkpoint
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks

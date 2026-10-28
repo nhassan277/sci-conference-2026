@@ -71,7 +71,7 @@ export const sci2027Content = {
     conferenceUnitMark: "/sci-2027/logos/conference-unit-vertical.png",
     sci2027Logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/DIUxVumTChoaEhaG.png",
     sciMasterLogo: "/sci-2027/logos/sci-master-logo.jpg",
-    brochureEnglish: "/sci-2027/documents/SCI2027-Trifold-Brochure-EN.pdf",
+    brochureEnglish: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/boqqULicYcRvRVCx.pdf",
     brochureArabic: "/sci-2027/documents/SCI2027-Brochure-AR.pdf",
   },
   videos: [
