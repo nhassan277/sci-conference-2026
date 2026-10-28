@@ -63,7 +63,10 @@
 - [x] Resize the Prof. Walid Rahouma Unit card to one grid column while retaining its dark navy and gold director treatment
 - [x] Save a WebDev checkpoint for the verified Unit Director card update on desktop and mobile
 - [x] Add professional 4:5 portrait crops for Prof. Mohamed Sami Abdel-Sadek and Prof. Sohair Ramadan Fahmy to the Distinguished Patronage cards
-- [ ] Save a WebDev checkpoint for the verified Distinguished Patronage portrait update
+- [x] Save a WebDev checkpoint for the verified Distinguished Patronage portrait update
+- [x] Move Distinguished Patronage, with its current portraits and cards, directly after the SCI 2027 Hero
+- [x] Remove the white logo container and enlarge the direct Conference Organization Unit logo beside its existing title
+- [ ] Save a WebDev checkpoint for the verified patronage-order and Unit-logo treatment update
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks

@@ -121,6 +121,32 @@ export default function Sci2027Home() {
           </div>
         </section>
 
+        <section className="bg-[#f7f2e7] py-16 md:py-20">
+          <div className="container grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+            <div>
+              <p className="sci-eyebrow">Distinguished patronage</p>
+              <h2 className="mt-4 font-serif text-3xl font-bold tracking-[-0.03em] text-[#063760] sm:text-4xl">An institutional meeting point for science and society.</h2>
+              <p className="mt-4 max-w-xl text-lg leading-8 text-[#617986]">Held under the patronage of Cairo University and the Faculty of Science.</p>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {sci2027Content.patronage.map((patron) => (
+                <article key={patron.name} className="border border-[#063760]/10 bg-white p-4 shadow-sm">
+                  <div className="flex items-center gap-4">
+                    <div className="aspect-[4/5] w-20 shrink-0 overflow-hidden border-2 border-[#d3a725]/55 bg-[#edf4f3] shadow-sm">
+                      <img src={patron.photo.url} alt={patron.photo.alt} loading="lazy" className="h-full w-full object-cover object-center" />
+                    </div>
+                    <div className="min-w-0">
+                      <Landmark className="h-5 w-5 text-[#ad8618]" />
+                      <p className="mt-3 text-sm font-extrabold leading-6 text-[#063760]">{patron.name}</p>
+                      <p className="mt-1 text-xs leading-5 text-[#617986]">{patron.role}</p>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section className="border-b border-[#063760]/10 bg-[#f7f2e7]">
           <div className="container grid divide-y divide-[#063760]/10 py-3 sm:grid-cols-2 sm:divide-x sm:divide-y-0 sm:py-0">
             <a href={assets.brochureEnglish} target="_blank" rel="noreferrer" className="group flex items-center justify-between gap-3 py-3 sm:px-5 sm:py-4"><span className="flex items-center gap-3"><FileText className="h-4 w-4 text-[#ad8618]" /><span><b className="block text-xs text-[#063760]">Conference brochure</b><small className="text-[11px] text-[#708795]">Official SCI 2027 guide</small></span></span><Download className="h-4 w-4 text-[#ad8618] transition-transform group-hover:translate-y-0.5" /></a>
@@ -148,10 +174,8 @@ export default function Sci2027Home() {
           <div className="container">
             <div className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
               <div className="lg:sticky lg:top-28">
-                  <div className="flex items-center gap-4">
-                    <div className="flex h-20 w-20 items-center justify-center rounded-[1.75rem] border border-[#063760]/10 bg-white p-2 shadow-md">
-                      <img src={assets.conferenceUnitLogo} alt="Conference Organization Unit" className="max-h-full max-w-full object-contain" />
-                    </div>
+                  <div className="flex items-center gap-5">
+                    <img src={assets.conferenceUnitLogo} alt="Conference Organization Unit" className="h-24 w-24 shrink-0 object-contain sm:h-28 sm:w-28" />
                     <div><p className="sci-eyebrow">{conferenceOrganizationUnit.institution}</p><h2 className="mt-2 font-serif text-3xl font-bold leading-tight tracking-[-0.035em] text-[#063760] sm:text-4xl">{conferenceOrganizationUnit.title}</h2></div>
                   </div>
                   <figure className="relative mt-7 aspect-[16/9] overflow-hidden border border-[#063760]/10 bg-[#063760] shadow-md">
@@ -302,32 +326,6 @@ export default function Sci2027Home() {
                   </article>
                 );
               })}
-            </div>
-          </div>
-        </section>
-
-        <section className="bg-[#f7f2e7] py-16 md:py-20">
-          <div className="container grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-            <div>
-              <p className="sci-eyebrow">Distinguished patronage</p>
-              <h2 className="mt-4 font-serif text-3xl font-bold tracking-[-0.03em] text-[#063760] sm:text-4xl">An institutional meeting point for science and society.</h2>
-              <p className="mt-4 max-w-xl text-lg leading-8 text-[#617986]">Held under the patronage of Cairo University and the Faculty of Science.</p>
-            </div>
-            <div className="grid gap-3 sm:grid-cols-2">
-              {sci2027Content.patronage.map((patron) => (
-                <article key={patron.name} className="border border-[#063760]/10 bg-white p-4 shadow-sm">
-                  <div className="flex items-center gap-4">
-                    <div className="aspect-[4/5] w-20 shrink-0 overflow-hidden border-2 border-[#d3a725]/55 bg-[#edf4f3] shadow-sm">
-                      <img src={patron.photo.url} alt={patron.photo.alt} loading="lazy" className="h-full w-full object-cover object-center" />
-                    </div>
-                    <div className="min-w-0">
-                      <Landmark className="h-5 w-5 text-[#ad8618]" />
-                      <p className="mt-3 text-sm font-extrabold leading-6 text-[#063760]">{patron.name}</p>
-                      <p className="mt-1 text-xs leading-5 text-[#617986]">{patron.role}</p>
-                    </div>
-                  </div>
-                </article>
-              ))}
             </div>
           </div>
         </section>

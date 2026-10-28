@@ -173,6 +173,18 @@ describe("SCI 2027 public content", () => {
     expect(homeSource).toContain("object-cover");
   });
 
+  it("places Distinguished Patronage immediately after the Hero and displays the Unit logo directly", () => {
+    const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
+    const patronagePosition = homeSource.indexOf("Distinguished patronage");
+    const introductionPosition = homeSource.indexOf("Science, partnership and impact");
+
+    expect(patronagePosition).toBeGreaterThan(homeSource.indexOf("<main>"));
+    expect(patronagePosition).toBeLessThan(introductionPosition);
+    expect(homeSource).toContain('src={assets.conferenceUnitLogo}');
+    expect(homeSource).toContain('className="h-24 w-24 shrink-0 object-contain sm:h-28 sm:w-28"');
+    expect(homeSource).not.toContain('rounded-[1.75rem] border border-[#063760]/10 bg-white');
+  });
+
   it("provides the official Conference Organization Unit description, objectives and external Faculty links", () => {
     const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
     const unit = sci2027Content.conferenceOrganizationUnit;
@@ -258,15 +270,15 @@ describe("SCI 2027 public content", () => {
     expect(sci2027Content.organizer.head.en).toBe("Unit Head: Prof. Walid Rahouma");
   });
 
-  it("uses the approved circular Conference Organization Unit logo in a larger white rounded container", () => {
+  it("uses the approved Conference Organization Unit logo directly at a larger responsive size", () => {
     const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
     const unitLogo = sci2027Content.assets.conferenceUnitLogo;
 
     expect(unitLogo).toMatch(/^\/sci-2027\/logos\/conference-unit-logo\.[a-f0-9]{8}\.png$/);
     expect(existsSync(projectPath("client/public", unitLogo.slice(1)))).toBe(true);
     expect(homeSource).toContain("src={assets.conferenceUnitLogo}");
-    expect(homeSource).toContain("h-20 w-20");
-    expect(homeSource).toContain("rounded-[1.75rem]");
+    expect(homeSource).toContain('className="h-24 w-24 shrink-0 object-contain sm:h-28 sm:w-28"');
+    expect(homeSource).not.toContain('rounded-[1.75rem] border border-[#063760]/10 bg-white');
   });
 
   it("uses the user-approved SCI 2027 logo from managed hosting at its native aspect without circular treatment or cropping", () => {
