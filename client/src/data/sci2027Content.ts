@@ -134,6 +134,33 @@ export const sci2027Content = {
       ar: "رئيس الوحدة: الأستاذ الدكتور وليد رحومة",
     },
   },
+  conferenceOrganizationUnit: {
+    title: "Conference Organization Unit",
+    institution: "Faculty of Science, Cairo University",
+    description:
+      "The Conference Organization Unit at the Faculty of Science, Cairo University supports the planning, coordination, and professional management of scientific conferences and events, fostering academic and research collaboration locally and internationally.",
+    objectives: [
+      {
+        title: "Organizational Excellence",
+        description: "Develop professional processes for planning and organizing scientific conferences and events.",
+      },
+      {
+        title: "Scientific Excellence",
+        description: "Support scientific events and the exchange of research knowledge.",
+      },
+      {
+        title: "Partnerships and International Collaboration",
+        description: "Strengthen cooperation with universities, research centers and institutions.",
+      },
+      {
+        title: "Sustainability and Development",
+        description: "Improve procedures and templates and continuously evaluate performance.",
+      },
+    ],
+    memberStatus: "Meet the Unit: member profiles and responsibilities will be introduced soon.",
+    facultyUrl: "https://scicu.net/",
+    unitUrl: "https://scicu.net/Important%20Links/conference-organization",
+  },
   overview: {
     en: "SCI 2027 brings researchers, academics, students, innovators, industry partners and decision-makers together to connect foundational science with applications, products, services and policies that create tangible societal value.",
     ar: "يجمع SCI 2027 الباحثين والأكاديميين والطلاب والمبتكرين وشركاء الصناعة وصنّاع القرار لربط العلوم الأساسية بالتطبيقات والمنتجات والخدمات والسياسات ذات الأثر المجتمعي الملموس.",

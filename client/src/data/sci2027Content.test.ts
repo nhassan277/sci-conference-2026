@@ -132,6 +132,34 @@ describe("SCI 2027 public content", () => {
     expect(sci2027Content.contact.email).toBe(sci2027Content.sponsorship.contactEmail);
   });
 
+  it("provides the official Conference Organization Unit description, objectives and external Faculty links", () => {
+    const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
+    const unit = sci2027Content.conferenceOrganizationUnit;
+
+    expect(unit.title).toBe("Conference Organization Unit");
+    expect(unit.institution).toBe("Faculty of Science, Cairo University");
+    expect(unit.description).toBe(
+      "The Conference Organization Unit at the Faculty of Science, Cairo University supports the planning, coordination, and professional management of scientific conferences and events, fostering academic and research collaboration locally and internationally.",
+    );
+    expect(unit.objectives).toHaveLength(4);
+    expect(unit.objectives.map((objective) => objective.title)).toEqual([
+      "Organizational Excellence",
+      "Scientific Excellence",
+      "Partnerships and International Collaboration",
+      "Sustainability and Development",
+    ]);
+    expect(unit.facultyUrl).toBe("https://scicu.net/");
+    expect(unit.unitUrl).toBe("https://scicu.net/Important%20Links/conference-organization");
+    expect(unit.memberStatus).toBe("Meet the Unit: member profiles and responsibilities will be introduced soon.");
+    expect(homeSource).toContain("conferenceOrganizationUnit");
+    expect(homeSource).toContain("Visit the Faculty of Science Website");
+    expect(homeSource).toContain("Learn More About the Unit");
+    expect(homeSource).toContain('target="_blank"');
+    expect(homeSource).toContain('rel="noreferrer"');
+    expect(homeSource).not.toContain("info@sci.cu.edu.eg");
+    expect(homeSource).not.toContain("+20 2 3567 6000");
+  });
+
   it("provides four hosted SCI 2027 promotional videos with poster frames and verified gallery details", () => {
     expect(sci2027Content.videos).toHaveLength(4);
     expect(sci2027Content.videos.every((video) => video.url.startsWith("https://"))).toBe(true);
