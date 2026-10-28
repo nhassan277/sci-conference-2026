@@ -42,7 +42,7 @@
 - [x] Verify and checkpoint the Conference Organization Unit logo replacement
 - [x] Update the Unit roster to remove Prof. Heba Mohamed Fahmy and add Prof. Azza Shoukry, Dr. Dina Amr and Mrs. Manar Mohamed
 - [x] Update Dr. Nahla Osama Mohamed Moussa and Dr. Nourhan Hassan titles, including Nourhan’s conference-website design, content, UX and ongoing-update responsibility
-- [ ] Verify and checkpoint the updated nine-member Conference Organization Unit roster
+- [x] Verify and checkpoint the updated nine-member Conference Organization Unit roster
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks
