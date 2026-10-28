@@ -3,6 +3,8 @@ import {
   ArrowUpRight,
   CalendarDays,
   Check,
+  ChevronLeft,
+  ChevronRight,
   Download,
   ExternalLink,
   FileText,
@@ -17,6 +19,7 @@ import {
   Sparkles,
   UsersRound,
 } from "lucide-react";
+import { useState } from "react";
 import { Link } from "wouter";
 import Sci2027Footer from "@/components/Sci2027Footer";
 import Sci2027Header from "@/components/Sci2027Header";
@@ -66,6 +69,11 @@ const registrationAccentStyles = ["text-[#f0ca57]", "text-[#ad8618]", "text-[#0d
 export default function Sci2027Home() {
   const { identity, assets, speakers, sponsorship, workshopProgramme, conferenceOrganizationUnit, publicationOpportunity, registrationFees, abstractCall } = sci2027Content;
   const featuredVideo = sci2027Content.videos.find((video) => video.featured) ?? sci2027Content.videos[0];
+  const [venueGalleryPage, setVenueGalleryPage] = useState(0);
+  const venueGalleryPages = [
+    identity.location.venueGallery.slice(0, 4),
+    identity.location.venueGallery.slice(4, 8),
+  ];
 
   return (
     <div className="min-h-screen overflow-hidden bg-[#fffdf8] text-[#17374f]">
@@ -175,13 +183,25 @@ export default function Sci2027Home() {
                 <h3 className="mt-3 font-serif text-3xl font-bold tracking-[-0.03em] text-[#063760] sm:text-4xl">A closer look at the Conference Center.</h3>
                 <p className="mt-4 text-base leading-7 text-[#617986]">A visual walk through the venue’s entrance, shared spaces, corridors and atrium.</p>
               </div>
-              <div className="mt-8 grid gap-5 sm:grid-cols-2">
-                {identity.location.venueGallery.map((photo) => (
-                  <figure key={photo.url} className="self-start overflow-hidden border border-[#063760]/10 bg-[#f7f2e7] shadow-[0_20px_55px_rgba(6,55,96,0.16)]">
-                    <img src={photo.url} alt={photo.alt} loading="lazy" className="block h-auto w-full" />
-                    <figcaption className="border-t border-[#063760]/10 bg-white px-5 py-4 text-xs font-semibold leading-5 text-[#617986]">{photo.caption}</figcaption>
-                  </figure>
-                ))}
+              <div className="mt-8">
+                <div className="overflow-hidden border border-[#063760]/10 bg-[#f7f2e7] shadow-[0_20px_55px_rgba(6,55,96,0.16)]">
+                  <div className="grid grid-cols-2 gap-1 bg-[#fffdf8] p-1">
+                    {venueGalleryPages[venueGalleryPage].map((photo) => (
+                      <figure key={photo.url} className="aspect-square overflow-hidden bg-[#edf4f3]">
+                        <img src={photo.url} alt={photo.alt} loading="lazy" className="h-full w-full object-cover" />
+                      </figure>
+                    ))}
+                  </div>
+                </div>
+                <div className="mt-4 flex items-center justify-center gap-4">
+                  <button type="button" onClick={() => setVenueGalleryPage(venueGalleryPage - 1)} disabled={venueGalleryPage === 0} aria-label="Previous venue photographs" className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#063760]/15 bg-white text-[#063760] shadow-sm transition hover:border-[#d3a725] hover:text-[#ad8618] disabled:cursor-not-allowed disabled:opacity-35 focus:outline-none focus:ring-4 focus:ring-[#d3a725]/25"><ChevronLeft className="h-4 w-4" /></button>
+                  <div className="flex items-center gap-2" aria-label="Venue photo groups">
+                    {venueGalleryPages.map((_, pageIndex) => (
+                      <button key={pageIndex} type="button" onClick={() => setVenueGalleryPage(pageIndex)} aria-label={`Show venue photo group ${pageIndex + 1}`} aria-current={venueGalleryPage === pageIndex ? "true" : undefined} className={`h-2.5 rounded-full transition-all focus:outline-none focus:ring-4 focus:ring-[#d3a725]/25 ${venueGalleryPage === pageIndex ? "w-8 bg-[#d3a725]" : "w-2.5 bg-[#063760]/20 hover:bg-[#063760]/45"}`} />
+                    ))}
+                  </div>
+                  <button type="button" onClick={() => setVenueGalleryPage(venueGalleryPage + 1)} disabled={venueGalleryPage === venueGalleryPages.length - 1} aria-label="Next venue photographs" className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#063760]/15 bg-white text-[#063760] shadow-sm transition hover:border-[#d3a725] hover:text-[#ad8618] disabled:cursor-not-allowed disabled:opacity-35 focus:outline-none focus:ring-4 focus:ring-[#d3a725]/25"><ChevronRight className="h-4 w-4" /></button>
+                </div>
               </div>
             </div>
           </div>

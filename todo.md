@@ -98,6 +98,9 @@
 - [x] Add concise visible captions for all eight Explore the Venue photographs
 - [x] Render the eight photographs as full cards matching the two primary Venue & Halls cards, with two cards per row on larger screens and one on narrow mobile screens
 - [x] Verify the unified venue-card layout on desktop and mobile, then save a WebDev checkpoint
+- [x] Replace the eight full captioned venue cards with two manual four-photo 2×2 collage pages
+- [x] Add accessible previous/next arrows and two page dots, with no automatic rotation
+- [x] Verify the compact venue gallery on desktop and mobile, then save a WebDev checkpoint
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks

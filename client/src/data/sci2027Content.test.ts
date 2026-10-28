@@ -91,25 +91,34 @@ describe("SCI 2027 public content", () => {
     expect(homeSource).toContain("identity.location.mapUrl");
   });
 
-  it("shows the eight supplied Conference Center gallery photographs as full captioned cards matching the primary venue cards", () => {
+  it("groups the eight supplied Conference Center photographs into two manual four-photo collage pages", () => {
     const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
     const venue = sci2027Content.identity.location;
     const venueGallery = (venue as typeof venue & {
-      venueGallery?: Array<{ source: string; url: string; alt: string; caption: string }>;
+      venueGallery?: Array<{ source: string; url: string; alt: string; caption?: string }>;
     }).venueGallery ?? [];
-    const galleryMapPosition = homeSource.indexOf("identity.location.venueGallery.map");
-    const gallerySnippet = homeSource.slice(galleryMapPosition - 500, galleryMapPosition + 1000);
+    const gallerySectionStart = homeSource.indexOf("Explore the Venue");
+    const gallerySectionEnd = homeSource.indexOf("</section>", gallerySectionStart);
+    const gallerySection = homeSource.slice(gallerySectionStart, gallerySectionEnd);
 
     expect(venueGallery).toHaveLength(8);
     expect(venueGallery.every((photo) => photo.source === "SCI 2027 venue photograph")).toBe(true);
     expect(venueGallery.every((photo) => photo.url.startsWith("https://") && photo.alt.length > 30)).toBe(true);
-    expect(venueGallery.every((photo) => typeof photo.caption === "string" && photo.caption.length > 24)).toBe(true);
-    expect(homeSource).toContain("Explore the Venue");
-    expect(homeSource).toContain("identity.location.venueGallery.map");
-    expect(gallerySnippet).toContain("grid gap-5 sm:grid-cols-2");
-    expect(gallerySnippet).not.toContain("lg:grid-cols-4");
-    expect(gallerySnippet).toContain("shadow-[0_20px_55px_rgba(6,55,96,0.16)]");
-    expect(gallerySnippet).toContain("{photo.caption}");
+    expect(venueGallery.every((photo) => !("caption" in photo))).toBe(true);
+    expect(homeSource).toContain('import { useState } from "react";');
+    expect(homeSource).toContain("identity.location.venueGallery.slice(0, 4)");
+    expect(homeSource).toContain("identity.location.venueGallery.slice(4, 8)");
+    expect(homeSource).toContain("const [venueGalleryPage, setVenueGalleryPage] = useState(0)");
+    expect(gallerySection).toContain("venueGalleryPages[venueGalleryPage]");
+    expect(gallerySection).toContain("grid-cols-2");
+    expect(gallerySection).toContain("aspect-square");
+    expect(gallerySection).toContain("object-cover");
+    expect(gallerySection).toContain('aria-label="Previous venue photographs"');
+    expect(gallerySection).toContain('aria-label="Next venue photographs"');
+    expect(gallerySection).toContain('aria-label={`Show venue photo group ${pageIndex + 1}`}');
+    expect(gallerySection).not.toContain("figcaption");
+    expect(gallerySection).not.toContain("{photo.caption}");
+    expect(gallerySection).not.toContain("setInterval");
   });
 
   it("ships a complete navy-and-gold SCI 2027 favicon and mobile icon package", () => {
