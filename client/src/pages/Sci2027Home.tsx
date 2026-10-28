@@ -175,10 +175,11 @@ export default function Sci2027Home() {
                 <h3 className="mt-3 font-serif text-3xl font-bold tracking-[-0.03em] text-[#063760] sm:text-4xl">A closer look at the Conference Center.</h3>
                 <p className="mt-4 text-base leading-7 text-[#617986]">A visual walk through the venue’s entrance, shared spaces, corridors and atrium.</p>
               </div>
-              <div className="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
+              <div className="mt-8 grid gap-5 sm:grid-cols-2">
                 {identity.location.venueGallery.map((photo) => (
-                  <figure key={photo.url} className="self-start overflow-hidden border border-[#063760]/10 bg-[#f7f2e7] shadow-sm">
+                  <figure key={photo.url} className="self-start overflow-hidden border border-[#063760]/10 bg-[#f7f2e7] shadow-[0_20px_55px_rgba(6,55,96,0.16)]">
                     <img src={photo.url} alt={photo.alt} loading="lazy" className="block h-auto w-full" />
+                    <figcaption className="border-t border-[#063760]/10 bg-white px-5 py-4 text-xs font-semibold leading-5 text-[#617986]">{photo.caption}</figcaption>
                   </figure>
                 ))}
               </div>

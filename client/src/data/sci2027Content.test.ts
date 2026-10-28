@@ -91,20 +91,25 @@ describe("SCI 2027 public content", () => {
     expect(homeSource).toContain("identity.location.mapUrl");
   });
 
-  it("shows the eight supplied Conference Center gallery photographs in an uncropped responsive venue gallery", () => {
+  it("shows the eight supplied Conference Center gallery photographs as full captioned cards matching the primary venue cards", () => {
     const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
     const venue = sci2027Content.identity.location;
     const venueGallery = (venue as typeof venue & {
-      venueGallery?: Array<{ source: string; url: string; alt: string }>;
+      venueGallery?: Array<{ source: string; url: string; alt: string; caption: string }>;
     }).venueGallery ?? [];
+    const galleryMapPosition = homeSource.indexOf("identity.location.venueGallery.map");
+    const gallerySnippet = homeSource.slice(galleryMapPosition - 500, galleryMapPosition + 1000);
 
     expect(venueGallery).toHaveLength(8);
     expect(venueGallery.every((photo) => photo.source === "SCI 2027 venue photograph")).toBe(true);
     expect(venueGallery.every((photo) => photo.url.startsWith("https://") && photo.alt.length > 30)).toBe(true);
+    expect(venueGallery.every((photo) => typeof photo.caption === "string" && photo.caption.length > 24)).toBe(true);
     expect(homeSource).toContain("Explore the Venue");
     expect(homeSource).toContain("identity.location.venueGallery.map");
-    expect(homeSource).toContain("grid-cols-2");
-    expect(homeSource).toContain("lg:grid-cols-4");
+    expect(gallerySnippet).toContain("grid gap-5 sm:grid-cols-2");
+    expect(gallerySnippet).not.toContain("lg:grid-cols-4");
+    expect(gallerySnippet).toContain("shadow-[0_20px_55px_rgba(6,55,96,0.16)]");
+    expect(gallerySnippet).toContain("{photo.caption}");
   });
 
   it("ships a complete navy-and-gold SCI 2027 favicon and mobile icon package", () => {

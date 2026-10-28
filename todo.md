@@ -94,7 +94,10 @@
 - [x] Render both Venue & Halls images in an equal-width desktop grid and single-column mobile stack, retaining captions below each image
 - [x] Create and host uncropped WebP derivatives of the eight supplied Conference Center gallery photographs
 - [x] Add an Explore the Venue gallery with four desktop columns and two mobile columns, retaining the original image proportions and no overlays
-- [ ] Save a WebDev checkpoint for the verified responsive Venue & Halls gallery
+- [x] Save a WebDev checkpoint for the verified responsive Venue & Halls gallery
+- [x] Add concise visible captions for all eight Explore the Venue photographs
+- [x] Render the eight photographs as full cards matching the two primary Venue & Halls cards, with two cards per row on larger screens and one on narrow mobile screens
+- [x] Verify the unified venue-card layout on desktop and mobile, then save a WebDev checkpoint
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks
