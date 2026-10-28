@@ -307,7 +307,29 @@ export default function Sci2027Home() {
         </section>
 
         <section className="bg-[#f7f2e7] py-16 md:py-20">
-          <div className="container grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center"><div><p className="sci-eyebrow">Distinguished patronage</p><h2 className="mt-4 font-serif text-3xl font-bold tracking-[-0.03em] text-[#063760] sm:text-4xl">An institutional meeting point for science and society.</h2><p className="mt-4 max-w-xl text-lg leading-8 text-[#617986]">Held under the patronage of Cairo University and the Faculty of Science.</p></div><div className="grid gap-3 sm:grid-cols-2">{sci2027Content.patronage.map((patron) => <div key={patron.name} className="border border-[#063760]/10 bg-white p-5"><Landmark className="h-5 w-5 text-[#ad8618]" /><p className="mt-5 text-sm font-extrabold leading-6 text-[#063760]">{patron.name}</p><p className="mt-1 text-xs leading-5 text-[#617986]">{patron.role}</p></div>)}</div></div>
+          <div className="container grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+            <div>
+              <p className="sci-eyebrow">Distinguished patronage</p>
+              <h2 className="mt-4 font-serif text-3xl font-bold tracking-[-0.03em] text-[#063760] sm:text-4xl">An institutional meeting point for science and society.</h2>
+              <p className="mt-4 max-w-xl text-lg leading-8 text-[#617986]">Held under the patronage of Cairo University and the Faculty of Science.</p>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {sci2027Content.patronage.map((patron) => (
+                <article key={patron.name} className="border border-[#063760]/10 bg-white p-4 shadow-sm">
+                  <div className="flex items-center gap-4">
+                    <div className="aspect-[4/5] w-20 shrink-0 overflow-hidden border-2 border-[#d3a725]/55 bg-[#edf4f3] shadow-sm">
+                      <img src={patron.photo.url} alt={patron.photo.alt} loading="lazy" className="h-full w-full object-cover object-center" />
+                    </div>
+                    <div className="min-w-0">
+                      <Landmark className="h-5 w-5 text-[#ad8618]" />
+                      <p className="mt-3 text-sm font-extrabold leading-6 text-[#063760]">{patron.name}</p>
+                      <p className="mt-1 text-xs leading-5 text-[#617986]">{patron.role}</p>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
         </section>
 
         <section className="py-14"><div className="container"><Link href="/archive-2026" className="group flex flex-col justify-between gap-6 border border-[#063760]/15 bg-white px-6 py-6 shadow-sm transition hover:border-[#d3a725] hover:shadow-lg md:flex-row md:items-center md:px-8"><div className="flex items-start gap-4"><Rocket className="mt-0.5 h-6 w-6 shrink-0 text-[#ad8618]" /><div><p className="text-sm font-extrabold text-[#063760]">{sci2027Content.archive.title.en}</p><p className="mt-1 max-w-2xl text-sm leading-6 text-[#617986]">{sci2027Content.archive.description.en}</p></div></div><span className="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.12em] text-[#063760]">Open archive <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></span></Link></div></section>

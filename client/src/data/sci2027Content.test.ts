@@ -155,6 +155,24 @@ describe("SCI 2027 public content", () => {
     expect(sci2027Content.contact.email).toBe(sci2027Content.sponsorship.contactEmail);
   });
 
+  it("renders consistent professional portraits for both Distinguished Patronage cards", () => {
+    const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
+    const portraits = sci2027Content.patronage.map((patron) => patron.photo).filter(Boolean);
+
+    expect(sci2027Content.patronage).toHaveLength(2);
+    expect(portraits).toHaveLength(2);
+    expect(portraits.every((photo) => photo.url.startsWith("https://"))).toBe(true);
+    expect(portraits.every((photo) => photo.alt.length > 20)).toBe(true);
+    expect(sci2027Content.patronage.map((patron) => patron.name)).toEqual([
+      "Prof. Mohamed Sami Abdel-Sadek",
+      "Prof. Sohair Ramadan Fahmy",
+    ]);
+    expect(homeSource).toContain("patron.photo.url");
+    expect(homeSource).toContain("patron.photo.alt");
+    expect(homeSource).toContain("aspect-[4/5]");
+    expect(homeSource).toContain("object-cover");
+  });
+
   it("provides the official Conference Organization Unit description, objectives and external Faculty links", () => {
     const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
     const unit = sci2027Content.conferenceOrganizationUnit;

@@ -124,12 +124,20 @@ export const sci2027Content = {
       nameAr: "الأستاذ الدكتور محمد سامي عبد الصادق",
       role: "President of Cairo University",
       roleAr: "رئيس جامعة القاهرة",
+      photo: {
+        url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/DgwzbMEqKBEXBlYI.webp",
+        alt: "Prof. Mohamed Sami Abdel-Sadek, President of Cairo University.",
+      },
     },
     {
       name: "Prof. Sohair Ramadan Fahmy",
       nameAr: "الأستاذ الدكتور سهير رمضان فهمي",
       role: "Dean of the Faculty of Science, Cairo University",
       roleAr: "عميد كلية العلوم، جامعة القاهرة",
+      photo: {
+        url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/bMRokNwXdByfPRny.webp",
+        alt: "Prof. Sohair Ramadan Fahmy, Dean of the Faculty of Science, Cairo University.",
+      },
     },
   ],
   organizer: {
