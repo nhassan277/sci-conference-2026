@@ -186,6 +186,23 @@ describe("SCI 2027 public content", () => {
     expect(source).not.toContain("autoPlay");
   });
 
+  it("replaces public SCI 2026 certificate access with an interactive conference-moments archive gallery", () => {
+    const archiveSource = readFileSync(projectPath("client/src/pages/Sci2026Archive.tsx"), "utf8");
+    const appSource = readFileSync(projectPath("client/src/App.tsx"), "utf8");
+
+    expect(sci2027Content.archive.description.en).not.toContain("certificate");
+    expect("certificateUrl" in sci2027Content.archive).toBe(false);
+    expect(archiveSource).toContain("SCI 2026 in Moments");
+    expect(archiveSource).toContain("GALLERY_PHOTOS");
+    expect(archiveSource).toContain("featuredGalleryIndices");
+    expect(archiveSource).toContain("setSelectedPhoto");
+    expect(archiveSource).toContain('href="/live-gallery"');
+    expect(archiveSource).not.toContain("Certificate requests");
+    expect(archiveSource).not.toContain("certificate-request");
+    expect(appSource).not.toContain("CertificateRequest");
+    expect(appSource).not.toContain('path={"/certificate-request"}');
+  });
+
   it("renders the current SCI 2027 public experience in English only", () => {
     for (const file of englishOnlyPublicFiles) {
       const source = readFileSync(projectPath(file), "utf8");

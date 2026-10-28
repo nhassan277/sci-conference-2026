@@ -28,6 +28,9 @@
 - [x] Expand all six SCI 2027 tracks to ten balanced English-only specialties covering core and applied areas
 - [x] Render every specialty directly in the homepage track cards without truncation or hidden lists
 - [x] Verify and checkpoint the expanded SCI 2027 track-specialties update
+- [x] Remove public SCI 2026 certificate-request access while preserving administrative records and internal tooling
+- [x] Add an English-only SCI 2026 in Moments archive gallery using curated real conference photos with full-size viewing
+- [ ] Verify and checkpoint the SCI 2026 archive gallery update
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks

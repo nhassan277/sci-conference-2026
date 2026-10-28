@@ -34,7 +34,6 @@ import VolunteerManagement from "./pages/admin/VolunteerManagement";
 import AnnouncementsManagement from "./pages/admin/AnnouncementsManagement";
 import WorkshopGEE from "./pages/WorkshopGEE";
 import LiveGallery from "./pages/LiveGallery";
-import CertificateRequest from "./pages/CertificateRequest";
 // import GalleryUpload from "./pages/GalleryUpload";
 
 
@@ -73,7 +72,6 @@ function Router() {
       <Route path={"/admin/announcements"} component={AnnouncementsManagement} />
       <Route path={"/workshop/gee-remote-sensing"} component={WorkshopGEE} />
       <Route path={"/live-gallery"} component={LiveGallery} />
-      <Route path={"/certificate-request"} component={CertificateRequest} />
       {/* <Route path={"/gallery-upload"} component={GalleryUpload} /> */}
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}

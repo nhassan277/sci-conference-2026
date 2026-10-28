@@ -547,10 +547,9 @@ export const sci2027Content = {
   archive: {
     title: { en: "SCI 2026 archive", ar: "أرشيف SCI 2026" },
     description: {
-      en: "Looking for the 2026 conference photos or certificate services? They remain available in the archived area.",
-      ar: "هل تبحث عن صور مؤتمر 2026 أو خدمات الشهادات؟ ما زالت متاحة في منطقة الأرشيف.",
+      en: "Explore the SCI 2026 conference archive and revisit the people, research, collaboration and shared moments that shaped the event.",
+      ar: "استكشف أرشيف مؤتمر SCI 2026 واستعد الأشخاص والبحث والتعاون واللحظات المشتركة التي صنعت الفعالية.",
     },
     galleryUrl: "/live-gallery",
-    certificateUrl: "/certificate-request",
   },
 } as const;
