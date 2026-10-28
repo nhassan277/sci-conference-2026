@@ -77,7 +77,7 @@ export default function Sci2027Home() {
               </div>
 
               <div className="mt-8 flex items-center gap-4">
-                <img src={assets.sci2027Logo} alt="SCI 2027 logo" className="h-16 w-16 rounded-full border border-white/15 object-cover shadow-2xl sm:h-20 sm:w-20" />
+                <img src={assets.sci2027Logo} alt="SCI 2027 logo" className="h-16 w-16 rounded-full border border-white/25 bg-white p-1.5 object-contain shadow-2xl sm:h-20 sm:w-20" />
                 <div className="h-px w-12 bg-[#e5bd4a]" />
                 <p className="text-sm font-bold text-[#e5bd4a]">The 1st International Conference of the Faculty of Science, Cairo University</p>
               </div>

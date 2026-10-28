@@ -207,6 +207,25 @@ describe("SCI 2027 public content", () => {
     expect(homeSource).toContain("rounded-[1.75rem]");
   });
 
+  it("shows the complete SCI 2027 mark inside padded white circular treatments without cropping", () => {
+    const logoSources = [
+      { source: readFileSync(projectPath("client/src/components/Sci2027Header.tsx"), "utf8"), reference: "sci2027Content.assets.sci2027Logo" },
+      { source: readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8"), reference: "assets.sci2027Logo" },
+      { source: readFileSync(projectPath("client/src/components/Sci2027Footer.tsx"), "utf8"), reference: "sci2027Content.assets.sci2027Logo" },
+    ];
+
+    for (const { source, reference } of logoSources) {
+      const logoLine = source.split("\n").find((line) => line.includes(`src={${reference}}`)) ?? "";
+
+      expect(logoLine).toContain(reference);
+      expect(logoLine).toContain("rounded-full");
+      expect(logoLine).toContain("bg-white");
+      expect(logoLine).toContain("p-1");
+      expect(logoLine).toContain("object-contain");
+      expect(logoLine).not.toContain("object-cover");
+    }
+  });
+
   it("provides four hosted SCI 2027 promotional videos with poster frames and verified gallery details", () => {
     expect(sci2027Content.videos).toHaveLength(4);
     expect(sci2027Content.videos.every((video) => video.url.startsWith("https://"))).toBe(true);

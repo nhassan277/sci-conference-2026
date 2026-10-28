@@ -21,7 +21,7 @@ export default function Sci2027Header() {
     <header className="sticky top-0 z-50 border-b border-[#0a4065]/10 bg-[#fffdf8]/92 backdrop-blur-xl">
       <div className="container flex h-[76px] items-center justify-between gap-4">
         <Link href="/" className="flex min-w-0 items-center gap-3" aria-label="SCI 2027 home">
-          <img src={sci2027Content.assets.sci2027Logo} alt="SCI 2027" className="h-11 w-11 shrink-0 rounded-full object-cover" />
+          <img src={sci2027Content.assets.sci2027Logo} alt="SCI 2027" className="h-11 w-11 shrink-0 rounded-full border border-[#063760]/10 bg-white p-1 object-contain" />
           <div className="min-w-0 leading-tight"><p className="font-sans text-[10px] font-bold uppercase tracking-[0.18em] text-[#ad8618]">Cairo University · Faculty of Science</p><p className="font-serif text-lg font-bold text-[#063760] sm:text-xl">SCI 2027</p></div>
         </Link>
 
