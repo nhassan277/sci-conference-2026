@@ -34,6 +34,9 @@
 - [x] Add an English-only Conference Organization Unit section from the official Faculty source, with its mission and four published objectives
 - [x] Add external Faculty website and official Unit-information links, without publishing unit contacts or member profiles before approval
 - [x] Verify and checkpoint the Conference Organization Unit homepage update
+- [x] Add the seven published Conference Organization Unit members, departments, roles and concise English responsibility summaries
+- [x] Replace the Meet the Unit placeholder with an English-only responsive text-card roster, without portraits or personal contacts
+- [ ] Verify and checkpoint the Conference Organization Unit members update
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks

@@ -150,7 +150,7 @@ describe("SCI 2027 public content", () => {
     ]);
     expect(unit.facultyUrl).toBe("https://scicu.net/");
     expect(unit.unitUrl).toBe("https://scicu.net/Important%20Links/conference-organization");
-    expect(unit.memberStatus).toBe("Meet the Unit: member profiles and responsibilities will be introduced soon.");
+    expect("memberStatus" in unit).toBe(false);
     expect(homeSource).toContain("conferenceOrganizationUnit");
     expect(homeSource).toContain("Visit the Faculty of Science Website");
     expect(homeSource).toContain("Learn More About the Unit");
@@ -158,6 +158,35 @@ describe("SCI 2027 public content", () => {
     expect(homeSource).toContain('rel="noreferrer"');
     expect(homeSource).not.toContain("info@sci.cu.edu.eg");
     expect(homeSource).not.toContain("+20 2 3567 6000");
+  });
+
+  it("publishes the seven approved Conference Organization Unit roles without meeting-record or contact details", () => {
+    const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
+    const unit = sci2027Content.conferenceOrganizationUnit;
+
+    expect(unit.members).toHaveLength(7);
+    expect(unit.members.map((member) => `${member.name} | ${member.role}`)).toEqual([
+      "Prof. Walid Ali Rahouma | Director of the Unit",
+      "Prof. Mohamed Qarny Ismail | Secretary of the Unit",
+      "Prof. Nahla Osama Mohamed Moussa | Scientific Programme Lead",
+      "Prof. Heba Mohamed Fahmy | Registration, Operations & Logistics Lead",
+      "Prof. Rania Ali Hassan | Media & Marketing Lead",
+      "Prof. Rasha Mohamed El-Nashar | Public Relations Lead",
+      "Dr. Nourhan Yehia Mostafa Hassan | Sponsorship & Funding Lead",
+    ]);
+    expect(unit.members.every((member) => member.department.length > 0 && member.summary.length > 0)).toBe(true);
+    expect(homeSource).toContain("Meet the Unit");
+    expect(homeSource).toContain("conferenceOrganizationUnit.members.map");
+    expect(homeSource).not.toContain("memberStatus");
+    expect(homeSource).not.toMatch(/info@sci\.cu\.edu\.eg|\+20 2 3567 6000|13 September 2026/u);
+    expect(homeSource).not.toContain("<img src={member");
+  });
+
+  it("uses the same approved spelling for the Unit Director in the conference introduction and Unit roster", () => {
+    const director = sci2027Content.conferenceOrganizationUnit.members[0];
+
+    expect(director.name).toBe("Prof. Walid Ali Rahouma");
+    expect(sci2027Content.organizer.head.en).toBe("Unit Head: Prof. Walid Ali Rahouma");
   });
 
   it("provides four hosted SCI 2027 promotional videos with poster frames and verified gallery details", () => {
