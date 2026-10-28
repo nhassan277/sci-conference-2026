@@ -530,6 +530,8 @@ export const sci2027Content = {
     description: "Researchers participating in SCI 2027 who are interested in publishing their research in the Global Journal of Scientific Research (GJSR) may explore the journal’s scope and submission information.",
     ctaLabel: "Visit Global Journal of Scientific Research",
     notice: "Publication is subject to the journal’s editorial and peer-review process.",
+    feeCalloutLabel: "Optional publication fee",
+    paymentDetailsLinkLabel: "View payment details",
     url: "https://gjsr.journals.ekb.eg",
   },
   programme: [
@@ -639,6 +641,7 @@ export const sci2027Content = {
       title: "Optional publication fee",
       amount: "EGP 2,000",
       description: "Additional to conference registration and payable only after the journal accepts the manuscript for publication.",
+      publicationOpportunityLinkLabel: "Learn about the publication opportunity",
       additionalToRegistration: true,
       payableAfterJournalAcceptance: true,
     },

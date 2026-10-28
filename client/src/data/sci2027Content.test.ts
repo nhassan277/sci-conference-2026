@@ -82,6 +82,26 @@ describe("SCI 2027 public content", () => {
     expect(homeSource).toContain('rel="noreferrer"');
   });
 
+  it("connects the optional publication fee bidirectionally with the GJSR opportunity and payment details", () => {
+    const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
+    const publication = sci2027Content.publicationOpportunity;
+    const fee = sci2027Content.registrationFees.publicationFee;
+
+    expect(publication.feeCalloutLabel).toBe("Optional publication fee");
+    expect(publication.paymentDetailsLinkLabel).toBe("View payment details");
+    expect(fee.publicationOpportunityLinkLabel).toBe("Learn about the publication opportunity");
+    expect(fee.amount).toBe("EGP 2,000");
+    expect(fee.additionalToRegistration).toBe(true);
+    expect(fee.payableAfterJournalAcceptance).toBe(true);
+    expect(homeSource).toContain('id="publication-opportunity"');
+    expect(homeSource).toContain('id="registration-fees"');
+    expect(homeSource).toContain('href="#publication-opportunity"');
+    expect(homeSource).toContain('href="#registration-fees"');
+    expect(homeSource).toContain("registrationFees.publicationFee.amount");
+    expect(homeSource).toContain("registrationFees.publicationFee.description");
+    expect(homeSource).toContain('href={publicationOpportunity.url}');
+  });
+
   it("provides the approved SCI 2027 registration fees and CBE payment-confirmation instructions", () => {
     const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
     const fees = sci2027Content.registrationFees;

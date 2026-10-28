@@ -269,7 +269,7 @@ export default function Sci2027Home() {
           </div>
         </section>
 
-        <section className="border-y border-[#d3a725]/25 bg-[#062f52] py-16 text-white md:py-20">
+        <section id="publication-opportunity" className="scroll-mt-24 border-y border-[#d3a725]/25 bg-[#062f52] py-16 text-white md:py-20">
           <div className="container grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <div>
               <div className="inline-flex items-center gap-3 text-[#f0ca57]"><FileText className="h-5 w-5" /><p className="text-xs font-bold uppercase tracking-[0.2em]">{publicationOpportunity.title}</p></div>
@@ -279,6 +279,12 @@ export default function Sci2027Home() {
             <aside className="border border-white/15 bg-white/[0.06] p-6 sm:p-8">
               <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#f0ca57]">For participating researchers</p>
               <p className="mt-4 border-l-2 border-[#e5bd4a] pl-4 text-sm leading-6 text-[#dbe8ec]">{publicationOpportunity.notice}</p>
+              <div className="mt-6 border border-[#e5bd4a]/45 bg-[#e5bd4a]/10 p-4">
+                <p className="text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#f0ca57]">{publicationOpportunity.feeCalloutLabel}</p>
+                <p className="mt-2 font-serif text-3xl font-bold text-white">{registrationFees.publicationFee.amount}</p>
+                <p className="mt-3 text-xs leading-5 text-[#dbe8ec]">{registrationFees.publicationFee.description}</p>
+                <a href="#registration-fees" className="mt-4 inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.11em] text-[#f0ca57] underline decoration-[#f0ca57]/50 underline-offset-4 transition hover:text-white">{publicationOpportunity.paymentDetailsLinkLabel} <ArrowDown className="h-3.5 w-3.5" /></a>
+              </div>
               <a href={publicationOpportunity.url} target="_blank" rel="noreferrer" className="mt-7 inline-flex items-center gap-2 rounded-full bg-[#e5bd4a] px-5 py-3 text-sm font-extrabold uppercase tracking-[0.1em] text-[#062f52] transition hover:-translate-y-0.5 hover:bg-[#f5d670]">{publicationOpportunity.ctaLabel} <ArrowUpRight className="h-4 w-4" /></a>
             </aside>
           </div>
@@ -325,7 +331,7 @@ export default function Sci2027Home() {
           </div>
         </section>
 
-        <section className="border-y border-[#d3a725]/25 bg-[#062f52] py-20 text-white md:py-28">
+        <section id="registration-fees" className="scroll-mt-24 border-y border-[#d3a725]/25 bg-[#062f52] py-20 text-white md:py-28">
           <div className="container">
             <div className="grid gap-8 lg:grid-cols-[0.88fr_1.12fr] lg:items-end">
               <div>
@@ -342,6 +348,7 @@ export default function Sci2027Home() {
               <article className="border border-[#d3a725]/45 bg-[#f8f3e7] p-6 text-[#063760] sm:p-8">
                 <div className="flex items-start justify-between gap-5"><div><p className="text-xs font-bold uppercase tracking-[0.16em] text-[#ad8618]">{registrationFees.publicationFee.title}</p><p className="mt-4 font-serif text-4xl font-bold">{registrationFees.publicationFee.amount}</p></div><FileText className="h-7 w-7 shrink-0 text-[#ad8618]" /></div>
                 <p className="mt-5 text-sm leading-7 text-[#456374]">{registrationFees.publicationFee.description}</p>
+                <a href="#publication-opportunity" className="mt-6 inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.11em] text-[#063760] underline decoration-[#d3a725] decoration-2 underline-offset-4 transition hover:text-[#ad8618]">{registrationFees.publicationFee.publicationOpportunityLinkLabel} <ArrowUpRight className="h-3.5 w-3.5" /></a>
               </article>
 
               <article className="border border-white/15 bg-white/[0.06] p-6 sm:p-8">
