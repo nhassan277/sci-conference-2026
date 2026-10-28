@@ -33,7 +33,7 @@
 - [x] Verify and checkpoint the SCI 2026 archive gallery update
 - [x] Add an English-only Conference Organization Unit section from the official Faculty source, with its mission and four published objectives
 - [x] Add external Faculty website and official Unit-information links, without publishing unit contacts or member profiles before approval
-- [ ] Verify and checkpoint the Conference Organization Unit homepage update
+- [x] Verify and checkpoint the Conference Organization Unit homepage update
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks
