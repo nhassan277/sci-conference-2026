@@ -104,6 +104,9 @@
 - [x] Merge the Venue & Halls and Explore the Venue copy into one concise section
 - [x] Remove the two large primary venue figures from the homepage and retain the eight-photo carousel only
 - [x] Verify the unified venue section and manual carousel on desktop and mobile, then save a WebDev checkpoint
+- [x] Replace the central English brochure URL with the public Google Drive direct-download endpoint
+- [x] Verify homepage, programme and footer resolve through the new central English brochure URL while Arabic remains unchanged
+- [x] Verify the direct endpoint, tests, typecheck and build, then save a WebDev checkpoint
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks
