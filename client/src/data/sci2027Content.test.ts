@@ -44,6 +44,44 @@ describe("SCI 2027 public content", () => {
     expect(sci2027Content.sourceNote).not.toContain("SCI 2026");
   });
 
+  it("ships a complete navy-and-gold SCI 2027 favicon and mobile icon package", () => {
+    const indexSource = readFileSync(projectPath("client/index.html"), "utf8");
+    const iconDirectory = projectPath("client/public/sci-2027/icons");
+    const manifestPath = `${iconDirectory}/site.webmanifest`;
+    const iconFiles = [
+      "favicon.ico",
+      "favicon-16.png",
+      "favicon-32.png",
+      "apple-touch-icon.png",
+      "icon-192.png",
+      "icon-512.png",
+    ];
+
+    for (const iconFile of iconFiles) {
+      expect(existsSync(`${iconDirectory}/${iconFile}`)).toBe(true);
+    }
+
+    expect(existsSync(manifestPath)).toBe(true);
+    const manifest = existsSync(manifestPath)
+      ? JSON.parse(readFileSync(manifestPath, "utf8"))
+      : null;
+    expect(manifest).toMatchObject({
+      name: "SCI 2027 | Science at the Core of Innovation",
+      short_name: "SCI 2027",
+      theme_color: "#062f52",
+      background_color: "#062f52",
+    });
+    expect(manifest?.icons).toEqual(expect.arrayContaining([
+      expect.objectContaining({ src: "/sci-2027/icons/icon-192.png", sizes: "192x192" }),
+      expect.objectContaining({ src: "/sci-2027/icons/icon-512.png", sizes: "512x512" }),
+    ]));
+    expect(indexSource).toContain('/sci-2027/icons/favicon-32.png');
+    expect(indexSource).toContain('/sci-2027/icons/apple-touch-icon.png');
+    expect(indexSource).toContain('/sci-2027/icons/site.webmanifest');
+    expect(indexSource).toContain('/sci-2027/icons/favicon.ico');
+    expect(indexSource).toContain('name="theme-color" content="#062f52"');
+  });
+
   it("uses the final hosted English brochure while retaining the Arabic brochure and removing the retired English asset", () => {
     const retiredEnglishBrochure = projectPath(
       "client/public/sci-2027/documents/SCI2027-Trifold-Brochure-EN.pdf",

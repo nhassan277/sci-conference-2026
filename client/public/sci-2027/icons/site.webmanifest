@@ -1,0 +1,23 @@
+{
+  "name": "SCI 2027 | Science at the Core of Innovation",
+  "short_name": "SCI 2027",
+  "description": "The 1st International Conference of the Faculty of Science, Cairo University.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#062f52",
+  "theme_color": "#062f52",
+  "icons": [
+    {
+      "src": "/sci-2027/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/sci-2027/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
