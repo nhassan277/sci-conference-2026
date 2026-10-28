@@ -66,7 +66,9 @@
 - [x] Save a WebDev checkpoint for the verified Distinguished Patronage portrait update
 - [x] Move Distinguished Patronage, with its current portraits and cards, directly after the SCI 2027 Hero
 - [x] Remove the white logo container and enlarge the direct Conference Organization Unit logo beside its existing title
-- [ ] Save a WebDev checkpoint for the verified patronage-order and Unit-logo treatment update
+- [x] Save a WebDev checkpoint for the verified patronage-order and Unit-logo treatment update
+- [x] Add the approved Global Journal of Scientific Research publication-opportunity card after Scientific Tracks
+- [ ] Verify the journal link, editorial notice, responsive section order, and save a WebDev checkpoint
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks

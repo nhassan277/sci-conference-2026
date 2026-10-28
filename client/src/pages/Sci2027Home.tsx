@@ -64,7 +64,7 @@ const registrationCardStyles = [
 const registrationAccentStyles = ["text-[#f0ca57]", "text-[#ad8618]", "text-[#0d638b]"] as const;
 
 export default function Sci2027Home() {
-  const { identity, assets, speakers, sponsorship, workshopProgramme, conferenceOrganizationUnit } = sci2027Content;
+  const { identity, assets, speakers, sponsorship, workshopProgramme, conferenceOrganizationUnit, publicationOpportunity } = sci2027Content;
   const featuredVideo = sci2027Content.videos.find((video) => video.featured) ?? sci2027Content.videos[0];
 
   return (
@@ -266,6 +266,21 @@ export default function Sci2027Home() {
                 </article>
               ))}
             </div>
+          </div>
+        </section>
+
+        <section className="border-y border-[#d3a725]/25 bg-[#062f52] py-16 text-white md:py-20">
+          <div className="container grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+            <div>
+              <div className="inline-flex items-center gap-3 text-[#f0ca57]"><FileText className="h-5 w-5" /><p className="text-xs font-bold uppercase tracking-[0.2em]">{publicationOpportunity.title}</p></div>
+              <h2 className="mt-5 max-w-2xl font-serif text-4xl font-bold leading-[1.04] tracking-[-0.035em] sm:text-5xl">{publicationOpportunity.journalName}</h2>
+              <p className="mt-6 max-w-2xl text-base leading-7 text-[#c1d3dc] sm:text-lg">{publicationOpportunity.description}</p>
+            </div>
+            <aside className="border border-white/15 bg-white/[0.06] p-6 sm:p-8">
+              <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#f0ca57]">For participating researchers</p>
+              <p className="mt-4 border-l-2 border-[#e5bd4a] pl-4 text-sm leading-6 text-[#dbe8ec]">{publicationOpportunity.notice}</p>
+              <a href={publicationOpportunity.url} target="_blank" rel="noreferrer" className="mt-7 inline-flex items-center gap-2 rounded-full bg-[#e5bd4a] px-5 py-3 text-sm font-extrabold uppercase tracking-[0.1em] text-[#062f52] transition hover:-translate-y-0.5 hover:bg-[#f5d670]">{publicationOpportunity.ctaLabel} <ArrowUpRight className="h-4 w-4" /></a>
+            </aside>
           </div>
         </section>
 

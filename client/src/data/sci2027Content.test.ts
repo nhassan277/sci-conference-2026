@@ -59,6 +59,29 @@ describe("SCI 2027 public content", () => {
     expect(homeSource).not.toContain("track.topics.slice(0, 3)");
   });
 
+  it("offers the approved Global Journal of Scientific Research publication opportunity after Scientific Tracks", () => {
+    const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
+    const publication = sci2027Content.publicationOpportunity;
+
+    if (!publication) {
+      expect(publication).toBeDefined();
+      return;
+    }
+
+    expect(publication.title).toBe("Publication Opportunity");
+    expect(publication.journalName).toBe("Global Journal of Scientific Research (GJSR)");
+    expect(publication.url).toBe("https://gjsr.journals.ekb.eg");
+    expect(publication.description).toBe("Researchers participating in SCI 2027 who are interested in publishing their research in the Global Journal of Scientific Research (GJSR) may explore the journal’s scope and submission information.");
+    expect(publication.ctaLabel).toBe("Visit Global Journal of Scientific Research");
+    expect(publication.notice).toBe("Publication is subject to the journal’s editorial and peer-review process.");
+    const publicationCardPosition = homeSource.indexOf("publicationOpportunity.title");
+    expect(publicationCardPosition).toBeGreaterThan(homeSource.indexOf("Scientific tracks"));
+    expect(publicationCardPosition).toBeLessThan(homeSource.indexOf("Programme & workshops"));
+    expect(homeSource).toContain('href={publicationOpportunity.url}');
+    expect(homeSource).toContain('target="_blank"');
+    expect(homeSource).toContain('rel="noreferrer"');
+  });
+
   it("uses real licensed photography for every track, the Unit and partnerships without sacrificing text-safe rendering", () => {
     const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
     const sponsorshipSource = readFileSync(projectPath("client/src/pages/Sci2027Sponsorship.tsx"), "utf8");

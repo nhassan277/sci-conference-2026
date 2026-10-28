@@ -506,6 +506,14 @@ export const sci2027Content = {
       ar: "سيُعلن رابط التقديم الرسمي للملخصات عبر القنوات الرسمية لمؤتمر SCI 2027.",
     },
   },
+  publicationOpportunity: {
+    title: "Publication Opportunity",
+    journalName: "Global Journal of Scientific Research (GJSR)",
+    description: "Researchers participating in SCI 2027 who are interested in publishing their research in the Global Journal of Scientific Research (GJSR) may explore the journal’s scope and submission information.",
+    ctaLabel: "Visit Global Journal of Scientific Research",
+    notice: "Publication is subject to the journal’s editorial and peer-review process.",
+    url: "https://gjsr.journals.ekb.eg",
+  },
   programme: [
     {
       date: "6 April 2027",
