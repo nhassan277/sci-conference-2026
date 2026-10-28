@@ -74,7 +74,9 @@
 - [x] Replace the Call for Abstracts copy and route submissions through the approved Speaker and Student Research forms
 - [x] Verify the no-deadline abstract call, both submission actions, responsive rendering, and save a WebDev checkpoint
 - [x] Link the optional publication fee bidirectionally with the Global Journal of Scientific Research opportunity and payment details
-- [ ] Verify the publication-fee anchors, conditional wording, responsive hierarchy, and save a WebDev checkpoint
+- [x] Verify the publication-fee anchors, conditional wording, responsive hierarchy, and save a WebDev checkpoint
+- [x] Add the official SCI 2027 YouTube channel as a safe external action in the footer and videos page
+- [ ] Verify the YouTube link, new-tab behavior, responsive presentation, and save a WebDev checkpoint
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks

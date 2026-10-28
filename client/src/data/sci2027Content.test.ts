@@ -44,6 +44,30 @@ describe("SCI 2027 public content", () => {
     expect(sci2027Content.sourceNote).not.toContain("SCI 2026");
   });
 
+  it("links the official SCI 2027 YouTube channel from the footer and videos page in a new tab", () => {
+    const footerSource = readFileSync(projectPath("client/src/components/Sci2027Footer.tsx"), "utf8");
+    const videosSource = readFileSync(projectPath("client/src/pages/Sci2027Videos.tsx"), "utf8");
+
+    if (!("youtube" in sci2027Content.contact)) {
+      expect("youtube" in sci2027Content.contact).toBe(true);
+      return;
+    }
+
+    expect(sci2027Content.contact.youtube).toEqual({
+      url: "https://www.youtube.com/@SCI2027",
+      label: "Follow SCI 2027 on YouTube",
+      description: "Conference updates, highlights and official videos",
+    });
+    expect(footerSource).toContain("contact.youtube.url");
+    expect(videosSource).toContain("contact.youtube.url");
+    expect(footerSource).toContain("Youtube");
+    expect(videosSource).toContain("Youtube");
+    expect(footerSource).toContain('target="_blank"');
+    expect(footerSource).toContain('rel="noreferrer"');
+    expect(videosSource).toContain('target="_blank"');
+    expect(videosSource).toContain('rel="noreferrer"');
+  });
+
   it("provides ten balanced specialties for every track and renders the full lists directly", () => {
     const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
 

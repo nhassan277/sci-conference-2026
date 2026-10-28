@@ -749,6 +749,11 @@ export const sci2027Content = {
     email: "sci.conf.2027@gmail.com",
     website: "www.scicu.net",
     facebook: "facebook.com/SCI2027",
+    youtube: {
+      url: "https://www.youtube.com/@SCI2027",
+      label: "Follow SCI 2027 on YouTube",
+      description: "Conference updates, highlights and official videos",
+    },
   },
   archive: {
     title: { en: "SCI 2026 archive", ar: "أرشيف SCI 2026" },

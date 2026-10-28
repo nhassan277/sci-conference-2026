@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowUpRight, Clapperboard, Clock3, Play, Volume2, X } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Clapperboard, Clock3, Play, Volume2, X, Youtube } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "wouter";
 import Sci2027Footer from "@/components/Sci2027Footer";
@@ -24,6 +24,7 @@ function VideoMeta({ video }: { video: PromoVideo }) {
 
 export default function Sci2027Videos() {
   const [selectedVideo, setSelectedVideo] = useState<PromoVideo | null>(null);
+  const { contact } = sci2027Content;
   const featuredVideo = sci2027Content.videos.find((video) => video.featured) ?? sci2027Content.videos[0];
   const remainingVideos = sci2027Content.videos.filter((video) => video.id !== featuredVideo.id);
 
@@ -56,6 +57,8 @@ export default function Sci2027Videos() {
               <Clapperboard className="h-7 w-7 text-[#f0ca57]" />
               <p className="mt-6 font-serif text-2xl font-bold leading-tight">Watch on your terms.</p>
               <p className="mt-3 text-sm leading-7 text-[#c1d3dc]">Choose any film to open an in-page player with native playback controls. Videos never start automatically.</p>
+              <a href={contact.youtube.url} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 rounded-full border border-[#e5bd4a]/60 px-4 py-2.5 text-xs font-extrabold uppercase tracking-[0.1em] text-[#f0ca57] transition hover:-translate-y-0.5 hover:border-[#f0ca57] hover:bg-white/10 hover:text-white"><Youtube className="h-4 w-4" />{contact.youtube.label}</a>
+              <p className="mt-3 text-xs leading-5 text-[#b9ccd7]">{contact.youtube.description}</p>
             </div>
           </div>
         </section>
