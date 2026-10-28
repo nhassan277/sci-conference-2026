@@ -65,29 +65,46 @@ describe("SCI 2027 public content", () => {
     }
   });
 
-  it("shows the supplied Conference Center halls photograph in a Venue & Halls section after patronage", () => {
+  it("shows both supplied Conference Center composites in a responsive Venue & Halls section after patronage", () => {
     const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
     const venue = sci2027Content.identity.location;
-    const venueVisual = (venue as typeof venue & {
-      venueVisual?: { source: string; caption: string; url: string; alt: string };
-    }).venueVisual;
+    const venueVisuals = (venue as typeof venue & {
+      venueVisuals?: Array<{ source: string; caption: string; url: string; alt: string }>;
+    }).venueVisuals ?? [];
     const patronagePosition = homeSource.indexOf("Distinguished patronage");
     const venuePosition = homeSource.indexOf('id="venue"');
     const introductionPosition = homeSource.indexOf("Science, partnership and impact");
 
-    expect(venueVisual).toMatchObject({
-      source: "SCI 2027 venue photograph",
-      caption: "Main auditorium and meeting facilities at the Conference Center - Cairo University.",
-    });
-    expect(venueVisual?.url).toMatch(/^https:\/\//);
-    expect(venueVisual?.alt.length).toBeGreaterThan(30);
+    expect(venueVisuals).toHaveLength(2);
+    expect(venueVisuals.every((visual) => visual.source === "SCI 2027 venue photograph")).toBe(true);
+    expect(venueVisuals.every((visual) => visual.url.startsWith("https://") && visual.alt.length > 30)).toBe(true);
+    expect(venueVisuals.map((visual) => visual.caption)).toEqual([
+      "Main auditorium and meeting facilities at the Conference Center - Cairo University.",
+      "Entrance, registration lobby, meeting room and auditorium facilities at the Conference Center - Cairo University.",
+    ]);
     expect(venuePosition).toBeGreaterThan(patronagePosition);
     expect(venuePosition).toBeLessThan(introductionPosition);
     expect(homeSource).toContain("Venue &amp; Halls");
-    expect(homeSource).toContain("identity.location.venueVisual.url");
-    expect(homeSource).toContain("identity.location.venueVisual.alt");
-    expect(homeSource).toContain("identity.location.venueVisual.caption");
+    expect(homeSource).toContain("identity.location.venueVisuals.map");
+    expect(homeSource).toContain("sm:grid-cols-2");
+    expect(homeSource).toContain('className="block h-auto w-full"');
     expect(homeSource).toContain("identity.location.mapUrl");
+  });
+
+  it("shows the eight supplied Conference Center gallery photographs in an uncropped responsive venue gallery", () => {
+    const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
+    const venue = sci2027Content.identity.location;
+    const venueGallery = (venue as typeof venue & {
+      venueGallery?: Array<{ source: string; url: string; alt: string }>;
+    }).venueGallery ?? [];
+
+    expect(venueGallery).toHaveLength(8);
+    expect(venueGallery.every((photo) => photo.source === "SCI 2027 venue photograph")).toBe(true);
+    expect(venueGallery.every((photo) => photo.url.startsWith("https://") && photo.alt.length > 30)).toBe(true);
+    expect(homeSource).toContain("Explore the Venue");
+    expect(homeSource).toContain("identity.location.venueGallery.map");
+    expect(homeSource).toContain("grid-cols-2");
+    expect(homeSource).toContain("lg:grid-cols-4");
   });
 
   it("ships a complete navy-and-gold SCI 2027 favicon and mobile icon package", () => {

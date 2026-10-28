@@ -89,7 +89,12 @@
 - [x] Save a WebDev checkpoint for the verified responsive venue presentation
 - [x] Create a hosted web derivative of the supplied Conference Center halls photograph without cropping or modifying the original
 - [x] Add an English-only Venue & Halls section after Distinguished Patronage with the photo, caption and safe Get directions action
-- [ ] Save a WebDev checkpoint for the verified desktop and mobile Venue & Halls presentation
+- [x] Save a WebDev checkpoint for the verified desktop and mobile Venue & Halls presentation
+- [x] Create and host an uncropped WebP derivative of the second supplied Conference Center composite
+- [x] Render both Venue & Halls images in an equal-width desktop grid and single-column mobile stack, retaining captions below each image
+- [x] Create and host uncropped WebP derivatives of the eight supplied Conference Center gallery photographs
+- [x] Add an Explore the Venue gallery with four desktop columns and two mobile columns, retaining the original image proportions and no overlays
+- [ ] Save a WebDev checkpoint for the verified responsive Venue & Halls gallery
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks
