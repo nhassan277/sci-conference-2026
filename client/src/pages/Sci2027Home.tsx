@@ -256,7 +256,7 @@ export default function Sci2027Home() {
                   <figure className="relative -mx-6 -mt-6 mb-6 h-44 overflow-hidden bg-[#062f52]">
                     <img src={track.visual.url} alt={track.visual.alt} loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]" />
                     <div className={`absolute inset-0 bg-gradient-to-t ${trackImageOverlayStyles[track.color]}`} aria-hidden="true" />
-                    <figcaption className="absolute bottom-3 left-4 text-[9px] font-bold uppercase tracking-[0.16em] text-white/85">Photography via Unsplash</figcaption>
+                    <figcaption className="absolute bottom-3 left-4 text-[9px] font-bold uppercase tracking-[0.16em] text-white/85">{track.visual.source === "SCI 2027 Original" ? "Original SCI 2027 visual" : "Photography via Unsplash"}</figcaption>
                   </figure>
                   <span className={`inline-flex h-10 w-10 items-center justify-center rounded-full text-sm font-extrabold text-white ${trackNumberStyles[track.color]}`}>{track.number}</span>
                   <h3 className="mt-6 font-serif text-2xl font-bold leading-tight">{track.en}</h3>

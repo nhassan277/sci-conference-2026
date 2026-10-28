@@ -6,8 +6,8 @@ export type BilingualText = {
 export type WebsiteVisual = {
   url: string;
   alt: string;
-  source: "Unsplash";
-  licenseUrl: "https://unsplash.com/license";
+  source: "Unsplash" | "SCI 2027 Original";
+  licenseUrl?: "https://unsplash.com/license";
 };
 
 export type ResearchTrack = BilingualText & {
@@ -312,10 +312,9 @@ export const sci2027Content = {
       ],
       color: "emerald",
       visual: {
-        url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/IIyWFhzNhKAghqxI.webp",
-        alt: "Researcher using a microscope in a modern life sciences laboratory.",
-        source: "Unsplash",
-        licenseUrl: "https://unsplash.com/license",
+        url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/peCUnLpTuUEqZjGl.webp",
+        alt: "Original SCI 2027 editorial visual combining biodiversity, botanical life, DNA and microscopic cell structures.",
+        source: "SCI 2027 Original",
       },
     },
     {
@@ -340,10 +339,9 @@ export const sci2027Content = {
       ],
       color: "cyan",
       visual: {
-        url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/GxBQRIqhjIsSSUTK.webp",
-        alt: "Researchers collecting field data in a green environment for earth and environmental study.",
-        source: "Unsplash",
-        licenseUrl: "https://unsplash.com/license",
+        url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/uSlqnHzBlTSlszrN.webp",
+        alt: "Original SCI 2027 editorial visual combining geological landscapes, water systems, climate resilience and clean energy.",
+        source: "SCI 2027 Original",
       },
     },
     {
@@ -368,10 +366,9 @@ export const sci2027Content = {
       ],
       color: "rose",
       visual: {
-        url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/prIyrpSCbanWToHj.webp",
-        alt: "Scientific microscopes and laboratory instruments prepared for materials and chemistry research.",
-        source: "Unsplash",
-        licenseUrl: "https://unsplash.com/license",
+        url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/zqjuRoOksnKIPDeQ.webp",
+        alt: "Original SCI 2027 editorial visual combining a molecular lattice, crystalline materials and energy-storage research.",
+        source: "SCI 2027 Original",
       },
     },
     {
@@ -396,10 +393,9 @@ export const sci2027Content = {
       ],
       color: "violet",
       visual: {
-        url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/GWtOfWqYgdeJIukx.webp",
-        alt: "Telescope observing a distant horizon at dusk for physics and space science exploration.",
-        source: "Unsplash",
-        licenseUrl: "https://unsplash.com/license",
+        url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/QeXUTzQOUNiLxSXL.webp",
+        alt: "Original SCI 2027 editorial visual combining an observatory telescope, cosmic light phenomena and renewable energy.",
+        source: "SCI 2027 Original",
       },
     },
     {
@@ -424,10 +420,9 @@ export const sci2027Content = {
       ],
       color: "blue",
       visual: {
-        url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/IGnVWkilAOUeWAXC.webp",
-        alt: "Data-analysis dashboard displayed on a research workstation for computational science.",
-        source: "Unsplash",
-        licenseUrl: "https://unsplash.com/license",
+        url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/NSEFUasvwjrXIBkB.webp",
+        alt: "Original SCI 2027 editorial visual combining responsible artificial intelligence, data networks, robotics and scientific computing.",
+        source: "SCI 2027 Original",
       },
     },
     {
@@ -452,10 +447,9 @@ export const sci2027Content = {
       ],
       color: "amber",
       visual: {
-        url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/CFnMkGYppLXPJkBM.webp",
-        alt: "Students collaborating around a table on an innovation and research project.",
-        source: "Unsplash",
-        licenseUrl: "https://unsplash.com/license",
+        url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/KWCzRNmgfNkuQurT.webp",
+        alt: "Original SCI 2027 editorial visual combining researchers, prototype development, industry partnership and community impact.",
+        source: "SCI 2027 Original",
       },
     },
   ] satisfies ResearchTrack[],
