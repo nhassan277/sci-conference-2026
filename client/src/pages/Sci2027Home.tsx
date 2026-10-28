@@ -64,7 +64,7 @@ const registrationCardStyles = [
 const registrationAccentStyles = ["text-[#f0ca57]", "text-[#ad8618]", "text-[#0d638b]"] as const;
 
 export default function Sci2027Home() {
-  const { identity, assets, speakers, sponsorship, workshopProgramme, conferenceOrganizationUnit, publicationOpportunity } = sci2027Content;
+  const { identity, assets, speakers, sponsorship, workshopProgramme, conferenceOrganizationUnit, publicationOpportunity, registrationFees } = sci2027Content;
   const featuredVideo = sci2027Content.videos.find((video) => video.featured) ?? sci2027Content.videos[0];
 
   return (
@@ -321,6 +321,35 @@ export default function Sci2027Home() {
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
               {sponsorship.packages.map((tier) => <div key={tier.tier} className="border border-[#063760]/10 bg-white p-5 shadow-sm"><Handshake className="h-5 w-5 text-[#ad8618]" /><p className="mt-5 text-xs font-bold uppercase tracking-[0.16em] text-[#617986]">{tier.tier}</p><p className="mt-2 font-serif text-2xl font-bold text-[#063760]">{tier.investment}</p><p className="mt-3 text-xs font-bold leading-5 text-[#617986]">{tier.exhibition}</p></div>)}
+            </div>
+          </div>
+        </section>
+
+        <section className="border-y border-[#d3a725]/25 bg-[#062f52] py-20 text-white md:py-28">
+          <div className="container">
+            <div className="grid gap-8 lg:grid-cols-[0.88fr_1.12fr] lg:items-end">
+              <div>
+                <p className="sci-eyebrow text-[#f0ca57]">{registrationFees.eyebrow}</p>
+                <h2 className="mt-4 max-w-xl font-serif text-4xl font-bold leading-[1.04] tracking-[-0.035em] sm:text-5xl">{registrationFees.title}</h2>
+                <p className="mt-6 max-w-xl text-lg leading-8 text-[#c1d3dc]">{registrationFees.description}</p>
+              </div>
+              <div className="grid gap-3 sm:grid-cols-3">
+                {registrationFees.categories.map((category, index) => <article key={category.name} className="border border-white/15 bg-white/[0.06] p-5"><p className="text-xs font-bold uppercase tracking-[0.13em] text-[#c1d3dc]">0{index + 1}</p><p className="mt-5 min-h-11 text-sm font-bold leading-5 text-white">{category.name}</p><p className="mt-5 font-serif text-3xl font-bold text-[#f0ca57]">{category.amount}</p></article>)}
+              </div>
+            </div>
+
+            <div className="mt-10 grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
+              <article className="border border-[#d3a725]/45 bg-[#f8f3e7] p-6 text-[#063760] sm:p-8">
+                <div className="flex items-start justify-between gap-5"><div><p className="text-xs font-bold uppercase tracking-[0.16em] text-[#ad8618]">{registrationFees.publicationFee.title}</p><p className="mt-4 font-serif text-4xl font-bold">{registrationFees.publicationFee.amount}</p></div><FileText className="h-7 w-7 shrink-0 text-[#ad8618]" /></div>
+                <p className="mt-5 text-sm leading-7 text-[#456374]">{registrationFees.publicationFee.description}</p>
+              </article>
+
+              <article className="border border-white/15 bg-white/[0.06] p-6 sm:p-8">
+                <div className="grid gap-7 md:grid-cols-[0.76fr_1.24fr] md:items-start">
+                  <div><div className="flex items-center gap-3 text-[#f0ca57]"><Landmark className="h-5 w-5" /><p className="text-xs font-bold uppercase tracking-[0.16em]">Payment details</p></div><p className="mt-5 text-sm leading-6 text-[#c1d3dc]">{registrationFees.payment.instruction}</p><p className="mt-5 text-xs font-bold uppercase tracking-[0.14em] text-[#f0ca57]">{registrationFees.payment.method} · {registrationFees.payment.bank}</p><p className="mt-2 font-serif text-3xl font-bold tracking-[0.08em] text-white">{registrationFees.payment.identifier}</p></div>
+                  <div className="border-l border-white/15 pl-0 md:pl-7"><p className="text-xs font-bold uppercase tracking-[0.16em] text-[#f0ca57]">To confirm payment, email</p><ul className="mt-4 space-y-2.5">{registrationFees.receiptDetails.map((detail) => <li key={detail} className="flex gap-2.5 text-sm leading-6 text-[#dbe8ec]"><Check className="mt-1 h-4 w-4 shrink-0 text-[#e5bd4a]" />{detail}</li>)}</ul><p className="mt-5 border-l-2 border-[#e5bd4a] pl-3 text-xs font-bold leading-6 text-white">{registrationFees.confirmationNote}</p><a href={`mailto:${registrationFees.payment.confirmationEmail}?subject=SCI%202027%20payment%20confirmation`} className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#e5bd4a] px-5 py-3 text-sm font-extrabold uppercase tracking-[0.1em] text-[#062f52] transition hover:-translate-y-0.5 hover:bg-[#f5d670]">Email payment proof <Mail className="h-4 w-4" /></a></div>
+                </div>
+              </article>
             </div>
           </div>
         </section>

@@ -68,7 +68,9 @@
 - [x] Remove the white logo container and enlarge the direct Conference Organization Unit logo beside its existing title
 - [x] Save a WebDev checkpoint for the verified patronage-order and Unit-logo treatment update
 - [x] Add the approved Global Journal of Scientific Research publication-opportunity card after Scientific Tracks
-- [ ] Verify the journal link, editorial notice, responsive section order, and save a WebDev checkpoint
+- [x] Verify the journal link, editorial notice, responsive section order, and save a WebDev checkpoint
+- [x] Add approved SCI 2027 registration fees, conditional publication fee, and CBE/InstaPay payment instructions before registration
+- [ ] Verify payment copy, responsive fee display, confirmation-email action, and save a WebDev checkpoint
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks

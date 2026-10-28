@@ -82,6 +82,45 @@ describe("SCI 2027 public content", () => {
     expect(homeSource).toContain('rel="noreferrer"');
   });
 
+  it("provides the approved SCI 2027 registration fees and CBE payment-confirmation instructions", () => {
+    const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
+    const fees = sci2027Content.registrationFees;
+
+    if (!fees) {
+      expect(fees).toBeDefined();
+      return;
+    }
+
+    expect(fees.title).toBe("Registration Fees & Payment");
+    expect(fees.categories).toEqual([
+      { name: "Students", amount: "EGP 300" },
+      { name: "Recent Graduates & Teaching Assistants", amount: "EGP 600" },
+      { name: "Researchers & Faculty Members", amount: "EGP 1,200" },
+    ]);
+    expect(fees.publicationFee).toMatchObject({
+      amount: "EGP 2,000",
+      additionalToRegistration: true,
+      payableAfterJournalAcceptance: true,
+    });
+    expect(fees.payment).toMatchObject({
+      method: "InstaPay",
+      bank: "Central Bank of Egypt (CBE)",
+      identifier: "9450882167",
+      confirmationEmail: "sci.conf.2027@gmail.com",
+    });
+    expect(fees.receiptDetails).toEqual([
+      "Full name",
+      "Registration category",
+      "Transferred amount",
+      "A clear image or copy of the transfer receipt",
+    ]);
+    expect(fees.confirmationNote).toBe("Registration will be confirmed after payment proof is reviewed.");
+    expect(homeSource.indexOf("registrationFees.title")).toBeLessThan(homeSource.indexOf('id="registration"'));
+    expect(homeSource).toContain("registrationFees.categories.map");
+    expect(homeSource).toContain('mailto:${registrationFees.payment.confirmationEmail}');
+    expect(homeSource).not.toContain("createCheckoutSession");
+  });
+
   it("uses real licensed photography for every track, the Unit and partnerships without sacrificing text-safe rendering", () => {
     const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
     const sponsorshipSource = readFileSync(projectPath("client/src/pages/Sci2027Sponsorship.tsx"), "utf8");

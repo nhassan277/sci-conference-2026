@@ -608,6 +608,37 @@ export const sci2027Content = {
       url: "https://forms.gle/fmXUzEQ85hbXnLFp8",
     },
   },
+  registrationFees: {
+    title: "Registration Fees & Payment",
+    eyebrow: "Plan your participation",
+    description: "The conference registration fee covers participation in SCI 2027. Please select the category that reflects your current status.",
+    categories: [
+      { name: "Students", amount: "EGP 300" },
+      { name: "Recent Graduates & Teaching Assistants", amount: "EGP 600" },
+      { name: "Researchers & Faculty Members", amount: "EGP 1,200" },
+    ],
+    publicationFee: {
+      title: "Optional publication fee",
+      amount: "EGP 2,000",
+      description: "Additional to conference registration and payable only after the journal accepts the manuscript for publication.",
+      additionalToRegistration: true,
+      payableAfterJournalAcceptance: true,
+    },
+    payment: {
+      method: "InstaPay",
+      bank: "Central Bank of Egypt (CBE)",
+      identifier: "9450882167",
+      confirmationEmail: "sci.conf.2027@gmail.com",
+      instruction: "Transfer the applicable amount to the account below, then email your payment proof to confirm your registration.",
+    },
+    receiptDetails: [
+      "Full name",
+      "Registration category",
+      "Transferred amount",
+      "A clear image or copy of the transfer receipt",
+    ],
+    confirmationNote: "Registration will be confirmed after payment proof is reviewed.",
+  },
   sponsorship: {
     contactEmail: "sci.conf.2027@gmail.com",
     ctaLabel: "Request the Sponsorship Prospectus by Email",
