@@ -160,20 +160,27 @@ describe("SCI 2027 public content", () => {
     expect(homeSource).not.toContain("+20 2 3567 6000");
   });
 
-  it("publishes the seven approved Conference Organization Unit roles without meeting-record or contact details", () => {
+  it("publishes the updated nine-member Conference Organization Unit roster without meeting-record or contact details", () => {
     const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
     const unit = sci2027Content.conferenceOrganizationUnit;
 
-    expect(unit.members).toHaveLength(7);
+    expect(unit.members).toHaveLength(9);
     expect(unit.members.map((member) => `${member.name} | ${member.role}`)).toEqual([
       "Prof. Walid Ali Rahouma | Director of the Unit",
       "Prof. Mohamed Qarny Ismail | Secretary of the Unit",
-      "Prof. Nahla Osama Mohamed Moussa | Scientific Programme Lead",
-      "Prof. Heba Mohamed Fahmy | Registration, Operations & Logistics Lead",
+      "Mrs. Manar Mohamed | Administrative Secretary to the Unit",
+      "Dr. Nahla Osama Mohamed Moussa | Scientific Programme Lead",
+      "Prof. Azza Shoukry | Registration, Operations & Logistics Co-Lead",
+      "Dr. Dina Amr | Registration, Operations & Logistics Co-Lead",
       "Prof. Rania Ali Hassan | Media & Marketing Lead",
       "Prof. Rasha Mohamed El-Nashar | Public Relations Lead",
-      "Dr. Nourhan Yehia Mostafa Hassan | Sponsorship & Funding Lead",
+      "Dr. Nourhan Hassan | Sponsorship, Funding & Conference Website Lead",
     ]);
+    expect(unit.members).not.toContainEqual(expect.objectContaining({ name: "Prof. Heba Mohamed Fahmy" }));
+    expect(unit.members).toContainEqual(expect.objectContaining({ name: "Prof. Azza Shoukry", department: "Chemistry" }));
+    expect(unit.members).toContainEqual(expect.objectContaining({ name: "Dr. Dina Amr", department: "Biotechnology" }));
+    expect(unit.members).toContainEqual(expect.objectContaining({ name: "Mrs. Manar Mohamed", department: "Conference Organization Unit" }));
+    expect(unit.members.find((member) => member.name === "Dr. Nourhan Hassan")?.summary).toMatch(/website design, content, user experience and ongoing updates/u);
     expect(unit.members.every((member) => member.department.length > 0 && member.summary.length > 0)).toBe(true);
     expect(homeSource).toContain("Meet the Unit");
     expect(homeSource).toContain("conferenceOrganizationUnit.members.map");
