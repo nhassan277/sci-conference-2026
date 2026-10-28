@@ -170,11 +170,11 @@ describe("SCI 2027 public content", () => {
       "Prof. Mohamed Qarny | Secretary of the Unit",
       "Mrs. Manar Mohamed | Administrative Secretary to the Unit",
       "Dr. Nahla Osama | Scientific Programme Lead",
-      "Prof. Azza Shoukry | Registration, Operations & Logistics Co-Lead",
-      "Dr. Dina Amr | Registration, Operations & Logistics Co-Lead",
       "Prof. Rania Ali | Media & Marketing Lead",
-      "Prof. Rasha El-Nashar | Public Relations Lead",
       "Dr. Nourhan Hassan | Sponsorship, Funding & Conference Website Lead",
+      "Prof. Rasha El-Nashar | Public Relations Lead",
+      "Prof. Azza Shoukry | Registration & Operations Lead",
+      "Dr. Dina Amr | Logistics Lead",
     ]);
     expect(unit.members).not.toContainEqual(expect.objectContaining({ name: "Prof. Heba Mohamed Fahmy" }));
     expect(unit.members.map((member) => member.name)).not.toEqual(expect.arrayContaining([
@@ -183,8 +183,13 @@ describe("SCI 2027 public content", () => {
       "Dr. Nahla Osama Mohamed Moussa",
       "Prof. Rania Ali Hassan",
     ]));
-    expect(unit.members).toContainEqual(expect.objectContaining({ name: "Prof. Azza Shoukry", department: "Chemistry" }));
-    expect(unit.members).toContainEqual(expect.objectContaining({ name: "Dr. Dina Amr", department: "Biotechnology" }));
+    const azza = unit.members.find((member) => member.name === "Prof. Azza Shoukry");
+    const dina = unit.members.find((member) => member.name === "Dr. Dina Amr");
+
+    expect(azza).toMatchObject({ department: "Chemistry", role: "Registration & Operations Lead" });
+    expect(azza?.summary).toMatch(/participant registration, reception and participant flow/u);
+    expect(dina).toMatchObject({ department: "Biotechnology", role: "Logistics Lead" });
+    expect(dina?.summary).toMatch(/venues, equipment, hospitality, accommodation, transport/u);
     expect(unit.members).toContainEqual(expect.objectContaining({ name: "Mrs. Manar Mohamed", department: "Conference Organization Unit" }));
     expect(unit.members.find((member) => member.name === "Dr. Nourhan Hassan")?.summary).toMatch(/website design, content, user experience and ongoing updates/u);
     expect(unit.members.every((member) => member.department.length > 0 && member.summary.length > 0)).toBe(true);
@@ -213,21 +218,27 @@ describe("SCI 2027 public content", () => {
     expect(homeSource).toContain("rounded-[1.75rem]");
   });
 
-  it("shows the complete SCI 2027 mark inside padded white circular treatments without cropping", () => {
+  it("uses the user-approved SCI 2027 logo from managed hosting at its native aspect without circular treatment or cropping", () => {
+    const logo = sci2027Content.assets.sci2027Logo;
     const logoSources = [
-      { source: readFileSync(projectPath("client/src/components/Sci2027Header.tsx"), "utf8"), reference: "sci2027Content.assets.sci2027Logo" },
-      { source: readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8"), reference: "assets.sci2027Logo" },
-      { source: readFileSync(projectPath("client/src/components/Sci2027Footer.tsx"), "utf8"), reference: "sci2027Content.assets.sci2027Logo" },
+      { source: readFileSync(projectPath("client/src/components/Sci2027Header.tsx"), "utf8"), reference: "sci2027Content.assets.sci2027Logo", size: "h-11" },
+      { source: readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8"), reference: "assets.sci2027Logo", size: "h-24" },
+      { source: readFileSync(projectPath("client/src/components/Sci2027Footer.tsx"), "utf8"), reference: "sci2027Content.assets.sci2027Logo", size: "h-20" },
     ];
 
-    for (const { source, reference } of logoSources) {
+    expect(logo).toMatch(/^https:\/\//);
+    expect(existsSync(projectPath("client/public/sci-2027/logos/sci2027-logo.142ad3d1.png"))).toBe(false);
+
+    for (const { source, reference, size } of logoSources) {
       const logoLine = source.split("\n").find((line) => line.includes(`src={${reference}}`)) ?? "";
 
       expect(logoLine).toContain(reference);
-      expect(logoLine).toContain("rounded-full");
-      expect(logoLine).toContain("bg-white");
-      expect(logoLine).toContain("p-1");
+      expect(logoLine).toContain(size);
+      expect(logoLine).toContain("w-auto");
       expect(logoLine).toContain("object-contain");
+      expect(logoLine).not.toContain("rounded-full");
+      expect(logoLine).not.toContain("bg-white");
+      expect(logoLine).not.toContain("p-1");
       expect(logoLine).not.toContain("object-cover");
     }
   });

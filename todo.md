@@ -49,6 +49,13 @@
 - [x] Shorten all nine Conference Organization Unit member display names to the approved titled two-part forms, including Prof. Rania Ali
 - [x] Update the public Unit Head line to Prof. Walid Rahouma while preserving all approved departments, roles and responsibility summaries
 - [x] Verify and checkpoint the short Unit member display-name update
+- [x] Verify the user-approved SCI2027.png and use its byte-identical managed hosted asset for the public conference logo
+- [x] Replace circular SCI 2027 logo treatments in the header, homepage hero and footer with full native-aspect display and no crop
+- [x] Replace the oversized local SCI 2027 logo runtime copy with a byte-identical managed hosted asset after confirmed File Storage upload
+- [x] Verify the SCI 2027 native-logo treatment update
+- [x] Reorder the nine Conference Organization Unit cards with Prof. Rania Ali before Dr. Nourhan Hassan and Prof. Rasha El-Nashar following Nourhan
+- [x] Set Prof. Azza Shoukry as Registration & Operations Lead and Dr. Dina Amr as Logistics Lead with distinct responsibility summaries
+- [ ] Save a checkpoint for the finalized Unit order, revised roles and managed SCI 2027 logo hosting
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks
