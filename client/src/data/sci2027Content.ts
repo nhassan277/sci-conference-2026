@@ -806,6 +806,11 @@ export const sci2027Content = {
       { title: "Conference bags, badges and lanyards", contribution: "EGP 30,000–75,000" },
       { title: "Innovation exhibition or startup showcase", contribution: "EGP 50,000–150,000" },
     ],
+    studentSponsorshipAssistants: {
+      title: "Student Sponsorship Assistants",
+      description: "Supporting sponsor outreach and partner coordination for SCI 2027.",
+      members: ["Youssef Saher Sayed", "Ziad Ahmed"],
+    },
   },
   contact: {
     email: "sci.conf.2027@gmail.com",

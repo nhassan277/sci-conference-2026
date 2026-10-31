@@ -2,6 +2,7 @@ import {
   ArrowLeft,
   ArrowUpRight,
   BadgeDollarSign,
+  HeartHandshake,
   Mail,
   Network,
   Presentation,
@@ -116,6 +117,25 @@ export default function Sci2027Sponsorship() {
             </div>
             <div className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
               {sponsorship.specialOpportunities.map((opportunity, index) => <article key={opportunity.title} className="group border border-[#063760]/12 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-[#d3a725] hover:shadow-xl"><div className="flex items-start justify-between gap-4"><Presentation className="h-6 w-6 shrink-0 text-[#ad8618]" /><span className="font-serif text-3xl font-bold text-[#063760]/10">{String(index + 1).padStart(2, "0")}</span></div><h3 className="mt-8 font-serif text-2xl font-bold leading-tight text-[#063760]">{opportunity.title}</h3><p className="mt-4 text-sm font-extrabold text-[#ad8618]">{opportunity.contribution}</p></article>)}
+            </div>
+          </div>
+        </section>
+
+        <section className="border-y border-[#063760]/10 bg-[#edf4f3] py-16 md:py-20">
+          <div className="container grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+            <div className="max-w-xl">
+              <HeartHandshake className="h-7 w-7 text-[#ad8618]" />
+              <p className="mt-6 text-xs font-extrabold uppercase tracking-[0.18em] text-[#ad8618]">Acknowledgement</p>
+              <h2 className="mt-4 font-serif text-4xl font-bold leading-[1.04] tracking-[-0.035em] text-[#063760]">{sponsorship.studentSponsorshipAssistants.title}</h2>
+              <p className="mt-5 text-lg leading-8 text-[#456374]">{sponsorship.studentSponsorshipAssistants.description}</p>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {sponsorship.studentSponsorshipAssistants.members.map((member) => (
+                <article key={member} className="border border-[#063760]/10 bg-white px-6 py-5 shadow-sm">
+                  <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-[#ad8618]">Student Sponsorship Assistant</p>
+                  <p className="mt-3 font-serif text-2xl font-bold leading-tight text-[#063760]">{member}</p>
+                </article>
+              ))}
             </div>
           </div>
         </section>

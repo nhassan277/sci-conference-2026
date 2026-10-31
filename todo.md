@@ -122,6 +122,9 @@
 - [x] Add the English-only Scientific Committee and Organizing Committee section after Distinguished Patronage
 - [x] Link the Organizing Committee card to the existing Conference Organization Unit page without duplicating its member roster
 - [x] Verify responsive placement, internal link, tests, typecheck and build, then save a WebDev checkpoint
+- [x] Add the approved Student Sponsorship Assistants acknowledgement and names to the central sponsorship content
+- [x] Render the acknowledgement on the Partnerships & Sponsorship page only, without adding the students to the Unit or Organizing Committee rosters
+- [x] Verify desktop/mobile presentation, roster separation, tests, typecheck and build, then save a WebDev checkpoint
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks

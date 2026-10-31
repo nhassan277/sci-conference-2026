@@ -693,6 +693,24 @@ describe("SCI 2027 public content", () => {
     expect(source).toContain("sponsorship.ctaLabel");
   });
 
+  it("recognizes the approved Student Sponsorship Assistants on the sponsorship page only", () => {
+    const sponsorshipPageSource = readFileSync(projectPath("client/src/pages/Sci2027Sponsorship.tsx"), "utf8");
+    const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
+    const unitPageSource = readFileSync(projectPath("client/src/pages/Sci2027OrganizationUnit.tsx"), "utf8");
+    const assistants = sci2027Content.sponsorship.studentSponsorshipAssistants;
+
+    expect(assistants).toEqual({
+      title: "Student Sponsorship Assistants",
+      description: "Supporting sponsor outreach and partner coordination for SCI 2027.",
+      members: ["Youssef Saher Sayed", "Ziad Ahmed"],
+    });
+    expect(sponsorshipPageSource).toContain("sponsorship.studentSponsorshipAssistants.members.map");
+    for (const name of assistants.members) {
+      expect(homeSource).not.toContain(name);
+      expect(unitPageSource).not.toContain(name);
+    }
+  });
+
   it("provides an English-only click-to-play SCI 2027 promotional-video gallery", () => {
     const videosPage = projectPath("client/src/pages/Sci2027Videos.tsx");
     const source = existsSync(videosPage) ? readFileSync(videosPage, "utf8") : "";
