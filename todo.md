@@ -119,6 +119,9 @@
 - [x] Upload the organizer-supplied updated English SCI 2027 brochure to public Google Drive storage and verify its direct-download bytes
 - [x] Replace the retired English brochure URL centrally in all existing public SCI 2027 actions while retaining the Arabic brochure
 - [x] Verify the updated brochure links, PDF checksum, tests, typecheck and build, then save a WebDev checkpoint
+- [x] Add the English-only Scientific Committee and Organizing Committee section after Distinguished Patronage
+- [x] Link the Organizing Committee card to the existing Conference Organization Unit page without duplicating its member roster
+- [x] Verify responsive placement, internal link, tests, typecheck and build, then save a WebDev checkpoint
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks

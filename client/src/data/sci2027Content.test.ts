@@ -497,6 +497,21 @@ describe("SCI 2027 public content", () => {
     expect(patronagePosition).toBeLessThan(introductionPosition);
   });
 
+  it("announces the Scientific and Organizing Committees after patronage without duplicating the Unit roster", () => {
+    const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
+    const committeesPosition = homeSource.indexOf('id="conference-committees"');
+
+    expect(committeesPosition).toBeGreaterThan(homeSource.indexOf("sci2027Content.patronage.map"));
+    expect(committeesPosition).toBeLessThan(homeSource.indexOf('id="venue"'));
+    expect(homeSource).toContain("Scientific Committee");
+    expect(homeSource).toContain("To be announced.");
+    expect(homeSource).toContain("Organizing Committee");
+    expect(homeSource).toContain("Conference Organization Unit and its members.");
+    expect(homeSource).toContain('<Link href="/conference-organization-unit"');
+    expect(homeSource).toContain("Meet the Conference Organization Unit");
+    expect(homeSource).not.toContain("conferenceOrganizationUnit.members.map");
+  });
+
   it("moves the Conference Organization Unit content to its own routed page and navigation tab", () => {
     const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
     const unitPagePath = projectPath("client/src/pages/Sci2027OrganizationUnit.tsx");

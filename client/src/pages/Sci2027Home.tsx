@@ -155,6 +155,28 @@ export default function Sci2027Home() {
           </div>
         </section>
 
+        <section id="conference-committees" className="scroll-mt-24 border-b border-[#063760]/10 bg-white py-16 md:py-20">
+          <div className="container">
+            <div className="max-w-2xl">
+              <p className="sci-eyebrow">Conference committees</p>
+              <h2 className="mt-4 font-serif text-4xl font-bold leading-[1.04] tracking-[-0.035em] text-[#063760] sm:text-5xl">Guidance and coordination for SCI 2027.</h2>
+            </div>
+            <div className="mt-10 grid gap-4 md:grid-cols-2">
+              <article className="border border-[#063760] bg-[#063760] p-7 text-white shadow-[0_20px_45px_rgba(6,55,96,0.16)] sm:p-8">
+                <Sparkles className="h-6 w-6 text-[#f0ca57]" />
+                <p className="mt-8 text-xs font-extrabold uppercase tracking-[0.18em] text-[#f0ca57]">Scientific Committee</p>
+                <p className="mt-4 font-serif text-3xl font-bold">To be announced.</p>
+              </article>
+              <article className="border border-[#d3a725]/45 bg-[#f8f3e7] p-7 text-[#063760] shadow-sm sm:p-8">
+                <UsersRound className="h-6 w-6 text-[#ad8618]" />
+                <p className="mt-8 text-xs font-extrabold uppercase tracking-[0.18em] text-[#ad8618]">Organizing Committee</p>
+                <p className="mt-4 max-w-md font-serif text-3xl font-bold leading-tight">Conference Organization Unit and its members.</p>
+                <Link href="/conference-organization-unit" className="mt-8 inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.11em] text-[#063760] underline decoration-[#d3a725] decoration-2 underline-offset-4 transition hover:text-[#ad8618]">Meet the Conference Organization Unit <ArrowUpRight className="h-3.5 w-3.5" /></Link>
+              </article>
+            </div>
+          </div>
+        </section>
+
         <section id="venue" className="scroll-mt-24 border-b border-[#063760]/10 bg-white py-20 md:py-24">
           <div className="container">
             <div className="mx-auto max-w-4xl">
