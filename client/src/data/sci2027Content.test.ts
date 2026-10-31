@@ -554,6 +554,20 @@ describe("SCI 2027 public content", () => {
     expect(unitPageSource).not.toMatch(/info@sci\.cu\.edu\.eg|\+20 2 3567 6000/u);
   });
 
+  it("exposes SCI 2026 Archive after SCI 2027 Videos in shared primary navigation", () => {
+    const headerSource = readFileSync(projectPath("client/src/components/Sci2027Header.tsx"), "utf8");
+    const footerSource = readFileSync(projectPath("client/src/components/Sci2027Footer.tsx"), "utf8");
+    const appSource = readFileSync(projectPath("client/src/App.tsx"), "utf8");
+    const videosItem = '{ href: "/videos", label: "Videos" }';
+    const archiveItem = '{ href: "/archive-2026", label: "SCI 2026 Archive" }';
+
+    expect(appSource).toContain('path={"/archive-2026"}');
+    expect(headerSource).toContain(archiveItem);
+    expect(headerSource.indexOf(videosItem)).toBeLessThan(headerSource.indexOf(archiveItem));
+    expect((headerSource.match(/navigation\.map/g) ?? [])).toHaveLength(2);
+    expect(footerSource).toContain('<Link href="/archive-2026"');
+  });
+
   it("publishes the updated nine-member Conference Organization Unit roster without meeting-record or contact details", () => {
     const unitPagePath = projectPath("client/src/pages/Sci2027OrganizationUnit.tsx");
     const unitPageSource = existsSync(unitPagePath) ? readFileSync(unitPagePath, "utf8") : "";

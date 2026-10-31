@@ -9,6 +9,7 @@ const navigation = [
   { href: "/#tracks", label: "Tracks" },
   { href: "/programme", label: "Programme" },
   { href: "/videos", label: "Videos" },
+  { href: "/archive-2026", label: "SCI 2026 Archive" },
   { href: "/sponsorship", label: "Sponsorship" },
   { href: "/#dates", label: "Dates" },
   { href: "/#registration", label: "Register" },

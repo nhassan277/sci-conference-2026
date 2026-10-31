@@ -125,6 +125,9 @@
 - [x] Add the approved Student Sponsorship Assistants acknowledgement and names to the central sponsorship content
 - [x] Render the acknowledgement on the Partnerships & Sponsorship page only, without adding the students to the Unit or Organizing Committee rosters
 - [x] Verify desktop/mobile presentation, roster separation, tests, typecheck and build, then save a WebDev checkpoint
+- [x] Add the SCI 2026 Archive tab after SCI 2027 Videos in the shared primary navigation
+- [x] Verify the shared desktop/mobile navigation order and existing archive route destination without changing archive content or footer access
+- [x] Verify responsive navigation, tests, typecheck and build, then save a WebDev checkpoint
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks
