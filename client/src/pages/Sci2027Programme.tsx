@@ -36,7 +36,7 @@ const schedule: Record<string, ProgrammeSession[]> = {
     { time: "16:30–16:45", title: "Closing remarks" },
     { time: "16:45–17:00", title: "Closing session: recommendations and partnership announcements", tone: "blue" },
   ],
-  "9 April 2027": [
+  "10 April 2027": [
     { time: "To be announced", title: "Post-conference workshop programme", tone: "gold" },
     { time: "Afternoon", title: "Optional cultural experience: Grand Egyptian Museum visit", tone: "soft" },
   ],
@@ -62,7 +62,7 @@ export default function Sci2027Programme() {
             <p className="mt-10 text-xs font-bold uppercase tracking-[0.2em] text-[#f0ca57]">SCI 2027 · Preliminary programme</p>
             <h1 className="mt-4 max-w-4xl font-serif text-5xl font-bold leading-[1.02] tracking-[-0.04em] sm:text-6xl">Four days for workshops, discovery, dialogue and collaboration.</h1>
             <div className="mt-9 grid gap-3 sm:grid-cols-3">
-              <div className="flex items-center gap-3 border-l-2 border-[#e5bd4a] bg-white/[0.06] px-4 py-3"><CalendarDays className="h-5 w-5 text-[#f0ca57]" /><span className="text-sm font-bold">6–9 April 2027</span></div>
+              <div className="flex items-center gap-3 border-l-2 border-[#e5bd4a] bg-white/[0.06] px-4 py-3"><CalendarDays className="h-5 w-5 text-[#f0ca57]" /><span className="text-sm font-bold">6–10 April 2027</span></div>
               <div className="flex items-center gap-3 border-l-2 border-[#e5bd4a] bg-white/[0.06] px-4 py-3"><Sparkles className="h-5 w-5 text-[#f0ca57]" /><span className="text-sm font-bold">Main conference: 7–8 April</span></div>
               <div className="flex items-center gap-3 border-l-2 border-[#e5bd4a] bg-white/[0.06] px-4 py-3"><MapPin className="h-5 w-5 shrink-0 text-[#f0ca57]" /><div><p className="text-sm font-bold leading-5">{identity.location.name}</p><a href={identity.location.mapUrl} target="_blank" rel="noreferrer" className="mt-1 inline-flex items-center gap-1 text-[11px] font-extrabold uppercase tracking-[0.12em] text-[#f0ca57] transition hover:text-white">{identity.location.directionsLabel} <ExternalLink className="h-3 w-3" /></a></div></div>
             </div>

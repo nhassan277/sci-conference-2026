@@ -377,25 +377,33 @@ describe("SCI 2027 public content", () => {
     expect(sci2027Content.registration.studentResearch.notice.en).toBe("Abstract submissions are accepted through this form. A submission deadline has not yet been announced.");
   });
 
-  it("sets 6 and 9 April aside for workshops without publishing workshop topics yet", () => {
-    const publicProgrammeSources = [
-      "client/src/data/sci2027Content.ts",
-      "client/src/pages/Sci2027Home.tsx",
-      "client/src/pages/Sci2027Programme.tsx",
-    ].map((file) => readFileSync(projectPath(file), "utf8"));
+  it("sets workshops on 6 and Saturday 10 April while retaining the 7–8 April main conference", () => {
+    const centralContentSource = readFileSync(projectPath("client/src/data/sci2027Content.ts"), "utf8");
+    const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
+    const programmeSource = readFileSync(projectPath("client/src/pages/Sci2027Programme.tsx"), "utf8");
+    const publicProgrammeSources = [centralContentSource, homeSource, programmeSource];
 
     expect(sci2027Content.programme.map((day) => day.date)).toEqual([
       "6 April 2027",
       "7 April 2027",
       "8 April 2027",
-      "9 April 2027",
+      "10 April 2027",
     ]);
+    expect(sci2027Content.programme.at(-1)?.day.en).toBe("Post-conference workshops · Saturday");
     expect(sci2027Content.workshopProgramme.preConference.date).toBe("6 April 2027");
-    expect(sci2027Content.workshopProgramme.postConference.date).toBe("9 April 2027");
+    expect(sci2027Content.workshopProgramme.postConference.date).toBe("10 April 2027");
+    expect(sci2027Content.identity.dates.en).toBe("7–8 April 2027");
+    expect(sci2027Content.identity.workshopDate.en).toContain("6 and 10 April 2027");
+    expect(sci2027Content.identity.workshopDate.en).toContain("optional cultural visit: 10 April 2027");
     expect(sci2027Content.workshopProgramme.status).toContain("to be announced");
     expect(sci2027Content.workshopProgramme.postConference.optionalActivity).toContain("Grand Egyptian Museum");
+    expect(homeSource).toContain("6–10 April 2027 overview");
+    expect(programmeSource).toContain("6–10 April 2027");
+    expect(programmeSource).toContain('"10 April 2027": [');
+    expect(programmeSource).toContain("Main conference: 7–8 April");
 
     for (const source of publicProgrammeSources) {
+      expect(source).not.toContain("9 April 2027");
       expect(source).not.toContain("Next-Generation Sequencing data analysis and bioinformatics");
       expect(source).not.toContain("Machine learning for researchers in science");
       expect(source).not.toContain("GIS and remote sensing for environmental monitoring");

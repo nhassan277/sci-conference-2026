@@ -55,8 +55,8 @@ export const sci2027Content = {
       ar: "7–8 أبريل 2027",
     },
     workshopDate: {
-      en: "Workshop days: 6 and 9 April 2027 · optional cultural visit: 9 April 2027",
-      ar: "أيام الورش: 6 و9 أبريل 2027 · الزيارة الثقافية الاختيارية: 9 أبريل 2027",
+      en: "Workshop days: 6 and 10 April 2027 · optional cultural visit: 10 April 2027",
+      ar: "أيام الورش: 6 و10 أبريل 2027 · الزيارة الثقافية الاختيارية: 10 أبريل 2027",
     },
     location: {
       en: "Conference Center - Cairo University, Beside Students City, Dr. Mikel Bakhoum Rd, Dokki, Giza, Egypt",
@@ -622,8 +622,8 @@ export const sci2027Content = {
       ],
     },
     {
-      date: "9 April 2027",
-      day: { en: "Post-conference workshops · Friday", ar: "ورش بعد المؤتمر · الجمعة" },
+      date: "10 April 2027",
+      day: { en: "Post-conference workshops · Saturday", ar: "ورش بعد المؤتمر · السبت" },
       purpose: { en: "Professional learning and an optional cultural experience", ar: "تعلم مهني وتجربة ثقافية اختيارية" },
       sessions: [
         { en: "Workshop programme to be announced", ar: "سيُعلن برنامج الورش لاحقًا" },
@@ -638,7 +638,7 @@ export const sci2027Content = {
       label: "Pre-conference workshops",
     },
     postConference: {
-      date: "9 April 2027",
+      date: "10 April 2027",
       label: "Post-conference workshops",
       optionalActivity: "Optional cultural experience: Grand Egyptian Museum visit",
     },
