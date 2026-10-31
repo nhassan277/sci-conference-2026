@@ -131,6 +131,9 @@
 - [x] Redirect the Hero Register now action and shared-header Register now / Register actions to Registration Fees & Payment
 - [x] Preserve the official external general, speaker and student registration forms inside the lower registration section
 - [x] Verify desktop/mobile registration-entry scroll targets, form actions, tests, typecheck and build, then save a WebDev checkpoint
+- [x] Rename the public Videos navigation and page identity to Watch SCI 2027 while retaining the existing /videos route
+- [x] Preserve all hosted video assets, manual player behaviour, YouTube channel links and current footer wording
+- [x] Verify the renamed desktop/mobile navigation and video page, tests, typecheck and build, then save a WebDev checkpoint
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks

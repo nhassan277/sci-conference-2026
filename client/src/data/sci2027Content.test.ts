@@ -570,16 +570,16 @@ describe("SCI 2027 public content", () => {
     expect(unitPageSource).not.toMatch(/info@sci\.cu\.edu\.eg|\+20 2 3567 6000/u);
   });
 
-  it("exposes SCI 2026 Archive after SCI 2027 Videos in shared primary navigation", () => {
+  it("exposes SCI 2026 Archive after Watch SCI 2027 in shared primary navigation", () => {
     const headerSource = readFileSync(projectPath("client/src/components/Sci2027Header.tsx"), "utf8");
     const footerSource = readFileSync(projectPath("client/src/components/Sci2027Footer.tsx"), "utf8");
     const appSource = readFileSync(projectPath("client/src/App.tsx"), "utf8");
-    const videosItem = '{ href: "/videos", label: "Videos" }';
+    const watchSci2027Item = '{ href: "/videos", label: "Watch SCI 2027" }';
     const archiveItem = '{ href: "/archive-2026", label: "SCI 2026 Archive" }';
 
     expect(appSource).toContain('path={"/archive-2026"}');
     expect(headerSource).toContain(archiveItem);
-    expect(headerSource.indexOf(videosItem)).toBeLessThan(headerSource.indexOf(archiveItem));
+    expect(headerSource.indexOf(watchSci2027Item)).toBeLessThan(headerSource.indexOf(archiveItem));
     expect((headerSource.match(/navigation\.map/g) ?? [])).toHaveLength(2);
     expect(footerSource).toContain('<Link href="/archive-2026"');
   });
@@ -797,15 +797,21 @@ describe("SCI 2027 public content", () => {
     expect(footerSource).toContain('href="/sponsorship"');
   });
 
-  it("links the homepage and shared navigation to the SCI 2027 promotional-video gallery", () => {
+  it("labels the public promotional-video experience Watch SCI 2027 without changing its route", () => {
     const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
     const headerSource = readFileSync(projectPath("client/src/components/Sci2027Header.tsx"), "utf8");
     const footerSource = readFileSync(projectPath("client/src/components/Sci2027Footer.tsx"), "utf8");
+    const videosSource = readFileSync(projectPath("client/src/pages/Sci2027Videos.tsx"), "utf8");
+    const appSource = readFileSync(projectPath("client/src/App.tsx"), "utf8");
 
     expect(homeSource).toContain('href="/videos"');
     expect(homeSource).toContain("featuredVideo");
-    expect(headerSource).toContain('label: "Videos"');
+    expect(homeSource).toContain(">Watch SCI 2027 <ArrowUpRight");
+    expect(headerSource).toContain('label: "Watch SCI 2027"');
     expect(footerSource).toContain('href="/videos"');
+    expect(footerSource).toContain(">Watch SCI 2027</Link>");
+    expect(videosSource).toContain(">Watch SCI 2027</p>");
+    expect(appSource).toContain('path={"/videos"} component={Sci2027Videos}');
   });
 
   it("uses the SCI 2027 page for the public root route", () => {

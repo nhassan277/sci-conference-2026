@@ -49,7 +49,7 @@ export default function Sci2027Videos() {
           <div className="container relative grid gap-10 py-16 md:py-24 lg:grid-cols-[1fr_0.95fr] lg:items-end">
             <div className="max-w-3xl">
               <Link href="/" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.15em] text-[#f0ca57] transition hover:text-white"><ArrowLeft className="h-4 w-4" /> Back to SCI 2027</Link>
-              <p className="mt-10 text-xs font-bold uppercase tracking-[0.2em] text-[#f0ca57]">Promotional films</p>
+              <p className="mt-10 text-xs font-bold uppercase tracking-[0.2em] text-[#f0ca57]">Watch SCI 2027</p>
               <h1 className="mt-4 max-w-3xl font-serif text-5xl font-bold leading-[1.02] tracking-[-0.045em] sm:text-6xl">Watch the ideas, people and science behind SCI 2027.</h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-[#c1d3dc] sm:text-xl">Four short films offer different ways into the conference: the community it convenes, the science it explores, the momentum it builds and the invitation to join.</p>
             </div>
