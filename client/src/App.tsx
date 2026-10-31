@@ -12,6 +12,7 @@ import Sci2027Programme from "./pages/Sci2027Programme";
 import Sci2026Archive from "./pages/Sci2026Archive";
 import Sci2027Sponsorship from "./pages/Sci2027Sponsorship";
 import Sci2027Videos from "./pages/Sci2027Videos";
+import Sci2027OrganizationUnit from "./pages/Sci2027OrganizationUnit";
 import Support from "./pages/Support";
 import CheckIn from "./pages/CheckIn";
 import CheckInDashboard from "./pages/CheckInDashboard";
@@ -47,6 +48,7 @@ function Router() {
       <Route path={"/sponsors"} component={Sci2027Sponsorship} />
       <Route path={"/videos"} component={Sci2027Videos} />
       <Route path={"/programme"} component={Sci2027Programme} />
+      <Route path={"/conference-organization-unit"} component={Sci2027OrganizationUnit} />
       <Route path={"/schedule"} component={Sci2027Programme} />
       <Route path={"/archive-2026"} component={Sci2026Archive} />
       <Route path={"/support"} component={Support} />

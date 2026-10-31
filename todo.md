@@ -107,6 +107,9 @@
 - [x] Replace the central English brochure URL with the public Google Drive direct-download endpoint
 - [x] Verify homepage, programme and footer resolve through the new central English brochure URL while Arabic remains unchanged
 - [x] Verify the direct endpoint, tests, typecheck and build, then save a WebDev checkpoint
+- [x] Create the English-only Conference Organization Unit page and register its public route
+- [x] Add the Conference Organization Unit tab after About and remove all Unit content from the homepage
+- [x] Verify the dedicated Unit page, responsive navigation and clean homepage, then save a WebDev checkpoint
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks
