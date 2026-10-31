@@ -131,7 +131,7 @@ export const sci2027Content = {
     conferenceUnitMark: "/sci-2027/logos/conference-unit-vertical.png",
     sci2027Logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/DIUxVumTChoaEhaG.png",
     sciMasterLogo: "/sci-2027/logos/sci-master-logo.jpg",
-    brochureEnglish: "https://drive.google.com/uc?export=download&id=1cw1EwBsOOfSzEHs9nIRPiOahzDZLVfp_",
+    brochureEnglish: "https://drive.google.com/uc?export=download&id=1XfDPdrLjCDbG44VOjhJBdjiuSjDSNpmv",
     brochureArabic: "/sci-2027/documents/SCI2027-Brochure-AR.pdf",
   },
   videos: [

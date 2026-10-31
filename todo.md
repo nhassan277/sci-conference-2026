@@ -116,6 +116,9 @@
 - [x] Replace the SCI 2027 registration fees with the approved Undergraduate / Postgraduate / Prof. & Faculty / Researchers matrix
 - [x] Add the combined conditional GJSR publication pathway and optional Gala dinner / Museum visit add-ons while retaining payment-proof instructions
 - [x] Verify the responsive fee matrix, public GJSR wording, tests, typecheck and build, then save a WebDev checkpoint
+- [x] Upload the organizer-supplied updated English SCI 2027 brochure to public Google Drive storage and verify its direct-download bytes
+- [x] Replace the retired English brochure URL centrally in all existing public SCI 2027 actions while retaining the Arabic brochure
+- [x] Verify the updated brochure links, PDF checksum, tests, typecheck and build, then save a WebDev checkpoint
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks

@@ -163,7 +163,7 @@ describe("SCI 2027 public content", () => {
     expect(indexSource).toContain('name="theme-color" content="#062f52"');
   });
 
-  it("uses the public Google Drive direct-download link for the English brochure while retaining Arabic", () => {
+  it("uses the updated public Google Drive direct-download link for the English brochure while retaining Arabic", () => {
     const retiredEnglishBrochure = projectPath(
       "client/public/sci-2027/documents/SCI2027-Trifold-Brochure-EN.pdf",
     );
@@ -175,8 +175,9 @@ describe("SCI 2027 public content", () => {
     const programmeSource = readFileSync(projectPath("client/src/pages/Sci2027Programme.tsx"), "utf8");
     const footerSource = readFileSync(projectPath("client/src/components/Sci2027Footer.tsx"), "utf8");
 
-    expect(sci2027Content.assets.brochureEnglish).toBe("https://drive.google.com/uc?export=download&id=1cw1EwBsOOfSzEHs9nIRPiOahzDZLVfp_");
+    expect(sci2027Content.assets.brochureEnglish).toBe("https://drive.google.com/uc?export=download&id=1XfDPdrLjCDbG44VOjhJBdjiuSjDSNpmv");
     expect(sci2027Content.assets.brochureEnglish).not.toContain("files.manuscdn.com");
+    expect(sci2027Content.assets.brochureEnglish).not.toContain("1cw1EwBsOOfSzEHs9nIRPiOahzDZLVfp_");
     expect(existsSync(retiredEnglishBrochure)).toBe(false);
     expect(existsSync(arabicBrochure)).toBe(true);
     for (const source of [homeSource, programmeSource, footerSource]) {
