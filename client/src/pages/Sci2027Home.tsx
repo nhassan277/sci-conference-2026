@@ -116,7 +116,7 @@ export default function Sci2027Home() {
               </div>
 
               <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <a href="#registration" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#e5bd4a] px-6 py-3.5 text-sm font-extrabold uppercase tracking-[0.12em] text-[#062f52] shadow-[0_12px_30px_rgba(0,0,0,0.22)] transition-all hover:-translate-y-0.5 hover:bg-[#f5d670]">Register now <ArrowUpRight className="h-4 w-4" /></a>
+                <a href="#registration-fees" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#e5bd4a] px-6 py-3.5 text-sm font-extrabold uppercase tracking-[0.12em] text-[#062f52] shadow-[0_12px_30px_rgba(0,0,0,0.22)] transition-all hover:-translate-y-0.5 hover:bg-[#f5d670]">Register now <ArrowUpRight className="h-4 w-4" /></a>
                 <a href="#about" className="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 px-6 py-3.5 text-sm font-bold text-white transition hover:border-[#e5bd4a] hover:text-[#f5d670]">Discover SCI 2027 <ArrowDown className="h-4 w-4" /></a>
               </div>
             </div>

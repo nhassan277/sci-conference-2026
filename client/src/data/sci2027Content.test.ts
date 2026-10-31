@@ -323,6 +323,22 @@ describe("SCI 2027 public content", () => {
     expect(homeSource).not.toContain("createCheckoutSession");
   });
 
+  it("routes public Register now and Register actions to fees before retaining official external forms", () => {
+    const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
+    const headerSource = readFileSync(projectPath("client/src/components/Sci2027Header.tsx"), "utf8");
+
+    expect(homeSource).toContain('href="#registration-fees"');
+    expect(homeSource.indexOf('id="registration-fees"')).toBeLessThan(homeSource.indexOf('id="registration"'));
+    expect(headerSource).toContain('{ href: "/#registration-fees", label: "Register" }');
+    expect(headerSource.match(/href="\/#registration-fees"/g) ?? []).toHaveLength(2);
+    expect(headerSource).not.toContain("sci2027Content.registration.general.url");
+    expect(homeSource).toContain("const registrationOptions = [");
+    expect(homeSource).toContain("sci2027Content.registration.general");
+    expect(homeSource).toContain("sci2027Content.registration.speaker");
+    expect(homeSource).toContain("sci2027Content.registration.studentResearch");
+    expect(homeSource).toContain('href={option.url} target="_blank" rel="noreferrer"');
+  });
+
   it("routes the approved English-only call for abstracts through the speaker and student research forms", () => {
     const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
     const abstractCall = sci2027Content.abstractCall;
