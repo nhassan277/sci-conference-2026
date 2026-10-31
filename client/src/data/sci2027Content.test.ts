@@ -414,13 +414,14 @@ describe("SCI 2027 public content", () => {
     expect(sci2027Content.identity.workshopDate.en).toContain("optional cultural visit: 10 April 2027");
     expect(sci2027Content.workshopProgramme.status).toContain("to be announced");
     expect(sci2027Content.workshopProgramme.postConference.optionalActivity).toContain("Grand Egyptian Museum");
+    expect(homeSource).toContain("Workshop days: 6 and 10 April");
     expect(homeSource).toContain("6–10 April 2027 overview");
     expect(programmeSource).toContain("6–10 April 2027");
     expect(programmeSource).toContain('"10 April 2027": [');
     expect(programmeSource).toContain("Main conference: 7–8 April");
 
     for (const source of publicProgrammeSources) {
-      expect(source).not.toContain("9 April 2027");
+      expect(source).not.toContain("9 April");
       expect(source).not.toContain("Next-Generation Sequencing data analysis and bioinformatics");
       expect(source).not.toContain("Machine learning for researchers in science");
       expect(source).not.toContain("GIS and remote sensing for environmental monitoring");

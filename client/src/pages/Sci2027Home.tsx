@@ -107,7 +107,7 @@ export default function Sci2027Home() {
               <div className="mt-9 grid max-w-2xl gap-3 sm:grid-cols-2">
                 <div className="flex items-center gap-3 border-l-2 border-[#e5bd4a] bg-white/[0.06] px-4 py-3 backdrop-blur-sm">
                   <CalendarDays className="h-5 w-5 shrink-0 text-[#f0ca57]" />
-                  <div><p className="text-sm font-bold">{identity.dates.en}</p><p className="mt-0.5 text-xs text-[#b9ccd7]">Workshop days: 6 and 9 April</p></div>
+                  <div><p className="text-sm font-bold">{identity.dates.en}</p><p className="mt-0.5 text-xs text-[#b9ccd7]">Workshop days: 6 and 10 April</p></div>
                 </div>
                 <div className="flex items-center gap-3 border-l-2 border-[#e5bd4a] bg-white/[0.06] px-4 py-3 backdrop-blur-sm">
                   <MapPin className="h-5 w-5 shrink-0 text-[#f0ca57]" />
