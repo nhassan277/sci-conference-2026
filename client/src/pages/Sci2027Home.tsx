@@ -269,8 +269,8 @@ export default function Sci2027Home() {
               <p className="mt-4 border-l-2 border-[#e5bd4a] pl-4 text-sm leading-6 text-[#dbe8ec]">{publicationOpportunity.notice}</p>
               <div className="mt-6 border border-[#e5bd4a]/45 bg-[#e5bd4a]/10 p-4">
                 <p className="text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#f0ca57]">{publicationOpportunity.feeCalloutLabel}</p>
-                <p className="mt-2 font-serif text-3xl font-bold text-white">{registrationFees.publicationFee.amount}</p>
-                <p className="mt-3 text-xs leading-5 text-[#dbe8ec]">{registrationFees.publicationFee.description}</p>
+                <p className="mt-2 font-serif text-2xl font-bold leading-tight text-white">{registrationFees.publicationOption.feeSummary}</p>
+                <p className="mt-3 text-xs leading-5 text-[#dbe8ec]">{registrationFees.publicationOption.condition}</p>
                 <a href="#registration-fees" className="mt-4 inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.11em] text-[#f0ca57] underline decoration-[#f0ca57]/50 underline-offset-4 transition hover:text-white">{publicationOpportunity.paymentDetailsLinkLabel} <ArrowDown className="h-3.5 w-3.5" /></a>
               </div>
               <a href={publicationOpportunity.url} target="_blank" rel="noreferrer" className="mt-7 inline-flex items-center gap-2 rounded-full bg-[#e5bd4a] px-5 py-3 text-sm font-extrabold uppercase tracking-[0.1em] text-[#062f52] transition hover:-translate-y-0.5 hover:bg-[#f5d670]">{publicationOpportunity.ctaLabel} <ArrowUpRight className="h-4 w-4" /></a>
@@ -321,22 +321,42 @@ export default function Sci2027Home() {
 
         <section id="registration-fees" className="scroll-mt-24 border-y border-[#d3a725]/25 bg-[#062f52] py-20 text-white md:py-28">
           <div className="container">
-            <div className="grid gap-8 lg:grid-cols-[0.88fr_1.12fr] lg:items-end">
+            <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
               <div>
                 <p className="sci-eyebrow text-[#f0ca57]">{registrationFees.eyebrow}</p>
                 <h2 className="mt-4 max-w-xl font-serif text-4xl font-bold leading-[1.04] tracking-[-0.035em] sm:text-5xl">{registrationFees.title}</h2>
                 <p className="mt-6 max-w-xl text-lg leading-8 text-[#c1d3dc]">{registrationFees.description}</p>
               </div>
-              <div className="grid gap-3 sm:grid-cols-3">
-                {registrationFees.categories.map((category, index) => <article key={category.name} className="border border-white/15 bg-white/[0.06] p-5"><p className="text-xs font-bold uppercase tracking-[0.13em] text-[#c1d3dc]">0{index + 1}</p><p className="mt-5 min-h-11 text-sm font-bold leading-5 text-white">{category.name}</p><p className="mt-5 font-serif text-3xl font-bold text-[#f0ca57]">{category.amount}</p></article>)}
+              <div className="overflow-x-auto border border-white/15 bg-white/[0.06] shadow-[0_20px_45px_rgba(0,0,0,0.12)]">
+                <table className="w-full min-w-[680px] border-collapse text-left">
+                  <caption className="sr-only">SCI 2027 registration fee comparison in Egyptian pounds</caption>
+                  <thead className="bg-white/[0.08] text-[#f0ca57]">
+                    <tr>
+                      <th scope="col" className="w-[32%] border-b border-white/15 px-5 py-4 text-[10px] font-extrabold uppercase tracking-[0.15em] sm:px-6">Registration option</th>
+                      {registrationFees.audienceGroups.map((group) => <th key={group} scope="col" className="border-b border-l border-white/15 px-4 py-4 text-center text-[10px] font-extrabold uppercase leading-4 tracking-[0.12em] sm:px-5">{group}</th>)}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {registrationFees.options.map((option, optionIndex) => <tr key={option.label} className={optionIndex === 2 ? "bg-[#e5bd4a]/10" : "bg-transparent"}><th scope="row" className="border-b border-white/10 px-5 py-5 text-sm font-bold leading-5 text-white sm:px-6">{option.label}</th>{option.amounts.map((amount, amountIndex) => <td key={`${option.label}-${registrationFees.audienceGroups[amountIndex]}`} className={`border-b border-l border-white/10 px-4 py-5 text-center font-serif text-xl font-bold sm:px-5 ${amount === "Not available" ? "text-[#b9ccd7]" : "text-[#f0ca57]"}`}>{amount}</td>)}</tr>)}
+                  </tbody>
+                </table>
               </div>
             </div>
 
-            <div className="mt-10 grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
+            <div className="mt-6 grid gap-4 md:grid-cols-[1.2fr_0.8fr_0.8fr]">
+              <article className="border border-[#e5bd4a]/45 bg-[#e5bd4a]/10 p-5 sm:p-6">
+                <p className="text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#f0ca57]">{registrationFees.publicationOption.title}</p>
+                <p className="mt-3 text-sm leading-6 text-[#dbe8ec]">{registrationFees.publicationOption.condition}</p>
+                <a href="#publication-opportunity" className="mt-5 inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.11em] text-[#f0ca57] underline decoration-[#f0ca57]/50 underline-offset-4 transition hover:text-white">Learn about GJSR <ArrowUpRight className="h-3.5 w-3.5" /></a>
+              </article>
+              {registrationFees.addOns.map((addOn) => <article key={addOn.label} className="border border-white/15 bg-white/[0.06] p-5 sm:p-6"><p className="text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#c1d3dc]">Optional add-on</p><p className="mt-4 font-serif text-2xl font-bold text-white">{addOn.label}</p><p className="mt-3 font-serif text-2xl font-bold text-[#f0ca57]">{addOn.amount}</p><p className="mt-3 text-xs leading-5 text-[#c1d3dc]">{addOn.detail}</p></article>)}
+            </div>
+
+            <div className="mt-5 grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
               <article className="border border-[#d3a725]/45 bg-[#f8f3e7] p-6 text-[#063760] sm:p-8">
-                <div className="flex items-start justify-between gap-5"><div><p className="text-xs font-bold uppercase tracking-[0.16em] text-[#ad8618]">{registrationFees.publicationFee.title}</p><p className="mt-4 font-serif text-4xl font-bold">{registrationFees.publicationFee.amount}</p></div><FileText className="h-7 w-7 shrink-0 text-[#ad8618]" /></div>
-                <p className="mt-5 text-sm leading-7 text-[#456374]">{registrationFees.publicationFee.description}</p>
-                <a href="#publication-opportunity" className="mt-6 inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.11em] text-[#063760] underline decoration-[#d3a725] decoration-2 underline-offset-4 transition hover:text-[#ad8618]">{registrationFees.publicationFee.publicationOpportunityLinkLabel} <ArrowUpRight className="h-3.5 w-3.5" /></a>
+                <div className="flex items-start justify-between gap-5"><div><p className="text-xs font-bold uppercase tracking-[0.16em] text-[#ad8618]">Payment preparation</p><p className="mt-4 font-serif text-3xl font-bold">Select your matrix total</p></div><FileText className="h-7 w-7 shrink-0 text-[#ad8618]" /></div>
+                <p className="mt-5 text-sm leading-7 text-[#456374]">Choose the applicable attendance pathway and audience group above. For the combined GJSR option, payment follows acceptance by the journal.</p>
+                <a href="#publication-opportunity" className="mt-6 inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.11em] text-[#063760] underline decoration-[#d3a725] decoration-2 underline-offset-4 transition hover:text-[#ad8618]">Learn about the publication opportunity <ArrowUpRight className="h-3.5 w-3.5" /></a>
               </article>
 
               <article className="border border-white/15 bg-white/[0.06] p-6 sm:p-8">

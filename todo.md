@@ -113,6 +113,9 @@
 - [x] Change the SCI 2027 post-conference workshop date from Friday 9 April to Saturday 10 April 2027 in central programme data
 - [x] Update the SCI 2027 homepage and Programme page ranges and final-day schedule to 10 April, retaining 7–8 April for the main conference
 - [x] Verify all public SCI 2027 date references, tests, typecheck and build, then save a WebDev checkpoint
+- [x] Replace the SCI 2027 registration fees with the approved Undergraduate / Postgraduate / Prof. & Faculty / Researchers matrix
+- [x] Add the combined conditional GJSR publication pathway and optional Gala dinner / Museum visit add-ons while retaining payment-proof instructions
+- [x] Verify the responsive fee matrix, public GJSR wording, tests, typecheck and build, then save a WebDev checkpoint
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks

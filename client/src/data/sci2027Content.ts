@@ -584,8 +584,8 @@ export const sci2027Content = {
     description: "Researchers participating in SCI 2027 who are interested in publishing their research in the Global Journal of Scientific Research (GJSR) may explore the journal’s scope and submission information.",
     ctaLabel: "Visit Global Journal of Scientific Research",
     notice: "Publication is subject to the journal’s editorial and peer-review process.",
-    feeCalloutLabel: "Optional publication fee",
-    paymentDetailsLinkLabel: "View payment details",
+    feeCalloutLabel: "Combined registration & publication option",
+    paymentDetailsLinkLabel: "View registration options & payment details",
     url: "https://gjsr.journals.ekb.eg",
   },
   programme: [
@@ -685,20 +685,28 @@ export const sci2027Content = {
   registrationFees: {
     title: "Registration Fees & Payment",
     eyebrow: "Plan your participation",
-    description: "The conference registration fee covers participation in SCI 2027. Please select the category that reflects your current status.",
-    categories: [
-      { name: "Students", amount: "EGP 300" },
-      { name: "Recent Graduates & Teaching Assistants", amount: "EGP 600" },
-      { name: "Researchers & Faculty Members", amount: "EGP 1,200" },
+    description: "Choose the participation pathway and attendee group that reflect your SCI 2027 contribution. Fees below are in Egyptian pounds (EGP).",
+    audienceGroups: [
+      "Undergraduate",
+      "Postgraduate",
+      "Prof. & Faculty / Researchers",
     ],
-    publicationFee: {
-      title: "Optional publication fee",
-      amount: "EGP 2,000",
-      description: "Additional to conference registration and payable only after the journal accepts the manuscript for publication.",
-      publicationOpportunityLinkLabel: "Learn about the publication opportunity",
-      additionalToRegistration: true,
+    options: [
+      { label: "Attendance", amounts: ["EGP 250", "EGP 400", "EGP 1,000"] },
+      { label: "Attendance + presenting", amounts: ["EGP 350", "EGP 500", "EGP 1,500"] },
+      { label: "Attendance + GJSR publication", amounts: ["Not available", "EGP 750", "EGP 2,000"] },
+    ],
+    publicationOption: {
+      title: "Attendance + GJSR publication",
+      feeSummary: "Postgraduate: EGP 750 · Prof. & Faculty / Researchers: EGP 2,000",
+      condition: "The combined amount includes conference attendance and is payable only after the manuscript is accepted by GJSR through its editorial and peer-review process.",
+      combinedWithAttendance: true,
       payableAfterJournalAcceptance: true,
     },
+    addOns: [
+      { label: "Gala dinner", amount: "EGP 650", detail: "Optional for all registration categories" },
+      { label: "Museum visit", amount: "Price to be announced", detail: "Optional add-on" },
+    ],
     payment: {
       method: "InstaPay",
       bank: "Central Bank of Egypt (CBE)",

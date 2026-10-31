@@ -246,27 +246,29 @@ describe("SCI 2027 public content", () => {
     expect(homeSource).toContain('rel="noreferrer"');
   });
 
-  it("connects the optional publication fee bidirectionally with the GJSR opportunity and payment details", () => {
+  it("connects the combined conditional GJSR registration option bidirectionally with the publication opportunity", () => {
     const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
     const publication = sci2027Content.publicationOpportunity;
-    const fee = sci2027Content.registrationFees.publicationFee;
+    const publicationOption = sci2027Content.registrationFees.publicationOption;
 
-    expect(publication.feeCalloutLabel).toBe("Optional publication fee");
-    expect(publication.paymentDetailsLinkLabel).toBe("View payment details");
-    expect(fee.publicationOpportunityLinkLabel).toBe("Learn about the publication opportunity");
-    expect(fee.amount).toBe("EGP 2,000");
-    expect(fee.additionalToRegistration).toBe(true);
-    expect(fee.payableAfterJournalAcceptance).toBe(true);
+    expect(publication.feeCalloutLabel).toBe("Combined registration & publication option");
+    expect(publication.paymentDetailsLinkLabel).toBe("View registration options & payment details");
+    expect(publicationOption.title).toBe("Attendance + GJSR publication");
+    expect(publicationOption.feeSummary).toBe("Postgraduate: EGP 750 · Prof. & Faculty / Researchers: EGP 2,000");
+    expect(publicationOption.combinedWithAttendance).toBe(true);
+    expect(publicationOption.payableAfterJournalAcceptance).toBe(true);
+    expect(publicationOption.condition).toContain("accepted by GJSR");
     expect(homeSource).toContain('id="publication-opportunity"');
     expect(homeSource).toContain('id="registration-fees"');
     expect(homeSource).toContain('href="#publication-opportunity"');
     expect(homeSource).toContain('href="#registration-fees"');
-    expect(homeSource).toContain("registrationFees.publicationFee.amount");
-    expect(homeSource).toContain("registrationFees.publicationFee.description");
+    expect(homeSource).toContain("registrationFees.publicationOption.feeSummary");
+    expect(homeSource).toContain("registrationFees.publicationOption.condition");
+    expect(homeSource).not.toContain("registrationFees.publicationFee");
     expect(homeSource).toContain('href={publicationOpportunity.url}');
   });
 
-  it("provides the approved SCI 2027 registration fees and CBE payment-confirmation instructions", () => {
+  it("provides the approved SCI 2027 fee matrix, optional add-ons and unchanged CBE payment-confirmation instructions", () => {
     const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
     const fees = sci2027Content.registrationFees;
 
@@ -276,16 +278,25 @@ describe("SCI 2027 public content", () => {
     }
 
     expect(fees.title).toBe("Registration Fees & Payment");
-    expect(fees.categories).toEqual([
-      { name: "Students", amount: "EGP 300" },
-      { name: "Recent Graduates & Teaching Assistants", amount: "EGP 600" },
-      { name: "Researchers & Faculty Members", amount: "EGP 1,200" },
+    expect(fees.audienceGroups).toEqual([
+      "Undergraduate",
+      "Postgraduate",
+      "Prof. & Faculty / Researchers",
     ]);
-    expect(fees.publicationFee).toMatchObject({
-      amount: "EGP 2,000",
-      additionalToRegistration: true,
+    expect(fees.options).toEqual([
+      { label: "Attendance", amounts: ["EGP 250", "EGP 400", "EGP 1,000"] },
+      { label: "Attendance + presenting", amounts: ["EGP 350", "EGP 500", "EGP 1,500"] },
+      { label: "Attendance + GJSR publication", amounts: ["Not available", "EGP 750", "EGP 2,000"] },
+    ]);
+    expect(fees.publicationOption).toMatchObject({
+      title: "Attendance + GJSR publication",
+      combinedWithAttendance: true,
       payableAfterJournalAcceptance: true,
     });
+    expect(fees.addOns).toEqual([
+      { label: "Gala dinner", amount: "EGP 650", detail: "Optional for all registration categories" },
+      { label: "Museum visit", amount: "Price to be announced", detail: "Optional add-on" },
+    ]);
     expect(fees.payment).toMatchObject({
       method: "InstaPay",
       bank: "Central Bank of Egypt (CBE)",
@@ -300,7 +311,13 @@ describe("SCI 2027 public content", () => {
     ]);
     expect(fees.confirmationNote).toBe("Registration will be confirmed after payment proof is reviewed.");
     expect(homeSource.indexOf("registrationFees.title")).toBeLessThan(homeSource.indexOf('id="registration"'));
-    expect(homeSource).toContain("registrationFees.categories.map");
+    expect(homeSource).toContain("<table");
+    expect(homeSource).toContain('scope="col"');
+    expect(homeSource).toContain('scope="row"');
+    expect(homeSource).toContain("registrationFees.options.map");
+    expect(homeSource).toContain("registrationFees.addOns.map");
+    expect(homeSource).toContain("overflow-x-auto");
+    expect(homeSource).not.toContain("registrationFees.categories.map");
     expect(homeSource).toContain('mailto:${registrationFees.payment.confirmationEmail}');
     expect(homeSource).not.toContain("createCheckoutSession");
   });
