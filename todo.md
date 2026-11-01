@@ -140,6 +140,9 @@
 - [x] Add Prof. Amal Soliman as the third Distinguished Patronage card after Prof. Sohair Ramadan Fahmy
 - [x] Create a managed hosted derivative of the supplied official portrait without cropping or altering the original upload
 - [x] Verify the responsive three-card patronage layout, portrait visibility, tests, typecheck and build, then save a WebDev checkpoint
+- [x] Replace Prof. Sohair Ramadan Fahmy’s cropped patronage portrait with a full no-crop derivative of the confirmed original upload
+- [x] Retain the original upload untouched and display the new full portrait using contain sizing in the existing card only
+- [x] Verify the managed asset, patronage layout on desktop/mobile, tests, typecheck and build, then save a WebDev checkpoint
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks

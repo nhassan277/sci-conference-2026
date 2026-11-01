@@ -202,9 +202,9 @@ export const sci2027Content = {
       role: "Dean of the Faculty of Science, Cairo University",
       roleAr: "عميد كلية العلوم، جامعة القاهرة",
       photo: {
-        url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/bMRokNwXdByfPRny.webp",
+        url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/IDqVLsRCMFYboeiQ.webp",
         alt: "Prof. Sohair Ramadan Fahmy, Dean of the Faculty of Science, Cairo University.",
-        fit: "cover",
+        fit: "contain",
       },
     },
     {

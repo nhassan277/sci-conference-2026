@@ -504,6 +504,13 @@ describe("SCI 2027 public content", () => {
       "Prof. Sohair Ramadan Fahmy",
       "Prof. Amal Soliman",
     ]);
+    expect(patronage[1]).toMatchObject({
+      photo: {
+        alt: "Prof. Sohair Ramadan Fahmy, Dean of the Faculty of Science, Cairo University.",
+        fit: "contain",
+      },
+    });
+    expect(patronage[1].photo.url).not.toContain("bMRokNwXdByfPRny.webp");
     expect(patronage[2]).toMatchObject({
       role: "Vice Dean for Postgraduate Studies and Research, Faculty of Science, Cairo University",
       photo: {
