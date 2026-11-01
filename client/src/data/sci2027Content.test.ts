@@ -584,12 +584,12 @@ describe("SCI 2027 public content", () => {
     expect(footerSource).toContain('<Link href="/archive-2026"');
   });
 
-  it("publishes the updated nine-member Conference Organization Unit roster without meeting-record or contact details", () => {
+  it("publishes the updated eight-member Conference Organization Unit roster without meeting-record or contact details", () => {
     const unitPagePath = projectPath("client/src/pages/Sci2027OrganizationUnit.tsx");
     const unitPageSource = existsSync(unitPagePath) ? readFileSync(unitPagePath, "utf8") : "";
     const unit = sci2027Content.conferenceOrganizationUnit;
 
-    expect(unit.members).toHaveLength(9);
+    expect(unit.members).toHaveLength(8);
     expect(unit.members.map((member) => `${member.name} | ${member.role}`)).toEqual([
       "Prof. Walid Rahouma | Director of the Unit",
       "Prof. Mohamed Qarny | Secretary of the Unit",
@@ -597,10 +597,10 @@ describe("SCI 2027 public content", () => {
       "Dr. Nahla Osama | Scientific Programme Lead",
       "Prof. Rania Ali | Media & Marketing Lead",
       "Dr. Nourhan Hassan | Sponsorship, Funding & Conference Website Lead",
-      "Prof. Rasha El-Nashar | Public Relations Lead",
       "Prof. Azza Shoukry | Registration & Operations Lead",
       "Dr. Dina Amr | Logistics Lead",
     ]);
+    expect(unit.members.map((member) => member.name)).not.toContain("Prof. Rasha El-Nashar");
     expect(unit.members).not.toContainEqual(expect.objectContaining({ name: "Prof. Heba Mohamed Fahmy" }));
     expect(unit.members.map((member) => member.name)).not.toEqual(expect.arrayContaining([
       "Prof. Walid Ali Rahouma",
@@ -621,6 +621,7 @@ describe("SCI 2027 public content", () => {
     expect(unitPageSource).toContain("Meet the Unit");
     expect(unitPageSource).toContain("conferenceOrganizationUnit.members.map");
     expect(unitPageSource).not.toContain("memberStatus");
+    expect(unitPageSource).not.toContain("Prof. Rasha El-Nashar");
     expect(unitPageSource).not.toMatch(/info@sci\.cu\.edu\.eg|\+20 2 3567 6000|13 September 2026/u);
     expect(unitPageSource).not.toContain("<img src={member");
   });
@@ -739,6 +740,27 @@ describe("SCI 2027 public content", () => {
       expect(homeSource).not.toContain(name);
       expect(unitPageSource).not.toContain(name);
     }
+  });
+
+  it("lists the approved Sponsorship Committee before the separate student-assistant acknowledgement", () => {
+    const sponsorshipPageSource = readFileSync(projectPath("client/src/pages/Sci2027Sponsorship.tsx"), "utf8");
+    const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
+    const unitPageSource = readFileSync(projectPath("client/src/pages/Sci2027OrganizationUnit.tsx"), "utf8");
+    const sponsorship = sci2027Content.sponsorship as typeof sci2027Content.sponsorship & {
+      sponsorshipCommittee?: { title: string; members: string[] };
+    };
+
+    expect(sponsorship.sponsorshipCommittee).toEqual({
+      title: "Sponsorship Committee",
+      members: ["Dr. Hoda Abu Shady", "Prof. Azza Shoukry"],
+    });
+    expect(sponsorshipPageSource).toContain("sponsorship.sponsorshipCommittee.members.map");
+    expect(sponsorshipPageSource.indexOf("sponsorship.sponsorshipCommittee.members.map")).toBeLessThan(
+      sponsorshipPageSource.indexOf("sponsorship.studentSponsorshipAssistants.members.map"),
+    );
+    expect(sci2027Content.conferenceOrganizationUnit.members.find((member) => member.name === "Prof. Azza Shoukry")?.role).toBe("Registration & Operations Lead");
+    expect(homeSource).not.toContain("Dr. Hoda Abu Shady");
+    expect(unitPageSource).not.toContain("Dr. Hoda Abu Shady");
   });
 
   it("provides an English-only click-to-play SCI 2027 promotional-video gallery", () => {

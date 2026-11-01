@@ -121,6 +121,22 @@ export default function Sci2027Sponsorship() {
           </div>
         </section>
 
+        <section className="border-y border-[#063760]/10 bg-[#f7f2e7] py-16 md:py-20">
+          <div className="container grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+            <div className="max-w-xl">
+              <HeartHandshake className="h-7 w-7 text-[#ad8618]" />
+              <h2 className="mt-6 font-serif text-4xl font-bold leading-[1.04] tracking-[-0.035em] text-[#063760]">{sponsorship.sponsorshipCommittee.title}</h2>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {sponsorship.sponsorshipCommittee.members.map((member) => (
+                <article key={member} className="border border-[#063760]/10 bg-white px-6 py-6 shadow-sm">
+                  <p className="font-serif text-2xl font-bold leading-tight text-[#063760]">{member}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section className="border-y border-[#063760]/10 bg-[#edf4f3] py-16 md:py-20">
           <div className="container grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
             <div className="max-w-xl">

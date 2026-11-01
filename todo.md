@@ -134,6 +134,9 @@
 - [x] Rename the public Videos navigation and page identity to Watch SCI 2027 while retaining the existing /videos route
 - [x] Preserve all hosted video assets, manual player behaviour, YouTube channel links and current footer wording
 - [x] Verify the renamed desktop/mobile navigation and video page, tests, typecheck and build, then save a WebDev checkpoint
+- [x] Remove Prof. Rasha El-Nashar from the public SCI 2027 Conference Organization Unit roster only
+- [x] Add the approved Sponsorship Committee for Dr. Hoda Abu Shady and Prof. Azza Shoukry before Student Sponsorship Assistants
+- [x] Retain Prof. Azza Shoukry’s Unit role, verify desktop/mobile separation and roster updates, then save a WebDev checkpoint
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks

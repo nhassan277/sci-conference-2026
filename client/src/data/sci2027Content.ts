@@ -283,12 +283,6 @@ export const sci2027Content = {
         summary: "Develops sponsor and funder engagement, prepares sponsorship proposals, and leads conference website design, content, user experience and ongoing updates.",
       },
       {
-        name: "Prof. Rasha El-Nashar",
-        department: "Chemistry",
-        role: "Public Relations Lead",
-        summary: "Builds institutional outreach with universities and scientific partners while coordinating guests, speakers, delegations, protocol and reception.",
-      },
-      {
         name: "Prof. Azza Shoukry",
         department: "Chemistry",
         role: "Registration & Operations Lead",
@@ -806,6 +800,10 @@ export const sci2027Content = {
       { title: "Conference bags, badges and lanyards", contribution: "EGP 30,000–75,000" },
       { title: "Innovation exhibition or startup showcase", contribution: "EGP 50,000–150,000" },
     ],
+    sponsorshipCommittee: {
+      title: "Sponsorship Committee",
+      members: ["Dr. Hoda Abu Shady", "Prof. Azza Shoukry"],
+    },
     studentSponsorshipAssistants: {
       title: "Student Sponsorship Assistants",
       description: "Supporting sponsor outreach and partner coordination for SCI 2027.",
