@@ -137,6 +137,9 @@
 - [x] Remove Prof. Rasha El-Nashar from the public SCI 2027 Conference Organization Unit roster only
 - [x] Add the approved Sponsorship Committee for Dr. Hoda Abu Shady and Prof. Azza Shoukry before Student Sponsorship Assistants
 - [x] Retain Prof. Azza Shoukry’s Unit role, verify desktop/mobile separation and roster updates, then save a WebDev checkpoint
+- [x] Add Prof. Amal Soliman as the third Distinguished Patronage card after Prof. Sohair Ramadan Fahmy
+- [x] Create a managed hosted derivative of the supplied official portrait without cropping or altering the original upload
+- [x] Verify the responsive three-card patronage layout, portrait visibility, tests, typecheck and build, then save a WebDev checkpoint
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks

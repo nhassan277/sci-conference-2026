@@ -486,21 +486,36 @@ describe("SCI 2027 public content", () => {
     expect(sci2027Content.contact.email).toBe(sci2027Content.sponsorship.contactEmail);
   });
 
-  it("renders consistent professional portraits for both Distinguished Patronage cards", () => {
+  it("renders three approved Distinguished Patronage cards with the Vice Dean portrait fully visible", () => {
     const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
-    const portraits = sci2027Content.patronage.map((patron) => patron.photo).filter(Boolean);
+    const patronage = sci2027Content.patronage as ReadonlyArray<
+      (typeof sci2027Content.patronage)[number] & {
+        photo: { url: string; alt: string; fit?: "cover" | "contain" };
+      }
+    >;
+    const portraits = patronage.map((patron) => patron.photo).filter(Boolean);
 
-    expect(sci2027Content.patronage).toHaveLength(2);
-    expect(portraits).toHaveLength(2);
+    expect(patronage).toHaveLength(3);
+    expect(portraits).toHaveLength(3);
     expect(portraits.every((photo) => photo.url.startsWith("https://"))).toBe(true);
     expect(portraits.every((photo) => photo.alt.length > 20)).toBe(true);
-    expect(sci2027Content.patronage.map((patron) => patron.name)).toEqual([
+    expect(patronage.map((patron) => patron.name)).toEqual([
       "Prof. Mohamed Sami Abdel-Sadek",
       "Prof. Sohair Ramadan Fahmy",
+      "Prof. Amal Soliman",
     ]);
+    expect(patronage[2]).toMatchObject({
+      role: "Vice Dean for Postgraduate Studies and Research, Faculty of Science, Cairo University",
+      photo: {
+        alt: "Prof. Amal Soliman, Vice Dean for Postgraduate Studies and Research, Faculty of Science, Cairo University.",
+        fit: "contain",
+      },
+    });
     expect(homeSource).toContain("patron.photo.url");
     expect(homeSource).toContain("patron.photo.alt");
     expect(homeSource).toContain("aspect-[4/5]");
+    expect(homeSource).toContain('patron.photo.fit === "contain"');
+    expect(homeSource).toContain("object-contain");
     expect(homeSource).toContain("object-cover");
   });
 

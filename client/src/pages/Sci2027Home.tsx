@@ -141,7 +141,7 @@ export default function Sci2027Home() {
                 <article key={patron.name} className="border border-[#063760]/10 bg-white p-4 shadow-sm">
                   <div className="flex items-center gap-4">
                     <div className="aspect-[4/5] w-20 shrink-0 overflow-hidden border-2 border-[#d3a725]/55 bg-[#edf4f3] shadow-sm">
-                      <img src={patron.photo.url} alt={patron.photo.alt} loading="lazy" className="h-full w-full object-cover object-center" />
+                      <img src={patron.photo.url} alt={patron.photo.alt} loading="lazy" className={`h-full w-full object-center ${patron.photo.fit === "contain" ? "object-contain" : "object-cover"}`} />
                     </div>
                     <div className="min-w-0">
                       <Landmark className="h-5 w-5 text-[#ad8618]" />

@@ -193,6 +193,7 @@ export const sci2027Content = {
       photo: {
         url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/DgwzbMEqKBEXBlYI.webp",
         alt: "Prof. Mohamed Sami Abdel-Sadek, President of Cairo University.",
+        fit: "cover",
       },
     },
     {
@@ -203,6 +204,18 @@ export const sci2027Content = {
       photo: {
         url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/bMRokNwXdByfPRny.webp",
         alt: "Prof. Sohair Ramadan Fahmy, Dean of the Faculty of Science, Cairo University.",
+        fit: "cover",
+      },
+    },
+    {
+      name: "Prof. Amal Soliman",
+      nameAr: "الأستاذ الدكتور أمل سليمان",
+      role: "Vice Dean for Postgraduate Studies and Research, Faculty of Science, Cairo University",
+      roleAr: "وكيلة الكلية لشئون الدراسات العليا والبحوث، كلية العلوم، جامعة القاهرة",
+      photo: {
+        url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/AJJlImtkLNmGxwKj.webp",
+        alt: "Prof. Amal Soliman, Vice Dean for Postgraduate Studies and Research, Faculty of Science, Cairo University.",
+        fit: "contain",
       },
     },
   ],
