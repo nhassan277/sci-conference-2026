@@ -124,7 +124,7 @@ export const sci2027Content = {
     },
   },
   assets: {
-    detailedPoster: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/ejMHwlwJltrmxUkG.png",
+    detailedPoster: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/NNuGwlAvWOmVykmL.webp",
     simplePoster: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/ZtqHzzjZVdNkxKtx.png",
     cairoUniversityLogo: "/sci-2027/logos/cairo-university.jpg",
     conferenceUnitLogo: "/sci-2027/logos/conference-unit-logo.755cd17d.png",

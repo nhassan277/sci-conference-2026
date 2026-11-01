@@ -146,6 +146,9 @@
 - [x] Add the approved English-only Gala Dinner on the Nile section for Fleet Club El Gezira after registration fees and before forms
 - [x] Create managed hosted no-crop derivatives for the seven approved Fleet Club images, excluding the Facebook screenshot and contact details
 - [x] Verify the manual gallery, location action, EGP 650 add-on link, responsive layout, tests, typecheck and build, then save a WebDev checkpoint
+- [x] Replace only the homepage Hero poster with the newly supplied official SCI 2027 poster
+- [x] Create a managed hosted no-crop derivative while retaining the original poster and its printed artwork unchanged
+- [x] Verify desktop/mobile Hero presentation, tests, typecheck and build, then save a WebDev checkpoint
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks

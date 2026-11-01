@@ -776,6 +776,17 @@ describe("SCI 2027 public content", () => {
     }
   });
 
+  it("uses the newly supplied official poster for the homepage Hero without a crop treatment", () => {
+    const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
+
+    expect(sci2027Content.assets.detailedPoster).toMatch(/^https:\/\/.*\.webp$/);
+    expect(sci2027Content.assets.detailedPoster).not.toContain("ejMHwlwJltrmxUkG.png");
+    expect(homeSource).toContain('src={assets.detailedPoster}');
+    expect(homeSource).toContain('alt="Official SCI 2027 conference poster"');
+    expect(homeSource).toContain('className="relative z-0 w-full border');
+    expect(homeSource).not.toContain('assets.detailedPoster} alt="Official SCI 2027 conference poster" className="object-cover');
+  });
+
   it("provides a dedicated SCI 2027 home page", () => {
     expect(existsSync(projectPath("client/src/pages/Sci2027Home.tsx"))).toBe(true);
   });
