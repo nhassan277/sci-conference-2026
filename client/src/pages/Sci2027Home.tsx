@@ -67,9 +67,10 @@ const registrationCardStyles = [
 const registrationAccentStyles = ["text-[#f0ca57]", "text-[#ad8618]", "text-[#0d638b]"] as const;
 
 export default function Sci2027Home() {
-  const { identity, assets, speakers, sponsorship, workshopProgramme, publicationOpportunity, registrationFees, abstractCall } = sci2027Content;
+  const { identity, assets, speakers, sponsorship, workshopProgramme, publicationOpportunity, registrationFees, galaDinner, abstractCall } = sci2027Content;
   const featuredVideo = sci2027Content.videos.find((video) => video.featured) ?? sci2027Content.videos[0];
   const [venueGalleryPage, setVenueGalleryPage] = useState(0);
+  const [galaGalleryIndex, setGalaGalleryIndex] = useState(0);
   const venueGalleryPages = [
     identity.location.venueGallery.slice(0, 4),
     identity.location.venueGallery.slice(4, 8),
@@ -371,7 +372,7 @@ export default function Sci2027Home() {
                 <p className="mt-3 text-sm leading-6 text-[#dbe8ec]">{registrationFees.publicationOption.condition}</p>
                 <a href="#publication-opportunity" className="mt-5 inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.11em] text-[#f0ca57] underline decoration-[#f0ca57]/50 underline-offset-4 transition hover:text-white">Learn about GJSR <ArrowUpRight className="h-3.5 w-3.5" /></a>
               </article>
-              {registrationFees.addOns.map((addOn) => <article key={addOn.label} className="border border-white/15 bg-white/[0.06] p-5 sm:p-6"><p className="text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#c1d3dc]">Optional add-on</p><p className="mt-4 font-serif text-2xl font-bold text-white">{addOn.label}</p><p className="mt-3 font-serif text-2xl font-bold text-[#f0ca57]">{addOn.amount}</p><p className="mt-3 text-xs leading-5 text-[#c1d3dc]">{addOn.detail}</p></article>)}
+              {registrationFees.addOns.map((addOn) => <article key={addOn.label} className="border border-white/15 bg-white/[0.06] p-5 sm:p-6"><p className="text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#c1d3dc]">Optional add-on</p><p className="mt-4 font-serif text-2xl font-bold text-white">{addOn.label}</p><p className="mt-3 font-serif text-2xl font-bold text-[#f0ca57]">{addOn.amount}</p><p className="mt-3 text-xs leading-5 text-[#c1d3dc]">{addOn.detail}</p>{addOn.label === "Gala dinner" && <a href="#gala-dinner" className="mt-5 inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.1em] text-[#f0ca57] underline decoration-[#f0ca57]/50 underline-offset-4 transition hover:text-white">Explore the dinner venue <ArrowDown className="h-3.5 w-3.5" /></a>}</article>)}
             </div>
 
             <div className="mt-5 grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
@@ -387,6 +388,31 @@ export default function Sci2027Home() {
                   <div className="border-l border-white/15 pl-0 md:pl-7"><p className="text-xs font-bold uppercase tracking-[0.16em] text-[#f0ca57]">To confirm payment, email</p><ul className="mt-4 space-y-2.5">{registrationFees.receiptDetails.map((detail) => <li key={detail} className="flex gap-2.5 text-sm leading-6 text-[#dbe8ec]"><Check className="mt-1 h-4 w-4 shrink-0 text-[#e5bd4a]" />{detail}</li>)}</ul><p className="mt-5 border-l-2 border-[#e5bd4a] pl-3 text-xs font-bold leading-6 text-white">{registrationFees.confirmationNote}</p><a href={`mailto:${registrationFees.payment.confirmationEmail}?subject=SCI%202027%20payment%20confirmation`} className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#e5bd4a] px-5 py-3 text-sm font-extrabold uppercase tracking-[0.1em] text-[#062f52] transition hover:-translate-y-0.5 hover:bg-[#f5d670]">Email payment proof <Mail className="h-4 w-4" /></a></div>
                 </div>
               </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="gala-dinner" className="scroll-mt-24 border-b border-[#063760]/10 bg-[#f7f2e7] py-20 md:py-28">
+          <div className="container grid gap-10 lg:grid-cols-[0.94fr_1.06fr] lg:items-center">
+            <div>
+              <p className="sci-eyebrow">{galaDinner.eyebrow}</p>
+              <h2 className="mt-4 max-w-xl font-serif text-4xl font-bold leading-[1.04] tracking-[-0.035em] text-[#063760] sm:text-5xl">{galaDinner.title}</h2>
+              <p className="mt-6 max-w-xl text-lg leading-8 text-[#456374]">{galaDinner.description}</p>
+
+              <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                <div className="border border-[#d3a725]/40 bg-white px-5 py-5 shadow-sm"><p className="text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#ad8618]">Optional add-on</p><p className="mt-3 font-serif text-3xl font-bold text-[#063760]">{galaDinner.addOnAmount}</p><p className="mt-2 text-xs leading-5 text-[#617986]">{galaDinner.addOnDetail}</p></div>
+                <div className="border border-[#063760]/10 bg-[#063760] px-5 py-5 text-white shadow-sm"><CalendarDays className="h-5 w-5 text-[#f0ca57]" /><p className="mt-4 text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#f0ca57]">Gala dinner schedule</p><p className="mt-2 text-sm font-bold leading-6 text-white">{galaDinner.dateTimeStatus}</p></div>
+              </div>
+
+              <div className="mt-5 border-l-4 border-[#d3a725] bg-white px-5 py-5 shadow-sm"><div className="flex items-start gap-3"><MapPin className="mt-0.5 h-5 w-5 shrink-0 text-[#ad8618]" /><div><p className="text-sm font-extrabold text-[#063760]">{galaDinner.venue}</p><p className="mt-1 text-sm leading-6 text-[#617986]">{galaDinner.location}</p></div></div></div>
+              <a href={galaDinner.directionsUrl} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#063760] px-5 py-3 text-xs font-extrabold uppercase tracking-[0.1em] text-white transition hover:-translate-y-0.5 hover:bg-[#0a507e]">{galaDinner.directionsLabel} <ArrowUpRight className="h-4 w-4" /></a>
+            </div>
+
+            <div className="grid gap-5 sm:grid-cols-2">
+              <figure className="overflow-hidden border border-[#063760]/10 bg-white shadow-[0_20px_45px_rgba(6,55,96,0.12)]"><div className="aspect-[4/5] bg-[#edf4f3]"><img src={galaDinner.primaryImage.url} alt={galaDinner.primaryImage.alt} loading="lazy" className="h-full w-full object-contain" /></div><figcaption className="border-t border-[#063760]/10 px-4 py-3 text-xs font-bold leading-5 text-[#456374]">Fleet Club El Gezira on the Nile</figcaption></figure>
+              <div className="border border-[#063760]/10 bg-[#063760] p-1 shadow-[0_20px_45px_rgba(6,55,96,0.16)]"><figure className="bg-white"><div className="aspect-[4/5] bg-[#edf4f3]"><img src={galaDinner.galleryImages[galaGalleryIndex].url} alt={galaDinner.galleryImages[galaGalleryIndex].alt} loading="lazy" className="h-full w-full object-contain" /></div><figcaption className="border-t border-[#063760]/10 px-4 py-3 text-xs font-bold leading-5 text-[#456374]">Fleet Club gallery · {galaGalleryIndex + 1} of {galaDinner.galleryImages.length}</figcaption></figure>
+                <div className="flex items-center justify-between gap-3 px-3 py-3"><button type="button" onClick={() => setGalaGalleryIndex(galaGalleryIndex - 1)} disabled={galaGalleryIndex === 0} aria-label="Show previous gala dinner image" className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition hover:border-[#f0ca57] hover:text-[#f0ca57] disabled:cursor-not-allowed disabled:opacity-35 focus:outline-none focus:ring-4 focus:ring-[#f0ca57]/30"><ChevronLeft className="h-4 w-4" /></button><div className="flex items-center gap-1.5" aria-label="Gala dinner images">{galaDinner.galleryImages.map((image, galleryIndex) => <button key={image.url} type="button" onClick={() => setGalaGalleryIndex(galleryIndex)} aria-label={`Show gala dinner image ${galleryIndex + 1}`} aria-current={galleryIndex === galaGalleryIndex ? "page" : undefined} className={`h-2 rounded-full transition-all focus:outline-none focus:ring-4 focus:ring-[#f0ca57]/30 ${galleryIndex === galaGalleryIndex ? "w-6 bg-[#f0ca57]" : "w-2 bg-white/35 hover:bg-white/70"}`} />)}</div><button type="button" onClick={() => setGalaGalleryIndex(galaGalleryIndex + 1)} disabled={galaGalleryIndex === galaDinner.galleryImages.length - 1} aria-label="Show next gala dinner image" className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition hover:border-[#f0ca57] hover:text-[#f0ca57] disabled:cursor-not-allowed disabled:opacity-35 focus:outline-none focus:ring-4 focus:ring-[#f0ca57]/30"><ChevronRight className="h-4 w-4" /></button></div>
+              </div>
             </div>
           </div>
         </section>

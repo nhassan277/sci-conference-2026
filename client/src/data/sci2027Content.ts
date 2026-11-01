@@ -729,6 +729,48 @@ export const sci2027Content = {
     ],
     confirmationNote: "Registration will be confirmed after payment proof is reviewed.",
   },
+  galaDinner: {
+    eyebrow: "Optional evening experience",
+    title: "Gala Dinner on the Nile",
+    venue: "Fleet Club El Gezira",
+    description: "An optional Nile-side dinner experience with a relaxed setting for conversation and connection beyond the conference programme.",
+    addOnAmount: "EGP 650",
+    addOnDetail: "Optional for all registration categories",
+    dateTimeStatus: "Date and time to be announced",
+    location: "Zamalek, close to Opera Square, 4th of Maglis Qeyadit El Thawra St., Cairo, Egypt",
+    directionsLabel: "Get directions to Fleet Club El Gezira",
+    directionsUrl: "https://www.google.com/maps/search/?api=1&query=Fleet%20Club%20El%20Gezira%2C%20Zamalek%2C%20Cairo%2C%20Egypt",
+    primaryImage: {
+      url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/KYFRhDZCBKcGymeD.webp",
+      alt: "Fleet Club El Gezira boat on the Nile with the Cairo skyline.",
+    },
+    galleryImages: [
+      {
+        url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/MkmoskMXDefFroFK.webp",
+        alt: "The white-and-blue exterior of Fleet Club El Gezira beside the Nile.",
+      },
+      {
+        url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/uMUNBgBIBiasyouE.webp",
+        alt: "Fleet Club El Gezira’s Nile cruise vessel near the riverbank.",
+      },
+      {
+        url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/ZVNmrBWYqMAitmAo.webp",
+        alt: "A prepared table in the Fleet Club El Gezira dining room.",
+      },
+      {
+        url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/HqsfvkGQcDwwVwKf.webp",
+        alt: "A plated dish served at Fleet Club El Gezira by the Nile.",
+      },
+      {
+        url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/lHcMlEDkFClDfoDb.webp",
+        alt: "A Fleet Club El Gezira dish with roasted potatoes, vegetables and herbs.",
+      },
+      {
+        url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/gezBNwPLJuBWdVts.webp",
+        alt: "A Nile-side view toward the Grand Egyptian Museum near Fleet Club El Gezira.",
+      },
+    ],
+  },
   sponsorship: {
     contactEmail: "sci.conf.2027@gmail.com",
     ctaLabel: "Request the Sponsorship Prospectus by Email",

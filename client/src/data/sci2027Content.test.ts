@@ -323,6 +323,50 @@ describe("SCI 2027 public content", () => {
     expect(homeSource).not.toContain("createCheckoutSession");
   });
 
+  it("introduces the optional Fleet Club El Gezira gala dinner after fees without publishing social-contact details", () => {
+    const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
+    const galaDinner = sci2027Content.galaDinner;
+
+    if (!galaDinner) {
+      expect(galaDinner).toBeDefined();
+      return;
+    }
+
+    expect(galaDinner).toMatchObject({
+      title: "Gala Dinner on the Nile",
+      venue: "Fleet Club El Gezira",
+      addOnAmount: "EGP 650",
+      dateTimeStatus: "Date and time to be announced",
+      location: "Zamalek, close to Opera Square, 4th of Maglis Qeyadit El Thawra St., Cairo, Egypt",
+      directionsLabel: "Get directions to Fleet Club El Gezira",
+    });
+    expect(galaDinner.directionsUrl).toMatch(/^https:\/\/www\.google\.com\/maps\/search\/\?api=1&query=/);
+    expect(galaDinner.primaryImage).toMatchObject({
+      url: expect.stringMatching(/^https:\/\//),
+      alt: expect.stringContaining("Fleet Club El Gezira"),
+    });
+    expect(galaDinner.galleryImages).toHaveLength(6);
+    expect(galaDinner.galleryImages.every((image) => image.url.startsWith("https://"))).toBe(true);
+    expect(galaDinner.galleryImages.every((image) => image.alt.length > 24)).toBe(true);
+    expect(JSON.stringify(galaDinner)).not.toContain("IMG_0014");
+    expect(JSON.stringify(galaDinner)).not.toContain("fleetclubelgezairah");
+    expect(JSON.stringify(galaDinner)).not.toContain("92209699");
+
+    const feesPosition = homeSource.indexOf('id="registration-fees"');
+    const dinnerPosition = homeSource.indexOf('id="gala-dinner"');
+    const formsPosition = homeSource.indexOf('id="registration"');
+    expect(dinnerPosition).toBeGreaterThan(feesPosition);
+    expect(dinnerPosition).toBeLessThan(formsPosition);
+    expect(homeSource).toContain("galaDinner.primaryImage.url");
+    expect(homeSource).toContain("galaDinner.galleryImages[galaGalleryIndex]");
+    expect(homeSource).toContain('aria-label="Show previous gala dinner image"');
+    expect(homeSource).toContain('aria-label="Show next gala dinner image"');
+    expect(homeSource).toContain('aria-current={galleryIndex === galaGalleryIndex ? "page" : undefined}');
+    expect(homeSource).toContain('href="#gala-dinner"');
+    expect(homeSource).toContain('target="_blank"');
+    expect(homeSource).toContain('rel="noreferrer"');
+  });
+
   it("routes public Register now and Register actions to fees before retaining official external forms", () => {
     const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
     const headerSource = readFileSync(projectPath("client/src/components/Sci2027Header.tsx"), "utf8");

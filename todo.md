@@ -143,6 +143,9 @@
 - [x] Replace Prof. Sohair Ramadan Fahmy’s cropped patronage portrait with a full no-crop derivative of the confirmed original upload
 - [x] Retain the original upload untouched and display the new full portrait using contain sizing in the existing card only
 - [x] Verify the managed asset, patronage layout on desktop/mobile, tests, typecheck and build, then save a WebDev checkpoint
+- [x] Add the approved English-only Gala Dinner on the Nile section for Fleet Club El Gezira after registration fees and before forms
+- [x] Create managed hosted no-crop derivatives for the seven approved Fleet Club images, excluding the Facebook screenshot and contact details
+- [x] Verify the manual gallery, location action, EGP 650 add-on link, responsive layout, tests, typecheck and build, then save a WebDev checkpoint
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks
