@@ -36,9 +36,11 @@ const schedule: Record<string, ProgrammeSession[]> = {
     { time: "16:30–16:45", title: "Closing remarks" },
     { time: "16:45–17:00", title: "Closing session: recommendations and partnership announcements", tone: "blue" },
   ],
+  "9 April 2027": [
+    { time: "To be announced", title: "Optional cultural visit: Grand Egyptian Museum", tone: "soft" },
+  ],
   "10 April 2027": [
     { time: "To be announced", title: "Post-conference workshop programme", tone: "gold" },
-    { time: "Afternoon", title: "Optional cultural experience: Grand Egyptian Museum visit", tone: "soft" },
   ],
 };
 
@@ -60,7 +62,7 @@ export default function Sci2027Programme() {
           <div className="container relative py-16 md:py-20">
             <Link href="/" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.15em] text-[#f0ca57] transition hover:text-white"><ArrowLeft className="h-4 w-4" /> Back to SCI 2027</Link>
             <p className="mt-10 text-xs font-bold uppercase tracking-[0.2em] text-[#f0ca57]">SCI 2027 · Preliminary programme</p>
-            <h1 className="mt-4 max-w-4xl font-serif text-5xl font-bold leading-[1.02] tracking-[-0.04em] sm:text-6xl">Four days for workshops, discovery, dialogue and collaboration.</h1>
+            <h1 className="mt-4 max-w-4xl font-serif text-5xl font-bold leading-[1.02] tracking-[-0.04em] sm:text-6xl">Five days for workshops, discovery, dialogue and collaboration.</h1>
             <div className="mt-9 grid gap-3 sm:grid-cols-3">
               <div className="flex items-center gap-3 border-l-2 border-[#e5bd4a] bg-white/[0.06] px-4 py-3"><CalendarDays className="h-5 w-5 text-[#f0ca57]" /><span className="text-sm font-bold">6–10 April 2027</span></div>
               <div className="flex items-center gap-3 border-l-2 border-[#e5bd4a] bg-white/[0.06] px-4 py-3"><Sparkles className="h-5 w-5 text-[#f0ca57]" /><span className="text-sm font-bold">Main conference: 7–8 April</span></div>
@@ -123,9 +125,9 @@ export default function Sci2027Programme() {
                 <h2 className="mt-3 font-serif text-2xl font-bold leading-tight">Two learning days around the main conference.</h2>
                 <div className="mt-5 space-y-4 border-t border-white/15 pt-5">
                   <div><p className="text-sm font-bold">{workshopProgramme.preConference.label}</p><p className="mt-1 text-xs text-[#b9ccd7]">{workshopProgramme.preConference.date}</p></div>
+                  <div><p className="text-sm font-bold">{workshopProgramme.culturalVisit.label}</p><p className="mt-1 text-xs text-[#b9ccd7]">{workshopProgramme.culturalVisit.date} · {workshopProgramme.culturalVisit.activity}</p></div>
                   <div><p className="text-sm font-bold">{workshopProgramme.postConference.label}</p><p className="mt-1 text-xs text-[#b9ccd7]">{workshopProgramme.postConference.date}</p></div>
                   <div className="border-t border-white/10 pt-4"><p className="text-xs leading-5 text-[#b9ccd7]">{workshopProgramme.status}</p></div>
-                  <div className="border-t border-white/10 pt-4"><p className="text-xs font-bold leading-5 text-[#f0ca57]">{workshopProgramme.postConference.optionalActivity}</p></div>
                 </div>
               </div>
               <a href={sci2027Content.assets.brochureEnglish} target="_blank" rel="noreferrer" className="flex items-center justify-between border border-[#063760]/15 bg-white px-5 py-4 text-sm font-bold text-[#063760] transition hover:border-[#d3a725]"><span>Download conference brochure</span><Download className="h-4 w-4 text-[#ad8618]" /></a>

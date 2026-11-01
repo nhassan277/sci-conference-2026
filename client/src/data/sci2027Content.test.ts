@@ -163,7 +163,7 @@ describe("SCI 2027 public content", () => {
     expect(indexSource).toContain('name="theme-color" content="#062f52"');
   });
 
-  it("uses the updated public Google Drive direct-download link for the English brochure while retaining Arabic", () => {
+  it("uses the final public Google Drive direct-download link for the English brochure while retaining Arabic", () => {
     const retiredEnglishBrochure = projectPath(
       "client/public/sci-2027/documents/SCI2027-Trifold-Brochure-EN.pdf",
     );
@@ -175,8 +175,9 @@ describe("SCI 2027 public content", () => {
     const programmeSource = readFileSync(projectPath("client/src/pages/Sci2027Programme.tsx"), "utf8");
     const footerSource = readFileSync(projectPath("client/src/components/Sci2027Footer.tsx"), "utf8");
 
-    expect(sci2027Content.assets.brochureEnglish).toBe("https://drive.google.com/uc?export=download&id=1XfDPdrLjCDbG44VOjhJBdjiuSjDSNpmv");
+    expect(sci2027Content.assets.brochureEnglish).toMatch(/^https:\/\/drive\.google\.com\/uc\?export=download&id=[A-Za-z0-9_-]+$/);
     expect(sci2027Content.assets.brochureEnglish).not.toContain("files.manuscdn.com");
+    expect(sci2027Content.assets.brochureEnglish).not.toContain("1XfDPdrLjCDbG44VOjhJBdjiuSjDSNpmv");
     expect(sci2027Content.assets.brochureEnglish).not.toContain("1cw1EwBsOOfSzEHs9nIRPiOahzDZLVfp_");
     expect(existsSync(retiredEnglishBrochure)).toBe(false);
     expect(existsSync(arabicBrochure)).toBe(true);
@@ -296,7 +297,7 @@ describe("SCI 2027 public content", () => {
     });
     expect(fees.addOns).toEqual([
       { label: "Gala dinner", amount: "EGP 650", detail: "Optional for all registration categories" },
-      { label: "Museum visit", amount: "Price to be announced", detail: "Optional add-on" },
+      { label: "Museum visit", amount: "Price to be announced", detail: "Optional add-on · Friday 9 April" },
     ]);
     expect(fees.payment).toMatchObject({
       method: "InstaPay",
@@ -396,7 +397,7 @@ describe("SCI 2027 public content", () => {
       "Provide 3–5 keywords.",
       "Summarise research background, objectives, methodology, principal results and conclusions.",
     ]);
-    expect(abstractCall.status.en).toBe("Abstract submissions are accepted through the relevant SCI 2027 form below.");
+    expect(abstractCall.status.en).toBe("Abstract submissions are open through the relevant SCI 2027 form below. Abstract deadline: 7 March 2027.");
     expect(abstractCall.submissionOptions).toEqual([
       {
         label: "Submit a Speaker Abstract",
@@ -409,7 +410,8 @@ describe("SCI 2027 public content", () => {
         url: sci2027Content.registration.studentResearch.url,
       },
     ]);
-    expect(JSON.stringify(abstractCall)).not.toContain("deadline");
+    expect(JSON.stringify(abstractCall)).toContain("Abstract deadline: 7 March 2027.");
+    expect(JSON.stringify(abstractCall)).not.toContain("has not yet been announced");
     expect(sci2027Content.registration.speaker.name.en).toBe("Speaker & Abstract Submission");
     expect(sci2027Content.registration.speaker.description.en).toBe("For researchers, academics and industry professionals submitting an abstract through the official SCI 2027 form.");
     expect(homeSource).toContain("abstractCall.submissionOptions.map");
@@ -452,10 +454,10 @@ describe("SCI 2027 public content", () => {
     expect(sci2027Content.registration.studentResearch.url).toBe("https://forms.gle/fmXUzEQ85hbXnLFp8");
     expect(sci2027Content.registration.studentResearch.name.en).toBe("Student Research, Thesis & Graduation Project Registration");
     expect(sci2027Content.registration.studentResearch.description.en).toBe("For undergraduate and postgraduate students presenting student research, thesis work, or graduation projects.");
-    expect(sci2027Content.registration.studentResearch.notice.en).toBe("Abstract submissions are accepted through this form. A submission deadline has not yet been announced.");
+    expect(sci2027Content.registration.studentResearch.notice.en).toBe("Abstract submissions are accepted through this form. Abstract deadline: 7 March 2027.");
   });
 
-  it("sets workshops on 6 and Saturday 10 April while retaining the 7–8 April main conference", () => {
+  it("publishes confirmed abstract milestones, Friday museum visit and Saturday workshops", () => {
     const centralContentSource = readFileSync(projectPath("client/src/data/sci2027Content.ts"), "utf8");
     const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
     const programmeSource = readFileSync(projectPath("client/src/pages/Sci2027Programme.tsx"), "utf8");
@@ -465,24 +467,40 @@ describe("SCI 2027 public content", () => {
       "6 April 2027",
       "7 April 2027",
       "8 April 2027",
+      "9 April 2027",
       "10 April 2027",
     ]);
     expect(sci2027Content.programme.at(-1)?.day.en).toBe("Post-conference workshops · Saturday");
     expect(sci2027Content.workshopProgramme.preConference.date).toBe("6 April 2027");
+    expect(sci2027Content.workshopProgramme.culturalVisit).toEqual({
+      date: "9 April 2027",
+      label: "Optional cultural visit · Friday",
+      activity: "Grand Egyptian Museum visit",
+    });
     expect(sci2027Content.workshopProgramme.postConference.date).toBe("10 April 2027");
     expect(sci2027Content.identity.dates.en).toBe("7–8 April 2027");
     expect(sci2027Content.identity.workshopDate.en).toContain("6 and 10 April 2027");
-    expect(sci2027Content.identity.workshopDate.en).toContain("optional cultural visit: 10 April 2027");
+    expect(sci2027Content.identity.workshopDate.en).toContain("optional cultural visit: Friday 9 April 2027");
     expect(sci2027Content.workshopProgramme.status).toContain("to be announced");
-    expect(sci2027Content.workshopProgramme.postConference.optionalActivity).toContain("Grand Egyptian Museum");
-    expect(homeSource).toContain("Workshop days: 6 and 10 April");
-    expect(homeSource).toContain("6–10 April 2027 overview");
+    expect(sci2027Content.importantDates.map((milestone) => [milestone.date, milestone.en])).toEqual([
+      ["1 November 2026", "Abstract submission opens"],
+      ["7 March 2027", "Abstract deadline"],
+      ["15 March 2027", "Abstract review results"],
+      ["25 March 2027", "Attendance registration deadline"],
+    ]);
+    expect(sci2027Content.abstractCall.status.en).toBe("Abstract submissions are open through the relevant SCI 2027 form below. Abstract deadline: 7 March 2027.");
+    expect(homeSource).toContain("identity.workshopDate.en");
+    expect(homeSource).toContain("Five days that move from learning to action.");
+    expect(homeSource).toContain("workshopProgramme.culturalVisit");
     expect(programmeSource).toContain("6–10 April 2027");
+    expect(programmeSource).toContain('"9 April 2027": [');
+    expect(programmeSource).toContain("workshopProgramme.culturalVisit");
     expect(programmeSource).toContain('"10 April 2027": [');
     expect(programmeSource).toContain("Main conference: 7–8 April");
 
     for (const source of publicProgrammeSources) {
-      expect(source).not.toContain("9 April");
+      expect(source).not.toContain("optional cultural visit: 10 April 2027");
+      expect(source).not.toContain("Optional cultural experience: Grand Egyptian Museum visit");
       expect(source).not.toContain("Next-Generation Sequencing data analysis and bioinformatics");
       expect(source).not.toContain("Machine learning for researchers in science");
       expect(source).not.toContain("GIS and remote sensing for environmental monitoring");

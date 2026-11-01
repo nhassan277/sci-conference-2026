@@ -55,8 +55,8 @@ export const sci2027Content = {
       ar: "7–8 أبريل 2027",
     },
     workshopDate: {
-      en: "Workshop days: 6 and 10 April 2027 · optional cultural visit: 10 April 2027",
-      ar: "أيام الورش: 6 و10 أبريل 2027 · الزيارة الثقافية الاختيارية: 10 أبريل 2027",
+      en: "Workshop days: 6 and 10 April 2027 · optional cultural visit: Friday 9 April 2027",
+      ar: "أيام الورش: 6 و10 أبريل 2027 · الزيارة الثقافية الاختيارية: الجمعة 9 أبريل 2027",
     },
     location: {
       en: "Conference Center - Cairo University, Beside Students City, Dr. Mikel Bakhoum Rd, Dokki, Giza, Egypt",
@@ -131,7 +131,7 @@ export const sci2027Content = {
     conferenceUnitMark: "/sci-2027/logos/conference-unit-vertical.png",
     sci2027Logo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/DIUxVumTChoaEhaG.png",
     sciMasterLogo: "/sci-2027/logos/sci-master-logo.jpg",
-    brochureEnglish: "https://drive.google.com/uc?export=download&id=1XfDPdrLjCDbG44VOjhJBdjiuSjDSNpmv",
+    brochureEnglish: "https://drive.google.com/uc?export=download&id=16beCCunYE4jv73T5pxn3fkb661VU1paY",
     brochureArabic: "/sci-2027/documents/SCI2027-Brochure-AR.pdf",
   },
   videos: [
@@ -527,28 +527,18 @@ export const sci2027Content = {
       ar: "بدء استقبال الملخصات",
     },
     {
-      date: "30 January 2027",
-      en: "Early abstract submission deadline",
-      ar: "آخر موعد للتقديم المبكر للملخصات",
-    },
-    {
-      date: "15 February 2027",
-      en: "Abstract submission deadline",
+      date: "7 March 2027",
+      en: "Abstract deadline",
       ar: "آخر موعد لتقديم الملخصات",
     },
     {
-      date: "1 March 2027",
-      en: "Late abstract submission / registration opens",
-      ar: "آخر موعد متأخر للملخصات / بدء التسجيل",
-    },
-    {
       date: "15 March 2027",
-      en: "Abstract-review results",
+      en: "Abstract review results",
       ar: "إعلان نتائج التحكيم",
     },
     {
       date: "25 March 2027",
-      en: "Final registration deadline",
+      en: "Attendance registration deadline",
       ar: "آخر موعد للتسجيل",
     },
   ] satisfies Milestone[],
@@ -569,8 +559,8 @@ export const sci2027Content = {
       "Summarise research background, objectives, methodology, principal results and conclusions.",
     ],
     status: {
-      en: "Abstract submissions are accepted through the relevant SCI 2027 form below.",
-      ar: "تُقبل الملخصات البحثية عبر استمارة SCI 2027 المناسبة أدناه.",
+      en: "Abstract submissions are open through the relevant SCI 2027 form below. Abstract deadline: 7 March 2027.",
+      ar: "باب استقبال الملخصات مفتوح عبر استمارة SCI 2027 المناسبة أدناه. آخر موعد: 7 مارس 2027.",
     },
     submissionOptions: [
       {
@@ -629,12 +619,19 @@ export const sci2027Content = {
       ],
     },
     {
+      date: "9 April 2027",
+      day: { en: "Optional cultural visit · Friday", ar: "زيارة ثقافية اختيارية · الجمعة" },
+      purpose: { en: "A cultural experience beyond the main conference", ar: "تجربة ثقافية اختيارية بعد المؤتمر الرئيسي" },
+      sessions: [
+        { en: "Optional visit to the Grand Egyptian Museum", ar: "زيارة اختيارية للمتحف المصري الكبير" },
+      ],
+    },
+    {
       date: "10 April 2027",
       day: { en: "Post-conference workshops · Saturday", ar: "ورش بعد المؤتمر · السبت" },
-      purpose: { en: "Professional learning and an optional cultural experience", ar: "تعلم مهني وتجربة ثقافية اختيارية" },
+      purpose: { en: "Professional learning after the main conference", ar: "تعلم مهني بعد المؤتمر الرئيسي" },
       sessions: [
         { en: "Workshop programme to be announced", ar: "سيُعلن برنامج الورش لاحقًا" },
-        { en: "Optional visit to the Grand Egyptian Museum", ar: "زيارة اختيارية للمتحف المصري الكبير" },
       ],
     },
   ] satisfies ProgrammeDay[],
@@ -644,10 +641,14 @@ export const sci2027Content = {
       date: "6 April 2027",
       label: "Pre-conference workshops",
     },
+    culturalVisit: {
+      date: "9 April 2027",
+      label: "Optional cultural visit · Friday",
+      activity: "Grand Egyptian Museum visit",
+    },
     postConference: {
       date: "10 April 2027",
       label: "Post-conference workshops",
-      optionalActivity: "Optional cultural experience: Grand Egyptian Museum visit",
     },
   },
   registration: {
@@ -683,8 +684,8 @@ export const sci2027Content = {
         ar: "لطلاب البكالوريوس والدراسات العليا الذين يقدمون أبحاثًا طلابية أو رسائل علمية أو مشروعات تخرج.",
       },
       notice: {
-        en: "Abstract submissions are accepted through this form. A submission deadline has not yet been announced.",
-        ar: "سيُعلن موعد التقديم ومتطلبات الملخص لاحقًا.",
+        en: "Abstract submissions are accepted through this form. Abstract deadline: 7 March 2027.",
+        ar: "تُقبل الملخصات عبر هذه الاستمارة. آخر موعد لتقديم الملخص: 7 مارس 2027.",
       },
       url: SCI2027_FORM_URLS.studentResearch,
     },
@@ -712,7 +713,7 @@ export const sci2027Content = {
     },
     addOns: [
       { label: "Gala dinner", amount: "EGP 650", detail: "Optional for all registration categories" },
-      { label: "Museum visit", amount: "Price to be announced", detail: "Optional add-on" },
+      { label: "Museum visit", amount: "Price to be announced", detail: "Optional add-on · Friday 9 April" },
     ],
     payment: {
       method: "InstaPay",

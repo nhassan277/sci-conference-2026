@@ -149,6 +149,12 @@
 - [x] Replace only the homepage Hero poster with the newly supplied official SCI 2027 poster
 - [x] Create a managed hosted no-crop derivative while retaining the original poster and its printed artwork unchanged
 - [x] Verify desktop/mobile Hero presentation, tests, typecheck and build, then save a WebDev checkpoint
+- [x] Upload the user-supplied final English SCI 2027 brochure as a new public direct-download file
+- [x] Replace the central English brochure URL in all public actions while retaining the Arabic brochure unchanged
+- [x] Verify file identity, all brochure actions, tests, typecheck and build, then save a WebDev checkpoint
+- [x] Publish the approved 1 November, 7 March, 15 March and 25 March abstract and registration milestones
+- [x] Show the Grand Egyptian Museum visit on Friday 9 April separately from Saturday 10 April workshops
+- [x] Verify public schedule and deadline alignment with the final brochure, tests, typecheck and build, then save a WebDev checkpoint
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks
