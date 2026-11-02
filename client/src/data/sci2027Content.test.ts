@@ -668,20 +668,21 @@ describe("SCI 2027 public content", () => {
     expect(footerSource).toContain('<Link href="/archive-2026"');
   });
 
-  it("publishes the updated eight-member Conference Organization Unit roster without meeting-record or contact details", () => {
+  it("publishes the updated nine-member Conference Organization Unit roster without meeting-record or contact details", () => {
     const unitPagePath = projectPath("client/src/pages/Sci2027OrganizationUnit.tsx");
     const unitPageSource = existsSync(unitPagePath) ? readFileSync(unitPagePath, "utf8") : "";
     const unit = sci2027Content.conferenceOrganizationUnit;
 
-    expect(unit.members).toHaveLength(8);
+    expect(unit.members).toHaveLength(9);
     expect(unit.members.map((member) => `${member.name} | ${member.role}`)).toEqual([
       "Prof. Walid Rahouma | Director of the Unit",
       "Prof. Mohamed Qarny | Secretary of the Unit",
-      "Mrs. Manar Mohamed | Administrative Secretary to the Unit",
+      "Mrs. Manar Mohamed | Administrative & Media Officer",
       "Dr. Nahla Osama | Scientific Programme Lead",
       "Prof. Rania Ali | Media & Marketing Lead",
       "Dr. Nourhan Hassan | Sponsorship, Funding & Conference Website Lead",
-      "Prof. Azza Shoukry | Registration & Operations Lead",
+      "Prof. Hoda Abu Shady | Public Relations & Sponsorship Committee",
+      "Prof. Azza Shoukry | Public Relations & Sponsorship Committee",
       "Dr. Dina Amr | Logistics Lead",
     ]);
     expect(unit.members.map((member) => member.name)).not.toContain("Prof. Rasha El-Nashar");
@@ -692,11 +693,23 @@ describe("SCI 2027 public content", () => {
       "Dr. Nahla Osama Mohamed Moussa",
       "Prof. Rania Ali Hassan",
     ]));
+    const hoda = unit.members.find((member) => member.name === "Prof. Hoda Abu Shady");
     const azza = unit.members.find((member) => member.name === "Prof. Azza Shoukry");
+    const manar = unit.members.find((member) => member.name === "Mrs. Manar Mohamed");
     const dina = unit.members.find((member) => member.name === "Dr. Dina Amr");
 
-    expect(azza).toMatchObject({ department: "Chemistry", role: "Registration & Operations Lead" });
-    expect(azza?.summary).toMatch(/participant registration, reception and participant flow/u);
+    expect(hoda).toMatchObject({ department: "Physics", role: "Public Relations & Sponsorship Committee" });
+    expect(azza).toMatchObject({ department: "Chemistry", role: "Public Relations & Sponsorship Committee" });
+    for (const member of [hoda, azza]) {
+      expect(member?.role).not.toMatch(/lead/i);
+      expect(member?.summary).toBe("Supports public relations, institutional outreach and sponsor engagement for the Unit’s scientific conferences and events.");
+    }
+    expect(azza?.summary).not.toContain("participant registration");
+    expect(manar).toMatchObject({
+      department: "Conference Organization Unit",
+      role: "Administrative & Media Officer",
+      summary: "Supports the Unit’s administration through correspondence, records, scheduling and follow-up, and assists with media materials, announcements and communications.",
+    });
     expect(dina).toMatchObject({ department: "Biotechnology", role: "Logistics Lead" });
     expect(dina?.summary).toMatch(/venues, equipment, hospitality, accommodation, transport/u);
     expect(unit.members).toContainEqual(expect.objectContaining({ name: "Mrs. Manar Mohamed", department: "Conference Organization Unit" }));
@@ -837,7 +850,7 @@ describe("SCI 2027 public content", () => {
     }
   });
 
-  it("lists the approved Sponsorship Committee before the separate student-assistant acknowledgement", () => {
+  it("lists the Public Relations & Sponsorship Committee consistently before the separate student-assistant acknowledgement", () => {
     const sponsorshipPageSource = readFileSync(projectPath("client/src/pages/Sci2027Sponsorship.tsx"), "utf8");
     const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
     const unitPageSource = readFileSync(projectPath("client/src/pages/Sci2027OrganizationUnit.tsx"), "utf8");
@@ -846,16 +859,19 @@ describe("SCI 2027 public content", () => {
     };
 
     expect(sponsorship.sponsorshipCommittee).toEqual({
-      title: "Sponsorship Committee",
-      members: ["Dr. Hoda Abu Shady", "Prof. Azza Shoukry"],
+      title: "Public Relations & Sponsorship Committee",
+      members: ["Prof. Hoda Abu Shady", "Prof. Azza Shoukry"],
     });
+    expect(sponsorshipPageSource).toContain("sponsorship.sponsorshipCommittee.title");
     expect(sponsorshipPageSource).toContain("sponsorship.sponsorshipCommittee.members.map");
     expect(sponsorshipPageSource.indexOf("sponsorship.sponsorshipCommittee.members.map")).toBeLessThan(
       sponsorshipPageSource.indexOf("sponsorship.studentSponsorshipAssistants.members.map"),
     );
-    expect(sci2027Content.conferenceOrganizationUnit.members.find((member) => member.name === "Prof. Azza Shoukry")?.role).toBe("Registration & Operations Lead");
-    expect(homeSource).not.toContain("Dr. Hoda Abu Shady");
-    expect(unitPageSource).not.toContain("Dr. Hoda Abu Shady");
+    for (const name of sponsorship.sponsorshipCommittee?.members ?? []) {
+      expect(sci2027Content.conferenceOrganizationUnit.members.find((member) => member.name === name)?.role).toBe(sponsorship.sponsorshipCommittee?.title);
+      expect(homeSource).not.toContain(name);
+    }
+    expect(unitPageSource).toContain("conferenceOrganizationUnit.members.map");
   });
 
   it("provides an English-only click-to-play SCI 2027 promotional-video gallery", () => {

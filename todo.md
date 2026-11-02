@@ -155,6 +155,9 @@
 - [x] Publish the approved 1 November, 7 March, 15 March and 25 March abstract and registration milestones
 - [x] Show the Grand Egyptian Museum visit on Friday 9 April separately from Saturday 10 April workshops
 - [x] Verify public schedule and deadline alignment with the final brochure, tests, typecheck and build, then save a WebDev checkpoint
+- [x] Add Prof. Hoda Abu Shady (Physics) to the Unit and assign her and Prof. Azza Shoukry to Public Relations & Sponsorship Committee without Lead titles
+- [x] Update Mrs. Manar Mohamed to Administrative & Media Officer and rename the names-only sponsorship committee consistently
+- [x] Verify the revised nine-member Unit roster and sponsorship page on desktop/mobile, tests, typecheck and build, then save a WebDev checkpoint
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks

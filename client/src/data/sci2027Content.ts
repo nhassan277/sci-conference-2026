@@ -274,8 +274,8 @@ export const sci2027Content = {
       {
         name: "Mrs. Manar Mohamed",
         department: "Conference Organization Unit",
-        role: "Administrative Secretary to the Unit",
-        summary: "Supports the Unit’s daily administration through official correspondence, records, scheduling and administrative follow-up.",
+        role: "Administrative & Media Officer",
+        summary: "Supports the Unit’s administration through correspondence, records, scheduling and follow-up, and assists with media materials, announcements and communications.",
       },
       {
         name: "Dr. Nahla Osama",
@@ -296,10 +296,16 @@ export const sci2027Content = {
         summary: "Develops sponsor and funder engagement, prepares sponsorship proposals, and leads conference website design, content, user experience and ongoing updates.",
       },
       {
+        name: "Prof. Hoda Abu Shady",
+        department: "Physics",
+        role: "Public Relations & Sponsorship Committee",
+        summary: "Supports public relations, institutional outreach and sponsor engagement for the Unit’s scientific conferences and events.",
+      },
+      {
         name: "Prof. Azza Shoukry",
         department: "Chemistry",
-        role: "Registration & Operations Lead",
-        summary: "Leads participant registration, reception and participant flow to support a smooth and welcoming conference experience.",
+        role: "Public Relations & Sponsorship Committee",
+        summary: "Supports public relations, institutional outreach and sponsor engagement for the Unit’s scientific conferences and events.",
       },
       {
         name: "Dr. Dina Amr",
@@ -857,8 +863,8 @@ export const sci2027Content = {
       { title: "Innovation exhibition or startup showcase", contribution: "EGP 50,000–150,000" },
     ],
     sponsorshipCommittee: {
-      title: "Sponsorship Committee",
-      members: ["Dr. Hoda Abu Shady", "Prof. Azza Shoukry"],
+      title: "Public Relations & Sponsorship Committee",
+      members: ["Prof. Hoda Abu Shady", "Prof. Azza Shoukry"],
     },
     studentSponsorshipAssistants: {
       title: "Student Sponsorship Assistants",
