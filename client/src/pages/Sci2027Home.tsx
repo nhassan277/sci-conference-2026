@@ -74,6 +74,7 @@ export default function Sci2027Home() {
   const venueGalleryPages = [
     identity.location.venueGallery.slice(0, 4),
     identity.location.venueGallery.slice(4, 8),
+    ...identity.location.venueMontages.map((montage) => [montage]),
   ];
 
   return (
@@ -190,13 +191,19 @@ export default function Sci2027Home() {
               <a href={identity.location.mapUrl} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#063760] px-5 py-3 text-xs font-extrabold uppercase tracking-[0.1em] text-white transition hover:-translate-y-0.5 hover:bg-[#0a507e]">{identity.location.directionsLabel} <ArrowUpRight className="h-4 w-4" /></a>
               <div className="mt-10">
                 <div className="overflow-hidden border border-[#063760]/10 bg-[#f7f2e7] shadow-[0_20px_55px_rgba(6,55,96,0.16)]">
-                  <div className="grid grid-cols-2 gap-1 bg-[#fffdf8] p-1">
-                    {venueGalleryPages[venueGalleryPage].map((photo) => (
-                      <figure key={photo.url} className="aspect-square overflow-hidden bg-[#edf4f3]">
-                        <img src={photo.url} alt={photo.alt} loading="lazy" className="h-full w-full object-cover" />
-                      </figure>
-                    ))}
-                  </div>
+                  {venueGalleryPages[venueGalleryPage].length === 1 ? (
+                    <figure className="bg-[#edf4f3]">
+                      <img src={venueGalleryPages[venueGalleryPage][0].url} alt={venueGalleryPages[venueGalleryPage][0].alt} loading="lazy" className="block h-auto w-full" />
+                    </figure>
+                  ) : (
+                    <div className="grid grid-cols-2 gap-1 bg-[#fffdf8] p-1">
+                      {venueGalleryPages[venueGalleryPage].map((photo) => (
+                        <figure key={photo.url} className="aspect-square overflow-hidden bg-[#edf4f3]">
+                          <img src={photo.url} alt={photo.alt} loading="lazy" className="h-full w-full object-cover" />
+                        </figure>
+                      ))}
+                    </div>
+                  )}
                 </div>
                 <div className="mt-4 flex items-center justify-center gap-4">
                   <button type="button" onClick={() => setVenueGalleryPage(venueGalleryPage - 1)} disabled={venueGalleryPage === 0} aria-label="Previous venue photographs" className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#063760]/15 bg-white text-[#063760] shadow-sm transition hover:border-[#d3a725] hover:text-[#ad8618] disabled:cursor-not-allowed disabled:opacity-35 focus:outline-none focus:ring-4 focus:ring-[#d3a725]/25"><ChevronLeft className="h-4 w-4" /></button>

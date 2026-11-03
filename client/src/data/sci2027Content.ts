@@ -121,6 +121,22 @@ export const sci2027Content = {
           source: "SCI 2027 venue photograph",
         },
       ],
+      venueMontages: [
+        {
+          url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/oxWMZKDtCekZjCMb.webp",
+          alt: "Four-scene montage of the Conference Center - Cairo University auditorium, lectern, seating and meeting lounge.",
+          source: "SCI 2027 venue photograph",
+          width: 1536,
+          height: 1024,
+        },
+        {
+          url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/fdqZiBWQtczDjREt.webp",
+          alt: "Four-scene montage of the Conference Center - Cairo University registration lobby, entrance, meeting room and auditorium.",
+          source: "SCI 2027 venue photograph",
+          width: 1254,
+          height: 1254,
+        },
+      ],
     },
   },
   assets: {

@@ -66,7 +66,7 @@ describe("SCI 2027 public content", () => {
     }
   });
 
-  it("keeps the Venue & Halls content as one concise section above the eight-photo carousel after patronage", () => {
+  it("keeps the Venue & Halls content as one concise section above the venue carousel after patronage", () => {
     const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
     const venue = sci2027Content.identity.location;
     const venueVisuals = (venue as typeof venue & {
@@ -123,6 +123,35 @@ describe("SCI 2027 public content", () => {
     expect(gallerySection).not.toContain("figcaption");
     expect(gallerySection).not.toContain("{photo.caption}");
     expect(gallerySection).not.toContain("setInterval");
+  });
+
+  it("appends two complete montage slides after the original four-photo groups without captions or automatic rotation", () => {
+    const venue = sci2027Content.identity.location as typeof sci2027Content.identity.location & {
+      venueMontages?: ReadonlyArray<{ url: string; alt: string; source: string; width: number; height: number }>;
+    };
+    const montages = venue.venueMontages ?? [];
+    const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
+    const start = homeSource.indexOf('id="venue"');
+    const gallerySection = homeSource.slice(start, homeSource.indexOf("</section>", start));
+
+    expect(montages).toHaveLength(2);
+    expect(montages.map(({ width, height }) => [width, height])).toEqual([[1536, 1024], [1254, 1254]]);
+    expect(montages.every(image => image.url.startsWith("https://") && image.url.endsWith(".webp"))).toBe(true);
+    expect(montages.every(image => image.alt.length > 30 && image.source === "SCI 2027 venue photograph")).toBe(true);
+    expect(montages.every(image => !("caption" in image))).toBe(true);
+    expect(new Set([...venue.venueGallery, ...montages].map(image => image.url)).size).toBe(10);
+    const pages = [venue.venueGallery.slice(0, 4), venue.venueGallery.slice(4, 8), ...montages.map(image => [image])];
+    expect(pages.map(page => page.length)).toEqual([4, 4, 1, 1]);
+    expect(homeSource).toContain("...identity.location.venueMontages.map((montage) => [montage])");
+    expect(homeSource.indexOf("identity.location.venueGallery.slice(4, 8)")).toBeLessThan(homeSource.indexOf("identity.location.venueMontages.map"));
+    expect(gallerySection).toContain("venueGalleryPages[venueGalleryPage].length === 1");
+    expect(gallerySection).toContain('className="block h-auto w-full"');
+    expect(gallerySection).toContain("venueGalleryPages.map");
+    expect(gallerySection).toContain("disabled={venueGalleryPage === 0}");
+    expect(gallerySection).toContain("disabled={venueGalleryPage === venueGalleryPages.length - 1}");
+    expect(gallerySection).not.toContain("figcaption");
+    expect(homeSource).not.toContain("setInterval");
+    expect(homeSource).not.toContain("setTimeout");
   });
 
   it("ships a complete navy-and-gold SCI 2027 favicon and mobile icon package", () => {

@@ -158,6 +158,9 @@
 - [x] Add Prof. Hoda Abu Shady (Physics) to the Unit and assign her and Prof. Azza Shoukry to Public Relations & Sponsorship Committee without Lead titles
 - [x] Update Mrs. Manar Mohamed to Administrative & Media Officer and rename the names-only sponsorship committee consistently
 - [x] Verify the revised nine-member Unit roster and sponsorship page on desktop/mobile, tests, typecheck and build, then save a WebDev checkpoint
+- [x] Host the two supplied full venue montages without crop, split, retouching or changes to original uploads
+- [x] Add both montages as separate manual carousel slides after the existing two four-photo venue slides, with four dots and no captions
+- [x] Verify all four venue slides, arrows/dots, full montage aspect ratios, desktop/mobile rendering and tests/typecheck/build, then save a WebDev checkpoint
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks
