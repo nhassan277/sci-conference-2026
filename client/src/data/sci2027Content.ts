@@ -300,7 +300,7 @@ export const sci2027Content = {
         summary: "Coordinates scientific programmes, speakers, abstracts, research papers and review processes to help safeguard the quality of scientific content.",
       },
       {
-        name: "Prof. Rania Ali",
+        name: "Assoc. Prof. Rania Ali",
         department: "Botany",
         role: "Media & Marketing Lead",
         summary: "Leads communications and marketing plans, digital content and platforms, promotional materials, and engagement with relevant media partners.",

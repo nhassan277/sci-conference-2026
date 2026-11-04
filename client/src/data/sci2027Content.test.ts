@@ -708,7 +708,7 @@ describe("SCI 2027 public content", () => {
       "Prof. Mohamed Qarny | Secretary of the Unit",
       "Mrs. Manar Mohamed | Administrative & Media Officer",
       "Dr. Nahla Osama | Scientific Programme Lead",
-      "Prof. Rania Ali | Media & Marketing Lead",
+      "Assoc. Prof. Rania Ali | Media & Marketing Lead",
       "Dr. Nourhan Hassan | Sponsorship, Funding & Conference Website Lead",
       "Prof. Hoda Abu Shady | Public Relations & Sponsorship Committee",
       "Prof. Azza Shoukry | Public Relations & Sponsorship Committee",
@@ -722,6 +722,12 @@ describe("SCI 2027 public content", () => {
       "Dr. Nahla Osama Mohamed Moussa",
       "Prof. Rania Ali Hassan",
     ]));
+    expect(unit.members.find((member) => member.name === "Assoc. Prof. Rania Ali")).toEqual({
+      name: "Assoc. Prof. Rania Ali",
+      department: "Botany",
+      role: "Media & Marketing Lead",
+      summary: "Leads communications and marketing plans, digital content and platforms, promotional materials, and engagement with relevant media partners.",
+    });
     const hoda = unit.members.find((member) => member.name === "Prof. Hoda Abu Shady");
     const azza = unit.members.find((member) => member.name === "Prof. Azza Shoukry");
     const manar = unit.members.find((member) => member.name === "Mrs. Manar Mohamed");

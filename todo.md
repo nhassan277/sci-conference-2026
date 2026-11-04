@@ -161,6 +161,7 @@
 - [x] Host the two supplied full venue montages without crop, split, retouching or changes to original uploads
 - [x] Add both montages as separate manual carousel slides after the existing two four-photo venue slides, with four dots and no captions
 - [x] Verify all four venue slides, arrows/dots, full montage aspect ratios, desktop/mobile rendering and tests/typecheck/build, then save a WebDev checkpoint
+- [x] Correct only Rania Ali’s Conference Organization Unit card title to Assoc. Prof.; retain all other details, verify tests/build and responsive rendering, and save a checkpoint
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks
