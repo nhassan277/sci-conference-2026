@@ -440,6 +440,12 @@ export default function Sci2027Home() {
                   </article>
                 );
               })}
+              <article className="flex flex-col border border-[#063760]/15 bg-[#edf4f3] p-7 text-[#063760] sm:p-8">
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#ad8618]">Press &amp; media</p>
+                <h3 className="mt-4 font-serif text-2xl font-bold leading-tight">Media Registration</h3>
+                <p className="mt-7 text-sm leading-7 text-[#456374]">For media organisations and press professionals interested in covering SCI 2027. Requests are reviewed by the conference team.</p>
+                <Link href="/media-registration-2027" className="mt-7 inline-flex w-fit items-center gap-2 rounded-full bg-[#063760] px-5 py-3 text-sm font-extrabold uppercase tracking-[0.12em] text-white transition hover:bg-[#0a507e] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#d3a725]/40">Open media form <ArrowUpRight className="h-4 w-4" /></Link>
+              </article>
             </div>
           </div>
         </section>

@@ -12,6 +12,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge";
 import { LogOut, Download, Users, Building2, TrendingUp, Search, Plus, Edit, Trash2, Calendar, Shield, FileText, Mail, Megaphone, SendHorizonal, CheckCircle2, FlaskConical, Award } from "lucide-react";
 import CertificateRequests from "./admin/CertificateRequests";
+import Sci2027Requests from "./admin/Sci2027Requests";
 import { toast } from "sonner";
 import { useNotifications } from "@/hooks/useNotifications";
 
@@ -1041,7 +1042,7 @@ export default function Admin() {
           </CardHeader>
           <CardContent>
             <Tabs defaultValue="registrations">
-              <TabsList className="grid w-full grid-cols-6 mb-6">
+              <TabsList className="h-auto w-full flex-wrap justify-start gap-1 mb-6 [&_[data-slot=tabs-trigger]]:h-auto [&_[data-slot=tabs-trigger]]:min-w-0 [&_[data-slot=tabs-trigger]]:whitespace-normal">
                 <TabsTrigger value="registrations">
                   Registrations ({filteredRegistrations.length})
                 </TabsTrigger>
@@ -1060,6 +1061,9 @@ export default function Admin() {
                 <TabsTrigger value="certificates" className="gap-1">
                   <Award className="w-3.5 h-3.5" />
                   Certificates
+                </TabsTrigger>
+                <TabsTrigger value="sci2027-requests">
+                  SCI 2027 Requests
                 </TabsTrigger>
               </TabsList>
 
@@ -1809,6 +1813,9 @@ export default function Admin() {
               {/* Certificate Requests Tab */}
               <TabsContent value="certificates">
                 <CertificateRequests />
+              </TabsContent>
+              <TabsContent value="sci2027-requests" className="min-w-0 max-w-full">
+                <Sci2027Requests />
               </TabsContent>
             </Tabs>
           </CardContent>

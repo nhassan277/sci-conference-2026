@@ -10,6 +10,7 @@ import { logAuditAction, getIpAddress, getUserAgent } from "./audit.js";
 import { sendMediaRegistrationNotification } from "./email.js";
 import { getAdminByOpenId, hasPermission, getRolePermissions, ensureOwnerIsSuperAdmin } from "./admin-management.js";
 import { notificationEmitter } from "./notification-emitter.js";
+import { createSci2027RequestsRouter } from "./sci2027-requests-router.js";
 
 interface Context {
   user?: {
@@ -82,6 +83,7 @@ export const adminProcedure = protectedProcedure.use(async ({ ctx, next }) => {
 });
 
 export const appRouter = router({
+  sci2027Requests: createSci2027RequestsRouter({ router, publicProcedure, adminProcedure }),
   registration: router({
     create: publicProcedure
       .input(

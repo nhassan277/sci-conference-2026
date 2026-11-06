@@ -162,6 +162,11 @@
 - [x] Add both montages as separate manual carousel slides after the existing two four-photo venue slides, with four dots and no captions
 - [x] Verify all four venue slides, arrows/dots, full montage aspect ratios, desktop/mobile rendering and tests/typecheck/build, then save a WebDev checkpoint
 - [x] Correct only Rania Ali’s Conference Organization Unit card title to Assoc. Prof.; retain all other details, verify tests/build and responsive rendering, and save a checkpoint
+- [x] Add isolated SCI 2027 media/sponsor request tables, validated public submission APIs and authenticated list/update/CSV export with no automatic email
+- [x] Create English-only Media Registration and Sponsor & Partner Registration pages, with required contact fields, consent and request-received confirmation
+- [x] Link Media Registration beside existing registration options and Sponsor & Partner Registration in Partnerships & Sponsorship; preserve official Google Forms and SCI 2026 archive
+- [x] Add SCI 2027 Requests admin tab with separate media/sponsor views, full details, status/notes and CSV export
+- [x] Verify persistence, permissions, validation/error/retry flows, CSV safety, desktop/mobile UI, tests/typecheck/build and checkpoint this feature
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks

@@ -498,3 +498,47 @@ export const certificateRequests = mysqlTable("certificate_requests", {
 
 export type CertificateRequest = typeof certificateRequests.$inferSelect;
 export type NewCertificateRequest = typeof certificateRequests.$inferInsert;
+
+// Isolated SCI 2027 requests. Never reuse legacy registration/sponsorship tables.
+export const sci2027MediaRequests = mysqlTable("sci2027_media_requests", {
+  id: int("id").primaryKey().autoincrement(),
+  submissionKey: varchar("submission_key", { length: 36 }).notNull().unique(),
+  reference: varchar("reference", { length: 50 }).notNull().unique(),
+  year: int("year").notNull().default(2027),
+  fullName: varchar("full_name", { length: 255 }).notNull(),
+  email: varchar("email", { length: 254 }).notNull(),
+  phone: varchar("phone", { length: 50 }).notNull(),
+  organizationName: varchar("organization_name", { length: 255 }).notNull(),
+  jobTitle: varchar("job_title", { length: 255 }).notNull(),
+  coverageType: varchar("coverage_type", { length: 50 }).$type<"Written coverage" | "Photography" | "Video coverage" | "Live broadcast" | "Other">().notNull(),
+  website: varchar("website", { length: 2048 }),
+  notes: text("notes"),
+  consent: boolean("consent").notNull(),
+  status: varchar("status", { length: 20 }).$type<"pending" | "in_review" | "contacted" | "closed">().notNull().default("pending"),
+  adminNotes: text("admin_notes"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().onUpdateNow().notNull(),
+});
+export type Sci2027MediaRequest = typeof sci2027MediaRequests.$inferSelect;
+
+export const sci2027SponsorRequests = mysqlTable("sci2027_sponsor_requests", {
+  id: int("id").primaryKey().autoincrement(),
+  submissionKey: varchar("submission_key", { length: 36 }).notNull().unique(),
+  reference: varchar("reference", { length: 50 }).notNull().unique(),
+  year: int("year").notNull().default(2027),
+  companyName: varchar("company_name", { length: 255 }).notNull(),
+  contactPerson: varchar("contact_person", { length: 255 }).notNull(),
+  jobTitle: varchar("job_title", { length: 255 }).notNull(),
+  email: varchar("email", { length: 254 }).notNull(),
+  phone: varchar("phone", { length: 50 }).notNull(),
+  activitySector: varchar("activity_sector", { length: 255 }).notNull(),
+  cooperationType: varchar("cooperation_type", { length: 50 }).$type<"Platinum" | "Gold" | "Silver" | "Bronze" | "Special sponsorship" | "In-kind contribution" | "Partnership" | "Discuss options">().notNull(),
+  website: varchar("website", { length: 2048 }),
+  notes: text("notes"),
+  consent: boolean("consent").notNull(),
+  status: varchar("status", { length: 20 }).$type<"pending" | "in_review" | "contacted" | "closed">().notNull().default("pending"),
+  adminNotes: text("admin_notes"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().onUpdateNow().notNull(),
+});
+export type Sci2027SponsorRequest = typeof sci2027SponsorRequests.$inferSelect;

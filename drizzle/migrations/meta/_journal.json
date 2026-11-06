@@ -211,6 +211,13 @@
       "when": 1775984750231,
       "tag": "0029_fine_jack_murdock",
       "breakpoints": true
+    },
+    {
+      "idx": 30,
+      "version": "5",
+      "when": 1793882487847,
+      "tag": "0030_eminent_stranger",
+      "breakpoints": true
     }
   ]
 }

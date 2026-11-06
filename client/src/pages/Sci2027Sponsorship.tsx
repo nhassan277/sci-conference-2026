@@ -50,6 +50,7 @@ export default function Sci2027Sponsorship() {
                 <a href={requestHref} className="inline-flex items-center justify-center gap-2 rounded-full bg-[#e5bd4a] px-6 py-3.5 text-sm font-extrabold uppercase tracking-[0.1em] text-[#062f52] transition hover:-translate-y-0.5 hover:bg-[#f5d670]">{sponsorship.ctaLabel}<Mail className="h-4 w-4" /></a>
                 <span className="text-sm text-[#c1d3dc]">{sponsorship.contactEmail}</span>
               </div>
+              <Link href="/sponsor-registration-2027" className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#f0ca57] underline underline-offset-4 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#f0ca57]/30">Sponsor &amp; Partner Registration <ArrowUpRight className="h-4 w-4" /></Link>
             </div>
             <div className="border border-white/15 bg-white/[0.06] p-7 backdrop-blur-sm sm:p-8">
               <Network className="h-7 w-7 text-[#f0ca57]" />
@@ -159,7 +160,7 @@ export default function Sci2027Sponsorship() {
         <section className="bg-[#f7f2e7] py-20 md:py-24">
           <div className="container grid gap-10 lg:grid-cols-[1fr_auto] lg:items-center">
             <div className="max-w-3xl"><p className="sci-eyebrow">Start the conversation</p><h2 className="mt-4 font-serif text-4xl font-bold leading-[1.04] tracking-[-0.035em] text-[#063760] sm:text-5xl">Let’s create a partnership with lasting scientific value.</h2><p className="mt-5 text-lg leading-8 text-[#456374]">Request the full sponsorship prospectus by email and the SCI 2027 team will help you identify the most relevant partnership route.</p></div>
-            <div className="space-y-4"><a href={requestHref} className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#063760] px-6 py-4 text-sm font-extrabold uppercase tracking-[0.1em] text-white transition hover:-translate-y-0.5 hover:bg-[#0a507e]">{sponsorship.ctaLabel}<Mail className="h-4 w-4" /></a><p className="text-center text-sm font-bold text-[#617986]">{sponsorship.contactEmail}</p></div>
+            <div className="space-y-4"><Link href="/sponsor-registration-2027" className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#e5bd4a] px-6 py-4 text-center text-sm font-extrabold text-[#062f52] transition hover:bg-[#f5d670] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#d3a725]/40">Sponsor &amp; Partner Registration <ArrowUpRight className="h-4 w-4" /></Link><a href={requestHref} className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#063760] px-6 py-4 text-sm font-extrabold uppercase tracking-[0.1em] text-white transition hover:-translate-y-0.5 hover:bg-[#0a507e]">{sponsorship.ctaLabel}<Mail className="h-4 w-4" /></a><p className="text-center text-sm font-bold text-[#617986]">{sponsorship.contactEmail}</p></div>
           </div>
         </section>
       </main>
