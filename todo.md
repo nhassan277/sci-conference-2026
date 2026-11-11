@@ -172,6 +172,10 @@
 - [x] Re-host Lovable portraits without embedding private preview tokens or changing original uploads
 - [x] Display the approved official emails and 250 participants while retaining two workshop days and Gmail submission/payment destinations
 - [x] Verify preserved backend/forms/admin/schema/configuration, official data, desktop/mobile navigation, tests/typecheck/build and save the visual-merge checkpoint
+- [x] Remove only Hoda's active committee card/member record while preserving Azza and all other members, roles, portraits and order
+- [x] Show 4 Conference & Workshop Days, preserving the actual workshop, conference and museum visit dates
+- [x] Replace public SCI 2027 Gmail contact, sponsorship and payment-proof destinations with both institutional email recipients and remove the duplicate footer row
+- [x] Verify the three approved updates, protected data/archive/forms, desktop/mobile UI, all tests/typecheck/build and save a checkpoint
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks

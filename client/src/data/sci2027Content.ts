@@ -29,6 +29,9 @@ export type ProgrammeDay = {
   sessions: BilingualText[];
 };
 
+const SCI2027_OFFICIAL_EMAILS = ["cou@sci.cu.edu.eg", "sci2027@sci.cu.edu.eg"] as const;
+const SCI2027_EMAIL_RECIPIENTS = SCI2027_OFFICIAL_EMAILS.join(",");
+
 const SCI2027_FORM_URLS = {
   general: "https://forms.gle/mr2gE9nsbdPrha9r6",
   speaker: "https://forms.gle/FRiza6zpfiQLrgrh8",
@@ -266,7 +269,6 @@ export const sci2027Content = {
       { name: "Dr. Nahla Osama", role: "Scientific Programme Lead", photo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/LZHRzXJQJLszhLvn.png", assistants: [] },
       { name: "Assoc. Prof. Rania Ali", role: "Media & Marketing Lead", photo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/PSkJsOizzoAdFQAU.png", assistants: [] },
       { name: "Dr. Nourhan Hassan", role: "Sponsorship, Funding & Conference Website Lead", photo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/XmqZbYtFJfZufnpo.png", assistants: ["Youssef Saher Sayed (4th year student)", "Ziad Ahmed (4th year student)"] },
-      { name: "Prof. Hoda Abu Shady", role: "Public Relations & Sponsorship Committee", photo: "", assistants: [] },
       { name: "Prof. Azza Shoukry", role: "Public Relations & Sponsorship Committee", photo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/IsOEBmatIRWgXvnu.png", assistants: [] },
       { name: "Dr. Dina Amr", role: "Logistics Lead", photo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/zQTzqpzarsBUZHKc.png", assistants: [] },
     ],
@@ -334,12 +336,6 @@ export const sci2027Content = {
         summary: "Develops sponsor and funder engagement, prepares sponsorship proposals, and leads conference website design, content, user experience and ongoing updates.",
       },
       {
-        name: "Prof. Hoda Abu Shady",
-        department: "Physics",
-        role: "Public Relations & Sponsorship Committee",
-        summary: "Supports public relations, institutional outreach and sponsor engagement for the Unit’s scientific conferences and events.",
-      },
-      {
         name: "Prof. Azza Shoukry",
         department: "Chemistry",
         role: "Public Relations & Sponsorship Committee",
@@ -381,7 +377,7 @@ export const sci2027Content = {
     { value: "250", label: { en: "participants", ar: "مشاركًا" } },
     { value: "6", label: { en: "scientific tracks", ar: "محاور علمية" } },
     { value: "6", label: { en: "parallel halls", ar: "قاعات متوازية" } },
-    { value: "2", label: { en: "workshop days", ar: "يومان للورش" } },
+    { value: "4", label: { en: "Conference & Workshop Days", ar: "أيام المؤتمر والورش" } },
   ],
   speakers: {
     eyebrow: "Featured voices",
@@ -763,7 +759,7 @@ export const sci2027Content = {
       method: "InstaPay",
       bank: "Central Bank of Egypt (CBE)",
       identifier: "9450882167",
-      confirmationEmail: "sci.conf.2027@gmail.com",
+      confirmationEmail: SCI2027_EMAIL_RECIPIENTS,
       instruction: "Transfer the applicable amount to the account below, then email your payment proof to confirm your registration.",
     },
     receiptDetails: [
@@ -817,7 +813,7 @@ export const sci2027Content = {
     ],
   },
   sponsorship: {
-    contactEmail: "sci.conf.2027@gmail.com",
+    contactEmail: SCI2027_EMAIL_RECIPIENTS,
     ctaLabel: "Request the Sponsorship Prospectus by Email",
     eyebrow: "Partnership and sponsorship",
     title: "Move science from insight to impact.",
@@ -911,8 +907,8 @@ export const sci2027Content = {
     },
   },
   contact: {
-    email: "sci.conf.2027@gmail.com",
-    officialEmails: ["cou@sci.cu.edu.eg", "sci2027@sci.cu.edu.eg"],
+    email: SCI2027_EMAIL_RECIPIENTS,
+    officialEmails: SCI2027_OFFICIAL_EMAILS,
     website: "www.scicu.net",
     facebook: "facebook.com/SCI2027",
     youtube: {

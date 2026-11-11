@@ -27,6 +27,9 @@ const localAssetKeys = [
   "brochureArabic",
 ] as const;
 
+const emails = ["cou@sci.cu.edu.eg", "sci2027@sci.cu.edu.eg"] as const;
+const recipients = emails.join(",");
+
 const englishOnlyPublicFiles = [
   "client/src/pages/Sci2027Home.tsx",
   "client/src/components/Sci2027Header.tsx",
@@ -57,8 +60,9 @@ describe("SCI 2027 public content", () => {
       ["250", "participants"],
       ["6", "scientific tracks"],
       ["6", "parallel halls"],
-      ["2", "workshop days"],
+      ["4", "Conference & Workshop Days"],
     ]);
+    expect(sci2027Content.impact.at(-1)?.label.ar).toBe("أيام المؤتمر والورش");
   });
 
   it("links the compact home to the verified venue page and preserves safe Google Maps directions on detail pages", () => {
@@ -352,7 +356,7 @@ describe("SCI 2027 public content", () => {
       method: "InstaPay",
       bank: "Central Bank of Egypt (CBE)",
       identifier: "9450882167",
-      confirmationEmail: "sci.conf.2027@gmail.com",
+      confirmationEmail: recipients,
     });
     expect(fees.receiptDetails).toEqual([
       "Full name",
@@ -608,7 +612,7 @@ describe("SCI 2027 public content", () => {
   });
 
   it("provides the approved sponsorship tiers, visibility data and email-only prospectus contact", () => {
-    expect(sci2027Content.sponsorship.contactEmail).toBe("sci.conf.2027@gmail.com");
+    expect(sci2027Content.sponsorship.contactEmail).toBe(recipients);
     expect(sci2027Content.sponsorship.ctaLabel).toBe("Request the Sponsorship Prospectus by Email");
     expect(sci2027Content.sponsorship.packages).toHaveLength(4);
     expect(sci2027Content.sponsorship.packages.map((tier) => tier.investment)).toEqual([
@@ -626,16 +630,16 @@ describe("SCI 2027 public content", () => {
   it("retains the approved main enquiries and payment inbox while adding the two official institutional footer emails", () => {
     const footerSource = readFileSync(projectPath("client/src/components/Sci2027Footer.tsx"), "utf8");
     const contact = sci2027Content.contact as typeof sci2027Content.contact & { officialEmails?: readonly string[] };
-    expect(sci2027Content.contact.email).toBe("sci.conf.2027@gmail.com");
+    expect(sci2027Content.contact.email).toBe(recipients);
     expect(sci2027Content.contact.email).toBe(sci2027Content.sponsorship.contactEmail);
-    expect(sci2027Content.registrationFees.payment.confirmationEmail).toBe("sci.conf.2027@gmail.com");
-    expect(contact.officialEmails).toEqual(["cou@sci.cu.edu.eg", "sci2027@sci.cu.edu.eg"]);
+    expect(sci2027Content.registrationFees.payment.confirmationEmail).toBe(recipients);
+    expect(contact.officialEmails).toEqual(emails);
     expect(footerSource).toContain("contact.officialEmails.map");
     const officialEmailVariable = footerSource.match(/contact\.officialEmails\.map\(\((\w+)\)\s*=>/u)?.[1];
     expect(officialEmailVariable).toBeDefined();
-    expect(footerSource).toContain(`mailto:\${${officialEmailVariable}}`);
+    expect(footerSource).toContain("href={`mailto:${contact.email}`}");
     expect(footerSource).toContain(`>{${officialEmailVariable}}</a>`);
-    expect(footerSource).toContain("contact.email");
+    expect(footerSource).not.toContain("href={`mailto:${officialEmailVariable}`}");
   });
 
   it("renders the existing three patronage portraits plus the approved Conference Chair with the Vice Dean fully visible", () => {
@@ -768,12 +772,12 @@ describe("SCI 2027 public content", () => {
     expect(footerSource).toContain('<Link href="/archive-2026"');
   });
 
-  it("publishes the updated nine-member Conference Organization Unit roster without meeting-record or contact details", () => {
+  it("publishes the updated eight-member Conference Organization Unit roster without meeting-record or contact details", () => {
     const unitPagePath = projectPath("client/src/pages/Sci2027OrganizationUnit.tsx");
     const unitPageSource = existsSync(unitPagePath) ? readFileSync(unitPagePath, "utf8") : "";
     const unit = sci2027Content.conferenceOrganizationUnit;
 
-    expect(unit.members).toHaveLength(9);
+    expect(unit.members).toHaveLength(8);
     expect(unit.members.map((member) => `${member.name} | ${member.role}`)).toEqual([
       "Prof. Walid Rahouma | Conference Chair & Director of the Conference Organizing Unit",
       "Prof. Mohamed Qarny | Secretary of the Unit",
@@ -781,7 +785,6 @@ describe("SCI 2027 public content", () => {
       "Dr. Nahla Osama | Scientific Programme Lead",
       "Assoc. Prof. Rania Ali | Media & Marketing Lead",
       "Dr. Nourhan Hassan | Sponsorship, Funding & Conference Website Lead",
-      "Prof. Hoda Abu Shady | Public Relations & Sponsorship Committee",
       "Prof. Azza Shoukry | Public Relations & Sponsorship Committee",
       "Dr. Dina Amr | Logistics Lead",
     ]);
@@ -799,17 +802,14 @@ describe("SCI 2027 public content", () => {
       role: "Media & Marketing Lead",
       summary: "Leads communications and marketing plans, digital content and platforms, promotional materials, and engagement with relevant media partners.",
     });
-    const hoda = unit.members.find((member) => member.name === "Prof. Hoda Abu Shady");
     const azza = unit.members.find((member) => member.name === "Prof. Azza Shoukry");
     const manar = unit.members.find((member) => member.name === "Mrs. Manar Mohamed");
     const dina = unit.members.find((member) => member.name === "Dr. Dina Amr");
 
-    expect(hoda).toMatchObject({ department: "Physics", role: "Public Relations & Sponsorship Committee" });
+    expect(unit.members.find((member) => member.name === "Prof. Hoda Abu Shady")).toBeUndefined();
     expect(azza).toMatchObject({ department: "Chemistry", role: "Public Relations & Sponsorship Committee" });
-    for (const member of [hoda, azza]) {
-      expect(member?.role).not.toMatch(/lead/i);
-      expect(member?.summary).toBe("Supports public relations, institutional outreach and sponsor engagement for the Unit’s scientific conferences and events.");
-    }
+    expect(azza?.role).not.toMatch(/lead/i);
+    expect(azza?.summary).toBe("Supports public relations, institutional outreach and sponsor engagement for the Unit’s scientific conferences and events.");
     expect(azza?.summary).not.toContain("participant registration");
     expect(manar).toMatchObject({
       department: "Conference Organization Unit",
@@ -830,7 +830,7 @@ describe("SCI 2027 public content", () => {
     expect(unitPageSource).toContain("{leader.role}");
   });
 
-  it("provides all nine approved leader cards with safe portrait assets and a no-photo placeholder for Hoda", () => {
+  it("provides all eight approved leader cards with safe portrait assets", () => {
     const unitPagePath = projectPath("client/src/pages/Sci2027OrganizationUnit.tsx");
     const unitPageSource = existsSync(unitPagePath) ? readFileSync(unitPagePath, "utf8") : "";
     const unit = sci2027Content.conferenceOrganizationUnit as typeof sci2027Content.conferenceOrganizationUnit & {
@@ -838,9 +838,9 @@ describe("SCI 2027 public content", () => {
     };
     const leaders = unit.leaders ?? [];
 
-    expect(leaders).toHaveLength(9);
+    expect(leaders).toHaveLength(8);
     expect(leaders.map((leader) => [leader.name, leader.role])).toEqual(unit.members.map((member) => [member.name, member.role]));
-    expect(leaders.find((leader) => leader.name === "Prof. Hoda Abu Shady")?.photo).toBe("");
+    expect(leaders.find((leader) => leader.name === "Prof. Hoda Abu Shady")).toBeUndefined();
     expect(leaders.filter((leader) => leader.photo)).toHaveLength(8);
     for (const leader of leaders.filter((leader) => leader.photo)) {
       expect(leader.photo).toMatch(/^(https:\/\/|\/manus-storage\/)/u);
@@ -1002,11 +1002,11 @@ describe("SCI 2027 public content", () => {
       title: "Public Relations & Sponsorship Committee",
       members: ["Prof. Hoda Abu Shady", "Prof. Azza Shoukry"],
     });
-    for (const name of sponsorship.sponsorshipCommittee?.members ?? []) {
-      expect(sci2027Content.conferenceOrganizationUnit.members.find((member) => member.name === name)?.role).toBe(sponsorship.sponsorshipCommittee?.title);
-      expect(unit.leaders?.find((leader) => leader.name === name)?.role).toBe(sponsorship.sponsorshipCommittee?.title);
-      expect(homeSource).not.toContain(name);
-    }
+    expect(sci2027Content.conferenceOrganizationUnit.members.find((member) => member.name === "Prof. Hoda Abu Shady")).toBeUndefined();
+    expect(unit.leaders?.find((leader) => leader.name === "Prof. Hoda Abu Shady")).toBeUndefined();
+    expect(sci2027Content.conferenceOrganizationUnit.members.find((member) => member.name === "Prof. Azza Shoukry")?.role).toBe(sponsorship.sponsorshipCommittee?.title);
+    expect(unit.leaders?.find((leader) => leader.name === "Prof. Azza Shoukry")?.role).toBe(sponsorship.sponsorshipCommittee?.title);
+    for (const name of sponsorship.sponsorshipCommittee?.members ?? []) expect(homeSource).not.toContain(name);
     expect(unitPageSource).toContain("conferenceOrganizationUnit.leaders.map");
     expect(unitPageSource).toContain("{leader.role}");
     expect(sponsorshipPageSource).not.toContain("sponsorship.sponsorshipCommittee");

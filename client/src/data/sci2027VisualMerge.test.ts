@@ -4,13 +4,16 @@ import { describe, expect, it } from "vitest";
 import { sci2027Content } from "./sci2027Content";
 
 const source = (path: string) => readFileSync(resolve(process.cwd(), path), "utf8");
+const emails = ["cou@sci.cu.edu.eg", "sci2027@sci.cu.edu.eg"] as const;
+const recipients = emails.join(",");
 
 describe("approved Lovable presentation merge", () => {
-  it("uses the approved committee name without losing Hoda or existing member responsibilities", () => {
+  it("uses the approved committee name without losing existing member responsibilities", () => {
     const unit = sci2027Content.conferenceOrganizationUnit;
     expect(unit.title).toBe("Local Organizing Committee");
-    expect(unit.members).toHaveLength(9);
-    expect(unit.members.find(member => member.name === "Prof. Hoda Abu Shady")).toMatchObject({ department: "Physics", role: "Public Relations & Sponsorship Committee" });
+    expect(unit.members).toHaveLength(8);
+    expect(unit.members.find(member => member.name === "Prof. Hoda Abu Shady")).toBeUndefined();
+    expect(unit.members.find(member => member.name === "Prof. Azza Shoukry")).toMatchObject({ department: "Chemistry", role: "Public Relations & Sponsorship Committee" });
     expect(unit.members.find(member => member.name === "Assoc. Prof. Rania Ali")?.role).toBe("Media & Marketing Lead");
     expect(unit.members.find(member => member.name === "Mrs. Manar Mohamed")?.role).toBe("Administrative & Media Officer");
   });
@@ -23,15 +26,16 @@ describe("approved Lovable presentation merge", () => {
     expect(sci2027Content.conferenceOrganizationUnit.members[0].role).toBe("Conference Chair & Director of the Conference Organizing Unit");
   });
 
-  it("retains nine portrait-ready committee entries and the approved student assistants", () => {
+  it("retains eight portrait-ready committee entries and the approved student assistants", () => {
     const leaders = (sci2027Content.conferenceOrganizationUnit as typeof sci2027Content.conferenceOrganizationUnit & {
       leaders?: ReadonlyArray<{ name: string; role: string; photo: string; assistants: readonly string[] }>;
     }).leaders ?? [];
+    expect(leaders).toHaveLength(8);
     expect(leaders.map(leader => leader.name)).toEqual(sci2027Content.conferenceOrganizationUnit.members.map(member => member.name));
     expect(leaders.find(leader => leader.name === "Dr. Nourhan Hassan")?.assistants).toEqual([
       "Youssef Saher Sayed (4th year student)", "Ziad Ahmed (4th year student)",
     ]);
-    expect(leaders.find(leader => leader.name === "Prof. Hoda Abu Shady")?.photo).toBe("");
+    expect(leaders.find(leader => leader.name === "Prof. Hoda Abu Shady")).toBeUndefined();
     for (const leader of leaders.filter(leader => leader.photo)) {
       expect(leader.photo).toMatch(/^(https:\/\/|\/manus-storage\/)/);
       expect(leader.photo).not.toContain("__l5e");
@@ -41,7 +45,8 @@ describe("approved Lovable presentation merge", () => {
   });
 
   it("updates participation to 250 but retains the two actual workshop days", () => {
-    expect(sci2027Content.impact.map(item => item.value)).toEqual(["250", "6", "6", "2"]);
+    expect(sci2027Content.impact.map(item => item.value)).toEqual(["250", "6", "6", "4"]);
+    expect(sci2027Content.impact.at(-1)?.label).toEqual({ en: "Conference & Workshop Days", ar: "أيام المؤتمر والورش" });
     expect(sci2027Content.workshopProgramme.preConference.date).toContain("6 April 2027");
     expect(sci2027Content.workshopProgramme.postConference.date).toContain("10 April 2027");
     expect(sci2027Content.workshopProgramme.culturalVisit.date).toContain("9 April 2027");
@@ -49,10 +54,15 @@ describe("approved Lovable presentation merge", () => {
 
   it("displays the additional official emails without changing the payment or submission inbox", () => {
     const contact = sci2027Content.contact as typeof sci2027Content.contact & { officialEmails?: readonly string[] };
-    expect(contact.officialEmails).toEqual(["cou@sci.cu.edu.eg", "sci2027@sci.cu.edu.eg"]);
-    expect(contact.email).toBe("sci.conf.2027@gmail.com");
-    expect(sci2027Content.registrationFees.payment.confirmationEmail).toBe("sci.conf.2027@gmail.com");
-    expect(source("client/src/components/Sci2027Footer.tsx")).toContain("contact.officialEmails.map");
+    expect(contact.officialEmails).toEqual(emails);
+    expect(contact.email).toBe(recipients);
+    expect(sci2027Content.sponsorship.contactEmail).toBe(recipients);
+    expect(sci2027Content.registrationFees.payment.confirmationEmail).toBe(recipients);
+    const footerSource = source("client/src/components/Sci2027Footer.tsx");
+    expect(footerSource).toContain("contact.officialEmails.map");
+    // The two addresses render from one mapped JSX template, without an extra contact row.
+    expect((footerSource.match(/href=\{`mailto:\$\{contact\.email\}`\}/g) ?? [])).toHaveLength(1);
+    expect(footerSource).not.toMatch(/href=\{`mailto:\$\{officialEmail\}`\}/u);
   });
 
   it("registers the new details pages while retaining all existing programme and registration routes", () => {

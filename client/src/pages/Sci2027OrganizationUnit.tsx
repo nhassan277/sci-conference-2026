@@ -52,6 +52,7 @@ export default function Sci2027OrganizationUnit() {
             <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {conferenceOrganizationUnit.leaders.map((leader) => {
                 const member = conferenceOrganizationUnit.members.find((member) => member.name === leader.name);
+                const leaderName = leader.name;
 
                 return (
                   <article key={leader.name} className="group overflow-hidden border border-[#063760]/10 bg-white shadow-sm">
@@ -59,7 +60,7 @@ export default function Sci2027OrganizationUnit() {
                       {leader.photo ? (
                         <img src={leader.photo} alt={`Portrait of ${leader.name}`} loading="lazy" className="h-full w-full object-cover object-top transition duration-500 motion-safe:group-hover:scale-[1.03]" />
                       ) : (
-                        <div role="img" aria-label={`Portrait of ${leader.name}: photo to be announced`} className="flex h-full w-full flex-col items-center justify-center gap-4 px-6 text-center text-[#617986]">
+                        <div role="img" aria-label={`Portrait of ${leaderName}: photo to be announced`} className="flex h-full w-full flex-col items-center justify-center gap-4 px-6 text-center text-[#617986]">
                           <UsersRound className="h-12 w-12 text-[#0d638b]" aria-hidden="true" />
                           <p className="text-xs font-semibold leading-5">Photo to be announced</p>
                         </div>
