@@ -176,6 +176,9 @@
 - [x] Show 4 Conference & Workshop Days, preserving the actual workshop, conference and museum visit dates
 - [x] Replace public SCI 2027 Gmail contact, sponsorship and payment-proof destinations with both institutional email recipients and remove the duplicate footer row
 - [x] Verify the three approved updates, protected data/archive/forms, desktop/mobile UI, all tests/typecheck/build and save a checkpoint
+- [x] Remove only the Media Registration card from the SCI 2027 homepage
+- [x] Place the unchanged Media Registration invitation beside Sponsor & Partner Registration on the sponsorship page, stacked beneath it on mobile
+- [x] Verify both form routes, unchanged forms/backend/data/admin/archive, responsive layout, tests/typecheck/build and save the media-card relocation checkpoint
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks

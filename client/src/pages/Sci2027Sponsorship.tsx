@@ -122,9 +122,25 @@ export default function Sci2027Sponsorship() {
         </section>
 
         <section className="bg-[#f7f2e7] py-20 md:py-24">
-          <div className="container grid gap-10 lg:grid-cols-[1fr_auto] lg:items-center">
-            <div className="max-w-3xl"><p className="sci-eyebrow">Start the conversation</p><h2 className="mt-4 font-serif text-4xl font-bold leading-[1.04] tracking-[-0.035em] text-[#063760] sm:text-5xl">Let’s create a partnership with lasting scientific value.</h2><p className="mt-5 text-lg leading-8 text-[#456374]">Request the full sponsorship prospectus by email and the SCI 2027 team will help you identify the most relevant partnership route.</p></div>
-            <div className="space-y-4"><Link href="/sponsor-registration-2027" className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#e5bd4a] px-6 py-4 text-center text-sm font-extrabold text-[#062f52] transition hover:bg-[#f5d670] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#d3a725]/40">Sponsor &amp; Partner Registration <ArrowUpRight className="h-4 w-4" /></Link><a href={requestHref} className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#063760] px-6 py-4 text-sm font-extrabold uppercase tracking-[0.1em] text-white transition hover:-translate-y-0.5 hover:bg-[#0a507e]">{sponsorship.ctaLabel}<Mail className="h-4 w-4" /></a><p className="text-center text-sm font-bold text-[#617986]">{sponsorship.contactEmail}</p></div>
+          <div className="container">
+            <div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-center">
+              <div className="max-w-3xl"><p className="sci-eyebrow">Start the conversation</p><h2 className="mt-4 font-serif text-4xl font-bold leading-[1.04] tracking-[-0.035em] text-[#063760] sm:text-5xl">Let’s create a partnership with lasting scientific value.</h2><p className="mt-5 text-lg leading-8 text-[#456374]">Request the full sponsorship prospectus by email and the SCI 2027 team will help you identify the most relevant partnership route.</p></div>
+              <div className="space-y-4"><a href={requestHref} className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#063760] px-6 py-4 text-sm font-extrabold uppercase tracking-[0.1em] text-white transition hover:-translate-y-0.5 hover:bg-[#0a507e]">{sponsorship.ctaLabel}<Mail className="h-4 w-4" /></a><p className="text-center text-sm font-bold text-[#617986]">{sponsorship.contactEmail}</p></div>
+            </div>
+            <div id="partner-media-registration" className="mt-10 grid gap-5 md:grid-cols-2">
+              <article className="flex flex-col border border-[#063760] bg-[#063760] p-7 text-white sm:p-8">
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#f0ca57]">Sponsors &amp; partners</p>
+                <h3 className="mt-4 font-serif text-2xl font-bold leading-tight">Sponsor &amp; Partner Registration</h3>
+                <p className="mt-7 text-sm leading-7 text-[#c1d3dc]">Register your organisation’s interest in sponsoring or partnering with SCI 2027.</p>
+                <Link href="/sponsor-registration-2027" className="mt-7 inline-flex w-fit items-center justify-center gap-2 rounded-full bg-[#e5bd4a] px-6 py-4 text-center text-sm font-extrabold text-[#062f52] transition hover:bg-[#f5d670] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#d3a725]/40">Sponsor &amp; Partner Registration <ArrowUpRight className="h-4 w-4 shrink-0" /></Link>
+              </article>
+              <article className="flex flex-col border border-[#063760]/15 bg-[#edf4f3] p-7 text-[#063760] sm:p-8">
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#ad8618]">Press &amp; media</p>
+                <h3 className="mt-4 font-serif text-2xl font-bold leading-tight">Media Registration</h3>
+                <p className="mt-7 text-sm leading-7 text-[#456374]">For media organisations and press professionals interested in covering SCI 2027. Requests are reviewed by the conference team.</p>
+                <Link href="/media-registration-2027" className="mt-7 inline-flex w-fit items-center gap-2 rounded-full bg-[#063760] px-5 py-3 text-sm font-extrabold uppercase tracking-[0.12em] text-white transition hover:bg-[#0a507e] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#d3a725]/40">Open media form <ArrowUpRight className="h-4 w-4" /></Link>
+              </article>
+            </div>
           </div>
         </section>
       </main>

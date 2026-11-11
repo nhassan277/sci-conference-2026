@@ -83,7 +83,8 @@ describe("approved Lovable presentation merge", () => {
     expect(home).toContain('id="about"');
     expect(home).not.toContain('id="venue"');
     expect(home).not.toContain('id="gala-dinner"');
-    expect(home).toContain('href="/media-registration-2027"');
+    expect(home).not.toContain('href="/media-registration-2027"');
+    expect(source("client/src/pages/Sci2027Sponsorship.tsx")).toContain('href="/media-registration-2027"');
     expect(home).toContain('href="#registration-fees"');
   });
 
