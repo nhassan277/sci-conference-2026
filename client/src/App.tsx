@@ -9,6 +9,9 @@ import Home from "./pages/Home";
 import Attendance from "./pages/Attendance";
 import Admin from "./pages/Admin";
 import Sci2027Programme from "./pages/Sci2027Programme";
+import Sci2027Venue from "./pages/Sci2027Venue";
+import Sci2027GalaDinner from "./pages/Sci2027GalaDinner";
+import Sci2027ProgrammeWorkshops from "./pages/Sci2027ProgrammeWorkshops";
 import Sci2026Archive from "./pages/Sci2026Archive";
 import Sci2027Sponsorship from "./pages/Sci2027Sponsorship";
 import Sci2027Videos from "./pages/Sci2027Videos";
@@ -50,6 +53,9 @@ function Router() {
       <Route path={"/sponsors"} component={Sci2027Sponsorship} />
       <Route path={"/videos"} component={Sci2027Videos} />
       <Route path={"/programme"} component={Sci2027Programme} />
+      <Route path={"/programme-workshops"} component={Sci2027ProgrammeWorkshops} />
+      <Route path={"/venue"} component={Sci2027Venue} />
+      <Route path={"/gala-dinner"} component={Sci2027GalaDinner} />
       <Route path={"/media-registration-2027"} component={Sci2027MediaRegistration} />
       <Route path={"/sponsor-registration-2027"} component={Sci2027SponsorRegistration} />
       <Route path={"/conference-organization-unit"} component={Sci2027OrganizationUnit} />

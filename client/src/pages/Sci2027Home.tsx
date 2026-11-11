@@ -3,13 +3,9 @@ import {
   ArrowUpRight,
   CalendarDays,
   Check,
-  ChevronLeft,
-  ChevronRight,
-  Download,
   ExternalLink,
   FileText,
   GraduationCap,
-  Handshake,
   Landmark,
   Mail,
   MapPin,
@@ -19,7 +15,6 @@ import {
   Sparkles,
   UsersRound,
 } from "lucide-react";
-import { useState } from "react";
 import { Link } from "wouter";
 import Sci2027Footer from "@/components/Sci2027Footer";
 import Sci2027Header from "@/components/Sci2027Header";
@@ -67,15 +62,8 @@ const registrationCardStyles = [
 const registrationAccentStyles = ["text-[#f0ca57]", "text-[#ad8618]", "text-[#0d638b]"] as const;
 
 export default function Sci2027Home() {
-  const { identity, assets, speakers, sponsorship, workshopProgramme, publicationOpportunity, registrationFees, galaDinner, abstractCall } = sci2027Content;
+  const { identity, assets, speakers, sponsorship, publicationOpportunity, registrationFees, abstractCall } = sci2027Content;
   const featuredVideo = sci2027Content.videos.find((video) => video.featured) ?? sci2027Content.videos[0];
-  const [venueGalleryPage, setVenueGalleryPage] = useState(0);
-  const [galaGalleryIndex, setGalaGalleryIndex] = useState(0);
-  const venueGalleryPages = [
-    identity.location.venueGallery.slice(0, 4),
-    identity.location.venueGallery.slice(4, 8),
-    ...identity.location.venueMontages.map((montage) => [montage]),
-  ];
 
   return (
     <div className="min-h-screen overflow-hidden bg-[#fffdf8] text-[#17374f]">
@@ -113,7 +101,7 @@ export default function Sci2027Home() {
                 </div>
                 <div className="flex items-center gap-3 border-l-2 border-[#e5bd4a] bg-white/[0.06] px-4 py-3 backdrop-blur-sm">
                   <MapPin className="h-5 w-5 shrink-0 text-[#f0ca57]" />
-                  <div><p className="text-sm font-bold leading-5">{identity.location.name}</p><p className="mt-0.5 text-xs leading-5 text-[#b9ccd7]">{identity.location.shortAddress}</p><a href={identity.location.mapUrl} target="_blank" rel="noreferrer" className="mt-2 inline-flex items-center gap-1 text-[11px] font-extrabold uppercase tracking-[0.12em] text-[#f0ca57] transition hover:text-white">{identity.location.directionsLabel} <ArrowUpRight className="h-3 w-3" /></a></div>
+                  <div><p className="text-sm font-bold leading-5">{identity.location.name}</p><p className="mt-0.5 text-xs leading-5 text-[#b9ccd7]">{identity.location.shortAddress}</p><Link href="/venue" className="mt-2 inline-flex items-center gap-1 text-[11px] font-extrabold uppercase tracking-[0.12em] text-[#f0ca57] transition hover:text-white">More details and directions <ArrowUpRight className="h-3 w-3" /></Link></div>
                 </div>
               </div>
 
@@ -171,78 +159,20 @@ export default function Sci2027Home() {
               </article>
               <article className="border border-[#d3a725]/45 bg-[#f8f3e7] p-7 text-[#063760] shadow-sm sm:p-8">
                 <UsersRound className="h-6 w-6 text-[#ad8618]" />
-                <p className="mt-8 text-xs font-extrabold uppercase tracking-[0.18em] text-[#ad8618]">Organizing Committee</p>
-                <p className="mt-4 max-w-md font-serif text-3xl font-bold leading-tight">Conference Organization Unit and its members.</p>
-                <Link href="/conference-organization-unit" className="mt-8 inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.11em] text-[#063760] underline decoration-[#d3a725] decoration-2 underline-offset-4 transition hover:text-[#ad8618]">Meet the Conference Organization Unit <ArrowUpRight className="h-3.5 w-3.5" /></Link>
+                <p className="mt-8 text-xs font-extrabold uppercase tracking-[0.18em] text-[#ad8618]">Local Organizing Committee</p>
+                <Link href="/conference-organization-unit" className="mt-8 inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.11em] text-[#063760] underline decoration-[#d3a725] decoration-2 underline-offset-4 transition hover:text-[#ad8618]">Meet the leaders and members <ArrowUpRight className="h-3.5 w-3.5" /></Link>
               </article>
             </div>
           </div>
         </section>
 
-        <section id="venue" className="scroll-mt-24 border-b border-[#063760]/10 bg-white py-20 md:py-24">
-          <div className="container">
-            <div className="mx-auto max-w-4xl">
-              <p className="sci-eyebrow">Venue &amp; Halls</p>
-              <h2 className="mt-4 font-serif text-4xl font-bold leading-[1.04] tracking-[-0.035em] text-[#063760] sm:text-5xl">A setting designed for scientific exchange.</h2>
-              <p className="mt-6 max-w-3xl text-lg leading-8 text-[#456374]">Explore the Conference Center - Cairo University, from its main auditorium and supporting meeting facilities to its entrance, shared spaces, corridors and atrium.</p>
-              <div className="mt-8 max-w-2xl border-l-4 border-[#d3a725] bg-[#f7f2e7] px-5 py-5">
-                <div className="flex items-start gap-3"><MapPin className="mt-0.5 h-5 w-5 shrink-0 text-[#ad8618]" /><div><p className="text-sm font-extrabold text-[#063760]">{identity.location.name}</p><p className="mt-1 text-sm leading-6 text-[#617986]">{identity.location.shortAddress}</p></div></div>
-              </div>
-              <a href={identity.location.mapUrl} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#063760] px-5 py-3 text-xs font-extrabold uppercase tracking-[0.1em] text-white transition hover:-translate-y-0.5 hover:bg-[#0a507e]">{identity.location.directionsLabel} <ArrowUpRight className="h-4 w-4" /></a>
-              <div className="mt-10">
-                <div className="overflow-hidden border border-[#063760]/10 bg-[#f7f2e7] shadow-[0_20px_55px_rgba(6,55,96,0.16)]">
-                  {venueGalleryPages[venueGalleryPage].length === 1 ? (
-                    <figure className="bg-[#edf4f3]">
-                      <img src={venueGalleryPages[venueGalleryPage][0].url} alt={venueGalleryPages[venueGalleryPage][0].alt} loading="lazy" className="block h-auto w-full" />
-                    </figure>
-                  ) : (
-                    <div className="grid grid-cols-2 gap-1 bg-[#fffdf8] p-1">
-                      {venueGalleryPages[venueGalleryPage].map((photo) => (
-                        <figure key={photo.url} className="aspect-square overflow-hidden bg-[#edf4f3]">
-                          <img src={photo.url} alt={photo.alt} loading="lazy" className="h-full w-full object-cover" />
-                        </figure>
-                      ))}
-                    </div>
-                  )}
-                </div>
-                <div className="mt-4 flex items-center justify-center gap-4">
-                  <button type="button" onClick={() => setVenueGalleryPage(venueGalleryPage - 1)} disabled={venueGalleryPage === 0} aria-label="Previous venue photographs" className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#063760]/15 bg-white text-[#063760] shadow-sm transition hover:border-[#d3a725] hover:text-[#ad8618] disabled:cursor-not-allowed disabled:opacity-35 focus:outline-none focus:ring-4 focus:ring-[#d3a725]/25"><ChevronLeft className="h-4 w-4" /></button>
-                  <div className="flex items-center gap-2" aria-label="Venue photo groups">
-                    {venueGalleryPages.map((_, pageIndex) => (
-                      <button key={pageIndex} type="button" onClick={() => setVenueGalleryPage(pageIndex)} aria-label={`Show venue photo group ${pageIndex + 1}`} aria-current={venueGalleryPage === pageIndex ? "true" : undefined} className={`h-2.5 rounded-full transition-all focus:outline-none focus:ring-4 focus:ring-[#d3a725]/25 ${venueGalleryPage === pageIndex ? "w-8 bg-[#d3a725]" : "w-2.5 bg-[#063760]/20 hover:bg-[#063760]/45"}`} />
-                    ))}
-                  </div>
-                  <button type="button" onClick={() => setVenueGalleryPage(venueGalleryPage + 1)} disabled={venueGalleryPage === venueGalleryPages.length - 1} aria-label="Next venue photographs" className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#063760]/15 bg-white text-[#063760] shadow-sm transition hover:border-[#d3a725] hover:text-[#ad8618] disabled:cursor-not-allowed disabled:opacity-35 focus:outline-none focus:ring-4 focus:ring-[#d3a725]/25"><ChevronRight className="h-4 w-4" /></button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
         <section className="border-b border-[#063760]/10 bg-[#f7f2e7]">
-          <div className="container grid divide-y divide-[#063760]/10 py-3 sm:grid-cols-2 sm:divide-x sm:divide-y-0 sm:py-0">
-            <a href={assets.brochureEnglish} target="_blank" rel="noreferrer" className="group flex items-center justify-between gap-3 py-3 sm:px-5 sm:py-4"><span className="flex items-center gap-3"><FileText className="h-4 w-4 text-[#ad8618]" /><span><b className="block text-xs text-[#063760]">Conference brochure</b><small className="text-[11px] text-[#708795]">Official SCI 2027 guide</small></span></span><Download className="h-4 w-4 text-[#ad8618] transition-transform group-hover:translate-y-0.5" /></a>
-            <Link href="/programme" className="group flex items-center justify-between gap-3 py-3 sm:px-5 sm:py-4"><span className="flex items-center gap-3"><CalendarDays className="h-4 w-4 text-[#ad8618]" /><span><b className="block text-xs text-[#063760]">Preliminary programme</b><small className="text-[11px] text-[#708795]">6–10 April 2027 overview</small></span></span><ArrowUpRight className="h-4 w-4 text-[#ad8618] transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></Link>
+          <div className="container py-3 sm:py-0">
+            <Link href="/programme-workshops" className="group flex items-center justify-between gap-3 py-4 sm:px-5 sm:py-5"><span className="flex items-center gap-3"><CalendarDays className="h-6 w-6 text-[#ad8618]" /><span><b className="block text-base font-extrabold text-[#063760] sm:text-lg">Preliminary programme</b><small className="text-xs text-[#708795] sm:text-sm">6–10 April 2027 overview</small></span></span><ArrowUpRight className="h-5 w-5 text-[#ad8618] transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></Link>
           </div>
         </section>
 
-        <section id="about" className="scroll-mt-24 py-20 md:py-28">
-          <div className="container grid gap-12 lg:grid-cols-[0.86fr_1.14fr] lg:items-start">
-            <div className="lg:sticky lg:top-28">
-              <p className="sci-eyebrow">Science, partnership and impact</p>
-              <h2 className="mt-4 max-w-lg font-serif text-4xl font-bold leading-[1.04] tracking-[-0.035em] text-[#063760] sm:text-5xl">A new international chapter for science at Cairo University.</h2>
-              <div className="mt-8 border-l-4 border-[#d3a725] bg-[#edf4f3] px-5 py-5"><p className="text-sm font-bold leading-6 text-[#063760]">{sci2027Content.organizer.name.en}</p><p className="mt-2 text-sm leading-6 text-[#58717e]">{sci2027Content.organizer.head.en}</p></div>
-            </div>
-            <div>
-              <p className="text-lg leading-8 text-[#456374] sm:text-xl">{sci2027Content.overview.en}</p>
-              <div className="mt-10 grid gap-x-8 gap-y-7 sm:grid-cols-2">
-                {sci2027Content.objectives.map((objective, index) => <div key={objective.en} className="border-t border-[#063760]/15 pt-4"><p className="font-serif text-2xl font-bold text-[#d3a725]">0{index + 1}</p><p className="mt-2 text-sm font-bold leading-6 text-[#063760]">{objective.en}</p></div>)}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="bg-[#073960] py-16 text-white md:py-20">
+        <section id="about" className="scroll-mt-24 bg-[#073960] py-16 text-white md:py-20">
           <div className="container">
             <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end"><div><p className="sci-eyebrow text-[#f0ca57]">Conference at a glance</p><h2 className="mt-3 font-serif text-3xl font-bold sm:text-4xl">A platform designed for scientific exchange.</h2></div><p className="max-w-lg text-sm leading-6 text-[#b9ccd7]">Figures reflect the official conference brochure and planned programme structure, not confirmed attendance.</p></div>
             <div className="mt-10 grid gap-px overflow-hidden border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
@@ -315,40 +245,6 @@ export default function Sci2027Home() {
           </div>
         </section>
 
-        <section className="py-20 md:py-28">
-          <div className="container grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
-            <div className="rounded-[1.75rem] bg-[#f8f3e7] p-7 sm:p-10"><div className="flex items-center gap-3 text-[#ad8618]"><Network className="h-5 w-5" /><p className="text-xs font-bold uppercase tracking-[0.2em]">Call for abstracts</p></div><h2 className="mt-5 max-w-2xl font-serif text-4xl font-bold leading-[1.04] tracking-[-0.035em] text-[#063760]">{abstractCall.title.en}</h2><p className="mt-6 max-w-2xl text-base leading-7 text-[#456374]">{abstractCall.description.en}</p><ul className="mt-7 grid gap-3 sm:grid-cols-2">{abstractCall.requirements.map((requirement) => <li key={requirement} className="flex gap-2.5 text-sm leading-6 text-[#35536a]"><Check className="mt-1 h-4 w-4 shrink-0 text-[#ad8618]" />{requirement}</li>)}</ul><div className="mt-8 border-l-4 border-[#d3a725] bg-white/70 px-5 py-4"><p className="text-sm font-bold text-[#063760]">{abstractCall.status.en}</p></div></div>
-            <div className="flex flex-col rounded-[1.75rem] bg-[#063760] p-7 text-white sm:p-10"><div><p className="text-xs font-bold uppercase tracking-[0.2em] text-[#f0ca57]">Abstract submission</p><h3 className="mt-5 font-serif text-3xl font-bold leading-tight">Choose the path that fits your contribution.</h3><p className="mt-5 text-sm leading-7 text-[#c1d3dc]">Use the relevant official SCI 2027 form to submit your abstract. Please select the route that matches your role and contribution.</p></div><div className="mt-8 grid gap-3">{abstractCall.submissionOptions.map((option, index) => <a key={option.label} href={option.url} target="_blank" rel="noreferrer" className="group grid grid-cols-[auto_1fr_auto] items-center gap-4 border border-white/15 bg-white/[0.06] p-4 transition hover:border-[#e5bd4a] hover:bg-white/[0.1]"><span className="font-serif text-2xl font-bold text-[#f0ca57]">0{index + 1}</span><span><span className="block text-sm font-bold leading-5 text-white">{option.label}</span><span className="mt-1 block text-xs leading-5 text-[#c1d3dc]">{option.audience}</span></span><ArrowUpRight className="h-4 w-4 text-[#f0ca57] transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></a>)}</div></div>
-          </div>
-        </section>
-
-        <section className="bg-[#062f52] py-20 text-white md:py-28">
-          <div className="container">
-            <div className="grid gap-7 md:grid-cols-[1fr_auto] md:items-end"><div><p className="sci-eyebrow text-[#f0ca57]">Programme & workshops</p><h2 className="mt-4 max-w-3xl font-serif text-4xl font-bold leading-[1.05] tracking-[-0.035em] sm:text-5xl">Five days that move from learning to action.</h2></div><Link href="/programme" className="inline-flex items-center gap-2 text-sm font-extrabold uppercase tracking-[0.12em] text-[#f0ca57]">Full preliminary programme <ArrowUpRight className="h-4 w-4" /></Link></div>
-            <div className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-5">{sci2027Content.programme.map((day) => <article key={day.date} className="border border-white/15 bg-white/[0.06] p-6"><p className="text-xs font-bold uppercase tracking-[0.15em] text-[#f0ca57]">{day.date}</p><h3 className="mt-4 font-serif text-2xl font-bold">{day.day.en}</h3><p className="mt-5 border-l-2 border-[#e5bd4a] pl-3 text-sm font-semibold leading-6 text-white">{day.purpose.en}</p><ul className="mt-6 space-y-3 border-t border-white/10 pt-5">{day.sessions.slice(0, 3).map((session) => <li key={session.en} className="flex gap-2 text-sm leading-6 text-[#c1d3dc]"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#e5bd4a]" />{session.en}</li>)}</ul></article>)}</div>
-            <div className="mt-6 grid gap-3 md:grid-cols-3"><div className="border border-white/10 bg-white/[0.05] px-5 py-5"><p className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#f0ca57]">{workshopProgramme.preConference.date}</p><p className="mt-3 text-sm font-bold leading-6">{workshopProgramme.preConference.label}</p><p className="mt-3 text-xs leading-5 text-[#b9ccd7]">{workshopProgramme.status}</p></div><div className="border border-white/10 bg-white/[0.05] px-5 py-5"><p className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#f0ca57]">{workshopProgramme.culturalVisit.date}</p><p className="mt-3 text-sm font-bold leading-6">{workshopProgramme.culturalVisit.label}</p><p className="mt-3 text-xs leading-5 text-[#b9ccd7]">{workshopProgramme.culturalVisit.activity}</p></div><div className="border border-white/10 bg-white/[0.05] px-5 py-5"><p className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#f0ca57]">{workshopProgramme.postConference.date}</p><p className="mt-3 text-sm font-bold leading-6">{workshopProgramme.postConference.label}</p><p className="mt-3 text-xs leading-5 text-[#b9ccd7]">{workshopProgramme.status}</p></div></div>
-          </div>
-        </section>
-
-        <section className="bg-[#f7f2e7] py-20 md:py-28">
-          <div className="container grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-            <div>
-              <p className="sci-eyebrow">{sponsorship.eyebrow}</p>
-              <h2 className="mt-4 max-w-2xl font-serif text-4xl font-bold leading-[1.04] tracking-[-0.035em] text-[#063760] sm:text-5xl">Help turn scientific discovery into lasting impact.</h2>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-[#456374]">{sponsorship.description}</p>
-              <figure className="relative mt-8 aspect-[16/8] max-w-2xl overflow-hidden border border-[#063760]/10 bg-[#062f52] shadow-md">
-                <img src={sponsorship.visual.url} alt={sponsorship.visual.alt} loading="lazy" className="h-full w-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#062f52]/65 via-[#062f52]/20 to-transparent" aria-hidden="true" />
-                <figcaption className="absolute bottom-3 left-4 text-[9px] font-bold uppercase tracking-[0.16em] text-white/85">Photography via Unsplash</figcaption>
-              </figure>
-              <Link href="/sponsorship" className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#063760] px-6 py-3.5 text-sm font-extrabold uppercase tracking-[0.1em] text-white transition hover:-translate-y-0.5 hover:bg-[#0a507e]">Explore partnership opportunities <ArrowUpRight className="h-4 w-4" /></Link>
-            </div>
-            <div className="grid gap-3 sm:grid-cols-2">
-              {sponsorship.packages.map((tier) => <div key={tier.tier} className="border border-[#063760]/10 bg-white p-5 shadow-sm"><Handshake className="h-5 w-5 text-[#ad8618]" /><p className="mt-5 text-xs font-bold uppercase tracking-[0.16em] text-[#617986]">{tier.tier}</p><p className="mt-2 font-serif text-2xl font-bold text-[#063760]">{tier.investment}</p><p className="mt-3 text-xs font-bold leading-5 text-[#617986]">{tier.exhibition}</p></div>)}
-            </div>
-          </div>
-        </section>
-
         <section id="registration-fees" className="scroll-mt-24 border-y border-[#d3a725]/25 bg-[#062f52] py-20 text-white md:py-28">
           <div className="container">
             <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
@@ -379,7 +275,7 @@ export default function Sci2027Home() {
                 <p className="mt-3 text-sm leading-6 text-[#dbe8ec]">{registrationFees.publicationOption.condition}</p>
                 <a href="#publication-opportunity" className="mt-5 inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.11em] text-[#f0ca57] underline decoration-[#f0ca57]/50 underline-offset-4 transition hover:text-white">Learn about GJSR <ArrowUpRight className="h-3.5 w-3.5" /></a>
               </article>
-              {registrationFees.addOns.map((addOn) => <article key={addOn.label} className="border border-white/15 bg-white/[0.06] p-5 sm:p-6"><p className="text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#c1d3dc]">Optional add-on</p><p className="mt-4 font-serif text-2xl font-bold text-white">{addOn.label}</p><p className="mt-3 font-serif text-2xl font-bold text-[#f0ca57]">{addOn.amount}</p><p className="mt-3 text-xs leading-5 text-[#c1d3dc]">{addOn.detail}</p>{addOn.label === "Gala dinner" && <a href="#gala-dinner" className="mt-5 inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.1em] text-[#f0ca57] underline decoration-[#f0ca57]/50 underline-offset-4 transition hover:text-white">Explore the dinner venue <ArrowDown className="h-3.5 w-3.5" /></a>}</article>)}
+              {registrationFees.addOns.map((addOn) => <article key={addOn.label} className="border border-white/15 bg-white/[0.06] p-5 sm:p-6"><p className="text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#c1d3dc]">Optional add-on</p><p className="mt-4 font-serif text-2xl font-bold text-white">{addOn.label}</p><p className="mt-3 font-serif text-2xl font-bold text-[#f0ca57]">{addOn.amount}</p><p className="mt-3 text-xs leading-5 text-[#c1d3dc]">{addOn.detail}</p>{addOn.label === "Gala dinner" && <Link href="/gala-dinner" className="mt-5 inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.1em] text-[#f0ca57] underline decoration-[#f0ca57]/50 underline-offset-4 transition hover:text-white">Explore the dinner venue <ArrowUpRight className="h-3.5 w-3.5" /></Link>}</article>)}
             </div>
 
             <div className="mt-5 grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
@@ -399,35 +295,15 @@ export default function Sci2027Home() {
           </div>
         </section>
 
-        <section id="gala-dinner" className="scroll-mt-24 border-b border-[#063760]/10 bg-[#f7f2e7] py-20 md:py-28">
-          <div className="container grid gap-10 lg:grid-cols-[0.94fr_1.06fr] lg:items-center">
-            <div>
-              <p className="sci-eyebrow">{galaDinner.eyebrow}</p>
-              <h2 className="mt-4 max-w-xl font-serif text-4xl font-bold leading-[1.04] tracking-[-0.035em] text-[#063760] sm:text-5xl">{galaDinner.title}</h2>
-              <p className="mt-6 max-w-xl text-lg leading-8 text-[#456374]">{galaDinner.description}</p>
-
-              <div className="mt-8 grid gap-3 sm:grid-cols-2">
-                <div className="border border-[#d3a725]/40 bg-white px-5 py-5 shadow-sm"><p className="text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#ad8618]">Optional add-on</p><p className="mt-3 font-serif text-3xl font-bold text-[#063760]">{galaDinner.addOnAmount}</p><p className="mt-2 text-xs leading-5 text-[#617986]">{galaDinner.addOnDetail}</p></div>
-                <div className="border border-[#063760]/10 bg-[#063760] px-5 py-5 text-white shadow-sm"><CalendarDays className="h-5 w-5 text-[#f0ca57]" /><p className="mt-4 text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#f0ca57]">Gala dinner schedule</p><p className="mt-2 text-sm font-bold leading-6 text-white">{galaDinner.dateTimeStatus}</p></div>
-              </div>
-
-              <div className="mt-5 border-l-4 border-[#d3a725] bg-white px-5 py-5 shadow-sm"><div className="flex items-start gap-3"><MapPin className="mt-0.5 h-5 w-5 shrink-0 text-[#ad8618]" /><div><p className="text-sm font-extrabold text-[#063760]">{galaDinner.venue}</p><p className="mt-1 text-sm leading-6 text-[#617986]">{galaDinner.location}</p></div></div></div>
-              <a href={galaDinner.directionsUrl} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#063760] px-5 py-3 text-xs font-extrabold uppercase tracking-[0.1em] text-white transition hover:-translate-y-0.5 hover:bg-[#0a507e]">{galaDinner.directionsLabel} <ArrowUpRight className="h-4 w-4" /></a>
-            </div>
-
-            <div className="grid gap-5 sm:grid-cols-2">
-              <figure className="overflow-hidden border border-[#063760]/10 bg-white shadow-[0_20px_45px_rgba(6,55,96,0.12)]"><div className="aspect-[4/5] bg-[#edf4f3]"><img src={galaDinner.primaryImage.url} alt={galaDinner.primaryImage.alt} loading="lazy" className="h-full w-full object-contain" /></div><figcaption className="border-t border-[#063760]/10 px-4 py-3 text-xs font-bold leading-5 text-[#456374]">Fleet Club El Gezira on the Nile</figcaption></figure>
-              <div className="border border-[#063760]/10 bg-[#063760] p-1 shadow-[0_20px_45px_rgba(6,55,96,0.16)]"><figure className="bg-white"><div className="aspect-[4/5] bg-[#edf4f3]"><img src={galaDinner.galleryImages[galaGalleryIndex].url} alt={galaDinner.galleryImages[galaGalleryIndex].alt} loading="lazy" className="h-full w-full object-contain" /></div><figcaption className="border-t border-[#063760]/10 px-4 py-3 text-xs font-bold leading-5 text-[#456374]">Fleet Club gallery · {galaGalleryIndex + 1} of {galaDinner.galleryImages.length}</figcaption></figure>
-                <div className="flex items-center justify-between gap-3 px-3 py-3"><button type="button" onClick={() => setGalaGalleryIndex(galaGalleryIndex - 1)} disabled={galaGalleryIndex === 0} aria-label="Show previous gala dinner image" className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition hover:border-[#f0ca57] hover:text-[#f0ca57] disabled:cursor-not-allowed disabled:opacity-35 focus:outline-none focus:ring-4 focus:ring-[#f0ca57]/30"><ChevronLeft className="h-4 w-4" /></button><div className="flex items-center gap-1.5" aria-label="Gala dinner images">{galaDinner.galleryImages.map((image, galleryIndex) => <button key={image.url} type="button" onClick={() => setGalaGalleryIndex(galleryIndex)} aria-label={`Show gala dinner image ${galleryIndex + 1}`} aria-current={galleryIndex === galaGalleryIndex ? "page" : undefined} className={`h-2 rounded-full transition-all focus:outline-none focus:ring-4 focus:ring-[#f0ca57]/30 ${galleryIndex === galaGalleryIndex ? "w-6 bg-[#f0ca57]" : "w-2 bg-white/35 hover:bg-white/70"}`} />)}</div><button type="button" onClick={() => setGalaGalleryIndex(galaGalleryIndex + 1)} disabled={galaGalleryIndex === galaDinner.galleryImages.length - 1} aria-label="Show next gala dinner image" className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition hover:border-[#f0ca57] hover:text-[#f0ca57] disabled:cursor-not-allowed disabled:opacity-35 focus:outline-none focus:ring-4 focus:ring-[#f0ca57]/30"><ChevronRight className="h-4 w-4" /></button></div>
-              </div>
-            </div>
-          </div>
-        </section>
-
         <section id="registration" className="scroll-mt-24 py-20 md:py-28">
           <div className="container">
-            <div className="text-center"><p className="sci-eyebrow">Join the conversation</p><h2 className="mt-4 font-serif text-4xl font-bold tracking-[-0.035em] text-[#063760] sm:text-5xl">Find the right way to participate.</h2><p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-[#617986]">Select the official registration form that reflects your role in SCI 2027.</p></div>
-            <div className="mx-auto mt-12 grid max-w-6xl gap-5 md:grid-cols-2 lg:grid-cols-3">
+            <div className="text-center"><p className="sci-eyebrow">Call for abstracts &amp; registration</p><h2 className="mt-4 font-serif text-4xl font-bold tracking-[-0.035em] text-[#063760] sm:text-5xl">Share your research. Find the right way to participate.</h2><p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-[#617986]">{abstractCall.description.en}</p></div>
+            <div className="mx-auto mt-12 max-w-6xl rounded-[1.75rem] bg-[#f8f3e7] p-7 sm:p-10">
+              <div className="flex items-center gap-3 text-[#ad8618]"><Network className="h-5 w-5" /><p className="text-xs font-bold uppercase tracking-[0.2em]">Abstract guidelines</p></div>
+              <ul className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">{abstractCall.requirements.map((requirement) => <li key={requirement} className="flex gap-2.5 text-sm leading-6 text-[#35536a]"><Check className="mt-1 h-4 w-4 shrink-0 text-[#ad8618]" />{requirement}</li>)}</ul>
+              <div className="mt-8 border-l-4 border-[#d3a725] bg-white/70 px-5 py-4"><p className="text-sm font-bold text-[#063760]">{abstractCall.status.en}</p></div>
+            </div>
+            <div className="mx-auto mt-8 grid max-w-6xl gap-5 md:grid-cols-2 lg:grid-cols-3">
               {registrationOptions.map((option, index) => {
                 const RegistrationIcon = registrationIcons[index];
                 const notice = "notice" in option ? option.notice.en : undefined;
@@ -446,6 +322,22 @@ export default function Sci2027Home() {
                 <p className="mt-7 text-sm leading-7 text-[#456374]">For media organisations and press professionals interested in covering SCI 2027. Requests are reviewed by the conference team.</p>
                 <Link href="/media-registration-2027" className="mt-7 inline-flex w-fit items-center gap-2 rounded-full bg-[#063760] px-5 py-3 text-sm font-extrabold uppercase tracking-[0.12em] text-white transition hover:bg-[#0a507e] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#d3a725]/40">Open media form <ArrowUpRight className="h-4 w-4" /></Link>
               </article>
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-[#f7f2e7] py-20 md:py-28">
+          <div className="container grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+            <div>
+              <p className="sci-eyebrow">{sponsorship.eyebrow}</p>
+              <h2 className="mt-4 max-w-2xl font-serif text-4xl font-bold leading-[1.04] tracking-[-0.035em] text-[#063760] sm:text-5xl">Help turn scientific discovery into lasting impact.</h2>
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-[#456374]">{sponsorship.description}</p>
+              <figure className="relative mt-8 aspect-[16/8] max-w-2xl overflow-hidden border border-[#063760]/10 bg-[#062f52] shadow-md">
+                <img src={sponsorship.visual.url} alt={sponsorship.visual.alt} loading="lazy" className="h-full w-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#062f52]/65 via-[#062f52]/20 to-transparent" aria-hidden="true" />
+                <figcaption className="absolute bottom-3 left-4 text-[9px] font-bold uppercase tracking-[0.16em] text-white/85">Photography via Unsplash</figcaption>
+              </figure>
+              <Link href="/sponsorship" className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#063760] px-6 py-3.5 text-sm font-extrabold uppercase tracking-[0.1em] text-white transition hover:-translate-y-0.5 hover:bg-[#0a507e]">Explore partnership opportunities <ArrowUpRight className="h-4 w-4" /></Link>
             </div>
           </div>
         </section>

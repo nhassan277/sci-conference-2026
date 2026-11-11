@@ -4,14 +4,11 @@ import { Link } from "wouter";
 import { sci2027Content } from "@/data/sci2027Content";
 
 const navigation = [
-  { href: "/#about", label: "About" },
-  { href: "/conference-organization-unit", label: "Conference Organization Unit" },
-  { href: "/#tracks", label: "Tracks" },
+  { href: "/conference-organization-unit", label: "Local Organizing Committee" },
   { href: "/programme", label: "Programme" },
   { href: "/videos", label: "Watch SCI 2027" },
   { href: "/archive-2026", label: "SCI 2026 Archive" },
   { href: "/sponsorship", label: "Sponsorship" },
-  { href: "/#dates", label: "Dates" },
   { href: "/#registration-fees", label: "Register" },
 ];
 

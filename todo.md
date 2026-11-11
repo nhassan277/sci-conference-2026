@@ -167,6 +167,11 @@
 - [x] Link Media Registration beside existing registration options and Sponsor & Partner Registration in Partnerships & Sponsorship; preserve official Google Forms and SCI 2026 archive
 - [x] Add SCI 2027 Requests admin tab with separate media/sponsor views, full details, status/notes and CSV export
 - [x] Verify persistence, permissions, validation/error/retry flows, CSV safety, desktop/mobile UI, tests/typecheck/build and checkpoint this feature
+- [x] Port the approved compact Lovable homepage and standalone venue, gala dinner and programme/workshops pages into existing Wouter routes
+- [x] Apply approved Local Organizing Committee portraits, Walid chair/patronage role, nine-member roster retaining Hoda, and student assistants
+- [x] Re-host Lovable portraits without embedding private preview tokens or changing original uploads
+- [x] Display the approved official emails and 250 participants while retaining two workshop days and Gmail submission/payment destinations
+- [x] Verify preserved backend/forms/admin/schema/configuration, official data, desktop/mobile navigation, tests/typecheck/build and save the visual-merge checkpoint
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks

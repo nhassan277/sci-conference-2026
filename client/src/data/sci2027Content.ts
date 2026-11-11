@@ -234,6 +234,17 @@ export const sci2027Content = {
         fit: "contain",
       },
     },
+    {
+      name: "Prof. Walid Rahouma",
+      nameAr: "الأستاذ الدكتور وليد رحومة",
+      role: "Conference Chair & Director of the Conference Organizing Unit",
+      roleAr: "رئيس المؤتمر ومدير وحدة تنظيم المؤتمرات",
+      photo: {
+        url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/ikxoKrKfjgpxhwGs.png",
+        alt: "Prof. Walid Rahouma, Conference Chair and Director of the Conference Organizing Unit.",
+        fit: "cover",
+      },
+    },
   ],
   organizer: {
     name: {
@@ -246,8 +257,19 @@ export const sci2027Content = {
     },
   },
   conferenceOrganizationUnit: {
-    title: "Conference Organization Unit",
-    institution: "Faculty of Science, Cairo University",
+    title: "Local Organizing Committee",
+    institution: "Conference Organization Unit · Faculty of Science, Cairo University",
+    leaders: [
+      { name: "Prof. Walid Rahouma", role: "Conference Chair & Director of the Conference Organizing Unit", photo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/mxHpsMUOhrjysGnj.png", assistants: [] },
+      { name: "Prof. Mohamed Qarny", role: "Secretary of the Unit", photo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/ahushAmxmeETaOFk.png", assistants: [] },
+      { name: "Mrs. Manar Mohamed", role: "Administrative & Media Officer", photo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/zuEsYoaAKnuiHncM.png", assistants: [] },
+      { name: "Dr. Nahla Osama", role: "Scientific Programme Lead", photo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/LZHRzXJQJLszhLvn.png", assistants: [] },
+      { name: "Assoc. Prof. Rania Ali", role: "Media & Marketing Lead", photo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/PSkJsOizzoAdFQAU.png", assistants: [] },
+      { name: "Dr. Nourhan Hassan", role: "Sponsorship, Funding & Conference Website Lead", photo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/XmqZbYtFJfZufnpo.png", assistants: ["Youssef Saher Sayed (4th year student)", "Ziad Ahmed (4th year student)"] },
+      { name: "Prof. Hoda Abu Shady", role: "Public Relations & Sponsorship Committee", photo: "", assistants: [] },
+      { name: "Prof. Azza Shoukry", role: "Public Relations & Sponsorship Committee", photo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/IsOEBmatIRWgXvnu.png", assistants: [] },
+      { name: "Dr. Dina Amr", role: "Logistics Lead", photo: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/zQTzqpzarsBUZHKc.png", assistants: [] },
+    ],
     description:
       "The Conference Organization Unit at the Faculty of Science, Cairo University supports the planning, coordination, and professional management of scientific conferences and events, fostering academic and research collaboration locally and internationally.",
     visual: {
@@ -278,7 +300,7 @@ export const sci2027Content = {
       {
         name: "Prof. Walid Rahouma",
         department: "Astronomy & Space Sciences",
-        role: "Director of the Unit",
+        role: "Conference Chair & Director of the Conference Organizing Unit",
         summary: "Provides overall leadership, sets the Unit’s direction and plan, coordinates with Faculty leadership and stakeholders, and approves final outputs and reports.",
       },
       {
@@ -356,7 +378,7 @@ export const sci2027Content = {
     },
   ],
   impact: [
-    { value: "150", label: { en: "participants", ar: "مشاركًا" } },
+    { value: "250", label: { en: "participants", ar: "مشاركًا" } },
     { value: "6", label: { en: "scientific tracks", ar: "محاور علمية" } },
     { value: "6", label: { en: "parallel halls", ar: "قاعات متوازية" } },
     { value: "2", label: { en: "workshop days", ar: "يومان للورش" } },
@@ -890,6 +912,7 @@ export const sci2027Content = {
   },
   contact: {
     email: "sci.conf.2027@gmail.com",
+    officialEmails: ["cou@sci.cu.edu.eg", "sci2027@sci.cu.edu.eg"],
     website: "www.scicu.net",
     facebook: "facebook.com/SCI2027",
     youtube: {

@@ -5,6 +5,13 @@ import { sci2027Content } from "./sci2027Content";
 
 const projectPath = (...segments: string[]) => resolve(process.cwd(), ...segments);
 
+// New presentation pages may still be composed while this approved contract is RED.
+// Missing sources return an empty string so feature assertions fail meaningfully.
+const publicPageSource = (name: string) => {
+  const path = projectPath(`client/src/pages/${name}.tsx`);
+  return existsSync(path) ? readFileSync(path, "utf8") : "";
+};
+
 const hostedAssetKeys = [
   "detailedPoster",
   "simplePoster",
@@ -29,6 +36,9 @@ const englishOnlyPublicFiles = [
   "client/src/pages/Sci2027Sponsorship.tsx",
   "client/src/pages/Sci2027Videos.tsx",
   "client/src/pages/Sci2027OrganizationUnit.tsx",
+  "client/src/pages/Sci2027Venue.tsx",
+  "client/src/pages/Sci2027GalaDinner.tsx",
+  "client/src/pages/Sci2027ProgrammeWorkshops.tsx",
 ] as const;
 
 describe("SCI 2027 public content", () => {
@@ -43,11 +53,18 @@ describe("SCI 2027 public content", () => {
     expect(sci2027Content.registration.general.url).toBe("https://forms.gle/mr2gE9nsbdPrha9r6");
     expect(sci2027Content.registration.speaker.url).toBe("https://forms.gle/FRiza6zpfiQLrgrh8");
     expect(sci2027Content.sourceNote).not.toContain("SCI 2026");
+    expect(sci2027Content.impact.map((item) => [item.value, item.label.en])).toEqual([
+      ["250", "participants"],
+      ["6", "scientific tracks"],
+      ["6", "parallel halls"],
+      ["2", "workshop days"],
+    ]);
   });
 
-  it("publishes the verified Conference Center venue with safe Google Maps directions", () => {
+  it("links the compact home to the verified venue page and preserves safe Google Maps directions on detail pages", () => {
     const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
     const programmeSource = readFileSync(projectPath("client/src/pages/Sci2027Programme.tsx"), "utf8");
+    const venueSource = publicPageSource("Sci2027Venue");
     const venue = sci2027Content.identity.location;
 
     expect(venue).toMatchObject({
@@ -58,23 +75,28 @@ describe("SCI 2027 public content", () => {
     });
     expect(venue.en).toContain("Conference Center - Cairo University");
 
-    for (const source of [homeSource, programmeSource]) {
-      expect(source).toContain("identity.location.name");
-      expect(source).toContain("identity.location.mapUrl");
+    expect(homeSource).toContain("identity.location.name");
+    expect(homeSource).toContain("identity.location.shortAddress");
+    expect(homeSource).toContain('<Link href="/venue"');
+    expect(programmeSource).toContain("identity.location.name");
+    expect(programmeSource).toContain("identity.location.mapUrl");
+    expect(venueSource).toContain("location.name");
+    expect(venueSource).toContain("location.shortAddress");
+    expect(venueSource).toContain("location.mapUrl");
+    expect(venueSource).toContain("location.directionsLabel");
+    for (const source of [venueSource, programmeSource]) {
       expect(source).toContain('target="_blank"');
       expect(source).toContain('rel="noreferrer"');
     }
   });
 
-  it("keeps the Venue & Halls content as one concise section above the venue carousel after patronage", () => {
+  it("presents the two verified auditorium and facility visuals with captions on the dedicated Venue & Halls page", () => {
     const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
+    const venueSource = publicPageSource("Sci2027Venue");
     const venue = sci2027Content.identity.location;
     const venueVisuals = (venue as typeof venue & {
       venueVisuals?: Array<{ source: string; caption: string; url: string; alt: string }>;
     }).venueVisuals ?? [];
-    const patronagePosition = homeSource.indexOf("Distinguished patronage");
-    const venuePosition = homeSource.indexOf('id="venue"');
-    const introductionPosition = homeSource.indexOf("Science, partnership and impact");
 
     expect(venueVisuals).toHaveLength(2);
     expect(venueVisuals.every((visual) => visual.source === "SCI 2027 venue photograph")).toBe(true);
@@ -83,56 +105,52 @@ describe("SCI 2027 public content", () => {
       "Main auditorium and meeting facilities at the Conference Center - Cairo University.",
       "Entrance, registration lobby, meeting room and auditorium facilities at the Conference Center - Cairo University.",
     ]);
-    expect(venuePosition).toBeGreaterThan(patronagePosition);
-    expect(venuePosition).toBeLessThan(introductionPosition);
-    expect(homeSource).toContain("Venue &amp; Halls");
-    expect(homeSource).toContain("Explore the Conference Center - Cairo University, from its main auditorium and supporting meeting facilities to its entrance, shared spaces, corridors and atrium.");
-    expect(homeSource).toContain("identity.location.mapUrl");
-    expect(homeSource).not.toContain("identity.location.venueVisuals.map");
-    expect(homeSource).not.toContain("visual.caption");
-    expect(homeSource).not.toContain("Explore the Venue");
-    expect(homeSource).not.toContain("A closer look at the Conference Center.");
-    expect(homeSource).not.toContain("A visual walk through the venue’s entrance, shared spaces, corridors and atrium.");
+    expect(venueSource).toContain("Venue &amp; Halls");
+    expect(venueSource).toContain("Auditorium &amp; facilities");
+    expect(venueSource).toContain("Explore the Conference Center - Cairo University, from its main auditorium and supporting meeting facilities to its entrance, shared spaces, corridors and atrium.");
+    expect(venueSource).toContain("location.venueVisuals.map");
+    expect(venueSource).toContain("src={visual.url}");
+    expect(venueSource).toContain("alt={visual.alt}");
+    expect(venueSource).toContain("<figcaption");
+    expect(venueSource).toContain("{visual.caption}");
+    expect(homeSource).not.toContain('id="venue"');
+    expect(homeSource).not.toContain("venueVisuals.map");
   });
 
-  it("groups the eight supplied Conference Center photographs into two manual four-photo collage pages", () => {
+  it("renders all eight supplied Conference Center photographs in a static responsive venue gallery", () => {
     const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
+    const venueSource = publicPageSource("Sci2027Venue");
     const venue = sci2027Content.identity.location;
     const venueGallery = (venue as typeof venue & {
       venueGallery?: Array<{ source: string; url: string; alt: string; caption?: string }>;
     }).venueGallery ?? [];
-    const venueSectionStart = homeSource.indexOf('id="venue"');
-    const venueSectionEnd = homeSource.indexOf("</section>", venueSectionStart);
-    const gallerySection = homeSource.slice(venueSectionStart, venueSectionEnd);
 
     expect(venueGallery).toHaveLength(8);
     expect(venueGallery.every((photo) => photo.source === "SCI 2027 venue photograph")).toBe(true);
     expect(venueGallery.every((photo) => photo.url.startsWith("https://") && photo.alt.length > 30)).toBe(true);
     expect(venueGallery.every((photo) => !("caption" in photo))).toBe(true);
-    expect(homeSource).toContain('import { useState } from "react";');
-    expect(homeSource).toContain("identity.location.venueGallery.slice(0, 4)");
-    expect(homeSource).toContain("identity.location.venueGallery.slice(4, 8)");
-    expect(homeSource).toContain("const [venueGalleryPage, setVenueGalleryPage] = useState(0)");
-    expect(gallerySection).toContain("venueGalleryPages[venueGalleryPage]");
-    expect(gallerySection).toContain("grid-cols-2");
-    expect(gallerySection).toContain("aspect-square");
-    expect(gallerySection).toContain("object-cover");
-    expect(gallerySection).toContain('aria-label="Previous venue photographs"');
-    expect(gallerySection).toContain('aria-label="Next venue photographs"');
-    expect(gallerySection).toContain('aria-label={`Show venue photo group ${pageIndex + 1}`}');
-    expect(gallerySection).not.toContain("figcaption");
-    expect(gallerySection).not.toContain("{photo.caption}");
-    expect(gallerySection).not.toContain("setInterval");
+    expect(new Set(venueGallery.map((photo) => photo.url)).size).toBe(8);
+    expect(venueSource).toContain("location.venueGallery.map");
+    expect(venueSource).toContain("src={photo.url}");
+    expect(venueSource).toContain("alt={photo.alt}");
+    expect(venueSource).toContain('loading="lazy"');
+    expect(venueSource).toContain("sm:grid-cols-2");
+    expect(venueSource).toContain("lg:grid-cols-4");
+    expect(venueSource).toContain("aspect-square");
+    expect(venueSource).toContain("object-cover");
+    expect(venueSource).not.toContain("venueGallery.slice");
+    expect(venueSource).not.toContain("venueGalleryPage");
+    expect(venueSource).not.toContain("{photo.caption}");
+    expect(venueSource).not.toContain("setInterval");
+    expect(homeSource).not.toContain("venueGallery");
   });
 
-  it("appends two complete montage slides after the original four-photo groups without captions or automatic rotation", () => {
+  it("shows both complete venue montages after the static gallery and primary facility visuals without cropping or rotation", () => {
     const venue = sci2027Content.identity.location as typeof sci2027Content.identity.location & {
       venueMontages?: ReadonlyArray<{ url: string; alt: string; source: string; width: number; height: number }>;
     };
     const montages = venue.venueMontages ?? [];
-    const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
-    const start = homeSource.indexOf('id="venue"');
-    const gallerySection = homeSource.slice(start, homeSource.indexOf("</section>", start));
+    const venueSource = publicPageSource("Sci2027Venue");
 
     expect(montages).toHaveLength(2);
     expect(montages.map(({ width, height }) => [width, height])).toEqual([[1536, 1024], [1254, 1254]]);
@@ -140,18 +158,17 @@ describe("SCI 2027 public content", () => {
     expect(montages.every(image => image.alt.length > 30 && image.source === "SCI 2027 venue photograph")).toBe(true);
     expect(montages.every(image => !("caption" in image))).toBe(true);
     expect(new Set([...venue.venueGallery, ...montages].map(image => image.url)).size).toBe(10);
-    const pages = [venue.venueGallery.slice(0, 4), venue.venueGallery.slice(4, 8), ...montages.map(image => [image])];
-    expect(pages.map(page => page.length)).toEqual([4, 4, 1, 1]);
-    expect(homeSource).toContain("...identity.location.venueMontages.map((montage) => [montage])");
-    expect(homeSource.indexOf("identity.location.venueGallery.slice(4, 8)")).toBeLessThan(homeSource.indexOf("identity.location.venueMontages.map"));
-    expect(gallerySection).toContain("venueGalleryPages[venueGalleryPage].length === 1");
-    expect(gallerySection).toContain('className="block h-auto w-full"');
-    expect(gallerySection).toContain("venueGalleryPages.map");
-    expect(gallerySection).toContain("disabled={venueGalleryPage === 0}");
-    expect(gallerySection).toContain("disabled={venueGalleryPage === venueGalleryPages.length - 1}");
-    expect(gallerySection).not.toContain("figcaption");
-    expect(homeSource).not.toContain("setInterval");
-    expect(homeSource).not.toContain("setTimeout");
+    expect(new Set([...venue.venueGallery, ...venue.venueVisuals, ...montages].map(image => image.url)).size).toBe(12);
+    expect(venueSource).toContain("location.venueMontages.map");
+    expect(venueSource.indexOf("location.venueGallery.map")).toBeLessThan(venueSource.indexOf("location.venueVisuals.map"));
+    expect(venueSource.indexOf("location.venueVisuals.map")).toBeLessThan(venueSource.indexOf("location.venueMontages.map"));
+    const montageImage = venueSource.match(/<img\b[^>]*src=\{montage\.url\}[^>]*>/u)?.[0] ?? "";
+    expect(montageImage).toContain("alt={montage.alt}");
+    expect(montageImage).toContain("h-auto");
+    expect(montageImage).toContain("w-full");
+    expect(montageImage).not.toContain("object-cover");
+    expect(venueSource).not.toContain("setInterval");
+    expect(venueSource).not.toContain("setTimeout");
   });
 
   it("ships a complete navy-and-gold SCI 2027 favicon and mobile icon package", () => {
@@ -210,9 +227,11 @@ describe("SCI 2027 public content", () => {
     expect(sci2027Content.assets.brochureEnglish).not.toContain("1cw1EwBsOOfSzEHs9nIRPiOahzDZLVfp_");
     expect(existsSync(retiredEnglishBrochure)).toBe(false);
     expect(existsSync(arabicBrochure)).toBe(true);
-    for (const source of [homeSource, programmeSource, footerSource]) {
+    for (const source of [programmeSource, footerSource]) {
       expect(source).toContain("brochureEnglish");
     }
+    expect(homeSource).toContain('href="/programme-workshops"');
+    expect(homeSource).not.toContain("brochureEnglish");
   });
 
   it("links the official SCI 2027 YouTube channel from the footer and videos page in a new tab", () => {
@@ -271,7 +290,8 @@ describe("SCI 2027 public content", () => {
     expect(publication.notice).toBe("Publication is subject to the journal’s editorial and peer-review process.");
     const publicationCardPosition = homeSource.indexOf("publicationOpportunity.title");
     expect(publicationCardPosition).toBeGreaterThan(homeSource.indexOf("Scientific tracks"));
-    expect(publicationCardPosition).toBeLessThan(homeSource.indexOf("Programme & workshops"));
+    expect(publicationCardPosition).toBeLessThan(homeSource.indexOf('id="dates"'));
+    expect(publicationCardPosition).toBeLessThan(homeSource.indexOf('id="registration-fees"'));
     expect(homeSource).toContain('href={publicationOpportunity.url}');
     expect(homeSource).toContain('target="_blank"');
     expect(homeSource).toContain('rel="noreferrer"');
@@ -353,8 +373,9 @@ describe("SCI 2027 public content", () => {
     expect(homeSource).not.toContain("createCheckoutSession");
   });
 
-  it("introduces the optional Fleet Club El Gezira gala dinner after fees without publishing social-contact details", () => {
+  it("links the optional Fleet Club El Gezira dinner from fees to a standalone six-photo static gallery without social-contact details", () => {
     const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
+    const galaSource = publicPageSource("Sci2027GalaDinner");
     const galaDinner = sci2027Content.galaDinner;
 
     if (!galaDinner) {
@@ -383,18 +404,32 @@ describe("SCI 2027 public content", () => {
     expect(JSON.stringify(galaDinner)).not.toContain("92209699");
 
     const feesPosition = homeSource.indexOf('id="registration-fees"');
-    const dinnerPosition = homeSource.indexOf('id="gala-dinner"');
+    const dinnerPosition = homeSource.indexOf('href="/gala-dinner"');
     const formsPosition = homeSource.indexOf('id="registration"');
     expect(dinnerPosition).toBeGreaterThan(feesPosition);
     expect(dinnerPosition).toBeLessThan(formsPosition);
-    expect(homeSource).toContain("galaDinner.primaryImage.url");
-    expect(homeSource).toContain("galaDinner.galleryImages[galaGalleryIndex]");
-    expect(homeSource).toContain('aria-label="Show previous gala dinner image"');
-    expect(homeSource).toContain('aria-label="Show next gala dinner image"');
-    expect(homeSource).toContain('aria-current={galleryIndex === galaGalleryIndex ? "page" : undefined}');
-    expect(homeSource).toContain('href="#gala-dinner"');
-    expect(homeSource).toContain('target="_blank"');
-    expect(homeSource).toContain('rel="noreferrer"');
+    expect(homeSource).toContain('<Link href="/gala-dinner"');
+    expect(homeSource).not.toContain('id="gala-dinner"');
+    expect(homeSource).not.toContain("galaDinner.primaryImage");
+    for (const field of ["title", "description", "venue", "location", "addOnAmount", "dateTimeStatus", "directionsUrl", "directionsLabel"]) {
+      expect(galaSource).toContain(`galaDinner.${field}`);
+    }
+    expect(new Set([galaDinner.primaryImage, ...galaDinner.galleryImages].map((image) => image.url)).size).toBe(7);
+    const primaryImage = galaSource.match(/<img\b[^>]*src=\{galaDinner\.primaryImage\.url\}[^>]*>/u)?.[0] ?? "";
+    expect(primaryImage).toContain("alt={galaDinner.primaryImage.alt}");
+    expect(primaryImage).toContain("object-contain");
+    expect(galaSource).toContain("galaDinner.galleryImages.map");
+    expect(galaSource).toContain("src={image.url}");
+    expect(galaSource).toContain("alt={image.alt}");
+    expect(galaSource).toContain('loading="lazy"');
+    expect(galaSource).toContain("aspect-square");
+    expect(galaSource).toContain("sm:grid-cols-2");
+    expect(galaSource).not.toContain("galaGalleryIndex");
+    expect(galaSource).not.toContain("galleryImages.slice");
+    expect(galaSource).not.toContain("setInterval");
+    expect(galaSource).toContain('target="_blank"');
+    expect(galaSource).toContain('rel="noreferrer"');
+    expect(galaSource).not.toMatch(/fleetclubelgezairah|92209699|IMG_0014/u);
   });
 
   it("routes public Register now and Register actions to fees before retaining official external forms", () => {
@@ -443,7 +478,13 @@ describe("SCI 2027 public content", () => {
     expect(JSON.stringify(abstractCall)).not.toContain("has not yet been announced");
     expect(sci2027Content.registration.speaker.name.en).toBe("Speaker & Abstract Submission");
     expect(sci2027Content.registration.speaker.description.en).toBe("For researchers, academics and industry professionals submitting an abstract through the official SCI 2027 form.");
-    expect(homeSource).toContain("abstractCall.submissionOptions.map");
+    expect(homeSource).toContain("Call for abstracts &amp; registration");
+    expect(homeSource).toContain("abstractCall.description.en");
+    expect(homeSource).toContain("abstractCall.requirements.map");
+    expect(homeSource).toContain("abstractCall.status.en");
+    expect(homeSource).toContain("registrationOptions.map");
+    expect(homeSource).toContain("sci2027Content.registration.speaker");
+    expect(homeSource).toContain("sci2027Content.registration.studentResearch");
     expect(homeSource).toContain('href={option.url}');
     expect(homeSource).toContain('target="_blank"');
     expect(homeSource).toContain('rel="noreferrer"');
@@ -486,11 +527,12 @@ describe("SCI 2027 public content", () => {
     expect(sci2027Content.registration.studentResearch.notice.en).toBe("Abstract submissions are accepted through this form. Abstract deadline: 7 March 2027.");
   });
 
-  it("publishes confirmed abstract milestones, Friday museum visit and Saturday workshops", () => {
+  it("publishes unchanged milestones and five programme days on the new workshops overview while retaining the detailed programme", () => {
     const centralContentSource = readFileSync(projectPath("client/src/data/sci2027Content.ts"), "utf8");
     const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
     const programmeSource = readFileSync(projectPath("client/src/pages/Sci2027Programme.tsx"), "utf8");
-    const publicProgrammeSources = [centralContentSource, homeSource, programmeSource];
+    const workshopsSource = publicPageSource("Sci2027ProgrammeWorkshops");
+    const publicProgrammeSources = [centralContentSource, homeSource, programmeSource, workshopsSource];
 
     expect(sci2027Content.programme.map((day) => day.date)).toEqual([
       "6 April 2027",
@@ -519,8 +561,17 @@ describe("SCI 2027 public content", () => {
     ]);
     expect(sci2027Content.abstractCall.status.en).toBe("Abstract submissions are open through the relevant SCI 2027 form below. Abstract deadline: 7 March 2027.");
     expect(homeSource).toContain("identity.workshopDate.en");
-    expect(homeSource).toContain("Five days that move from learning to action.");
-    expect(homeSource).toContain("workshopProgramme.culturalVisit");
+    expect(homeSource).toContain('<Link href="/programme-workshops"');
+    expect(homeSource).not.toContain("programme.map");
+    expect(homeSource).not.toContain("workshopProgramme.culturalVisit");
+    expect(workshopsSource).toContain("Five days that move from learning to action.");
+    expect(workshopsSource).toContain("6–10 April 2027");
+    expect(workshopsSource).toContain("programme.map((day)");
+    for (const field of ["day.date", "day.day.en", "day.purpose.en", "day.sessions.map", "session.en", "workshopProgramme.preConference", "workshopProgramme.culturalVisit", "workshopProgramme.postConference", "workshopProgramme.status"]) {
+      expect(workshopsSource).toContain(field);
+    }
+    expect(workshopsSource).toContain('<Link href="/programme"');
+    expect(workshopsSource).toContain("Detailed programme timeline");
     expect(programmeSource).toContain("6–10 April 2027");
     expect(programmeSource).toContain('"9 April 2027": [');
     expect(programmeSource).toContain("workshopProgramme.culturalVisit");
@@ -572,12 +623,22 @@ describe("SCI 2027 public content", () => {
     expect(sci2027Content.sponsorship.specialOpportunities).toHaveLength(10);
   });
 
-  it("uses the approved SCI 2027 inbox for all public conference enquiries", () => {
+  it("retains the approved main enquiries and payment inbox while adding the two official institutional footer emails", () => {
+    const footerSource = readFileSync(projectPath("client/src/components/Sci2027Footer.tsx"), "utf8");
+    const contact = sci2027Content.contact as typeof sci2027Content.contact & { officialEmails?: readonly string[] };
     expect(sci2027Content.contact.email).toBe("sci.conf.2027@gmail.com");
     expect(sci2027Content.contact.email).toBe(sci2027Content.sponsorship.contactEmail);
+    expect(sci2027Content.registrationFees.payment.confirmationEmail).toBe("sci.conf.2027@gmail.com");
+    expect(contact.officialEmails).toEqual(["cou@sci.cu.edu.eg", "sci2027@sci.cu.edu.eg"]);
+    expect(footerSource).toContain("contact.officialEmails.map");
+    const officialEmailVariable = footerSource.match(/contact\.officialEmails\.map\(\((\w+)\)\s*=>/u)?.[1];
+    expect(officialEmailVariable).toBeDefined();
+    expect(footerSource).toContain(`mailto:\${${officialEmailVariable}}`);
+    expect(footerSource).toContain(`>{${officialEmailVariable}}</a>`);
+    expect(footerSource).toContain("contact.email");
   });
 
-  it("renders three approved Distinguished Patronage cards with the Vice Dean portrait fully visible", () => {
+  it("renders the existing three patronage portraits plus the approved Conference Chair with the Vice Dean fully visible", () => {
     const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
     const patronage = sci2027Content.patronage as ReadonlyArray<
       (typeof sci2027Content.patronage)[number] & {
@@ -586,14 +647,17 @@ describe("SCI 2027 public content", () => {
     >;
     const portraits = patronage.map((patron) => patron.photo).filter(Boolean);
 
-    expect(patronage).toHaveLength(3);
-    expect(portraits).toHaveLength(3);
-    expect(portraits.every((photo) => photo.url.startsWith("https://"))).toBe(true);
+    expect(patronage).toHaveLength(4);
+    expect(portraits).toHaveLength(4);
+    expect(portraits.slice(0, 3).every((photo) => photo.url.startsWith("https://"))).toBe(true);
+    expect(portraits[3].url).toMatch(/^(https:\/\/|\/manus-storage\/)/u);
+    expect(portraits[3].url).not.toMatch(/__l5e|__lovable_token/u);
     expect(portraits.every((photo) => photo.alt.length > 20)).toBe(true);
     expect(patronage.map((patron) => patron.name)).toEqual([
       "Prof. Mohamed Sami Abdel-Sadek",
       "Prof. Sohair Ramadan Fahmy",
       "Prof. Amal Soliman",
+      "Prof. Walid Rahouma",
     ]);
     expect(patronage[1]).toMatchObject({
       photo: {
@@ -609,6 +673,7 @@ describe("SCI 2027 public content", () => {
         fit: "contain",
       },
     });
+    expect(patronage[3].role).toBe("Conference Chair & Director of the Conference Organizing Unit");
     expect(homeSource).toContain("patron.photo.url");
     expect(homeSource).toContain("patron.photo.alt");
     expect(homeSource).toContain("aspect-[4/5]");
@@ -620,28 +685,29 @@ describe("SCI 2027 public content", () => {
   it("places Distinguished Patronage immediately after the Hero", () => {
     const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
     const patronagePosition = homeSource.indexOf("Distinguished patronage");
-    const introductionPosition = homeSource.indexOf("Science, partnership and impact");
+    const committeesPosition = homeSource.indexOf('id="conference-committees"');
 
     expect(patronagePosition).toBeGreaterThan(homeSource.indexOf("<main>"));
-    expect(patronagePosition).toBeLessThan(introductionPosition);
+    expect(patronagePosition).toBeLessThan(committeesPosition);
+    expect(homeSource.slice(homeSource.indexOf("<main>"), patronagePosition).match(/<section\b/g)).toHaveLength(2);
   });
 
-  it("announces the Scientific and Organizing Committees after patronage without duplicating the Unit roster", () => {
+  it("announces the Scientific and Local Organizing Committees after patronage without duplicating the leader roster", () => {
     const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
     const committeesPosition = homeSource.indexOf('id="conference-committees"');
 
     expect(committeesPosition).toBeGreaterThan(homeSource.indexOf("sci2027Content.patronage.map"));
-    expect(committeesPosition).toBeLessThan(homeSource.indexOf('id="venue"'));
+    expect(committeesPosition).toBeLessThan(homeSource.indexOf('href="/programme-workshops"'));
     expect(homeSource).toContain("Scientific Committee");
     expect(homeSource).toContain("To be announced.");
-    expect(homeSource).toContain("Organizing Committee");
-    expect(homeSource).toContain("Conference Organization Unit and its members.");
+    expect(homeSource).toContain("Local Organizing Committee");
     expect(homeSource).toContain('<Link href="/conference-organization-unit"');
-    expect(homeSource).toContain("Meet the Conference Organization Unit");
+    expect(homeSource).toContain("Meet the leaders and members");
     expect(homeSource).not.toContain("conferenceOrganizationUnit.members.map");
+    expect(homeSource).not.toContain("conferenceOrganizationUnit.leaders.map");
   });
 
-  it("moves the Conference Organization Unit content to its own routed page and navigation tab", () => {
+  it("presents the approved Local Organizing Committee at the existing Unit route while preserving central objectives and institutional links", () => {
     const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
     const unitPagePath = projectPath("client/src/pages/Sci2027OrganizationUnit.tsx");
     const unitPageSource = existsSync(unitPagePath) ? readFileSync(unitPagePath, "utf8") : "";
@@ -649,8 +715,8 @@ describe("SCI 2027 public content", () => {
     const headerSource = readFileSync(projectPath("client/src/components/Sci2027Header.tsx"), "utf8");
     const unit = sci2027Content.conferenceOrganizationUnit;
 
-    expect(unit.title).toBe("Conference Organization Unit");
-    expect(unit.institution).toBe("Faculty of Science, Cairo University");
+    expect(unit.title).toBe("Local Organizing Committee");
+    expect(unit.institution).toBe("Conference Organization Unit · Faculty of Science, Cairo University");
     expect(unit.description).toBe(
       "The Conference Organization Unit at the Faculty of Science, Cairo University supports the planning, coordination, and professional management of scientific conferences and events, fostering academic and research collaboration locally and internationally.",
     );
@@ -668,18 +734,23 @@ describe("SCI 2027 public content", () => {
     expect(unitPageSource).toContain("conferenceOrganizationUnit");
     expect(unitPageSource).toContain("Visit the Faculty of Science Website");
     expect(unitPageSource).toContain("Learn More About the Unit");
-    expect(unitPageSource).toContain("conferenceOrganizationUnit.objectives.map");
+    expect(unitPageSource).toContain("conferenceOrganizationUnit.title");
+    expect(unitPageSource).toContain("conferenceOrganizationUnit.institution");
+    expect(unitPageSource).not.toContain("conferenceOrganizationUnit.objectives.map");
+    expect(unitPageSource).not.toContain("How the Unit works");
     expect(unitPageSource).toContain('target="_blank"');
     expect(unitPageSource).toContain('rel="noreferrer"');
     expect(appSource).toContain("Sci2027OrganizationUnit");
     expect(appSource).toContain('path={"/conference-organization-unit"}');
-    expect(headerSource).toContain('{ href: "/conference-organization-unit", label: "Conference Organization Unit" }');
-    expect(headerSource.indexOf('{ href: "/#about", label: "About" }')).toBeLessThan(headerSource.indexOf('{ href: "/conference-organization-unit", label: "Conference Organization Unit" }'));
-    expect(headerSource).toContain("2xl:flex");
-    expect(headerSource).toContain("2xl:hidden");
+    expect(headerSource).toContain('{ href: "/conference-organization-unit", label: "Local Organizing Committee" }');
+    expect(headerSource).toContain('aria-label="Primary navigation"');
+    expect(headerSource).toContain('aria-label="Mobile navigation"');
+    expect(headerSource).toContain("aria-expanded={isOpen}");
     for (const removedHomepagePhrase of ["conferenceOrganizationUnit", "How the Unit works", "Meet the Unit", "Visit the Faculty of Science Website", "Learn More About the Unit"]) {
       expect(homeSource).not.toContain(removedHomepagePhrase);
     }
+    expect(homeSource).not.toContain("Science, partnership and impact");
+    expect(homeSource).not.toContain("objectives.map");
     expect(unitPageSource).not.toMatch(/info@sci\.cu\.edu\.eg|\+20 2 3567 6000/u);
   });
 
@@ -704,7 +775,7 @@ describe("SCI 2027 public content", () => {
 
     expect(unit.members).toHaveLength(9);
     expect(unit.members.map((member) => `${member.name} | ${member.role}`)).toEqual([
-      "Prof. Walid Rahouma | Director of the Unit",
+      "Prof. Walid Rahouma | Conference Chair & Director of the Conference Organizing Unit",
       "Prof. Mohamed Qarny | Secretary of the Unit",
       "Mrs. Manar Mohamed | Administrative & Media Officer",
       "Dr. Nahla Osama | Scientific Programme Lead",
@@ -750,21 +821,40 @@ describe("SCI 2027 public content", () => {
     expect(unit.members).toContainEqual(expect.objectContaining({ name: "Mrs. Manar Mohamed", department: "Conference Organization Unit" }));
     expect(unit.members.find((member) => member.name === "Dr. Nourhan Hassan")?.summary).toMatch(/website design, content, user experience and ongoing updates/u);
     expect(unit.members.every((member) => member.department.length > 0 && member.summary.length > 0)).toBe(true);
-    expect(unitPageSource).toContain("Meet the Unit");
-    expect(unitPageSource).toContain("conferenceOrganizationUnit.members.map");
+    expect(unitPageSource).toContain("Meet the leaders");
+    expect(unitPageSource).toContain("conferenceOrganizationUnit.leaders.map");
     expect(unitPageSource).not.toContain("memberStatus");
     expect(unitPageSource).not.toContain("Prof. Rasha El-Nashar");
     expect(unitPageSource).not.toMatch(/info@sci\.cu\.edu\.eg|\+20 2 3567 6000|13 September 2026/u);
-    expect(unitPageSource).not.toContain("<img src={member");
+    expect(unitPageSource).toContain("{leader.name}");
+    expect(unitPageSource).toContain("{leader.role}");
   });
 
-  it("gives the Unit Director the same single-column card width while retaining the navy and gold director treatment", () => {
+  it("provides all nine approved leader cards with safe portrait assets and a no-photo placeholder for Hoda", () => {
     const unitPagePath = projectPath("client/src/pages/Sci2027OrganizationUnit.tsx");
     const unitPageSource = existsSync(unitPagePath) ? readFileSync(unitPagePath, "utf8") : "";
+    const unit = sci2027Content.conferenceOrganizationUnit as typeof sci2027Content.conferenceOrganizationUnit & {
+      leaders?: ReadonlyArray<{ name: string; role: string; photo: string; assistants?: readonly string[] }>;
+    };
+    const leaders = unit.leaders ?? [];
 
-    expect(unitPageSource).toContain("mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3");
-    expect(unitPageSource).toContain('index === 0 ? "border-[#063760] bg-[#063760] text-white"');
-    expect(unitPageSource).toContain('index === 0 ? "text-[#f0ca57]"');
+    expect(leaders).toHaveLength(9);
+    expect(leaders.map((leader) => [leader.name, leader.role])).toEqual(unit.members.map((member) => [member.name, member.role]));
+    expect(leaders.find((leader) => leader.name === "Prof. Hoda Abu Shady")?.photo).toBe("");
+    expect(leaders.filter((leader) => leader.photo)).toHaveLength(8);
+    for (const leader of leaders.filter((leader) => leader.photo)) {
+      expect(leader.photo).toMatch(/^(https:\/\/|\/manus-storage\/)/u);
+      expect(leader.photo).not.toMatch(/__l5e|__lovable_token/u);
+    }
+    expect(unitPageSource).toContain("conferenceOrganizationUnit.leaders.map");
+    expect(unitPageSource).toContain("src={leader.photo}");
+    expect(unitPageSource).toContain("Portrait of ${leader.name}");
+    expect(unitPageSource).toMatch(/leader\.photo\s*(?:\?|&&)/u);
+    expect(unitPageSource).toMatch(/(?:portrait|photo)\s+(?:to be announced|to be added|coming soon|pending|not available)/iu);
+    expect(unitPageSource).toContain('loading="lazy"');
+    expect(unitPageSource).toContain("aspect-[4/5]");
+    expect(unitPageSource).toContain("sm:grid-cols-2");
+    expect(unitPageSource).toContain("lg:grid-cols-4");
     expect(unitPageSource).not.toContain("md:col-span-2");
     expect(unitPageSource).not.toContain("xl:col-span-2");
   });
@@ -867,46 +957,63 @@ describe("SCI 2027 public content", () => {
     expect(source).toContain("sponsorship.ctaLabel");
   });
 
-  it("recognizes the approved Student Sponsorship Assistants on the sponsorship page only", () => {
+  it("recognizes the two approved student assistants under Nourhan on the Unit page while retaining names-only sponsorship data", () => {
     const sponsorshipPageSource = readFileSync(projectPath("client/src/pages/Sci2027Sponsorship.tsx"), "utf8");
     const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
     const unitPageSource = readFileSync(projectPath("client/src/pages/Sci2027OrganizationUnit.tsx"), "utf8");
     const assistants = sci2027Content.sponsorship.studentSponsorshipAssistants;
+    const unit = sci2027Content.conferenceOrganizationUnit as typeof sci2027Content.conferenceOrganizationUnit & {
+      leaders?: ReadonlyArray<{ name: string; assistants?: readonly string[] }>;
+    };
+    const leaders = unit.leaders ?? [];
 
     expect(assistants).toEqual({
       title: "Student Sponsorship Assistants",
       description: "Supporting sponsor outreach and partner coordination for SCI 2027.",
       members: ["Youssef Saher Sayed", "Ziad Ahmed"],
     });
-    expect(sponsorshipPageSource).toContain("sponsorship.studentSponsorshipAssistants.members.map");
+    expect(leaders.find((leader) => leader.name === "Dr. Nourhan Hassan")?.assistants).toEqual([
+      "Youssef Saher Sayed (4th year student)",
+      "Ziad Ahmed (4th year student)",
+    ]);
+    expect(leaders.filter((leader) => (leader.assistants?.length ?? 0) > 0).map((leader) => leader.name)).toEqual(["Dr. Nourhan Hassan"]);
+    expect(unitPageSource).toContain("conferenceOrganizationUnit.leaders.map");
+    expect(unitPageSource).toContain("Student Sponsorship Assistants");
+    expect(unitPageSource).toContain("leader.assistants.map");
+    expect(sponsorshipPageSource).not.toContain("sponsorship.studentSponsorshipAssistants");
     for (const name of assistants.members) {
       expect(homeSource).not.toContain(name);
-      expect(unitPageSource).not.toContain(name);
+      expect(leaders.find((leader) => leader.name === "Dr. Nourhan Hassan")?.assistants).toContain(`${name} (4th year student)`);
     }
   });
 
-  it("lists the Public Relations & Sponsorship Committee consistently before the separate student-assistant acknowledgement", () => {
+  it("renders Hoda and Azza consistently as committee members on the Unit page while streamlining the sponsorship presentation", () => {
     const sponsorshipPageSource = readFileSync(projectPath("client/src/pages/Sci2027Sponsorship.tsx"), "utf8");
     const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
     const unitPageSource = readFileSync(projectPath("client/src/pages/Sci2027OrganizationUnit.tsx"), "utf8");
     const sponsorship = sci2027Content.sponsorship as typeof sci2027Content.sponsorship & {
       sponsorshipCommittee?: { title: string; members: string[] };
     };
+    const unit = sci2027Content.conferenceOrganizationUnit as typeof sci2027Content.conferenceOrganizationUnit & {
+      leaders?: ReadonlyArray<{ name: string; role: string }>;
+    };
 
     expect(sponsorship.sponsorshipCommittee).toEqual({
       title: "Public Relations & Sponsorship Committee",
       members: ["Prof. Hoda Abu Shady", "Prof. Azza Shoukry"],
     });
-    expect(sponsorshipPageSource).toContain("sponsorship.sponsorshipCommittee.title");
-    expect(sponsorshipPageSource).toContain("sponsorship.sponsorshipCommittee.members.map");
-    expect(sponsorshipPageSource.indexOf("sponsorship.sponsorshipCommittee.members.map")).toBeLessThan(
-      sponsorshipPageSource.indexOf("sponsorship.studentSponsorshipAssistants.members.map"),
-    );
     for (const name of sponsorship.sponsorshipCommittee?.members ?? []) {
       expect(sci2027Content.conferenceOrganizationUnit.members.find((member) => member.name === name)?.role).toBe(sponsorship.sponsorshipCommittee?.title);
+      expect(unit.leaders?.find((leader) => leader.name === name)?.role).toBe(sponsorship.sponsorshipCommittee?.title);
       expect(homeSource).not.toContain(name);
     }
-    expect(unitPageSource).toContain("conferenceOrganizationUnit.members.map");
+    expect(unitPageSource).toContain("conferenceOrganizationUnit.leaders.map");
+    expect(unitPageSource).toContain("{leader.role}");
+    expect(sponsorshipPageSource).not.toContain("sponsorship.sponsorshipCommittee");
+    expect(sponsorshipPageSource).toContain("sponsorship.packages.map");
+    expect(sponsorshipPageSource).toContain("sponsorship.benefitMatrix.map");
+    expect(sponsorshipPageSource).toContain("sponsorship.specialOpportunities.map");
+    expect(sponsorshipPageSource.match(/href="\/sponsor-registration-2027"/g) ?? []).toHaveLength(2);
   });
 
   it("provides an English-only click-to-play SCI 2027 promotional-video gallery", () => {
@@ -939,7 +1046,9 @@ describe("SCI 2027 public content", () => {
 
   it("renders the current SCI 2027 public experience in English only", () => {
     for (const file of englishOnlyPublicFiles) {
-      const source = readFileSync(projectPath(file), "utf8");
+      const path = projectPath(file);
+      expect(existsSync(path)).toBe(true);
+      const source = existsSync(path) ? readFileSync(path, "utf8") : "";
 
       expect(source).not.toMatch(/[\u0600-\u06FF]/u);
       expect(source).not.toContain('dir="rtl"');
@@ -997,7 +1106,7 @@ describe("SCI 2027 public content", () => {
     expect(html).toContain("SCI 2027");
   });
 
-  it("provides programme and archive routes for the two conference editions", () => {
+  it("adds Wouter venue, gala and workshop overview routes without replacing programme, archive or registration routes", () => {
     const appSource = readFileSync(projectPath("client/src/App.tsx"), "utf8");
 
     expect(existsSync(projectPath("client/src/pages/Sci2027Programme.tsx"))).toBe(true);
@@ -1009,5 +1118,21 @@ describe("SCI 2027 public content", () => {
     expect(appSource).toContain('path={"/sponsor"} component={Sci2027Sponsorship}');
     expect(appSource).toContain('path={"/sponsors"} component={Sci2027Sponsorship}');
     expect(appSource).toContain('path={"/videos"} component={Sci2027Videos}');
+    expect(appSource).toContain('path={"/media-registration-2027"} component={Sci2027MediaRegistration}');
+    expect(appSource).toContain('path={"/sponsor-registration-2027"} component={Sci2027SponsorRegistration}');
+    for (const [route, component] of [
+      ["/venue", "Sci2027Venue"],
+      ["/gala-dinner", "Sci2027GalaDinner"],
+      ["/programme-workshops", "Sci2027ProgrammeWorkshops"],
+    ]) {
+      expect(appSource).toContain(`path={"${route}"} component={${component}}`);
+      const source = publicPageSource(component);
+      expect(source).toContain('import { Link } from "wouter"');
+      expect(source).toContain('from "@/data/sci2027Content"');
+      expect(source).toContain("<Sci2027Header");
+      expect(source).toContain("<Sci2027Footer");
+      expect(source).toContain('<Link href="/"');
+      expect(source).not.toContain("@/sci/");
+    }
   });
 });
