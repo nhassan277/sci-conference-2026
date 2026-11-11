@@ -42,8 +42,8 @@ export default function Sci2027Sponsorship() {
           <div className="container relative grid gap-12 py-16 md:py-24 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
             <div className="max-w-3xl">
               <Link href="/" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.15em] text-[#f0ca57] transition hover:text-white"><ArrowLeft className="h-4 w-4" /> Back to SCI 2027</Link>
-              <p className="mt-10 text-xs font-bold uppercase tracking-[0.2em] text-[#f0ca57]">{sponsorship.eyebrow}</p>
-              <h1 className="mt-4 max-w-3xl font-serif text-5xl font-bold leading-[1.02] tracking-[-0.045em] sm:text-6xl">{sponsorship.title}</h1>
+              <p className="mt-10 text-xs font-bold uppercase tracking-[0.2em] text-[#f0ca57]">{sponsorship.title}</p>
+              <h1 className="mt-4 max-w-3xl font-serif text-5xl font-bold leading-[1.02] tracking-[-0.045em] sm:text-6xl">{sponsorship.eyebrow}</h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-[#c1d3dc] sm:text-xl">{sponsorship.description}</p>
               <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
                 <a href={requestHref} className="inline-flex items-center justify-center gap-2 rounded-full bg-[#e5bd4a] px-6 py-3.5 text-sm font-extrabold uppercase tracking-[0.1em] text-[#062f52] transition hover:-translate-y-0.5 hover:bg-[#f5d670]">{sponsorship.ctaLabel}<Mail className="h-4 w-4" /></a>

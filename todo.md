@@ -179,6 +179,8 @@
 - [x] Remove only the Media Registration card from the SCI 2027 homepage
 - [x] Place the unchanged Media Registration invitation beside Sponsor & Partner Registration on the sponsorship page, stacked beneath it on mobile
 - [x] Verify both form routes, unchanged forms/backend/data/admin/archive, responsive layout, tests/typecheck/build and save the media-card relocation checkpoint
+- [x] Unify the page/nav/link name as Partnerships, Sponsorship & Media while preserving /sponsorship and all substantive copy/forms
+- [x] Verify the new name in desktop/mobile menus and page title, unchanged destinations/content, tests/typecheck/build and save a checkpoint
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks

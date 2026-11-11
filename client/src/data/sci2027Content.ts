@@ -815,7 +815,7 @@ export const sci2027Content = {
   sponsorship: {
     contactEmail: SCI2027_EMAIL_RECIPIENTS,
     ctaLabel: "Request the Sponsorship Prospectus by Email",
-    eyebrow: "Partnership and sponsorship",
+    eyebrow: "Partnerships, Sponsorship & Media",
     title: "Move science from insight to impact.",
     description:
       "Partner with SCI 2027 to connect your organisation with researchers, innovators, students and decision-makers shaping science, technology and industry in Egypt and beyond.",

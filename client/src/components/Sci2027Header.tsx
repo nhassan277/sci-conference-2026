@@ -8,7 +8,7 @@ const navigation = [
   { href: "/programme", label: "Programme" },
   { href: "/videos", label: "Watch SCI 2027" },
   { href: "/archive-2026", label: "SCI 2026 Archive" },
-  { href: "/sponsorship", label: "Sponsorship" },
+  { href: "/sponsorship", label: "Partnerships, Sponsorship & Media" },
   { href: "/#registration-fees", label: "Register" },
 ];
 

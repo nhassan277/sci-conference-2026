@@ -331,7 +331,7 @@ export default function Sci2027Home() {
                 <div className="absolute inset-0 bg-gradient-to-r from-[#062f52]/65 via-[#062f52]/20 to-transparent" aria-hidden="true" />
                 <figcaption className="absolute bottom-3 left-4 text-[9px] font-bold uppercase tracking-[0.16em] text-white/85">Photography via Unsplash</figcaption>
               </figure>
-              <Link href="/sponsorship" className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#063760] px-6 py-3.5 text-sm font-extrabold uppercase tracking-[0.1em] text-white transition hover:-translate-y-0.5 hover:bg-[#0a507e]">Explore partnership opportunities <ArrowUpRight className="h-4 w-4" /></Link>
+              <Link href="/sponsorship" className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#063760] px-6 py-3.5 text-sm font-extrabold uppercase tracking-[0.1em] text-white transition hover:-translate-y-0.5 hover:bg-[#0a507e]">Partnerships, Sponsorship &amp; Media <ArrowUpRight className="h-4 w-4" /></Link>
             </div>
           </div>
         </section>

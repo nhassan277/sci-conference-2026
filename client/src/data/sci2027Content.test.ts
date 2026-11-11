@@ -1064,14 +1064,26 @@ describe("SCI 2027 public content", () => {
     expect(homeSource).toContain("option.notice.en");
   });
 
-  it("links the homepage and shared navigation to the SCI 2027 sponsorship offering", () => {
+  it("names the page and its public entry points Partnerships, Sponsorship & Media while preserving the sponsorship route and content", () => {
     const homeSource = readFileSync(projectPath("client/src/pages/Sci2027Home.tsx"), "utf8");
     const headerSource = readFileSync(projectPath("client/src/components/Sci2027Header.tsx"), "utf8");
     const footerSource = readFileSync(projectPath("client/src/components/Sci2027Footer.tsx"), "utf8");
+    const pageSource = readFileSync(projectPath("client/src/pages/Sci2027Sponsorship.tsx"), "utf8");
 
     expect(homeSource).toContain('href="/sponsorship"');
-    expect(headerSource).toContain('label: "Sponsorship"');
+    expect(headerSource).toContain('{ href: "/sponsorship", label: "Partnerships, Sponsorship & Media" }');
     expect(footerSource).toContain('href="/sponsorship"');
+    expect(footerSource).toContain('>Partnerships, Sponsorship &amp; Media</Link>');
+    expect(homeSource).toContain('>Partnerships, Sponsorship &amp; Media <ArrowUpRight');
+    expect(sci2027Content.sponsorship.eyebrow).toBe("Partnerships, Sponsorship & Media");
+    expect(pageSource).toMatch(/<h1[^>]*>\{sponsorship\.eyebrow\}<\/h1>/);
+    expect(pageSource).toMatch(/<p[^>]*>\{sponsorship\.title\}<\/p>/);
+    expect(sci2027Content.sponsorship.title).toBe("Move science from insight to impact.");
+    expect(headerSource).not.toContain('label: "Sponsorship"');
+    expect(footerSource).not.toContain('>Partnership and sponsorship</Link>');
+    expect(pageSource).toContain('href="/sponsor-registration-2027"');
+    expect(pageSource).toContain('href="/media-registration-2027"');
+    expect(pageSource).toContain('href={requestHref}');
   });
 
   it("labels the public promotional-video experience Watch SCI 2027 without changing its route", () => {
