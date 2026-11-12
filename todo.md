@@ -187,6 +187,8 @@
 - [x] Verify responsive menu/page/images, protected fees/programme/forms/backend/archive, all tests/typecheck/build and save the Workshops checkpoint
 - [x] Remove the large workshop partnership announcement, caption and related date note, keeping the office logo and original files
 - [x] Reflow workshop details without the poster column; verify unchanged facts/routes/data, desktop/mobile layout, tests/typecheck/build and checkpoint
+- [x] Create and host a natural circular transparent office-logo derivative with all border/lettering preserved and original upload untouched
+- [x] Use the circular derivative only in Workshops; verify transparency, desktop/mobile presentation, unchanged content/files, all tests/typecheck/build and save checkpoint
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks

@@ -45,13 +45,21 @@ describe("SCI 2027 Workshops", () => {
     const workshops = Reflect.get(sci2027Content, "workshops");
     expect(workshops).toBeDefined();
     for (const image of [workshops.items[0].logo]) {
-      expect(image.url).toMatch(/^https:\/\/files\.manuscdn\.com\/.+\.webp$/);
+      expect(image.url).toMatch(/^https:\/\/files\.manuscdn\.com\/.+\.(?:webp|png)$/);
       expect(image.alt).toContain(provider);
       expect(image.alt).not.toMatch(/[\u0600-\u06FF]/u);
       expect(image.source).toBe("User-supplied official artwork");
       expect(image.width).toBeGreaterThan(1000);
       expect(image.height).toBeGreaterThan(1000);
     }
+  });
+
+  it("uses the natural circular logo derivative instead of the white rectangular original", () => {
+    const logo = sci2027Content.workshops.items[0].logo;
+    expect(logo.url).not.toContain("GbFKanVwgQGkWSYc.webp");
+    expect(logo.width).toBe(logo.height);
+    expect(source("client/src/pages/Sci2027Workshops.tsx")).not.toContain("clip-path");
+    expect(source("client/src/pages/Sci2027Workshops.tsx")).not.toContain("object-cover");
   });
 
   it("renders English workshop details without invented date, fake registration button or image cropping", () => {

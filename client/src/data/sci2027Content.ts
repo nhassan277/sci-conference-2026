@@ -707,10 +707,10 @@ export const sci2027Content = {
         venue: "To be announced",
         registration: { status: "Coming soon", url: null },
         logo: {
-          url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/GbFKanVwgQGkWSYc.webp",
+          url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/PBIWTsHTUJfrxUXT.png",
           alt: "Logo of Cairo University Intellectual Property Protection Office",
-          width: 1463,
-          height: 1600,
+          width: 1056,
+          height: 1056,
           source: "User-supplied official artwork",
         },
       },
