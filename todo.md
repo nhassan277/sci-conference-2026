@@ -181,6 +181,10 @@
 - [x] Verify both form routes, unchanged forms/backend/data/admin/archive, responsive layout, tests/typecheck/build and save the media-card relocation checkpoint
 - [x] Unify the page/nav/link name as Partnerships, Sponsorship & Media while preserving /sponsorship and all substantive copy/forms
 - [x] Verify the new name in desktop/mobile menus and page title, unchanged destinations/content, tests/typecheck/build and save a checkpoint
+- [x] Add Workshops tab after Programme, standalone page and links from programme/footer
+- [x] Publish the approved half-day patents workshop: 30 seats, EGP 200, IP Protection Office provider, date/time/venue TBA and registration Coming soon without a button
+- [x] Display the complete office logo and partnership announcement as verified hosted uncropped derivatives, preserving originals and not treating conference dates as workshop dates
+- [x] Verify responsive menu/page/images, protected fees/programme/forms/backend/archive, all tests/typecheck/build and save the Workshops checkpoint
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks

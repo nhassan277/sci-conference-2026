@@ -691,6 +691,39 @@ export const sci2027Content = {
       label: "Post-conference workshops",
     },
   },
+  workshops: {
+    title: "Workshops",
+    description: "Hands-on learning and practical skills alongside SCI 2027. Explore the announced workshops and check back for scheduling and registration updates.",
+    additionalStatus: "To be announced",
+    items: [
+      {
+        id: "patents",
+        title: "Patents: when is your research protectable, and how to prepare and file",
+        provider: "Cairo University Intellectual Property Protection Office",
+        format: "Half-day hands-on workshop",
+        capacity: 30,
+        fee: "EGP 200",
+        dateAndTime: "To be announced",
+        venue: "To be announced",
+        registration: { status: "Coming soon", url: null },
+        scheduleNote: "The workshop date has not yet been confirmed. The dates printed on the partnership announcement refer to SCI 2027, not this workshop.",
+        logo: {
+          url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/GbFKanVwgQGkWSYc.webp",
+          alt: "Logo of Cairo University Intellectual Property Protection Office",
+          width: 1463,
+          height: 1600,
+          source: "User-supplied official artwork",
+        },
+        announcement: {
+          url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/XDDqDvidcLYzyqFG.webp",
+          alt: "Official SCI 2027 partnership announcement with Cairo University Intellectual Property Protection Office",
+          width: 2160,
+          height: 2700,
+          source: "User-supplied official artwork",
+        },
+      },
+    ],
+  },
   registration: {
     general: {
       name: {

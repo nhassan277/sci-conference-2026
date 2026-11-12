@@ -65,6 +65,7 @@ export default function Sci2027ProgrammeWorkshops() {
               </article>
             </div>
             <Link href="/programme" className="mt-10 inline-flex items-center gap-2 rounded-full bg-[#d3a725] px-6 py-3.5 text-sm font-extrabold uppercase tracking-[0.1em] text-[#062f52] transition hover:-translate-y-0.5 hover:bg-[#f5d670]">Detailed programme timeline <ArrowUpRight className="h-4 w-4" /></Link>
+            <Link href="/workshops" className="mt-4 inline-flex items-center gap-2 rounded-full border border-[#f0ca57]/60 px-6 py-3.5 text-sm font-bold text-[#f0ca57] transition hover:bg-white/10 sm:ml-4">Explore workshops <ArrowUpRight className="h-4 w-4" /></Link>
           </div>
         </section>
       </main>

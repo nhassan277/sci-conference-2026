@@ -129,6 +129,7 @@ export default function Sci2027Programme() {
                   <div><p className="text-sm font-bold">{workshopProgramme.postConference.label}</p><p className="mt-1 text-xs text-[#b9ccd7]">{workshopProgramme.postConference.date}</p></div>
                   <div className="border-t border-white/10 pt-4"><p className="text-xs leading-5 text-[#b9ccd7]">{workshopProgramme.status}</p></div>
                 </div>
+                <Link href="/workshops" className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#d3a725] px-5 py-3 text-sm font-bold text-[#062f52] transition hover:bg-[#f5d670]">Explore workshops <ExternalLink className="h-4 w-4" /></Link>
               </div>
               <a href={sci2027Content.assets.brochureEnglish} target="_blank" rel="noreferrer" className="flex items-center justify-between border border-[#063760]/15 bg-white px-5 py-4 text-sm font-bold text-[#063760] transition hover:border-[#d3a725]"><span>Download conference brochure</span><Download className="h-4 w-4 text-[#ad8618]" /></a>
             </aside>

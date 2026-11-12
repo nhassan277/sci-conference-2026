@@ -6,6 +6,7 @@ import { sci2027Content } from "@/data/sci2027Content";
 const navigation = [
   { href: "/conference-organization-unit", label: "Local Organizing Committee" },
   { href: "/programme", label: "Programme" },
+  { href: "/workshops", label: "Workshops" },
   { href: "/videos", label: "Watch SCI 2027" },
   { href: "/archive-2026", label: "SCI 2026 Archive" },
   { href: "/sponsorship", label: "Partnerships, Sponsorship & Media" },
