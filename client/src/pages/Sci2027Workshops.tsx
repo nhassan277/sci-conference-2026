@@ -37,8 +37,7 @@ export default function Sci2027Workshops() {
                   </div>
                 </div>
 
-                <div className="grid gap-8 p-6 sm:p-8 xl:grid-cols-[1.15fr_0.85fr] xl:gap-10">
-                  <div>
+                <div className="p-6 sm:p-8">
                     <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
                       <div className="col-span-2 border-l-2 border-[#d3a725] bg-[#f7f2e7] p-4 md:col-span-1">
                         <Clock3 className="h-5 w-5 text-[#ad8618]" aria-hidden="true" />
@@ -72,15 +71,6 @@ export default function Sci2027Workshops() {
                       <p className="mt-2 font-serif text-2xl font-bold text-[#063760]">{workshop.registration.status}</p>
                       <p className="mt-3 text-sm leading-6 text-[#456374]">The Google Form link will be added here once available.</p>
                     </div>
-                    <p className="mt-6 text-sm leading-6 text-[#617986]">{workshop.scheduleNote}</p>
-                  </div>
-
-                  <figure className="self-start border border-[#063760]/15 bg-[#fffdf8]">
-                    <a href={workshop.announcement.url} target="_blank" rel="noopener noreferrer" aria-label="Open the complete partnership announcement in a new tab" className="block focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#ad8618]">
-                      <img src={workshop.announcement.url} alt={workshop.announcement.alt} width={workshop.announcement.width} height={workshop.announcement.height} loading="lazy" decoding="async" className="block h-auto w-full" />
-                    </a>
-                    <figcaption className="border-t border-[#063760]/10 px-5 py-4 text-sm leading-6 text-[#617986]">Official partnership announcement. Conference dates shown are not the workshop schedule. Select the image to view it in full size.</figcaption>
-                  </figure>
                 </div>
               </article>
             ))}

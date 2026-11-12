@@ -185,6 +185,8 @@
 - [x] Publish the approved half-day patents workshop: 30 seats, EGP 200, IP Protection Office provider, date/time/venue TBA and registration Coming soon without a button
 - [x] Display the complete office logo and partnership announcement as verified hosted uncropped derivatives, preserving originals and not treating conference dates as workshop dates
 - [x] Verify responsive menu/page/images, protected fees/programme/forms/backend/archive, all tests/typecheck/build and save the Workshops checkpoint
+- [x] Remove the large workshop partnership announcement, caption and related date note, keeping the office logo and original files
+- [x] Reflow workshop details without the poster column; verify unchanged facts/routes/data, desktop/mobile layout, tests/typecheck/build and checkpoint
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks

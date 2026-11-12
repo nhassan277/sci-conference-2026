@@ -35,15 +35,16 @@ describe("SCI 2027 Workshops", () => {
     expect(workshop.dateAndTime).toBe("To be announced");
     expect(workshop.venue).toBe("To be announced");
     expect(workshop.registration).toEqual({ status: "Coming soon", url: null });
-    expect(workshop.scheduleNote).toContain("not this workshop");
+    expect(workshop).not.toHaveProperty("scheduleNote");
+    expect(workshop).not.toHaveProperty("announcement");
     expect(workshop).not.toHaveProperty("speakers");
     expect(workshop).not.toHaveProperty("paymentUrl");
   });
 
-  it("uses both complete hosted user-supplied visuals with English alt text", () => {
+  it("retains the complete hosted office logo with English alt text", () => {
     const workshops = Reflect.get(sci2027Content, "workshops");
     expect(workshops).toBeDefined();
-    for (const image of [workshops.items[0].logo, workshops.items[0].announcement]) {
+    for (const image of [workshops.items[0].logo]) {
       expect(image.url).toMatch(/^https:\/\/files\.manuscdn\.com\/.+\.webp$/);
       expect(image.alt).toContain(provider);
       expect(image.alt).not.toMatch(/[\u0600-\u06FF]/u);
@@ -68,16 +69,25 @@ describe("SCI 2027 Workshops", () => {
     expect(page).toContain("{workshop.dateAndTime}");
     expect(page).toContain("{workshop.venue}");
     expect(page).toContain("{workshop.registration.status}");
-    expect(page).toContain("{workshop.scheduleNote}");
     expect(page).toContain("{workshop.logo.url}");
-    expect(page).toContain("{workshop.announcement.url}");
-    expect(page).toContain('className="block h-auto w-full"');
+    expect(page).toContain('className="block h-auto w-full object-contain"');
     expect(page).not.toContain("object-cover");
     expect(page).not.toContain("<form");
     expect(page).not.toContain("<button");
     expect(page).not.toContain('href="#"');
     expect(page).not.toContain("href={workshop.registration.url}");
     expect(page).not.toMatch(/[\u0600-\u06FF]/u);
+  });
+
+  it("removes the partnership poster, caption and date note without leaving an empty poster column", () => {
+    const page = source("client/src/pages/Sci2027Workshops.tsx");
+    expect(page).not.toContain("workshop.announcement");
+    expect(page).not.toContain("workshop.scheduleNote");
+    expect(page).not.toContain("<figure");
+    expect(page).not.toContain("<figcaption");
+    expect(page).not.toContain("Official partnership announcement");
+    expect(page).not.toContain("xl:grid-cols-[1.15fr_0.85fr]");
+    expect(page).toContain('className="p-6 sm:p-8"');
   });
 
   it("links from footer and programme pages while preserving conference dates, existing registration fees and routes", () => {
