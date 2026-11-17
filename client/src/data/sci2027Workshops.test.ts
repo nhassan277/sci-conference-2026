@@ -24,7 +24,7 @@ describe("SCI 2027 Workshops", () => {
     expect(workshops).toBeDefined();
     expect(workshops.title).toBe("Workshops");
     expect(workshops.additionalStatus).toBe("To be announced");
-    expect(workshops.items).toHaveLength(1);
+    expect(workshops.items).toHaveLength(2);
     const workshop = workshops.items[0];
     expect(workshop.id).toBe("patents");
     expect(workshop.title).toBe(title);
@@ -39,6 +39,52 @@ describe("SCI 2027 Workshops", () => {
     expect(workshop).not.toHaveProperty("announcement");
     expect(workshop).not.toHaveProperty("speakers");
     expect(workshop).not.toHaveProperty("paymentUrl");
+  });
+
+  it("adds the NARSS remote sensing workshop with confirmed participation certificate and no invented details", () => {
+    const workshop = Reflect.get(sci2027Content, "workshops").items[1];
+    expect(workshop).toBeDefined();
+    expect(workshop).toMatchObject({
+      id: "remote-sensing",
+      title: "Remote Sensing Applications: From Space Science to Geological and Petroleum Exploration",
+      provider: "National Authority for Remote Sensing and Space Sciences (NARSS)",
+      format: "Practical workshop",
+      duration: "To be announced",
+      capacity: null,
+      fee: "To be announced",
+      dateAndTime: "To be announced",
+      venue: "To be announced",
+      certificate: "Certificate of participation",
+      registration: { status: "Coming soon", url: null },
+    });
+    expect(workshop.logo).toMatchObject({
+      alt: "Logo of the National Authority for Remote Sensing and Space Sciences (NARSS)",
+      width: 400,
+      height: 393,
+      source: "User-supplied official artwork",
+    });
+    expect(workshop.logo.url).toMatch(/^https:\/\/files\.manuscdn\.com\/.+\.webp$/);
+    expect(workshop).not.toHaveProperty("speakers");
+    expect(workshop).not.toHaveProperty("announcement");
+    expect(workshop).not.toHaveProperty("paymentUrl");
+  });
+
+  it("renders unknown seat counts safely while displaying the NARSS duration and certificate", () => {
+    const page = source("client/src/pages/Sci2027Workshops.tsx");
+    expect(page).toContain('typeof workshop.capacity === "number"');
+    expect(page).toContain('"duration" in workshop');
+    expect(page).toContain("{workshop.duration}");
+    expect(page).toContain('"certificate" in workshop');
+    expect(page).toContain("{workshop.certificate}");
+    expect(page).toContain("space-y-10");
+    expect(page).not.toContain("Logo coming soon");
+  });
+
+  it("uses body-text sizing for unannounced fees without changing confirmed price typography", () => {
+    const page = source("client/src/pages/Sci2027Workshops.tsx");
+    expect(page).toContain('workshop.fee === "To be announced"');
+    expect(page).toContain('? "mt-4 text-sm font-bold leading-6 text-[#063760]"');
+    expect(page).toContain(': "mt-4 font-serif text-3xl font-bold text-[#063760]"');
   });
 
   it("retains the complete hosted office logo with English alt text", () => {
@@ -72,7 +118,7 @@ describe("SCI 2027 Workshops", () => {
     expect(page).toContain("{workshop.title}");
     expect(page).toContain("{workshop.provider}");
     expect(page).toContain("{workshop.format}");
-    expect(page).toContain("{workshop.capacity} seats only");
+    expect(page).toContain("`${workshop.capacity} seats only`");
     expect(page).toContain("{workshop.fee}");
     expect(page).toContain("{workshop.dateAndTime}");
     expect(page).toContain("{workshop.venue}");

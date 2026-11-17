@@ -22,7 +22,7 @@ export default function Sci2027Workshops() {
         </section>
 
         <section className="py-12 sm:py-16 md:py-20" aria-label="Announced workshops">
-          <div className="container">
+          <div className="container space-y-10">
             {workshops.items.map((workshop, index) => (
               <article key={workshop.id} id={workshop.id} aria-labelledby={`${workshop.id}-title`} className="border border-[#063760]/15 bg-white shadow-[0_16px_45px_rgba(6,55,96,0.07)]">
                 <div className="grid border-b border-[#063760]/10 bg-[#f8f3e7] p-6 sm:p-8 lg:grid-cols-[1fr_220px] lg:items-center lg:gap-10">
@@ -47,11 +47,13 @@ export default function Sci2027Workshops() {
                       <div className="border-l-2 border-[#d3a725] bg-[#f7f2e7] p-4">
                         <Users className="h-5 w-5 text-[#ad8618]" aria-hidden="true" />
                         <p className="mt-4 text-xs font-bold uppercase tracking-[0.12em] text-[#617986]">Capacity</p>
-                        <p className="mt-2 text-sm font-bold leading-6 text-[#063760]">{workshop.capacity} seats only</p>
+                        <p className="mt-2 text-sm font-bold leading-6 text-[#063760]">{typeof workshop.capacity === "number" ? `${workshop.capacity} seats only` : "To be announced"}</p>
                       </div>
                       <div className="border-l-2 border-[#d3a725] bg-[#f7f2e7] p-4">
                         <p className="text-xs font-bold uppercase tracking-[0.12em] text-[#617986]">Workshop fee</p>
-                        <p className="mt-4 font-serif text-3xl font-bold text-[#063760]">{workshop.fee}</p>
+                        <p className={workshop.fee === "To be announced"
+                          ? "mt-4 text-sm font-bold leading-6 text-[#063760]"
+                          : "mt-4 font-serif text-3xl font-bold text-[#063760]"}>{workshop.fee}</p>
                       </div>
                     </div>
 
@@ -64,6 +66,18 @@ export default function Sci2027Workshops() {
                         <dt className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.12em] text-[#617986]"><MapPin className="h-4 w-4 text-[#ad8618]" aria-hidden="true" /> Venue</dt>
                         <dd className="mt-3 text-sm font-bold text-[#063760]">{workshop.venue}</dd>
                       </div>
+                      {"duration" in workshop && (
+                        <div>
+                          <dt className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.12em] text-[#617986]"><Clock3 className="h-4 w-4 text-[#ad8618]" aria-hidden="true" /> Duration</dt>
+                          <dd className="mt-3 text-sm font-bold text-[#063760]">{workshop.duration}</dd>
+                        </div>
+                      )}
+                      {"certificate" in workshop && (
+                        <div>
+                          <dt className="text-xs font-bold uppercase tracking-[0.12em] text-[#617986]">Certificate</dt>
+                          <dd className="mt-3 text-sm font-bold text-[#063760]">{workshop.certificate}</dd>
+                        </div>
+                      )}
                     </dl>
 
                     <div className="mt-6 border-l-4 border-[#d3a725] bg-[#edf4f6] p-5">

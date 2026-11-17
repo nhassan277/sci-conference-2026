@@ -189,6 +189,8 @@
 - [x] Reflow workshop details without the poster column; verify unchanged facts/routes/data, desktop/mobile layout, tests/typecheck/build and checkpoint
 - [x] Create and host a natural circular transparent office-logo derivative with all border/lettering preserved and original upload untouched
 - [x] Use the circular derivative only in Workshops; verify transparency, desktop/mobile presentation, unchanged content/files, all tests/typecheck/build and save checkpoint
+- [x] Add the NARSS remote-sensing workshop second with confirmed participation certificate, provided full logo, unknown fees/capacity/duration/schedule/venue and registration Coming soon
+- [x] Verify both workshop cards, unchanged patents details/logo and other data/files, original uploads, responsive layout, tests/typecheck/build and save checkpoint
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks
