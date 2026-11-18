@@ -51,7 +51,7 @@ export default function Sci2027Workshops() {
                       </div>
                       <div className="border-l-2 border-[#d3a725] bg-[#f7f2e7] p-4">
                         <p className="text-xs font-bold uppercase tracking-[0.12em] text-[#617986]">Workshop fee</p>
-                        <p className={workshop.fee === "To be announced"
+                        <p className={String(workshop.fee) === "To be announced"
                           ? "mt-4 text-sm font-bold leading-6 text-[#063760]"
                           : "mt-4 font-serif text-3xl font-bold text-[#063760]"}>{workshop.fee}</p>
                       </div>

@@ -33,7 +33,7 @@ describe("SCI 2027 Workshops", () => {
     expect(workshop.capacity).toBe(30);
     expect(workshop.fee).toBe("EGP 200");
     expect(workshop.dateAndTime).toBe("To be announced");
-    expect(workshop.venue).toBe("To be announced");
+    expect(workshop.venue).toBe("Abn Sina Hall, Faculty of Science, Cairo University");
     expect(workshop.registration).toEqual({ status: "Registration available", url: "https://forms.gle/FQRgvzyVvRjpdsiLA" });
     expect(workshop).not.toHaveProperty("scheduleNote");
     expect(workshop).not.toHaveProperty("announcement");
@@ -48,12 +48,12 @@ describe("SCI 2027 Workshops", () => {
       id: "remote-sensing",
       title: "Remote Sensing Applications: From Space Science to Geological and Petroleum Exploration",
       provider: "National Authority for Remote Sensing and Space Sciences (NARSS)",
-      format: "Practical workshop",
-      duration: "To be announced",
+      format: "Half-day hands-on workshop",
+      duration: "Half-day",
       capacity: null,
-      fee: "To be announced",
+      fee: "EGP 200",
       dateAndTime: "To be announced",
-      venue: "To be announced",
+      venue: "Abn Sina Hall, Faculty of Science, Cairo University",
       certificate: "Certificate of participation",
       registration: { status: "Registration available", url: "https://forms.gle/7fhDR3QCDLqEpVi59" },
     });
@@ -69,6 +69,22 @@ describe("SCI 2027 Workshops", () => {
     expect(workshop).not.toHaveProperty("paymentUrl");
   });
 
+  it("shows the organizer-confirmed format, fee and hall for both workshops without assigning dates", () => {
+    expect(sci2027Content.workshops.items.map(workshop => ({
+      id: workshop.id,
+      format: workshop.format,
+      fee: workshop.fee,
+      venue: workshop.venue,
+      dateAndTime: workshop.dateAndTime,
+    }))).toEqual(["patents", "remote-sensing"].map(id => ({
+      id,
+      format: "Half-day hands-on workshop",
+      fee: "EGP 200",
+      venue: "Abn Sina Hall, Faculty of Science, Cairo University",
+      dateAndTime: "To be announced",
+    })));
+  });
+
   it("renders unknown seat counts safely while displaying the NARSS duration and certificate", () => {
     const page = source("client/src/pages/Sci2027Workshops.tsx");
     expect(page).toContain('typeof workshop.capacity === "number"');
@@ -82,7 +98,7 @@ describe("SCI 2027 Workshops", () => {
 
   it("uses body-text sizing for unannounced fees without changing confirmed price typography", () => {
     const page = source("client/src/pages/Sci2027Workshops.tsx");
-    expect(page).toContain('workshop.fee === "To be announced"');
+    expect(page).toContain('String(workshop.fee) === "To be announced"');
     expect(page).toContain('? "mt-4 text-sm font-bold leading-6 text-[#063760]"');
     expect(page).toContain(': "mt-4 font-serif text-3xl font-bold text-[#063760]"');
   });

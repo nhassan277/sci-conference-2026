@@ -193,6 +193,8 @@
 - [x] Verify both workshop cards, unchanged patents details/logo and other data/files, original uploads, responsive layout, tests/typecheck/build and save checkpoint
 - [x] Add the confirmed NARSS and Patents Google Form URLs and safe external registration buttons, preserving all workshop details
 - [x] Verify exact form mapping, new-tab and keyboard behavior, protected data/files, responsive layout, all tests/typecheck/build and save checkpoint
+- [x] Set both workshops to Half-day hands-on workshop, EGP 200 and Abn Sina Hall, Faculty of Science, Cairo University; align NARSS duration to Half-day
+- [x] Verify both corrected cards, unchanged dates/capacity/registration/logos/other data, desktop/mobile layout, tests/typecheck/build and save checkpoint
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks
