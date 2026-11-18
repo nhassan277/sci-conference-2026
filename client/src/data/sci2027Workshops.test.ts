@@ -19,7 +19,7 @@ describe("SCI 2027 Workshops", () => {
     expect((header.match(/navigation\.map/g) ?? [])).toHaveLength(2);
   });
 
-  it("publishes only the confirmed half-day patent workshop and leaves scheduling and registration unconfirmed", () => {
+  it("retains the confirmed patent details, unconfirmed schedule and matching registration form", () => {
     const workshops = Reflect.get(sci2027Content, "workshops");
     expect(workshops).toBeDefined();
     expect(workshops.title).toBe("Workshops");
@@ -34,7 +34,7 @@ describe("SCI 2027 Workshops", () => {
     expect(workshop.fee).toBe("EGP 200");
     expect(workshop.dateAndTime).toBe("To be announced");
     expect(workshop.venue).toBe("To be announced");
-    expect(workshop.registration).toEqual({ status: "Coming soon", url: null });
+    expect(workshop.registration).toEqual({ status: "Registration available", url: "https://forms.gle/FQRgvzyVvRjpdsiLA" });
     expect(workshop).not.toHaveProperty("scheduleNote");
     expect(workshop).not.toHaveProperty("announcement");
     expect(workshop).not.toHaveProperty("speakers");
@@ -55,7 +55,7 @@ describe("SCI 2027 Workshops", () => {
       dateAndTime: "To be announced",
       venue: "To be announced",
       certificate: "Certificate of participation",
-      registration: { status: "Coming soon", url: null },
+      registration: { status: "Registration available", url: "https://forms.gle/7fhDR3QCDLqEpVi59" },
     });
     expect(workshop.logo).toMatchObject({
       alt: "Logo of the National Authority for Remote Sensing and Space Sciences (NARSS)",
@@ -87,6 +87,19 @@ describe("SCI 2027 Workshops", () => {
     expect(page).toContain(': "mt-4 font-serif text-3xl font-bold text-[#063760]"');
   });
 
+  it("renders real external form buttons with safe new-tab behavior and a no-URL fallback", () => {
+    const page = source("client/src/pages/Sci2027Workshops.tsx");
+    expect(page).toContain("workshop.registration.url ? (");
+    expect(page).toContain("href={workshop.registration.url}");
+    expect(page).toContain('target="_blank"');
+    expect(page).toContain('rel="noopener noreferrer"');
+    expect(page).toContain("Register for this workshop");
+    expect(page).toContain("Register for ${workshop.title} (opens in a new tab)");
+    expect(page).toContain("focus-visible:outline");
+    expect(page).toContain("Google sign-in may be required.");
+    expect(page).toContain("The Google Form link will be added here once available.");
+  });
+
   it("retains the complete hosted office logo with English alt text", () => {
     const workshops = Reflect.get(sci2027Content, "workshops");
     expect(workshops).toBeDefined();
@@ -108,7 +121,7 @@ describe("SCI 2027 Workshops", () => {
     expect(source("client/src/pages/Sci2027Workshops.tsx")).not.toContain("object-cover");
   });
 
-  it("renders English workshop details without invented date, fake registration button or image cropping", () => {
+  it("renders English workshop details without invented dates, internal forms or image cropping", () => {
     const page = source("client/src/pages/Sci2027Workshops.tsx");
     expect(page).not.toBe("");
     expect(page).toContain('lang="en"');
@@ -129,7 +142,7 @@ describe("SCI 2027 Workshops", () => {
     expect(page).not.toContain("<form");
     expect(page).not.toContain("<button");
     expect(page).not.toContain('href="#"');
-    expect(page).not.toContain("href={workshop.registration.url}");
+    expect(page).toContain("href={workshop.registration.url}");
     expect(page).not.toMatch(/[\u0600-\u06FF]/u);
   });
 

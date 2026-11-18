@@ -705,7 +705,7 @@ export const sci2027Content = {
         fee: "EGP 200",
         dateAndTime: "To be announced",
         venue: "To be announced",
-        registration: { status: "Coming soon", url: null },
+        registration: { status: "Registration available", url: "https://forms.gle/FQRgvzyVvRjpdsiLA" },
         logo: {
           url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/PBIWTsHTUJfrxUXT.png",
           alt: "Logo of Cairo University Intellectual Property Protection Office",
@@ -725,7 +725,7 @@ export const sci2027Content = {
         dateAndTime: "To be announced",
         venue: "To be announced",
         certificate: "Certificate of participation",
-        registration: { status: "Coming soon", url: null },
+        registration: { status: "Registration available", url: "https://forms.gle/7fhDR3QCDLqEpVi59" },
         logo: {
           url: "https://files.manuscdn.com/user_upload_by_module/session_file/118031311/daQZyudkgjiRZkGh.webp",
           alt: "Logo of the National Authority for Remote Sensing and Space Sciences (NARSS)",

@@ -191,6 +191,8 @@
 - [x] Use the circular derivative only in Workshops; verify transparency, desktop/mobile presentation, unchanged content/files, all tests/typecheck/build and save checkpoint
 - [x] Add the NARSS remote-sensing workshop second with confirmed participation certificate, provided full logo, unknown fees/capacity/duration/schedule/venue and registration Coming soon
 - [x] Verify both workshop cards, unchanged patents details/logo and other data/files, original uploads, responsive layout, tests/typecheck/build and save checkpoint
+- [x] Add the confirmed NARSS and Patents Google Form URLs and safe external registration buttons, preserving all workshop details
+- [x] Verify exact form mapping, new-tab and keyboard behavior, protected data/files, responsive layout, all tests/typecheck/build and save checkpoint
 - [ ] Publish the SCI 2027 release to the existing public site and verify the live domain no longer serves SCI 2026
 
 ## Pending Tasks

@@ -83,7 +83,16 @@ export default function Sci2027Workshops() {
                     <div className="mt-6 border-l-4 border-[#d3a725] bg-[#edf4f6] p-5">
                       <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#617986]">Registration</p>
                       <p className="mt-2 font-serif text-2xl font-bold text-[#063760]">{workshop.registration.status}</p>
-                      <p className="mt-3 text-sm leading-6 text-[#456374]">The Google Form link will be added here once available.</p>
+                      {workshop.registration.url ? (
+                        <>
+                          <a href={workshop.registration.url} target="_blank" rel="noopener noreferrer" aria-label={`Register for ${workshop.title} (opens in a new tab)`} className="mt-5 inline-flex max-w-full items-center justify-center gap-2 rounded-full bg-[#063760] px-5 py-3 text-center text-sm font-bold text-white transition hover:bg-[#0a507e] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#063760]">
+                            Register for this workshop <ArrowUpRight className="h-4 w-4 shrink-0" aria-hidden="true" />
+                          </a>
+                          <p className="mt-3 text-sm leading-6 text-[#456374]">Opens in a new tab. Google sign-in may be required.</p>
+                        </>
+                      ) : (
+                        <p className="mt-3 text-sm leading-6 text-[#456374]">The Google Form link will be added here once available.</p>
+                      )}
                     </div>
                 </div>
               </article>
